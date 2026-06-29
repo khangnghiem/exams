@@ -783,7 +783,58 @@
       .question { display: block !important; box-shadow: none; border: 1px solid #bbb; page-break-inside: avoid; }
       .question.active { display: block !important; }
       .answer-revealed { display: block !important; }
+      .exhibit img { box-shadow: none; }
     }
+
+    /* ----- Exhibits & special question-type widgets ----- */
+    .exhibits { margin-top: 1rem; display: grid; gap: 1rem; }
+    .exhibit { margin: 0; border: 1px solid var(--border); border-radius: 18px; padding: 0.75rem; background: rgb(var(--surface-rgb) / 0.7); }
+    .exhibit img { display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
+    .exhibit figcaption { margin-top: 0.5rem; text-align: center; color: var(--text-secondary); font-size: 0.82rem; font-weight: 700; }
+    .exhibit pre { margin: 0; }
+    .exhibit table { border-collapse: collapse; width: 100%; }
+    .exhibit table th, .exhibit table td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; }
+    .exhibit-missing { padding: 1rem; text-align: center; background: var(--warning-bg); color: var(--warning-ink); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .exhibit-missing-title { font-weight: 800; margin-bottom: 0.35rem; }
+    .exhibit-missing a { color: var(--accent-ink); text-decoration: underline; }
+
+    .hotspot-widget, .dragdrop-widget, .other-widget {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    }
+    .hotspot-stage { position: relative; display: inline-block; max-width: 100%; }
+    .hotspot-stage img { cursor: crosshair; }
+    .hotspot-dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .widget-note { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem; }
+    .dragdrop-chips { list-style: none; padding: 0; margin: 0 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .dragdrop-chip {
+      cursor: grab;
+      user-select: none;
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      background: rgb(var(--surface-rgb) / 0.85);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .dragdrop-chip:active { cursor: grabbing; }
+    .dragdrop-chip.selected { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+
+    .answer-card.answer-missing { background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .answer-card.answer-missing .label { color: var(--warning-ink); }
   </style>
 </head>
 <body>
@@ -1008,12 +1059,13 @@
 </details>
 </nav>
 <div id="questions" class="question-stack">
-<article class="question active" id="q-dp-700-t1-n1-935966" data-topic="1" data-num="1" data-label="Q1.1">
+<article class="question active" id="q-dp-700-t1-n1-935966" data-topic="1" data-num="1" data-label="Q1.1" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.1</span>
 <span class="q-id">ID 935966</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.1 as reviewed">Mark reviewed</button>
@@ -1073,7 +1125,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n2-935967" data-topic="1" data-num="2" data-label="Q1.2">
+<article class="question" id="q-dp-700-t1-n2-935967" data-topic="1" data-num="2" data-label="Q1.2" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.2</span>
@@ -1137,7 +1189,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n3-935968" data-topic="1" data-num="3" data-label="Q1.3">
+<article class="question" id="q-dp-700-t1-n3-935968" data-topic="1" data-num="3" data-label="Q1.3" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.3</span>
@@ -1201,7 +1253,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n4-935969" data-topic="1" data-num="4" data-label="Q1.4">
+<article class="question" id="q-dp-700-t1-n4-935969" data-topic="1" data-num="4" data-label="Q1.4" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.4</span>
@@ -1265,7 +1317,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n5-935970" data-topic="1" data-num="5" data-label="Q1.5">
+<article class="question" id="q-dp-700-t1-n5-935970" data-topic="1" data-num="5" data-label="Q1.5" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.5</span>
@@ -1333,11 +1385,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n6-935971" data-topic="1" data-num="6" data-label="Q1.6">
+<article class="question" id="q-dp-700-t1-n6-935971" data-topic="1" data-num="6" data-label="Q1.6" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.6</span>
 <span class="q-id">ID 935971</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -1351,6 +1404,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to create an output that presents the summarized values of all the order quantities by year and product. The results must include a summary of the order quantities at the year level for all the products.<br>How should you complete the code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935971_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935971_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935971_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935971_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1358,8 +1416,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -1379,7 +1437,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n7-935972" data-topic="1" data-num="7" data-label="Q1.7">
+<article class="question" id="q-dp-700-t1-n7-935972" data-topic="1" data-num="7" data-label="Q1.7" data-qtype="multiple">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.7</span>
@@ -1396,6 +1454,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to prepare the data.<br>Which three columns should you include in the DimProduct table? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935972_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
 <input type="checkbox" name="choice-q-dp-700-t1-n7-935972" value="A" id="choice-q-dp-700-t1-n7-935972-A">
@@ -1451,7 +1512,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n8-935973" data-topic="1" data-num="8" data-label="Q1.8">
+<article class="question" id="q-dp-700-t1-n8-935973" data-topic="1" data-num="8" data-label="Q1.8" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.8</span>
@@ -1515,7 +1576,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n9-935974" data-topic="1" data-num="9" data-label="Q1.9">
+<article class="question" id="q-dp-700-t1-n9-935974" data-topic="1" data-num="9" data-label="Q1.9" data-qtype="multiple">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.9</span>
@@ -1591,7 +1652,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n10-935975" data-topic="1" data-num="10" data-label="Q1.10">
+<article class="question" id="q-dp-700-t1-n10-935975" data-topic="1" data-num="10" data-label="Q1.10" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.10</span>
@@ -1655,11 +1716,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n11-935976" data-topic="1" data-num="11" data-label="Q1.11">
+<article class="question" id="q-dp-700-t1-n11-935976" data-topic="1" data-num="11" data-label="Q1.11" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.11</span>
 <span class="q-id">ID 935976</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -1673,6 +1735,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935976_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935976_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1680,8 +1746,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -1701,7 +1767,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n12-935977" data-topic="1" data-num="12" data-label="Q1.12">
+<article class="question" id="q-dp-700-t1-n12-935977" data-topic="1" data-num="12" data-label="Q1.12" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.12</span>
@@ -1761,7 +1827,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n13-935978" data-topic="1" data-num="13" data-label="Q1.13">
+<article class="question" id="q-dp-700-t1-n13-935978" data-topic="1" data-num="13" data-label="Q1.13" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.13</span>
@@ -1825,7 +1891,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n14-935979" data-topic="1" data-num="14" data-label="Q1.14">
+<article class="question" id="q-dp-700-t1-n14-935979" data-topic="1" data-num="14" data-label="Q1.14" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.14</span>
@@ -1893,7 +1959,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n15-935980" data-topic="1" data-num="15" data-label="Q1.15">
+<article class="question" id="q-dp-700-t1-n15-935980" data-topic="1" data-num="15" data-label="Q1.15" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.15</span>
@@ -1957,7 +2023,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n16-935981" data-topic="1" data-num="16" data-label="Q1.16">
+<article class="question" id="q-dp-700-t1-n16-935981" data-topic="1" data-num="16" data-label="Q1.16" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.16</span>
@@ -1974,6 +2040,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to read data from all the shortcuts.<br>Which shortcuts will retrieve data from the cache?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935981_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935981_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n16-935981" value="A" id="choice-q-dp-700-t1-n16-935981-A">
@@ -2029,7 +2099,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n17-935982" data-topic="1" data-num="17" data-label="Q1.17">
+<article class="question" id="q-dp-700-t1-n17-935982" data-topic="1" data-num="17" data-label="Q1.17" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.17</span>
@@ -2093,7 +2163,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n18-935983" data-topic="1" data-num="18" data-label="Q1.18">
+<article class="question" id="q-dp-700-t1-n18-935983" data-topic="1" data-num="18" data-label="Q1.18" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.18</span>
@@ -2110,6 +2180,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">A shortcut to TripsFile aliased as Trips<br>The data from which shortcuts will be retrieved from the cache?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935983_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n18-935983" value="A" id="choice-q-dp-700-t1-n18-935983-A">
@@ -2161,11 +2234,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n19-935984" data-topic="1" data-num="19" data-label="Q1.19">
+<article class="question" id="q-dp-700-t1-n19-935984" data-topic="1" data-num="19" data-label="Q1.19" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.19</span>
 <span class="q-id">ID 935984</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -2179,6 +2253,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to configure the execution of the items to meet the following requirements:<br>Notebook1 must execute every weekday at 8:00 AM.<br>Notebook2 must execute when a file is saved to an Azure Blob Storage container.<br>Model1 must refresh when Notebook1 has executed successfully.<br>How should you orchestrate each item? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935984_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935984_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935984_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935984_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2186,8 +2265,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -2207,7 +2286,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n20-935985" data-topic="1" data-num="20" data-label="Q1.20">
+<article class="question" id="q-dp-700-t1-n20-935985" data-topic="1" data-num="20" data-label="Q1.20" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.20</span>
@@ -2271,7 +2350,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n21-935986" data-topic="1" data-num="21" data-label="Q1.21">
+<article class="question" id="q-dp-700-t1-n21-935986" data-topic="1" data-num="21" data-label="Q1.21" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.21</span>
@@ -2335,7 +2414,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n22-935987" data-topic="1" data-num="22" data-label="Q1.22">
+<article class="question" id="q-dp-700-t1-n22-935987" data-topic="1" data-num="22" data-label="Q1.22" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.22</span>
@@ -2399,12 +2478,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n23-935988" data-topic="1" data-num="23" data-label="Q1.23">
+<article class="question" id="q-dp-700-t1-n23-935988" data-topic="1" data-num="23" data-label="Q1.23" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.23</span>
 <span class="q-id">ID 935988</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.23 as reviewed">Mark reviewed</button>
@@ -2417,6 +2497,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to apply endorsement badges to the entities based on each entity’s use case.<br>Which badge should you apply to each entity? To answer, drag the appropriate badges the correct entities. Each badge may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935988_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2424,8 +2508,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -2445,11 +2529,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n24-935989" data-topic="1" data-num="24" data-label="Q1.24">
+<article class="question" id="q-dp-700-t1-n24-935989" data-topic="1" data-num="24" data-label="Q1.24" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.24</span>
 <span class="q-id">ID 935989</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -2463,6 +2548,12 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935989_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935989_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935989_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935989_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935989_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/935989_2.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="2"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2470,8 +2561,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -2491,7 +2582,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n25-935990" data-topic="1" data-num="25" data-label="Q1.25">
+<article class="question" id="q-dp-700-t1-n25-935990" data-topic="1" data-num="25" data-label="Q1.25" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.25</span>
@@ -2508,6 +2599,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to ensure that the items in Workspace1 overwrite the corresponding items in Workspace2. The solution must minimize effort.<br>What should you do?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935990_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n25-935990" value="A" id="choice-q-dp-700-t1-n25-935990-A">
@@ -2555,7 +2649,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n26-935991" data-topic="1" data-num="26" data-label="Q1.26">
+<article class="question" id="q-dp-700-t1-n26-935991" data-topic="1" data-num="26" data-label="Q1.26" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.26</span>
@@ -2619,12 +2713,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n27-935992" data-topic="1" data-num="27" data-label="Q1.27">
+<article class="question" id="q-dp-700-t1-n27-935992" data-topic="1" data-num="27" data-label="Q1.27" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.27</span>
 <span class="q-id">ID 935992</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.27 as reviewed">Mark reviewed</button>
@@ -2637,6 +2732,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to ensure that the libraries are available by default to new notebooks in Workspace1.<br>Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935992_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2644,8 +2743,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -2665,7 +2764,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n28-935993" data-topic="1" data-num="28" data-label="Q1.28">
+<article class="question" id="q-dp-700-t1-n28-935993" data-topic="1" data-num="28" data-label="Q1.28" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.28</span>
@@ -2729,7 +2828,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n29-935994" data-topic="1" data-num="29" data-label="Q1.29">
+<article class="question" id="q-dp-700-t1-n29-935994" data-topic="1" data-num="29" data-label="Q1.29" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.29</span>
@@ -2805,7 +2904,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n30-935995" data-topic="1" data-num="30" data-label="Q1.30">
+<article class="question" id="q-dp-700-t1-n30-935995" data-topic="1" data-num="30" data-label="Q1.30" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.30</span>
@@ -2873,12 +2972,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n31-935996" data-topic="1" data-num="31" data-label="Q1.31">
+<article class="question" id="q-dp-700-t1-n31-935996" data-topic="1" data-num="31" data-label="Q1.31" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.31</span>
 <span class="q-id">ID 935996</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.31 as reviewed">Mark reviewed</button>
@@ -2891,6 +2991,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to set the Customerkey column as a primary key of the DimCustomer table.<br>Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935996_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935996_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2898,8 +3003,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -2919,7 +3024,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n32-935997" data-topic="1" data-num="32" data-label="Q1.32">
+<article class="question" id="q-dp-700-t1-n32-935997" data-topic="1" data-num="32" data-label="Q1.32" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.32</span>
@@ -2983,7 +3088,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n33-935998" data-topic="1" data-num="33" data-label="Q1.33">
+<article class="question" id="q-dp-700-t1-n33-935998" data-topic="1" data-num="33" data-label="Q1.33" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.33</span>
@@ -3000,6 +3105,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.<br>Solution: You use the following code segment:<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935998_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n33-935998" value="A" id="choice-q-dp-700-t1-n33-935998-A">
@@ -3039,7 +3147,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n34-935999" data-topic="1" data-num="34" data-label="Q1.34">
+<article class="question" id="q-dp-700-t1-n34-935999" data-topic="1" data-num="34" data-label="Q1.34" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.34</span>
@@ -3056,6 +3164,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.<br>Solution: You use the following code segment:<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935999_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n34-935999" value="A" id="choice-q-dp-700-t1-n34-935999-A">
@@ -3095,7 +3206,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n35-936000" data-topic="1" data-num="35" data-label="Q1.35">
+<article class="question" id="q-dp-700-t1-n35-936000" data-topic="1" data-num="35" data-label="Q1.35" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.35</span>
@@ -3112,6 +3223,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.<br>Solution: You use the following code segment:<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936000_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n35-936000" value="A" id="choice-q-dp-700-t1-n35-936000-A">
@@ -3151,7 +3265,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n36-936001" data-topic="1" data-num="36" data-label="Q1.36">
+<article class="question" id="q-dp-700-t1-n36-936001" data-topic="1" data-num="36" data-label="Q1.36" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.36</span>
@@ -3168,6 +3282,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.<br>Solution: You use the following code segment:<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936001_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n36-936001" value="A" id="choice-q-dp-700-t1-n36-936001-A">
@@ -3207,12 +3324,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n37-943817" data-topic="1" data-num="37" data-label="Q1.37">
+<article class="question" id="q-dp-700-t1-n37-943817" data-topic="1" data-num="37" data-label="Q1.37" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.37</span>
 <span class="q-id">ID 943817</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.37 as reviewed">Mark reviewed</button>
@@ -3272,12 +3390,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n38-943818" data-topic="1" data-num="38" data-label="Q1.38">
+<article class="question" id="q-dp-700-t1-n38-943818" data-topic="1" data-num="38" data-label="Q1.38" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.38</span>
 <span class="q-id">ID 943818</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.38 as reviewed">Mark reviewed</button>
@@ -3290,6 +3409,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">When the authors have new book releases, there is often an increase in sales activity. This increase slows the data ingestion process.<br>The company’s sales team reports that during the last month, the sales data has NOT been up-to-date when they arrive at work in the morning.<br>Requirements. <span class="section-title">Planned Changes</span>Litware recently signed a contract to receive book reviews. The provider of the reviews exposes the data in Amazon Simple Storage Service (Amazon S3) buckets.<br>Litware plans to manage Search Engine Optimization (SEO) for the authors. The SEO data will be streamed from a REST API.<br>Requirements. Version Control<br>-<br>Litware plans to implement a version control solution in Fabric that will use GitHub integration and follow the principle of least privilege.<br>Requirements. Governance Requirements<br>To control data platform costs, the data platform must use only Fabric services and items. Additional Azure resources must NOT be provisioned.<br>Requirements. Data Requirements<br>Litware identifies the following data requirements:<br>•	Process the SEO data in near-real-time (NRT).<br>•	Make the book reviews available in the lakehouse without making a copy of the data.<br>•	When a new book cover image arrives in the Files folder, process the image as soon as possible.<br>You need to ensure that the authors can see only their respective sales data.<br>How should you complete the statement? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943818_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3297,8 +3420,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -3318,7 +3441,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n39-943819" data-topic="1" data-num="39" data-label="Q1.39">
+<article class="question" id="q-dp-700-t1-n39-943819" data-topic="1" data-num="39" data-label="Q1.39" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.39</span>
@@ -3374,7 +3497,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n40-943820" data-topic="1" data-num="40" data-label="Q1.40">
+<article class="question" id="q-dp-700-t1-n40-943820" data-topic="1" data-num="40" data-label="Q1.40" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.40</span>
@@ -3430,7 +3553,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n41-943821" data-topic="1" data-num="41" data-label="Q1.41">
+<article class="question" id="q-dp-700-t1-n41-943821" data-topic="1" data-num="41" data-label="Q1.41" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.41</span>
@@ -3486,12 +3609,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n42-943822" data-topic="1" data-num="42" data-label="Q1.42">
+<article class="question" id="q-dp-700-t1-n42-943822" data-topic="1" data-num="42" data-label="Q1.42" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.42</span>
 <span class="q-id">ID 943822</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.42 as reviewed">Mark reviewed</button>
@@ -3504,6 +3628,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to implement a pattern to dynamically execute Load_Salesperson and Load_Orders in the appropriate order by using a notebook.<br>How should you complete the code? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943822_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3511,8 +3639,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -3532,11 +3660,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n43-943823" data-topic="1" data-num="43" data-label="Q1.43">
+<article class="question" id="q-dp-700-t1-n43-943823" data-topic="1" data-num="43" data-label="Q1.43" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.43</span>
 <span class="q-id">ID 943823</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -3550,6 +3679,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to ensure that the team can view only the first two characters and the last four characters of the CreditCard attribute.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943823_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943823_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943823_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943823_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3557,8 +3691,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -3578,11 +3712,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n44-943824" data-topic="1" data-num="44" data-label="Q1.44">
+<article class="question" id="q-dp-700-t1-n44-943824" data-topic="1" data-num="44" data-label="Q1.44" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.44</span>
 <span class="q-id">ID 943824</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -3596,6 +3731,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to configure the ForEach activity to receive the list of tables to be copied.<br>How should you complete the pipeline expression? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943824_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943824_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943824_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943824_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3603,8 +3743,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -3624,11 +3764,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n45-943825" data-topic="1" data-num="45" data-label="Q1.45">
+<article class="question" id="q-dp-700-t1-n45-943825" data-topic="1" data-num="45" data-label="Q1.45" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.45</span>
 <span class="q-id">ID 943825</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -3642,6 +3783,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to configure security to meet the following requirements:<br>•	BirthDate in DimCustomer must be masked and display 1900-01-01.<br>•	EmailAddress in DimCustomer must be masked and display only the first leading character and the last five characters.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943825_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943825_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3649,8 +3794,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -3670,7 +3815,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n46-943826" data-topic="1" data-num="46" data-label="Q1.46">
+<article class="question" id="q-dp-700-t1-n46-943826" data-topic="1" data-num="46" data-label="Q1.46" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.46</span>
@@ -3738,7 +3883,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n47-943827" data-topic="1" data-num="47" data-label="Q1.47">
+<article class="question" id="q-dp-700-t1-n47-943827" data-topic="1" data-num="47" data-label="Q1.47" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.47</span>
@@ -3802,7 +3947,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n48-943828" data-topic="1" data-num="48" data-label="Q1.48">
+<article class="question" id="q-dp-700-t1-n48-943828" data-topic="1" data-num="48" data-label="Q1.48" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.48</span>
@@ -3866,7 +4011,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n49-943829" data-topic="1" data-num="49" data-label="Q1.49">
+<article class="question" id="q-dp-700-t1-n49-943829" data-topic="1" data-num="49" data-label="Q1.49" data-qtype="multiple">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.49</span>
@@ -3938,7 +4083,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n50-943830" data-topic="1" data-num="50" data-label="Q1.50">
+<article class="question" id="q-dp-700-t1-n50-943830" data-topic="1" data-num="50" data-label="Q1.50" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.50</span>
@@ -4002,7 +4147,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n51-943831" data-topic="1" data-num="51" data-label="Q1.51">
+<article class="question" id="q-dp-700-t1-n51-943831" data-topic="1" data-num="51" data-label="Q1.51" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.51</span>
@@ -4066,7 +4211,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n52-943832" data-topic="1" data-num="52" data-label="Q1.52">
+<article class="question" id="q-dp-700-t1-n52-943832" data-topic="1" data-num="52" data-label="Q1.52" data-qtype="multiple">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.52</span>
@@ -4083,6 +4228,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to ensure that the notebooks are executed in the following sequence:<br>1. Notebook_03<br>2. Notebook_01<br>3. Notebook_02<br>Which two actions should you perform? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943832_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
 <input type="checkbox" name="choice-q-dp-700-t1-n52-943832" value="A" id="choice-q-dp-700-t1-n52-943832-A">
@@ -4138,7 +4286,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n53-943833" data-topic="1" data-num="53" data-label="Q1.53">
+<article class="question" id="q-dp-700-t1-n53-943833" data-topic="1" data-num="53" data-label="Q1.53" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.53</span>
@@ -4155,6 +4303,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">What will occur the next time Pipeline1 runs?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943833_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n53-943833" value="A" id="choice-q-dp-700-t1-n53-943833-A">
@@ -4210,12 +4361,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n54-943834" data-topic="1" data-num="54" data-label="Q1.54">
+<article class="question" id="q-dp-700-t1-n54-943834" data-topic="1" data-num="54" data-label="Q1.54" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.54</span>
 <span class="q-id">ID 943834</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.54 as reviewed">Mark reviewed</button>
@@ -4271,11 +4423,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n55-943835" data-topic="1" data-num="55" data-label="Q1.55">
+<article class="question" id="q-dp-700-t1-n55-943835" data-topic="1" data-num="55" data-label="Q1.55" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.55</span>
 <span class="q-id">ID 943835</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -4289,6 +4442,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to provide User1 with access to the Customer table. The solution must prevent User1 from accessing the CreditCard column.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943835_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943835_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943835_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943835_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4296,8 +4454,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -4317,7 +4475,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n56-949560" data-topic="1" data-num="56" data-label="Q1.56">
+<article class="question" id="q-dp-700-t1-n56-949560" data-topic="1" data-num="56" data-label="Q1.56" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.56</span>
@@ -4377,7 +4535,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n57-949561" data-topic="1" data-num="57" data-label="Q1.57">
+<article class="question" id="q-dp-700-t1-n57-949561" data-topic="1" data-num="57" data-label="Q1.57" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.57</span>
@@ -4441,7 +4599,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n58-949562" data-topic="1" data-num="58" data-label="Q1.58">
+<article class="question" id="q-dp-700-t1-n58-949562" data-topic="1" data-num="58" data-label="Q1.58" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.58</span>
@@ -4501,7 +4659,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n59-949563" data-topic="1" data-num="59" data-label="Q1.59">
+<article class="question" id="q-dp-700-t1-n59-949563" data-topic="1" data-num="59" data-label="Q1.59" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.59</span>
@@ -4569,7 +4727,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n60-949564" data-topic="1" data-num="60" data-label="Q1.60">
+<article class="question" id="q-dp-700-t1-n60-949564" data-topic="1" data-num="60" data-label="Q1.60" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.60</span>
@@ -4633,12 +4791,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n61-979604" data-topic="1" data-num="61" data-label="Q1.61">
+<article class="question" id="q-dp-700-t1-n61-979604" data-topic="1" data-num="61" data-label="Q1.61" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.61</span>
 <span class="q-id">ID 979604</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.61 as reviewed">Mark reviewed</button>
@@ -4651,6 +4810,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to deploy Feature1 to the Test workspace. The solution must ensure that only a pipeline is deployed.<br>Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979604_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979604_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4658,8 +4822,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -4679,11 +4843,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n62-995011" data-topic="1" data-num="62" data-label="Q1.62">
+<article class="question" id="q-dp-700-t1-n62-995011" data-topic="1" data-num="62" data-label="Q1.62" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.62</span>
 <span class="q-id">ID 995011</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -4697,6 +4862,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">What should you do? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995011_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995011_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/995011_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/995011_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4704,8 +4874,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (2)</summary>
@@ -4721,7 +4891,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n63-995012" data-topic="1" data-num="63" data-label="Q1.63">
+<article class="question" id="q-dp-700-t1-n63-995012" data-topic="1" data-num="63" data-label="Q1.63" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.63</span>
@@ -4738,6 +4908,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to commit the changes to repo1.<br>What is the minimum number of commits you should perform?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n63-995012" value="A" id="choice-q-dp-700-t1-n63-995012-A">
@@ -4785,7 +4958,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n64-995013" data-topic="1" data-num="64" data-label="Q1.64">
+<article class="question" id="q-dp-700-t1-n64-995013" data-topic="1" data-num="64" data-label="Q1.64" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.64</span>
@@ -4849,7 +5022,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n65-995014" data-topic="1" data-num="65" data-label="Q1.65">
+<article class="question" id="q-dp-700-t1-n65-995014" data-topic="1" data-num="65" data-label="Q1.65" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.65</span>
@@ -4893,7 +5066,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>B</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -4905,7 +5078,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n66-995015" data-topic="1" data-num="66" data-label="Q1.66">
+<article class="question" id="q-dp-700-t1-n66-995015" data-topic="1" data-num="66" data-label="Q1.66" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.66</span>
@@ -4941,7 +5114,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>B</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -4953,7 +5126,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n67-995016" data-topic="1" data-num="67" data-label="Q1.67">
+<article class="question" id="q-dp-700-t1-n67-995016" data-topic="1" data-num="67" data-label="Q1.67" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.67</span>
@@ -5017,11 +5190,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n68-995017" data-topic="1" data-num="68" data-label="Q1.68">
+<article class="question" id="q-dp-700-t1-n68-995017" data-topic="1" data-num="68" data-label="Q1.68" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.68</span>
 <span class="q-id">ID 995017</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5035,6 +5209,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to configure the Spark environments to meet the following requirements:<br>•	For the environment that contains Notebook1, minimize compute costs.<br>•	For the environment that contains Notebook2, support multiple concurrent users.<br>What should you use for each environment? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995017_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/995017_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5042,8 +5220,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5063,7 +5241,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t1-n69-995018" data-topic="1" data-num="69" data-label="Q1.69">
+<article class="question" id="q-dp-700-t1-n69-995018" data-topic="1" data-num="69" data-label="Q1.69" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.69</span>
@@ -5119,12 +5297,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n1-936002" data-topic="2" data-num="1" data-label="Q2.1">
+<article class="question" id="q-dp-700-t2-n1-936002" data-topic="2" data-num="1" data-label="Q2.1" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.1</span>
 <span class="q-id">ID 936002</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.1 as reviewed">Mark reviewed</button>
@@ -5184,12 +5363,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n2-936003" data-topic="2" data-num="2" data-label="Q2.2">
+<article class="question" id="q-dp-700-t2-n2-936003" data-topic="2" data-num="2" data-label="Q2.2" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.2</span>
 <span class="q-id">ID 936003</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.2 as reviewed">Mark reviewed</button>
@@ -5253,13 +5433,14 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n3-936004" data-topic="2" data-num="3" data-label="Q2.3">
+<article class="question" id="q-dp-700-t2-n3-936004" data-topic="2" data-num="3" data-label="Q2.3" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.3</span>
 <span class="q-id">ID 936004</span>
 <span class="q-badge">Hotspot</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.3 as reviewed">Mark reviewed</button>
@@ -5272,6 +5453,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to recommend a method to populate the POS1 data to the lakehouse medallion layers.<br>What should you recommend for each layer? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936004_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936004_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5279,8 +5464,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5300,12 +5485,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n4-936005" data-topic="2" data-num="4" data-label="Q2.4">
+<article class="question" id="q-dp-700-t2-n4-936005" data-topic="2" data-num="4" data-label="Q2.4" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.4</span>
 <span class="q-id">ID 936005</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.4 as reviewed">Mark reviewed</button>
@@ -5365,13 +5551,14 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n5-936006" data-topic="2" data-num="5" data-label="Q2.5">
+<article class="question" id="q-dp-700-t2-n5-936006" data-topic="2" data-num="5" data-label="Q2.5" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.5</span>
 <span class="q-id">ID 936006</span>
 <span class="q-badge">Hotspot</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.5 as reviewed">Mark reviewed</button>
@@ -5384,6 +5571,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to create the product dimension.<br>How should you complete the Apache Spark SQL code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936006_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936006_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5391,8 +5582,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5412,12 +5603,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n6-936007" data-topic="2" data-num="6" data-label="Q2.6">
+<article class="question" id="q-dp-700-t2-n6-936007" data-topic="2" data-num="6" data-label="Q2.6" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.6</span>
 <span class="q-id">ID 936007</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.6 as reviewed">Mark reviewed</button>
@@ -5477,11 +5669,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n7-936008" data-topic="2" data-num="7" data-label="Q2.7">
+<article class="question" id="q-dp-700-t2-n7-936008" data-topic="2" data-num="7" data-label="Q2.7" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.7</span>
 <span class="q-id">ID 936008</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5495,6 +5688,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to denormalize the tables and include the ContractType and StartDate columns in the Employee table. The solution must meet the following requirements:<br>Ensure that the StartDate column is of the date data type.<br>Ensure that all the rows from the Employee table are preserved and include any matching rows from the Contract table.<br>Ensure that the result set displays the total number of employees per contract type for all the contract types that have more than two employees.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936008_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936008_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936008_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936008_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5502,8 +5700,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5523,11 +5721,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n8-936009" data-topic="2" data-num="8" data-label="Q2.8">
+<article class="question" id="q-dp-700-t2-n8-936009" data-topic="2" data-num="8" data-label="Q2.8" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.8</span>
 <span class="q-id">ID 936009</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5541,6 +5740,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to batch ingest only rows from the data source where the City attribute has a value of Kansas. The filter must be added before the destination. The solution must minimize development effort.<br>What should you use for the data processor and filtering? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936009_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936009_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5548,8 +5751,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5569,7 +5772,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n9-936010" data-topic="2" data-num="9" data-label="Q2.9">
+<article class="question" id="q-dp-700-t2-n9-936010" data-topic="2" data-num="9" data-label="Q2.9" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.9</span>
@@ -5633,7 +5836,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n10-936011" data-topic="2" data-num="10" data-label="Q2.10">
+<article class="question" id="q-dp-700-t2-n10-936011" data-topic="2" data-num="10" data-label="Q2.10" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.10</span>
@@ -5697,11 +5900,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n11-936012" data-topic="2" data-num="11" data-label="Q2.11">
+<article class="question" id="q-dp-700-t2-n11-936012" data-topic="2" data-num="11" data-label="Q2.11" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.11</span>
 <span class="q-id">ID 936012</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5715,6 +5919,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936012_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936012_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936012_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5722,8 +5931,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5743,11 +5952,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n12-936013" data-topic="2" data-num="12" data-label="Q2.12">
+<article class="question" id="q-dp-700-t2-n12-936013" data-topic="2" data-num="12" data-label="Q2.12" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.12</span>
 <span class="q-id">ID 936013</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5761,6 +5971,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to build a query that will combine data from Orderlines and Dim_Customer to create a new fact table named Fact_Orders. The new table must meet the following requirements:<br>Enable the analysis of customer orders based on historical attributes.<br>Enable the analysis of customer orders based on the current attributes.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936013_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936013_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5768,8 +5982,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -5789,7 +6003,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n13-936014" data-topic="2" data-num="13" data-label="Q2.13">
+<article class="question" id="q-dp-700-t2-n13-936014" data-topic="2" data-num="13" data-label="Q2.13" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.13</span>
@@ -5853,7 +6067,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n14-936015" data-topic="2" data-num="14" data-label="Q2.14">
+<article class="question" id="q-dp-700-t2-n14-936015" data-topic="2" data-num="14" data-label="Q2.14" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.14</span>
@@ -5917,7 +6131,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n15-936016" data-topic="2" data-num="15" data-label="Q2.15">
+<article class="question" id="q-dp-700-t2-n15-936016" data-topic="2" data-num="15" data-label="Q2.15" data-qtype="multiple">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.15</span>
@@ -5934,6 +6148,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">Which two records will load from Table1 to Table2? Each correct answer presents a complete solution.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936016_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="true">
 <li class="correct" data-letter="A">
 <input type="checkbox" name="choice-q-dp-700-t2-n15-936016" value="A" id="choice-q-dp-700-t2-n15-936016-A">
@@ -5981,11 +6198,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n16-936017" data-topic="2" data-num="16" data-label="Q2.16">
+<article class="question" id="q-dp-700-t2-n16-936017" data-topic="2" data-num="16" data-label="Q2.16" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.16</span>
 <span class="q-id">ID 936017</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -5999,6 +6217,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to resolve the issues. The solution must ensure that the data types of the results are retained. The results can contain blank cells.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936017_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936017_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6006,8 +6228,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6027,7 +6249,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n17-936018" data-topic="2" data-num="17" data-label="Q2.17">
+<article class="question" id="q-dp-700-t2-n17-936018" data-topic="2" data-num="17" data-label="Q2.17" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.17</span>
@@ -6091,7 +6313,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n18-936019" data-topic="2" data-num="18" data-label="Q2.18">
+<article class="question" id="q-dp-700-t2-n18-936019" data-topic="2" data-num="18" data-label="Q2.18" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.18</span>
@@ -6108,6 +6330,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to reduce how long it takes to run the KQL queryset.<br>Solution: You change the join type to kind=outer.<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936019_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936019_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936019_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n18-936019" value="A" id="choice-q-dp-700-t2-n18-936019-A">
@@ -6147,7 +6374,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n19-936020" data-topic="2" data-num="19" data-label="Q2.19">
+<article class="question" id="q-dp-700-t2-n19-936020" data-topic="2" data-num="19" data-label="Q2.19" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.19</span>
@@ -6164,6 +6391,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to reduce how long it takes to run the KQL queryset.<br>Solution: You change project to extend.<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936020_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936020_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936020_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n19-936020" value="A" id="choice-q-dp-700-t2-n19-936020-A">
@@ -6203,7 +6435,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n20-936021" data-topic="2" data-num="20" data-label="Q2.20">
+<article class="question" id="q-dp-700-t2-n20-936021" data-topic="2" data-num="20" data-label="Q2.20" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.20</span>
@@ -6220,6 +6452,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to reduce how long it takes to run the KQL queryset.<br>Solution: You move the filter to line 02.<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936021_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936021_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936021_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n20-936021" value="A" id="choice-q-dp-700-t2-n20-936021-A">
@@ -6259,7 +6496,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n21-936022" data-topic="2" data-num="21" data-label="Q2.21">
+<article class="question" id="q-dp-700-t2-n21-936022" data-topic="2" data-num="21" data-label="Q2.21" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.21</span>
@@ -6276,6 +6513,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to reduce how long it takes to run the KQL queryset.<br>Solution: You add the make_list() function to the output columns.<br>Does this meet the goal?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936022_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936022_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936022_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n21-936022" value="A" id="choice-q-dp-700-t2-n21-936022-A">
@@ -6315,12 +6557,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n22-943836" data-topic="2" data-num="22" data-label="Q2.22">
+<article class="question" id="q-dp-700-t2-n22-943836" data-topic="2" data-num="22" data-label="Q2.22" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.22</span>
 <span class="q-id">ID 943836</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.22 as reviewed">Mark reviewed</button>
@@ -6388,12 +6631,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n23-943837" data-topic="2" data-num="23" data-label="Q2.23">
+<article class="question" id="q-dp-700-t2-n23-943837" data-topic="2" data-num="23" data-label="Q2.23" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.23</span>
 <span class="q-id">ID 943837</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.23 as reviewed">Mark reviewed</button>
@@ -6453,11 +6697,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n24-943838" data-topic="2" data-num="24" data-label="Q2.24">
+<article class="question" id="q-dp-700-t2-n24-943838" data-topic="2" data-num="24" data-label="Q2.24" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.24</span>
 <span class="q-id">ID 943838</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -6471,6 +6716,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to implement a star schema for DW1. The solution must minimize development effort.<br>Which design approach should you use? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943838_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943838_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6478,8 +6727,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6499,11 +6748,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n25-943839" data-topic="2" data-num="25" data-label="Q2.25">
+<article class="question" id="q-dp-700-t2-n25-943839" data-topic="2" data-num="25" data-label="Q2.25" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.25</span>
 <span class="q-id">ID 943839</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -6517,6 +6767,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to recommend tools for the teams based on their current personas.<br>What should you recommend for each team? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943839_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943839_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6524,8 +6778,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6545,11 +6799,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n26-943840" data-topic="2" data-num="26" data-label="Q2.26">
+<article class="question" id="q-dp-700-t2-n26-943840" data-topic="2" data-num="26" data-label="Q2.26" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.26</span>
 <span class="q-id">ID 943840</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -6563,6 +6818,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to identify which type of item to use for the datasets. The solution must minimize development effort and use built-in functionality, when possible.<br>What should you identify for each dataset? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943840_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943840_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6570,8 +6829,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6591,11 +6850,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n27-943841" data-topic="2" data-num="27" data-label="Q2.27">
+<article class="question" id="q-dp-700-t2-n27-943841" data-topic="2" data-num="27" data-label="Q2.27" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.27</span>
 <span class="q-id">ID 943841</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -6609,6 +6869,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to implement an incremental loading pattern by using Notebook1. The solution must meet the following requirements:<br>•	For all the matching records that have the same value of key, update the value of LastModified in Status_Target to the value of LastModified in Status_Source.<br>•	Insert all the records that exist in Status_Source that do NOT exist in Status_Target.<br>•	Set the value of Status in Status_Target to inactive for all the records that were last modified more than seven days ago and that do NOT exist in Status_Source.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943841_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943841_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6616,8 +6880,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6637,12 +6901,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n28-943842" data-topic="2" data-num="28" data-label="Q2.28">
+<article class="question" id="q-dp-700-t2-n28-943842" data-topic="2" data-num="28" data-label="Q2.28" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.28</span>
 <span class="q-id">ID 943842</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.28 as reviewed">Mark reviewed</button>
@@ -6655,6 +6920,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to build a data pipeline that will support the dynamic ingestion of the tables listed in the control table by using a single execution.<br>Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943842_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943842_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6662,8 +6932,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6683,7 +6953,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n29-943843" data-topic="2" data-num="29" data-label="Q2.29">
+<article class="question" id="q-dp-700-t2-n29-943843" data-topic="2" data-num="29" data-label="Q2.29" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.29</span>
@@ -6747,7 +7017,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n30-943844" data-topic="2" data-num="30" data-label="Q2.30">
+<article class="question" id="q-dp-700-t2-n30-943844" data-topic="2" data-num="30" data-label="Q2.30" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.30</span>
@@ -6811,11 +7081,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n31-943845" data-topic="2" data-num="31" data-label="Q2.31">
+<article class="question" id="q-dp-700-t2-n31-943845" data-topic="2" data-num="31" data-label="Q2.31" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.31</span>
 <span class="q-id">ID 943845</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -6829,6 +7100,12 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943845_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943845_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943845_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943845_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943845_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943845_2.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="2"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6836,8 +7113,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6857,12 +7134,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n32-943846" data-topic="2" data-num="32" data-label="Q2.32">
+<article class="question" id="q-dp-700-t2-n32-943846" data-topic="2" data-num="32" data-label="Q2.32" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.32</span>
 <span class="q-id">ID 943846</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.32 as reviewed">Mark reviewed</button>
@@ -6875,6 +7153,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to use a KQL query to develop the solution for Eventhouse1.<br>Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943846_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943846_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6882,8 +7165,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -6903,7 +7186,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n33-943847" data-topic="2" data-num="33" data-label="Q2.33">
+<article class="question" id="q-dp-700-t2-n33-943847" data-topic="2" data-num="33" data-label="Q2.33" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.33</span>
@@ -6967,7 +7250,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n34-943848" data-topic="2" data-num="34" data-label="Q2.34">
+<article class="question" id="q-dp-700-t2-n34-943848" data-topic="2" data-num="34" data-label="Q2.34" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.34</span>
@@ -7031,7 +7314,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n35-943849" data-topic="2" data-num="35" data-label="Q2.35">
+<article class="question" id="q-dp-700-t2-n35-943849" data-topic="2" data-num="35" data-label="Q2.35" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.35</span>
@@ -7095,12 +7378,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n36-943850" data-topic="2" data-num="36" data-label="Q2.36">
+<article class="question" id="q-dp-700-t2-n36-943850" data-topic="2" data-num="36" data-label="Q2.36" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.36</span>
 <span class="q-id">ID 943850</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.36 as reviewed">Mark reviewed</button>
@@ -7160,12 +7444,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n37-943851" data-topic="2" data-num="37" data-label="Q2.37">
+<article class="question" id="q-dp-700-t2-n37-943851" data-topic="2" data-num="37" data-label="Q2.37" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.37</span>
 <span class="q-id">ID 943851</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.37 as reviewed">Mark reviewed</button>
@@ -7225,12 +7510,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n38-943852" data-topic="2" data-num="38" data-label="Q2.38">
+<article class="question" id="q-dp-700-t2-n38-943852" data-topic="2" data-num="38" data-label="Q2.38" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.38</span>
 <span class="q-id">ID 943852</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.38 as reviewed">Mark reviewed</button>
@@ -7243,6 +7529,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to build a KQL query to compare the MeterReading value of each row to the previous row base on the Timestamp value.<br>A sample of the expected output is shown in the following table.<br>How should you complete the query? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943852_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943852_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7250,8 +7541,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -7271,11 +7562,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n39-943853" data-topic="2" data-num="39" data-label="Q2.39">
+<article class="question" id="q-dp-700-t2-n39-943853" data-topic="2" data-num="39" data-label="Q2.39" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.39</span>
 <span class="q-id">ID 943853</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -7289,6 +7581,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to recommend a Fabric streaming solution that will use the sources shown in the following table.<br>The solution must minimize development effort.<br>What should you include in the recommendation for each source? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943853_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943853_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943853_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/943853_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7296,8 +7593,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -7317,11 +7614,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n40-949565" data-topic="2" data-num="40" data-label="Q2.40">
+<article class="question" id="q-dp-700-t2-n40-949565" data-topic="2" data-num="40" data-label="Q2.40" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.40</span>
 <span class="q-id">ID 949565</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -7335,6 +7633,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/949565_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/949565_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/949565_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/949565_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7342,8 +7645,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -7363,7 +7666,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n41-949566" data-topic="2" data-num="41" data-label="Q2.41">
+<article class="question" id="q-dp-700-t2-n41-949566" data-topic="2" data-num="41" data-label="Q2.41" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.41</span>
@@ -7427,12 +7730,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n42-949567" data-topic="2" data-num="42" data-label="Q2.42">
+<article class="question" id="q-dp-700-t2-n42-949567" data-topic="2" data-num="42" data-label="Q2.42" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.42</span>
 <span class="q-id">ID 949567</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.42 as reviewed">Mark reviewed</button>
@@ -7500,7 +7804,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n43-979605" data-topic="2" data-num="43" data-label="Q2.43">
+<article class="question" id="q-dp-700-t2-n43-979605" data-topic="2" data-num="43" data-label="Q2.43" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.43</span>
@@ -7556,7 +7860,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n44-979606" data-topic="2" data-num="44" data-label="Q2.44">
+<article class="question" id="q-dp-700-t2-n44-979606" data-topic="2" data-num="44" data-label="Q2.44" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.44</span>
@@ -7620,11 +7924,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n45-979607" data-topic="2" data-num="45" data-label="Q2.45">
+<article class="question" id="q-dp-700-t2-n45-979607" data-topic="2" data-num="45" data-label="Q2.45" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.45</span>
 <span class="q-id">ID 979607</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -7638,6 +7943,12 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979607_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979607_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979607_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979607_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979607_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979607_2.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="2"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7645,8 +7956,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -7666,11 +7977,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n46-979608" data-topic="2" data-num="46" data-label="Q2.46">
+<article class="question" id="q-dp-700-t2-n46-979608" data-topic="2" data-num="46" data-label="Q2.46" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.46</span>
 <span class="q-id">ID 979608</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -7684,6 +7996,12 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to recommend which Fabric item to use based on each development group’s skillset. The solution must meet the project requirements and minimize development effort.<br>What should you recommend for each group? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979608_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979608_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979608_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979608_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979608_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/979608_2.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="2"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7691,8 +8009,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (2)</summary>
@@ -7708,7 +8026,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n47-979609" data-topic="2" data-num="47" data-label="Q2.47">
+<article class="question" id="q-dp-700-t2-n47-979609" data-topic="2" data-num="47" data-label="Q2.47" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.47</span>
@@ -7772,7 +8090,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n48-979610" data-topic="2" data-num="48" data-label="Q2.48">
+<article class="question" id="q-dp-700-t2-n48-979610" data-topic="2" data-num="48" data-label="Q2.48" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.48</span>
@@ -7789,6 +8107,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to modify the DAG definition to meet the following requirements:<br>•	Ensure that notebook_01 and notebook_02 run in parallel.<br>•	Ensure that notebook_02 only runs after the execution of notebook_03 is complete.<br>How should you modify the DAG definition?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979610_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n48-979610" value="A" id="choice-q-dp-700-t2-n48-979610-A">
@@ -7816,7 +8137,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>C</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -7828,7 +8149,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n49-995019" data-topic="2" data-num="49" data-label="Q2.49">
+<article class="question" id="q-dp-700-t2-n49-995019" data-topic="2" data-num="49" data-label="Q2.49" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.49</span>
@@ -7845,6 +8166,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to configure Pipeline1 to perform the following actions:<br>•	At 2 PM each day, process File1.csv and load the file into flh1.<br>•	At 5 PM each day, process File2.csv and load the file into flh1.<br>The solution must minimize development effort.<br>What should you use?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995019_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n49-995019" value="A" id="choice-q-dp-700-t2-n49-995019-A">
@@ -7872,7 +8196,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>B</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -7884,11 +8208,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n50-995020" data-topic="2" data-num="50" data-label="Q2.50">
+<article class="question" id="q-dp-700-t2-n50-995020" data-topic="2" data-num="50" data-label="Q2.50" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.50</span>
 <span class="q-id">ID 995020</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -7902,6 +8227,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to recommend which loading pattern to use for the following operations:<br>•	Create new records.<br>•	Delete existing records.<br>The solution must support the versioning of existing records.<br>What should you recommend for each operation? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995020_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/995020_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7909,8 +8238,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (2)</summary>
@@ -7926,7 +8255,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t2-n51-995021" data-topic="2" data-num="51" data-label="Q2.51">
+<article class="question" id="q-dp-700-t2-n51-995021" data-topic="2" data-num="51" data-label="Q2.51" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.51</span>
@@ -7943,6 +8272,9 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to use a notebook to query for customers in the United States and load the filtered data into USCustomers. The solution must minimize the number of scripts used.<br>Which statement should you use?</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995021_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t2-n51-995021" value="A" id="choice-q-dp-700-t2-n51-995021-A">
@@ -7970,7 +8302,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>C</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -7982,13 +8314,14 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n1-936023" data-topic="3" data-num="1" data-label="Q3.1">
+<article class="question" id="q-dp-700-t3-n1-936023" data-topic="3" data-num="1" data-label="Q3.1" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.1</span>
 <span class="q-id">ID 936023</span>
 <span class="q-badge">Hotspot</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.1 as reviewed">Mark reviewed</button>
@@ -8001,6 +8334,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">When the authors have new book releases, there is often an increase in sales activity. This increase slows the data ingestion process.<br>The company’s sales team reports that during the last month, the sales data has NOT been up-to-date when they arrive at work in the morning.<br>Requirements. <span class="section-title">Planned Changes</span>Litware recently signed a contract to receive book reviews. The provider of the reviews exposes the data in Amazon Simple Storage Service (Amazon S3) buckets.<br>Litware plans to manage Search Engine Optimization (SEO) for the authors. The SEO data will be streamed from a REST API.<br>Requirements. Version Control -<br>Litware plans to implement a version control solution in Fabric that will use GitHub integration and follow the principle of least privilege.<br>Requirements. Governance Requirements<br>To control data platform costs, the data platform must use only Fabric services and items. Additional Azure resources must NOT be provisioned.<br>Requirements. Data <span class="section-title">Requirements</span>Litware identifies the following data requirements:<br>Process the SEO data in near-real-time (NRT).<br>Make the book reviews available in the lakehouse without making a copy of the data.<br>When a new book cover image arrives in the Files folder, process the image as soon as possible.<br>You need to troubleshoot the ad-hoc query issue.<br>How should you complete the statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936023_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936023_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8008,8 +8345,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -8029,12 +8366,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n2-936024" data-topic="3" data-num="2" data-label="Q3.2">
+<article class="question" id="q-dp-700-t3-n2-936024" data-topic="3" data-num="2" data-label="Q3.2" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.2</span>
 <span class="q-id">ID 936024</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.2 as reviewed">Mark reviewed</button>
@@ -8094,12 +8432,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n3-936025" data-topic="3" data-num="3" data-label="Q3.3">
+<article class="question" id="q-dp-700-t3-n3-936025" data-topic="3" data-num="3" data-label="Q3.3" data-qtype="drag_drop">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.3</span>
 <span class="q-id">ID 936025</span>
 <span class="q-badge">Drag drop</span>
+<span class="q-badge">Drag Drop</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.3 as reviewed">Mark reviewed</button>
@@ -8112,6 +8451,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to build two KQL queries. The solution must meet the following requirements:<br>One of the queries must partition RunningTotalAmount by VendorID.<br>The other query must create a column named FirstPickupDateTime that shows the first value of each hour from tpep_pickup_datetime partitioned by payment_type.<br>How should you complete each query? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936025_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936025_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8119,8 +8463,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -8140,11 +8484,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n4-936026" data-topic="3" data-num="4" data-label="Q3.4">
+<article class="question" id="q-dp-700-t3-n4-936026" data-topic="3" data-num="4" data-label="Q3.4" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.4</span>
 <span class="q-id">ID 936026</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -8158,6 +8503,11 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936026_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936026_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936026_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936026_1.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="1"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8165,8 +8515,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -8186,7 +8536,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n5-936027" data-topic="3" data-num="5" data-label="Q3.5">
+<article class="question" id="q-dp-700-t3-n5-936027" data-topic="3" data-num="5" data-label="Q3.5" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.5</span>
@@ -8246,7 +8596,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n6-936028" data-topic="3" data-num="6" data-label="Q3.6">
+<article class="question" id="q-dp-700-t3-n6-936028" data-topic="3" data-num="6" data-label="Q3.6" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.6</span>
@@ -8314,7 +8664,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n7-936029" data-topic="3" data-num="7" data-label="Q3.7">
+<article class="question" id="q-dp-700-t3-n7-936029" data-topic="3" data-num="7" data-label="Q3.7" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.7</span>
@@ -8378,7 +8728,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n8-936030" data-topic="3" data-num="8" data-label="Q3.8">
+<article class="question" id="q-dp-700-t3-n8-936030" data-topic="3" data-num="8" data-label="Q3.8" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.8</span>
@@ -8442,7 +8792,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n9-936031" data-topic="3" data-num="9" data-label="Q3.9">
+<article class="question" id="q-dp-700-t3-n9-936031" data-topic="3" data-num="9" data-label="Q3.9" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.9</span>
@@ -8510,11 +8860,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n10-936032" data-topic="3" data-num="10" data-label="Q3.10">
+<article class="question" id="q-dp-700-t3-n10-936032" data-topic="3" data-num="10" data-label="Q3.10" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.10</span>
 <span class="q-id">ID 936032</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -8528,6 +8879,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to find the following error information:<br>The error details, including the occurrence time<br>The total number of errors -<br>What should you use? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936032_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/936032_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8535,8 +8890,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -8556,12 +8911,13 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n11-943854" data-topic="3" data-num="11" data-label="Q3.11">
+<article class="question" id="q-dp-700-t3-n11-943854" data-topic="3" data-num="11" data-label="Q3.11" data-qtype="case_study">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.11</span>
 <span class="q-id">ID 943854</span>
 <span class="q-badge">Case study</span>
+<span class="q-badge">Case Study</span>
 </div>
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.11 as reviewed">Mark reviewed</button>
@@ -8621,7 +8977,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n12-943855" data-topic="3" data-num="12" data-label="Q3.12">
+<article class="question" id="q-dp-700-t3-n12-943855" data-topic="3" data-num="12" data-label="Q3.12" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.12</span>
@@ -8685,7 +9041,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n13-943856" data-topic="3" data-num="13" data-label="Q3.13">
+<article class="question" id="q-dp-700-t3-n13-943856" data-topic="3" data-num="13" data-label="Q3.13" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.13</span>
@@ -8749,7 +9105,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n14-943857" data-topic="3" data-num="14" data-label="Q3.14">
+<article class="question" id="q-dp-700-t3-n14-943857" data-topic="3" data-num="14" data-label="Q3.14" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.14</span>
@@ -8813,11 +9169,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n15-949568" data-topic="3" data-num="15" data-label="Q3.15">
+<article class="question" id="q-dp-700-t3-n15-949568" data-topic="3" data-num="15" data-label="Q3.15" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.15</span>
 <span class="q-id">ID 949568</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -8831,6 +9188,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to ensure that the data engineers are notified if any step in populating the lakehouses fails. The solution must meet the technical requirements and minimize development effort.<br>What should you use? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/949568_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/949568_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8838,8 +9199,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -8859,7 +9220,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n16-949569" data-topic="3" data-num="16" data-label="Q3.16">
+<article class="question" id="q-dp-700-t3-n16-949569" data-topic="3" data-num="16" data-label="Q3.16" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.16</span>
@@ -8923,7 +9284,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n17-995022" data-topic="3" data-num="17" data-label="Q3.17">
+<article class="question" id="q-dp-700-t3-n17-995022" data-topic="3" data-num="17" data-label="Q3.17" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.17</span>
@@ -8967,7 +9328,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>B</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -8979,11 +9340,12 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n18-995023" data-topic="3" data-num="18" data-label="Q3.18">
+<article class="question" id="q-dp-700-t3-n18-995023" data-topic="3" data-num="18" data-label="Q3.18" data-qtype="hotspot">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.18</span>
 <span class="q-id">ID 995023</span>
+<span class="q-badge">Hotspot</span>
 <span class="q-badge">Hotspot</span>
 </div>
 <div class="q-actions">
@@ -8997,6 +9359,10 @@
 <div class="prompt-label">Exam task</div>
 <div class="q-prompt">You need to monitor the execution and activity status of Pipeline1 and automatically email an alert if the pipeline fails. The solution must minimize development and administrative effort.<br>What should you use to monitor Pipeline1, and what should you use to email the alert? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995023_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
+</div>
+<div class="hotspot-widget"><p class="widget-note">HOTSPOT — click on the image to mark the areas you would select. Your selections are saved for practice only; ExamTopics does not provide the correct hotspot coordinates.</p><div class="hotspot-stage"><img src="../assets/exhibits/dp-700/995023_0.png" alt="" loading="lazy"><div class="hotspot-dots" data-exhibit="0"></div></div><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9004,8 +9370,8 @@
 </div>
 <div class="answer-revealed">
 <div class="answer-grid">
-<div class="answer-card"><span class="label">Correct answer</span><strong>N/A</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card answer-missing"><span class="label">Correct answer</span><strong>Not provided</strong></div>
+<div class="answer-card answer-missing"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (1)</summary>
@@ -9017,7 +9383,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-700-t3-n19-995024" data-topic="3" data-num="19" data-label="Q3.19">
+<article class="question" id="q-dp-700-t3-n19-995024" data-topic="3" data-num="19" data-label="Q3.19" data-qtype="single">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.19</span>
@@ -9061,7 +9427,7 @@
 <div class="answer-revealed">
 <div class="answer-grid">
 <div class="answer-card"><span class="label">Correct answer</span><strong>B</strong></div>
-<div class="answer-card"><span class="label">Most voted</span><strong>N/A</strong></div>
+<div class="answer-card"><span class="label">Most voted</span><strong>Not provided</strong></div>
 </div>
 <details class="comments">
 <summary>Top explanations from discussion (3)</summary>
@@ -9182,14 +9548,21 @@
       return new Set(Array.from(q.querySelectorAll('.choices li.correct')).map(li => li.dataset.letter).filter(Boolean));
     }
     function isCorrect(q) {
+      // Questions without a multiple-choice list (hotspot, drag-drop, other)
+      // are never "correct" in the multiple-choice sense — they have no defined
+      // answer key in the data we captured, so they neither help nor hurt
+      // the scored progress counters.
+      if (!q.querySelector('.choices')) return false;
       const selected = getSelected(q);
       const correct = getCorrect(q);
+      if (correct.size === 0) return false;
       return selected.size > 0 && selected.size === correct.size && [...selected].every(x => correct.has(x));
     }
     function updateAnswerFeedback(q) {
       const revealed = q.classList.contains('revealed');
       const selected = getSelected(q);
       const correct = getCorrect(q);
+      const hasChoices = !!q.querySelector('.choices');
       q.querySelectorAll('.choices li').forEach(li => {
         const letter = li.dataset.letter;
         li.classList.remove('incorrect', 'missed');
@@ -9201,6 +9574,35 @@
       const status = q.querySelector('.answer-status');
       if (!status) return;
       delete q.dataset.result;
+      // Hotspot / drag-drop / other — informational status only.
+      if (!hasChoices) {
+        if (q.querySelector('.hotspot-stage')) {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Mark the areas you would select on the image above.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'HOTSPOT answer not available from ExamTopics.';
+          }
+        } else if (q.querySelector('.dragdrop-widget')) {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Use the exhibit above to plan the correct ordering.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'DRAG DROP answer not available from ExamTopics.';
+          }
+        } else {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'This question type is not interactive.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'Answer not provided by ExamTopics for this question type.';
+          }
+        }
+        return;
+      }
       if (!revealed) {
         if (selected.size === 0) { status.className = 'answer-status empty'; status.textContent = 'Select your answer, then reveal it.'; }
         else { status.className = 'answer-status'; status.textContent = `${selected.size} selected. Ready to reveal.`; }
@@ -9208,6 +9610,12 @@
       }
       const missed = [...correct].filter(x => !selected.has(x));
       const wrong = [...selected].filter(x => !correct.has(x));
+      if (correct.size === 0) {
+        // Multiple-choice question whose answer isn't in the dataset.
+        status.className = 'answer-status empty';
+        status.textContent = 'Answer not provided by ExamTopics.';
+        return;
+      }
       if (selected.size === 0) {
         q.dataset.result = 'incorrect';
         status.className = 'answer-status incorrect';
@@ -9224,7 +9632,11 @@
     }
     questions.forEach(q => {
       const choiceList = q.querySelector('.choices');
-      if (!choiceList) return;
+      if (!choiceList) {
+        // Still surface answer feedback (status messages, hotspot reveal, etc.).
+        updateAnswerFeedback(q);
+        return;
+      }
       const saved = getSelected(q);
       choiceList.querySelectorAll('input').forEach(input => {
         if (saved.has(input.value)) input.checked = true;
@@ -9259,7 +9671,13 @@
     }
     function updateProgress() {
       const total = ids.length || 1;
-      const attemptedIds = Object.keys(selections).filter(id => selections[id] && selections[id].length > 0);
+      // Only count questions that actually have a multiple-choice list.
+      // Hotspot / drag-drop / other questions don't affect "attempted/correct".
+      const isMcQuestion = (q) => !!(q && q.querySelector('.choices'));
+      const attemptedIds = Object.keys(selections).filter(id => {
+        const q = document.getElementById(id);
+        return isMcQuestion(q) && selections[id] && selections[id].length > 0;
+      });
       const attempted = attemptedIds.length;
       const correctCount = attemptedIds.filter(id => {
         const q = document.getElementById(id);
@@ -9290,6 +9708,81 @@
         reviewed.has(id) ? reviewed.delete(id) : reviewed.add(id);
         saveReviewed();
       });
+    });
+
+    /* ----- Hotspot / drag-drop interactivity ----- */
+    const HOTSPOTS_KEY = location.pathname + '-hotspots';
+    const DRAGDROP_KEY = location.pathname + '-dragdrop';
+    let hotspots = {};
+    let dragdropSelections = {};
+    try { hotspots = JSON.parse(localStorage.getItem(HOTSPOTS_KEY) || '{}'); } catch (e) { hotspots = {}; }
+    try { dragdropSelections = JSON.parse(localStorage.getItem(DRAGDROP_KEY) || '{}'); } catch (e) { dragdropSelections = {}; }
+
+    function saveHotspots() {
+      localStorage.setItem(HOTSPOTS_KEY, JSON.stringify(hotspots));
+    }
+    function saveDragdrop() {
+      localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections));
+    }
+
+    function attachHotspotStage(q) {
+      const stages = q.querySelectorAll('.hotspot-stage');
+      if (!stages.length) return;
+      const saved = hotspots[q.id] || {};
+      stages.forEach((stage, stageIdx) => {
+        const key = String(stageIdx);
+        const img = stage.querySelector('img');
+        if (!img) return;
+        const dotsHost = stage.querySelector('.hotspot-dots');
+        if (!dotsHost) return;
+        // Restore previously-saved dots so refreshes keep the student's work.
+        const renderDots = () => {
+          dotsHost.innerHTML = '';
+          (saved[key] || []).forEach(pt => {
+            const dot = document.createElement('span');
+            dot.className = 'hotspot-dot';
+            dot.style.left = pt.x + '%';
+            dot.style.top = pt.y + '%';
+            dotsHost.appendChild(dot);
+          });
+        };
+        img.addEventListener('click', e => {
+          const rect = img.getBoundingClientRect();
+          if (rect.width === 0 || rect.height === 0) return;
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          saved[key] = saved[key] || [];
+          saved[key].push({ x, y });
+          hotspots[q.id] = saved;
+          saveHotspots();
+          renderDots();
+        });
+        renderDots();
+      });
+    }
+
+    function attachDragdropChips(q) {
+      const chips = q.querySelectorAll('.dragdrop-chip');
+      if (!chips.length) return;
+      const saved = new Set(dragdropSelections[q.id] || []);
+      chips.forEach((chip, idx) => {
+        chip.addEventListener('click', () => {
+          if (q.classList.contains('revealed')) return;
+          const isSelected = chip.classList.toggle('selected');
+          if (isSelected) saved.add(idx); else saved.delete(idx);
+          dragdropSelections[q.id] = Array.from(saved);
+          saveDragdrop();
+        });
+        chip.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', String(idx));
+        });
+        if (saved.has(idx)) chip.classList.add('selected');
+      });
+    }
+
+    questions.forEach(q => {
+      attachHotspotStage(q);
+      attachDragdropChips(q);
     });
 
     let currentIndex = 0;
