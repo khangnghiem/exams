@@ -2801,7 +2801,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "ROLLUP will add one extra Total row that is not requested in the question, so the only correct answer is grouping sets here.",
     "comments": [
       {
         "comment_id": "1345362",
@@ -4121,7 +4121,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 -> NO, only metadata are deployed | 2 -> NO, dataflow GEN1 are not supported by deployment pipelines | 3 -> NO, Refresh schedules are semantic model object attributes that are not deployed by deployment pipelines",
     "comments": [
       {
         "comment_id": "1335389",
@@ -7090,7 +7090,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Notebook 1 runs at 8AM, this can be scheduled via Pipeline (Pipeline1), so the configuration of scheduling is in Pipeline 1. Because Model1 refreshes on completion of Notebook1, it should be added to Pipeline 1 after Notebook 1. Notebook 2 is separate to the Pipeline 1 sequence, it requires a trigger (file saved in Blob) from real-time hub.",
     "comments": [
       {
         "comment_id": "1334244",
@@ -8459,7 +8459,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Entity1: core organization entity --> Master Data | Entity2: meets organizational standards --> Certified | Entity3: ready for sharing and reuse --> Promoted | Entity4: Power BI dashboard, executive-level decision making --> Cannot be endorsed, The reason is Types of items that can be endorsed | All Fabric items and Power BI items except Power BI dashboards can be promoted or certified.",
     "comments": [
       {
         "comment_id": "1362552",
@@ -8690,7 +8690,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Domain permissions = metadata + catalog governance | Workspace permissions = item-level access | These are completely separate. | answer is NO / YES / NO",
     "comments": [
       {
         "comment_id": "1357011",
@@ -9318,7 +9318,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "I tried this in the Fabric. | First you should toggle ON \"Set the default environment\". | Then you can create a new environment and set it as default. | And only after that you can install additional libraries (if needed). | So, the answer is correct.",
     "comments": [
       {
         "comment_id": "1349047",
@@ -9905,7 +9905,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Provided answer is WRONG. | https://learn.microsoft.com/en-us/fabric/data-warehouse/table-constraints | SQL analytics endpoint and Warehouse in Microsoft Fabric support these table constraints: | | PRIMARY KEY is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | FOREIGN KEY is only supported when NOT ENFORCED is used. | | UNIQUE constraint is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | SQL analytics endpoint and Warehouse don't support default const...",
     "comments": [
       {
         "comment_id": "1343057",
@@ -11775,7 +11775,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct. | - USER_NAME is compared the value of a column to the user currently running the query. | If they match, the user can see the row; if not, they can’t. | - SCHEMABINDING - used in security policy function to prevent structural changes on the tables that are bound to the policy | - TableName on which the security policy function should be applied",
     "comments": [
       {
         "comment_id": "1558854",
@@ -12315,7 +12315,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Correct answer should be: | | \"notebooks\" defines the list of notebook execution steps. | | \"dependencies\" specifies that Load_Orders depends on Load_Salesperson. | | mssparkutils.notebook.runMultiple() is the correct API call to execute a DAG of notebooks in Fabric. | | In Azure Data Factory and Synapse Pipelines, workflows use activities ...not in Fabric",
     "comments": [
       {
         "comment_id": "1558864",
@@ -12489,7 +12489,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct: ALTER - ALTER - PARTIAL",
     "comments": [
       {
         "comment_id": "1558866",
@@ -12563,7 +12563,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct: | Lookup Schema and Table | output.value",
     "comments": [
       {
         "comment_id": "1561086",
@@ -12679,7 +12679,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "first answer is default() for two reason: random is only for numbers and default for a date is 1900-01-01",
     "comments": [
       {
         "comment_id": "1559243",
@@ -14297,7 +14297,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "answer should be GRANT SELECT ON Customers(CustomerID, FirstName, LastName, Phone) TO [ | [email protected] | ] | | https://learn.microsoft.com/en-us/fabric/data-warehouse/column-level-security",
     "comments": [
       {
         "comment_id": "1560463",
@@ -15181,7 +15181,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Select test stage | From deploy from select Development | Select pipeline1 | Deploy",
     "comments": [
       {
         "comment_id": "1710047",
@@ -15253,7 +15253,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "To Group1: Assign the Admin role for Workspace1 | To Group2: Configure only item security for Workspace2 | To User1: Assign the Contributor role for Workspace2 and the Viewer role for Workspace4 | | In Microsoft Fabric, only the Admin (and Member) workspace role can manage workspace membership . Since Member is not an option and Contributor/Viewer cannot add users, Admin is required.",
     "comments": [
       {
         "comment_id": "1751770",
@@ -16090,7 +16090,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Silver: extensive datacleansing is related to MAR1 data, for POS1 the transformations are much simpeler (filter products where IsActive=1 etc) -> Dataflow Gen2.",
     "comments": [
       {
         "comment_id": "1346232",
@@ -16626,7 +16626,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "\"Some **product categories** and **subcategories** are NOT assigned to any product. They are NOT analytically relevant and must be omitted from the product dimension in the gold layer.\" ==> Only categories & subcategories that are not assigned to any products are irrelevant ==> there is no info to filter irrelevant products, so we should keep all products since they are all relevant ==> LEFT OUTER JOIN for the first join ==> second one is correct - INNER JOIN because we want to keep only cate...",
     "comments": [
       {
         "comment_id": "1341700",
@@ -17013,7 +17013,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answer is incorrect since the syntax for CAST is different, this is CONVERT syntax. So the correct answer is: CONVERT, LEFT OUTER JOIN, HAVING",
     "comments": [
       {
         "comment_id": "1342053",
@@ -17252,7 +17252,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct. The question states that eventstream already exists and uses the lakehouse as destination. The question also states that the rows need to be batch ingested. Thus 1) Dataflow and 2) Filter activity are the best in this situation",
     "comments": [
       {
         "comment_id": "1346373",
@@ -17764,7 +17764,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "No No Yes. | If anything goes wrong writing the existing table or when writing a new table (.targettable) the merge will not be executed.",
     "comments": [
       {
         "comment_id": "1348600",
@@ -17904,7 +17904,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "First dropdown: o.OrderDate >= c.valid_from_datetime\n\nSecond dropdown: o.OrderDate < c.valid_to_datetime",
     "comments": [
       {
         "comment_id": "1346383",
@@ -18613,7 +18613,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "First: try_cast(item_name as varchar(20)) | Second: convert(varchar, purchase_date, 7) | | Explanation: | I used pure SQL for testing, I assume it's very similar here, if not the same... | | When I execute the following commands on the SQL database, | SELECT CONVERT(VARCHAR, GETDATE(), 7) AS PurchaseDate | SELECT FORMAT(GETDATE(), 'MMM dd, yy') AS PurchaseDate | I get this - both of commands give the same result: | Oct 10, 25 | | The other two give the following result: | SELECT CONVERT(VARCH...",
     "comments": [
       {
         "comment_id": "1357615",
@@ -19706,7 +19706,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The correct answers are: | Denormalized into a single product dimension table | The product name and the date | The second one is correct because when you join with the fact table, you generally use business keys to decouple from the surrogate key (SK). | The surrogate key is used in the semantic model to create relationships.",
     "comments": [
       {
         "comment_id": "1559401",
@@ -19838,7 +19838,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "T1 -> Dataflow Gen2 dataflow; That's just normal low/no code configuration. So checks's out | T2 -> PySpark/Python: Notebooks | T3 -> Focus on moving data (Datapipeline)",
     "comments": [
       {
         "comment_id": "1565780",
@@ -19937,7 +19937,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Dataset1: | Will be added to Fabric with a unique primary key (auto-incrementing). | Answer: Dataflow Gen2 dataflow | | Dataset2: | Contains semi-structured data, uses bulk data transfer, and requires custom visuals during transformation in development mode. | Answer: A notebook | | Dataset3: | Stored in a lakehouse, bulk loaded, and uses row-based windowing functions during transformation. | Answer: A T-SQL statement",
     "comments": [
       {
         "comment_id": "1573430",
@@ -20113,7 +20113,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "whenMatchedUpdate is used to update existing records — here, just LastModified. | | whenNotMatchedInsert handles inserting new records into the target from the source. | | whenNotMatchedBySourceUpdate is key for handling records that are no longer present in the source and meet a time-based condition (older than 7 days), marking them as \"inactive\".",
     "comments": [
       {
         "comment_id": "1562099",
@@ -20485,7 +20485,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Yes, No, No are the correct answers.",
     "comments": [
       {
         "comment_id": "1562105",
@@ -21377,7 +21377,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answer is correct. | Will note that both Project and Extend can be used to rename columns. But Project will drop any unspecified columns. | Thus why extend needs to be used.",
     "comments": [
       {
         "comment_id": "1562111",
@@ -21506,7 +21506,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "This is such a tricky question. Usually, data from streaming source is not so big. If data size is smaller than 1MB => event stream however data size > 1 MB => Apache Spark structured streaming. Data pipeline doesn't support streaming.",
     "comments": [
       {
         "comment_id": "1578929",
@@ -21789,7 +21789,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "So... it's very simple: | | \"The target table will always be overwritten.\" | -> No. Because it will only overwrite everything/create the table when it doesn't already exist. So it will TRY to get the delta table, and if it doesn't, then it will create the table. | | 2. The merge operation will always run. | -> No, this is basic python. \"In your code, any raised exceptions trigger the associated except clause. Note that where you have multiple except clauses, your program will run only the fir...",
     "comments": [
       {
         "comment_id": "1576992",
@@ -22371,7 +22371,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "should be yes no yes. getitem(1) returns the second value, not the first",
     "comments": [
       {
         "comment_id": "1709249",
@@ -22768,7 +22768,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Create new records → Incremental | The data file contains only changes since the last file (i.e. it's already a delta/incremental feed). For inserting new records, an incremental load simply appends the new rows from each file into Table1 — efficient and appropriate for a 2-billion-row table where you don't want to reload everything every 30 minutes. | Delete existing records → Snapshot | Deletions are the tricky part. With an incremental pattern, you only see what arrived — you can't easily...",
     "comments": [
       {
         "comment_id": "1751870",
@@ -22886,7 +22886,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "I'm sorry, the provided answer is wrong. It should be queryinsights.frequently_run_queries as explained above.",
     "comments": [
       {
         "comment_id": "1341704",
@@ -23170,7 +23170,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answers are correct! | row_cumsum | row_window_session",
     "comments": [
       {
         "comment_id": "1357585",
@@ -23277,7 +23277,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "All the answers are wrong. The correct answers are no, yes, yes: | | datatable(Location:string, Company:string, UnitsSold:long) | [ | \"New York\", \"Contoso\", 300, | \"New York\", \"Litware\", 1000, | \"New York\", \"Relecloud\", 300, | \"New York\", \"Fabrikam\", 200, | \"Seattle\", \"Contoso\", 300, | \"Seattle\", \"Litware\", 100, | \"Seattle\", \"Fabrikam\", 100, | \"San Francisco\", \"Relecloud\", 500, | \"San Francisco\", \"Litware\", 500, | \"Washington DC\", \"Litware\", 300, | \"Washington DC\", \"Contoso\", 400 | ] | | sort...",
     "comments": [
       {
         "comment_id": "1341689",
@@ -24372,7 +24372,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Runtime logs to find error details. | Data insights to get the total number of errors: | https://learn.microsoft.com/en-us/fabric/data-engineering/apache-spark-monitor-run-series",
     "comments": [
       {
         "comment_id": "1411247",
@@ -25265,7 +25265,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "In case you're doubting between Teams or Outlook, in the technical requirements is something like: \"If any step in populating the lakehouses fails, an email must be sent to the data engineers.\". | | On Fail is good. Just makes the most sense",
     "comments": [
       {
         "comment_id": "1575842",
