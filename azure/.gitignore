@@ -8,9 +8,8 @@ __pycache__/
 # Local config / secrets
 .env
 
-# Downloaded exhibit media (the directory itself is tracked via .gitkeep)
-assets/exhibits/*
-!assets/exhibits/.gitkeep
+# Downloaded exhibit media are now tracked so guides render out-of-the-box.
+# assets/exhibits/.gitkeep remains for directory structure.
 
 # Data backups / temp files
 data/*.bak
