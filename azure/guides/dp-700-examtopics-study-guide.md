@@ -347,9 +347,14 @@ You need to create an output that presents the summarized values of all the orde
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935971_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/935971_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **robertlavigne** (43 upvotes [Highly Voted]): SELECT YEAR
@@ -372,6 +377,9 @@ You plan to load the data into a dimensional model and implement a star schema. 
 You need to prepare the data.
 Which three columns should you include in the DimProduct table? Each correct answer presents part of the solution.
 NOTE: Each correct selection is worth one point.
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935972_0.png)
 
 ⭕ **A.** Date
 ✅ **B.** ProductName
@@ -516,9 +524,13 @@ You deploy all the items from Workspace1_DEV to Workspace1_TEST.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935976_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **SamuComqi** (50 upvotes [Highly Voted]): NO: only metadata will be deployed to the target starge (https://learn.microsoft.com/en-us/fabric/cicd/deployment-pipelines/understand-the-deployment-process?tabs=new#item-properties-copied-during-deployment)
@@ -637,6 +649,10 @@ You have a Fabric workspace named Workspace1 that has the cache for shortcuts en
 You need to read data from all the shortcuts.
 Which shortcuts will retrieve data from the cache?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935981_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/935981_1.png)
+
 ⭕ **A.** Stores only
 ⭕ **B.** Products only
 ✅ **C.** Stores and Products only
@@ -695,6 +711,9 @@ A shortcut to StoreFile aliased as Stores
 A shortcut to TripsFile aliased as Trips
 The data from which shortcuts will be retrieved from the cache?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935983_0.png)
+
 ⭕ **A.** Trips and Stores only
 ⭕ **B.** Products and Store only
 ✅ **C.** Stores only
@@ -727,9 +746,14 @@ Model1 must refresh when Notebook1 has executed successfully.
 How should you orchestrate each item? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935984_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/935984_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **GHill1982** (20 upvotes [Highly Voted]): All four answers are correct.
@@ -846,9 +870,13 @@ You need to apply endorsement badges to the entities based on each entity’s us
 Which badge should you apply to each entity? To answer, drag the appropriate badges the correct entities. Each badge may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935988_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **fassil** (55 upvotes [Highly Voted]): Entity1: core organization entity --> Master Data
@@ -873,9 +901,15 @@ You add Group1 to the default domain of Domain1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935989_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/935989_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/935989_2.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **giraf** (41 upvotes [Highly Voted]): NYN
@@ -897,6 +931,9 @@ The workspaces currently contain the items shown in the following table.
 Items in Workspace1 that have the same name as items in Workspace2 are currently paired.
 You need to ensure that the items in Workspace1 overwrite the corresponding items in Workspace2. The solution must minimize effort.
 What should you do?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935990_0.png)
 
 ⭕ **A.** Delete all the items in Workspace2, and then run deployPipeline1.
 ⭕ **B.** Rename each item in Workspace2 to have the same name as the items in Workspace1.
@@ -947,9 +984,13 @@ You create a Fabric workspace name Workspace1 that will be used to develop extra
 You need to ensure that the libraries are available by default to new notebooks in Workspace1.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935992_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **Tuki93** (13 upvotes [Highly Voted]): Seems correct.
@@ -1048,9 +1089,14 @@ In Warehouse1, you create a table named DimCustomer by running the following sta
 You need to set the Customerkey column as a primary key of the DimCustomer table.
 Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935996_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/935996_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **amli123** (84 upvotes [Highly Voted]): Alter table dbo.dimcustomer
@@ -1105,6 +1151,9 @@ You need to apply transformation and filter logic to prepare the data for consum
 Solution: You use the following code segment:
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935998_0.png)
+
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -1137,6 +1186,9 @@ You need to apply transformation and filter logic to prepare the data for consum
 Solution: You use the following code segment:
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/935999_0.png)
+
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -1163,6 +1215,9 @@ Timestamp -
 You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.
 Solution: You use the following code segment:
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936000_0.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -1193,6 +1248,9 @@ Timestamp -
 You need to apply transformation and filter logic to prepare the data for consumption. The solution must return data for a neighbourhood named Sands End when No_Bikes is at least 15. The results must be ordered by No_Bikes in ascending order.
 Solution: You use the following code segment:
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936001_0.png)
 
 ✅ **A.** Yes
 ⭕ **B.** No
@@ -1350,9 +1408,13 @@ You need to ensure that the authors can see only their respective sales data.
 How should you complete the statement? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943818_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **5e89616** (13 upvotes [Highly Voted]): The answer is correct.
@@ -1475,9 +1537,13 @@ You need to implement a pattern to dynamically execute Load_Salesperson and Load
 How should you complete the code? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943822_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **5e89616** (17 upvotes [Highly Voted]): Correct
@@ -1499,9 +1565,14 @@ You need to ensure that the team can view only the first two characters and the 
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943823_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943823_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **5e89616** (21 upvotes [Highly Voted]): Correct
@@ -1522,9 +1593,14 @@ You need to configure the ForEach activity to receive the list of tables to be c
 How should you complete the pipeline expression? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943824_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943824_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **LasAnsias** (6 upvotes [Highly Voted]): i agree.
@@ -1551,9 +1627,13 @@ You need to configure security to meet the following requirements:
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943825_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **Biju1** (25 upvotes [Highly Voted]): default()
@@ -1755,6 +1835,9 @@ You need to ensure that the notebooks are executed in the following sequence:
 Which two actions should you perform? Each correct answer presents part of the solution.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943832_0.png)
+
 ⭕ **A.** Move the declaration of Notebook_02 to the bottom of the Directed Acyclic Graph (DAG) definition.
 ⭕ **B.** Add dependencies to the execution of Notebook_03.
 ⭕ **C.** Split the Directed Acyclic Graph (DAG) definition into three separate definitions.
@@ -1775,6 +1858,9 @@ NOTE: Each correct selection is worth one point.
 
 You have a Fabric workspace that contains a data pipeline named Pipeline1 as shown in the exhibit. (Click the Exhibit tab.)
 What will occur the next time Pipeline1 runs?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943833_0.png)
 
 ⭕ **A.** Copy_kdi will run first, and then Execute procedure1 will run.
 ⭕ **B.** Execute procedure1 will run first, and then Copy_kdi will run.
@@ -1896,9 +1982,14 @@ You need to provide User1 with access to the Customer table. The solution must p
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943835_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943835_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **12a2ecc** (48 upvotes [Highly Voted]): answer should be GRANT SELECT ON Customers(CustomerID, FirstName, LastName, Phone) TO [
@@ -2037,9 +2128,14 @@ In the Development workspace, you build a new feature named Feature1.
 You need to deploy Feature1 to the Test workspace. The solution must ensure that only a pipeline is deployed.
 Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/979604_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/979604_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **EddEe** (18 upvotes [Highly Voted]): Select test stage
@@ -2079,9 +2175,14 @@ The solution must follow the principle of least privilege.
 What should you do? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995011_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/995011_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **32950cb** (6 upvotes [Highly Voted]): To Group1: Assign the Admin role for Workspace1
@@ -2100,6 +2201,9 @@ You have a Fabric workspace named Workspace1 that is connected to a GitHub repos
 You modify Semanticmodel1, Semanticmodel2, and Report2.
 You need to commit the changes to repo1.
 What is the minimum number of commits you should perform?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995012_0.png)
 
 ⭕ **A.** 1
 ✅ **B.** 2
@@ -2157,7 +2261,7 @@ Which workspace role should you assign to User1?
 ⭕ **D.** Viewer
 
 **Correct answer:** B
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **Beshko** (1 upvotes): Answer is correct, create is the key word and it is always contributor.
@@ -2181,7 +2285,7 @@ Does this meet the goal?
 ✅ **B.** No
 
 **Correct answer:** B
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **Yasminmv110** (3 upvotes): GetSecret is correct
@@ -2235,9 +2339,13 @@ You need to configure the Spark environments to meet the following requirements:
 What should you use for each environment? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995017_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **mustafaalhnuty** (2 upvotes): Environment for Notebook1: A serverless Spark environment
@@ -2480,9 +2588,13 @@ You need to recommend a method to populate the POS1 data to the lakehouse medall
 What should you recommend for each layer? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936004_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **doctordodge** (27 upvotes [Highly Voted]): Bronze Layer: A pipeline copy activity
@@ -2649,9 +2761,13 @@ You need to create the product dimension.
 How should you complete the Apache Spark SQL code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936006_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **MDWPartners** (28 upvotes [Highly Voted]): LEFT OUTER JOIN
@@ -2771,9 +2887,14 @@ Ensure that the result set displays the total number of employees per contract t
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936008_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936008_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **werfragt** (59 upvotes [Highly Voted]): First part is CONVERT and not CAST
@@ -2790,9 +2911,13 @@ You need to batch ingest only rows from the data source where the City attribute
 What should you use for the data processor and filtering? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936009_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **4371883** (53 upvotes [Highly Voted]): 1. eventstream with an external data source
@@ -2859,9 +2984,14 @@ You have the following code segment:
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936012_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936012_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **8d6881f** (23 upvotes [Highly Voted]): No No Yes.
@@ -2881,9 +3011,13 @@ Enable the analysis of customer orders based on the current attributes.
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936013_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **4371883** (23 upvotes [Highly Voted]): Agree with the answers
@@ -2961,6 +3095,9 @@ You plan to load additional records to Table2.
 Which two records will load from Table1 to Table2? Each correct answer presents a complete solution.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936016_0.png)
+
 ✅ **A.** 
 ⭕ **B.** 
 ⭕ **C.** 
@@ -2988,9 +3125,13 @@ You need to resolve the issues. The solution must ensure that the data types of 
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936017_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **henryphchan** (24 upvotes [Highly Voted]): I'm curious how can people memorize the date format code for the exam lol.
@@ -3033,6 +3174,11 @@ You need to reduce how long it takes to run the KQL queryset.
 Solution: You change the join type to kind=outer.
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936019_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936019_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/936019_2.png)
+
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -3069,6 +3215,11 @@ You need to reduce how long it takes to run the KQL queryset.
 Solution: You change project to extend.
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936020_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936020_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/936020_2.png)
+
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -3093,6 +3244,11 @@ You need to reduce how long it takes to run the KQL queryset.
 Solution: You move the filter to line 02.
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936021_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936021_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/936021_2.png)
+
 ✅ **A.** Yes
 ⭕ **B.** No
 
@@ -3116,6 +3272,11 @@ You have the following KQL queryset.
 You need to reduce how long it takes to run the KQL queryset.
 Solution: You add the make_list() function to the output columns.
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936022_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936022_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/936022_2.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -3300,9 +3461,13 @@ You need to implement a star schema for DW1. The solution must minimize developm
 Which design approach should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943838_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **zxc01** (42 upvotes [Highly Voted]): second one should be "The unique system generated identifier"
@@ -3337,9 +3502,13 @@ You need to recommend tools for the teams based on their current personas.
 What should you recommend for each team? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943839_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **AnetaK** (14 upvotes [Highly Voted]): Looks correct.
@@ -3361,9 +3530,13 @@ You need to identify which type of item to use for the datasets. The solution mu
 What should you identify for each dataset? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943840_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **PBridge** (30 upvotes [Highly Voted]): Dataset1:
@@ -3400,9 +3573,13 @@ You need to implement an incremental loading pattern by using Notebook1. The sol
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943841_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **13d2a97** (23 upvotes [Highly Voted]): whenMatchedUpdate is used to update existing records — here, just LastModified.
@@ -3438,9 +3615,14 @@ In a warehouse, you create a control table named Control.Object as shown in the 
 You need to build a data pipeline that will support the dynamic ingestion of the tables listed in the control table by using a single execution.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943842_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943842_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **LasAnsias** (22 upvotes [Highly Voted]): I agree with the answer given
@@ -3511,9 +3693,15 @@ You have a notebook that contains the following code segment.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943845_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943845_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/943845_2.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **13d2a97** (35 upvotes [Highly Voted]): Yes No No
@@ -3532,9 +3720,14 @@ In Eventhouse1, you plan to create a table named DeviceStreamData in a KQL datab
 You need to use a KQL query to develop the solution for Eventhouse1.
 Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943846_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943846_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **5e89616** (10 upvotes [Highly Voted]): Correct
@@ -3805,9 +3998,14 @@ A sample of the expected output is shown in the following table.
 How should you complete the query? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943852_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943852_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **13d2a97** (13 upvotes [Highly Voted]): Correct - Sort / Extend / Project
@@ -3851,9 +4049,14 @@ The solution must minimize development effort.
 What should you include in the recommendation for each source? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/943853_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/943853_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **contactodonuno** (9 upvotes [Highly Voted]): | Source      | Data Type                  | Message Size | Recommended Option                      | Justification                                                                |
@@ -3878,9 +4081,14 @@ You have the following code segment.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/949565_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/949565_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **vernillen** (24 upvotes [Highly Voted]): So... it's very simple:
@@ -4060,9 +4268,15 @@ You have a notebook that contains the following code segment.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/979607_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/979607_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/979607_2.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **Rjb_073086** (5 upvotes [Highly Voted]): should be yes no yes. getitem(1) returns the second value, not the first
@@ -4100,9 +4314,15 @@ You need to recommend which Fabric item to use based on each development group�
 What should you recommend for each group? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/979608_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/979608_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-700/979608_2.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **AxelF** (1 upvotes): I agree with the provided answer, Event Stream, Dataflow Gen2 and Notebook for Groups 1,2 & 3 respectively.
@@ -4138,13 +4358,16 @@ You need to modify the DAG definition to meet the following requirements:
 •	Ensure that notebook_02 only runs after the execution of notebook_03 is complete.
 How should you modify the DAG definition?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/979610_0.png)
+
 ⭕ **A.** Create a second DAG definition. Move notebook_03 and notebook_02 to the new DAG definition.
 ⭕ **B.** Move the notebook_03 declaration to the top of the DAG definition. Add a concurrency to notebook_02 and notebook_01.
 ✅ **C.** Create two stages in the DAG definition. Add notebook_03 to the first stage. Add notebook_01 and notebook_02 to the second stage.
 ⭕ **D.** Move the declaration of notebook_03 to the top of the DAG definition. Add a new stage that contains notebook_01 and notebook_02.
 
 **Correct answer:** C
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **MedMed009** (1 upvotes): Stage 1 → Notebook_03 runs alone.
@@ -4165,13 +4388,16 @@ You need to configure Pipeline1 to perform the following actions:
 The solution must minimize development effort.
 What should you use?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995019_0.png)
+
 ⭕ **A.** a data pipeline trigger
 ✅ **B.** a data pipeline schedule
 ⭕ **C.** a job definition
 ⭕ **D.** an activator
 
 **Correct answer:** B
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **9114bc3** (1 upvotes): n Fabric/Data Factory, this is done using:
@@ -4195,9 +4421,13 @@ The solution must support the versioning of existing records.
 What should you recommend for each operation? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995020_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **Matej21** (5 upvotes [Highly Voted]): Create new records → Incremental
@@ -4213,13 +4443,16 @@ You have a Fabric lakehouse that contains the resources shown in the following t
 You need to use a notebook to query for customers in the United States and load the filtered data into USCustomers. The solution must minimize the number of scripts used.
 Which statement should you use?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995021_0.png)
+
 ⭕ **A.** customers.write.format("parquet").mode("append").saveAsTable("USCustomers")
 ⭕ **B.** customers.write.format("delta").mode("overwrite").save("Tables/USCustomers")
 ✅ **C.** customers.write.format("delta").mode("overwrite").saveAsTable("USCustomers")
 ⭕ **D.** customers.write. format("parquet").mode("append").save("Tables/USCustomers")
 
 **Correct answer:** C
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **Matej21** (1 upvotes): Delta format - default in lh for managed tables, we don't want raw parquet files
@@ -4281,9 +4514,13 @@ You need to troubleshoot the ad-hoc query issue.
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936023_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **MDWPartners** (41 upvotes [Highly Voted]): queryinsights.frequently_run_queries
@@ -4405,9 +4642,14 @@ The other query must create a column named FirstPickupDateTime that shows the fi
 How should you complete each query? To answer, drag the appropriate values the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936025_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936025_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **2e6975f** (18 upvotes [Highly Voted]): The answers are correct!
@@ -4428,9 +4670,14 @@ You have the following code segment.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936026_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-700/936026_1.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **MDWPartners** (55 upvotes [Highly Voted]): NO, YES, YES
@@ -4597,9 +4844,13 @@ The total number of errors -
 What should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/936032_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **Kiket2ride** (30 upvotes [Highly Voted]): Runtime logs to find error details. 
@@ -4854,9 +5105,13 @@ You need to ensure that the data engineers are notified if any step in populatin
 What should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/949568_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **DarioReymago** (7 upvotes [Highly Voted]): correct
@@ -4910,7 +5165,7 @@ What should you do?
 ⭕ **D.** To Pipeline1, add an activity to invoke a SQL script.
 
 **Correct answer:** B
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **Matej21** (2 upvotes): Setting the Update method to "Replace" in Dataflow Gen2 tells the dataflow to fully overwrite the destination table on each run.
@@ -4925,9 +5180,13 @@ You need to monitor the execution and activity status of Pipeline1 and automatic
 What should you use to monitor Pipeline1, and what should you use to email the alert? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-700/995023_0.png)
 
-**Correct answer:** N/A
-**Most voted:** N/A
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+
+**Correct answer:** Not provided by ExamTopics
+**Most voted:** Not provided
 
 ### Top explanations
 - **pawspick** (1 upvotes): Monitor hub and microsoft power automate flow
@@ -4946,7 +5205,7 @@ What should you do from Monitor in the Fabric admin center?
 ⭕ **D.** Select the entry for the pipeline execution, and then select the output.
 
 **Correct answer:** B
-**Most voted:** N/A
+**Most voted:** Not provided
 
 ### Top explanations
 - **pawspick** (2 upvotes): Correct answer is A

@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Local config / secrets
+.env
+
+# Downloaded exhibit media (the directory itself is tracked via .gitkeep)
+assets/exhibits/*
+!assets/exhibits/.gitkeep
+
+# Data backups / temp files
+data/*.bak
+data/*.tmp
+state/*.tmp

@@ -14,8 +14,20 @@ import argparse
 import html
 import json
 import re
+import urllib.parse
 from pathlib import Path
 from typing import Any
+
+# Graceful import of the exhibit HTML sanitizer. The script lives next to
+# sanitize_exhibit_html.py, so when invoked with ``python scripts/build_study_guide.py``
+# Python prepends the ``scripts/`` directory to sys.path and the bare import works.
+# Fall back to ``clean_html`` if BeautifulSoup isn't installed.
+try:
+    from sanitize_exhibit_html import sanitize_exhibit_html  # type: ignore
+    SANITIZER_AVAILABLE = True
+except Exception:  # pragma: no cover - defensive
+    sanitize_exhibit_html = None  # type: ignore[assignment]
+    SANITIZER_AVAILABLE = False
 
 
 # Map each exam's numeric topic tags to Microsoft official skill area names.
@@ -825,7 +837,58 @@ HTML_HEAD = """<!DOCTYPE html>
       .question { display: block !important; box-shadow: none; border: 1px solid #bbb; page-break-inside: avoid; }
       .question.active { display: block !important; }
       .answer-revealed { display: block !important; }
+      .exhibit img { box-shadow: none; }
     }
+
+    /* ----- Exhibits & special question-type widgets ----- */
+    .exhibits { margin-top: 1rem; display: grid; gap: 1rem; }
+    .exhibit { margin: 0; border: 1px solid var(--border); border-radius: 18px; padding: 0.75rem; background: rgb(var(--surface-rgb) / 0.7); }
+    .exhibit img { display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
+    .exhibit figcaption { margin-top: 0.5rem; text-align: center; color: var(--text-secondary); font-size: 0.82rem; font-weight: 700; }
+    .exhibit pre { margin: 0; }
+    .exhibit table { border-collapse: collapse; width: 100%; }
+    .exhibit table th, .exhibit table td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; }
+    .exhibit-missing { padding: 1rem; text-align: center; background: var(--warning-bg); color: var(--warning-ink); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .exhibit-missing-title { font-weight: 800; margin-bottom: 0.35rem; }
+    .exhibit-missing a { color: var(--accent-ink); text-decoration: underline; }
+
+    .hotspot-widget, .dragdrop-widget, .other-widget {
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    }
+    .hotspot-stage { position: relative; display: inline-block; max-width: 100%; }
+    .hotspot-stage img { cursor: crosshair; }
+    .hotspot-dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .widget-note { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem; }
+    .dragdrop-chips { list-style: none; padding: 0; margin: 0 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .dragdrop-chip {
+      cursor: grab;
+      user-select: none;
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      background: rgb(var(--surface-rgb) / 0.85);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .dragdrop-chip:active { cursor: grabbing; }
+    .dragdrop-chip.selected { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+
+    .answer-card.answer-missing { background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .answer-card.answer-missing .label { color: var(--warning-ink); }
   </style>
 </head>
 <body>
@@ -949,14 +1012,21 @@ HTML_TAIL = """
       return new Set(Array.from(q.querySelectorAll('.choices li.correct')).map(li => li.dataset.letter).filter(Boolean));
     }
     function isCorrect(q) {
+      // Questions without a multiple-choice list (hotspot, drag-drop, other)
+      // are never "correct" in the multiple-choice sense — they have no defined
+      // answer key in the data we captured, so they neither help nor hurt
+      // the scored progress counters.
+      if (!q.querySelector('.choices')) return false;
       const selected = getSelected(q);
       const correct = getCorrect(q);
+      if (correct.size === 0) return false;
       return selected.size > 0 && selected.size === correct.size && [...selected].every(x => correct.has(x));
     }
     function updateAnswerFeedback(q) {
       const revealed = q.classList.contains('revealed');
       const selected = getSelected(q);
       const correct = getCorrect(q);
+      const hasChoices = !!q.querySelector('.choices');
       q.querySelectorAll('.choices li').forEach(li => {
         const letter = li.dataset.letter;
         li.classList.remove('incorrect', 'missed');
@@ -968,6 +1038,35 @@ HTML_TAIL = """
       const status = q.querySelector('.answer-status');
       if (!status) return;
       delete q.dataset.result;
+      // Hotspot / drag-drop / other — informational status only.
+      if (!hasChoices) {
+        if (q.querySelector('.hotspot-stage')) {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Mark the areas you would select on the image above.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'HOTSPOT answer not available from ExamTopics.';
+          }
+        } else if (q.querySelector('.dragdrop-widget')) {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Use the exhibit above to plan the correct ordering.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'DRAG DROP answer not available from ExamTopics.';
+          }
+        } else {
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'This question type is not interactive.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'Answer not provided by ExamTopics for this question type.';
+          }
+        }
+        return;
+      }
       if (!revealed) {
         if (selected.size === 0) { status.className = 'answer-status empty'; status.textContent = 'Select your answer, then reveal it.'; }
         else { status.className = 'answer-status'; status.textContent = `${selected.size} selected. Ready to reveal.`; }
@@ -975,6 +1074,12 @@ HTML_TAIL = """
       }
       const missed = [...correct].filter(x => !selected.has(x));
       const wrong = [...selected].filter(x => !correct.has(x));
+      if (correct.size === 0) {
+        // Multiple-choice question whose answer isn't in the dataset.
+        status.className = 'answer-status empty';
+        status.textContent = 'Answer not provided by ExamTopics.';
+        return;
+      }
       if (selected.size === 0) {
         q.dataset.result = 'incorrect';
         status.className = 'answer-status incorrect';
@@ -991,7 +1096,11 @@ HTML_TAIL = """
     }
     questions.forEach(q => {
       const choiceList = q.querySelector('.choices');
-      if (!choiceList) return;
+      if (!choiceList) {
+        // Still surface answer feedback (status messages, hotspot reveal, etc.).
+        updateAnswerFeedback(q);
+        return;
+      }
       const saved = getSelected(q);
       choiceList.querySelectorAll('input').forEach(input => {
         if (saved.has(input.value)) input.checked = true;
@@ -1026,7 +1135,13 @@ HTML_TAIL = """
     }
     function updateProgress() {
       const total = ids.length || 1;
-      const attemptedIds = Object.keys(selections).filter(id => selections[id] && selections[id].length > 0);
+      // Only count questions that actually have a multiple-choice list.
+      // Hotspot / drag-drop / other questions don't affect "attempted/correct".
+      const isMcQuestion = (q) => !!(q && q.querySelector('.choices'));
+      const attemptedIds = Object.keys(selections).filter(id => {
+        const q = document.getElementById(id);
+        return isMcQuestion(q) && selections[id] && selections[id].length > 0;
+      });
       const attempted = attemptedIds.length;
       const correctCount = attemptedIds.filter(id => {
         const q = document.getElementById(id);
@@ -1057,6 +1172,81 @@ HTML_TAIL = """
         reviewed.has(id) ? reviewed.delete(id) : reviewed.add(id);
         saveReviewed();
       });
+    });
+
+    /* ----- Hotspot / drag-drop interactivity ----- */
+    const HOTSPOTS_KEY = location.pathname + '-hotspots';
+    const DRAGDROP_KEY = location.pathname + '-dragdrop';
+    let hotspots = {};
+    let dragdropSelections = {};
+    try { hotspots = JSON.parse(localStorage.getItem(HOTSPOTS_KEY) || '{}'); } catch (e) { hotspots = {}; }
+    try { dragdropSelections = JSON.parse(localStorage.getItem(DRAGDROP_KEY) || '{}'); } catch (e) { dragdropSelections = {}; }
+
+    function saveHotspots() {
+      localStorage.setItem(HOTSPOTS_KEY, JSON.stringify(hotspots));
+    }
+    function saveDragdrop() {
+      localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections));
+    }
+
+    function attachHotspotStage(q) {
+      const stages = q.querySelectorAll('.hotspot-stage');
+      if (!stages.length) return;
+      const saved = hotspots[q.id] || {};
+      stages.forEach((stage, stageIdx) => {
+        const key = String(stageIdx);
+        const img = stage.querySelector('img');
+        if (!img) return;
+        const dotsHost = stage.querySelector('.hotspot-dots');
+        if (!dotsHost) return;
+        // Restore previously-saved dots so refreshes keep the student's work.
+        const renderDots = () => {
+          dotsHost.innerHTML = '';
+          (saved[key] || []).forEach(pt => {
+            const dot = document.createElement('span');
+            dot.className = 'hotspot-dot';
+            dot.style.left = pt.x + '%';
+            dot.style.top = pt.y + '%';
+            dotsHost.appendChild(dot);
+          });
+        };
+        img.addEventListener('click', e => {
+          const rect = img.getBoundingClientRect();
+          if (rect.width === 0 || rect.height === 0) return;
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          saved[key] = saved[key] || [];
+          saved[key].push({ x, y });
+          hotspots[q.id] = saved;
+          saveHotspots();
+          renderDots();
+        });
+        renderDots();
+      });
+    }
+
+    function attachDragdropChips(q) {
+      const chips = q.querySelectorAll('.dragdrop-chip');
+      if (!chips.length) return;
+      const saved = new Set(dragdropSelections[q.id] || []);
+      chips.forEach((chip, idx) => {
+        chip.addEventListener('click', () => {
+          if (q.classList.contains('revealed')) return;
+          const isSelected = chip.classList.toggle('selected');
+          if (isSelected) saved.add(idx); else saved.delete(idx);
+          dragdropSelections[q.id] = Array.from(saved);
+          saveDragdrop();
+        });
+        chip.addEventListener('dragstart', e => {
+          e.dataTransfer.setData('text/plain', String(idx));
+        });
+        if (saved.has(idx)) chip.classList.add('selected');
+      });
+    }
+
+    questions.forEach(q => {
+      attachHotspotStage(q);
+      attachDragdropChips(q);
     });
 
     let currentIndex = 0;
@@ -1183,6 +1373,195 @@ def clean_html(text: str) -> str:
     return text
 
 
+def exhibit_rel_path(local_path: str) -> str:
+    """Convert an exhibit path (relative or absolute) into the path used in
+    HTML files, which live in ``guides/``.
+
+    The exhibit manifest stores paths like ``assets/exhibits/dp-600/911291_0.png``
+    (relative to the repo root) or absolute paths. Since the generated HTML
+    sits one directory below the repo root (in ``guides/``), we prefix the
+    relative form with ``../`` so the browser can resolve it from ``guides/``.
+    Absolute paths are rebased onto their tail to avoid leaking user-specific
+    directories into the published file.
+    """
+    if not local_path:
+        return ""
+    p = local_path.replace("\\", "/")
+    # Drop any absolute prefix (e.g. /Users/.../azure/) — we just need the
+    # path relative to the repo root.
+    marker = "assets/exhibits/"
+    idx = p.find(marker)
+    if idx >= 0:
+        p = p[idx:]
+    elif p.startswith("/"):
+        # Fall back to the last two segments.
+        parts = [seg for seg in p.split("/") if seg]
+        p = "/".join(parts[-3:]) if len(parts) >= 3 else p.lstrip("/")
+    # Normalize URL escaping for spaces etc.
+    safe = urllib.parse.quote(p, safe="/-_.")
+    return f"../{safe}"
+
+
+def render_exhibit(exhibit: dict, idx: int, q_label: str) -> str:
+    """Render a single exhibit (image/table/code) for HTML embedding."""
+    kind = (exhibit.get("kind") or "").strip().lower()
+    alt = html.escape(exhibit.get("alt") or "")
+    original = html.escape(exhibit.get("original_url") or "#")
+    caption_label = f"Exhibit {idx + 1}"
+    alt_text = f" — {alt}" if alt else ""
+
+    if kind == "image":
+        local = exhibit.get("local_path") or exhibit.get("src") or ""
+        rel = exhibit_rel_path(local) if local else ""
+        # Fall back to src as a relative path if local_path missing/malformed.
+        if not rel:
+            src_fallback = exhibit.get("src") or ""
+            if src_fallback and not src_fallback.startswith("http"):
+                rel = f"../{src_fallback.lstrip('/')}"
+        if local and Path(local).exists() and rel:
+            return (
+                f'<figure class="exhibit exhibit-image">'
+                f'<img src="{html.escape(rel, quote=True)}" alt="{alt}" loading="lazy">'
+                f'<figcaption class="exhibit-caption">{caption_label}{alt_text}</figcaption>'
+                f'</figure>'
+            )
+        # Offline fallback banner — link to the upstream image on ExamTopics.
+        return (
+            f'<div class="exhibit exhibit-missing">'
+            f'<div class="exhibit-missing-title">Exhibit image not available offline</div>'
+            f'<a href="{original}" target="_blank" rel="noopener">View original on ExamTopics</a>'
+            f'</div>'
+        )
+
+    if kind == "table":
+        raw = exhibit.get("html") or exhibit.get("raw_html") or ""
+        if SANITIZER_AVAILABLE and sanitize_exhibit_html is not None:
+            cleaned = sanitize_exhibit_html(raw)
+        else:
+            cleaned = clean_html(raw)
+        return (
+            f'<figure class="exhibit exhibit-table">'
+            f'{cleaned}'
+            f'<figcaption class="exhibit-caption">{caption_label}</figcaption>'
+            f'</figure>'
+        )
+
+    if kind == "code":
+        code = exhibit.get("code") or exhibit.get("text") or ""
+        return (
+            f'<figure class="exhibit exhibit-code">'
+            f'<pre><code>{html.escape(code)}</code></pre>'
+            f'<figcaption class="exhibit-caption">{caption_label}</figcaption>'
+            f'</figure>'
+        )
+
+    # Unknown kind — render a graceful placeholder.
+    return (
+        f'<div class="exhibit exhibit-missing">'
+        f'<div class="exhibit-missing-title">Exhibit unavailable ({html.escape(kind or "unknown")})</div>'
+        f'<a href="{original}" target="_blank" rel="noopener">View original on ExamTopics</a>'
+        f'</div>'
+    )
+
+
+def render_exhibits_block(question: dict, q_label: str) -> str:
+    """Render the ``<div class="exhibits">`` block listing every exhibit for a
+    question. Returns an empty string if the question has no exhibits.
+    """
+    exhibits = question.get("exhibits") or []
+    if not exhibits:
+        return ""
+    parts: list[str] = ['<div class="exhibits">']
+    for idx, ex in enumerate(exhibits):
+        parts.append(render_exhibit(ex, idx, q_label))
+    parts.append("</div>")
+    return "\n".join(parts)
+
+
+def render_hotspot_widget(question: dict, q_label: str) -> str:
+    """Render the interactive HOTSPOT practice widget (image(s) inside a
+    ``.hotspot-stage`` so JS can attach click markers)."""
+    exhibits = question.get("exhibits") or []
+    image_parts: list[str] = []
+    for idx, ex in enumerate(exhibits):
+        if (ex.get("kind") or "").lower() != "image":
+            continue
+        local = ex.get("local_path") or ex.get("src") or ""
+        rel = exhibit_rel_path(local)
+        if not rel and ex.get("src"):
+            rel = f"../{ex['src'].lstrip('/')}"
+        if not rel or not (local and Path(local).exists()):
+            image_parts.append(render_exhibit(ex, idx, q_label))
+            continue
+        alt = html.escape(ex.get("alt") or "")
+        image_parts.append(
+            f'<div class="hotspot-stage">'
+            f'<img src="{html.escape(rel, quote=True)}" alt="{alt}" loading="lazy">'
+            f'<div class="hotspot-dots" data-exhibit="{idx}"></div>'
+            f'</div>'
+        )
+    if not image_parts:
+        image_parts.append('<div class="exhibit exhibit-missing"><div class="exhibit-missing-title">No hotspot image available</div></div>')
+    note = (
+        "HOTSPOT — click on the image to mark the areas you would select. "
+        "Your selections are saved for practice only; ExamTopics does not "
+        "provide the correct hotspot coordinates."
+    )
+    return (
+        '<div class="hotspot-widget">'
+        f'<p class="widget-note">{html.escape(note)}</p>'
+        + "".join(image_parts)
+        + '<div class="answer-status" aria-live="polite"></div>'
+        + '</div>'
+    )
+
+
+def render_dragdrop_widget(question: dict, q_label: str) -> str:
+    """Render the DRAG DROP practice widget — informational note plus a
+    simple chip list (if exhibits provided item labels) where JS can record
+    clicks/ordering for practice."""
+    exhibits = question.get("exhibits") or []
+    chip_html = ""
+    items = question.get("drag_drop_items") or []
+    if items:
+        chip_html = '<ul class="dragdrop-chips" data-dragdrop-chips>'
+        for it in items:
+            label = html.escape(str(it.get("label") or it.get("text") or it))
+            chip_html += f'<li class="dragdrop-chip" draggable="true" tabindex="0">{label}</li>'
+        chip_html += "</ul>"
+    elif exhibits and (exhibits[0].get("kind") or "").lower() == "image":
+        # Just point the learner at the exhibit image; nothing to enumerate.
+        chip_html = ""
+    note = (
+        "DRAG DROP — use the exhibit above to reason about the correct "
+        "order/assignment. Interactive drag-and-drop grading is not available "
+        "because ExamTopics does not preserve the original targets."
+    )
+    return (
+        '<div class="dragdrop-widget">'
+        f'<p class="widget-note">{html.escape(note)}</p>'
+        + chip_html
+        + '<div class="answer-status" aria-live="polite"></div>'
+        + '</div>'
+    )
+
+
+def render_other_widget(question: dict, q_label: str) -> str:
+    """Fallback widget for questions whose type isn't interactive (no choices
+    and no hotspot/drag-drop handler)."""
+    qtype = question.get("question_type") or "unknown"
+    note = (
+        "This question type is not available as a multiple-choice exercise. "
+        "Use the exhibit to reason about the answer."
+    )
+    return (
+        '<div class="other-widget">'
+        f'<p class="widget-note">{html.escape(note)} <span class="q-badge">{html.escape(str(qtype))}</span></p>'
+        '<div class="answer-status" aria-live="polite"></div>'
+        + '</div>'
+    )
+
+
 def slug_id(value: Any) -> str:
     """Create a URL-safe slug from a value."""
     return re.sub(r"[^a-zA-Z0-9_-]+", "-", str(value)).strip("-").lower()
@@ -1270,18 +1649,23 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
     exam = html.escape(q.get("exam", "").upper())
     topic = q.get("topic", 0)
     num = q.get("question_number", 0)
+    q_type = (q.get("question_type") or "").strip().lower()
     anchor = f"q-{exam.lower()}-t{topic}-n{num}-{slug_id(q_id_raw)}"
 
     labels, preamble, prompt = split_question_text(q.get("question_text", ""))
     label_text = f"Q{topic}.{num}"
 
     active_cls = " active" if is_active else ""
-    parts.append(f'<article class="question{active_cls}" id="{anchor}" data-topic="{topic}" data-num="{num}" data-label="{label_text}">')
+    parts.append(f'<article class="question{active_cls}" id="{anchor}" data-topic="{topic}" data-num="{num}" data-label="{label_text}" data-qtype="{html.escape(q_type)}">')
     parts.append('<div class="q-header">')
     parts.append('<div class="q-title">')
     parts.append(f'<span class="q-num">{label_text}</span>')
     parts.append(f'<span class="q-id">ID {q_id}</span>')
-    for label in labels:
+    # If the data layer tagged this question with a non-standard type, show a badge.
+    badge_labels = list(labels)
+    if q_type and q_type not in {"single", "multiple"}:
+        badge_labels.append(q_type.replace("_", " ").title())
+    for label in badge_labels:
         parts.append(f'<span class="q-badge">{html.escape(label)}</span>')
     parts.append('</div>')
     parts.append('<div class="q-actions">')
@@ -1299,8 +1683,15 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
     parts.append(f'<div class="q-prompt">{html_text(prompt)}</div>')
     parts.append('</section>')
 
+    # Exhibits are rendered after the prompt and before the choices/widget.
+    exhibits_html = render_exhibits_block(q, label_text)
+    if exhibits_html:
+        parts.append(exhibits_html)
+
     choices = q.get("choices", [])
     correct = set(q.get("correct_answers", []))
+    has_correct_answer = len(correct) > 0
+
     if choices:
         is_multiple = len(correct) > 1
         input_type = "checkbox" if is_multiple else "radio"
@@ -1317,9 +1708,22 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
             parts.append('</li>')
         parts.append('</ol>')
         parts.append('<div class="answer-status" aria-live="polite"></div>')
+    else:
+        # Hotspot / drag-drop / unknown — no multiple-choice choices available.
+        if q_type == "hotspot":
+            parts.append(render_hotspot_widget(q, label_text))
+        elif q_type == "drag_drop":
+            parts.append(render_dragdrop_widget(q, label_text))
+        else:
+            parts.append(render_other_widget(q, label_text))
 
-    correct_str = ", ".join(sorted(correct)) or "N/A"
-    most_voted = q.get("most_voted_answer") or "N/A"
+    if has_correct_answer:
+        correct_str = ", ".join(sorted(correct))
+        missing_cls = ""
+    else:
+        correct_str = "Not provided"
+        missing_cls = " answer-missing"
+    most_voted = q.get("most_voted_answer") or "Not provided"
     parts.append('<div class="answer-shell">')
     parts.append('<div class="answer-locked">')
     parts.append('<div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>')
@@ -1327,8 +1731,8 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
     parts.append('</div>')
     parts.append('<div class="answer-revealed">')
     parts.append('<div class="answer-grid">')
-    parts.append(f'<div class="answer-card"><span class="label">Correct answer</span><strong>{html.escape(correct_str)}</strong></div>')
-    parts.append(f'<div class="answer-card"><span class="label">Most voted</span><strong>{html.escape(most_voted)}</strong></div>')
+    parts.append(f'<div class="answer-card{missing_cls}"><span class="label">Correct answer</span><strong>{html.escape(correct_str)}</strong></div>')
+    parts.append(f'<div class="answer-card{missing_cls}"><span class="label">Most voted</span><strong>{html.escape(most_voted)}</strong></div>')
     parts.append('</div>')
 
     comments = q.get("comments", [])
@@ -1475,17 +1879,70 @@ def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
         topic = q.get("topic", 0)
         num = q.get("question_number", 0)
         qid = q.get("question_id", "")
+        q_type = (q.get("question_type") or "").strip().lower()
         lines.append(f'<a id="q{topic}-{num}"></a>')
         lines.append(f"## Q{topic}.{num} (ID {qid})")
         lines.append("")
         lines.append(html_to_md(q.get("question_text", "")))
         lines.append("")
+        # Exhibits as a markdown section. Use ``../assets/...`` so the file
+        # resolves correctly when the guide is consumed from ``guides/``.
+        exhibits = q.get("exhibits") or []
+        if exhibits:
+            lines.append("**Exhibits**")
+            for idx, ex in enumerate(exhibits):
+                kind = (ex.get("kind") or "").lower()
+                if kind == "image":
+                    local = ex.get("local_path") or ex.get("src") or ""
+                    rel = exhibit_rel_path(local)
+                    if not rel and ex.get("src") and not ex["src"].startswith("http"):
+                        rel = f"../{ex['src'].lstrip('/')}"
+                    if rel and local and Path(local).exists():
+                        alt = ex.get("alt") or f"Exhibit {idx + 1}"
+                        lines.append(f"- Exhibit {idx + 1}: ![{alt}]({rel})")
+                    else:
+                        orig = ex.get("original_url") or ""
+                        if orig:
+                            lines.append(f"- Exhibit {idx + 1}: [View original on ExamTopics]({orig})")
+                        else:
+                            lines.append(f"- Exhibit {idx + 1}: _(image not available offline)_")
+                elif kind == "table":
+                    raw = ex.get("html") or ex.get("raw_html") or ""
+                    if SANITIZER_AVAILABLE and sanitize_exhibit_html is not None:
+                        cleaned = sanitize_exhibit_html(raw)
+                    else:
+                        cleaned = clean_html(raw)
+                    if cleaned:
+                        lines.append(f"Exhibit {idx + 1}:")
+                        # Force the table onto its own lines for readability.
+                        lines.append("")
+                        lines.append(cleaned)
+                        lines.append("")
+                elif kind == "code":
+                    code = ex.get("code") or ex.get("text") or ""
+                    lines.append(f"- Exhibit {idx + 1} (code):")
+                    lines.append("")
+                    lines.append("```")
+                    lines.append(code)
+                    lines.append("```")
+            lines.append("")
         for ch in q.get("choices", []):
             marker = "✅" if ch.get("correct") else "⭕"
             lines.append(f"{marker} **{ch.get('letter', '')}.** {html_to_md(ch.get('text', ''))}")
+        if not q.get("choices"):
+            if q_type == "hotspot":
+                lines.append("_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._")
+            elif q_type == "drag_drop":
+                lines.append("_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._")
+            else:
+                lines.append("_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._")
         lines.append("")
-        correct = ", ".join(q.get("correct_answers", [])) or "N/A"
-        most_voted = q.get("most_voted_answer") or "N/A"
+        correct_answers = q.get("correct_answers", []) or []
+        if correct_answers:
+            correct = ", ".join(correct_answers)
+        else:
+            correct = "Not provided by ExamTopics"
+        most_voted = q.get("most_voted_answer") or "Not provided"
         lines.append(f"**Correct answer:** {correct}")
         lines.append(f"**Most voted:** {most_voted}")
         lines.append("")
