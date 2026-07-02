@@ -351,7 +351,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1: Some.blue icone fold and red dont fold | 2 : on power query. all process after the step that dont fold are on power query
 
 ### Top explanations
 - **Momoanwar** (28 upvotes [Highly Voted]): 1: Some.blue icone fold and red dont fold
@@ -428,7 +428,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** IMHO, fully agree with colleagues below - Y -> Y -> Y
 
 ### Top explanations
 - **Momoanwar** (39 upvotes [Highly Voted]): I think yes yes yes. 
@@ -481,7 +481,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** HTTPS, DFS | https://learn.microsoft.com/en-us/fabric/onelake/create-adls-shortcut
 
 ### Top explanations
 - **wellingtonluis** (43 upvotes [Highly Voted]): HTTPS, DFS
@@ -510,7 +510,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** IMHO, | | Req: user1 - spark -> **ReadAll**, user 2 - SQL endpoint -> **ReadData**. | | Roles: | ReadData permission on SQL endpoint to access data without SQL policy. | ReadAll permission on the lakehouse to access all data using Apache Spark. | from https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sharing#sharing-and-permissions
 
 ### Top explanations
 - **neoverma** (18 upvotes [Highly Voted]): Correct! ReadAll and readData
@@ -586,7 +586,7 @@ Which three actions should you perform in sequence? To answer, move the appropri
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is correct; ref: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table
 
 ### Top explanations
 - **554b579** (36 upvotes [Highly Voted]): Setting OLS to None:
@@ -677,7 +677,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Is the correct answer No, No, Yes
 
 ### Top explanations
 - **b01d700** (11 upvotes [Highly Voted]): Is the correct answer No, No, Yes
@@ -929,7 +929,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** I am thoroughly confused by this question. I had to use ChatGPT 4o. | It says : Yes, No, No. Here is the reasoning: | | 1. DF1 will be deployed to Workspace_TEST. | Reasoning: | Dataflows (including Gen1) are deployed to the next workspace during pipeline runs. | This includes DF1, but its refresh policy will not be automatically applied. | Answer: Yes. | 2. Data from Model1 will be deployed to Workspace_TEST. | Reasoning: | Deployment pipelines do not transfer the data associated with a mode...
 
 ### Top explanations
 - **testtaker45** (20 upvotes [Highly Voted]): I am thoroughly confused by this question. I had to use ChatGPT 4o. 
@@ -1207,7 +1207,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The right answer is Doamin \ OneLake Data Hub. | The key wording is the Research Group will use 'Lakehouse Explorer'. This tool will connect to the Onelake Data Hub. | From an admin perspective, you use the Fabric Admin portal to create the Domain Grouping. I think that is the confusion. Hope that helps someone.
 
 ### Top explanations
 - **Momoanwar** (63 upvotes [Highly Voted]): Domain\Fabric Admin Portal
@@ -1449,7 +1449,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Data analysts --> Build Reports on the default dataset | Data Scientist will access the data through a Notebook --> Read all Apache Spark | Data Engineers will read and write to the data store (lakehouse) --> Read all Apache Spark | SQL Analytics Endpoint is read-only mode. You can analyze Delta tables using T-SQL (instead of Spark SQL), save functions, or create views. However, you cannot write data to a Delta table.
 
 ### Top explanations
 - **Bharat** (91 upvotes [Highly Voted]): Here is my take on it:
@@ -1559,7 +1559,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** For the first part, "AVERAGE('Survey'[Response Value])" because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations). | For the second part, "Period": data is filtered to compute the average in the last 12 months (interval defined in the variable).
 
 ### Top explanations
 - **theseon** (105 upvotes [Highly Voted]): Iwould say:
@@ -1662,7 +1662,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** I took the test the last week. This question was included, with a important modification: | They changes the information,¡ of the first option for "WHEN": ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'. | | -View | -Case | -WHEN(ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'.
 
 ### Top explanations
 - **SamuComqi** (77 upvotes [Highly Voted]): * VIEW: from an existing table.
@@ -1942,7 +1942,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is RowNumber and X=1 -- No Brainer
 
 ### Top explanations
 - **R3D_ENGINEER** (39 upvotes [Highly Voted]): The correct query is:
@@ -2080,7 +2080,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Define, Evaluate and Summarize. Please, update the correct answer.
 
 ### Top explanations
 - **wojciech_wie** (74 upvotes [Highly Voted]): 1) DEFINE
@@ -2142,7 +2142,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** ALTER is DDL not DML so the right answer is EXECUTE SCHEMA.
 
 ### Top explanations
 - **estrelle2008** (32 upvotes [Highly Voted]): ALTER/SCHEMA 
@@ -2169,7 +2169,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** the question says : "You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer." | Therefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) ! | The answer is A and A
 
 ### Top explanations
 - **thuss** (38 upvotes [Highly Voted]): I think what they are trying to get at is that you denormalize the company information into both tables so that you do not need the CompanyID anymore, which would then make the relationship between OrderItem and Product only based on ProductID. Hence I think A and C.
@@ -2331,7 +2331,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is probably YNY | 1. Those are exactly the columns that are being read. So Yes | 2. Removing the PartitionBy line would not result in any performance changes. So NO | 3. Adding inferSchema as True WILL result in extra time in execution as it will make the engine go over the data twice (one to read data and the other time to read Schema). So YES.
 
 ### Top explanations
 - **metiii** (44 upvotes [Highly Voted]): 1. No, this is called filter pushdown / predicate pushdown / column pruning. This config is available when reading from a columnar type like parquet, I didn't find anything related to csv, I know that you can pushdown a predicate on csv to make it only read some rows in that case it works but it probably doesn't work for selecting columns so spark will read the entire file then filters the columns.
@@ -2382,7 +2382,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** IMHO, | Value -> NativeQuery -> EnableFolding is good :) | | Because of here: | Value.NativeQuery(Source, "SELECT DepartmentID, Name FROM HumanResources.Department WHERE GroupName = 'Research and Development' ", null, [EnableFolding = true]) | | Link: | https://learn.microsoft.com/en-us/power-query/native-query-folding#use-valuenativequery-function
 
 ### Top explanations
 - **SamuComqi** (29 upvotes [Highly Voted]): * Value
@@ -2419,7 +2419,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** VACUUM: to remove old files no longer referenced. | OPTIMIZE: to create fewer files with a larger size. | | Sources: | * https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql | * VACUUM: https://docs.delta.io/latest/delta-utility.html#-delta-vacuum | * OPTIMIZE: https://docs.delta.io/latest/optimizations-oss.html
 
 ### Top explanations
 - **SamuComqi** (24 upvotes [Highly Voted]): VACUUM: to remove old files no longer referenced.
@@ -2499,7 +2499,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The correct answers: | 1. withColumn | 2. cast('date') | 3. .filter('fareAmount.......
 
 ### Top explanations
 - **XiltroX** (45 upvotes [Highly Voted]): The correct answers:
@@ -3069,7 +3069,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Viewer and contributor | | Read using sql endpoint -> Min. Viewer | Read using lakehouse explorer -> Min. Contributor
 
 ### Top explanations
 - **dp600** (18 upvotes [Highly Voted]): correct, you can see in this link: https://learn.microsoft.com/en-us/fabric/get-started/roles-workspaces
@@ -3105,7 +3105,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them
 
 ### Top explanations
 - **c8f5bdf** (29 upvotes [Highly Voted]): Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them
@@ -3135,7 +3135,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** IMHO, withColumn -> col -> cast | is good!
 
 ### Top explanations
 - **neoverma** (14 upvotes [Highly Voted]): from pyspark.sql.types import IntegerType
@@ -3173,7 +3173,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** DELTA, Sales. This is the correct answer since the destination was to loaded Delta the comand SaveAsTable you only need the table name no path. https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-notebook-load-data
 
 ### Top explanations
 - **taphyoe** (46 upvotes [Highly Voted]): delta
@@ -3222,7 +3222,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1. Append | --> Because of "Keep all the existing rows" | | 2. mergeSchema, true | --> Because there will be 2 additional columns, so it's they are not deleted from the new version. If they would have been deleted from the new version, you would have to use "overwriteSchema, true". Since that option replaces the existing schema with the schema of the new dataframe. mergeSchema, on the contrary, allows the addition of new columns rather than overwriting the schema.
 
 ### Top explanations
 - **SJSull** (50 upvotes [Highly Voted]): append, ("mergeschema", "true") - schema evolution, same columns and 2 added new columns
@@ -3260,7 +3260,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** IMHO answer is correct: | https://learn.microsoft.com/de-de/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver16 | https://learn.microsoft.com/de-de/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16
 
 ### Top explanations
 - **Nefirs** (23 upvotes [Highly Voted]): IMHO answer is correct:
@@ -3318,7 +3318,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Customers -> Type 2 | Products -> Type 1
 
 ### Top explanations
 - **9878eb9** (47 upvotes [Highly Voted]): Correct. We need more questions like these. People are forgetting the importance of data modeling.
@@ -3412,7 +3412,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table#limitations | Table clones across warehouses in a workspace are not currently supported. | | ANSWER, AS SELECT
 
 ### Top explanations
 - **clux** (21 upvotes [Highly Voted]): Correct answer
@@ -3513,7 +3513,7 @@ Which five actions should you perform in sequence? To answer, move the appropria
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** I took the test today, and this question was included. The options 'Sort the Duration (ms) column in descending order' was not there. Hence the answer: | -From Performance analyzer, capture a recording. | -Sort the Duration (ms) column in descending order by DAX query time. | -Copy the first query to Dax Studio. | -Enable Query Timings and Server Timings. Run the query. | -View the Server Timings tab.
 
 ### Top explanations
 - **554b579** (51 upvotes [Highly Voted]): Good Video: https://www.youtube.com/watch?v=C5HBhlLUFsE&t=176s
@@ -3624,7 +3624,7 @@ NOTE: Each correct answer is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Correct Answer | GREATEST, COALESCE
 
 ### Top explanations
 - **clux** (28 upvotes [Highly Voted]): GREATEST, COALESCE
@@ -3650,7 +3650,7 @@ NOTE: Each correct answer is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Just echecked it. Date trunc returns the first date of the month and datepart just the month number. So given answer is correct.
 
 ### Top explanations
 - **stilferx** (20 upvotes [Highly Voted]): IMHO, datetrunc & weekday
@@ -3711,7 +3711,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value). | The correct answers are then: CALCULATE, {_LYSales}
 
 ### Top explanations
 - **MM_GG** (58 upvotes [Highly Voted]): Should be CALCULATE, not SUMMARIZE
@@ -4061,7 +4061,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** No, No, Yes | The spark reads all columns first before selection , so spark.read , read all columns
 
 ### Top explanations
 - **mghf61** (41 upvotes [Highly Voted]): No, No, Yes
@@ -4169,7 +4169,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Correct answer is no-no-yes. You couldn't select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.
 
 ### Top explanations
 - **Martin_Nbg** (22 upvotes [Highly Voted]): Correct answer is no-no-yes. You couldn't select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.
@@ -4276,7 +4276,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is Dim Dim Dim | CustomerCode: This uniquely identifies a customer and is used to join with the Customer dimension table. It’s a stable business key. | CustomerName: This is an attribute of the Customer dimension and can change over time, making it suitable for Type 2 SCD tracking. | SaleDate: Dates are typically modeled as a Date dimension to support time-based analysis (e.g., trends, seasonality).
 
 ### Top explanations
 - **abhijitger12** (20 upvotes [Highly Voted]): Fact tables record the "events" or "transactions" that you want to analyze. SaleDate represents the date of a sales transaction, which is a key aspect of the event itself.
@@ -4323,7 +4323,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Agree. Correct answer should be | yes | no | no
 
 ### Top explanations
 - **mghf61** (24 upvotes [Highly Voted]): it should be Yes.No.No
@@ -4536,7 +4536,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Users must be explicitly assigned roles within a specific workspace. Being in the same domain does not grant automatic access. | | Answer: N, N, N
 
 ### Top explanations
 - **testtaker45** (6 upvotes [Highly Voted]): No, Yes, No
@@ -4633,7 +4633,7 @@ Which four actions should you perform in sequence in Power Query Editor? To answ
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1. Group by CustID, use All Rows, and calc max version date per cust id | Note that if you Group By CustID and calc max date, you will lose the Customer Name column. | | 2. Expand All Rows detail column | Note that this will re-create the table as it was before, but with an additional column for max date. | | 3. Filter where version date eq max version date | This will effectively remove any duplicate CustID, keeping only the most recent. (If there were two at the same time, it will keep both...
 
 ### Top explanations
 - **b8ef1c5** (8 upvotes [Highly Voted]): 1. Group by CustID, use All Rows, and calc max version date per cust id 
@@ -4721,7 +4721,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** So what is the difference between the 2 and 3 choices of the first option. If the price does not change, what difference would it make?
 
 ### Top explanations
 - **testtaker45** (9 upvotes [Highly Voted]): Sum(s.Quantity * s.UnitPrice), Inner
@@ -4749,7 +4749,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Select d.IsHoliday, | (sum(t.tripDistance) / count(t.tripID)) as MilesPerTrip | from dbo.Trips t | inner join dbo.DimDate d on t.dateID = d.DateID | group by d.IsHoliday
 
 ### Top explanations
 - **aks2304** (5 upvotes [Highly Voted]): Select d.IsHoliday,  
@@ -4774,7 +4774,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** BEGIN | DISTINCT | | | 🎯 When to Use What? | Scenario Use | Standard stored procedure with single-database operations ✅ AS BEGIN | Multi-database transaction requiring rollback if one step fails ✅ AS BEGIN DISTRIBUTED TRANSACTION | Changing session settings before executing queries ✅ AS SET | | | DISTINCT because: | Given that you need to deduplicate the signindata table, here's the logic behind choosing DISTINCT or GROUP BY: | | If you want to deduplicate based on certain fields (like UserID...
 
 ### Top explanations
 - **tizian10** (6 upvotes [Highly Voted]): BEGIN
@@ -4839,7 +4839,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The 1st question is, will Region values still returned even though they have RefundStatus value of "Refunded". The answer is yes, Regions will still get returned.
 
 ### Top explanations
 - **nzin** (20 upvotes [Highly Voted]): i think No,Yes,No. Region column is not in the where clause
@@ -4870,7 +4870,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Inner Join and A.AddressId = CA.AddressId | "All foreign key values are non-null."
 
 ### Top explanations
 - **wgaignard2** (15 upvotes [Highly Voted]): Inner Join and  A.AddressId = CA.AddressId
@@ -4946,7 +4946,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** OneLake endpoint and Kql queryset
 
 ### Top explanations
 - **solorumore** (5 upvotes [Highly Voted]): OneLake endpoint and Kql queryset
@@ -4975,7 +4975,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** It should be contributor ,Member,Member ...because it clearly says to adhere to "the principle of least privilege"...Group 2 members should confirgure and maintain workspace setting no where its mentioned about deleting so it should be Memebr and same question asked in power BI certification and answer is member !!
 
 ### Top explanations
 - **5099e2d** (9 upvotes [Highly Voted]): To meet the requirements while adhering to the principle of least privilege, here are the appropriate workspace roles for each group:
@@ -5026,7 +5026,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???
 
 ### Top explanations
 - **b8ef1c5** (15 upvotes [Highly Voted]): TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???
@@ -5186,7 +5186,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** A pipeline with a copy activity | An eventstream
 
 ### Top explanations
 - **maquint** (9 upvotes [Highly Voted]): A pipeline with a copy activity
@@ -5219,7 +5219,7 @@ Which four KQL statements should you use in sequence? To answer, move the approp
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Weatherdata | Sort rows by Datetime so that prev() works correctly: | | sort by Datetime asc | Use prev() to calculate difference from previous row: | | extend Delta_temperature = Temperature - prev(Temperature) | | project Datetime, Lat, Long, Temperature, Delta_temperature
 
 ### Top explanations
 - **Aiden90** (7 upvotes [Highly Voted]): Weatherdata
@@ -5429,7 +5429,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Two places to fill: | | 1. Function for first row in a window | | Options: | | row_cumsum → cumulative sum, not relevant. | | row_rank_dense → dense ranking, but doesn’t directly give first row. | | row_rank_min → gives the first/minimum row within the window ✅ (correct). | | row_window_session → sessionization, not relevant. | | So answer = row_rank_min. | | 2. Condition operator before prev(payment_type) | | The operator defines when a new partition starts. | | == prev(payment_type) → same...
 
 ### Top explanations
 - **Aiden90** (6 upvotes [Highly Voted]): Two places to fill:
@@ -5480,7 +5480,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is No, Yes, Yes | | The code is displaying a summary of the data frame using the visualizations. Point 3 is a technicality and I think to some extent depends on your interpretation of the question. I am going with Yes.
 
 ### Top explanations
 - **Momoanwar** (49 upvotes [Highly Voted]): I think : No yes no
@@ -5803,7 +5803,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is Automatic and Direct Lake, actually the picture comes from | https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-analyze-qp | In this article you can see there are table1 and view1, performance analyser shows: | • First card is linked to Table1 so direct lake is used | • Second card is linked to View1 so it does direct query | As the model can use direct lake and direct query you can conclude that the fallback behavior is automatic. | For direct lake behavior you ca...
 
 ### Top explanations
 - **lordcarlosv** (35 upvotes [Highly Voted]): The answer is Automatic and Direct Lake, actually the picture comes from
@@ -5924,7 +5924,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Where does it say the the Customer Survey Report needs RLS or am I missing something? I see that the report needs Table-level security which is in DirectQuery mode. | IMHO, Service Principle and DirectQuery are the correct answers.
 
 ### Top explanations
 - **dp600** (15 upvotes [Highly Voted]): Direct Lake also supports row-level security and object-level security so that users only see the data they have permission to see.
@@ -6075,7 +6075,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Correct. | - "delta" | - "Tables/productline1" | | Requirements: Use managed tables. | | If you use saveAsTable() you don't need to specify the path "Table/" | If you you save() you specify the full path | | Ignore my previous comment!
 
 ### Top explanations
 - **9878eb9** (33 upvotes [Highly Voted]): Correct.
@@ -6293,7 +6293,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Don't confuse people, the answer is correct. Calculate + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.
 
 ### Top explanations
 - **4371883** (21 upvotes [Highly Voted]): CALCULATE
@@ -6470,7 +6470,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Correct. Delta & Tables/ProductLine2.
 
 ### Top explanations
 - **Jowalkr** (14 upvotes [Highly Voted]): Correct. Delta & Tables/ProductLine2.
@@ -6495,7 +6495,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** TransactionKey --> Remove the column. | There is no need to keep 160 GB for a surrogate key, it can be removed and SaleDateTime can be moved into the SalesTransaction table that will for sure "Increase refresh performance when using Import mode." and "Reduce the model size." since there is no need for an heavy join like this one. | | SaleDateTime --> Split the column. | Splitting the column would lead for sure to "Ensure that the datetime value for each sales transaction is available in the m...
 
 ### Top explanations
 - **Martin_Nbg** (13 upvotes [Highly Voted]): Correct: Remove + Split
@@ -6661,7 +6661,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-manage#set-the-direct-lake-behavior-property | "DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned." | | Answer is Direct Lake
 
 ### Top explanations
 - **jackjack1** (12 upvotes [Highly Voted]): DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned.
@@ -6709,7 +6709,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1. "definition.pbir is in the PBIR-Legacy format." | The file uses the .pbir extension, which is associated with Power BI Report files. The JSON structure shows "version": "1.0", which is consistent with the newer format (not legacy). The legacy format typically uses .pbix or .rdl files. | Answer: No. | "The semantic model referenced by definition.pbir is located in the Power BI service." | The JSON references the semantic model using "byPath" with a local path "../Sales.Dataset". This indica...
 
 ### Top explanations
 - **testtaker45** (10 upvotes [Highly Voted]): No, No, Yes
@@ -6817,7 +6817,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer: | A: Import | | https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview#comparison-to-other-storage-modes | "Capability Direct Lake Import DirectQuery | Calculated tables No Yes No " | | Direct Lake has an exception: "except calculation groups, what-if parameters, and field parameters, which implicitly create calculated tables" | | B: On | | https://learn.microsoft.com/en-us/power-bi/connect-data/power-bi-query-caching | | "Organizations with Power BI Premium or Pow...
 
 ### Top explanations
 - **50cd6b8** (5 upvotes [Highly Voted]): correct : 
@@ -7098,7 +7098,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** answer is correct. the code shows on screen should be dynamic format string. And it should show percentage and whole number. "# of Customers" will show whole number without thousand split(#), and others will show whole number with thousand split(#,###), "Gross Margin %" will show percentage.
 
 ### Top explanations
 - **Rataxe** (5 upvotes [Highly Voted]): Calculation group: This is the correct choice. The measure is part of a calculation group that dynamically changes its output based on the context provided by the Metric column.
@@ -7127,7 +7127,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** it is correct-ish; I would rather say DirectLake mode in the first option
 
 ### Top explanations
 - **Sowwy1** (1 upvotes): I think it s correct AA

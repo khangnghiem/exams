@@ -354,7 +354,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** ROLLUP will add one extra Total row that is not requested in the question, so the only correct answer is grouping sets here.
 
 ### Top explanations
 - **robertlavigne** (43 upvotes [Highly Voted]): SELECT YEAR
@@ -530,7 +530,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1 -> NO, only metadata are deployed | 2 -> NO, dataflow GEN1 are not supported by deployment pipelines | 3 -> NO, Refresh schedules are semantic model object attributes that are not deployed by deployment pipelines
 
 ### Top explanations
 - **SamuComqi** (50 upvotes [Highly Voted]): NO: only metadata will be deployed to the target starge (https://learn.microsoft.com/en-us/fabric/cicd/deployment-pipelines/understand-the-deployment-process?tabs=new#item-properties-copied-during-deployment)
@@ -753,7 +753,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Notebook 1 runs at 8AM, this can be scheduled via Pipeline (Pipeline1), so the configuration of scheduling is in Pipeline 1. Because Model1 refreshes on completion of Notebook1, it should be added to Pipeline 1 after Notebook 1. Notebook 2 is separate to the Pipeline 1 sequence, it requires a trigger (file saved in Blob) from real-time hub.
 
 ### Top explanations
 - **GHill1982** (20 upvotes [Highly Voted]): All four answers are correct.
@@ -876,7 +876,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Entity1: core organization entity --> Master Data | Entity2: meets organizational standards --> Certified | Entity3: ready for sharing and reuse --> Promoted | Entity4: Power BI dashboard, executive-level decision making --> Cannot be endorsed, The reason is Types of items that can be endorsed | All Fabric items and Power BI items except Power BI dashboards can be promoted or certified.
 
 ### Top explanations
 - **fassil** (55 upvotes [Highly Voted]): Entity1: core organization entity --> Master Data
@@ -909,7 +909,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Domain permissions = metadata + catalog governance | Workspace permissions = item-level access | These are completely separate. | answer is NO / YES / NO
 
 ### Top explanations
 - **giraf** (41 upvotes [Highly Voted]): NYN
@@ -990,7 +990,7 @@ Which three actions should you perform in sequence? To answer, move the appropri
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** I tried this in the Fabric. | First you should toggle ON "Set the default environment". | Then you can create a new environment and set it as default. | And only after that you can install additional libraries (if needed). | So, the answer is correct.
 
 ### Top explanations
 - **Tuki93** (13 upvotes [Highly Voted]): Seems correct.
@@ -1096,7 +1096,7 @@ Which three code segments should you run in sequence? To answer, move the approp
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Provided answer is WRONG. | https://learn.microsoft.com/en-us/fabric/data-warehouse/table-constraints | SQL analytics endpoint and Warehouse in Microsoft Fabric support these table constraints: | | PRIMARY KEY is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | FOREIGN KEY is only supported when NOT ENFORCED is used. | | UNIQUE constraint is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | SQL analytics endpoint and Warehouse don't support default const...
 
 ### Top explanations
 - **amli123** (84 upvotes [Highly Voted]): Alter table dbo.dimcustomer
@@ -1414,7 +1414,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is correct. | - USER_NAME is compared the value of a column to the user currently running the query. | If they match, the user can see the row; if not, they can’t. | - SCHEMABINDING - used in security policy function to prevent structural changes on the tables that are bound to the policy | - TableName on which the security policy function should be applied
 
 ### Top explanations
 - **5e89616** (13 upvotes [Highly Voted]): The answer is correct.
@@ -1543,7 +1543,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Correct answer should be: | | "notebooks" defines the list of notebook execution steps. | | "dependencies" specifies that Load_Orders depends on Load_Salesperson. | | mssparkutils.notebook.runMultiple() is the correct API call to execute a DAG of notebooks in Fabric. | | In Azure Data Factory and Synapse Pipelines, workflows use activities ...not in Fabric
 
 ### Top explanations
 - **5e89616** (17 upvotes [Highly Voted]): Correct
@@ -1572,7 +1572,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is correct: ALTER - ALTER - PARTIAL
 
 ### Top explanations
 - **5e89616** (21 upvotes [Highly Voted]): Correct
@@ -1600,7 +1600,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is correct: | Lookup Schema and Table | output.value
 
 ### Top explanations
 - **LasAnsias** (6 upvotes [Highly Voted]): i agree.
@@ -1633,7 +1633,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** first answer is default() for two reason: random is only for numbers and default for a date is 1900-01-01
 
 ### Top explanations
 - **Biju1** (25 upvotes [Highly Voted]): default()
@@ -1989,7 +1989,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** answer should be GRANT SELECT ON Customers(CustomerID, FirstName, LastName, Phone) TO [ | [email protected] | ] | | https://learn.microsoft.com/en-us/fabric/data-warehouse/column-level-security
 
 ### Top explanations
 - **12a2ecc** (48 upvotes [Highly Voted]): answer should be GRANT SELECT ON Customers(CustomerID, FirstName, LastName, Phone) TO [
@@ -2135,7 +2135,7 @@ Which four actions should you perform in sequence? To answer, move the appropria
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Select test stage | From deploy from select Development | Select pipeline1 | Deploy
 
 ### Top explanations
 - **EddEe** (18 upvotes [Highly Voted]): Select test stage
@@ -2182,7 +2182,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** To Group1: Assign the Admin role for Workspace1 | To Group2: Configure only item security for Workspace2 | To User1: Assign the Contributor role for Workspace2 and the Viewer role for Workspace4 | | In Microsoft Fabric, only the Admin (and Member) workspace role can manage workspace membership . Since Member is not an option and Contributor/Viewer cannot add users, Admin is required.
 
 ### Top explanations
 - **32950cb** (6 upvotes [Highly Voted]): To Group1: Assign the Admin role for Workspace1
@@ -2594,7 +2594,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Silver: extensive datacleansing is related to MAR1 data, for POS1 the transformations are much simpeler (filter products where IsActive=1 etc) -> Dataflow Gen2.
 
 ### Top explanations
 - **doctordodge** (27 upvotes [Highly Voted]): Bronze Layer: A pipeline copy activity
@@ -2767,7 +2767,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** "Some **product categories** and **subcategories** are NOT assigned to any product. They are NOT analytically relevant and must be omitted from the product dimension in the gold layer." ==> Only categories & subcategories that are not assigned to any products are irrelevant ==> there is no info to filter irrelevant products, so we should keep all products since they are all relevant ==> LEFT OUTER JOIN for the first join ==> second one is correct - INNER JOIN because we want to keep only cate...
 
 ### Top explanations
 - **MDWPartners** (28 upvotes [Highly Voted]): LEFT OUTER JOIN
@@ -2894,7 +2894,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is incorrect since the syntax for CAST is different, this is CONVERT syntax. So the correct answer is: CONVERT, LEFT OUTER JOIN, HAVING
 
 ### Top explanations
 - **werfragt** (59 upvotes [Highly Voted]): First part is CONVERT and not CAST
@@ -2917,7 +2917,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answer is correct. The question states that eventstream already exists and uses the lakehouse as destination. The question also states that the rows need to be batch ingested. Thus 1) Dataflow and 2) Filter activity are the best in this situation
 
 ### Top explanations
 - **4371883** (53 upvotes [Highly Voted]): 1. eventstream with an external data source
@@ -2991,7 +2991,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** No No Yes. | If anything goes wrong writing the existing table or when writing a new table (.targettable) the merge will not be executed.
 
 ### Top explanations
 - **8d6881f** (23 upvotes [Highly Voted]): No No Yes.
@@ -3017,7 +3017,9 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** First dropdown: o.OrderDate >= c.valid_from_datetime
+
+Second dropdown: o.OrderDate < c.valid_to_datetime
 
 ### Top explanations
 - **4371883** (23 upvotes [Highly Voted]): Agree with the answers
@@ -3131,7 +3133,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** First: try_cast(item_name as varchar(20)) | Second: convert(varchar, purchase_date, 7) | | Explanation: | I used pure SQL for testing, I assume it's very similar here, if not the same... | | When I execute the following commands on the SQL database, | SELECT CONVERT(VARCHAR, GETDATE(), 7) AS PurchaseDate | SELECT FORMAT(GETDATE(), 'MMM dd, yy') AS PurchaseDate | I get this - both of commands give the same result: | Oct 10, 25 | | The other two give the following result: | SELECT CONVERT(VARCH...
 
 ### Top explanations
 - **henryphchan** (24 upvotes [Highly Voted]): I'm curious how can people memorize the date format code for the exam lol.
@@ -3467,7 +3469,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The correct answers are: | Denormalized into a single product dimension table | The product name and the date | The second one is correct because when you join with the fact table, you generally use business keys to decouple from the surrogate key (SK). | The surrogate key is used in the semantic model to create relationships.
 
 ### Top explanations
 - **zxc01** (42 upvotes [Highly Voted]): second one should be "The unique system generated identifier"
@@ -3508,7 +3510,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** T1 -> Dataflow Gen2 dataflow; That's just normal low/no code configuration. So checks's out | T2 -> PySpark/Python: Notebooks | T3 -> Focus on moving data (Datapipeline)
 
 ### Top explanations
 - **AnetaK** (14 upvotes [Highly Voted]): Looks correct.
@@ -3536,7 +3538,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Dataset1: | Will be added to Fabric with a unique primary key (auto-incrementing). | Answer: Dataflow Gen2 dataflow | | Dataset2: | Contains semi-structured data, uses bulk data transfer, and requires custom visuals during transformation in development mode. | Answer: A notebook | | Dataset3: | Stored in a lakehouse, bulk loaded, and uses row-based windowing functions during transformation. | Answer: A T-SQL statement
 
 ### Top explanations
 - **PBridge** (30 upvotes [Highly Voted]): Dataset1:
@@ -3579,7 +3581,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** whenMatchedUpdate is used to update existing records — here, just LastModified. | | whenNotMatchedInsert handles inserting new records into the target from the source. | | whenNotMatchedBySourceUpdate is key for handling records that are no longer present in the source and meet a time-based condition (older than 7 days), marking them as "inactive".
 
 ### Top explanations
 - **13d2a97** (23 upvotes [Highly Voted]): whenMatchedUpdate is used to update existing records — here, just LastModified.
@@ -3701,7 +3703,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Yes, No, No are the correct answers.
 
 ### Top explanations
 - **13d2a97** (35 upvotes [Highly Voted]): Yes No No
@@ -4005,7 +4007,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer is correct. | Will note that both Project and Extend can be used to rename columns. But Project will drop any unspecified columns. | Thus why extend needs to be used.
 
 ### Top explanations
 - **13d2a97** (13 upvotes [Highly Voted]): Correct - Sort / Extend / Project
@@ -4056,7 +4058,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** This is such a tricky question. Usually, data from streaming source is not so big. If data size is smaller than 1MB => event stream however data size > 1 MB => Apache Spark structured streaming. Data pipeline doesn't support streaming.
 
 ### Top explanations
 - **contactodonuno** (9 upvotes [Highly Voted]): | Source      | Data Type                  | Message Size | Recommended Option                      | Justification                                                                |
@@ -4088,7 +4090,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** So... it's very simple: | | "The target table will always be overwritten." | -> No. Because it will only overwrite everything/create the table when it doesn't already exist. So it will TRY to get the delta table, and if it doesn't, then it will create the table. | | 2. The merge operation will always run. | -> No, this is basic python. "In your code, any raised exceptions trigger the associated except clause. Note that where you have multiple except clauses, your program will run only the fir...
 
 ### Top explanations
 - **vernillen** (24 upvotes [Highly Voted]): So... it's very simple:
@@ -4276,7 +4278,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** should be yes no yes. getitem(1) returns the second value, not the first
 
 ### Top explanations
 - **Rjb_073086** (5 upvotes [Highly Voted]): should be yes no yes. getitem(1) returns the second value, not the first
@@ -4427,7 +4429,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Create new records → Incremental | The data file contains only changes since the last file (i.e. it's already a delta/incremental feed). For inserting new records, an incremental load simply appends the new rows from each file into Table1 — efficient and appropriate for a 2-billion-row table where you don't want to reload everything every 30 minutes. | Delete existing records → Snapshot | Deletions are the tricky part. With an incremental pattern, you only see what arrived — you can't easily...
 
 ### Top explanations
 - **Matej21** (5 upvotes [Highly Voted]): Create new records → Incremental
@@ -4520,7 +4522,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** I'm sorry, the provided answer is wrong. It should be queryinsights.frequently_run_queries as explained above.
 
 ### Top explanations
 - **MDWPartners** (41 upvotes [Highly Voted]): queryinsights.frequently_run_queries
@@ -4649,7 +4651,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The answers are correct! | row_cumsum | row_window_session
 
 ### Top explanations
 - **2e6975f** (18 upvotes [Highly Voted]): The answers are correct!
@@ -4677,7 +4679,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** All the answers are wrong. The correct answers are no, yes, yes: | | datatable(Location:string, Company:string, UnitsSold:long) | [ | "New York", "Contoso", 300, | "New York", "Litware", 1000, | "New York", "Relecloud", 300, | "New York", "Fabrikam", 200, | "Seattle", "Contoso", 300, | "Seattle", "Litware", 100, | "Seattle", "Fabrikam", 100, | "San Francisco", "Relecloud", 500, | "San Francisco", "Litware", 500, | "Washington DC", "Litware", 300, | "Washington DC", "Contoso", 400 | ] | | sort...
 
 ### Top explanations
 - **MDWPartners** (55 upvotes [Highly Voted]): NO, YES, YES
@@ -4850,7 +4852,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Runtime logs to find error details. | Data insights to get the total number of errors: | https://learn.microsoft.com/en-us/fabric/data-engineering/apache-spark-monitor-run-series
 
 ### Top explanations
 - **Kiket2ride** (30 upvotes [Highly Voted]): Runtime logs to find error details. 
@@ -5111,7 +5113,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** In case you're doubting between Teams or Outlook, in the technical requirements is something like: "If any step in populating the lakehouses fails, an email must be sent to the data engineers.". | | On Fail is good. Just makes the most sense
 
 ### Top explanations
 - **DarioReymago** (7 upvotes [Highly Voted]): correct
