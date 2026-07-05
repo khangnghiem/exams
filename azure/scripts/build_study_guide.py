@@ -1373,6 +1373,58 @@ def clean_html(text: str) -> str:
     return text
 
 
+def render_choice_content(choice: dict[str, Any]) -> str:
+    """Return sanitized HTML for a single choice's body.
+
+    The crawler stores ``text`` (plain text) and ``text_html`` (raw HTML inside
+    the ``<li>`` with the letter chip removed). For image- and code-based
+    choices the plain ``text`` is empty but ``text_html`` carries the visual
+    content, so we prefer ``text_html`` whenever it's non-empty. Image
+    ``src`` attributes are rewritten so they resolve from ``guides/``.
+    """
+    text_html = (choice.get("text_html") or "").strip()
+    plain_text = (choice.get("text") or "").strip()
+
+    if text_html:
+        if SANITIZER_AVAILABLE and sanitize_exhibit_html is not None:
+            cleaned = sanitize_exhibit_html(text_html)
+        else:
+            cleaned = clean_html(text_html)
+
+        # Rewrite any local ``assets/...`` image src to a guides/ relative path.
+        def _rewrite_img_src(match: re.Match[str]) -> str:
+            prefix, src, suffix = match.group(1), match.group(2), match.group(3)
+            if not src:
+                return match.group(0)
+            if src.startswith(("http://", "https://", "//", "data:")):
+                return match.group(0)
+            # The exhibit backfill stores paths like
+            # ``assets/exhibits/dp-600/936848_A.png`` (relative to repo root).
+            # The HTML file lives in ``guides/`` so we add ``../``.
+            stripped = src.lstrip("/")
+            if stripped.startswith("assets/"):
+                return f'{prefix}../{stripped}{suffix}'
+            return f'{prefix}../{stripped}{suffix}'
+
+        cleaned = re.sub(
+            r'(<img[^>]*\ssrc=")([^"]+)(")',
+            _rewrite_img_src,
+            cleaned,
+            flags=re.IGNORECASE,
+        )
+
+        if not plain_text:
+            return cleaned
+        # Both plain text and HTML present: render plain text on top of HTML
+        # so screen-readers and copy/paste still get something useful.
+        return f"{html.escape(plain_text)}<br>{cleaned}"
+
+    if plain_text:
+        return clean_html(plain_text).replace("\n", "<br>")
+
+    return '<span class="choice-blank">_(image choice)_</span>'
+
+
 def exhibit_rel_path(local_path: str) -> str:
     """Convert an exhibit path (relative or absolute) into the path used in
     HTML files, which live in ``guides/``.
@@ -1699,12 +1751,12 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
         parts.append(f'<ol class="choices" type="A" data-multiple="{str(is_multiple).lower()}">')
         for ch in choices:
             letter = html.escape(ch.get("letter", ""))
-            txt = clean_html(ch.get("text", ""))
+            body = render_choice_content(ch)
             cls = "correct" if letter in correct else ""
             input_id = f"{input_name}-{letter}"
             parts.append(f'<li class="{cls}" data-letter="{letter}">')
             parts.append(f'<input type="{input_type}" name="{input_name}" value="{letter}" id="{input_id}">')
-            parts.append(f'<label for="{input_id}"><span class="letter">{letter}</span><span>{txt}</span></label>')
+            parts.append(f'<label for="{input_id}"><span class="letter">{letter}</span><span>{body}</span></label>')
             parts.append('</li>')
         parts.append('</ol>')
         parts.append('<div class="answer-status" aria-live="polite"></div>')
@@ -1855,8 +1907,37 @@ def html_to_md(text: str) -> str:
     text = re.sub(r"<em>(.*?)</em>", r"*\1*", text, flags=re.IGNORECASE | re.DOTALL)
     text = re.sub(r"<i>(.*?)</i>", r"*\1*", text, flags=re.IGNORECASE | re.DOTALL)
     text = re.sub(r"<a[^>]+href=\"([^\"]+)\"[^>]*>(.*?)</a>", r"[\2](\1)", text, flags=re.IGNORECASE | re.DOTALL)
+    text = re.sub(r"<code[^>]*>(.*?)</code>", r"`\1`", text, flags=re.IGNORECASE | re.DOTALL)
     text = re.sub(r"<[^>]+>", "", text)
     return html.unescape(text)
+
+
+def _choice_to_md(choice: dict[str, Any]) -> str:
+    """Render a single choice for the markdown guide.
+
+    Falls back to ``choice.text_html`` when ``choice.text`` is empty so image-
+    and code-based choices aren't rendered as blank ``A. `` / ``B. `` entries.
+    """
+    text = (choice.get("text") or "").strip()
+    text_html = (choice.get("text_html") or "").strip()
+    if text:
+        return html_to_md(text)
+    if not text_html:
+        return ""
+    # Quick heuristics: image choices emit a markdown image link; everything
+    # else falls through to a placeholder so the row still appears.
+    img_match = re.search(r"<img\b[^>]*\ssrc=\"([^\"]+)\"", text_html, flags=re.IGNORECASE)
+    if img_match:
+        rel_src = img_match.group(1)
+        if rel_src and not rel_src.startswith(("http://", "https://", "//")):
+            stripped = rel_src.lstrip("/")
+            if not stripped.startswith("../") and not stripped.startswith("./"):
+                stripped = f"../{stripped}"
+            return f"![image choice]({stripped})"
+        return f"![image choice]({rel_src})"
+    if "<pre" in text_html.lower() or "<code" in text_html.lower():
+        return "_(code choice)_"
+    return "_(image choice)_"
 
 
 def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
@@ -1928,7 +2009,7 @@ def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
             lines.append("")
         for ch in q.get("choices", []):
             marker = "✅" if ch.get("correct") else "⭕"
-            lines.append(f"{marker} **{ch.get('letter', '')}.** {html_to_md(ch.get('text', ''))}")
+            lines.append(f"{marker} **{ch.get('letter', '')}.** {_choice_to_md(ch)}")
         if not q.get("choices"):
             if q_type == "hotspot":
                 lines.append("_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._")

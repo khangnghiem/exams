@@ -79,6 +79,10 @@ class Choice:
     letter: str
     text: str
     correct: bool = False
+    # Raw HTML inside the ``<li>`` with the letter chip removed. Used to
+    # preserve image- and code-based choices where ``get_text(strip=True)``
+    # would have produced an empty string.
+    text_html: str = ""
 
 
 @dataclass
@@ -480,8 +484,23 @@ class Crawler:
                 text = li.get_text(strip=True)
                 # Remove leading letter prefix like "A." from text
                 text = re.sub(r"^[A-Z]\.\s*", "", text).strip()
+
+                # Capture the inner HTML with the letter chip removed so
+                # image- and code-based choices (which strip to empty
+                # ``text``) still render. We work on a *copy* so we don't
+                # mutate the parsed soup used by exhibit extraction.
+                text_html = ""
+                li_copy = BeautifulSoup(str(li), "html.parser").find("li")
+                if li_copy is not None:
+                    chip = li_copy.find("span", class_="multi-choice-letter")
+                    if chip:
+                        chip.decompose()
+                    text_html = li_copy.decode_contents().strip()
+
                 correct = "correct-hidden" in (li.get("class") or [])
-                choices.append(Choice(letter=letter, text=text, correct=correct))
+                choices.append(
+                    Choice(letter=letter, text=text, correct=correct, text_html=text_html)
+                )
                 if correct:
                     correct_answers.append(letter)
 
