@@ -344,14 +344,10 @@ You are building a dataflow that will combine data from the lakehouses. The appl
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911324_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911324_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** 1: Some.blue icone fold and red dont fold | 2 : on power query. all process after the step that dont fold are on power query
+**Most voted:** Not provided
 
 ### Top explanations
 - **Momoanwar** (28 upvotes [Highly Voted]): 1: Some.blue icone fold and red dont fold
@@ -422,13 +418,10 @@ You are using a Fabric notebook to save a large DataFrame by using the following
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911331_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** IMHO, fully agree with colleagues below - Y -> Y -> Y
+**Most voted:** Not provided
 
 ### Top explanations
 - **Momoanwar** (39 upvotes [Highly Voted]): I think yes yes yes. 
@@ -443,9 +436,6 @@ You have a Fabric workspace named Workspace1 that contains a data flow named Dat
 You need to transform the data columns into attribute-value pairs, where columns become rows.
 You select the VendorID column.
 Which transformation should you select from the context menu of the VendorID column?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911332_0.png)
 
 ⭕ **A.** Group by
 ⭕ **B.** Unpivot columns
@@ -475,13 +465,10 @@ You need to create a shortcut to storage1 in Lakehouse1.
 Which connection and endpoint should you specify? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911340_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** HTTPS, DFS | https://learn.microsoft.com/en-us/fabric/onelake/create-adls-shortcut
+**Most voted:** Not provided
 
 ### Top explanations
 - **wellingtonluis** (43 upvotes [Highly Voted]): HTTPS, DFS
@@ -503,14 +490,10 @@ The solution must follow the principle of least privilege.
 Which permission should you assign to each user? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916070_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916070_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** IMHO, | | Req: user1 - spark -> **ReadAll**, user 2 - SQL endpoint -> **ReadData**. | | Roles: | ReadData permission on SQL endpoint to access data without SQL policy. | ReadAll permission on the lakehouse to access all data using Apache Spark. | from https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sharing#sharing-and-permissions
+**Most voted:** Not provided
 
 ### Top explanations
 - **neoverma** (18 upvotes [Highly Voted]): Correct! ReadAll and readData
@@ -580,13 +563,10 @@ You create a semantic model by using Microsoft Power BI Desktop. The model conta
 You need to modify the model to ensure that users assigned the SalesRegionManager role cannot see a column named Address in SalesAddress.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916095_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer is correct; ref: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table
+**Most voted:** Not provided
 
 ### Top explanations
 - **554b579** (36 upvotes [Highly Voted]): Setting OLS to None:
@@ -613,9 +593,6 @@ https://www.insightsarena.com/post/mastering-object-level-security-in-power-bi-f
 
 You have a Fabric notebook that has the Python code and output shown in the following exhibit.
 Which type of analytics are you performing?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916100_0.png)
 
 ✅ **A.** descriptive
 ⭕ **B.** diagnostic
@@ -670,14 +647,10 @@ In the second cell, you run the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936832_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936832_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Is the correct answer No, No, Yes
+**Most voted:** Not provided
 
 ### Top explanations
 - **b01d700** (11 upvotes [Highly Voted]): Is the correct answer No, No, Yes
@@ -764,10 +737,7 @@ You need to implement access controls to meet the following requirements:
 What should you use for each table? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939100_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -921,15 +891,10 @@ You run Pipeline1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939107_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939107_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/939107_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** I am thoroughly confused by this question. I had to use ChatGPT 4o. | It says : Yes, No, No. Here is the reasoning: | | 1. DF1 will be deployed to Workspace_TEST. | Reasoning: | Dataflows (including Gen1) are deployed to the next workspace during pipeline runs. | This includes DF1, but its refresh policy will not be automatically applied. | Answer: Yes. | 2. Data from Model1 will be deployed to Workspace_TEST. | Reasoning: | Deployment pipelines do not transfer the data associated with a mode...
+**Most voted:** Not provided
 
 ### Top explanations
 - **testtaker45** (20 upvotes [Highly Voted]): I am thoroughly confused by this question. I had to use ChatGPT 4o. 
@@ -964,10 +929,7 @@ You have an Azure DevOps organization.
 You need to enable version control for Workspace1. The solution must ensure that Model1 is added to the repository.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939117_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1004,10 +966,7 @@ You need to perform the following actions:
 Which two settings should you use? To answer, select the appropriate settings in the answer area.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939118_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1108,9 +1067,6 @@ You have a deployment pipeline named Pipeline1 that deploys items from Workspace
 You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.
 What will the contents of Workspace_TEST be once the deployment is complete?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955739_0.png)
-
 ⭕ **A.** Lakehouse2 -Notebook2 -SemanticModel1 -
 ⭕ **B.** Lakehouse1 -Notebook1 -Pipeline1 -SemanticModel1 -
 ✅ **C.** Lakehouse1 -Lakehouse2 -Notebook1 -Notebook2 -Pipeline1 -SemanticModel1 -
@@ -1201,13 +1157,10 @@ You need to recommend a solution to group the Research division workspaces.
 What should you include in the recommendation? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911292_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** The right answer is Doamin \ OneLake Data Hub. | The key wording is the Research Group will use 'Lakehouse Explorer'. This tool will connect to the Onelake Data Hub. | From an admin perspective, you use the Fabric Admin portal to create the Domain Grouping. I think that is the confusion. Hope that helps someone.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Momoanwar** (63 upvotes [Highly Voted]): Domain\Fabric Admin Portal
@@ -1441,15 +1394,10 @@ You need to assign permissions for the data store in the AnalyticsPOC workspace.
 Which additional permissions should you assign when you share the data store? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911295_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911295_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911295_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Data analysts --> Build Reports on the default dataset | Data Scientist will access the data through a Notebook --> Read all Apache Spark | Data Engineers will read and write to the data store (lakehouse) --> Read all Apache Spark | SQL Analytics Endpoint is read-only mode. You can analyze Delta tables using T-SQL (instead of Spark SQL), save functions, or create views. However, you cannot write data to a Delta table.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Bharat** (91 upvotes [Highly Voted]): Here is my take on it:
@@ -1551,15 +1499,10 @@ You need to create a DAX measure to calculate the average overall satisfaction s
 How should you complete the DAX code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911296_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911296_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911296_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** For the first part, "AVERAGE('Survey'[Response Value])" because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations). | For the second part, "Period": data is filtered to compute the average in the last 12 months (interval defined in the variable).
+**Most voted:** Not provided
 
 ### Top explanations
 - **theseon** (105 upvotes [Highly Voted]): Iwould say:
@@ -1654,15 +1597,10 @@ You need to resolve the issue with the pricing group classification.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911297_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911297_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911297_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** I took the test the last week. This question was included, with a important modification: | They changes the information,¡ of the first option for "WHEN": ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'. | | -View | -Case | -WHEN(ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'.
+**Most voted:** Not provided
 
 ### Top explanations
 - **SamuComqi** (77 upvotes [Highly Voted]): * VIEW: from an existing table.
@@ -1754,10 +1692,6 @@ Ensures that the report and the semantic model only contain data from the curren
 Ensures that the report respects any table-level security specified in the source data store.
 Minimizes the execution time of report queries.
 What should you recommend using to ingest the customer data into the data store in the AnalyticsPOC workspace?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911298_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911298_1.png)
 
 ⭕ **A.** a stored procedure
 ⭕ **B.** a pipeline that contains a KQL activity
@@ -1868,10 +1802,6 @@ Ensures that the report respects any table-level security specified in the sourc
 Minimizes the execution time of report queries.
 Which type of data store should you recommend in the AnalyticsPOC workspace?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911299_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911299_1.png)
-
 ⭕ **A.** a data lake
 ⭕ **B.** a warehouse
 ✅ **C.** a lakehouse
@@ -1908,13 +1838,10 @@ You have a Fabric warehouse that contains a table named Staging.Sales. Staging.S
 You need to write a T-SQL query that will return data for the year 2023 that displays ProductID and ProductName and has a summarized Amount that is higher than 10,000.
 Which query should you use?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911300_0.png)
-
-✅ **A.** 
-⭕ **B.** 
-⭕ **C.** 
-⭕ **D.** 
+✅ **A.** ![image choice](../assets/exhibits/dp-600/911300_A_0.png)
+⭕ **B.** ![image choice](../assets/exhibits/dp-600/911300_B_0.png)
+⭕ **C.** ![image choice](../assets/exhibits/dp-600/911300_C_0.png)
+⭕ **D.** ![image choice](../assets/exhibits/dp-600/911300_D_0.png)
 
 **Correct answer:** A
 **Most voted:** A
@@ -1936,13 +1863,10 @@ You need to write a T-SQL query that will return the customer ID, name. postal c
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911301_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer is RowNumber and X=1 -- No Brainer
+**Most voted:** Not provided
 
 ### Top explanations
 - **R3D_ENGINEER** (39 upvotes [Highly Voted]): The correct query is:
@@ -2074,13 +1998,10 @@ You need to write a DAX query that will be executed by using the XMLA endpoint. 
 How should you complete the DAX expression? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911308_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Define, Evaluate and Summarize. Please, update the correct answer.
+**Most voted:** Not provided
 
 ### Top explanations
 - **wojciech_wie** (74 upvotes [Highly Voted]): 1) DEFINE
@@ -2105,9 +2026,6 @@ FILTER (
 You have a Fabric workspace named Workspace1 that contains a dataflow named Dataflow1. Dataflow1 has a query that returns 2,000 rows.
 You view the query in Power Query as shown in the following exhibit.
 What can you identify about the pickupLongitude column?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911309_0.png)
 
 ✅ **A.** The column has duplicate values.
 ⭕ **B.** All the table rows are profiled.
@@ -2136,13 +2054,10 @@ You need to ensure that a user named User1 can truncate tables in schemaA only.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911313_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** ALTER is DDL not DML so the right answer is EXECUTE SCHEMA.
+**Most voted:** Not provided
 
 ### Top explanations
 - **estrelle2008** (32 upvotes [Highly Voted]): ALTER/SCHEMA 
@@ -2162,14 +2077,10 @@ You need to create a dimensional data model that will enable the analysis of ord
 What should you include in the solution? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911321_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911321_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** the question says : "You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer." | Therefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) ! | The answer is A and A
+**Most voted:** Not provided
 
 ### Top explanations
 - **thuss** (38 upvotes [Highly Voted]): I think what they are trying to get at is that you denormalize the company information into both tables so that you do not need the CompanyID anymore, which would then make the relationship between OrderItem and Product only based on ProductID. Hence I think A and C.
@@ -2324,14 +2235,10 @@ You have the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911335_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911335_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** The answer is probably YNY | 1. Those are exactly the columns that are being read. So Yes | 2. Removing the PartitionBy line would not result in any performance changes. So NO | 3. Adding inferSchema as True WILL result in extra time in execution as it will make the engine go over the data twice (one to read data and the other time to read Schema). So YES.
+**Most voted:** Not provided
 
 ### Top explanations
 - **metiii** (44 upvotes [Highly Voted]): 1. No, this is called filter pushdown / predicate pushdown / column pruning. This config is available when reading from a columnar type like parquet, I didn't find anything related to csv, I know that you can pushdown a predicate on csv to make it only read some rows in that case it works but it probably doesn't work for selecting columns so spark will read the entire file then filters the columns.
@@ -2376,13 +2283,10 @@ You need to ensure that any foldable Power Query transformation steps are proces
 How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911337_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** IMHO, | Value -> NativeQuery -> EnableFolding is good :) | | Because of here: | Value.NativeQuery(Source, "SELECT DepartmentID, Name FROM HumanResources.Department WHERE GroupName = 'Research and Development' ", null, [EnableFolding = true]) | | Link: | https://learn.microsoft.com/en-us/power-query/native-query-folding#use-valuenativequery-function
+**Most voted:** Not provided
 
 ### Top explanations
 - **SamuComqi** (29 upvotes [Highly Voted]): * Value
@@ -2413,13 +2317,10 @@ You need to remove the files that are no longer used and combine small files int
 What should you do? To answer, drag the appropriate actions to the correct requirements. Each action may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911338_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** VACUUM: to remove old files no longer referenced. | OPTIMIZE: to create fewer files with a larger size. | | Sources: | * https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql | * VACUUM: https://docs.delta.io/latest/delta-utility.html#-delta-vacuum | * OPTIMIZE: https://docs.delta.io/latest/optimizations-oss.html
+**Most voted:** Not provided
 
 ### Top explanations
 - **SamuComqi** (24 upvotes [Highly Voted]): VACUUM: to remove old files no longer referenced.
@@ -2492,14 +2393,10 @@ Filter the DataFrame to include only rows where fareAmount is a positive number 
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911343_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911343_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** The correct answers: | 1. withColumn | 2. cast('date') | 3. .filter('fareAmount.......
+**Most voted:** Not provided
 
 ### Top explanations
 - **XiltroX** (45 upvotes [Highly Voted]): The correct answers:
@@ -2760,10 +2657,6 @@ You need to recommend a solution to prepare the tenant for the PoC.
 Which two actions should you recommend performing from the Fabric Admin portal? Each correct answer presents part of the solution.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916062_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916062_1.png)
-
 ⭕ **A.** Enable the Users can try Microsoft Fabric paid features option for the entire organization.
 ✅ **B.** Enable the Users can try Microsoft Fabric paid features option for specific security groups.
 ⭕ **C.** Enable the Allow Azure Active Directory guest users to access Microsoft Fabric option for specific security groups.
@@ -2864,10 +2757,6 @@ The data analysts must create a customer satisfaction report that meets the foll
 You need to implement the date dimension in the data store. The solution must meet the technical requirements.
 What are two ways to achieve the goal? Each correct answer presents a complete solution.
 NOTE: Each correct selection is worth one point.
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916064_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916064_1.png)
 
 ✅ **A.** Populate the date dimension table by using a dataflow.
 ⭕ **B.** Populate the date dimension table by using a Copy activity in a pipeline.
@@ -2977,10 +2866,6 @@ The data analysts must create a customer satisfaction report that meets the foll
 You need to ensure the data loading activities in the AnalyticsPOC workspace are executed in the appropriate sequence. The solution must meet the technical requirements.
 What should you do?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916065_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916065_1.png)
-
 ⭕ **A.** Create a dataflow that has multiple steps and schedule the dataflow.
 ⭕ **B.** Create and schedule a Spark notebook.
 ⭕ **C.** Create and schedule a Spark job definition.
@@ -3063,13 +2948,10 @@ Contoso identifies the following high-level requirements that must be considered
 Which workspace role assignments should you recommend for ResearchReviewersGroup1 and ResearchReviewersGroup2? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916069_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Viewer and contributor | | Read using sql endpoint -> Min. Viewer | Read using lakehouse explorer -> Min. Contributor
+**Most voted:** Not provided
 
 ### Top explanations
 - **dp600** (18 upvotes [Highly Voted]): correct, you can see in this link: https://learn.microsoft.com/en-us/fabric/get-started/roles-workspaces
@@ -3098,14 +2980,10 @@ You need to ensure that the layers are populated daily in sequential order such 
 What should you use to execute each set of items? To answer, drag the appropriate options to the correct items. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916072_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916072_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them
+**Most voted:** Not provided
 
 ### Top explanations
 - **c8f5bdf** (29 upvotes [Highly Voted]): Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them
@@ -3129,13 +3007,10 @@ You need to change the data type of a string column named Age to integer. The so
 How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916073_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** IMHO, withColumn -> col -> cast | is good!
+**Most voted:** Not provided
 
 ### Top explanations
 - **neoverma** (14 upvotes [Highly Voted]): from pyspark.sql.types import IntegerType
@@ -3167,13 +3042,10 @@ Using a notebook in Workspace1, you need to load the content of the file to the 
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916074_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** DELTA, Sales. This is the correct answer since the destination was to loaded Delta the comand SaveAsTable you only need the table name no path. https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-notebook-load-data
+**Most voted:** Not provided
 
 ### Top explanations
 - **taphyoe** (46 upvotes [Highly Voted]): delta
@@ -3216,13 +3088,10 @@ You need to add the new data to the Delta table to meet the following requiremen
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916076_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Append | --> Because of "Keep all the existing rows" | | 2. mergeSchema, true | --> Because there will be 2 additional columns, so it's they are not deleted from the new version. If they would have been deleted from the new version, you would have to use "overwriteSchema, true". Since that option replaces the existing schema with the schema of the new dataframe. mergeSchema, on the contrary, allows the addition of new columns rather than overwriting the schema.
+**Most voted:** Not provided
 
 ### Top explanations
 - **SJSull** (50 upvotes [Highly Voted]): append, ("mergeschema", "true") - schema evolution, same columns and 2 added new columns
@@ -3252,15 +3121,10 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916077_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916077_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916077_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** IMHO answer is correct: | https://learn.microsoft.com/de-de/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver16 | https://learn.microsoft.com/de-de/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16
+**Most voted:** Not provided
 
 ### Top explanations
 - **Nefirs** (23 upvotes [Highly Voted]): IMHO answer is correct:
@@ -3311,14 +3175,10 @@ You need to use slowly changing dimension (SCD) to manage the versioning of data
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916080_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916080_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Customers -> Type 2 | Products -> Type 1
+**Most voted:** Not provided
 
 ### Top explanations
 - **9878eb9** (47 upvotes [Highly Voted]): Correct. We need more questions like these. People are forgetting the importance of data modeling.
@@ -3406,13 +3266,10 @@ You need to create a new table in Warehouse1 named POSCustomers by querying the 
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916084_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table#limitations | Table clones across warehouses in a workspace are not currently supported. | | ANSWER, AS SELECT
+**Most voted:** Not provided
 
 ### Top explanations
 - **clux** (21 upvotes [Highly Voted]): Correct answer
@@ -3507,13 +3364,10 @@ Report1 is slow to render. You suspect that an inefficient DAX query is being ex
 You need to identify the slowest DAX query, and then review how long the query spends in the formula engine as compared to the storage engine.
 Which five actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916090_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** I took the test today, and this question was included. The options 'Sort the Duration (ms) column in descending order' was not there. Hence the answer: | -From Performance analyzer, capture a recording. | -Sort the Duration (ms) column in descending order by DAX query time. | -Copy the first query to Dax Studio. | -Enable Query Timings and Server Timings. Run the query. | -View the Server Timings tab.
+**Most voted:** Not provided
 
 ### Top explanations
 - **554b579** (51 upvotes [Highly Voted]): Good Video: https://www.youtube.com/watch?v=C5HBhlLUFsE&t=176s
@@ -3586,9 +3440,6 @@ You are exploring a new semantic model.
 From Power Query, you need to view column information as shown in the following exhibit.
 Which three Data view options should you select? Each correct answer presents part of the solution.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916098_0.png)
-
 ✅ **A.** Show column value distribution
 ⭕ **B.** Enable details pane
 ✅ **C.** Enable column profile
@@ -3616,15 +3467,10 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916099_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916099_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916099_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct Answer | GREATEST, COALESCE
+**Most voted:** Not provided
 
 ### Top explanations
 - **clux** (28 upvotes [Highly Voted]): GREATEST, COALESCE
@@ -3642,15 +3488,10 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916101_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916101_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916101_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Just echecked it. Date trunc returns the first date of the month and datepart just the month number. So given answer is correct.
+**Most voted:** Not provided
 
 ### Top explanations
 - **stilferx** (20 upvotes [Highly Voted]): IMHO, datetrunc & weekday
@@ -3705,13 +3546,10 @@ You need to write a DAX query that will be executed by using the XMLA endpoint. 
 How should you complete the DAX expression? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916104_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value). | The correct answers are then: CALCULATE, {_LYSales}
+**Most voted:** Not provided
 
 ### Top explanations
 - **MM_GG** (58 upvotes [Highly Voted]): Should be CALCULATE, not SUMMARIZE
@@ -3871,9 +3709,6 @@ Solution: You replace line 4 by using the following code:
 ISEMPTY ( RELATEDTABLE ( 'Order Item' ) )
 Does this meet the goal?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916109_0.png)
-
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -3899,9 +3734,6 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 NOT ISEMPTY ( CALCULATETABLE ( 'Order Item ' ) )
 Does this meet the goal?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916110_0.png)
 
 ✅ **A.** Yes
 ⭕ **B.** No
@@ -3950,9 +3782,6 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 CALCULATE ( COUNTROWS ( 'Order Item' ) ) >= 0
 Does this meet the goal?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916111_0.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -4054,14 +3883,10 @@ You have the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931008_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931008_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** No, No, Yes | The spark reads all columns first before selection , so spark.read , read all columns
+**Most voted:** Not provided
 
 ### Top explanations
 - **mghf61** (41 upvotes [Highly Voted]): No, No, Yes
@@ -4139,11 +3964,7 @@ You have a Fabric tenant that contains a data warehouse named DW1. DW1 contains 
 You need to identify duplicate email addresses in DimCustomer. The solution must return a maximum of 1,000 records.
 Which four T-SQL statements should you run in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931012_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931012_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4162,14 +3983,10 @@ You run the following T-SQL query against WH1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931013_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931013_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct answer is no-no-yes. You couldn't select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Martin_Nbg** (22 upvotes [Highly Voted]): Correct answer is no-no-yes. You couldn't select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.
@@ -4270,13 +4087,10 @@ You need to design the tables that will be used for sales transaction analysis a
 Which type of target table should you specify for the CustomerName, CustomerCode, and SaleDate fields? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/934199_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer is Dim Dim Dim | CustomerCode: This uniquely identifies a customer and is used to join with the Customer dimension table. It’s a stable business key. | CustomerName: This is an attribute of the Customer dimension and can change over time, making it suitable for Type 2 SCD tracking. | SaleDate: Dates are typically modeled as a Date dimension to support time-based analysis (e.g., trends, seasonality).
+**Most voted:** Not provided
 
 ### Top explanations
 - **abhijitger12** (20 upvotes [Highly Voted]): Fact tables record the "events" or "transactions" that you want to analyze. SaleDate represents the date of a sales transaction, which is a key aspect of the event itself.
@@ -4317,13 +4131,10 @@ CREATE TABLE test.FactSales AS CLONE OF dbo.FactSales;
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/934201_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Agree. Correct answer should be | yes | no | no
+**Most voted:** Not provided
 
 ### Top explanations
 - **mghf61** (24 upvotes [Highly Voted]): it should be Yes.No.No
@@ -4528,15 +4339,10 @@ You assign Domain1 as the default domain of Group1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936837_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936837_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/936837_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Users must be explicitly assigned roles within a specific workspace. Being in the same domain does not grant automatic access. | | Answer: N, N, N
+**Most voted:** Not provided
 
 ### Top explanations
 - **testtaker45** (6 upvotes [Highly Voted]): No, Yes, No
@@ -4601,9 +4407,6 @@ You need to perform the following actions:
 •	Create a product dimension table named DimProduct and a fact table named FactSales.
 Which three columns should you include in DimProduct?
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936839_0.png)
-
 ✅ **A.** ProductColor, ProductID, and ProductName.
 ⭕ **B.** ProductName, SalesAmount, and TransactionlD.
 ⭕ **C.** Date, ProductID, and TransactionlD.
@@ -4626,14 +4429,10 @@ You have a Fabric workspace that contains a Dataflow Gen2 query. The query retur
 You need to filter the results to ensure that only the latest version of each customer’s record is retained. The solution must ensure that no new columns are loaded to the semantic model.
 Which four actions should you perform in sequence in Power Query Editor? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936840_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936840_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Group by CustID, use All Rows, and calc max version date per cust id | Note that if you Group By CustID and calc max date, you will lose the Customer Name column. | | 2. Expand All Rows detail column | Note that this will re-create the table as it was before, but with an additional column for max date. | | 3. Filter where version date eq max version date | This will effectively remove any duplicate CustID, keeping only the most recent. (If there were two at the same time, it will keep both...
+**Most voted:** Not provided
 
 ### Top explanations
 - **b8ef1c5** (8 upvotes [Highly Voted]): 1. Group by CustID, use All Rows, and calc max version date per cust id 
@@ -4670,11 +4469,7 @@ You have the following KQL query.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936847_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936847_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4691,10 +4486,10 @@ You have a Fabric warehouse that contains a table named SalesOrderDetail, SalesO
 You need to calculate the proportion of the total quantity of each sales order represented by each product within the sales order.
 Which T-SQL statement should you run?
 
-⭕ **A.** 
-⭕ **B.** 
-⭕ **C.** 
-✅ **D.** 
+⭕ **A.** ![image choice](../assets/exhibits/dp-600/936848_A_0.png)
+⭕ **B.** ![image choice](../assets/exhibits/dp-600/936848_B_0.png)
+⭕ **C.** ![image choice](../assets/exhibits/dp-600/936848_C_0.png)
+✅ **D.** ![image choice](../assets/exhibits/dp-600/936848_D_0.png)
 
 **Correct answer:** D
 **Most voted:** D
@@ -4714,14 +4509,10 @@ You need build a T-SQL statement that will return the total sales amount by Orde
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939099_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939099_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** So what is the difference between the 2 and 3 choices of the first option. If the price does not change, what difference would it make?
+**Most voted:** Not provided
 
 ### Top explanations
 - **testtaker45** (9 upvotes [Highly Voted]): Sum(s.Quantity * s.UnitPrice), Inner
@@ -4741,15 +4532,10 @@ You need to compare the average miles per trip for statutory holidays versus non
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939108_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939108_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/939108_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Select d.IsHoliday, | (sum(t.tripDistance) / count(t.tripID)) as MilesPerTrip | from dbo.Trips t | inner join dbo.DimDate d on t.dateID = d.DateID | group by d.IsHoliday
+**Most voted:** Not provided
 
 ### Top explanations
 - **aks2304** (5 upvotes [Highly Voted]): Select d.IsHoliday,  
@@ -4768,13 +4554,10 @@ You need to create a stored procedure in DW1 that deduplicates the data in the s
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939109_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** BEGIN | DISTINCT | | | 🎯 When to Use What? | Scenario Use | Standard stored procedure with single-database operations ✅ AS BEGIN | Multi-database transaction requiring rollback if one step fails ✅ AS BEGIN DISTRIBUTED TRANSACTION | Changing session settings before executing queries ✅ AS SET | | | DISTINCT because: | Given that you need to deduplicate the signindata table, here's the logic behind choosing DISTINCT or GROUP BY: | | If you want to deduplicate based on certain fields (like UserID...
+**Most voted:** Not provided
 
 ### Top explanations
 - **tizian10** (6 upvotes [Highly Voted]): BEGIN
@@ -4832,14 +4615,10 @@ You have the following T-SQL statement.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939111_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939111_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** The 1st question is, will Region values still returned even though they have RefundStatus value of "Refunded". The answer is yes, Regions will still get returned.
+**Most voted:** Not provided
 
 ### Top explanations
 - **nzin** (20 upvotes [Highly Voted]): i think No,Yes,No. Region column is not in the where clause
@@ -4863,14 +4642,10 @@ You need to create a view to denormalize the data into a customer dimension that
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939112_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939112_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Inner Join and A.AddressId = CA.AddressId | "All foreign key values are non-null."
+**Most voted:** Not provided
 
 ### Top explanations
 - **wgaignard2** (15 upvotes [Highly Voted]): Inner Join and  A.AddressId = CA.AddressId
@@ -4915,10 +4690,7 @@ You need to merge the Employee query with the Retired Roles query. The solution 
 Which column and Join Kind should you use in Power Query Editor? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939119_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4939,14 +4711,10 @@ You grant DBUser access to Lakehouse1 as shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942882_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942882_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** OneLake endpoint and Kql queryset
+**Most voted:** Not provided
 
 ### Top explanations
 - **solorumore** (5 upvotes [Highly Voted]): OneLake endpoint and Kql queryset
@@ -4969,13 +4737,10 @@ You need to assign a workspace role to each group. The solution must follow the 
 Which workspace role should you assign to each group? To answer, drag the appropriate roles to the correct groups. Each role may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942883_0.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** It should be contributor ,Member,Member ...because it clearly says to adhere to "the principle of least privilege"...Group 2 members should confirgure and maintain workspace setting no where its mentioned about deleting so it should be Memebr and same question asked in power BI certification and answer is member !!
+**Most voted:** Not provided
 
 ### Top explanations
 - **5099e2d** (9 upvotes [Highly Voted]): To meet the requirements while adhering to the principle of least privilege, here are the appropriate workspace roles for each group:
@@ -5019,14 +4784,10 @@ You need to create a T-SQL statement that meets the following requirements:
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942885_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942885_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???
+**Most voted:** Not provided
 
 ### Top explanations
 - **b8ef1c5** (15 upvotes [Highly Voted]): TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???
@@ -5049,11 +4810,7 @@ You need to use a T-SQL query to add a column named PriceRange to dbo.Product. T
 How should you complete the query? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942886_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942886_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5099,11 +4856,7 @@ You need to create a T-SQL statement that will denormalize the tables and includ
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942888_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942888_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5122,11 +4875,7 @@ You need to query Readings and return the results shown in the following table.
 How should you complete the query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942889_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942889_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5154,11 +4903,7 @@ You need to summarize order quantities by year and product. The solution must in
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942890_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942890_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5179,14 +4924,10 @@ You need to ingest data from both data sources into Lakehouse1. The solution mus
 What should you use to ingest the data into each data source? To answer, drag the appropriate options to the correct data sources. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955731_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955731_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** A pipeline with a copy activity | An eventstream
+**Most voted:** Not provided
 
 ### Top explanations
 - **maquint** (9 upvotes [Highly Voted]): A pipeline with a copy activity
@@ -5211,15 +4952,10 @@ You plan to use a KQL queryset to manipulate the data in Eventhouse1. The result
 You need to build the query.
 Which four KQL statements should you use in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955733_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955733_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/955733_2.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Weatherdata | Sort rows by Datetime so that prev() works correctly: | | sort by Datetime asc | Use prev() to calculate difference from previous row: | | extend Delta_temperature = Temperature - prev(Temperature) | | project Datetime, Lat, Long, Temperature, Delta_temperature
+**Most voted:** Not provided
 
 ### Top explanations
 - **Aiden90** (7 upvotes [Highly Voted]): Weatherdata
@@ -5244,9 +4980,6 @@ Eventstream1 reads data from an Azure event hub named Eventhub1.
 Eventhub1 contains the following columns.
 You need to add a continuous percentile calculation to the Payload column. The solution must minimize development effort.
 What should you do?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955734_0.png)
 
 ⭕ **A.** Add a KQL queryset to Workspace1.
 ⭕ **B.** Add a Group by transformation to Eventstream1.
@@ -5352,11 +5085,7 @@ You need to create a query that shows the top three taxi companies based on the 
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955738_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955738_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5399,11 +5128,7 @@ You need to create two slowly changing dimensions that meet the requirements sho
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955744_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955744_1.png)
-
-_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5422,14 +5147,10 @@ You need to create a column named FirstPickupDateTime that will contain the firs
 How should you complete the query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955745_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955745_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Two places to fill: | | 1. Function for first row in a window | | Options: | | row_cumsum → cumulative sum, not relevant. | | row_rank_dense → dense ranking, but doesn’t directly give first row. | | row_rank_min → gives the first/minimum row within the window ✅ (correct). | | row_window_session → sessionization, not relevant. | | So answer = row_rank_min. | | 2. Condition operator before prev(payment_type) | | The operator defines when a new partition starts. | | == prev(payment_type) → same...
+**Most voted:** Not provided
 
 ### Top explanations
 - **Aiden90** (6 upvotes [Highly Voted]): Two places to fill:
@@ -5473,14 +5194,10 @@ You run the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911302_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911302_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer is No, Yes, Yes | | The code is displaying a summary of the data frame using the visualizations. Point 3 is a technicality and I think to some extent depends on your interpretation of the question. I am going with Yes.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Momoanwar** (49 upvotes [Highly Voted]): I think : No yes no
@@ -5747,9 +5464,6 @@ You need to reduce the memory used by Model1 and the time it takes to refresh th
 Which two actions should you perform? Each correct answer presents part of the solution.
 NOTE: Each correct answer is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911322_0.png)
-
 ✅ **A.** Split OrderDateTime into separate date and time columns.
 ⭕ **B.** Replace TotalQuantity with a calculated column.
 ⭕ **C.** Convert Quantity into the Text data type.
@@ -5796,14 +5510,10 @@ From Power BI Desktop, you open Performance analyzer as shown in the following e
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911342_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911342_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** The answer is Automatic and Direct Lake, actually the picture comes from | https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-analyze-qp | In this article you can see there are table1 and view1, performance analyser shows: | • First card is linked to Table1 so direct lake is used | • Second card is linked to View1 so it does direct query | As the model can use direct lake and direct query you can conclude that the fallback behavior is automatic. | For direct lake behavior you ca...
+**Most voted:** Not provided
 
 ### Top explanations
 - **lordcarlosv** (35 upvotes [Highly Voted]): The answer is Automatic and Direct Lake, actually the picture comes from
@@ -5916,15 +5626,10 @@ You need to design a semantic model for the customer satisfaction report.
 Which data source authentication method and mode should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916063_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916063_1.png)
-- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916063_2.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Where does it say the the Customer Survey Report needs RLS or am I missing something? I see that the report needs Table-level security which is in DirectQuery mode. | IMHO, Service Principle and DirectQuery are the correct answers.
+**Most voted:** Not provided
 
 ### Top explanations
 - **dp600** (15 upvotes [Highly Voted]): Direct Lake also supports row-level security and object-level security so that users only see the data they have permission to see.
@@ -6069,13 +5774,10 @@ You need to migrate the Research division data for Productline1. The solution mu
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916067_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct. | - "delta" | - "Tables/productline1" | | Requirements: Use managed tables. | | If you use saveAsTable() you don't need to specify the path "Table/" | If you you save() you specify the full path | | Ignore my previous comment!
+**Most voted:** Not provided
 
 ### Top explanations
 - **9878eb9** (33 upvotes [Highly Voted]): Correct.
@@ -6287,13 +5989,10 @@ You need to create a calculation item that will change the context from the sele
 How should you complete the DAX expression? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916092_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Don't confuse people, the answer is correct. Calculate + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.
+**Most voted:** Not provided
 
 ### Top explanations
 - **4371883** (21 upvotes [Highly Voted]): CALCULATE
@@ -6313,9 +6012,6 @@ You have a Microsoft Power BI report named Report1 that uses a Fabric semantic m
 Users discover that Report1 renders slowly.
 You open Performance analyzer and identify that a visual named Orders By Date is the slowest to render. The duration breakdown for Orders By Date is shown in the following table.
 What will provide the greatest reduction in the rendering duration of Report1?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916093_0.png)
 
 ⭕ **A.** Enable automatic page refresh.
 ⭕ **B.** Optimize the DAX query of Orders By Date by using DAX Studio.
@@ -6464,13 +6160,10 @@ You need to migrate the Research division data for Productline2. The solution mu
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931006_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct. Delta & Tables/ProductLine2.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Jowalkr** (14 upvotes [Highly Voted]): Correct. Delta & Tables/ProductLine2.
@@ -6488,14 +6181,10 @@ You need to optimize model1. The solution must meet the following requirements:
 What should you do on each column? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931011_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931011_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** TransactionKey --> Remove the column. | There is no need to keep 160 GB for a surrogate key, it can be removed and SaleDateTime can be moved into the SalesTransaction table that will for sure "Increase refresh performance when using Import mode." and "Reduce the model size." since there is no need for an heavy join like this one. | | SaleDateTime --> Split the column. | Splitting the column would lead for sure to "Ensure that the datetime value for each sales transaction is available in the m...
+**Most voted:** Not provided
 
 ### Top explanations
 - **Martin_Nbg** (13 upvotes [Highly Voted]): Correct: Remove + Split
@@ -6524,9 +6213,6 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 NOT ( CALCULATE ( COUNTROWS ( 'Order Item' ) ) < 0)
 Does this meet the goal?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931014_0.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -6654,14 +6340,10 @@ You have a Fabric tenant that contains the semantic model shown in the following
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936834_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936834_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-manage#set-the-direct-lake-behavior-property | "DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned." | | Answer is Direct Lake
+**Most voted:** Not provided
 
 ### Top explanations
 - **jackjack1** (12 upvotes [Highly Voted]): DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned.
@@ -6702,14 +6384,10 @@ You have a Microsoft Power Bl project that contains a file named definition.pbir
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936841_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936841_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. "definition.pbir is in the PBIR-Legacy format." | The file uses the .pbir extension, which is associated with Power BI Report files. The JSON structure shows "version": "1.0", which is consistent with the newer format (not legacy). The legacy format typically uses .pbix or .rdl files. | Answer: No. | "The semantic model referenced by definition.pbir is located in the Power BI service." | The JSON references the semantic model using "byPath" with a local path "../Sales.Dataset". This indica...
+**Most voted:** Not provided
 
 ### Top explanations
 - **testtaker45** (10 upvotes [Highly Voted]): No, No, Yes
@@ -6811,13 +6489,10 @@ You need to deploy a new semantic model. The solution must meet the following re
 How should you configure the model? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936846_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer: | A: Import | | https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview#comparison-to-other-storage-modes | "Capability Direct Lake Import DirectQuery | Calculated tables No Yes No " | | Direct Lake has an exception: "except calculation groups, what-if parameters, and field parameters, which implicitly create calculated tables" | | B: On | | https://learn.microsoft.com/en-us/power-bi/connect-data/power-bi-query-caching | | "Organizations with Power BI Premium or Pow...
+**Most voted:** Not provided
 
 ### Top explanations
 - **50cd6b8** (5 upvotes [Highly Voted]): correct : 
@@ -6947,9 +6622,6 @@ You have a Fabric tenant that contains the workspaces shown in the following tab
 You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.
 You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.
 What will the contents of Workspace_TEST be once the deployment is complete?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939106_0.png)
 
 ✅ **A.** Lakehouse1 -Lakehouse2 -Notebook1 -Notebook2 -Pipeline1 -SemanticModel1
 ⭕ **B.** Lakehouse1 -Notebook1 -Pipeline1 -SemanticModel1
@@ -7091,14 +6763,10 @@ The Value measure has the expression shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942894_0.png)
-- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942894_1.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** answer is correct. the code shows on screen should be dynamic format string. And it should show percentage and whole number. "# of Customers" will show whole number without thousand split(#), and others will show whole number with thousand split(#,###), "Gross Margin %" will show percentage.
+**Most voted:** Not provided
 
 ### Top explanations
 - **Rataxe** (5 upvotes [Highly Voted]): Calculation group: This is the correct choice. The measure is part of a calculation group that dynamically changes its output based on the context provided by the Metric column.
@@ -7121,13 +6789,10 @@ You need to ensure that tables imported into Model1 are written automatically to
 What should you do for Model1 and Workspace1? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955732_0.png)
-
-_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
+_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** it is correct-ish; I would rather say DirectLake mode in the first option
+**Most voted:** Not provided
 
 ### Top explanations
 - **Sowwy1** (1 upvotes): I think it s correct AA
@@ -7162,9 +6827,6 @@ Model1 has the following tables and columns.
 A customer can have one or more accounts. Each account can be associated to multiple customers.
 You need to ensure that users can query Model1 to identify the total transaction amounts by customer.
 What should you add to Model1?
-
-**Exhibits**
-- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955742_0.png)
 
 ⭕ **A.** a many-to-many relationship between FactTransaction and Dim Customer
 ✅ **B.** a bridge table with relationships to DimCustomer and DimAccount
