@@ -3017,7 +3017,9 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Of course that's not going to happen. Each order is linked to a customer (o.CustomerId = c.CustomerId). And new customer and old customer has different CustomerId value. | The answer is: >= and <=
+**Most voted:** First dropdown: o.OrderDate >= c.valid_from_datetime
+
+Second dropdown: o.OrderDate < c.valid_to_datetime
 
 ### Top explanations
 - **4371883** (23 upvotes [Highly Voted]): Agree with the answers
