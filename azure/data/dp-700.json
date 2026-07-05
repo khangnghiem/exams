@@ -18052,7 +18052,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Of course that's not going to happen. Each order is linked to a customer (o.CustomerId = c.CustomerId). And new customer and old customer has different CustomerId value. | The answer is: >= and <=",
+    "most_voted_answer": "First dropdown: o.OrderDate >= c.valid_from_datetime\n\nSecond dropdown: o.OrderDate < c.valid_to_datetime",
     "comments": [
       {
         "comment_id": "1346383",
