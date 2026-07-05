@@ -102,6 +102,12 @@ class Question:
     question_type: str = "unknown"
     raw_html: str = ""
     exhibits: list[dict[str, Any]] = field(default_factory=list)
+    # Drag-drop specific: source items and target slots extracted from the
+    # discussion page. ``drag_drop_error`` records a short human-readable
+    # reason when extraction failed (e.g. markup wasn't parseable).
+    drag_drop_items: list[Any] = field(default_factory=list)
+    drag_drop_targets: list[Any] = field(default_factory=list)
+    drag_drop_error: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -120,6 +126,9 @@ class Question:
             "question_type": self.question_type,
             "raw_html": self.raw_html,
             "exhibits": list(self.exhibits),
+            "drag_drop_items": list(self.drag_drop_items),
+            "drag_drop_targets": list(self.drag_drop_targets),
+            "drag_drop_error": self.drag_drop_error,
         }
 
 
@@ -228,6 +237,68 @@ async def _download_one_image(
             continue
         await asyncio.sleep(random.uniform(delay_low, delay_high))
     return False
+
+
+def _extract_drag_drop(html: str, url: str) -> tuple[list[Any], list[Any], str | None]:
+    """Best-effort extractor for drag-drop source items and target slots.
+
+    On the current ExamTopics markup the actual draggable items and drop
+    zones live inside a single exhibit image, so ``drag_drop_items`` and
+    ``drag_drop_targets`` are normally empty and ``drag_drop_error`` carries
+    a short reason (e.g. ``"items live in exhibit image"``). This function
+    still walks the HTML looking for explicit ``.drag-source`` /
+    ``.drag-target`` / ``[data-drag-item]`` / ``[data-drop-target]``
+    containers so a future markup change is picked up automatically.
+    """
+    soup = BeautifulSoup(html or "", "html.parser")
+
+    def _label(el: Any) -> str:
+        if el is None:
+            return ""
+        text = el.get_text(" ", strip=True)
+        return text.strip()
+
+    items: list[dict[str, str]] = []
+    targets: list[dict[str, str]] = []
+
+    # Modern markup (hypothetical): containers tagged with drag-drop classes.
+    for el in soup.select(".drag-source [data-drag-item], .drag-source li, .drag-source .drag-item"):
+        label = _label(el)
+        if label:
+            items.append({"label": label})
+
+    for el in soup.select(
+        ".drag-target [data-drop-target], .drag-target .target-slot, "
+        ".drag-target .drop-zone, .drag-target li"
+    ):
+        label = _label(el)
+        # Drop-target slots often contain placeholder text like "Drop here".
+        placeholder = label or "Drop here"
+        targets.append({"placeholder": placeholder})
+
+    # Fall back: any element with data attributes signalling role.
+    if not items:
+        for el in soup.select("[data-drag-item]"):
+            label = _label(el)
+            items.append({"label": label or str(el.get("data-drag-item") or "")})
+    if not targets:
+        for el in soup.select("[data-drop-target]"):
+            label = _label(el)
+            targets.append({"placeholder": label or str(el.get("data-drop-target") or "Drop here")})
+
+    error: str | None = None
+    if items and targets:
+        error = None
+    else:
+        # The current ExamTopics page renders the entire drag-drop UI as a
+        # single <img>, so HTML-only extraction can't see items or targets.
+        has_image = bool(soup.select("p.card-text img"))
+        if has_image:
+            error = "drag-drop UI is rendered as a single image (see exhibit)"
+        elif not (items or targets):
+            error = "no drag-drop markup found in discussion HTML"
+
+    return items, targets, error
 
 
 async def _extract_exhibits(
@@ -525,6 +596,21 @@ class Crawler:
             correct_answers=correct_answers,
         )
 
+        # Drag-drop questions on ExamTopics don't expose the source/target
+        # markup as HTML — the draggable items and drop zones live inside a
+        # single exhibit image. We still attempt to extract any markup hints
+        # here so future markup changes surface immediately, but on the
+        # current site we expect empty lists + a populated ``drag_drop_error``.
+        drag_items: list[Any] = []
+        drag_targets: list[Any] = []
+        drag_error: str | None = None
+        if question_type == "drag_drop":
+            try:
+                drag_items, drag_targets, drag_error = _extract_drag_drop(html, url)
+            except Exception as e:  # pragma: no cover - defensive
+                logger.warning("Drag-drop parse failed for %s: %s", url, e)
+                drag_error = f"parse: {e}"
+
         question = Question(
             discussion_id=meta["id"],
             exam=meta["exam"],
@@ -540,6 +626,9 @@ class Crawler:
             question_type=question_type,
             raw_html=raw_html,
             exhibits=[],
+            drag_drop_items=drag_items,
+            drag_drop_targets=drag_targets,
+            drag_drop_error=drag_error,
         )
 
         question.comments = self._parse_comments(soup)
@@ -741,35 +830,113 @@ class Crawler:
                     continue
                 results[exam].append(q.to_dict())
                 self.state["urls_processed"].add(meta["path"])
-                # Append to JSONL immediately
-                jsonl_path = self.output_dir / f"{exam}.jsonl"
-                with jsonl_path.open("a", encoding="utf-8") as f:
-                    f.write(json.dumps(q.to_dict(), ensure_ascii=False) + "\n")
 
             self._save_state()
             logger.info("Completed batch %d/%d (%d discussions)", i // batch_size + 1, (len(tasks) + batch_size - 1) // batch_size, len(batch))
 
         return results
 
-    def consolidate_json(self) -> None:
-        for exam in TARGET_EXAMS:
-            jsonl_path = self.output_dir / f"{exam}.jsonl"
-            json_path = self.output_dir / f"{exam}.json"
-            if not jsonl_path.exists():
-                continue
-            records = []
+    def _load_existing_records(self, exam: str) -> list[dict[str, Any]]:
+        """Read any pre-existing ``.json`` records so resume runs merge with
+        previously-crawled questions instead of overwriting them. When neither
+        ``.json`` nor ``.jsonl`` exists this returns an empty list."""
+        json_path = self.output_dir / f"{exam}.json"
+        if json_path.exists():
+            try:
+                return json.loads(json_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                logger.warning("Could not parse existing %s; ignoring", json_path)
+        jsonl_path = self.output_dir / f"{exam}.jsonl"
+        if jsonl_path.exists():
+            records: list[dict[str, Any]] = []
             with jsonl_path.open("r", encoding="utf-8") as f:
                 for line in f:
                     line = line.strip()
                     if line:
-                        records.append(json.loads(line))
-            # Sort by topic then question number for readability
+                        try:
+                            records.append(json.loads(line))
+                        except json.JSONDecodeError:
+                            continue
+            return records
+        return []
+
+    def consolidate_json(
+        self,
+        results: dict[str, list[dict[str, Any]]] | None = None,
+    ) -> None:
+        """Write both ``.json`` and ``.jsonl`` from the same in-memory data.
+
+        When ``results`` is provided (the normal crawl path), newly-crawled
+        questions are merged with any pre-existing records so resume runs
+        don't drop previous output. When ``results`` is ``None``, we fall
+        back to reading the existing ``.json`` so manual re-runs still work.
+
+        Writing both formats from the same list guarantees they stay in sync
+        even when later backfills only updated ``.json``.
+        """
+        for exam in TARGET_EXAMS:
+            json_path = self.output_dir / f"{exam}.json"
+            jsonl_path = self.output_dir / f"{exam}.jsonl"
+
+            if results is not None and exam in results:
+                existing = self._load_existing_records(exam)
+                new_records = results[exam]
+                # Drop any pre-existing record with the same discussion_id so
+                # the freshly-crawled copy wins. Keep insertion order so the
+                # output is deterministic and matches a fresh crawl.
+                new_ids = {str(r.get("discussion_id")) for r in new_records if r.get("discussion_id")}
+                merged: list[dict[str, Any]] = []
+                seen: set[str] = set()
+                for rec in existing + new_records:
+                    rid_raw = rec.get("discussion_id")
+                    rid: str | None = str(rid_raw) if rid_raw else None
+                    if rid and rid in new_ids:
+                        if rid in seen:
+                            continue
+                        # Find the matching new record.
+                        for nrec in new_records:
+                            nrid_raw = nrec.get("discussion_id")
+                            if nrid_raw and str(nrid_raw) == rid:
+                                merged.append(nrec)
+                                seen.add(rid)
+                                break
+                    else:
+                        if rid and rid in seen:
+                            continue
+                        merged.append(rec)
+                        if rid:
+                            seen.add(rid)
+                # Append any new records that weren't in ``existing``.
+                for nrec in new_records:
+                    nrid_raw = nrec.get("discussion_id")
+                    nrid: str | None = str(nrid_raw) if nrid_raw else None
+                    if nrid and nrid not in seen:
+                        merged.append(nrec)
+                        if nrid:
+                            seen.add(nrid)
+                records = merged
+            else:
+                records = self._load_existing_records(exam)
+                if not records:
+                    continue
+
+            # Sort by topic then question number for readability.
             records.sort(key=lambda r: (r.get("topic", 0), r.get("question_number", 0)))
             json_path.write_text(
                 json.dumps(records, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
-            logger.info("Wrote %s with %d records", json_path.name, len(records))
+            # Rewrite the JSONL from the same in-memory list so the two formats
+            # never diverge.
+            with jsonl_path.open("w", encoding="utf-8") as f:
+                for rec in records:
+                    f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            logger.info(
+                "Wrote %s and %s with %d records",
+                json_path.name,
+                jsonl_path.name,
+                len(records),
+            )
 
     async def run(self, max_list_pages: int | None = None) -> None:
         limits = httpx.Limits(max_keepalive_connections=10, max_connections=20)
@@ -777,8 +944,11 @@ class Crawler:
         async with httpx.AsyncClient(limits=limits, timeout=timeout) as client:
             self.client = client
             await self.discover_urls(max_pages=max_list_pages)
-            await self.crawl_discussions()
-            self.consolidate_json()
+            results = await self.crawl_discussions()
+            # Pass the freshly-crawled results so consolidate_json writes
+            # both .json and .jsonl from the same in-memory list and merges
+            # with any pre-existing records.
+            self.consolidate_json(results=results)
 
 
 def main() -> None:

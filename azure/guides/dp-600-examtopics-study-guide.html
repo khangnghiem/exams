@@ -798,7 +798,7 @@
     .exhibit-missing-title { font-weight: 800; margin-bottom: 0.35rem; }
     .exhibit-missing a { color: var(--accent-ink); text-decoration: underline; }
 
-    .hotspot-widget, .dragdrop-widget, .other-widget {
+    .dragdrop-widget, .other-widget {
       margin-top: 1rem;
       padding: 1rem;
       border: 1px dashed var(--border-strong);
@@ -806,7 +806,46 @@
       background: color-mix(in srgb, var(--surface-2) 60%, transparent);
     }
     .widget-note { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem; }
-    .dragdrop-chips { list-style: none; padding: 0; margin: 0 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .dragdrop-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 720px) {
+      .dragdrop-board { grid-template-columns: 1fr; }
+    }
+    .dragdrop-column {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem;
+      background: rgb(var(--surface-rgb) / 0.65);
+    }
+    .dragdrop-column-title {
+      margin: 0 0 0.6rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 800;
+    }
+    .dragdrop-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 3rem;
+    }
+    .dragdrop-targets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
     .dragdrop-chip {
       cursor: grab;
       user-select: none;
@@ -816,9 +855,66 @@
       border: 1px solid var(--border);
       font-weight: 700;
       font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
     }
     .dragdrop-chip:active { cursor: grabbing; }
-    .dragdrop-chip.selected { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+    .dragdrop-chip.selected {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+    .dragdrop-chip.placed {
+      opacity: 0.55;
+      cursor: default;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border-style: dashed;
+    }
+    .dragdrop-chip.dragging { opacity: 0.4; transform: scale(0.97); }
+
+    .dragdrop-target {
+      position: relative;
+      padding: 0.6rem 2.2rem 0.6rem 0.85rem;
+      border-radius: 12px;
+      border: 1px dashed var(--border-strong);
+      background: rgb(var(--surface-rgb) / 0.85);
+      color: var(--text-secondary);
+      min-height: 2.4rem;
+      font-size: 0.9rem;
+      transition: background-color 120ms ease, border-color 120ms ease;
+    }
+    .dragdrop-target.drop-hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .dragdrop-target.filled {
+      color: var(--text);
+      border-style: solid;
+      background: rgb(var(--surface-rgb));
+      font-weight: 700;
+    }
+    .dragdrop-target-label { display: inline-block; max-width: 100%; }
+    .dragdrop-target .dragdrop-clear {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      transform: translateY(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+    }
+    .dragdrop-target.filled .dragdrop-clear { display: inline-flex; align-items: center; justify-content: center; }
+    .dragdrop-target.filled .dragdrop-clear:hover { background: var(--danger-bg); color: var(--danger-ink); border-color: var(--danger); }
 
     .answer-card.answer-missing { background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
     .answer-card.answer-missing .label { color: var(--warning-ink); }
@@ -1118,7 +1214,7 @@
 </details>
 </nav>
 <div id="questions" class="question-stack">
-<article class="question active" id="q-dp-600-t1-n1-911291" data-topic="1" data-num="1" data-label="Q1.1" data-qtype="case_study">
+<article class="question active" id="q-dp-600-t1-n1-911291" data-topic="1" data-num="1" data-label="Q1.1" data-qtype="case_study" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.1</span>
@@ -1184,7 +1280,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n20-911310" data-topic="1" data-num="20" data-label="Q1.20" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n20-911310" data-topic="1" data-num="20" data-label="Q1.20" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.20</span>
@@ -1248,7 +1344,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n24-911314" data-topic="1" data-num="24" data-label="Q1.24" data-qtype="multiple">
+<article class="question" id="q-dp-600-t1-n24-911314" data-topic="1" data-num="24" data-label="Q1.24" data-qtype="multiple" data-most-voted="BDE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.24</span>
@@ -1320,7 +1416,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n34-911324" data-topic="1" data-num="34" data-label="Q1.34" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n34-911324" data-topic="1" data-num="34" data-label="Q1.34" data-qtype="hotspot" data-most-voted="1: Some.blue icone fold and red dont fold | 2 : on power query. all process after the step that dont fold are on power query">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.34</span>
@@ -1343,7 +1439,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911324_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911324_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1372,7 +1468,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n35-911325" data-topic="1" data-num="35" data-label="Q1.35" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n35-911325" data-topic="1" data-num="35" data-label="Q1.35" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.35</span>
@@ -1440,7 +1536,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n38-911328" data-topic="1" data-num="38" data-label="Q1.38" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n38-911328" data-topic="1" data-num="38" data-label="Q1.38" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.38</span>
@@ -1504,7 +1600,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n41-911331" data-topic="1" data-num="41" data-label="Q1.41" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n41-911331" data-topic="1" data-num="41" data-label="Q1.41" data-qtype="hotspot" data-most-voted="IMHO, fully agree with colleagues below - Y -&gt; Y -&gt; Y">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.41</span>
@@ -1526,7 +1622,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911331_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1555,7 +1651,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n42-911332" data-topic="1" data-num="42" data-label="Q1.42" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n42-911332" data-topic="1" data-num="42" data-label="Q1.42" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.42</span>
@@ -1626,7 +1722,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n50-911340" data-topic="1" data-num="50" data-label="Q1.50" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n50-911340" data-topic="1" data-num="50" data-label="Q1.50" data-qtype="hotspot" data-most-voted="HTTPS, DFS | https://learn.microsoft.com/en-us/fabric/onelake/create-adls-shortcut">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.50</span>
@@ -1648,7 +1744,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911340_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1677,7 +1773,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n68-916070" data-topic="1" data-num="68" data-label="Q1.68" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n68-916070" data-topic="1" data-num="68" data-label="Q1.68" data-qtype="hotspot" data-most-voted="IMHO, | | Req: user1 - spark -&gt; **ReadAll**, user 2 - SQL endpoint -&gt; **ReadData**. | | Roles: | ReadData permission on SQL endpoint to access data without SQL policy. | ReadAll permission on the lakehouse to access all data using Apache Spark. | from https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sharing#sharing-and-permissions">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.68</span>
@@ -1700,7 +1796,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916070_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916070_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1729,7 +1825,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n77-916079" data-topic="1" data-num="77" data-label="Q1.77" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n77-916079" data-topic="1" data-num="77" data-label="Q1.77" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.77</span>
@@ -1793,7 +1889,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n86-916088" data-topic="1" data-num="86" data-label="Q1.86" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n86-916088" data-topic="1" data-num="86" data-label="Q1.86" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.86</span>
@@ -1857,7 +1953,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n93-916095" data-topic="1" data-num="93" data-label="Q1.93" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t1-n93-916095" data-topic="1" data-num="93" data-label="Q1.93" data-qtype="drag_drop" data-most-voted="Answer is correct; ref: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.93</span>
@@ -1879,7 +1975,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916095_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -1908,7 +2004,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n98-916100" data-topic="1" data-num="98" data-label="Q1.98" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n98-916100" data-topic="1" data-num="98" data-label="Q1.98" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.98</span>
@@ -1975,7 +2071,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n124-934202" data-topic="1" data-num="124" data-label="Q1.124" data-qtype="multiple">
+<article class="question" id="q-dp-600-t1-n124-934202" data-topic="1" data-num="124" data-label="Q1.124" data-qtype="multiple" data-most-voted="BD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.124</span>
@@ -2043,7 +2139,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n131-936832" data-topic="1" data-num="131" data-label="Q1.131" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n131-936832" data-topic="1" data-num="131" data-label="Q1.131" data-qtype="hotspot" data-most-voted="Is the correct answer No, No, Yes">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.131</span>
@@ -2066,7 +2162,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936832_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936832_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2095,7 +2191,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n135-936836" data-topic="1" data-num="135" data-label="Q1.135" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n135-936836" data-topic="1" data-num="135" data-label="Q1.135" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.135</span>
@@ -2159,7 +2255,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n142-936843" data-topic="1" data-num="142" data-label="Q1.142" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n142-936843" data-topic="1" data-num="142" data-label="Q1.142" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.142</span>
@@ -2223,7 +2319,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n150-939100" data-topic="1" data-num="150" data-label="Q1.150" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n150-939100" data-topic="1" data-num="150" data-label="Q1.150" data-qtype="hotspot" data-most-voted="Employees: Column-level security: | Column-Level-Security (CLS): | https://learn.microsoft.com/en-us/fabric/data-warehouse/column-level-security | &quot;allowing you to restrict column access to protect sensitive data...&quot; | | Sales: Row-Level-Security (RLS): | https://learn.microsoft.com/en-us/fabric/data-warehouse/row-level-security | &quot;control access to rows in a database table. For example, you can ensure that workers access only those data rows that are pertinent to their department.&quot; (or Sales...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.150</span>
@@ -2245,7 +2341,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939100_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2270,7 +2366,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n151-939101" data-topic="1" data-num="151" data-label="Q1.151" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n151-939101" data-topic="1" data-num="151" data-label="Q1.151" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.151</span>
@@ -2330,7 +2426,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n153-939103" data-topic="1" data-num="153" data-label="Q1.153" data-qtype="multiple">
+<article class="question" id="q-dp-600-t1-n153-939103" data-topic="1" data-num="153" data-label="Q1.153" data-qtype="multiple" data-most-voted="CD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.153</span>
@@ -2394,7 +2490,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n154-939104" data-topic="1" data-num="154" data-label="Q1.154" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n154-939104" data-topic="1" data-num="154" data-label="Q1.154" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.154</span>
@@ -2458,7 +2554,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n155-939105" data-topic="1" data-num="155" data-label="Q1.155" data-qtype="multiple">
+<article class="question" id="q-dp-600-t1-n155-939105" data-topic="1" data-num="155" data-label="Q1.155" data-qtype="multiple" data-most-voted="AB">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.155</span>
@@ -2518,7 +2614,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n157-939107" data-topic="1" data-num="157" data-label="Q1.157" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n157-939107" data-topic="1" data-num="157" data-label="Q1.157" data-qtype="hotspot" data-most-voted="I am thoroughly confused by this question. I had to use ChatGPT 4o. | It says : Yes, No, No. Here is the reasoning: | | 1. DF1 will be deployed to Workspace_TEST. | Reasoning: | Dataflows (including Gen1) are deployed to the next workspace during pipeline runs. | This includes DF1, but its refresh policy will not be automatically applied. | Answer: Yes. | 2. Data from Model1 will be deployed to Workspace_TEST. | Reasoning: | Deployment pipelines do not transfer the data associated with a mode...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.157</span>
@@ -2542,7 +2638,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939107_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939107_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2571,7 +2667,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n167-939117" data-topic="1" data-num="167" data-label="Q1.167" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t1-n167-939117" data-topic="1" data-num="167" data-label="Q1.167" data-qtype="drag_drop" data-most-voted="1. Connect Wokspace1 to a Git provider | 2. Sync Workspace1 with the repository. | 3. Configure branch policies in Azure DevOps | | Create a deployment pipeline is for CI/CD automation bout not for versioning, Power BI Pro support Git integration so is not necessary a Fabric capacity.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.167</span>
@@ -2593,7 +2689,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939117_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2622,7 +2718,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n168-939118" data-topic="1" data-num="168" data-label="Q1.168" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t1-n168-939118" data-topic="1" data-num="168" data-label="Q1.168" data-qtype="hotspot" data-most-voted="i guess the question and answer options is incomplete , but refer to the below answer from gpt | | To achieve the required actions, you should use the following settings: | | Create a workspace named Enterprise [Test] and assign the workspace to the Test stage: | | Workspace: Enterprise [Test] | Stage: Test | Configure a rule that will modify the value of Date1 when changes are deployed to the Test stage: | | Parameter: Date1 | Value: Set the desired value for the Test stage (e.g., a specific...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.168</span>
@@ -2644,7 +2740,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939118_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -2669,7 +2765,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n170-942881" data-topic="1" data-num="170" data-label="Q1.170" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n170-942881" data-topic="1" data-num="170" data-label="Q1.170" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.170</span>
@@ -2733,7 +2829,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n181-942892" data-topic="1" data-num="181" data-label="Q1.181" data-qtype="multiple">
+<article class="question" id="q-dp-600-t1-n181-942892" data-topic="1" data-num="181" data-label="Q1.181" data-qtype="multiple" data-most-voted="AD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.181</span>
@@ -2797,7 +2893,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n182-942893" data-topic="1" data-num="182" data-label="Q1.182" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n182-942893" data-topic="1" data-num="182" data-label="Q1.182" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.182</span>
@@ -2861,7 +2957,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n192-955739" data-topic="1" data-num="192" data-label="Q1.192" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n192-955739" data-topic="1" data-num="192" data-label="Q1.192" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.192</span>
@@ -2924,7 +3020,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t1-n194-955741" data-topic="1" data-num="194" data-label="Q1.194" data-qtype="single">
+<article class="question" id="q-dp-600-t1-n194-955741" data-topic="1" data-num="194" data-label="Q1.194" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q1.194</span>
@@ -2988,7 +3084,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n2-911292" data-topic="2" data-num="2" data-label="Q2.2" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n2-911292" data-topic="2" data-num="2" data-label="Q2.2" data-qtype="hotspot" data-most-voted="The right answer is Doamin \ OneLake Data Hub. | The key wording is the Research Group will use &#x27;Lakehouse Explorer&#x27;. This tool will connect to the Onelake Data Hub. | From an admin perspective, you use the Fabric Admin portal to create the Domain Grouping. I think that is the confusion. Hope that helps someone.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.2</span>
@@ -3011,7 +3107,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911292_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3040,7 +3136,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n3-911293" data-topic="2" data-num="3" data-label="Q2.3" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n3-911293" data-topic="2" data-num="3" data-label="Q2.3" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.3</span>
@@ -3106,7 +3202,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n4-911294" data-topic="2" data-num="4" data-label="Q2.4" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n4-911294" data-topic="2" data-num="4" data-label="Q2.4" data-qtype="case_study" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.4</span>
@@ -3172,7 +3268,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n5-911295" data-topic="2" data-num="5" data-label="Q2.5" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n5-911295" data-topic="2" data-num="5" data-label="Q2.5" data-qtype="hotspot" data-most-voted="Data analysts --&gt; Build Reports on the default dataset | Data Scientist will access the data through a Notebook --&gt; Read all Apache Spark | Data Engineers will read and write to the data store (lakehouse) --&gt; Read all Apache Spark | SQL Analytics Endpoint is read-only mode. You can analyze Delta tables using T-SQL (instead of Spark SQL), save functions, or create views. However, you cannot write data to a Delta table.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.5</span>
@@ -3197,7 +3293,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911295_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911295_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3226,7 +3322,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n6-911296" data-topic="2" data-num="6" data-label="Q2.6" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n6-911296" data-topic="2" data-num="6" data-label="Q2.6" data-qtype="hotspot" data-most-voted="For the first part, &quot;AVERAGE(&#x27;Survey&#x27;[Response Value])&quot; because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations). | For the second part, &quot;Period&quot;: data is filtered to compute the average in the last 12 months (interval defined in the variable).">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.6</span>
@@ -3251,7 +3347,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911296_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911296_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3280,7 +3376,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n7-911297" data-topic="2" data-num="7" data-label="Q2.7" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n7-911297" data-topic="2" data-num="7" data-label="Q2.7" data-qtype="hotspot" data-most-voted="I took the test the last week. This question was included, with a important modification: | They changes the information,¡ of the first option for &quot;WHEN&quot;: ListPrice &gt; 50 AND ListPrice &lt;= 1000) THEN &#x27;medium&#x27;. | | -View | -Case | -WHEN(ListPrice &gt; 50 AND ListPrice &lt;= 1000) THEN &#x27;medium&#x27;.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.7</span>
@@ -3305,7 +3401,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911297_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911297_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3334,7 +3430,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n8-911298" data-topic="2" data-num="8" data-label="Q2.8" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n8-911298" data-topic="2" data-num="8" data-label="Q2.8" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.8</span>
@@ -3404,7 +3500,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n9-911299" data-topic="2" data-num="9" data-label="Q2.9" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n9-911299" data-topic="2" data-num="9" data-label="Q2.9" data-qtype="case_study" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.9</span>
@@ -3474,7 +3570,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n10-911300" data-topic="2" data-num="10" data-label="Q2.10" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n10-911300" data-topic="2" data-num="10" data-label="Q2.10" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.10</span>
@@ -3541,7 +3637,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n11-911301" data-topic="2" data-num="11" data-label="Q2.11" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n11-911301" data-topic="2" data-num="11" data-label="Q2.11" data-qtype="hotspot" data-most-voted="Answer is RowNumber and X=1 -- No Brainer">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.11</span>
@@ -3563,7 +3659,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911301_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3592,7 +3688,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n13-911303" data-topic="2" data-num="13" data-label="Q2.13" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n13-911303" data-topic="2" data-num="13" data-label="Q2.13" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.13</span>
@@ -3656,7 +3752,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n14-911304" data-topic="2" data-num="14" data-label="Q2.14" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n14-911304" data-topic="2" data-num="14" data-label="Q2.14" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.14</span>
@@ -3720,7 +3816,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n15-911305" data-topic="2" data-num="15" data-label="Q2.15" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n15-911305" data-topic="2" data-num="15" data-label="Q2.15" data-qtype="multiple" data-most-voted="CD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.15</span>
@@ -3784,7 +3880,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n16-911306" data-topic="2" data-num="16" data-label="Q2.16" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n16-911306" data-topic="2" data-num="16" data-label="Q2.16" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.16</span>
@@ -3848,7 +3944,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n18-911308" data-topic="2" data-num="18" data-label="Q2.18" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n18-911308" data-topic="2" data-num="18" data-label="Q2.18" data-qtype="drag_drop" data-most-voted="Define, Evaluate and Summarize. Please, update the correct answer.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.18</span>
@@ -3870,7 +3966,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911308_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -3899,7 +3995,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n19-911309" data-topic="2" data-num="19" data-label="Q2.19" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n19-911309" data-topic="2" data-num="19" data-label="Q2.19" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.19</span>
@@ -3966,7 +4062,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n23-911313" data-topic="2" data-num="23" data-label="Q2.23" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n23-911313" data-topic="2" data-num="23" data-label="Q2.23" data-qtype="hotspot" data-most-voted="ALTER is DDL not DML so the right answer is EXECUTE SCHEMA.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.23</span>
@@ -3988,7 +4084,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911313_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4017,7 +4113,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n31-911321" data-topic="2" data-num="31" data-label="Q2.31" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n31-911321" data-topic="2" data-num="31" data-label="Q2.31" data-qtype="hotspot" data-most-voted="the question says : &quot;You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer.&quot; | Therefore, the analysis of order item by date, product and customer doesn&#x27;t need the company table (it can be omitted) ! | The answer is A and A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.31</span>
@@ -4040,7 +4136,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911321_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911321_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4069,7 +4165,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n36-911326" data-topic="2" data-num="36" data-label="Q2.36" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n36-911326" data-topic="2" data-num="36" data-label="Q2.36" data-qtype="multiple" data-most-voted="DE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.36</span>
@@ -4137,7 +4233,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n37-911327" data-topic="2" data-num="37" data-label="Q2.37" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n37-911327" data-topic="2" data-num="37" data-label="Q2.37" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.37</span>
@@ -4201,7 +4297,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n40-911330" data-topic="2" data-num="40" data-label="Q2.40" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n40-911330" data-topic="2" data-num="40" data-label="Q2.40" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.40</span>
@@ -4265,7 +4361,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n43-911333" data-topic="2" data-num="43" data-label="Q2.43" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n43-911333" data-topic="2" data-num="43" data-label="Q2.43" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.43</span>
@@ -4329,7 +4425,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n44-911334" data-topic="2" data-num="44" data-label="Q2.44" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n44-911334" data-topic="2" data-num="44" data-label="Q2.44" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.44</span>
@@ -4393,7 +4489,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n45-911335" data-topic="2" data-num="45" data-label="Q2.45" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n45-911335" data-topic="2" data-num="45" data-label="Q2.45" data-qtype="hotspot" data-most-voted="The answer is probably YNY | 1. Those are exactly the columns that are being read. So Yes | 2. Removing the PartitionBy line would not result in any performance changes. So NO | 3. Adding inferSchema as True WILL result in extra time in execution as it will make the engine go over the data twice (one to read data and the other time to read Schema). So YES.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.45</span>
@@ -4416,7 +4512,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911335_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911335_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4445,7 +4541,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n46-911336" data-topic="2" data-num="46" data-label="Q2.46" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n46-911336" data-topic="2" data-num="46" data-label="Q2.46" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.46</span>
@@ -4509,7 +4605,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n47-911337" data-topic="2" data-num="47" data-label="Q2.47" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n47-911337" data-topic="2" data-num="47" data-label="Q2.47" data-qtype="drag_drop" data-most-voted="IMHO, | Value -&gt; NativeQuery -&gt; EnableFolding is good :) | | Because of here: | Value.NativeQuery(Source, &quot;SELECT DepartmentID, Name FROM HumanResources.Department WHERE GroupName = &#x27;Research and Development&#x27; &quot;, null, [EnableFolding = true]) | | Link: | https://learn.microsoft.com/en-us/power-query/native-query-folding#use-valuenativequery-function">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.47</span>
@@ -4531,7 +4627,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911337_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4560,7 +4656,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n48-911338" data-topic="2" data-num="48" data-label="Q2.48" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n48-911338" data-topic="2" data-num="48" data-label="Q2.48" data-qtype="drag_drop" data-most-voted="VACUUM: to remove old files no longer referenced. | OPTIMIZE: to create fewer files with a larger size. | | Sources: | * https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql | * VACUUM: https://docs.delta.io/latest/delta-utility.html#-delta-vacuum | * OPTIMIZE: https://docs.delta.io/latest/optimizations-oss.html">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.48</span>
@@ -4582,7 +4678,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911338_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4611,7 +4707,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n49-911339" data-topic="2" data-num="49" data-label="Q2.49" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n49-911339" data-topic="2" data-num="49" data-label="Q2.49" data-qtype="multiple" data-most-voted="AD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.49</span>
@@ -4671,7 +4767,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n51-911341" data-topic="2" data-num="51" data-label="Q2.51" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n51-911341" data-topic="2" data-num="51" data-label="Q2.51" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.51</span>
@@ -4735,7 +4831,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n53-911343" data-topic="2" data-num="53" data-label="Q2.53" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n53-911343" data-topic="2" data-num="53" data-label="Q2.53" data-qtype="hotspot" data-most-voted="The correct answers: | 1. withColumn | 2. cast(&#x27;date&#x27;) | 3. .filter(&#x27;fareAmount.......">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.53</span>
@@ -4758,7 +4854,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911343_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911343_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -4787,7 +4883,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n54-911344" data-topic="2" data-num="54" data-label="Q2.54" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n54-911344" data-topic="2" data-num="54" data-label="Q2.54" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.54</span>
@@ -4843,7 +4939,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n55-911345" data-topic="2" data-num="55" data-label="Q2.55" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n55-911345" data-topic="2" data-num="55" data-label="Q2.55" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.55</span>
@@ -4899,7 +4995,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n56-911346" data-topic="2" data-num="56" data-label="Q2.56" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n56-911346" data-topic="2" data-num="56" data-label="Q2.56" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.56</span>
@@ -4955,7 +5051,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n57-911347" data-topic="2" data-num="57" data-label="Q2.57" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n57-911347" data-topic="2" data-num="57" data-label="Q2.57" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.57</span>
@@ -5011,7 +5107,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n58-911348" data-topic="2" data-num="58" data-label="Q2.58" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n58-911348" data-topic="2" data-num="58" data-label="Q2.58" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.58</span>
@@ -5067,7 +5163,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n59-911349" data-topic="2" data-num="59" data-label="Q2.59" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n59-911349" data-topic="2" data-num="59" data-label="Q2.59" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.59</span>
@@ -5123,7 +5219,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n60-916062" data-topic="2" data-num="60" data-label="Q2.60" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n60-916062" data-topic="2" data-num="60" data-label="Q2.60" data-qtype="case_study" data-most-voted="BE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.60</span>
@@ -5197,7 +5293,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n62-916064" data-topic="2" data-num="62" data-label="Q2.62" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n62-916064" data-topic="2" data-num="62" data-label="Q2.62" data-qtype="case_study" data-most-voted="AD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.62</span>
@@ -5267,7 +5363,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n63-916065" data-topic="2" data-num="63" data-label="Q2.63" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n63-916065" data-topic="2" data-num="63" data-label="Q2.63" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.63</span>
@@ -5333,7 +5429,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n67-916069" data-topic="2" data-num="67" data-label="Q2.67" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n67-916069" data-topic="2" data-num="67" data-label="Q2.67" data-qtype="hotspot" data-most-voted="Viewer and contributor | | Read using sql endpoint -&gt; Min. Viewer | Read using lakehouse explorer -&gt; Min. Contributor">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.67</span>
@@ -5355,7 +5451,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916069_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5384,7 +5480,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n70-916072" data-topic="2" data-num="70" data-label="Q2.70" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n70-916072" data-topic="2" data-num="70" data-label="Q2.70" data-qtype="drag_drop" data-most-voted="Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.70</span>
@@ -5407,7 +5503,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916072_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916072_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5436,7 +5532,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n71-916073" data-topic="2" data-num="71" data-label="Q2.71" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n71-916073" data-topic="2" data-num="71" data-label="Q2.71" data-qtype="drag_drop" data-most-voted="IMHO, withColumn -&gt; col -&gt; cast | is good!">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.71</span>
@@ -5458,7 +5554,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916073_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5487,7 +5583,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n72-916074" data-topic="2" data-num="72" data-label="Q2.72" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n72-916074" data-topic="2" data-num="72" data-label="Q2.72" data-qtype="hotspot" data-most-voted="DELTA, Sales. This is the correct answer since the destination was to loaded Delta the comand SaveAsTable you only need the table name no path. https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-notebook-load-data">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.72</span>
@@ -5509,7 +5605,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916074_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5538,7 +5634,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n73-916075" data-topic="2" data-num="73" data-label="Q2.73" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n73-916075" data-topic="2" data-num="73" data-label="Q2.73" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.73</span>
@@ -5602,7 +5698,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n74-916076" data-topic="2" data-num="74" data-label="Q2.74" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n74-916076" data-topic="2" data-num="74" data-label="Q2.74" data-qtype="hotspot" data-most-voted="1. Append | --&gt; Because of &quot;Keep all the existing rows&quot; | | 2. mergeSchema, true | --&gt; Because there will be 2 additional columns, so it&#x27;s they are not deleted from the new version. If they would have been deleted from the new version, you would have to use &quot;overwriteSchema, true&quot;. Since that option replaces the existing schema with the schema of the new dataframe. mergeSchema, on the contrary, allows the addition of new columns rather than overwriting the schema.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.74</span>
@@ -5624,7 +5720,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916076_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5653,7 +5749,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n75-916077" data-topic="2" data-num="75" data-label="Q2.75" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n75-916077" data-topic="2" data-num="75" data-label="Q2.75" data-qtype="hotspot" data-most-voted="IMHO answer is correct: | https://learn.microsoft.com/de-de/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver16 | https://learn.microsoft.com/de-de/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.75</span>
@@ -5677,7 +5773,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916077_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916077_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5706,7 +5802,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n76-916078" data-topic="2" data-num="76" data-label="Q2.76" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n76-916078" data-topic="2" data-num="76" data-label="Q2.76" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.76</span>
@@ -5778,7 +5874,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n78-916080" data-topic="2" data-num="78" data-label="Q2.78" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n78-916080" data-topic="2" data-num="78" data-label="Q2.78" data-qtype="drag_drop" data-most-voted="Customers -&gt; Type 2 | Products -&gt; Type 1">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.78</span>
@@ -5801,7 +5897,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916080_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916080_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -5830,7 +5926,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n79-916081" data-topic="2" data-num="79" data-label="Q2.79" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n79-916081" data-topic="2" data-num="79" data-label="Q2.79" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.79</span>
@@ -5894,7 +5990,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n80-916082" data-topic="2" data-num="80" data-label="Q2.80" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n80-916082" data-topic="2" data-num="80" data-label="Q2.80" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.80</span>
@@ -5958,7 +6054,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n82-916084" data-topic="2" data-num="82" data-label="Q2.82" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n82-916084" data-topic="2" data-num="82" data-label="Q2.82" data-qtype="hotspot" data-most-voted="https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table#limitations | Table clones across warehouses in a workspace are not currently supported. | | ANSWER, AS SELECT">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.82</span>
@@ -5980,7 +6076,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916084_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6009,7 +6105,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n83-916085" data-topic="2" data-num="83" data-label="Q2.83" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n83-916085" data-topic="2" data-num="83" data-label="Q2.83" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.83</span>
@@ -6073,7 +6169,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n84-916086" data-topic="2" data-num="84" data-label="Q2.84" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n84-916086" data-topic="2" data-num="84" data-label="Q2.84" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.84</span>
@@ -6137,7 +6233,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n85-916087" data-topic="2" data-num="85" data-label="Q2.85" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n85-916087" data-topic="2" data-num="85" data-label="Q2.85" data-qtype="multiple" data-most-voted="CDE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.85</span>
@@ -6205,7 +6301,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n88-916090" data-topic="2" data-num="88" data-label="Q2.88" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n88-916090" data-topic="2" data-num="88" data-label="Q2.88" data-qtype="drag_drop" data-most-voted="I took the test today, and this question was included. The options &#x27;Sort the Duration (ms) column in descending order&#x27; was not there. Hence the answer: | -From Performance analyzer, capture a recording. | -Sort the Duration (ms) column in descending order by DAX query time. | -Copy the first query to Dax Studio. | -Enable Query Timings and Server Timings. Run the query. | -View the Server Timings tab.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.88</span>
@@ -6227,7 +6323,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916090_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6256,7 +6352,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n94-916096" data-topic="2" data-num="94" data-label="Q2.94" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n94-916096" data-topic="2" data-num="94" data-label="Q2.94" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.94</span>
@@ -6320,7 +6416,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n95-916097" data-topic="2" data-num="95" data-label="Q2.95" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n95-916097" data-topic="2" data-num="95" data-label="Q2.95" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.95</span>
@@ -6384,7 +6480,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n96-916098" data-topic="2" data-num="96" data-label="Q2.96" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n96-916098" data-topic="2" data-num="96" data-label="Q2.96" data-qtype="multiple" data-most-voted="ACD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.96</span>
@@ -6455,7 +6551,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n97-916099" data-topic="2" data-num="97" data-label="Q2.97" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n97-916099" data-topic="2" data-num="97" data-label="Q2.97" data-qtype="hotspot" data-most-voted="Correct Answer | GREATEST, COALESCE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.97</span>
@@ -6479,7 +6575,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916099_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916099_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6508,7 +6604,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n99-916101" data-topic="2" data-num="99" data-label="Q2.99" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n99-916101" data-topic="2" data-num="99" data-label="Q2.99" data-qtype="hotspot" data-most-voted="Just echecked it. Date trunc returns the first date of the month and datepart just the month number. So given answer is correct.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.99</span>
@@ -6532,7 +6628,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916101_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916101_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6561,7 +6657,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n101-916103" data-topic="2" data-num="101" data-label="Q2.101" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n101-916103" data-topic="2" data-num="101" data-label="Q2.101" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.101</span>
@@ -6625,7 +6721,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n102-916104" data-topic="2" data-num="102" data-label="Q2.102" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n102-916104" data-topic="2" data-num="102" data-label="Q2.102" data-qtype="hotspot" data-most-voted="Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value). | The correct answers are then: CALCULATE, {_LYSales}">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.102</span>
@@ -6647,7 +6743,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916104_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -6676,7 +6772,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n103-916105" data-topic="2" data-num="103" data-label="Q2.103" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n103-916105" data-topic="2" data-num="103" data-label="Q2.103" data-qtype="multiple" data-most-voted="BCE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.103</span>
@@ -6744,7 +6840,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n104-916106" data-topic="2" data-num="104" data-label="Q2.104" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n104-916106" data-topic="2" data-num="104" data-label="Q2.104" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.104</span>
@@ -6804,7 +6900,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n105-916107" data-topic="2" data-num="105" data-label="Q2.105" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n105-916107" data-topic="2" data-num="105" data-label="Q2.105" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.105</span>
@@ -6860,7 +6956,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n106-916108" data-topic="2" data-num="106" data-label="Q2.106" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n106-916108" data-topic="2" data-num="106" data-label="Q2.106" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.106</span>
@@ -6916,7 +7012,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n107-916109" data-topic="2" data-num="107" data-label="Q2.107" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n107-916109" data-topic="2" data-num="107" data-label="Q2.107" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.107</span>
@@ -6975,7 +7071,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n108-916110" data-topic="2" data-num="108" data-label="Q2.108" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n108-916110" data-topic="2" data-num="108" data-label="Q2.108" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.108</span>
@@ -7034,7 +7130,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n109-916111" data-topic="2" data-num="109" data-label="Q2.109" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n109-916111" data-topic="2" data-num="109" data-label="Q2.109" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.109</span>
@@ -7093,7 +7189,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n111-931007" data-topic="2" data-num="111" data-label="Q2.111" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n111-931007" data-topic="2" data-num="111" data-label="Q2.111" data-qtype="case_study" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.111</span>
@@ -7159,7 +7255,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n112-931008" data-topic="2" data-num="112" data-label="Q2.112" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n112-931008" data-topic="2" data-num="112" data-label="Q2.112" data-qtype="hotspot" data-most-voted="No, No, Yes | The spark reads all columns first before selection , so spark.read , read all columns">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.112</span>
@@ -7182,7 +7278,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931008_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931008_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7211,7 +7307,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n113-931009" data-topic="2" data-num="113" data-label="Q2.113" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n113-931009" data-topic="2" data-num="113" data-label="Q2.113" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.113</span>
@@ -7267,7 +7363,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n114-931010" data-topic="2" data-num="114" data-label="Q2.114" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n114-931010" data-topic="2" data-num="114" data-label="Q2.114" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.114</span>
@@ -7331,7 +7427,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n116-931012" data-topic="2" data-num="116" data-label="Q2.116" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n116-931012" data-topic="2" data-num="116" data-label="Q2.116" data-qtype="drag_drop" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.116</span>
@@ -7354,7 +7450,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931012_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7379,7 +7475,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n117-931013" data-topic="2" data-num="117" data-label="Q2.117" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n117-931013" data-topic="2" data-num="117" data-label="Q2.117" data-qtype="hotspot" data-most-voted="Correct answer is no-no-yes. You couldn&#x27;t select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.117</span>
@@ -7402,7 +7498,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931013_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931013_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7431,7 +7527,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n119-931015" data-topic="2" data-num="119" data-label="Q2.119" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n119-931015" data-topic="2" data-num="119" data-label="Q2.119" data-qtype="case_study" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.119</span>
@@ -7497,7 +7593,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n121-934199" data-topic="2" data-num="121" data-label="Q2.121" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n121-934199" data-topic="2" data-num="121" data-label="Q2.121" data-qtype="hotspot" data-most-voted="Answer is Dim Dim Dim | CustomerCode: This uniquely identifies a customer and is used to join with the Customer dimension table. It’s a stable business key. | CustomerName: This is an attribute of the Customer dimension and can change over time, making it suitable for Type 2 SCD tracking. | SaleDate: Dates are typically modeled as a Date dimension to support time-based analysis (e.g., trends, seasonality).">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.121</span>
@@ -7519,7 +7615,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/934199_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7548,7 +7644,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n122-934200" data-topic="2" data-num="122" data-label="Q2.122" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n122-934200" data-topic="2" data-num="122" data-label="Q2.122" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.122</span>
@@ -7612,7 +7708,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n123-934201" data-topic="2" data-num="123" data-label="Q2.123" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n123-934201" data-topic="2" data-num="123" data-label="Q2.123" data-qtype="hotspot" data-most-voted="Agree. Correct answer should be | yes | no | no">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.123</span>
@@ -7634,7 +7730,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/934201_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -7663,7 +7759,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n125-934203" data-topic="2" data-num="125" data-label="Q2.125" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n125-934203" data-topic="2" data-num="125" data-label="Q2.125" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.125</span>
@@ -7727,7 +7823,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n126-934204" data-topic="2" data-num="126" data-label="Q2.126" data-qtype="case_study">
+<article class="question" id="q-dp-600-t2-n126-934204" data-topic="2" data-num="126" data-label="Q2.126" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.126</span>
@@ -7793,7 +7889,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n128-934206" data-topic="2" data-num="128" data-label="Q2.128" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n128-934206" data-topic="2" data-num="128" data-label="Q2.128" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.128</span>
@@ -7857,7 +7953,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n131-934209" data-topic="2" data-num="131" data-label="Q2.131" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n131-934209" data-topic="2" data-num="131" data-label="Q2.131" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.131</span>
@@ -7913,7 +8009,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n132-936833" data-topic="2" data-num="132" data-label="Q2.132" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n132-936833" data-topic="2" data-num="132" data-label="Q2.132" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.132</span>
@@ -7977,7 +8073,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n136-936837" data-topic="2" data-num="136" data-label="Q2.136" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n136-936837" data-topic="2" data-num="136" data-label="Q2.136" data-qtype="hotspot" data-most-voted="Users must be explicitly assigned roles within a specific workspace. Being in the same domain does not grant automatic access. | | Answer: N, N, N">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.136</span>
@@ -8001,7 +8097,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936837_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936837_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8030,7 +8126,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n137-936838" data-topic="2" data-num="137" data-label="Q2.137" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n137-936838" data-topic="2" data-num="137" data-label="Q2.137" data-qtype="multiple" data-most-voted="DE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.137</span>
@@ -8098,7 +8194,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n138-936839" data-topic="2" data-num="138" data-label="Q2.138" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n138-936839" data-topic="2" data-num="138" data-label="Q2.138" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.138</span>
@@ -8165,7 +8261,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n139-936840" data-topic="2" data-num="139" data-label="Q2.139" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n139-936840" data-topic="2" data-num="139" data-label="Q2.139" data-qtype="drag_drop" data-most-voted="1. Group by CustID, use All Rows, and calc max version date per cust id | Note that if you Group By CustID and calc max date, you will lose the Customer Name column. | | 2. Expand All Rows detail column | Note that this will re-create the table as it was before, but with an additional column for max date. | | 3. Filter where version date eq max version date | This will effectively remove any duplicate CustID, keeping only the most recent. (If there were two at the same time, it will keep both...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.139</span>
@@ -8188,7 +8284,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936840_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936840_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8217,7 +8313,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n146-936847" data-topic="2" data-num="146" data-label="Q2.146" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n146-936847" data-topic="2" data-num="146" data-label="Q2.146" data-qtype="hotspot" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.146</span>
@@ -8240,7 +8336,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936847_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936847_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8269,7 +8365,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n147-936848" data-topic="2" data-num="147" data-label="Q2.147" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n147-936848" data-topic="2" data-num="147" data-label="Q2.147" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.147</span>
@@ -8333,7 +8429,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n149-939099" data-topic="2" data-num="149" data-label="Q2.149" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n149-939099" data-topic="2" data-num="149" data-label="Q2.149" data-qtype="hotspot" data-most-voted="So what is the difference between the 2 and 3 choices of the first option. If the price does not change, what difference would it make?">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.149</span>
@@ -8356,7 +8452,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939099_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939099_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8385,7 +8481,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n158-939108" data-topic="2" data-num="158" data-label="Q2.158" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n158-939108" data-topic="2" data-num="158" data-label="Q2.158" data-qtype="hotspot" data-most-voted="Select d.IsHoliday, | (sum(t.tripDistance) / count(t.tripID)) as MilesPerTrip | from dbo.Trips t | inner join dbo.DimDate d on t.dateID = d.DateID | group by d.IsHoliday">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.158</span>
@@ -8409,7 +8505,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939108_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939108_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8430,7 +8526,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n159-939109" data-topic="2" data-num="159" data-label="Q2.159" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n159-939109" data-topic="2" data-num="159" data-label="Q2.159" data-qtype="hotspot" data-most-voted="BEGIN | DISTINCT | | | 🎯 When to Use What? | Scenario Use | Standard stored procedure with single-database operations ✅ AS BEGIN | Multi-database transaction requiring rollback if one step fails ✅ AS BEGIN DISTRIBUTED TRANSACTION | Changing session settings before executing queries ✅ AS SET | | | DISTINCT because: | Given that you need to deduplicate the signindata table, here&#x27;s the logic behind choosing DISTINCT or GROUP BY: | | If you want to deduplicate based on certain fields (like UserID...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.159</span>
@@ -8452,7 +8548,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939109_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8473,7 +8569,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n160-939110" data-topic="2" data-num="160" data-label="Q2.160" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n160-939110" data-topic="2" data-num="160" data-label="Q2.160" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.160</span>
@@ -8537,7 +8633,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n161-939111" data-topic="2" data-num="161" data-label="Q2.161" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n161-939111" data-topic="2" data-num="161" data-label="Q2.161" data-qtype="hotspot" data-most-voted="The 1st question is, will Region values still returned even though they have RefundStatus value of &quot;Refunded&quot;. The answer is yes, Regions will still get returned.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.161</span>
@@ -8560,7 +8656,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939111_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939111_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8589,7 +8685,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n162-939112" data-topic="2" data-num="162" data-label="Q2.162" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n162-939112" data-topic="2" data-num="162" data-label="Q2.162" data-qtype="hotspot" data-most-voted="Inner Join and A.AddressId = CA.AddressId | &quot;All foreign key values are non-null.&quot;">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.162</span>
@@ -8612,7 +8708,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939112_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939112_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8641,7 +8737,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n166-939116" data-topic="2" data-num="166" data-label="Q2.166" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n166-939116" data-topic="2" data-num="166" data-label="Q2.166" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.166</span>
@@ -8701,7 +8797,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n169-939119" data-topic="2" data-num="169" data-label="Q2.169" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n169-939119" data-topic="2" data-num="169" data-label="Q2.169" data-qtype="hotspot" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.169</span>
@@ -8723,7 +8819,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939119_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8752,7 +8848,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n171-942882" data-topic="2" data-num="171" data-label="Q2.171" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n171-942882" data-topic="2" data-num="171" data-label="Q2.171" data-qtype="hotspot" data-most-voted="OneLake endpoint and Kql queryset">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.171</span>
@@ -8775,7 +8871,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942882_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942882_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8804,7 +8900,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n172-942883" data-topic="2" data-num="172" data-label="Q2.172" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n172-942883" data-topic="2" data-num="172" data-label="Q2.172" data-qtype="drag_drop" data-most-voted="It should be contributor ,Member,Member ...because it clearly says to adhere to &quot;the principle of least privilege&quot;...Group 2 members should confirgure and maintain workspace setting no where its mentioned about deleting so it should be Memebr and same question asked in power BI certification and answer is member !!">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.172</span>
@@ -8826,7 +8922,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942883_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8855,7 +8951,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n173-942884" data-topic="2" data-num="173" data-label="Q2.173" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n173-942884" data-topic="2" data-num="173" data-label="Q2.173" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.173</span>
@@ -8919,7 +9015,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n174-942885" data-topic="2" data-num="174" data-label="Q2.174" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n174-942885" data-topic="2" data-num="174" data-label="Q2.174" data-qtype="hotspot" data-most-voted="TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.174</span>
@@ -8942,7 +9038,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942885_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942885_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -8971,7 +9067,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n175-942886" data-topic="2" data-num="175" data-label="Q2.175" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n175-942886" data-topic="2" data-num="175" data-label="Q2.175" data-qtype="drag_drop" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.175</span>
@@ -8994,7 +9090,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942886_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942886_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9019,7 +9115,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n176-942887" data-topic="2" data-num="176" data-label="Q2.176" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n176-942887" data-topic="2" data-num="176" data-label="Q2.176" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.176</span>
@@ -9083,7 +9179,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n177-942888" data-topic="2" data-num="177" data-label="Q2.177" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n177-942888" data-topic="2" data-num="177" data-label="Q2.177" data-qtype="hotspot" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.177</span>
@@ -9106,7 +9202,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942888_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942888_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9131,7 +9227,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n178-942889" data-topic="2" data-num="178" data-label="Q2.178" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n178-942889" data-topic="2" data-num="178" data-label="Q2.178" data-qtype="hotspot" data-most-voted="Extend : new columns based on calculations for each row | Project: Works like select clause | Why Not | Summarize: Used for aggregating data | lookup: Similar to Join clause | evaluate: its literally called Plugin Operator">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.178</span>
@@ -9154,7 +9250,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942889_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942889_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9183,7 +9279,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n179-942890" data-topic="2" data-num="179" data-label="Q2.179" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n179-942890" data-topic="2" data-num="179" data-label="Q2.179" data-qtype="hotspot" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.179</span>
@@ -9206,7 +9302,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942890_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942890_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9235,7 +9331,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n184-955731" data-topic="2" data-num="184" data-label="Q2.184" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n184-955731" data-topic="2" data-num="184" data-label="Q2.184" data-qtype="drag_drop" data-most-voted="A pipeline with a copy activity | An eventstream">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.184</span>
@@ -9258,7 +9354,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955731_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955731_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9287,7 +9383,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n186-955733" data-topic="2" data-num="186" data-label="Q2.186" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n186-955733" data-topic="2" data-num="186" data-label="Q2.186" data-qtype="drag_drop" data-most-voted="Weatherdata | Sort rows by Datetime so that prev() works correctly: | | sort by Datetime asc | Use prev() to calculate difference from previous row: | | extend Delta_temperature = Temperature - prev(Temperature) | | project Datetime, Lat, Long, Temperature, Delta_temperature">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.186</span>
@@ -9311,7 +9407,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955733_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955733_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9340,7 +9436,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n187-955734" data-topic="2" data-num="187" data-label="Q2.187" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n187-955734" data-topic="2" data-num="187" data-label="Q2.187" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.187</span>
@@ -9407,7 +9503,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n188-955735" data-topic="2" data-num="188" data-label="Q2.188" data-qtype="multiple">
+<article class="question" id="q-dp-600-t2-n188-955735" data-topic="2" data-num="188" data-label="Q2.188" data-qtype="multiple" data-most-voted="CD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.188</span>
@@ -9475,7 +9571,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n190-955737" data-topic="2" data-num="190" data-label="Q2.190" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n190-955737" data-topic="2" data-num="190" data-label="Q2.190" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.190</span>
@@ -9531,7 +9627,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n191-955738" data-topic="2" data-num="191" data-label="Q2.191" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n191-955738" data-topic="2" data-num="191" data-label="Q2.191" data-qtype="hotspot" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.191</span>
@@ -9554,7 +9650,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955738_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955738_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9575,7 +9671,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n193-955740" data-topic="2" data-num="193" data-label="Q2.193" data-qtype="single">
+<article class="question" id="q-dp-600-t2-n193-955740" data-topic="2" data-num="193" data-label="Q2.193" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.193</span>
@@ -9639,7 +9735,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n197-955744" data-topic="2" data-num="197" data-label="Q2.197" data-qtype="drag_drop">
+<article class="question" id="q-dp-600-t2-n197-955744" data-topic="2" data-num="197" data-label="Q2.197" data-qtype="drag_drop" data-most-voted="Customer: Type 2 Products: Type 1 | Same question Q78">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.197</span>
@@ -9662,7 +9758,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955744_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955744_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="dragdrop-widget"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available because ExamTopics does not preserve the original targets.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9683,7 +9779,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t2-n198-955745" data-topic="2" data-num="198" data-label="Q2.198" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t2-n198-955745" data-topic="2" data-num="198" data-label="Q2.198" data-qtype="hotspot" data-most-voted="Two places to fill: | | 1. Function for first row in a window | | Options: | | row_cumsum → cumulative sum, not relevant. | | row_rank_dense → dense ranking, but doesn’t directly give first row. | | row_rank_min → gives the first/minimum row within the window ✅ (correct). | | row_window_session → sessionization, not relevant. | | So answer = row_rank_min. | | 2. Condition operator before prev(payment_type) | | The operator defines when a new partition starts. | | == prev(payment_type) → same...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q2.198</span>
@@ -9706,7 +9802,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955745_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955745_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9731,7 +9827,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n12-911302" data-topic="3" data-num="12" data-label="Q3.12" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n12-911302" data-topic="3" data-num="12" data-label="Q3.12" data-qtype="hotspot" data-most-voted="Answer is No, Yes, Yes | | The code is displaying a summary of the data frame using the visualizations. Point 3 is a technicality and I think to some extent depends on your interpretation of the question. I am going with Yes.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.12</span>
@@ -9754,7 +9850,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911302_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911302_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -9783,7 +9879,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n17-911307" data-topic="3" data-num="17" data-label="Q3.17" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n17-911307" data-topic="3" data-num="17" data-label="Q3.17" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.17</span>
@@ -9847,7 +9943,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n21-911311" data-topic="3" data-num="21" data-label="Q3.21" data-qtype="multiple">
+<article class="question" id="q-dp-600-t3-n21-911311" data-topic="3" data-num="21" data-label="Q3.21" data-qtype="multiple" data-most-voted="ADE">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.21</span>
@@ -9919,7 +10015,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n22-911312" data-topic="3" data-num="22" data-label="Q3.22" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n22-911312" data-topic="3" data-num="22" data-label="Q3.22" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.22</span>
@@ -9983,7 +10079,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n25-911315" data-topic="3" data-num="25" data-label="Q3.25" data-qtype="multiple">
+<article class="question" id="q-dp-600-t3-n25-911315" data-topic="3" data-num="25" data-label="Q3.25" data-qtype="multiple" data-most-voted="AB">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.25</span>
@@ -10047,7 +10143,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n26-911316" data-topic="3" data-num="26" data-label="Q3.26" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n26-911316" data-topic="3" data-num="26" data-label="Q3.26" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.26</span>
@@ -10115,7 +10211,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n27-911317" data-topic="3" data-num="27" data-label="Q3.27" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n27-911317" data-topic="3" data-num="27" data-label="Q3.27" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.27</span>
@@ -10179,7 +10275,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n28-911318" data-topic="3" data-num="28" data-label="Q3.28" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n28-911318" data-topic="3" data-num="28" data-label="Q3.28" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.28</span>
@@ -10243,7 +10339,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n29-911319" data-topic="3" data-num="29" data-label="Q3.29" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n29-911319" data-topic="3" data-num="29" data-label="Q3.29" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.29</span>
@@ -10307,7 +10403,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n30-911320" data-topic="3" data-num="30" data-label="Q3.30" data-qtype="multiple">
+<article class="question" id="q-dp-600-t3-n30-911320" data-topic="3" data-num="30" data-label="Q3.30" data-qtype="multiple" data-most-voted="BC">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.30</span>
@@ -10371,7 +10467,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n32-911322" data-topic="3" data-num="32" data-label="Q3.32" data-qtype="multiple">
+<article class="question" id="q-dp-600-t3-n32-911322" data-topic="3" data-num="32" data-label="Q3.32" data-qtype="multiple" data-most-voted="AD">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.32</span>
@@ -10438,7 +10534,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n33-911323" data-topic="3" data-num="33" data-label="Q3.33" data-qtype="multiple">
+<article class="question" id="q-dp-600-t3-n33-911323" data-topic="3" data-num="33" data-label="Q3.33" data-qtype="multiple" data-most-voted="AB">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.33</span>
@@ -10502,7 +10598,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n52-911342" data-topic="3" data-num="52" data-label="Q3.52" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n52-911342" data-topic="3" data-num="52" data-label="Q3.52" data-qtype="hotspot" data-most-voted="The answer is Automatic and Direct Lake, actually the picture comes from | https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-analyze-qp | In this article you can see there are table1 and view1, performance analyser shows: | • First card is linked to Table1 so direct lake is used | • Second card is linked to View1 so it does direct query | As the model can use direct lake and direct query you can conclude that the fallback behavior is automatic. | For direct lake behavior you ca...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.52</span>
@@ -10525,7 +10621,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911342_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911342_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -10554,7 +10650,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n61-916063" data-topic="3" data-num="61" data-label="Q3.61" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n61-916063" data-topic="3" data-num="61" data-label="Q3.61" data-qtype="hotspot" data-most-voted="Where does it say the the Customer Survey Report needs RLS or am I missing something? I see that the report needs Table-level security which is in DirectQuery mode. | IMHO, Service Principle and DirectQuery are the correct answers.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.61</span>
@@ -10578,7 +10674,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916063_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916063_2.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 3</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -10607,7 +10703,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n64-916066" data-topic="3" data-num="64" data-label="Q3.64" data-qtype="case_study">
+<article class="question" id="q-dp-600-t3-n64-916066" data-topic="3" data-num="64" data-label="Q3.64" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.64</span>
@@ -10673,7 +10769,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n65-916067" data-topic="3" data-num="65" data-label="Q3.65" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n65-916067" data-topic="3" data-num="65" data-label="Q3.65" data-qtype="hotspot" data-most-voted="Correct. | - &quot;delta&quot; | - &quot;Tables/productline1&quot; | | Requirements: Use managed tables. | | If you use saveAsTable() you don&#x27;t need to specify the path &quot;Table/&quot; | If you you save() you specify the full path | | Ignore my previous comment!">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.65</span>
@@ -10695,7 +10791,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916067_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -10724,7 +10820,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n66-916068" data-topic="3" data-num="66" data-label="Q3.66" data-qtype="case_study">
+<article class="question" id="q-dp-600-t3-n66-916068" data-topic="3" data-num="66" data-label="Q3.66" data-qtype="case_study" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.66</span>
@@ -10790,7 +10886,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n69-916071" data-topic="3" data-num="69" data-label="Q3.69" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n69-916071" data-topic="3" data-num="69" data-label="Q3.69" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.69</span>
@@ -10854,7 +10950,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n81-916083" data-topic="3" data-num="81" data-label="Q3.81" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n81-916083" data-topic="3" data-num="81" data-label="Q3.81" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.81</span>
@@ -10918,7 +11014,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n87-916089" data-topic="3" data-num="87" data-label="Q3.87" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n87-916089" data-topic="3" data-num="87" data-label="Q3.87" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.87</span>
@@ -10982,7 +11078,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n89-916091" data-topic="3" data-num="89" data-label="Q3.89" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n89-916091" data-topic="3" data-num="89" data-label="Q3.89" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.89</span>
@@ -11046,7 +11142,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n90-916092" data-topic="3" data-num="90" data-label="Q3.90" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n90-916092" data-topic="3" data-num="90" data-label="Q3.90" data-qtype="hotspot" data-most-voted="Don&#x27;t confuse people, the answer is correct. Calculate + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.90</span>
@@ -11068,7 +11164,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916092_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -11097,7 +11193,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n91-916093" data-topic="3" data-num="91" data-label="Q3.91" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n91-916093" data-topic="3" data-num="91" data-label="Q3.91" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.91</span>
@@ -11164,7 +11260,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n92-916094" data-topic="3" data-num="92" data-label="Q3.92" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n92-916094" data-topic="3" data-num="92" data-label="Q3.92" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.92</span>
@@ -11228,7 +11324,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n100-916102" data-topic="3" data-num="100" data-label="Q3.100" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n100-916102" data-topic="3" data-num="100" data-label="Q3.100" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.100</span>
@@ -11288,7 +11384,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n110-931006" data-topic="3" data-num="110" data-label="Q3.110" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n110-931006" data-topic="3" data-num="110" data-label="Q3.110" data-qtype="hotspot" data-most-voted="Correct. Delta &amp; Tables/ProductLine2.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.110</span>
@@ -11310,7 +11406,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931006_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -11331,7 +11427,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n115-931011" data-topic="3" data-num="115" data-label="Q3.115" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n115-931011" data-topic="3" data-num="115" data-label="Q3.115" data-qtype="hotspot" data-most-voted="TransactionKey --&gt; Remove the column. | There is no need to keep 160 GB for a surrogate key, it can be removed and SaleDateTime can be moved into the SalesTransaction table that will for sure &quot;Increase refresh performance when using Import mode.&quot; and &quot;Reduce the model size.&quot; since there is no need for an heavy join like this one. | | SaleDateTime --&gt; Split the column. | Splitting the column would lead for sure to &quot;Ensure that the datetime value for each sales transaction is available in the m...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.115</span>
@@ -11354,7 +11450,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931011_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931011_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -11383,7 +11479,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n118-931014" data-topic="3" data-num="118" data-label="Q3.118" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n118-931014" data-topic="3" data-num="118" data-label="Q3.118" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.118</span>
@@ -11442,7 +11538,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n120-934198" data-topic="3" data-num="120" data-label="Q3.120" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n120-934198" data-topic="3" data-num="120" data-label="Q3.120" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.120</span>
@@ -11506,7 +11602,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n127-934205" data-topic="3" data-num="127" data-label="Q3.127" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n127-934205" data-topic="3" data-num="127" data-label="Q3.127" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.127</span>
@@ -11570,7 +11666,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n129-934207" data-topic="3" data-num="129" data-label="Q3.129" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n129-934207" data-topic="3" data-num="129" data-label="Q3.129" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.129</span>
@@ -11626,7 +11722,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n130-934208" data-topic="3" data-num="130" data-label="Q3.130" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n130-934208" data-topic="3" data-num="130" data-label="Q3.130" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.130</span>
@@ -11682,7 +11778,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n133-936834" data-topic="3" data-num="133" data-label="Q3.133" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n133-936834" data-topic="3" data-num="133" data-label="Q3.133" data-qtype="hotspot" data-most-voted="https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-manage#set-the-direct-lake-behavior-property | &quot;DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can&#x27;t be loaded into memory, an error is returned.&quot; | | Answer is Direct Lake">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.133</span>
@@ -11705,7 +11801,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936834_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936834_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -11734,7 +11830,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n134-936835" data-topic="3" data-num="134" data-label="Q3.134" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n134-936835" data-topic="3" data-num="134" data-label="Q3.134" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.134</span>
@@ -11782,7 +11878,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n140-936841" data-topic="3" data-num="140" data-label="Q3.140" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n140-936841" data-topic="3" data-num="140" data-label="Q3.140" data-qtype="hotspot" data-most-voted="1. &quot;definition.pbir is in the PBIR-Legacy format.&quot; | The file uses the .pbir extension, which is associated with Power BI Report files. The JSON structure shows &quot;version&quot;: &quot;1.0&quot;, which is consistent with the newer format (not legacy). The legacy format typically uses .pbix or .rdl files. | Answer: No. | &quot;The semantic model referenced by definition.pbir is located in the Power BI service.&quot; | The JSON references the semantic model using &quot;byPath&quot; with a local path &quot;../Sales.Dataset&quot;. This indica...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.140</span>
@@ -11805,7 +11901,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936841_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936841_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -11834,7 +11930,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n141-936842" data-topic="3" data-num="141" data-label="Q3.141" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n141-936842" data-topic="3" data-num="141" data-label="Q3.141" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.141</span>
@@ -11898,7 +11994,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n143-936844" data-topic="3" data-num="143" data-label="Q3.143" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n143-936844" data-topic="3" data-num="143" data-label="Q3.143" data-qtype="single" data-most-voted="D">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.143</span>
@@ -11962,7 +12058,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n144-936845" data-topic="3" data-num="144" data-label="Q3.144" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n144-936845" data-topic="3" data-num="144" data-label="Q3.144" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.144</span>
@@ -12026,7 +12122,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n145-936846" data-topic="3" data-num="145" data-label="Q3.145" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n145-936846" data-topic="3" data-num="145" data-label="Q3.145" data-qtype="hotspot" data-most-voted="Answer: | A: Import | | https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview#comparison-to-other-storage-modes | &quot;Capability Direct Lake Import DirectQuery | Calculated tables No Yes No &quot; | | Direct Lake has an exception: &quot;except calculation groups, what-if parameters, and field parameters, which implicitly create calculated tables&quot; | | B: On | | https://learn.microsoft.com/en-us/power-bi/connect-data/power-bi-query-caching | | &quot;Organizations with Power BI Premium or Pow...">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.145</span>
@@ -12048,7 +12144,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936846_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -12077,7 +12173,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n148-939098" data-topic="3" data-num="148" data-label="Q3.148" data-qtype="case_study">
+<article class="question" id="q-dp-600-t3-n148-939098" data-topic="3" data-num="148" data-label="Q3.148" data-qtype="case_study" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.148</span>
@@ -12143,7 +12239,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n152-939102" data-topic="3" data-num="152" data-label="Q3.152" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n152-939102" data-topic="3" data-num="152" data-label="Q3.152" data-qtype="single" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.152</span>
@@ -12207,7 +12303,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n156-939106" data-topic="3" data-num="156" data-label="Q3.156" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n156-939106" data-topic="3" data-num="156" data-label="Q3.156" data-qtype="single" data-most-voted="A">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.156</span>
@@ -12274,7 +12370,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n163-939113" data-topic="3" data-num="163" data-label="Q3.163" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n163-939113" data-topic="3" data-num="163" data-label="Q3.163" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.163</span>
@@ -12334,7 +12430,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n164-939114" data-topic="3" data-num="164" data-label="Q3.164" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n164-939114" data-topic="3" data-num="164" data-label="Q3.164" data-qtype="single" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.164</span>
@@ -12394,7 +12490,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n165-939115" data-topic="3" data-num="165" data-label="Q3.165" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n165-939115" data-topic="3" data-num="165" data-label="Q3.165" data-qtype="single" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.165</span>
@@ -12454,7 +12550,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n180-942891" data-topic="3" data-num="180" data-label="Q3.180" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n180-942891" data-topic="3" data-num="180" data-label="Q3.180" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.180</span>
@@ -12518,7 +12614,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n183-942894" data-topic="3" data-num="183" data-label="Q3.183" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n183-942894" data-topic="3" data-num="183" data-label="Q3.183" data-qtype="hotspot" data-most-voted="answer is correct. the code shows on screen should be dynamic format string. And it should show percentage and whole number. &quot;# of Customers&quot; will show whole number without thousand split(#), and others will show whole number with thousand split(#,###), &quot;Gross Margin %&quot; will show percentage.">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.183</span>
@@ -12541,7 +12637,7 @@
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942894_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/942894_1.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 2</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -12570,7 +12666,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n185-955732" data-topic="3" data-num="185" data-label="Q3.185" data-qtype="hotspot">
+<article class="question" id="q-dp-600-t3-n185-955732" data-topic="3" data-num="185" data-label="Q3.185" data-qtype="hotspot" data-most-voted="it is correct-ish; I would rather say DirectLake mode in the first option">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.185</span>
@@ -12592,7 +12688,7 @@
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955732_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
 </div>
-<div class="hotspot-widget"><p class="widget-note">HOTSPOT — select areas on the exhibit above. The correct hotspot coordinates are not published by ExamTopics.</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
 <div class="answer-shell">
 <div class="answer-locked">
 <div><strong>Answer hidden</strong><br><span>Reveal it only after you commit to your choice.</span></div>
@@ -12621,7 +12717,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n189-955736" data-topic="3" data-num="189" data-label="Q3.189" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n189-955736" data-topic="3" data-num="189" data-label="Q3.189" data-qtype="single" data-most-voted="C">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.189</span>
@@ -12685,7 +12781,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n195-955742" data-topic="3" data-num="195" data-label="Q3.195" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n195-955742" data-topic="3" data-num="195" data-label="Q3.195" data-qtype="single" data-most-voted="B">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.195</span>
@@ -12752,7 +12848,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n196-955743" data-topic="3" data-num="196" data-label="Q3.196" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n196-955743" data-topic="3" data-num="196" data-label="Q3.196" data-qtype="single" data-most-voted="E">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.196</span>
@@ -12820,7 +12916,7 @@
 <div class="answer-tools"><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
 </div></div>
 </article>
-<article class="question" id="q-dp-600-t3-n216-999487" data-topic="3" data-num="216" data-label="Q3.216" data-qtype="single">
+<article class="question" id="q-dp-600-t3-n216-999487" data-topic="3" data-num="216" data-label="Q3.216" data-qtype="single" data-most-voted="">
 <div class="q-header">
 <div class="q-title">
 <span class="q-num">Q3.216</span>
@@ -13014,12 +13110,18 @@
             status.textContent = 'HOTSPOT answer not available from ExamTopics.';
           }
         } else if (q.querySelector('.dragdrop-widget')) {
+          // For drag-drop, surface the most-voted answer text on reveal so the
+          // learner can compare their placements to the community consensus.
+          const mostVoted = q.dataset.mostVoted || '';
           if (!revealed) {
             status.className = 'answer-status empty';
-            status.textContent = 'Use the exhibit above to plan the correct ordering.';
+            status.textContent = 'Drag items onto targets above, then reveal to compare against the community answer.';
+          } else if (mostVoted) {
+            status.className = 'answer-status';
+            status.textContent = `Community answer: ${mostVoted}`;
           } else {
             status.className = 'answer-status empty';
-            status.textContent = 'DRAG DROP answer not available from ExamTopics.';
+            status.textContent = 'DRAG DROP answer not available from ExamTopics — your placements are practice-only.';
           }
         } else {
           if (!revealed) {
@@ -13148,27 +13250,202 @@
       localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections));
     }
 
-    function attachDragdropChips(q) {
-      const chips = q.querySelectorAll('.dragdrop-chip');
-      if (!chips.length) return;
-      const saved = new Set(dragdropSelections[q.id] || []);
-      chips.forEach((chip, idx) => {
-        chip.addEventListener('click', () => {
+    function attachDragdropWidget(q) {
+      const widget = q.querySelector('.dragdrop-widget');
+      if (!widget) return;
+      // Display-only fallback: no interactive widget, nothing to wire up.
+      if (!widget.classList.contains('dragdrop-widget-interactive')) return;
+
+      const chipsContainer = widget.querySelector('.dragdrop-source .dragdrop-chips');
+      const targetsContainer = widget.querySelector('.dragdrop-targets');
+      const chips = chipsContainer ? Array.from(chipsContainer.querySelectorAll('.dragdrop-chip')) : [];
+      const targets = targetsContainer ? Array.from(targetsContainer.querySelectorAll('.dragdrop-target')) : [];
+      if (!chips.length || !targets.length) return;
+
+      // Load saved placements: { targetIdx: chipIdx }
+      const saved = dragdropSelections[q.id] || {};
+      let activeChip = null; // for click-to-place
+
+      function persist() {
+        dragdropSelections[q.id] = saved;
+        saveDragdrop();
+      }
+
+      function placedChipIdx(targetIdx) {
+        return Object.prototype.hasOwnProperty.call(saved, String(targetIdx))
+          ? saved[String(targetIdx)]
+          : undefined;
+      }
+
+      function placeChip(targetIdx, chipIdx) {
+        // If the same chip is already on this target, do nothing.
+        if (placedChipIdx(targetIdx) === chipIdx) return;
+        // Remove the chip from any other target first.
+        for (const [tIdx, cIdx] of Object.entries(saved)) {
+          if (Number(cIdx) === Number(chipIdx)) delete saved[tIdx];
+        }
+        saved[String(targetIdx)] = Number(chipIdx);
+        render();
+        persist();
+      }
+
+      function clearTarget(targetIdx) {
+        if (placedChipIdx(targetIdx) === undefined) return;
+        delete saved[String(targetIdx)];
+        render();
+        persist();
+      }
+
+      function clearAll() {
+        for (const k of Object.keys(saved)) delete saved[k];
+        render();
+        persist();
+      }
+
+      function render() {
+        // Reset chips
+        chips.forEach((chip) => {
+          chip.classList.remove('placed', 'selected', 'dragging');
+          chip.setAttribute('aria-grabbed', 'false');
+        });
+        // Mark placed chips and update target text
+        const placedChipIdxs = new Set(Object.values(saved).map(Number));
+        chips.forEach((chip) => {
+          if (placedChipIdxs.has(Number(chip.dataset.value))) {
+            chip.classList.add('placed');
+          }
+        });
+        targets.forEach((target) => {
+          const tIdx = Number(target.dataset.target);
+          const labelEl = target.querySelector('.dragdrop-target-label');
+          const chipIdx = placedChipIdx(tIdx);
+          if (chipIdx !== undefined) {
+            const chip = chips.find(c => Number(c.dataset.value) === Number(chipIdx));
+            if (chip) {
+              labelEl.textContent = chip.dataset.label || chip.textContent.trim();
+              target.classList.add('filled');
+              target.setAttribute('aria-label', `Target ${tIdx + 1}: ${labelEl.textContent}`);
+            }
+          } else {
+            labelEl.textContent = target.dataset.placeholder || '';
+            target.classList.remove('filled');
+            target.setAttribute('aria-label', `Target ${tIdx + 1}: empty`);
+          }
+        });
+      }
+
+      // Initial render from saved state
+      render();
+
+      // ----- Source chip handlers -----
+      chips.forEach((chip) => {
+        const chipIdx = Number(chip.dataset.value);
+
+        // Click: toggle "active" then click a target to drop.
+        chip.addEventListener('click', (ev) => {
           if (q.classList.contains('revealed')) return;
-          const isSelected = chip.classList.toggle('selected');
-          if (isSelected) saved.add(idx); else saved.delete(idx);
-          dragdropSelections[q.id] = Array.from(saved);
-          saveDragdrop();
+          if (chip.classList.contains('placed')) {
+            // Placed chips: clicking moves them back to the source pool.
+            for (const [tIdx, cIdx] of Object.entries(saved)) {
+              if (Number(cIdx) === chipIdx) delete saved[tIdx];
+            }
+            render();
+            persist();
+            return;
+          }
+          // Toggle selection
+          if (activeChip === chip) {
+            activeChip = null;
+            chip.classList.remove('selected');
+          } else {
+            chips.forEach(c => c.classList.remove('selected'));
+            activeChip = chip;
+            chip.classList.add('selected');
+          }
         });
-        chip.addEventListener('dragstart', e => {
-          e.dataTransfer.setData('text/plain', String(idx));
+
+        // HTML5 drag-and-drop
+        chip.addEventListener('dragstart', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.dataTransfer.setData('text/plain', String(chipIdx));
+          e.dataTransfer.effectAllowed = 'move';
+          chip.classList.add('dragging');
         });
-        if (saved.has(idx)) chip.classList.add('selected');
+        chip.addEventListener('dragend', () => {
+          chip.classList.remove('dragging');
+        });
+        chip.addEventListener('keydown', (e) => {
+          if (q.classList.contains('revealed')) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            chip.click();
+          }
+        });
+      });
+
+      // ----- Target handlers -----
+      targets.forEach((target) => {
+        const tIdx = Number(target.dataset.target);
+
+        target.addEventListener('click', (ev) => {
+          if (q.classList.contains('revealed')) return;
+          // The clear button handles its own click.
+          if (ev.target.closest('.dragdrop-clear')) return;
+          if (activeChip) {
+            placeChip(tIdx, Number(activeChip.dataset.value));
+            activeChip.classList.remove('selected');
+            activeChip = null;
+          } else if (placedChipIdx(tIdx) !== undefined) {
+            clearTarget(tIdx);
+          }
+        });
+
+        target.addEventListener('dragover', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          target.classList.add('drop-hover');
+        });
+        target.addEventListener('dragleave', () => {
+          target.classList.remove('drop-hover');
+        });
+        target.addEventListener('drop', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          target.classList.remove('drop-hover');
+          const data = e.dataTransfer.getData('text/plain');
+          const chipIdx = Number(data);
+          if (Number.isFinite(chipIdx)) placeChip(tIdx, chipIdx);
+        });
+
+        // Clear button
+        const clearBtn = target.querySelector('.dragdrop-clear');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (q.classList.contains('revealed')) return;
+            clearTarget(Number(clearBtn.dataset.target));
+          });
+        }
+      });
+
+      // Reset button (added dynamically if any chip is placed)
+      let resetBtn = widget.querySelector('.dragdrop-reset');
+      if (!resetBtn) {
+        resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'secondary dragdrop-reset';
+        resetBtn.textContent = 'Reset placements';
+        widget.appendChild(resetBtn);
+      }
+      resetBtn.addEventListener('click', () => {
+        if (q.classList.contains('revealed')) return;
+        clearAll();
       });
     }
 
     questions.forEach(q => {
-      attachDragdropChips(q);
+      attachDragdropWidget(q);
     });
 
     let currentIndex = 0;

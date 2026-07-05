@@ -852,7 +852,7 @@ HTML_HEAD = """<!DOCTYPE html>
     .exhibit-missing-title { font-weight: 800; margin-bottom: 0.35rem; }
     .exhibit-missing a { color: var(--accent-ink); text-decoration: underline; }
 
-    .hotspot-widget, .dragdrop-widget, .other-widget {
+    .dragdrop-widget, .other-widget {
       margin-top: 1rem;
       padding: 1rem;
       border: 1px dashed var(--border-strong);
@@ -860,7 +860,46 @@ HTML_HEAD = """<!DOCTYPE html>
       background: color-mix(in srgb, var(--surface-2) 60%, transparent);
     }
     .widget-note { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem; }
-    .dragdrop-chips { list-style: none; padding: 0; margin: 0 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .dragdrop-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      margin-top: 0.75rem;
+    }
+    @media (max-width: 720px) {
+      .dragdrop-board { grid-template-columns: 1fr; }
+    }
+    .dragdrop-column {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.85rem;
+      background: rgb(var(--surface-rgb) / 0.65);
+    }
+    .dragdrop-column-title {
+      margin: 0 0 0.6rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 800;
+    }
+    .dragdrop-chips {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 3rem;
+    }
+    .dragdrop-targets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
     .dragdrop-chip {
       cursor: grab;
       user-select: none;
@@ -870,9 +909,66 @@ HTML_HEAD = """<!DOCTYPE html>
       border: 1px solid var(--border);
       font-weight: 700;
       font-size: 0.86rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background-color 120ms ease, border-color 120ms ease, transform 120ms ease;
     }
     .dragdrop-chip:active { cursor: grabbing; }
-    .dragdrop-chip.selected { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+    .dragdrop-chip.selected {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      border-color: var(--accent);
+    }
+    .dragdrop-chip.placed {
+      opacity: 0.55;
+      cursor: default;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border-style: dashed;
+    }
+    .dragdrop-chip.dragging { opacity: 0.4; transform: scale(0.97); }
+
+    .dragdrop-target {
+      position: relative;
+      padding: 0.6rem 2.2rem 0.6rem 0.85rem;
+      border-radius: 12px;
+      border: 1px dashed var(--border-strong);
+      background: rgb(var(--surface-rgb) / 0.85);
+      color: var(--text-secondary);
+      min-height: 2.4rem;
+      font-size: 0.9rem;
+      transition: background-color 120ms ease, border-color 120ms ease;
+    }
+    .dragdrop-target.drop-hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .dragdrop-target.filled {
+      color: var(--text);
+      border-style: solid;
+      background: rgb(var(--surface-rgb));
+      font-weight: 700;
+    }
+    .dragdrop-target-label { display: inline-block; max-width: 100%; }
+    .dragdrop-target .dragdrop-clear {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      transform: translateY(-50%);
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: none;
+    }
+    .dragdrop-target.filled .dragdrop-clear { display: inline-flex; align-items: center; justify-content: center; }
+    .dragdrop-target.filled .dragdrop-clear:hover { background: var(--danger-bg); color: var(--danger-ink); border-color: var(--danger); }
 
     .answer-card.answer-missing { background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
     .answer-card.answer-missing .label { color: var(--warning-ink); }
@@ -1036,12 +1132,18 @@ HTML_TAIL = """
             status.textContent = 'HOTSPOT answer not available from ExamTopics.';
           }
         } else if (q.querySelector('.dragdrop-widget')) {
+          // For drag-drop, surface the most-voted answer text on reveal so the
+          // learner can compare their placements to the community consensus.
+          const mostVoted = q.dataset.mostVoted || '';
           if (!revealed) {
             status.className = 'answer-status empty';
-            status.textContent = 'Use the exhibit above to plan the correct ordering.';
+            status.textContent = 'Drag items onto targets above, then reveal to compare against the community answer.';
+          } else if (mostVoted) {
+            status.className = 'answer-status';
+            status.textContent = `Community answer: ${mostVoted}`;
           } else {
             status.className = 'answer-status empty';
-            status.textContent = 'DRAG DROP answer not available from ExamTopics.';
+            status.textContent = 'DRAG DROP answer not available from ExamTopics — your placements are practice-only.';
           }
         } else {
           if (!revealed) {
@@ -1170,27 +1272,202 @@ HTML_TAIL = """
       localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections));
     }
 
-    function attachDragdropChips(q) {
-      const chips = q.querySelectorAll('.dragdrop-chip');
-      if (!chips.length) return;
-      const saved = new Set(dragdropSelections[q.id] || []);
-      chips.forEach((chip, idx) => {
-        chip.addEventListener('click', () => {
+    function attachDragdropWidget(q) {
+      const widget = q.querySelector('.dragdrop-widget');
+      if (!widget) return;
+      // Display-only fallback: no interactive widget, nothing to wire up.
+      if (!widget.classList.contains('dragdrop-widget-interactive')) return;
+
+      const chipsContainer = widget.querySelector('.dragdrop-source .dragdrop-chips');
+      const targetsContainer = widget.querySelector('.dragdrop-targets');
+      const chips = chipsContainer ? Array.from(chipsContainer.querySelectorAll('.dragdrop-chip')) : [];
+      const targets = targetsContainer ? Array.from(targetsContainer.querySelectorAll('.dragdrop-target')) : [];
+      if (!chips.length || !targets.length) return;
+
+      // Load saved placements: { targetIdx: chipIdx }
+      const saved = dragdropSelections[q.id] || {};
+      let activeChip = null; // for click-to-place
+
+      function persist() {
+        dragdropSelections[q.id] = saved;
+        saveDragdrop();
+      }
+
+      function placedChipIdx(targetIdx) {
+        return Object.prototype.hasOwnProperty.call(saved, String(targetIdx))
+          ? saved[String(targetIdx)]
+          : undefined;
+      }
+
+      function placeChip(targetIdx, chipIdx) {
+        // If the same chip is already on this target, do nothing.
+        if (placedChipIdx(targetIdx) === chipIdx) return;
+        // Remove the chip from any other target first.
+        for (const [tIdx, cIdx] of Object.entries(saved)) {
+          if (Number(cIdx) === Number(chipIdx)) delete saved[tIdx];
+        }
+        saved[String(targetIdx)] = Number(chipIdx);
+        render();
+        persist();
+      }
+
+      function clearTarget(targetIdx) {
+        if (placedChipIdx(targetIdx) === undefined) return;
+        delete saved[String(targetIdx)];
+        render();
+        persist();
+      }
+
+      function clearAll() {
+        for (const k of Object.keys(saved)) delete saved[k];
+        render();
+        persist();
+      }
+
+      function render() {
+        // Reset chips
+        chips.forEach((chip) => {
+          chip.classList.remove('placed', 'selected', 'dragging');
+          chip.setAttribute('aria-grabbed', 'false');
+        });
+        // Mark placed chips and update target text
+        const placedChipIdxs = new Set(Object.values(saved).map(Number));
+        chips.forEach((chip) => {
+          if (placedChipIdxs.has(Number(chip.dataset.value))) {
+            chip.classList.add('placed');
+          }
+        });
+        targets.forEach((target) => {
+          const tIdx = Number(target.dataset.target);
+          const labelEl = target.querySelector('.dragdrop-target-label');
+          const chipIdx = placedChipIdx(tIdx);
+          if (chipIdx !== undefined) {
+            const chip = chips.find(c => Number(c.dataset.value) === Number(chipIdx));
+            if (chip) {
+              labelEl.textContent = chip.dataset.label || chip.textContent.trim();
+              target.classList.add('filled');
+              target.setAttribute('aria-label', `Target ${tIdx + 1}: ${labelEl.textContent}`);
+            }
+          } else {
+            labelEl.textContent = target.dataset.placeholder || '';
+            target.classList.remove('filled');
+            target.setAttribute('aria-label', `Target ${tIdx + 1}: empty`);
+          }
+        });
+      }
+
+      // Initial render from saved state
+      render();
+
+      // ----- Source chip handlers -----
+      chips.forEach((chip) => {
+        const chipIdx = Number(chip.dataset.value);
+
+        // Click: toggle "active" then click a target to drop.
+        chip.addEventListener('click', (ev) => {
           if (q.classList.contains('revealed')) return;
-          const isSelected = chip.classList.toggle('selected');
-          if (isSelected) saved.add(idx); else saved.delete(idx);
-          dragdropSelections[q.id] = Array.from(saved);
-          saveDragdrop();
+          if (chip.classList.contains('placed')) {
+            // Placed chips: clicking moves them back to the source pool.
+            for (const [tIdx, cIdx] of Object.entries(saved)) {
+              if (Number(cIdx) === chipIdx) delete saved[tIdx];
+            }
+            render();
+            persist();
+            return;
+          }
+          // Toggle selection
+          if (activeChip === chip) {
+            activeChip = null;
+            chip.classList.remove('selected');
+          } else {
+            chips.forEach(c => c.classList.remove('selected'));
+            activeChip = chip;
+            chip.classList.add('selected');
+          }
         });
-        chip.addEventListener('dragstart', e => {
-          e.dataTransfer.setData('text/plain', String(idx));
+
+        // HTML5 drag-and-drop
+        chip.addEventListener('dragstart', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.dataTransfer.setData('text/plain', String(chipIdx));
+          e.dataTransfer.effectAllowed = 'move';
+          chip.classList.add('dragging');
         });
-        if (saved.has(idx)) chip.classList.add('selected');
+        chip.addEventListener('dragend', () => {
+          chip.classList.remove('dragging');
+        });
+        chip.addEventListener('keydown', (e) => {
+          if (q.classList.contains('revealed')) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            chip.click();
+          }
+        });
+      });
+
+      // ----- Target handlers -----
+      targets.forEach((target) => {
+        const tIdx = Number(target.dataset.target);
+
+        target.addEventListener('click', (ev) => {
+          if (q.classList.contains('revealed')) return;
+          // The clear button handles its own click.
+          if (ev.target.closest('.dragdrop-clear')) return;
+          if (activeChip) {
+            placeChip(tIdx, Number(activeChip.dataset.value));
+            activeChip.classList.remove('selected');
+            activeChip = null;
+          } else if (placedChipIdx(tIdx) !== undefined) {
+            clearTarget(tIdx);
+          }
+        });
+
+        target.addEventListener('dragover', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          target.classList.add('drop-hover');
+        });
+        target.addEventListener('dragleave', () => {
+          target.classList.remove('drop-hover');
+        });
+        target.addEventListener('drop', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          target.classList.remove('drop-hover');
+          const data = e.dataTransfer.getData('text/plain');
+          const chipIdx = Number(data);
+          if (Number.isFinite(chipIdx)) placeChip(tIdx, chipIdx);
+        });
+
+        // Clear button
+        const clearBtn = target.querySelector('.dragdrop-clear');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (q.classList.contains('revealed')) return;
+            clearTarget(Number(clearBtn.dataset.target));
+          });
+        }
+      });
+
+      // Reset button (added dynamically if any chip is placed)
+      let resetBtn = widget.querySelector('.dragdrop-reset');
+      if (!resetBtn) {
+        resetBtn = document.createElement('button');
+        resetBtn.type = 'button';
+        resetBtn.className = 'secondary dragdrop-reset';
+        resetBtn.textContent = 'Reset placements';
+        widget.appendChild(resetBtn);
+      }
+      resetBtn.addEventListener('click', () => {
+        if (q.classList.contains('revealed')) return;
+        clearAll();
       });
     }
 
     questions.forEach(q => {
-      attachDragdropChips(q);
+      attachDragdropWidget(q);
     });
 
     let currentIndex = 0;
@@ -1474,49 +1751,96 @@ def render_exhibits_block(question: dict, q_label: str) -> str:
     return "\n".join(parts)
 
 
-def render_hotspot_widget(question: dict, q_label: str) -> str:
-    """Render the HOTSPOT note box. The exhibit images themselves are already
-    shown by ``render_exhibits_block``; this widget only surfaces the
-    practice-direction message and the answer-status span."""
+def render_dragdrop_widget(question: dict, q_label: str) -> str:
+    """Render the DRAG DROP practice widget.
+
+    When ``drag_drop_items`` and ``drag_drop_targets`` are populated in the
+    question data (the backfill extracted them from the live page), we render
+    a functional two-column widget: a source pool of draggable chips and a
+    column of drop targets. JS (see ``HTML_TAIL``) makes the chips draggable
+    / click-to-place and persists placements in localStorage.
+
+    When those fields are missing or empty, we fall back to a display-only
+    note pointing the learner at the exhibit above.
+    """
+    items = question.get("drag_drop_items") or []
+    targets = question.get("drag_drop_targets") or []
+    error = question.get("drag_drop_error") or ""
+    interactive = bool(items) and bool(targets)
+
+    if not interactive:
+        note = (
+            "DRAG DROP — use the exhibit above to reason about the correct "
+            "order/assignment. Interactive drag-and-drop grading is not "
+            "available for this question."
+        )
+        if error:
+            note += f" ({error})"
+        return (
+            '<div class="dragdrop-widget dragdrop-widget-display">'
+            f'<p class="widget-note">{html.escape(note)}</p>'
+            '<div class="answer-status" aria-live="polite"></div>'
+            '</div>'
+        )
+
+    # Functional widget: sources on the left, targets on the right.
+    source_chips: list[str] = []
+    for idx, it in enumerate(items):
+        # Accept either {"label": ..., "html": ...} or a plain string.
+        if isinstance(it, dict):
+            label = str(it.get("label") or it.get("text") or it.get("html") or "")
+            label = label.strip()
+            display = html.escape(label) if label else f"Item {idx + 1}"
+        else:
+            display = html.escape(str(it).strip())
+        source_chips.append(
+            f'<li class="dragdrop-chip" draggable="true" tabindex="0" '
+            f'data-value="{html.escape(str(idx), quote=True)}" '
+            f'data-label="{html.escape(display, quote=True)}">'
+            f'<span class="dragdrop-chip-label">{display}</span></li>'
+        )
+    target_zones: list[str] = []
+    for tidx, target in enumerate(targets):
+        if isinstance(target, dict):
+            placeholder = str(
+                target.get("placeholder")
+                or target.get("label")
+                or target.get("text")
+                or target.get("html")
+                or f"Drop here {tidx + 1}"
+            ).strip()
+        else:
+            placeholder = str(target).strip() or f"Drop here {tidx + 1}"
+        target_zones.append(
+            f'<li class="dragdrop-target" data-target="{tidx}" '
+            f'data-placeholder="{html.escape(placeholder, quote=True)}">'
+            f'<span class="dragdrop-target-label">{html.escape(placeholder)}</span>'
+            f'<button type="button" class="dragdrop-clear" '
+            f'data-target="{tidx}" aria-label="Clear drop {tidx + 1}">×</button>'
+            f'</li>'
+        )
+
     note = (
-        "HOTSPOT — select areas on the exhibit above. "
-        "The correct hotspot coordinates are not published by ExamTopics."
+        "DRAG DROP — drag each item from the source pool onto a target slot, "
+        "or click an item then click a target. ExamTopics does not publish the "
+        "correct mapping, so this is practice-only and not graded."
     )
     return (
-        '<div class="hotspot-widget">'
+        '<div class="dragdrop-widget dragdrop-widget-interactive" '
+        'data-dragdrop-interactive="true">'
         f'<p class="widget-note">{html.escape(note)}</p>'
+        '<div class="dragdrop-board">'
+        '<div class="dragdrop-column dragdrop-source">'
+        '<h4 class="dragdrop-column-title">Source items</h4>'
+        f'<ul class="dragdrop-chips" data-dragdrop-chips>{"".join(source_chips)}</ul>'
+        '</div>'
+        '<div class="dragdrop-column dragdrop-targets">'
+        '<h4 class="dragdrop-column-title">Target slots</h4>'
+        f'<ul class="dragdrop-targets" data-dragdrop-targets>{"".join(target_zones)}</ul>'
+        '</div>'
+        '</div>'
         '<div class="answer-status" aria-live="polite"></div>'
         '</div>'
-    )
-
-
-def render_dragdrop_widget(question: dict, q_label: str) -> str:
-    """Render the DRAG DROP practice widget — informational note plus a
-    simple chip list (if exhibits provided item labels) where JS can record
-    clicks/ordering for practice."""
-    exhibits = question.get("exhibits") or []
-    chip_html = ""
-    items = question.get("drag_drop_items") or []
-    if items:
-        chip_html = '<ul class="dragdrop-chips" data-dragdrop-chips>'
-        for it in items:
-            label = html.escape(str(it.get("label") or it.get("text") or it))
-            chip_html += f'<li class="dragdrop-chip" draggable="true" tabindex="0">{label}</li>'
-        chip_html += "</ul>"
-    elif exhibits and (exhibits[0].get("kind") or "").lower() == "image":
-        # Just point the learner at the exhibit image; nothing to enumerate.
-        chip_html = ""
-    note = (
-        "DRAG DROP — use the exhibit above to reason about the correct "
-        "order/assignment. Interactive drag-and-drop grading is not available "
-        "because ExamTopics does not preserve the original targets."
-    )
-    return (
-        '<div class="dragdrop-widget">'
-        f'<p class="widget-note">{html.escape(note)}</p>'
-        + chip_html
-        + '<div class="answer-status" aria-live="polite"></div>'
-        + '</div>'
     )
 
 
@@ -1630,7 +1954,8 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
     label_text = f"Q{topic}.{num}"
 
     active_cls = " active" if is_active else ""
-    parts.append(f'<article class="question{active_cls}" id="{anchor}" data-topic="{topic}" data-num="{num}" data-label="{label_text}" data-qtype="{html.escape(q_type)}">')
+    most_voted_attr = html.escape(str(q.get("most_voted_answer") or ""))
+    parts.append(f'<article class="question{active_cls}" id="{anchor}" data-topic="{topic}" data-num="{num}" data-label="{label_text}" data-qtype="{html.escape(q_type)}" data-most-voted="{most_voted_attr}">')
     parts.append('<div class="q-header">')
     parts.append('<div class="q-title">')
     parts.append(f'<span class="q-num">{label_text}</span>')
@@ -1684,10 +2009,17 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
         parts.append('<div class="answer-status" aria-live="polite"></div>')
     else:
         # Hotspot / drag-drop / unknown — no multiple-choice choices available.
-        if q_type == "hotspot":
-            parts.append(render_hotspot_widget(q, label_text))
-        elif q_type == "drag_drop":
+        # The drag-drop and other widgets include their own .answer-status
+        # span. HOTSPOT intentionally renders nothing in this slot: the
+        # exhibit images are already shown above, and the JS surfaces a
+        # status message via the answer-status element we add right below.
+        if q_type == "drag_drop":
             parts.append(render_dragdrop_widget(q, label_text))
+        elif q_type == "hotspot":
+            # HOTSPOT: no practice widget — the exhibits speak for themselves.
+            # Add the answer-status span so the JS can still surface the
+            # "no answer available from ExamTopics" message after reveal.
+            parts.append('<div class="answer-status answer-status-hotspot" aria-live="polite"></div>')
         else:
             parts.append(render_other_widget(q, label_text))
 
