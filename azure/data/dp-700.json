@@ -2801,7 +2801,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "ROLLUP will add one extra Total row that is not requested in the question, so the only correct answer is grouping sets here.",
     "comments": [
       {
         "comment_id": "1345362",
@@ -3149,7 +3149,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935971_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1353692",
+      "score": 102.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    }
   },
   {
     "discussion_id": "152700",
@@ -4121,7 +4127,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 -> NO, only metadata are deployed | 2 -> NO, dataflow GEN1 are not supported by deployment pipelines | 3 -> NO, Refresh schedules are semantic model object attributes that are not deployed by deployment pipelines",
     "comments": [
       {
         "comment_id": "1335389",
@@ -4450,7 +4456,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935976_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1578408",
+      "score": 102.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    }
   },
   {
     "discussion_id": "152704",
@@ -7090,7 +7102,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Notebook 1 runs at 8AM, this can be scheduled via Pipeline (Pipeline1), so the configuration of scheduling is in Pipeline 1. Because Model1 refreshes on completion of Notebook1, it should be added to Pipeline 1 after Notebook 1. Notebook 2 is separate to the Pipeline 1 sequence, it requires a trigger (file saved in Blob) from real-time hub.",
     "comments": [
       {
         "comment_id": "1334244",
@@ -7218,7 +7230,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935984_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1345315",
+      "score": 55.0,
+      "pattern": "highly_voted",
+      "upvotes": 10
+    }
   },
   {
     "discussion_id": "152871",
@@ -8459,7 +8477,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Entity1: core organization entity --> Master Data | Entity2: meets organizational standards --> Certified | Entity3: ready for sharing and reuse --> Promoted | Entity4: Power BI dashboard, executive-level decision making --> Cannot be endorsed, The reason is Types of items that can be endorsed | All Fabric items and Power BI items except Power BI dashboards can be promoted or certified.",
     "comments": [
       {
         "comment_id": "1362552",
@@ -8678,7 +8696,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935988_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1362552",
+      "score": 177.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 55
+    }
   },
   {
     "discussion_id": "155288",
@@ -8690,7 +8714,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Domain permissions = metadata + catalog governance | Workspace permissions = item-level access | These are completely separate. | answer is NO / YES / NO",
     "comments": [
       {
         "comment_id": "1357011",
@@ -8958,7 +8982,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935989_2.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1698816",
+      "score": 102.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "153655",
@@ -9318,7 +9348,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "I tried this in the Fabric. | First you should toggle ON \"Set the default environment\". | Then you can create a new environment and set it as default. | And only after that you can install additional libraries (if needed). | So, the answer is correct.",
     "comments": [
       {
         "comment_id": "1349047",
@@ -9471,7 +9501,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935992_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1611916",
+      "score": 101.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    }
   },
   {
     "discussion_id": "153656",
@@ -9905,7 +9941,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Provided answer is WRONG. | https://learn.microsoft.com/en-us/fabric/data-warehouse/table-constraints | SQL analytics endpoint and Warehouse in Microsoft Fabric support these table constraints: | | PRIMARY KEY is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | FOREIGN KEY is only supported when NOT ENFORCED is used. | | UNIQUE constraint is only supported when NONCLUSTERED and NOT ENFORCED are both used. | | SQL analytics endpoint and Warehouse don't support default const...",
     "comments": [
       {
         "comment_id": "1343057",
@@ -10132,7 +10168,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/935996_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1349099",
+      "score": 103.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 7
+    }
   },
   {
     "discussion_id": "153705",
@@ -11775,7 +11817,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct. | - USER_NAME is compared the value of a column to the user currently running the query. | If they match, the user can see the row; if not, they can’t. | - SCHEMABINDING - used in security policy function to prevent structural changes on the tables that are bound to the policy | - TableName on which the security policy function should be applied",
     "comments": [
       {
         "comment_id": "1558854",
@@ -11871,7 +11913,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943818_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1558854",
+      "score": 156.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 13
+    }
   },
   {
     "discussion_id": "302427",
@@ -12315,7 +12363,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Correct answer should be: | | \"notebooks\" defines the list of notebook execution steps. | | \"dependencies\" specifies that Load_Orders depends on Load_Salesperson. | | mssparkutils.notebook.runMultiple() is the correct API call to execute a DAG of notebooks in Fabric. | | In Azure Data Factory and Synapse Pipelines, workflows use activities ...not in Fabric",
     "comments": [
       {
         "comment_id": "1558864",
@@ -12477,7 +12525,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943822_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1563722",
+      "score": 101.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    }
   },
   {
     "discussion_id": "302432",
@@ -12489,7 +12543,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct: ALTER - ALTER - PARTIAL",
     "comments": [
       {
         "comment_id": "1558866",
@@ -12551,7 +12605,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943823_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1578710",
+      "score": 103.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 6
+    }
   },
   {
     "discussion_id": "302632",
@@ -12563,7 +12623,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct: | Lookup Schema and Table | output.value",
     "comments": [
       {
         "comment_id": "1561086",
@@ -12667,7 +12727,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943824_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1578709",
+      "score": 102.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    }
   },
   {
     "discussion_id": "302435",
@@ -12679,7 +12745,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "first answer is default() for two reason: random is only for numbers and default for a date is 1900-01-01",
     "comments": [
       {
         "comment_id": "1559243",
@@ -12821,7 +12887,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943825_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1559246",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "302436",
@@ -14297,7 +14369,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "answer should be GRANT SELECT ON Customers(CustomerID, FirstName, LastName, Phone) TO [ | [email protected] | ] | | https://learn.microsoft.com/en-us/fabric/data-warehouse/column-level-security",
     "comments": [
       {
         "comment_id": "1560463",
@@ -14392,7 +14464,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943835_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1560463",
+      "score": 74.0,
+      "pattern": "highly_voted",
+      "upvotes": 48
+    }
   },
   {
     "discussion_id": "304638",
@@ -15181,7 +15259,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Select test stage | From deploy from select Development | Select pipeline1 | Deploy",
     "comments": [
       {
         "comment_id": "1710047",
@@ -15241,7 +15319,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/979604_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1710047",
+      "score": 59.0,
+      "pattern": "highly_voted",
+      "upvotes": 18
+    }
   },
   {
     "discussion_id": "407086",
@@ -15253,7 +15337,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "To Group1: Assign the Admin role for Workspace1 | To Group2: Configure only item security for Workspace2 | To User1: Assign the Contributor role for Workspace2 and the Viewer role for Workspace4 | | In Microsoft Fabric, only the Admin (and Member) workspace role can manage workspace membership . Since Member is not an option and Contributor/Viewer cannot add users, Admin is required.",
     "comments": [
       {
         "comment_id": "1751770",
@@ -15302,7 +15386,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/995011_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1751770",
+      "score": 53.0,
+      "pattern": "highly_voted",
+      "upvotes": 6
+    }
   },
   {
     "discussion_id": "407087",
@@ -15737,7 +15827,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Environment for Notebook1: A serverless Spark environment | Environment for Notebook2: A custom Spark pool that has multiple nodes",
     "comments": [
       {
         "comment_id": "1752951",
@@ -15796,7 +15886,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/995017_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1752951",
+      "score": 101.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "407121",
@@ -16094,7 +16190,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Silver: extensive datacleansing is related to MAR1 data, for POS1 the transformations are much simpeler (filter products where IsActive=1 etc) -> Dataflow Gen2.",
     "comments": [
       {
         "comment_id": "1346232",
@@ -16236,7 +16332,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936004_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1358668",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "153711",
@@ -16630,7 +16732,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "\"Some **product categories** and **subcategories** are NOT assigned to any product. They are NOT analytically relevant and must be omitted from the product dimension in the gold layer.\" ==> Only categories & subcategories that are not assigned to any products are irrelevant ==> there is no info to filter irrelevant products, so we should keep all products since they are all relevant ==> LEFT OUTER JOIN for the first join ==> second one is correct - INNER JOIN because we want to keep only cate...",
     "comments": [
       {
         "comment_id": "1341700",
@@ -16838,7 +16940,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936006_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1710225",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "155366",
@@ -17017,7 +17125,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answer is incorrect since the syntax for CAST is different, this is CONVERT syntax. So the correct answer is: CONVERT, LEFT OUTER JOIN, HAVING",
     "comments": [
       {
         "comment_id": "1342053",
@@ -17244,7 +17352,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936008_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1568598",
+      "score": 102.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    }
   },
   {
     "discussion_id": "155368",
@@ -17256,7 +17370,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answer is correct. The question states that eventstream already exists and uses the lakehouse as destination. The question also states that the rows need to be batch ingested. Thus 1) Dataflow and 2) Filter activity are the best in this situation",
     "comments": [
       {
         "comment_id": "1346373",
@@ -17464,7 +17578,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936009_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1353421",
+      "score": 155.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 10
+    }
   },
   {
     "discussion_id": "153727",
@@ -17768,7 +17888,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "No No Yes. | If anything goes wrong writing the existing table or when writing a new table (.targettable) the merge will not be executed.",
     "comments": [
       {
         "comment_id": "1348600",
@@ -17896,7 +18016,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936012_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1348600",
+      "score": 61.5,
+      "pattern": "highly_voted",
+      "upvotes": 23
+    }
   },
   {
     "discussion_id": "154783",
@@ -17908,7 +18034,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Of course that's not going to happen. Each order is linked to a customer (o.CustomerId = c.CustomerId). And new customer and old customer has different CustomerId value. | The answer is: >= and <=",
     "comments": [
       {
         "comment_id": "1346383",
@@ -18028,7 +18154,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936013_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1361565",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "152972",
@@ -18621,7 +18753,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "First: try_cast(item_name as varchar(20)) | Second: convert(varchar, purchase_date, 7) | | Explanation: | I used pure SQL for testing, I assume it's very similar here, if not the same... | | When I execute the following commands on the SQL database, | SELECT CONVERT(VARCHAR, GETDATE(), 7) AS PurchaseDate | SELECT FORMAT(GETDATE(), 'MMM dd, yy') AS PurchaseDate | I get this - both of commands give the same result: | Oct 10, 25 | | The other two give the following result: | SELECT CONVERT(VARCH...",
     "comments": [
       {
         "comment_id": "1357615",
@@ -18750,7 +18882,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936017_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1616215",
+      "score": 101.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    }
   },
   {
     "discussion_id": "153840",
@@ -19714,7 +19852,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The correct answers are: | Denormalized into a single product dimension table | The product name and the date | The second one is correct because when you join with the fact table, you generally use business keys to decouple from the surrogate key (SK). | The surrogate key is used in the semantic model to create relationships.",
     "comments": [
       {
         "comment_id": "1559401",
@@ -19834,7 +19972,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943838_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1699820",
+      "score": 100.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
+    }
   },
   {
     "discussion_id": "302461",
@@ -19846,7 +19990,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "T1 -> Dataflow Gen2 dataflow; That's just normal low/no code configuration. So checks's out | T2 -> PySpark/Python: Notebooks | T3 -> Focus on moving data (Datapipeline)",
     "comments": [
       {
         "comment_id": "1565780",
@@ -19933,7 +20077,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943839_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1574255",
+      "score": 152.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "302541",
@@ -19945,7 +20095,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Dataset1: | Will be added to Fabric with a unique primary key (auto-incrementing). | Answer: Dataflow Gen2 dataflow | | Dataset2: | Contains semi-structured data, uses bulk data transfer, and requires custom visuals during transformation in development mode. | Answer: A notebook | | Dataset3: | Stored in a lakehouse, bulk loaded, and uses row-based windowing functions during transformation. | Answer: A T-SQL statement",
     "comments": [
       {
         "comment_id": "1573430",
@@ -20109,7 +20259,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943840_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1573430",
+      "score": 165.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 30
+    }
   },
   {
     "discussion_id": "302721",
@@ -20121,7 +20277,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "whenMatchedUpdate is used to update existing records — here, just LastModified. | | whenNotMatchedInsert handles inserting new records into the target from the source. | | whenNotMatchedBySourceUpdate is key for handling records that are no longer present in the source and meet a time-based condition (older than 7 days), marking them as \"inactive\".",
     "comments": [
       {
         "comment_id": "1562099",
@@ -20184,7 +20340,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943841_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1562099",
+      "score": 61.5,
+      "pattern": "highly_voted",
+      "upvotes": 23
+    }
   },
   {
     "discussion_id": "302715",
@@ -20196,7 +20358,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Correct: | | 1. First, get the metadata (to see what you need to create). A look up will do just fine. | 2. Add a foreach to loop over them, this is essential | 3. In the for each, add a copy activity",
     "comments": [
       {
         "comment_id": "1561640",
@@ -20289,7 +20451,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943842_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1574258",
+      "score": 102.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 4
+    }
   },
   {
     "discussion_id": "302463",
@@ -20493,7 +20661,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Yes, No, No are the correct answers.",
     "comments": [
       {
         "comment_id": "1562105",
@@ -20728,7 +20896,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943845_2.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1629391",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "302467",
@@ -21385,7 +21559,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answer is correct. | Will note that both Project and Extend can be used to rename columns. But Project will drop any unspecified columns. | Thus why extend needs to be used.",
     "comments": [
       {
         "comment_id": "1562111",
@@ -21502,7 +21676,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943852_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1609738",
+      "score": 101.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    }
   },
   {
     "discussion_id": "302502",
@@ -21514,7 +21694,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "This is such a tricky question. Usually, data from streaming source is not so big. If data size is smaller than 1MB => event stream however data size > 1 MB => Apache Spark structured streaming. Data pipeline doesn't support streaming.",
     "comments": [
       {
         "comment_id": "1578929",
@@ -21785,7 +21965,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943853_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1568692",
+      "score": 102.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "304593",
@@ -21797,7 +21983,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "So... it's very simple: | | \"The target table will always be overwritten.\" | -> No. Because it will only overwrite everything/create the table when it doesn't already exist. So it will TRY to get the delta table, and if it doesn't, then it will create the table. | | 2. The merge operation will always run. | -> No, this is basic python. \"In your code, any raised exceptions trigger the associated except clause. Note that where you have multiple except clauses, your program will run only the fir...",
     "comments": [
       {
         "comment_id": "1576992",
@@ -21879,7 +22065,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/949565_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1576992",
+      "score": 162.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 24
+    }
   },
   {
     "discussion_id": "304573",
@@ -22379,7 +22571,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "should be yes no yes. getitem(1) returns the second value, not the first",
     "comments": [
       {
         "comment_id": "1709249",
@@ -22469,7 +22661,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/979607_2.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1709249",
+      "score": 52.5,
+      "pattern": "highly_voted",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "389918",
@@ -22776,7 +22974,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Create new records → Incremental | The data file contains only changes since the last file (i.e. it's already a delta/incremental feed). For inserting new records, an incremental load simply appends the new rows from each file into Table1 — efficient and appropriate for a 2-billion-row table where you don't want to reload everything every 30 minutes. | Delete existing records → Snapshot | Deletions are the tricky part. With an incremental pattern, you only see what arrived — you can't easily...",
     "comments": [
       {
         "comment_id": "1751870",
@@ -22815,7 +23013,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/995020_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1751870",
+      "score": 52.5,
+      "pattern": "highly_voted",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "407124",
@@ -22894,7 +23098,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "I'm sorry, the provided answer is wrong. It should be queryinsights.frequently_run_queries as explained above.",
     "comments": [
       {
         "comment_id": "1341704",
@@ -23036,7 +23240,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936023_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1349335",
+      "score": 101.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    }
   },
   {
     "discussion_id": "153744",
@@ -23178,7 +23388,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The answers are correct! | row_cumsum | row_window_session",
     "comments": [
       {
         "comment_id": "1357585",
@@ -23273,7 +23483,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936025_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1357585",
+      "score": 59.0,
+      "pattern": "highly_voted",
+      "upvotes": 18
+    }
   },
   {
     "discussion_id": "154679",
@@ -23285,7 +23501,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "All the answers are wrong. The correct answers are no, yes, yes: | | datatable(Location:string, Company:string, UnitsSold:long) | [ | \"New York\", \"Contoso\", 300, | \"New York\", \"Litware\", 1000, | \"New York\", \"Relecloud\", 300, | \"New York\", \"Fabrikam\", 200, | \"Seattle\", \"Contoso\", 300, | \"Seattle\", \"Litware\", 100, | \"Seattle\", \"Fabrikam\", 100, | \"San Francisco\", \"Relecloud\", 500, | \"San Francisco\", \"Litware\", 500, | \"Washington DC\", \"Litware\", 300, | \"Washington DC\", \"Contoso\", 400 | ] | | sort...",
     "comments": [
       {
         "comment_id": "1341689",
@@ -23534,7 +23750,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936026_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1573487",
+      "score": 102.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "153754",
@@ -24380,7 +24602,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Runtime logs to find error details. | Data insights to get the total number of errors: | https://learn.microsoft.com/en-us/fabric/data-engineering/apache-spark-monitor-run-series",
     "comments": [
       {
         "comment_id": "1411247",
@@ -24511,7 +24733,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/936032_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1411247",
+      "score": 65.0,
+      "pattern": "highly_voted",
+      "upvotes": 30
+    }
   },
   {
     "discussion_id": "302562",
@@ -25273,7 +25501,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "In case you're doubting between Teams or Outlook, in the technical requirements is something like: \"If any step in populating the lakehouses fails, an email must be sent to the data engineers.\". | | On Fail is good. Just makes the most sense",
     "comments": [
       {
         "comment_id": "1575842",
@@ -25338,7 +25566,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/949568_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1576995",
+      "score": 52.5,
+      "pattern": "highly_voted",
+      "upvotes": 5
+    }
   },
   {
     "discussion_id": "304566",
