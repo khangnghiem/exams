@@ -11,6 +11,10 @@ __pycache__/
 # Downloaded exhibit media are now tracked so guides render out-of-the-box.
 # assets/exhibits/.gitkeep remains for directory structure.
 
+# Screenshot / CLI artifact files
+--full-page
+--*.png
+
 # Data backups / temp files
 data/*.bak
 data/*.tmp
