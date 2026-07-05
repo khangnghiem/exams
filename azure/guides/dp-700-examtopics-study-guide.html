@@ -536,6 +536,16 @@
     .choices input:checked + label .letter { color: var(--accent-soft); background: var(--accent-ink); border-color: var(--accent-ink); }
 
     .question.revealed .choices label { padding-right: 8.5rem; }
+    .choice-option {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
     .question.revealed .choices li.correct {
       background: color-mix(in srgb, var(--success-bg) 88%, var(--surface) 12%);
       border-color: var(--success);
@@ -612,7 +622,8 @@
     }
     .answer-status.empty { color: var(--muted); }
     .answer-status.correct,
-    .answer-status.incorrect {
+    .answer-status.incorrect,
+    .answer-status.partial {
       display: grid;
       grid-template-columns: auto 1fr;
       align-items: center;
@@ -620,7 +631,8 @@
       border: 1px solid transparent;
     }
     .answer-status.correct::before,
-    .answer-status.incorrect::before {
+    .answer-status.incorrect::before,
+    .answer-status.partial::before {
       display: inline-grid;
       place-items: center;
       width: 1.65rem;
@@ -646,6 +658,17 @@
       box-shadow: 0 12px 28px color-mix(in srgb, var(--danger) 18%, transparent);
     }
     .answer-status.incorrect::before { content: "✕"; color: var(--danger-bg); background: var(--danger-ink); }
+    .answer-status.partial {
+      color: var(--warning-ink);
+      background:
+        linear-gradient(135deg,
+          color-mix(in srgb, var(--warning-bg) 94%, var(--surface) 6%),
+          color-mix(in srgb, var(--warning-bg) 76%, var(--success-bg) 24%)
+        );
+      border-color: var(--warning);
+      box-shadow: 0 10px 22px color-mix(in srgb, var(--warning) 14%, transparent);
+    }
+    .answer-status.partial::before { content: "◐"; color: var(--warning-bg); background: var(--warning-ink); }
 
     .answer-shell { margin-top: 1rem; }
     .answer-locked {
@@ -1217,13 +1240,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.2 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace.<br>You have semi-structured data.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to read the data by using T-SQL, KQL, and Apache Spark. The data will only be written by using Spark.<br>What should you use to store the data?</div>
+<div class="q-prompt">You have a Fabric workspace.<br>You have semi-structured data.<br>You need to read the data by using T-SQL, KQL, and Apache Spark. The data will only be written by using Spark.<br>What should you use to store the data?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -1281,13 +1300,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.3 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.<br>You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1345,13 +1360,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.4 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.<br>You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1479,13 +1490,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.6 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named DW1. DW1 contains the following tables and columns.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create an output that presents the summarized values of all the order quantities by year and product. The results must include a summary of the order quantities at the year level for all the products.<br>How should you complete the code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named DW1. DW1 contains the following tables and columns.<br>You need to create an output that presents the summarized values of all the order quantities by year and product. The results must include a summary of the order quantities at the year level for all the products.<br>How should you complete the code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935971_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -1604,13 +1611,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.8 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a notebook named Notebook1.<br>In Workspace1, you create a new notebook named Notebook2.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that you can attach Notebook2 to the same Apache Spark session as Notebook1.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a notebook named Notebook1.<br>In Workspace1, you create a new notebook named Notebook2.<br>You need to ensure that you can attach Notebook2 to the same Apache Spark session as Notebook1.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -1744,13 +1747,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.10 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
+<div class="q-prompt">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).<br>You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1859,13 +1858,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.12 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric deployment pipeline that uses three workspaces named Dev, Test, and Prod.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to deploy an eventhouse as part of the deployment process.<br>What should you use to add the eventhouse to the deployment process?</div>
+<div class="q-prompt">You have a Fabric deployment pipeline that uses three workspaces named Dev, Test, and Prod.<br>You need to deploy an eventhouse as part of the deployment process.<br>What should you use to add the eventhouse to the deployment process?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1919,13 +1914,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.13 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a warehouse named Warehouse1.<br>You plan to deploy Warehouse1 to a new workspace named Workspace2.<br>As part of the deployment process, you need to verify whether Warehouse1 contains invalid references. The solution must minimize development effort.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a warehouse named Warehouse1.<br>You plan to deploy Warehouse1 to a new workspace named Workspace2.<br>As part of the deployment process, you need to verify whether Warehouse1 contains invalid references. The solution must minimize development effort.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1983,13 +1974,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.14 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a Real-Time Intelligence solution and an eventhouse.<br>Users report that from OneLake file explorer, they cannot see the data from the eventhouse.<br>You enable OneLake availability for the eventhouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What will be copied to OneLake?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a Real-Time Intelligence solution and an eventhouse.<br>Users report that from OneLake file explorer, they cannot see the data from the eventhouse.<br>You enable OneLake availability for the eventhouse.<br>What will be copied to OneLake?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2115,13 +2102,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.16 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Google Cloud Storage (GCS) container named storage1 that contains the files shown in the following table.<br>You have a Fabric workspace named Workspace1 that has the cache for shortcuts enabled. Workspace1 contains a lakehouse named Lakehouse1. Lakehouse1 has the shortcuts shown in the following table.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to read data from all the shortcuts.<br>Which shortcuts will retrieve data from the cache?</div>
+<div class="q-prompt">You have a Google Cloud Storage (GCS) container named storage1 that contains the files shown in the following table.<br>You have a Fabric workspace named Workspace1 that has the cache for shortcuts enabled. Workspace1 contains a lakehouse named Lakehouse1. Lakehouse1 has the shortcuts shown in the following table.<br>You need to read data from all the shortcuts.<br>Which shortcuts will retrieve data from the cache?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935981_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -2191,13 +2174,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.17 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains an Apache Spark job definition named Job1.<br>You have an Azure SQL database named Source1 that has public internet access disabled.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that Job1 can access the data in Source1.<br>What should you create?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains an Apache Spark job definition named Job1.<br>You have an Azure SQL database named Source1 that has public internet access disabled.<br>You need to ensure that Job1 can access the data in Source1.<br>What should you create?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2807,13 +2786,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.27 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">Your company has a team of developers. The team creates Python libraries of reusable code that is used to transform data.<br>You create a Fabric workspace name Workspace1 that will be used to develop extract, transform, and load (ETL) solutions by using notebooks.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the libraries are available by default to new notebooks in Workspace1.<br>Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
+<div class="q-prompt">Your company has a team of developers. The team creates Python libraries of reusable code that is used to transform data.<br>You create a Fabric workspace name Workspace1 that will be used to develop extract, transform, and load (ETL) solutions by using notebooks.<br>You need to ensure that the libraries are available by default to new notebooks in Workspace1.<br>Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935992_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -2856,13 +2831,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.28 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a lakehouse and a notebook named Notebook1. Notebook1 reads data into a DataFrame from a table named Table1 and applies transformation logic. The data from the DataFrame is then written to a new Delta table named Table2 by using a merge operation.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to consolidate the underlying Parquet files in Table1.<br>Which command should you run?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a lakehouse and a notebook named Notebook1. Notebook1 reads data into a DataFrame from a table named Table1 and applies transformation logic. The data from the DataFrame is then written to a new Delta table named Table2 by using a merge operation.<br>You need to consolidate the underlying Parquet files in Table1.<br>Which command should you run?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2920,13 +2891,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.29 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have five Fabric workspaces.<br>You are monitoring the execution of items by using Monitoring hub.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify in which workspace a specific item runs.<br>Which column should you view in Monitoring hub?</div>
+<div class="q-prompt">You have five Fabric workspaces.<br>You are monitoring the execution of items by using Monitoring hub.<br>You need to identify in which workspace a specific item runs.<br>Which column should you view in Monitoring hub?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2996,13 +2963,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.30 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named DW1. DW1 is loaded by using a notebook named Notebook1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify which version of Delta was used when Notebook1 was executed.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named DW1. DW1 is loaded by using a notebook named Notebook1.<br>You need to identify which version of Delta was used when Notebook1 was executed.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -3066,13 +3029,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.31 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>In Warehouse1, you create a table named DimCustomer by running the following statement.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to set the Customerkey column as a primary key of the DimCustomer table.<br>Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>In Warehouse1, you create a table named DimCustomer by running the following statement.<br>You need to set the Customerkey column as a primary key of the DimCustomer table.<br>Which three code segments should you run in sequence? To answer, move the appropriate code segments from the list of code segments to the answer area and arrange them in the correct order.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/935996_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -3116,13 +3075,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.32 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a semantic model named Model1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to dynamically execute and monitor the refresh progress of Model1.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a semantic model named Model1.<br>You need to dynamically execute and monitor the refresh progress of Model1.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -3975,13 +3930,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.47 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1.<br>Your company acquires GitHub licenses.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to configure source control for Workpace1 to use GitHub. The solution must follow the principle of least privilege.<br>Which permissions do you require to ensure that you can commit code to GitHub?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1.<br>Your company acquires GitHub licenses.<br>You need to configure source control for Workpace1 to use GitHub. The solution must follow the principle of least privilege.<br>Which permissions do you require to ensure that you can commit code to GitHub?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -4039,13 +3990,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.48 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1.<br>You plan to configure Git integration for Workspace1 by using an Azure DevOps Git repository.<br>An Azure DevOps admin creates the required artifacts to support the integration of Workspace1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Which details do you require to perform the integration?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1.<br>You plan to configure Git integration for Workspace1 by using an Azure DevOps Git repository.<br>An Azure DevOps admin creates the required artifacts to support the integration of Workspace1.<br>Which details do you require to perform the integration?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4175,13 +4122,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.50 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a lakehouse named Lakehouse1.<br>You plan to create a data pipeline named Pipeline1 to ingest data into Lakehouse1. You will use a parameter named param1 to pass an external value into Pipeline1. The param1 parameter has a data type of int.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the pipeline expression returns param1 as an int value.<br>How should you specify the parameter value?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a lakehouse named Lakehouse1.<br>You plan to create a data pipeline named Pipeline1 to ingest data into Lakehouse1. You will use a parameter named param1 to pass an external value into Pipeline1. The param1 parameter has a data type of int.<br>You need to ensure that the pipeline expression returns param1 as an int value.<br>How should you specify the parameter value?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4378,13 +4321,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.53 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a data pipeline named Pipeline1 as shown in the exhibit. (Click the Exhibit tab.)</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What will occur the next time Pipeline1 runs?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a data pipeline named Pipeline1 as shown in the exhibit. (Click the Exhibit tab.)<br>What will occur the next time Pipeline1 runs?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/943833_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4567,13 +4506,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.56 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric deployment pipeline that uses three workspaces named Dev, Test, and Prod.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to deploy an Eventhouse as part of the deployment process.<br>What should you use to add the Eventhouse to the deployment process?</div>
+<div class="q-prompt">You have a Fabric deployment pipeline that uses three workspaces named Dev, Test, and Prod.<br>You need to deploy an Eventhouse as part of the deployment process.<br>What should you use to add the Eventhouse to the deployment process?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4627,13 +4562,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.57 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
+<div class="q-prompt">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).<br>You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -4691,13 +4622,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.58 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
+<div class="q-prompt">You have a Fabric warehouse named DW1. DW1 contains a table that stores sales data and is used by multiple sales representatives.<br>You plan to implement row-level security (RLS).<br>You need to ensure that the sales representatives can see only their respective data.<br>Which warehouse object do you require to implement RLS?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4819,13 +4746,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.60 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a warehouse named Warehouse1.<br>You plan to deploy Warehouse 1 to a new workspace named Workspace2.<br>As part of the deployment process, you need to verify whether Warehouse1 contains invalid references. The solution must minimize development effort and provide detailed information about the invalid references.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a warehouse named Warehouse1.<br>You plan to deploy Warehouse 1 to a new workspace named Workspace2.<br>As part of the deployment process, you need to verify whether Warehouse1 contains invalid references. The solution must minimize development effort and provide detailed information about the invalid references.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -4885,13 +4808,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.61 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>In the Development workspace, you build a new feature named Feature1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to deploy Feature1 to the Test workspace. The solution must ensure that only a pipeline is deployed.<br>Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
+<div class="q-prompt">-<br>In the Development workspace, you build a new feature named Feature1.<br>You need to deploy Feature1 to the Test workspace. The solution must ensure that only a pipeline is deployed.<br>Which four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/979604_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4983,13 +4902,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.63 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that is connected to a GitHub repository named repo1. Workspace1 contains the items shown in the following table.<br>You modify Semanticmodel1, Semanticmodel2, and Report2.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to commit the changes to repo1.<br>What is the minimum number of commits you should perform?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that is connected to a GitHub repository named repo1. Workspace1 contains the items shown in the following table.<br>You modify Semanticmodel1, Semanticmodel2, and Report2.<br>You need to commit the changes to repo1.<br>What is the minimum number of commits you should perform?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4997,19 +4912,19 @@
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
 <input type="radio" name="choice-q-dp-700-t1-n63-995012" value="A" id="choice-q-dp-700-t1-n63-995012-A">
-<label for="choice-q-dp-700-t1-n63-995012-A"><span class="letter">A</span><span>1<br>1</span></label>
+<label for="choice-q-dp-700-t1-n63-995012-A"><span class="letter">A</span><span><span class="choice-option">Option 1</span></span></label>
 </li>
 <li class="correct" data-letter="B">
 <input type="radio" name="choice-q-dp-700-t1-n63-995012" value="B" id="choice-q-dp-700-t1-n63-995012-B">
-<label for="choice-q-dp-700-t1-n63-995012-B"><span class="letter">B</span><span>2<br>2</span></label>
+<label for="choice-q-dp-700-t1-n63-995012-B"><span class="letter">B</span><span><span class="choice-option">Option 2</span></span></label>
 </li>
 <li class="" data-letter="C">
 <input type="radio" name="choice-q-dp-700-t1-n63-995012" value="C" id="choice-q-dp-700-t1-n63-995012-C">
-<label for="choice-q-dp-700-t1-n63-995012-C"><span class="letter">C</span><span>3<br>3</span></label>
+<label for="choice-q-dp-700-t1-n63-995012-C"><span class="letter">C</span><span><span class="choice-option">Option 3</span></span></label>
 </li>
 <li class="" data-letter="D">
 <input type="radio" name="choice-q-dp-700-t1-n63-995012" value="D" id="choice-q-dp-700-t1-n63-995012-D">
-<label for="choice-q-dp-700-t1-n63-995012-D"><span class="letter">D</span><span>4<br>4</span></label>
+<label for="choice-q-dp-700-t1-n63-995012-D"><span class="letter">D</span><span><span class="choice-option">Option 4</span></span></label>
 </li>
 </ol>
 <div class="answer-status" aria-live="polite"></div>
@@ -5050,13 +4965,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.64 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a lakehouse named Lakehouse1. Lakehouse1 contains a table named Table1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that a user named User1 can view only specific rows in Table1.<br>What should you do first?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a lakehouse named Lakehouse1. Lakehouse1 contains a table named Table1.<br>You need to ensure that a user named User1 can view only specific rows in Table1.<br>What should you do first?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -5114,13 +5025,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.65 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a lakehouse.<br>You have a Microsoft Entra tenant that contains a user named User1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that User1 can create items in Workspace1. The solution must follow the principle of least privilege.<br>Which workspace role should you assign to User1?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a lakehouse.<br>You have a Microsoft Entra tenant that contains a user named User1.<br>You need to ensure that User1 can create items in Workspace1. The solution must follow the principle of least privilege.<br>Which workspace role should you assign to User1?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -5218,13 +5125,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.67 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that uses version control. Workspace1 and Azure DevOps are integrated.<br>In Azure DevOps, developers create a branch named Branch1 to test extract, transform, and load (ETL) updates.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to connect Workspace1 to Branch1. The solution must ensure that all the existing content in Branch1 is available in Workspace1.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that uses version control. Workspace1 and Azure DevOps are integrated.<br>In Azure DevOps, developers create a branch named Branch1 to test extract, transform, and load (ETL) updates.<br>You need to connect Workspace1 to Branch1. The solution must ensure that all the existing content in Branch1 is available in Workspace1.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -5864,13 +5767,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.9 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains an eventstream named Eventstream1. Eventstream1 processes data from a thermal sensor by using event stream processing, and then stores the data in a lakehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to modify Eventstream1 to include the standard deviation of the temperature.<br>Which transform operator should you include in the Eventstream1 logic?</div>
+<div class="q-prompt">You have a Fabric workspace that contains an eventstream named Eventstream1. Eventstream1 processes data from a thermal sensor by using event stream processing, and then stores the data in a lakehouse.<br>You need to modify Eventstream1 to include the standard deviation of the temperature.<br>Which transform operator should you include in the Eventstream1 logic?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -5994,13 +5893,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.11 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are building a data loading pattern for Fabric notebook workloads.<br>You have the following code segment:</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You are building a data loading pattern for Fabric notebook workloads.<br>You have the following code segment:<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -6341,13 +6236,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.17 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are developing a data pipeline named Pipeline1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to add a Copy data activity that will copy data from a Snowflake data source to a Fabric warehouse.<br>What should you configure?</div>
+<div class="q-prompt">You are developing a data pipeline named Pipeline1.<br>You need to add a Copy data activity that will copy data from a Snowflake data source to a Fabric warehouse.<br>What should you configure?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -7109,13 +7000,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.30 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains an eventstream named EventStream1. EventStream1 outputs events to a table named Table1 in a lakehouse. The streaming data is sourced from motorway sensors and represents the speed of cars.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to add a transformation to EventStream1 to average the car speeds. The speeds must be grouped by non-overlapping and contiguous time intervals of one minute. Each event must belong to exactly one window.<br>Which windowing function should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains an eventstream named EventStream1. EventStream1 outputs events to a table named Table1 in a lakehouse. The streaming data is sourced from motorway sensors and represents the speed of cars.<br>You need to add a transformation to EventStream1 to average the car speeds. The speeds must be grouped by non-overlapping and contiguous time intervals of one minute. Each event must belong to exactly one window.<br>Which windowing function should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -7278,13 +7165,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.33 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>You have an on-premises Microsoft SQL Server database named Database1 that is accessed by using an on-premises data gateway.<br>You need to copy data from Database1 to Warehouse1.<br>Which item should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -7342,13 +7225,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.34 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named DW1 that contains a Type 2 slowly changing dimension (SCD) dimension table named DimCustomer. DimCustomer contains 100 columns and 20 million rows. The columns are of various data types, including int, varchar, date, and varbinary.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify incoming changes to the table and update the records when there is a change. The solution must minimize resource consumption.<br>What should you use to identify changes to attributes?</div>
+<div class="q-prompt">You have a Fabric warehouse named DW1 that contains a Type 2 slowly changing dimension (SCD) dimension table named DimCustomer. DimCustomer contains 100 columns and 20 million rows. The columns are of various data types, including int, varchar, date, and varbinary.<br>You need to identify incoming changes to the table and update the records when there is a change. The solution must minimize resource consumption.<br>What should you use to identify changes to attributes?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -8118,13 +7997,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.47 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power Apps app named App1 that has data stored in Microsoft Dataverse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to access the App1 data by using Fabric.<br>What should you use?</div>
+<div class="q-prompt">You have a Microsoft Power Apps app named App1 that has data stored in Microsoft Dataverse.<br>You need to access the App1 data by using Fabric.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8347,13 +8222,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.51 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric lakehouse that contains the resources shown in the following table.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to use a notebook to query for customers in the United States and load the filtered data into USCustomers. The solution must minimize the number of scripts used.<br>Which statement should you use?</div>
+<div class="q-prompt">You have a Fabric lakehouse that contains the resources shown in the following table.<br>You need to use a notebook to query for customers in the United States and load the filtered data into USCustomers. The solution must minimize the number of scripts used.<br>Which statement should you use?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/995021_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -8578,13 +8449,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.4 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are processing streaming data from an external data provider.<br>You have the following code segment.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You are processing streaming data from an external data provider.<br>You have the following code segment.<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-700/936026_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -8628,13 +8495,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.5 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a lakehouse named Lakehouse1. Lakehouse1 contains a Delta table named Table1.<br>You analyze Table1 and discover that Table1 contains 2,000 Parquet files of 1 MB each.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to minimize how long it takes to query Table1.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a lakehouse named Lakehouse1. Lakehouse1 contains a Delta table named Table1.<br>You analyze Table1 and discover that Table1 contains 2,000 Parquet files of 1 MB each.<br>You need to minimize how long it takes to query Table1.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8688,13 +8551,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.6 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1. Data is loaded daily into Warehouse1 by using data pipelines and stored procedures.<br>You discover that the daily data load takes longer than expected.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to monitor Warehouse1 to identify the names of users that are actively running queries.<br>Which view should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1. Data is loaded daily into Warehouse1 by using data pipelines and stored procedures.<br>You discover that the daily data load takes longer than expected.<br>You need to monitor Warehouse1 to identify the names of users that are actively running queries.<br>Which view should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8756,13 +8615,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.7 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains an eventstream named EventStream1. EventStream1 outputs events to a table in a lakehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to remove files that are older than seven days and are no longer in use.<br>Which command should you run?</div>
+<div class="q-prompt">You have a Fabric workspace that contains an eventstream named EventStream1. EventStream1 outputs events to a table in a lakehouse.<br>You need to remove files that are older than seven days and are no longer in use.<br>Which command should you run?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -8820,13 +8675,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.8 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named DW1 that loads data by using a data pipeline named Pipeline1. Pipeline1 uses a Copy data activity with a dynamic SQL source. Pipeline1 is scheduled to run every 15 minutes.<br>You discover that Pipeline1 keeps failing.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify which SQL query was executed when the pipeline failed.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric warehouse named DW1 that loads data by using a data pipeline named Pipeline1. Pipeline1 uses a Copy data activity with a dynamic SQL source. Pipeline1 is scheduled to run every 15 minutes.<br>You discover that Pipeline1 keeps failing.<br>You need to identify which SQL query was executed when the pipeline failed.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8884,13 +8735,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.9 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric notebook named Notebook1 that has been executing successfully for the last week.<br>During the last run, Notebook1executed nine jobs.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to view the jobs in a timeline chart.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric notebook named Notebook1 that has been executing successfully for the last week.<br>During the last run, Notebook1executed nine jobs.<br>You need to view the jobs in a timeline chart.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9069,13 +8916,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.12 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>While monitoring Warehouse1, you discover that query performance has degraded during the last 60 minutes.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to isolate all the queries that were run during the last 60 minutes. The results must include the username of the users that submitted the queries and the query statements.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a warehouse named Warehouse1.<br>While monitoring Warehouse1, you discover that query performance has degraded during the last 60 minutes.<br>You need to isolate all the queries that were run during the last 60 minutes. The results must include the username of the users that submitted the queries and the query statements.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9133,13 +8976,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.13 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a semantic model named Model1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to monitor the refresh history of Model1 and visualize the refresh history in a chart.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a semantic model named Model1.<br>You need to monitor the refresh history of Model1 and visualize the refresh history in a chart.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9197,13 +9036,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.14 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a write-intensive warehouse named DW1. DW1 stores staging tables that are used to load a dimensional model. The tables are often read once, dropped, and then recreated to process new data.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to minimize the load time of DW1.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a write-intensive warehouse named DW1. DW1 stores staging tables that are used to load a dimensional model. The tables are often read once, dropped, and then recreated to process new data.<br>You need to minimize the load time of DW1.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9376,13 +9211,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.17 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a lakehouse named Lakehouse1, a Dataflow Gen2 named Dataflow1, and a pipeline named Pipeline1. Dataflow1 loads data into Lakehouse1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that Dataflow1 always performs a full data load into Lakehouse1. The solution must minimize how long it takes to load the data.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a lakehouse named Lakehouse1, a Dataflow Gen2 named Dataflow1, and a pipeline named Pipeline1. Dataflow1 loads data into Lakehouse1.<br>You need to ensure that Dataflow1 always performs a full data load into Lakehouse1. The solution must minimize how long it takes to load the data.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9475,13 +9306,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.19 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace that contains a data pipeline named Pipeline1 and a notebook named Notebook1. Pipeline1 contains an activity that is used to run Notebook1. Pipeline1 is scheduled to run every 10 minutes.<br>You receive an alert that Pipeline1 failed during the notebook execution activity.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify in which cell the failure occurred.<br>What should you do from Monitor in the Fabric admin center?</div>
+<div class="q-prompt">You have a Fabric workspace that contains a data pipeline named Pipeline1 and a notebook named Notebook1. Pipeline1 contains an activity that is used to run Notebook1. Pipeline1 is scheduled to run every 10 minutes.<br>You receive an alert that Pipeline1 failed during the notebook execution activity.<br>You need to identify in which cell the failure occurred.<br>What should you do from Monitor in the Fabric admin center?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9714,9 +9541,20 @@
         status.className = 'answer-status correct';
         status.textContent = 'Correct!';
       } else {
-        q.dataset.result = 'incorrect';
-        status.className = 'answer-status incorrect';
-        status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        const choiceList = q.querySelector('.choices');
+        const isMulti = choiceList && choiceList.dataset.multiple === 'true';
+        // Partial credit: multi-select with no wrong picks and at least one
+        // missed correct answer (and at least one correct pick) reads as
+        // "partially correct" rather than "incorrect". The binary hero metric
+        // behaviour stays the same because isCorrect() / scoring is unchanged.
+        if (isMulti && wrong.length === 0 && missed.length > 0 && selected.size > 0) {
+          status.className = 'answer-status partial';
+          status.textContent = `Partially correct — ${selected.size} of ${correct.size} correct. Missing: ${[...missed].sort().join(', ')}`;
+        } else {
+          q.dataset.result = 'incorrect';
+          status.className = 'answer-status incorrect';
+          status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        }
       }
     }
     questions.forEach(q => {
