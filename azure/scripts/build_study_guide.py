@@ -590,6 +590,16 @@ HTML_HEAD = """<!DOCTYPE html>
     .choices input:checked + label .letter { color: var(--accent-soft); background: var(--accent-ink); border-color: var(--accent-ink); }
 
     .question.revealed .choices label { padding-right: 8.5rem; }
+    .choice-option {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
     .question.revealed .choices li.correct {
       background: color-mix(in srgb, var(--success-bg) 88%, var(--surface) 12%);
       border-color: var(--success);
@@ -666,7 +676,8 @@ HTML_HEAD = """<!DOCTYPE html>
     }
     .answer-status.empty { color: var(--muted); }
     .answer-status.correct,
-    .answer-status.incorrect {
+    .answer-status.incorrect,
+    .answer-status.partial {
       display: grid;
       grid-template-columns: auto 1fr;
       align-items: center;
@@ -674,7 +685,8 @@ HTML_HEAD = """<!DOCTYPE html>
       border: 1px solid transparent;
     }
     .answer-status.correct::before,
-    .answer-status.incorrect::before {
+    .answer-status.incorrect::before,
+    .answer-status.partial::before {
       display: inline-grid;
       place-items: center;
       width: 1.65rem;
@@ -700,6 +712,17 @@ HTML_HEAD = """<!DOCTYPE html>
       box-shadow: 0 12px 28px color-mix(in srgb, var(--danger) 18%, transparent);
     }
     .answer-status.incorrect::before { content: "✕"; color: var(--danger-bg); background: var(--danger-ink); }
+    .answer-status.partial {
+      color: var(--warning-ink);
+      background:
+        linear-gradient(135deg,
+          color-mix(in srgb, var(--warning-bg) 94%, var(--surface) 6%),
+          color-mix(in srgb, var(--warning-bg) 76%, var(--success-bg) 24%)
+        );
+      border-color: var(--warning);
+      box-shadow: 0 10px 22px color-mix(in srgb, var(--warning) 14%, transparent);
+    }
+    .answer-status.partial::before { content: "◐"; color: var(--warning-bg); background: var(--warning-ink); }
 
     .answer-shell { margin-top: 1rem; }
     .answer-locked {
@@ -1178,9 +1201,20 @@ HTML_TAIL = """
         status.className = 'answer-status correct';
         status.textContent = 'Correct!';
       } else {
-        q.dataset.result = 'incorrect';
-        status.className = 'answer-status incorrect';
-        status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        const choiceList = q.querySelector('.choices');
+        const isMulti = choiceList && choiceList.dataset.multiple === 'true';
+        // Partial credit: multi-select with no wrong picks and at least one
+        // missed correct answer (and at least one correct pick) reads as
+        // "partially correct" rather than "incorrect". The binary hero metric
+        // behaviour stays the same because isCorrect() / scoring is unchanged.
+        if (isMulti && wrong.length === 0 && missed.length > 0 && selected.size > 0) {
+          status.className = 'answer-status partial';
+          status.textContent = `Partially correct — ${selected.size} of ${correct.size} correct. Missing: ${[...missed].sort().join(', ')}`;
+        } else {
+          q.dataset.result = 'incorrect';
+          status.className = 'answer-status incorrect';
+          status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        }
       }
     }
     questions.forEach(q => {
@@ -1602,9 +1636,26 @@ def render_choice_content(choice: dict[str, Any]) -> str:
     choices the plain ``text`` is empty but ``text_html`` carries the visual
     content, so we prefer ``text_html`` whenever it's non-empty. Image
     ``src`` attributes are rewritten so they resolve from ``guides/``.
+
+    ExamTopics dropdown questions store the option index in both ``text`` and
+    ``text_html`` (e.g. ``"1"``, ``"2"`` ...) without any human-readable label,
+    so we render those rows as ``Option N`` rather than the bare digit. The
+    actual option text would require context from the surrounding ``<option>``
+    tags, which the dataset doesn't carry.
     """
     text_html = (choice.get("text_html") or "").strip()
     plain_text = (choice.get("text") or "").strip()
+    letter = (choice.get("letter") or "").strip().upper()
+
+    # Bare-digit dropdown fallback: render "Option N" when the dataset only
+    # captured the option index.
+    if (
+        plain_text
+        and text_html == plain_text
+        and re.fullmatch(r"[1-9]", plain_text)
+        and re.fullmatch(r"[A-J]", letter)
+    ):
+        return f'<span class="choice-option">Option {html.escape(plain_text)}</span>'
 
     if text_html:
         if SANITIZER_AVAILABLE and sanitize_exhibit_html is not None:
@@ -1623,8 +1674,6 @@ def render_choice_content(choice: dict[str, Any]) -> str:
             # ``assets/exhibits/dp-600/936848_A.png`` (relative to repo root).
             # The HTML file lives in ``guides/`` so we add ``../``.
             stripped = src.lstrip("/")
-            if stripped.startswith("assets/"):
-                return f'{prefix}../{stripped}{suffix}'
             return f'{prefix}../{stripped}{suffix}'
 
         cleaned = re.sub(
@@ -1651,25 +1700,26 @@ def exhibit_rel_path(local_path: str) -> str:
     HTML files, which live in ``guides/``.
 
     The exhibit manifest stores paths like ``assets/exhibits/dp-600/911291_0.png``
-    (relative to the repo root) or absolute paths. Since the generated HTML
-    sits one directory below the repo root (in ``guides/``), we prefix the
-    relative form with ``../`` so the browser can resolve it from ``guides/``.
-    Absolute paths are rebased onto their tail to avoid leaking user-specific
-    directories into the published file.
+    (relative to the repo root) or absolute paths that contain the same tail.
+    Since the generated HTML sits one directory below the repo root (in
+    ``guides/``), we prefix the relative form with ``../`` so the browser can
+    resolve it from ``guides/``.
+
+    Raises ``ValueError`` if the path doesn't look like an exhibit path —
+    callers should treat that as a data error rather than silently guessing.
     """
     if not local_path:
         return ""
     p = local_path.replace("\\", "/")
-    # Drop any absolute prefix (e.g. /Users/.../azure/) — we just need the
+    # Strip any absolute prefix (e.g. /Users/.../azure/) — we just need the
     # path relative to the repo root.
     marker = "assets/exhibits/"
     idx = p.find(marker)
-    if idx >= 0:
-        p = p[idx:]
-    elif p.startswith("/"):
-        # Fall back to the last two segments.
-        parts = [seg for seg in p.split("/") if seg]
-        p = "/".join(parts[-3:]) if len(parts) >= 3 else p.lstrip("/")
+    if idx < 0:
+        raise ValueError(
+            f"exhibit_rel_path: expected path containing {marker!r}, got {local_path!r}"
+        )
+    p = p[idx:]
     # Normalize URL escaping for spaces etc.
     safe = urllib.parse.quote(p, safe="/-_.")
     return f"../{safe}"
@@ -1918,6 +1968,12 @@ def split_question_text(text: str) -> tuple[list[str], str, str]:
 
     if not lines:
         return labels, "", ""
+
+    # Short questions (≤ 4 lines) don't have a real case-study preamble; keep
+    # the entire text as the prompt so the cue-detection heuristic doesn't
+    # mis-segment a 2- or 3-sentence question into "context + task" pairs.
+    if len(lines) <= 4:
+        return labels, "", "\n".join(lines).strip()
 
     cue = re.compile(
         r"^(You need to|Which\b|What\b|How\b|Where\b|When\b|Why\b|Select\b|Use the drop-down|Drag\b|For each\b|In which\b|To answer\b)",

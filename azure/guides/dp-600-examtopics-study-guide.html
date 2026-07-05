@@ -536,6 +536,16 @@
     .choices input:checked + label .letter { color: var(--accent-soft); background: var(--accent-ink); border-color: var(--accent-ink); }
 
     .question.revealed .choices label { padding-right: 8.5rem; }
+    .choice-option {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
     .question.revealed .choices li.correct {
       background: color-mix(in srgb, var(--success-bg) 88%, var(--surface) 12%);
       border-color: var(--success);
@@ -612,7 +622,8 @@
     }
     .answer-status.empty { color: var(--muted); }
     .answer-status.correct,
-    .answer-status.incorrect {
+    .answer-status.incorrect,
+    .answer-status.partial {
       display: grid;
       grid-template-columns: auto 1fr;
       align-items: center;
@@ -620,7 +631,8 @@
       border: 1px solid transparent;
     }
     .answer-status.correct::before,
-    .answer-status.incorrect::before {
+    .answer-status.incorrect::before,
+    .answer-status.partial::before {
       display: inline-grid;
       place-items: center;
       width: 1.65rem;
@@ -646,6 +658,17 @@
       box-shadow: 0 12px 28px color-mix(in srgb, var(--danger) 18%, transparent);
     }
     .answer-status.incorrect::before { content: "✕"; color: var(--danger-bg); background: var(--danger-ink); }
+    .answer-status.partial {
+      color: var(--warning-ink);
+      background:
+        linear-gradient(135deg,
+          color-mix(in srgb, var(--warning-bg) 94%, var(--surface) 6%),
+          color-mix(in srgb, var(--warning-bg) 76%, var(--success-bg) 24%)
+        );
+      border-color: var(--warning);
+      box-shadow: 0 10px 22px color-mix(in srgb, var(--warning) 14%, transparent);
+    }
+    .answer-status.partial::before { content: "◐"; color: var(--warning-bg); background: var(--warning-ink); }
 
     .answer-shell { margin-top: 1rem; }
     .answer-locked {
@@ -1289,13 +1312,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.20 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant named Tenant1 that contains a workspace named WS1. WS1 uses a capacity named C1 and contains a dataset named DS1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure read-write access to DS1 is available by using XMLA endpoint.<br>What should be modified first?</div>
+<div class="q-prompt">You have a Fabric tenant named Tenant1 that contains a workspace named WS1. WS1 uses a capacity named C1 and contains a dataset named DS1.<br>You need to ensure read-write access to DS1 is available by using XMLA endpoint.<br>What should be modified first?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1427,13 +1446,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.34 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains two lakehouses.<br>You are building a dataflow that will combine data from the lakehouses. The applied steps from one of the queries in the dataflow is shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains two lakehouses.<br>You are building a dataflow that will combine data from the lakehouses. The applied steps from one of the queries in the dataflow is shown in the following exhibit.<br>Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911324_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -1611,13 +1626,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.41 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse.<br>You are using a Fabric notebook to save a large DataFrame by using the following code. df.write.partitionBy(“year”, “month”, “day”).mode(“overwrite”).parquet(“Files/SalesOrder”)</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse.<br>You are using a Fabric notebook to save a large DataFrame by using the following code. df.write.partitionBy(“year”, “month”, “day”).mode(“overwrite”).parquet(“Files/SalesOrder”)<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911331_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -1660,13 +1671,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.42 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a data flow named Dataflow1 contains a query that returns the data shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to transform the data columns into attribute-value pairs, where columns become rows.<br>You select the VendorID column.<br>Which transformation should you select from the context menu of the VendorID column?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a data flow named Dataflow1 contains a query that returns the data shown in the following exhibit.<br>You need to transform the data columns into attribute-value pairs, where columns become rows.<br>You select the VendorID column.<br>Which transformation should you select from the context menu of the VendorID column?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911332_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -1733,13 +1740,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.50 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 and an Azure Data Lake Storage Gen2 account named storage1. Workspace1 contains a lakehouse named Lakehouse1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create a shortcut to storage1 in Lakehouse1.<br>Which connection and endpoint should you specify? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 and an Azure Data Lake Storage Gen2 account named storage1. Workspace1 contains a lakehouse named Lakehouse1.<br>You need to create a shortcut to storage1 in Lakehouse1.<br>Which connection and endpoint should you specify? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911340_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -1834,13 +1837,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.77 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse named Lakehouse1. Lakehouse1 contains a Delta table that has one million Parquet files.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to remove files that were NOT referenced by the table during the past 30 days. The solution must ensure that the transaction log remains consistent, and the ACID properties of the table are maintained.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse named Lakehouse1. Lakehouse1 contains a Delta table that has one million Parquet files.<br>You need to remove files that were NOT referenced by the table during the past 30 days. The solution must ensure that the transaction log remains consistent, and the ACID properties of the table are maintained.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -1898,13 +1897,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.86 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant.<br>You plan to create a data pipeline named Pipeline1. Pipeline1 will include two activities that will execute in sequence.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that a failure of the first activity will NOT block the second activity.<br>Which conditional path should you configure between the first activity and the second activity?</div>
+<div class="q-prompt">You have a Fabric tenant.<br>You plan to create a data pipeline named Pipeline1. Pipeline1 will include two activities that will execute in sequence.<br>You need to ensure that a failure of the first activity will NOT block the second activity.<br>Which conditional path should you configure between the first activity and the second activity?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2013,13 +2008,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.98 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric notebook that has the Python code and output shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Which type of analytics are you performing?</div>
+<div class="q-prompt">You have a Fabric notebook that has the Python code and output shown in the following exhibit.<br>Which type of analytics are you performing?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916100_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -2264,13 +2255,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.142 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI project that contains a semantic model.<br>You plan to use Azure DevOps for version control.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to modify the .gitignore file to prevent the data values from the data sources from being pushed to the repository.<br>Which file should you reference?</div>
+<div class="q-prompt">You have a Microsoft Power BI project that contains a semantic model.<br>You plan to use Azure DevOps for version control.<br>You need to modify the .gitignore file to prevent the data values from the data sources from being pushed to the repository.<br>Which file should you reference?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2774,13 +2761,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.170 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1 and a user named User1. Workspace1 contains a warehouse named DW1.<br>You share DW1 with User1 and assign User1 the default permissions for DW1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What can User1 do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1 and a user named User1. Workspace1 contains a warehouse named DW1.<br>You share DW1 with User1 and assign User1 the default permissions for DW1.<br>What can User1 do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2902,13 +2885,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.182 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that is assigned to a newly created Fabric capacity named Capacity1.<br>You create a semantic model named Model1 and deploy Model1 to Workspace1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to publish changes to Model1 directly from Tabular Editor.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that is assigned to a newly created Fabric capacity named Capacity1.<br>You create a semantic model named Model1 and deploy Model1 to Workspace1.<br>You need to publish changes to Model1 directly from Tabular Editor.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -2966,13 +2945,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q1.192 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains the workspaces shown in the following table.<br>You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.<br>You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What will the contents of Workspace_TEST be once the deployment is complete?</div>
+<div class="q-prompt">You have a Fabric tenant that contains the workspaces shown in the following table.<br>You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.<br>You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.<br>What will the contents of Workspace_TEST be once the deployment is complete?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/955739_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -3579,13 +3554,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.10 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse that contains a table named Staging.Sales. Staging.Sales contains the following columns.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to write a T-SQL query that will return data for the year 2023 that displays ProductID and ProductName and has a summarized Amount that is higher than 10,000.<br>Which query should you use?</div>
+<div class="q-prompt">You have a Fabric warehouse that contains a table named Staging.Sales. Staging.Sales contains the following columns.<br>You need to write a T-SQL query that will return data for the year 2023 that displays ProductID and ProductName and has a summarized Amount that is higher than 10,000.<br>Which query should you use?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911300_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -3648,13 +3619,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.11 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a data warehouse that contains a table named Stage.Customers. Stage.Customers contains all the customer record updates from a customer relationship management (CRM) system. There can be multiple updates per customer.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to write a T-SQL query that will return the customer ID, name. postal code, and the last updated time of the most recent row for each customer ID.<br>How should you complete the code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a data warehouse that contains a table named Stage.Customers. Stage.Customers contains all the customer record updates from a customer relationship management (CRM) system. There can be multiple updates per customer.<br>You need to write a T-SQL query that will return the customer ID, name. postal code, and the last updated time of the most recent row for each customer ID.<br>How should you complete the code? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911301_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -3761,13 +3728,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.14 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse.<br>You use a dataflow to load a new dataset from OneLake to the warehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to add a PowerQuery step to identify the maximum values for the numeric columns.<br>Which function should you include in the step?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse.<br>You use a dataflow to load a new dataset from OneLake to the warehouse.<br>You need to add a PowerQuery step to identify the maximum values for the numeric columns.<br>Which function should you include in the step?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -3825,13 +3788,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.15 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a machine learning model registered in a Fabric workspace.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to use the model to generate predictions by using the PREDICT function in a Fabric notebook.<br>Which two languages can you use to perform model scoring? Each correct answer presents a complete solution.<br>NOTE: Each correct answer is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a machine learning model registered in a Fabric workspace.<br>You need to use the model to generate predictions by using the PREDICT function in a Fabric notebook.<br>Which two languages can you use to perform model scoring? Each correct answer presents a complete solution.<br>NOTE: Each correct answer is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
@@ -3889,13 +3848,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.16 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are analyzing the data in a Fabric notebook.<br>You have a Spark DataFrame assigned to a variable named df.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to use the Chart view in the notebook to explore the data manually.<br>Which function should you run to make the data available in the Chart view?</div>
+<div class="q-prompt">You are analyzing the data in a Fabric notebook.<br>You have a Spark DataFrame assigned to a variable named df.<br>You need to use the Chart view in the notebook to explore the data manually.<br>Which function should you run to make the data available in the Chart view?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -3955,13 +3910,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.18 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a semantic model. The model contains data about retail stores.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to write a DAX query that will be executed by using the XMLA endpoint. The query must return a table of stores that have opened since December 1, 2023.<br>How should you complete the DAX expression? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a semantic model. The model contains data about retail stores.<br>You need to write a DAX query that will be executed by using the XMLA endpoint. The query must return a table of stores that have opened since December 1, 2023.<br>How should you complete the DAX expression? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911308_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4004,13 +3955,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.19 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a dataflow named Dataflow1. Dataflow1 has a query that returns 2,000 rows.<br>You view the query in Power Query as shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What can you identify about the pickupLongitude column?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a dataflow named Dataflow1. Dataflow1 has a query that returns 2,000 rows.<br>You view the query in Power Query as shown in the following exhibit.<br>What can you identify about the pickupLongitude column?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911309_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4073,13 +4020,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.23 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse named Warehouse1. Warehouse1 contains three schemas named schemaA, schemaB, and schemaC.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that a user named User1 can truncate tables in schemaA only.<br>How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse named Warehouse1. Warehouse1 contains three schemas named schemaA, schemaB, and schemaC.<br>You need to ensure that a user named User1 can truncate tables in schemaA only.<br>How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911313_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -4242,13 +4185,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.37 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse named Lakehouse1. Lakehouse1 contains a subfolder named Subfolder1 that contains CSV files.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to convert the CSV files into the delta format that has V-Order optimization enabled.<br>What should you do from Lakehouse explorer?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse named Lakehouse1. Lakehouse1 contains a subfolder named Subfolder1 that contains CSV files.<br>You need to convert the CSV files into the delta format that has V-Order optimization enabled.<br>What should you do from Lakehouse explorer?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4370,13 +4309,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.43 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a data pipeline.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the pipeline runs every four hours on Mondays and Fridays.<br>To what should you set Repeat for the schedule?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a data pipeline.<br>You need to ensure that the pipeline runs every four hours on Mondays and Fridays.<br>To what should you set Repeat for the schedule?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -4434,13 +4369,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.44 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse.<br>Several times a day, the performance of all warehouse queries degrades. You suspect that Fabric is throttling the compute used by the warehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What should you use to identify whether throttling is occurring?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse.<br>Several times a day, the performance of all warehouse queries degrades. You suspect that Fabric is throttling the compute used by the warehouse.<br>What should you use to identify whether throttling is occurring?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -4550,13 +4481,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.46 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse.<br>A user discovers that a report that usually takes two minutes to render has been running for 45 minutes and has still not rendered.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify what is preventing the report query from completing.<br>Which dynamic management view (DMV) should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse.<br>A user discovers that a report that usually takes two minutes to render has been running for 45 minutes and has still not rendered.<br>You need to identify what is preventing the report query from completing.<br>Which dynamic management view (DMV) should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -4616,13 +4543,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.47 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are creating a data flow in Fabric to ingest data from an Azure SQL database by using a T-SQL statement.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that any foldable Power Query transformation steps are processed by the Microsoft SQL Server engine.<br>How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You are creating a data flow in Fabric to ingest data from an Azure SQL database by using a T-SQL statement.<br>You need to ensure that any foldable Power Query transformation steps are processed by the Microsoft SQL Server engine.<br>How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911337_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -5811,13 +5734,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.76 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse.<br>You plan to use a visual query to merge two tables.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the query returns all the rows in both tables.<br>Which type of join should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse.<br>You plan to use a visual query to merge two tables.<br>You need to ensure that the query returns all the rows in both tables.<br>Which type of join should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -5935,13 +5854,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.79 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 and an Azure SQL database.<br>You plan to create a dataflow that will read data from the database, and then transform the data by performing an inner join.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ignore spaces in the values when performing the inner join. The solution must minimize development effort.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 and an Azure SQL database.<br>You plan to create a dataflow that will read data from the database, and then transform the data by performing an inner join.<br>You need to ignore spaces in the values when performing the inner join. The solution must minimize development effort.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -5999,13 +5914,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.80 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse named Warehouse1. Warehouse1 contains two schemas name schema1 and schema2 and a table named schema1.city.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to make a copy of schema1.city in schema2. The solution must minimize the copying of data.<br>Which T-SQL statement should you run?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse named Warehouse1. Warehouse1 contains two schemas name schema1 and schema2 and a table named schema1.city.<br>You need to make a copy of schema1.city in schema2. The solution must minimize the copying of data.<br>Which T-SQL statement should you run?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -6178,13 +6089,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.84 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains two workspaces named Workspace1 and Workspace2. Workspace1 contains a lakehouse named Lakehouse1. Workspace2 contains a lakehouse named Lakehouse2. Lakehouse1 contains a table named dbo.Sales. Lakehouse2 contains a table named dbo.Customers.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that you can write queries that reference both dbo.Sales and dbo.Customers in the same SQL query without making additional copies of the tables.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains two workspaces named Workspace1 and Workspace2. Workspace1 contains a lakehouse named Lakehouse1. Workspace2 contains a lakehouse named Lakehouse2. Lakehouse1 contains a table named dbo.Sales. Lakehouse2 contains a table named dbo.Customers.<br>You need to ensure that you can write queries that reference both dbo.Sales and dbo.Customers in the same SQL query without making additional copies of the tables.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -6361,13 +6268,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.94 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI semantic model that contains measures. The measures use multiple CALCULATE functions and a FILTER function.<br>You are evaluating the performance of the measures.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">In which use case will replacing the FILTER function with the KEEPFILTERS function reduce execution time?</div>
+<div class="q-prompt">You have a Microsoft Power BI semantic model that contains measures. The measures use multiple CALCULATE functions and a FILTER function.<br>You are evaluating the performance of the measures.<br>In which use case will replacing the FILTER function with the KEEPFILTERS function reduce execution time?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -6425,13 +6328,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.95 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a semantic model named Model1. Model1 contains five tables that all use Import mode. Model1 contains a dynamic row-level security (RLS) role named HR. The HR role filters employee data so that HR managers only see the data of the department to which they are assigned.<br>You publish Model1 to a Fabric tenant and configure RLS role membership. You share the model and related reports to users.<br>An HR manager reports that the data they see in a report is incomplete.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What should you do to validate the data seen by the HR Manager?</div>
+<div class="q-prompt">You have a semantic model named Model1. Model1 contains five tables that all use Import mode. Model1 contains a dynamic row-level security (RLS) role named HR. The HR role filters employee data so that HR managers only see the data of the department to which they are assigned.<br>You publish Model1 to a Fabric tenant and configure RLS role membership. You share the model and related reports to users.<br>An HR manager reports that the data they see in a report is incomplete.<br>What should you do to validate the data seen by the HR Manager?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -6489,13 +6388,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.96 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Fabric tenant that contains a dataflow.<br>You are exploring a new semantic model.<br>From Power Query, you need to view column information as shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Which three Data view options should you select? Each correct answer presents part of the solution.</div>
+<div class="q-prompt">You have a Microsoft Fabric tenant that contains a dataflow.<br>You are exploring a new semantic model.<br>From Power Query, you need to view column information as shown in the following exhibit.<br>Which three Data view options should you select? Each correct answer presents part of the solution.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916098_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -6666,13 +6561,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.101 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains customer churn data stored as Parquet files in OneLake. The data contains details about customer demographics and product usage.<br>You create a Fabric notebook to read the data into a Spark DataFrame. You then create column charts in the notebook that show the distribution of retained customers as compared to lost customers based on geography, the number of products purchased, age, and customer tenure.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Which type of analytics are you performing?</div>
+<div class="q-prompt">You have a Fabric tenant that contains customer churn data stored as Parquet files in OneLake. The data contains details about customer demographics and product usage.<br>You create a Fabric notebook to read the data into a Spark DataFrame. You then create column charts in the notebook that show the distribution of retained customers as compared to lost customers based on geography, the number of products purchased, age, and customer tenure.<br>Which type of analytics are you performing?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -6732,13 +6623,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.102 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a semantic model. The model contains data about retail stores.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to write a DAX query that will be executed by using the XMLA endpoint. The query must return the total amount of sales from the same period last year.<br>How should you complete the DAX expression? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a semantic model. The model contains data about retail stores.<br>You need to write a DAX query that will be executed by using the XMLA endpoint. The query must return the total amount of sales from the same period last year.<br>How should you complete the DAX expression? To answer, select the appropriate options in the answer area.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916104_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -6781,13 +6668,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.103 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1 that contains a dataflow named Dataflow1. Dataflow1 returns 500 rows of data.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify the min and max values for each column in the query results.<br>Which three Data view options should you select? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1 that contains a dataflow named Dataflow1. Dataflow1 returns 500 rows of data.<br>You need to identify the min and max values for each column in the query results.<br>Which three Data view options should you select? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
@@ -7438,13 +7321,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.116 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have a Fabric tenant that contains a data warehouse named DW1. DW1 contains a table named DimCustomer. DimCustomer contains the fields shown in the following table.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify duplicate email addresses in DimCustomer. The solution must return a maximum of 1,000 records.<br>Which four T-SQL statements should you run in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.</div>
+<div class="q-prompt">-<br>You have a Fabric tenant that contains a data warehouse named DW1. DW1 contains a table named DimCustomer. DimCustomer contains the fields shown in the following table.<br>You need to identify duplicate email addresses in DimCustomer. The solution must return a maximum of 1,000 records.<br>Which four T-SQL statements should you run in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/931012_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -7768,13 +7647,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.125 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a data warehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to load rows into a large Type 2 slowly changing dimension (SCD). The solution must minimize resource usage.<br>Which T-SQL statement should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a data warehouse.<br>You need to load rows into a large Type 2 slowly changing dimension (SCD). The solution must minimize resource usage.<br>Which T-SQL statement should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8018,13 +7893,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.132 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse named DW1 and a lakehouse named LH1. DW1 contains a table named Sales.Product. LH1 contains a table named Sales.Orders.<br>You plan to schedule an automated process that will create a new point-in-time (PIT) table named Sales.ProductOrder in DW1. Sales.ProductOrder will be built by using the results of a query that will join Sales.Product and Sales.Orders.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the types of columns in Sales.ProductOrder match the column types in the source tables. The solution must minimize the number of operations required to create the new table.<br>Which operation should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse named DW1 and a lakehouse named LH1. DW1 contains a table named Sales.Product. LH1 contains a table named Sales.Orders.<br>You plan to schedule an automated process that will create a new point-in-time (PIT) table named Sales.ProductOrder in DW1. Sales.ProductOrder will be built by using the results of a query that will join Sales.Product and Sales.Orders.<br>You need to ensure that the types of columns in Sales.ProductOrder match the column types in the source tables. The solution must minimize the number of operations required to create the new table.<br>Which operation should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8135,13 +8006,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.137 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse named Warehouse1 that contains a table named Table1. Table1 contains customer data.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to implement row-level security (RLS) for Table1. The solution must ensure that users can see only their respective data.<br>Which two objects should you create? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric warehouse named Warehouse1 that contains a table named Table1. Table1 contains customer data.<br>You need to implement row-level security (RLS) for Table1. The solution must ensure that users can see only their respective data.<br>Which two objects should you create? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
@@ -8272,13 +8139,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.139 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have a Fabric workspace that contains a Dataflow Gen2 query. The query returns the following data.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to filter the results to ensure that only the latest version of each customer’s record is retained. The solution must ensure that no new columns are loaded to the semantic model.<br>Which four actions should you perform in sequence in Power Query Editor? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
+<div class="q-prompt">-<br>You have a Fabric workspace that contains a Dataflow Gen2 query. The query returns the following data.<br>You need to filter the results to ensure that only the latest version of each customer’s record is retained. The solution must ensure that no new columns are loaded to the semantic model.<br>Which four actions should you perform in sequence in Power Query Editor? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936840_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -8324,13 +8187,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.146 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have the following KQL query.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">-<br>You have the following KQL query.<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936847_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -8374,13 +8233,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.147 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse that contains a table named SalesOrderDetail, SalesOrderDetail contains three columns named OrderQty, ProductID and SalesOrderlD. SalesOrderDetail contains one row per combination of SalesOrderlD and ProductID.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to calculate the proportion of the total quantity of each sales order represented by each product within the sales order.<br>Which T-SQL statement should you run?</div>
+<div class="q-prompt">You have a Fabric warehouse that contains a table named SalesOrderDetail, SalesOrderDetail contains three columns named OrderQty, ProductID and SalesOrderlD. SalesOrderDetail contains one row per combination of SalesOrderlD and ProductID.<br>You need to calculate the proportion of the total quantity of each sales order represented by each product within the sales order.<br>Which T-SQL statement should you run?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -8644,13 +8499,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.161 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have the following T-SQL statement.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">-<br>You have the following T-SQL statement.<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939111_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -8960,13 +8811,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.173 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant named Tenant1 that contains a lakehouse named Lakehouse1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to add data to Lakehouse1 from a CSV file in an Azure Storage account outside of Fabric. The solution must minimize development effort.<br>What should you use to add the data?</div>
+<div class="q-prompt">You have a Fabric tenant named Tenant1 that contains a lakehouse named Lakehouse1.<br>You need to add data to Lakehouse1 from a CSV file in an Azure Storage account outside of Fabric. The solution must minimize development effort.<br>What should you use to add the data?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -9512,13 +9359,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.188 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric warehouse that contains a table named Table1. Table1 contains three columns named SalesAmount, ProductCategory, and TransactionDate.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create a Microsoft Power BI query that will calculate the total sales amount of each product category for transactions that occurred during the last quarter.<br>Which two actions should you perform in the visual query editor? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Fabric warehouse that contains a table named Table1. Table1 contains three columns named SalesAmount, ProductCategory, and TransactionDate.<br>You need to create a Microsoft Power BI query that will calculate the total sales amount of each product category for transactions that occurred during the last quarter.<br>Which two actions should you perform in the visual query editor? Each correct answer presents part of the solution.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="" data-letter="A">
@@ -9580,13 +9423,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.190 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse.<br>You use a dataflow to load a new dataset from OneLake to the warehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to add a Power Query step to identify the maximum values for the numeric columns.<br>Which function should you include in the step?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse.<br>You use a dataflow to load a new dataset from OneLake to the warehouse.<br>You need to add a Power Query step to identify the maximum values for the numeric columns.<br>Which function should you include in the step?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9680,13 +9519,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q2.193 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1 and a user named User1. Workspace1 contains a warehouse named DW1.<br>You share DW1 with User1 and assign User1 the default permissions for DW1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What can User1 do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1 and a user named User1. Workspace1 contains a warehouse named DW1.<br>You share DW1 with User1 and assign User1 the default permissions for DW1.<br>What can User1 do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -9888,13 +9723,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.17 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a Microsoft Power BI report named Report1. Report1 includes a Python visual.<br>Data displayed by the visual is grouped automatically and duplicate rows are NOT displayed.<br>You need all rows to appear in the visual.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What should you do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a Microsoft Power BI report named Report1. Report1 includes a Python visual.<br>Data displayed by the visual is grouped automatically and duplicate rows are NOT displayed.<br>You need all rows to appear in the visual.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -9952,13 +9783,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.21 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 is assigned to a Fabric capacity.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to recommend a solution to provide users with the ability to create and publish custom Direct Lake semantic models by using external tools. The solution must follow the principle of least privilege.<br>Which three actions in the Fabric Admin portal should you include in the recommendation? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 is assigned to a Fabric capacity.<br>You need to recommend a solution to provide users with the ability to create and publish custom Direct Lake semantic models by using external tools. The solution must follow the principle of least privilege.<br>Which three actions in the Fabric Admin portal should you include in the recommendation? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="correct" data-letter="A">
@@ -10024,13 +9851,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.22 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You are creating a semantic model in Microsoft Power BI Desktop.<br>You plan to make bulk changes to the model by using the Tabular Model Definition Language (TMDL) extension for Microsoft Visual Studio Code.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to save the semantic model to a file.<br>Which file format should you use?</div>
+<div class="q-prompt">You are creating a semantic model in Microsoft Power BI Desktop.<br>You plan to make bulk changes to the model by using the Tabular Model Definition Language (TMDL) extension for Microsoft Visual Studio Code.<br>You need to save the semantic model to a file.<br>Which file format should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -10152,13 +9975,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.26 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains 30 CSV files in OneLake. The files are updated daily.<br>You create a Microsoft Power BI semantic model named Model1 that uses the CSV files as a data source. You configure incremental refresh for Model1 and publish the model to a Premium capacity in the Fabric tenant.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">When you initiate a refresh of Model1, the refresh fails after running out of resources.<br>What is a possible cause of the failure?</div>
+<div class="q-prompt">You have a Fabric tenant that contains 30 CSV files in OneLake. The files are updated daily.<br>You create a Microsoft Power BI semantic model named Model1 that uses the CSV files as a data source. You configure incremental refresh for Model1 and publish the model to a Premium capacity in the Fabric tenant.<br>When you initiate a refresh of Model1, the refresh fails after running out of resources.<br>What is a possible cause of the failure?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -10220,13 +10039,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.27 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that uses a Microsoft Power BI Premium capacity.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to enable scale-out for a semantic model.<br>What should you do first?</div>
+<div class="q-prompt">You have a Fabric tenant that uses a Microsoft Power BI Premium capacity.<br>You need to enable scale-out for a semantic model.<br>What should you do first?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -10284,13 +10099,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.28 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a warehouse. The warehouse uses row-level security (RLS).<br>You create a Direct Lake semantic model that uses the Delta tables and RLS of the warehouse.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">When users interact with a report built from the model, which mode will be used by the DAX queries?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a warehouse. The warehouse uses row-level security (RLS).<br>You create a Direct Lake semantic model that uses the Delta tables and RLS of the warehouse.<br>When users interact with a report built from the model, which mode will be used by the DAX queries?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -10348,13 +10159,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.29 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a complex semantic model. The model is based on a star schema and contains many tables, including a fact table named Sales.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create a diagram of the model. The diagram must contain only the Sales table and related tables.<br>What should you use from Microsoft Power BI Desktop?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a complex semantic model. The model is based on a star schema and contains many tables, including a fact table named Sales.<br>You need to create a diagram of the model. The diagram must contain only the Sales table and related tables.<br>What should you use from Microsoft Power BI Desktop?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -10476,13 +10283,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.32 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a semantic model named Model1. Model1 uses Import mode. Model1 contains a table named Orders. Orders has 100 million rows and the following fields.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to reduce the memory used by Model1 and the time it takes to refresh the model.<br>Which two actions should you perform? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a semantic model named Model1. Model1 uses Import mode. Model1 contains a table named Orders. Orders has 100 million rows and the following fields.<br>You need to reduce the memory used by Model1 and the time it takes to refresh the model.<br>Which two actions should you perform? Each correct answer presents part of the solution.<br>NOTE: Each correct answer is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911322_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -10543,13 +10346,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.33 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a semantic model.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to prevent report creators from populating visuals by using implicit measures.<br>What are two tools that you can use to achieve the goal? Each correct answer presents a complete solution.<br>NOTE: Each correct answer is worth one point.</div>
+<div class="q-prompt">You have a Fabric tenant that contains a semantic model.<br>You need to prevent report creators from populating visuals by using implicit measures.<br>What are two tools that you can use to achieve the goal? Each correct answer presents a complete solution.<br>NOTE: Each correct answer is worth one point.</div>
 </section>
 <ol class="choices" type="A" data-multiple="true">
 <li class="correct" data-letter="A">
@@ -10609,13 +10408,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.52 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI report and a semantic model that uses Direct Lake mode.<br>From Power BI Desktop, you open Performance analyzer as shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">You have a Microsoft Power BI report and a semantic model that uses Direct Lake mode.<br>From Power BI Desktop, you open Performance analyzer as shown in the following exhibit.<br>Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/911342_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -10895,13 +10690,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.69 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have an Azure Repos repository named Repo1 and a Fabric-enabled Microsoft Power BI Premium capacity. The capacity contains two workspaces named Workspace1 and Workspace2. Git integration is enabled at the workspace level.<br>You plan to use Microsoft Power BI Desktop and Workspace1 to make version-controlled changes to a semantic model stored in Repo1. The changes will be built and deployed to Workspace2 by using Azure Pipelines.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that report and semantic model definitions are saved as individual text files in a folder hierarchy. The solution must minimize development and maintenance effort.<br>In which file format should you save the changes?</div>
+<div class="q-prompt">You have an Azure Repos repository named Repo1 and a Fabric-enabled Microsoft Power BI Premium capacity. The capacity contains two workspaces named Workspace1 and Workspace2. Git integration is enabled at the workspace level.<br>You plan to use Microsoft Power BI Desktop and Workspace1 to make version-controlled changes to a semantic model stored in Repo1. The changes will be built and deployed to Workspace2 by using Azure Pipelines.<br>You need to ensure that report and semantic model definitions are saved as individual text files in a folder hierarchy. The solution must minimize development and maintenance effort.<br>In which file format should you save the changes?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -10959,13 +10750,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.81 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse named Lakehouse1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to prevent new tables added to Lakehouse1 from being added automatically to the default semantic model of the lakehouse.<br>What should you configure?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse named Lakehouse1.<br>You need to prevent new tables added to Lakehouse1 from being added automatically to the default semantic model of the lakehouse.<br>What should you configure?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="correct" data-letter="A">
@@ -11023,13 +10810,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.87 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI semantic model.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify any surrogate key columns in the model that have the Summarize By property set to a value other than to None. The solution must minimize effort.<br>What should you use?</div>
+<div class="q-prompt">You have a Microsoft Power BI semantic model.<br>You need to identify any surrogate key columns in the model that have the Summarize By property set to a value other than to None. The solution must minimize effort.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -11202,13 +10985,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.91 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI report named Report1 that uses a Fabric semantic model.<br>Users discover that Report1 renders slowly.<br>You open Performance analyzer and identify that a visual named Orders By Date is the slowest to render. The duration breakdown for Orders By Date is shown in the following table.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What will provide the greatest reduction in the rendering duration of Report1?</div>
+<div class="q-prompt">You have a Microsoft Power BI report named Report1 that uses a Fabric semantic model.<br>Users discover that Report1 renders slowly.<br>You open Performance analyzer and identify that a visual named Orders By Date is the slowest to render. The duration breakdown for Orders By Date is shown in the following table.<br>What will provide the greatest reduction in the rendering duration of Report1?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/916093_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -11269,13 +11048,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.92 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a custom Direct Lake semantic model named Model1 that has one billion rows of data.<br>You use Tabular Editor to connect to Model1 by using the XMLA endpoint.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that when users interact with reports based on Model1, their queries always use Direct Lake mode.<br>What should you do?</div>
+<div class="q-prompt">You have a custom Direct Lake semantic model named Model1 that has one billion rows of data.<br>You use Tabular Editor to connect to Model1 by using the XMLA endpoint.<br>You need to ensure that when users interact with reports based on Model1, their queries always use Direct Lake mode.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -11611,13 +11386,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.127 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a lakehouse named LH1.<br>You create new tables in LH1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the tables are added automatically to the default semantic model.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a lakehouse named LH1.<br>You create new tables in LH1.<br>You need to ensure that the tables are added automatically to the default semantic model.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -11789,13 +11560,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.133 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have a Fabric tenant that contains the semantic model shown in the following exhibit.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">-<br>You have a Fabric tenant that contains the semantic model shown in the following exhibit.<br>Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936834_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -11889,13 +11656,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.140 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">-<br>You have a Microsoft Power Bl project that contains a file named definition.pbir. definition.pbir contains the following JSON.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
+<div class="q-prompt">-<br>You have a Microsoft Power Bl project that contains a file named definition.pbir. definition.pbir contains the following JSON.<br>For each of the following statements, select Yes if the statement is true. Otherwise, select No.<br>NOTE: Each correct selection is worth one point.</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/936841_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -11939,13 +11702,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.141 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1.<br>You plan to deploy a semantic model named Model1 by using the XMLA endpoint.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to optimize the deployment of Model1. The solution must minimize how long it takes to deploy Model1.<br>What should you do in Workspace1?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1.<br>You plan to deploy a semantic model named Model1 by using the XMLA endpoint.<br>You need to optimize the deployment of Model1. The solution must minimize how long it takes to deploy Model1.<br>What should you do in Workspace1?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12003,13 +11762,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.143 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 uses Pro license mode and contains a semantic model named Model1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that Model1 supports XMLA connections.<br>Which setting should modify?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 uses Pro license mode and contains a semantic model named Model1.<br>You need to ensure that Model1 supports XMLA connections.<br>Which setting should modify?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12067,13 +11822,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.144 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a complex semantic model. The model is based on a star schema and contains many tables, including a fact table named Sales.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to visualize a diagram of the model. The diagram must contain only the Sales table and related tables.<br>What should you use from Microsoft Power BI Desktop?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a complex semantic model. The model is based on a star schema and contains many tables, including a fact table named Sales.<br>You need to visualize a diagram of the model. The diagram must contain only the Sales table and related tables.<br>What should you use from Microsoft Power BI Desktop?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12248,13 +11999,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.152 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 contains a single semantic model that has two Microsoft Power BI reports.<br>You have a Microsoft 365 subscription that contains a data loss prevention (DLP) policy named DLP1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to apply DLP1 to the items in Workspace1.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 contains a single semantic model that has two Microsoft Power BI reports.<br>You have a Microsoft 365 subscription that contains a data loss prevention (DLP) policy named DLP1.<br>You need to apply DLP1 to the items in Workspace1.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12312,13 +12059,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.156 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains the workspaces shown in the following table.<br>You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.<br>You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">What will the contents of Workspace_TEST be once the deployment is complete?</div>
+<div class="q-prompt">You have a Fabric tenant that contains the workspaces shown in the following table.<br>You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.<br>You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.<br>What will the contents of Workspace_TEST be once the deployment is complete?</div>
 </section>
 <div class="exhibits">
 <figure class="exhibit exhibit-image"><img src="../assets/exhibits/dp-600/939106_0.png" alt="" loading="lazy"><figcaption class="exhibit-caption">Exhibit 1</figcaption></figure>
@@ -12379,13 +12122,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.163 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a query in Microsoft Power BI Desktop that contains two columns named Order_Date and Shipping_Date.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create a column that will calculate the number of days between Order_Date and Shipping_Date for each row.<br>Which Power Query function should you use?</div>
+<div class="q-prompt">You have a query in Microsoft Power BI Desktop that contains two columns named Order_Date and Shipping_Date.<br>You need to create a column that will calculate the number of days between Order_Date and Shipping_Date for each row.<br>Which Power Query function should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12439,13 +12178,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.164 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains a semantic model.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to modify object-level security (OLS) for the model.<br>What should you use?</div>
+<div class="q-prompt">You have a Fabric tenant that contains a semantic model.<br>You need to modify object-level security (OLS) for the model.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12499,13 +12234,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.165 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI semantic model that contains a measure named TotalSalesAmount. TotalSalesAmount returns a sales revenue amount that is translated into a selected currency.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to ensure that the value returned by TotalSalesAmount is formatted to use the correct currency symbol.<br>What should you include in the solution?</div>
+<div class="q-prompt">You have a Microsoft Power BI semantic model that contains a measure named TotalSalesAmount. TotalSalesAmount returns a sales revenue amount that is translated into a selected currency.<br>You need to ensure that the value returned by TotalSalesAmount is formatted to use the correct currency symbol.<br>What should you include in the solution?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12559,13 +12290,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.180 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric workspace named Workspace1.<br>Workspace1 contains multiple semantic models, including a model named Model1. Model1 is updated by using an XMLA endpoint.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to increase the speed of the write operations of the XMLA endpoint.<br>What should you do?</div>
+<div class="q-prompt">You have a Fabric workspace named Workspace1.<br>Workspace1 contains multiple semantic models, including a model named Model1. Model1 is updated by using an XMLA endpoint.<br>You need to increase the speed of the write operations of the XMLA endpoint.<br>What should you do?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12726,13 +12453,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.189 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Microsoft Power BI semantic model.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to identify any surrogate key columns in the model that have the Summarize By property set to a value other than to None. The solution must minimize effort.<br>What should you use?</div>
+<div class="q-prompt">You have a Microsoft Power BI semantic model.<br>You need to identify any surrogate key columns in the model that have the Summarize By property set to a value other than to None. The solution must minimize effort.<br>What should you use?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12857,13 +12580,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.196 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant that contains 30 CSV files in OneLake. The files are updated daily.<br>You create a Microsoft Power BI semantic model named Model1 that uses the CSV files as a data source. You configure incremental refresh for Model1 and publish the model to an F64 capacity in the Fabric tenant.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">When you initiate a refresh of Model1, the refresh fails after running out of resources.<br>What is a possible cause of the failure?</div>
+<div class="q-prompt">You have a Fabric tenant that contains 30 CSV files in OneLake. The files are updated daily.<br>You create a Microsoft Power BI semantic model named Model1 that uses the CSV files as a data source. You configure incremental refresh for Model1 and publish the model to an F64 capacity in the Fabric tenant.<br>When you initiate a refresh of Model1, the refresh fails after running out of resources.<br>What is a possible cause of the failure?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -12925,13 +12644,9 @@
 <div class="q-actions">
 <button class="secondary btn-review" type="button" aria-label="Mark Q3.216 as reviewed">Mark reviewed</button>
 </div></div>
-<div class="context-panel visible">
-<div class="context-label">Case context</div>
-<div class="q-context">You have a Fabric tenant.</div>
-</div>
 <section class="prompt-card" aria-label="Question prompt">
 <div class="prompt-label">Exam task</div>
-<div class="q-prompt">You need to create a semantic model that delivers fast report rendering, minimizes query latency, and maximizes flexibility for DAX calculations.<br>Which storage mode should you select?</div>
+<div class="q-prompt">You have a Fabric tenant.<br>You need to create a semantic model that delivers fast report rendering, minimizes query latency, and maximizes flexibility for DAX calculations.<br>Which storage mode should you select?</div>
 </section>
 <ol class="choices" type="A" data-multiple="false">
 <li class="" data-letter="A">
@@ -13156,9 +12871,20 @@
         status.className = 'answer-status correct';
         status.textContent = 'Correct!';
       } else {
-        q.dataset.result = 'incorrect';
-        status.className = 'answer-status incorrect';
-        status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        const choiceList = q.querySelector('.choices');
+        const isMulti = choiceList && choiceList.dataset.multiple === 'true';
+        // Partial credit: multi-select with no wrong picks and at least one
+        // missed correct answer (and at least one correct pick) reads as
+        // "partially correct" rather than "incorrect". The binary hero metric
+        // behaviour stays the same because isCorrect() / scoring is unchanged.
+        if (isMulti && wrong.length === 0 && missed.length > 0 && selected.size > 0) {
+          status.className = 'answer-status partial';
+          status.textContent = `Partially correct — ${selected.size} of ${correct.size} correct. Missing: ${[...missed].sort().join(', ')}`;
+        } else {
+          q.dataset.result = 'incorrect';
+          status.className = 'answer-status incorrect';
+          status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        }
       }
     }
     questions.forEach(q => {

@@ -45,10 +45,22 @@ python3 -m http.server 8000
 # then open http://localhost:8000/guides/dp-600-examtopics-study-guide.html
 ```
 
-## Regenerate guides
+## Regenerating guides
+
+Rebuild both HTML and Markdown guides from the current `data/*.json` files:
 
 ```bash
-python3 scripts/build_study_guide.py data/dp-600.json data/dp-700.json --out-dir guides --format html
+python3 scripts/build_study_guide.py data/dp-600.json data/dp-700.json --out-dir guides --format both
+```
+
+To produce only one format, swap `--format both` for `--format html` or `--format markdown`.
+To rebuild a single exam, pass just that JSON file: `data/dp-600.json`.
+
+After regenerating the JSON, keep `data/*.jsonl` in lock-step (the crawler used
+to produce it as a side-effect during a full crawl):
+
+```bash
+python3 scripts/sync_jsonl.py
 ```
 
 ## Refresh the crawl
@@ -62,6 +74,27 @@ python3 scripts/crawl_fabric_discussions.py --output-dir data
 ```bash
 python3 scripts/compare_with_original.py --json data/dp-600.json --discussion-id <id>
 ```
+
+## Limitations
+
+These guides are offline study aids derived from public ExamTopics
+discussions. Be aware of these caveats before relying on them:
+
+- **HOTSPOT and DRAG DROP questions are display-only.** ExamTopics embeds
+  the interactive UI as static images without parseable coordinates or
+  draggable items, so the guide shows the exhibits and a community-voted
+  answer (when available) but cannot let you actually click or drag to
+  practice.
+- **~21 questions show "Not provided" for the most-voted answer.** Some
+  ExamTopics discussion threads have no consensus comment; the backfill
+  script only lifts answers when a comment clearly states the choice(s).
+- **The HTML guide requires JavaScript** for navigation (question map,
+  prev/next, deep-link scrolling), answer reveal, progress tracking, and
+  dark-mode toggle. Without JS, the page renders all questions but you
+  can't reveal answers or move between them.
+- **`data/*.jsonl` is auto-generated** from `data/*.json` via
+  `scripts/sync_jsonl.py`. It mirrors the JSON for tools that want one
+  question per line; it is not hand-edited.
 
 ## Notes
 

@@ -18,4 +18,8 @@ __pycache__/
 # Data backups / temp files
 data/*.bak
 data/*.tmp
+state/*.bak
 state/*.tmp
+
+# OpenCode telemetry / agent runtime artifacts
+.opencode/telemetry/
