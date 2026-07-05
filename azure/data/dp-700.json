@@ -8702,7 +8702,10 @@
       "score": 177.5,
       "pattern": "explicit_pattern",
       "upvotes": 55
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "155288",
@@ -9507,7 +9510,10 @@
       "score": 101.5,
       "pattern": "explicit_pattern",
       "upvotes": 3
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "153656",
@@ -10174,7 +10180,10 @@
       "score": 103.5,
       "pattern": "explicit_pattern",
       "upvotes": 7
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "153705",
@@ -11919,7 +11928,10 @@
       "score": 156.5,
       "pattern": "explicit_pattern",
       "upvotes": 13
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "302427",
@@ -12531,7 +12543,10 @@
       "score": 101.5,
       "pattern": "explicit_pattern",
       "upvotes": 3
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "302432",
@@ -15325,7 +15340,10 @@
       "score": 59.0,
       "pattern": "highly_voted",
       "upvotes": 18
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "407086",
@@ -20457,7 +20475,10 @@
       "score": 102.0,
       "pattern": "loose:numbered_list",
       "upvotes": 4
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "302463",
@@ -20996,7 +21017,10 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-700/943846_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "302468",
@@ -21682,7 +21706,10 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "302502",
@@ -23489,7 +23516,10 @@
       "score": 59.0,
       "pattern": "highly_voted",
       "upvotes": 18
-    }
+    },
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
   },
   {
     "discussion_id": "154679",
