@@ -859,19 +859,6 @@ HTML_HEAD = """<!DOCTYPE html>
       border-radius: 18px;
       background: color-mix(in srgb, var(--surface-2) 60%, transparent);
     }
-    .hotspot-stage { position: relative; display: inline-block; max-width: 100%; }
-    .hotspot-stage img { cursor: crosshair; }
-    .hotspot-dot {
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
     .widget-note { color: var(--text-secondary); font-size: 0.9rem; margin: 0 0 0.75rem; }
     .dragdrop-chips { list-style: none; padding: 0; margin: 0 0 0.75rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .dragdrop-chip {
@@ -1040,10 +1027,10 @@ HTML_TAIL = """
       delete q.dataset.result;
       // Hotspot / drag-drop / other — informational status only.
       if (!hasChoices) {
-        if (q.querySelector('.hotspot-stage')) {
+        if (q.dataset.qtype === 'hotspot') {
           if (!revealed) {
             status.className = 'answer-status empty';
-            status.textContent = 'Mark the areas you would select on the image above.';
+            status.textContent = 'Review the exhibits above and reason about which areas to select.';
           } else {
             status.className = 'answer-status empty';
             status.textContent = 'HOTSPOT answer not available from ExamTopics.';
@@ -1174,55 +1161,13 @@ HTML_TAIL = """
       });
     });
 
-    /* ----- Hotspot / drag-drop interactivity ----- */
-    const HOTSPOTS_KEY = location.pathname + '-hotspots';
+    /* ----- Drag-drop interactivity ----- */
     const DRAGDROP_KEY = location.pathname + '-dragdrop';
-    let hotspots = {};
     let dragdropSelections = {};
-    try { hotspots = JSON.parse(localStorage.getItem(HOTSPOTS_KEY) || '{}'); } catch (e) { hotspots = {}; }
     try { dragdropSelections = JSON.parse(localStorage.getItem(DRAGDROP_KEY) || '{}'); } catch (e) { dragdropSelections = {}; }
 
-    function saveHotspots() {
-      localStorage.setItem(HOTSPOTS_KEY, JSON.stringify(hotspots));
-    }
     function saveDragdrop() {
       localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections));
-    }
-
-    function attachHotspotStage(q) {
-      const stages = q.querySelectorAll('.hotspot-stage');
-      if (!stages.length) return;
-      const saved = hotspots[q.id] || {};
-      stages.forEach((stage, stageIdx) => {
-        const key = String(stageIdx);
-        const img = stage.querySelector('img');
-        if (!img) return;
-        const dotsHost = stage.querySelector('.hotspot-dots');
-        if (!dotsHost) return;
-        // Restore previously-saved dots so refreshes keep the student's work.
-        const renderDots = () => {
-          dotsHost.innerHTML = '';
-          (saved[key] || []).forEach(pt => {
-            const dot = document.createElement('span');
-            dot.className = 'hotspot-dot';
-            dot.style.left = pt.x + '%';
-            dot.style.top = pt.y + '%';
-            dotsHost.appendChild(dot);
-          });
-        };
-        img.addEventListener('click', e => {
-          const rect = img.getBoundingClientRect();
-          if (rect.width === 0 || rect.height === 0) return;
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-          saved[key] = saved[key] || [];
-          saved[key].push({ x, y });
-          hotspots[q.id] = saved;
-          saveHotspots();
-          renderDots();
-        });
-        renderDots();
-      });
     }
 
     function attachDragdropChips(q) {
@@ -1245,7 +1190,6 @@ HTML_TAIL = """
     }
 
     questions.forEach(q => {
-      attachHotspotStage(q);
       attachDragdropChips(q);
     });
 
@@ -1531,40 +1475,18 @@ def render_exhibits_block(question: dict, q_label: str) -> str:
 
 
 def render_hotspot_widget(question: dict, q_label: str) -> str:
-    """Render the interactive HOTSPOT practice widget (image(s) inside a
-    ``.hotspot-stage`` so JS can attach click markers)."""
-    exhibits = question.get("exhibits") or []
-    image_parts: list[str] = []
-    for idx, ex in enumerate(exhibits):
-        if (ex.get("kind") or "").lower() != "image":
-            continue
-        local = ex.get("local_path") or ex.get("src") or ""
-        rel = exhibit_rel_path(local)
-        if not rel and ex.get("src"):
-            rel = f"../{ex['src'].lstrip('/')}"
-        if not rel or not (local and Path(local).exists()):
-            image_parts.append(render_exhibit(ex, idx, q_label))
-            continue
-        alt = html.escape(ex.get("alt") or "")
-        image_parts.append(
-            f'<div class="hotspot-stage">'
-            f'<img src="{html.escape(rel, quote=True)}" alt="{alt}" loading="lazy">'
-            f'<div class="hotspot-dots" data-exhibit="{idx}"></div>'
-            f'</div>'
-        )
-    if not image_parts:
-        image_parts.append('<div class="exhibit exhibit-missing"><div class="exhibit-missing-title">No hotspot image available</div></div>')
+    """Render the HOTSPOT note box. The exhibit images themselves are already
+    shown by ``render_exhibits_block``; this widget only surfaces the
+    practice-direction message and the answer-status span."""
     note = (
-        "HOTSPOT — click on the image to mark the areas you would select. "
-        "Your selections are saved for practice only; ExamTopics does not "
-        "provide the correct hotspot coordinates."
+        "HOTSPOT — select areas on the exhibit above. "
+        "The correct hotspot coordinates are not published by ExamTopics."
     )
     return (
         '<div class="hotspot-widget">'
         f'<p class="widget-note">{html.escape(note)}</p>'
-        + "".join(image_parts)
-        + '<div class="answer-status" aria-live="polite"></div>'
-        + '</div>'
+        '<div class="answer-status" aria-live="polite"></div>'
+        '</div>'
     )
 
 
