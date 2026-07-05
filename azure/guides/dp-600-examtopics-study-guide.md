@@ -344,7 +344,11 @@ You are building a dataflow that will combine data from the lakehouses. The appl
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911324_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911324_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -418,7 +422,10 @@ You are using a Fabric notebook to save a large DataFrame by using the following
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911331_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -436,6 +443,9 @@ You have a Fabric workspace named Workspace1 that contains a data flow named Dat
 You need to transform the data columns into attribute-value pairs, where columns become rows.
 You select the VendorID column.
 Which transformation should you select from the context menu of the VendorID column?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911332_0.png)
 
 ⭕ **A.** Group by
 ⭕ **B.** Unpivot columns
@@ -465,7 +475,10 @@ You need to create a shortcut to storage1 in Lakehouse1.
 Which connection and endpoint should you specify? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911340_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -490,7 +503,11 @@ The solution must follow the principle of least privilege.
 Which permission should you assign to each user? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916070_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916070_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -563,7 +580,10 @@ You create a semantic model by using Microsoft Power BI Desktop. The model conta
 You need to modify the model to ensure that users assigned the SalesRegionManager role cannot see a column named Address in SalesAddress.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916095_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -593,6 +613,9 @@ https://www.insightsarena.com/post/mastering-object-level-security-in-power-bi-f
 
 You have a Fabric notebook that has the Python code and output shown in the following exhibit.
 Which type of analytics are you performing?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916100_0.png)
 
 ✅ **A.** descriptive
 ⭕ **B.** diagnostic
@@ -647,7 +670,11 @@ In the second cell, you run the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936832_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936832_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -737,7 +764,10 @@ You need to implement access controls to meet the following requirements:
 What should you use for each table? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939100_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -891,7 +921,12 @@ You run Pipeline1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939107_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939107_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/939107_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -929,7 +964,10 @@ You have an Azure DevOps organization.
 You need to enable version control for Workspace1. The solution must ensure that Model1 is added to the repository.
 Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939117_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -966,7 +1004,10 @@ You need to perform the following actions:
 Which two settings should you use? To answer, select the appropriate settings in the answer area.
 NOTE: Each correct answer is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939118_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1067,6 +1108,9 @@ You have a deployment pipeline named Pipeline1 that deploys items from Workspace
 You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.
 What will the contents of Workspace_TEST be once the deployment is complete?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955739_0.png)
+
 ⭕ **A.** Lakehouse2 -Notebook2 -SemanticModel1 -
 ⭕ **B.** Lakehouse1 -Notebook1 -Pipeline1 -SemanticModel1 -
 ✅ **C.** Lakehouse1 -Lakehouse2 -Notebook1 -Notebook2 -Pipeline1 -SemanticModel1 -
@@ -1157,7 +1201,10 @@ You need to recommend a solution to group the Research division workspaces.
 What should you include in the recommendation? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911292_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1394,7 +1441,12 @@ You need to assign permissions for the data store in the AnalyticsPOC workspace.
 Which additional permissions should you assign when you share the data store? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911295_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911295_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911295_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1499,7 +1551,12 @@ You need to create a DAX measure to calculate the average overall satisfaction s
 How should you complete the DAX code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911296_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911296_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911296_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1597,7 +1654,12 @@ You need to resolve the issue with the pricing group classification.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911297_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911297_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/911297_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1692,6 +1754,10 @@ Ensures that the report and the semantic model only contain data from the curren
 Ensures that the report respects any table-level security specified in the source data store.
 Minimizes the execution time of report queries.
 What should you recommend using to ingest the customer data into the data store in the AnalyticsPOC workspace?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911298_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911298_1.png)
 
 ⭕ **A.** a stored procedure
 ⭕ **B.** a pipeline that contains a KQL activity
@@ -1802,6 +1868,10 @@ Ensures that the report respects any table-level security specified in the sourc
 Minimizes the execution time of report queries.
 Which type of data store should you recommend in the AnalyticsPOC workspace?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911299_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911299_1.png)
+
 ⭕ **A.** a data lake
 ⭕ **B.** a warehouse
 ✅ **C.** a lakehouse
@@ -1838,6 +1908,9 @@ You have a Fabric warehouse that contains a table named Staging.Sales. Staging.S
 You need to write a T-SQL query that will return data for the year 2023 that displays ProductID and ProductName and has a summarized Amount that is higher than 10,000.
 Which query should you use?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911300_0.png)
+
 ✅ **A.** ![image choice](../assets/exhibits/dp-600/911300_A_0.png)
 ⭕ **B.** ![image choice](../assets/exhibits/dp-600/911300_B_0.png)
 ⭕ **C.** ![image choice](../assets/exhibits/dp-600/911300_C_0.png)
@@ -1863,7 +1936,10 @@ You need to write a T-SQL query that will return the customer ID, name. postal c
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911301_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -1998,7 +2074,10 @@ You need to write a DAX query that will be executed by using the XMLA endpoint. 
 How should you complete the DAX expression? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911308_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2027,6 +2106,9 @@ You have a Fabric workspace named Workspace1 that contains a dataflow named Data
 You view the query in Power Query as shown in the following exhibit.
 What can you identify about the pickupLongitude column?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911309_0.png)
+
 ✅ **A.** The column has duplicate values.
 ⭕ **B.** All the table rows are profiled.
 ⭕ **C.** The column has missing values.
@@ -2054,7 +2136,10 @@ You need to ensure that a user named User1 can truncate tables in schemaA only.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911313_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2077,7 +2162,11 @@ You need to create a dimensional data model that will enable the analysis of ord
 What should you include in the solution? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911321_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911321_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2235,7 +2324,11 @@ You have the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911335_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911335_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2283,7 +2376,10 @@ You need to ensure that any foldable Power Query transformation steps are proces
 How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911337_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2317,7 +2413,10 @@ You need to remove the files that are no longer used and combine small files int
 What should you do? To answer, drag the appropriate actions to the correct requirements. Each action may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911338_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2393,7 +2492,11 @@ Filter the DataFrame to include only rows where fareAmount is a positive number 
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911343_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911343_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2657,6 +2760,10 @@ You need to recommend a solution to prepare the tenant for the PoC.
 Which two actions should you recommend performing from the Fabric Admin portal? Each correct answer presents part of the solution.
 NOTE: Each correct answer is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916062_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916062_1.png)
+
 ⭕ **A.** Enable the Users can try Microsoft Fabric paid features option for the entire organization.
 ✅ **B.** Enable the Users can try Microsoft Fabric paid features option for specific security groups.
 ⭕ **C.** Enable the Allow Azure Active Directory guest users to access Microsoft Fabric option for specific security groups.
@@ -2757,6 +2864,10 @@ The data analysts must create a customer satisfaction report that meets the foll
 You need to implement the date dimension in the data store. The solution must meet the technical requirements.
 What are two ways to achieve the goal? Each correct answer presents a complete solution.
 NOTE: Each correct selection is worth one point.
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916064_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916064_1.png)
 
 ✅ **A.** Populate the date dimension table by using a dataflow.
 ⭕ **B.** Populate the date dimension table by using a Copy activity in a pipeline.
@@ -2866,6 +2977,10 @@ The data analysts must create a customer satisfaction report that meets the foll
 You need to ensure the data loading activities in the AnalyticsPOC workspace are executed in the appropriate sequence. The solution must meet the technical requirements.
 What should you do?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916065_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916065_1.png)
+
 ⭕ **A.** Create a dataflow that has multiple steps and schedule the dataflow.
 ⭕ **B.** Create and schedule a Spark notebook.
 ⭕ **C.** Create and schedule a Spark job definition.
@@ -2948,7 +3063,10 @@ Contoso identifies the following high-level requirements that must be considered
 Which workspace role assignments should you recommend for ResearchReviewersGroup1 and ResearchReviewersGroup2? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916069_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -2980,7 +3098,11 @@ You need to ensure that the layers are populated daily in sequential order such 
 What should you use to execute each set of items? To answer, drag the appropriate options to the correct items. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916072_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916072_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3007,7 +3129,10 @@ You need to change the data type of a string column named Age to integer. The so
 How should you complete the code? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916073_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3042,7 +3167,10 @@ Using a notebook in Workspace1, you need to load the content of the file to the 
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916074_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3088,7 +3216,10 @@ You need to add the new data to the Delta table to meet the following requiremen
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916076_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3121,7 +3252,12 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916077_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916077_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916077_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3175,7 +3311,11 @@ You need to use slowly changing dimension (SCD) to manage the versioning of data
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916080_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916080_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3266,7 +3406,10 @@ You need to create a new table in Warehouse1 named POSCustomers by querying the 
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916084_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3364,7 +3507,10 @@ Report1 is slow to render. You suspect that an inefficient DAX query is being ex
 You need to identify the slowest DAX query, and then review how long the query spends in the formula engine as compared to the storage engine.
 Which five actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916090_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3440,6 +3586,9 @@ You are exploring a new semantic model.
 From Power Query, you need to view column information as shown in the following exhibit.
 Which three Data view options should you select? Each correct answer presents part of the solution.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916098_0.png)
+
 ✅ **A.** Show column value distribution
 ⭕ **B.** Enable details pane
 ✅ **C.** Enable column profile
@@ -3467,7 +3616,12 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916099_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916099_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916099_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3488,7 +3642,12 @@ You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916101_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916101_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916101_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3546,7 +3705,10 @@ You need to write a DAX query that will be executed by using the XMLA endpoint. 
 How should you complete the DAX expression? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916104_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3709,6 +3871,9 @@ Solution: You replace line 4 by using the following code:
 ISEMPTY ( RELATEDTABLE ( 'Order Item' ) )
 Does this meet the goal?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916109_0.png)
+
 ⭕ **A.** Yes
 ✅ **B.** No
 
@@ -3734,6 +3899,9 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 NOT ISEMPTY ( CALCULATETABLE ( 'Order Item ' ) )
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916110_0.png)
 
 ✅ **A.** Yes
 ⭕ **B.** No
@@ -3782,6 +3950,9 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 CALCULATE ( COUNTROWS ( 'Order Item' ) ) >= 0
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916111_0.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -3883,7 +4054,11 @@ You have the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931008_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931008_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3964,7 +4139,11 @@ You have a Fabric tenant that contains a data warehouse named DW1. DW1 contains 
 You need to identify duplicate email addresses in DimCustomer. The solution must return a maximum of 1,000 records.
 Which four T-SQL statements should you run in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931012_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931012_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -3983,7 +4162,11 @@ You run the following T-SQL query against WH1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931013_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931013_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4087,7 +4270,10 @@ You need to design the tables that will be used for sales transaction analysis a
 Which type of target table should you specify for the CustomerName, CustomerCode, and SaleDate fields? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/934199_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4131,7 +4317,10 @@ CREATE TABLE test.FactSales AS CLONE OF dbo.FactSales;
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/934201_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4339,7 +4528,12 @@ You assign Domain1 as the default domain of Group1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936837_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936837_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/936837_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4407,6 +4601,9 @@ You need to perform the following actions:
 •	Create a product dimension table named DimProduct and a fact table named FactSales.
 Which three columns should you include in DimProduct?
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936839_0.png)
+
 ✅ **A.** ProductColor, ProductID, and ProductName.
 ⭕ **B.** ProductName, SalesAmount, and TransactionlD.
 ⭕ **C.** Date, ProductID, and TransactionlD.
@@ -4429,7 +4626,11 @@ You have a Fabric workspace that contains a Dataflow Gen2 query. The query retur
 You need to filter the results to ensure that only the latest version of each customer’s record is retained. The solution must ensure that no new columns are loaded to the semantic model.
 Which four actions should you perform in sequence in Power Query Editor? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936840_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936840_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4469,7 +4670,11 @@ You have the following KQL query.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936847_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936847_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4509,7 +4714,11 @@ You need build a T-SQL statement that will return the total sales amount by Orde
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939099_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939099_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4532,7 +4741,12 @@ You need to compare the average miles per trip for statutory holidays versus non
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939108_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939108_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/939108_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4554,7 +4768,10 @@ You need to create a stored procedure in DW1 that deduplicates the data in the s
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939109_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4615,7 +4832,11 @@ You have the following T-SQL statement.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939111_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939111_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4642,7 +4863,11 @@ You need to create a view to denormalize the data into a customer dimension that
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939112_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/939112_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4690,7 +4915,10 @@ You need to merge the Employee query with the Retired Roles query. The solution 
 Which column and Join Kind should you use in Power Query Editor? To answer, select the appropriate options in the answer area.
 NOTE: Each correct answer is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939119_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4711,7 +4939,11 @@ You grant DBUser access to Lakehouse1 as shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942882_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942882_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4737,7 +4969,10 @@ You need to assign a workspace role to each group. The solution must follow the 
 Which workspace role should you assign to each group? To answer, drag the appropriate roles to the correct groups. Each role may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942883_0.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4784,7 +5019,11 @@ You need to create a T-SQL statement that meets the following requirements:
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942885_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942885_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4810,7 +5049,11 @@ You need to use a T-SQL query to add a column named PriceRange to dbo.Product. T
 How should you complete the query? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942886_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942886_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4856,7 +5099,11 @@ You need to create a T-SQL statement that will denormalize the tables and includ
 How should you complete the statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942888_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942888_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4875,7 +5122,11 @@ You need to query Readings and return the results shown in the following table.
 How should you complete the query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942889_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942889_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4903,7 +5154,11 @@ You need to summarize order quantities by year and product. The solution must in
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942890_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942890_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4924,7 +5179,11 @@ You need to ingest data from both data sources into Lakehouse1. The solution mus
 What should you use to ingest the data into each data source? To answer, drag the appropriate options to the correct data sources. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955731_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955731_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4952,7 +5211,12 @@ You plan to use a KQL queryset to manipulate the data in Eventhouse1. The result
 You need to build the query.
 Which four KQL statements should you use in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955733_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955733_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/955733_2.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -4980,6 +5244,9 @@ Eventstream1 reads data from an Azure event hub named Eventhub1.
 Eventhub1 contains the following columns.
 You need to add a continuous percentile calculation to the Payload column. The solution must minimize development effort.
 What should you do?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955734_0.png)
 
 ⭕ **A.** Add a KQL queryset to Workspace1.
 ⭕ **B.** Add a Group by transformation to Eventstream1.
@@ -5085,7 +5352,11 @@ You need to create a query that shows the top three taxi companies based on the 
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955738_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955738_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5128,7 +5399,11 @@ You need to create two slowly changing dimensions that meet the requirements sho
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955744_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955744_1.png)
+
+_DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5147,7 +5422,11 @@ You need to create a column named FirstPickupDateTime that will contain the firs
 How should you complete the query? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955745_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/955745_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5194,7 +5473,11 @@ You run the following code.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911302_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911302_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5464,6 +5747,9 @@ You need to reduce the memory used by Model1 and the time it takes to refresh th
 Which two actions should you perform? Each correct answer presents part of the solution.
 NOTE: Each correct answer is worth one point.
 
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911322_0.png)
+
 ✅ **A.** Split OrderDateTime into separate date and time columns.
 ⭕ **B.** Replace TotalQuantity with a calculated column.
 ⭕ **C.** Convert Quantity into the Text data type.
@@ -5510,7 +5796,11 @@ From Power BI Desktop, you open Performance analyzer as shown in the following e
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/911342_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/911342_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5626,7 +5916,12 @@ You need to design a semantic model for the customer satisfaction report.
 Which data source authentication method and mode should you use? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916063_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/916063_1.png)
+- Exhibit 3: ![Exhibit 3](../assets/exhibits/dp-600/916063_2.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5774,7 +6069,10 @@ You need to migrate the Research division data for Productline1. The solution mu
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916067_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -5989,7 +6287,10 @@ You need to create a calculation item that will change the context from the sele
 How should you complete the DAX expression? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916092_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6012,6 +6313,9 @@ You have a Microsoft Power BI report named Report1 that uses a Fabric semantic m
 Users discover that Report1 renders slowly.
 You open Performance analyzer and identify that a visual named Orders By Date is the slowest to render. The duration breakdown for Orders By Date is shown in the following table.
 What will provide the greatest reduction in the rendering duration of Report1?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/916093_0.png)
 
 ⭕ **A.** Enable automatic page refresh.
 ⭕ **B.** Optimize the DAX query of Orders By Date by using DAX Studio.
@@ -6160,7 +6464,10 @@ You need to migrate the Research division data for Productline2. The solution mu
 How should you complete the code? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931006_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6181,7 +6488,11 @@ You need to optimize model1. The solution must meet the following requirements:
 What should you do on each column? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931011_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/931011_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6213,6 +6524,9 @@ You need to reduce the execution time of the query.
 Solution: You replace line 4 by using the following code:
 NOT ( CALCULATE ( COUNTROWS ( 'Order Item' ) ) < 0)
 Does this meet the goal?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/931014_0.png)
 
 ⭕ **A.** Yes
 ✅ **B.** No
@@ -6340,7 +6654,11 @@ You have a Fabric tenant that contains the semantic model shown in the following
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936834_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936834_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6384,7 +6702,11 @@ You have a Microsoft Power Bl project that contains a file named definition.pbir
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936841_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/936841_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6489,7 +6811,10 @@ You need to deploy a new semantic model. The solution must meet the following re
 How should you configure the model? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/936846_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6622,6 +6947,9 @@ You have a Fabric tenant that contains the workspaces shown in the following tab
 You have a deployment pipeline named Pipeline1 that deploys items from Workspace_DEV to Workspace_TEST. In Pipeline1, all items that have matching names are paired.
 You deploy the contents of Workspace_DEV to Workspace_TEST by using Pipeline1.
 What will the contents of Workspace_TEST be once the deployment is complete?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/939106_0.png)
 
 ✅ **A.** Lakehouse1 -Lakehouse2 -Notebook1 -Notebook2 -Pipeline1 -SemanticModel1
 ⭕ **B.** Lakehouse1 -Notebook1 -Pipeline1 -SemanticModel1
@@ -6763,7 +7091,11 @@ The Value measure has the expression shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/942894_0.png)
+- Exhibit 2: ![Exhibit 2](../assets/exhibits/dp-600/942894_1.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6789,7 +7121,10 @@ You need to ensure that tables imported into Model1 are written automatically to
 What should you do for Model1 and Workspace1? To answer, select the appropriate options in the answer area.
 NOTE: Each correct selection is worth one point.
 
-_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955732_0.png)
+
+_HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
 **Most voted:** Not provided
@@ -6827,6 +7162,9 @@ Model1 has the following tables and columns.
 A customer can have one or more accounts. Each account can be associated to multiple customers.
 You need to ensure that users can query Model1 to identify the total transaction amounts by customer.
 What should you add to Model1?
+
+**Exhibits**
+- Exhibit 1: ![Exhibit 1](../assets/exhibits/dp-600/955742_0.png)
 
 ⭕ **A.** a many-to-many relationship between FactTransaction and Dim Customer
 ✅ **B.** a bridge table with relationships to DimCustomer and DimAccount
