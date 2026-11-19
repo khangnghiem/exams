@@ -435,5 +435,43 @@ class ReadabilityEngineTests(unittest.TestCase):
         self.assertIn('class="exam-instruction-note"', formatted)
 
 
+class AIExamEnrichmentTests(unittest.TestCase):
+    def test_ai_exams_enriched_skill_areas_entities_and_non_mcq_backfill(self) -> None:
+        import enrich_ai_exams  # type: ignore
+
+        for exam in ("ai-103", "ai-300", "ai-500"):
+            data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
+            jsonl_lines = [
+                json.loads(line)
+                for line in (REPO_AZURE / "data" / f"{exam}.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual(data, jsonl_lines, f"{exam} JSON and JSONL out of sync")
+
+            for q in data:
+                self.assertIn("skill_area", q)
+                self.assertIn("skill_area_label", q)
+                mv = str(q.get("most_voted_answer") or "")
+                self.assertNotIn("&quot;", mv, f"Unescaped &quot; in {exam} Q{q['topic']}.{q['question_number']}")
+                self.assertNotIn("&gt;", mv, f"Unescaped &gt; in {exam} Q{q['topic']}.{q['question_number']}")
+
+        # All 5 official Microsoft Learn AI-103 skill areas must be populated
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        distinct_skills = {q["skill_area"] for q in ai103}
+        self.assertEqual(distinct_skills, {1, 2, 3, 4, 5})
+        self.assertEqual(len(enrich_ai_exams.AI_103_SKILL_AREAS), 5)
+
+        # Missing non-MCQ answers across AI-103/300/500 reduced from 55 to <= 1 (meta-chatter rejected)
+        missing_total = 0
+        for exam in ("ai-103", "ai-300", "ai-500"):
+            data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
+            missing_total += sum(1 for q in data if not q.get("choices") and not q.get("most_voted_answer"))
+        self.assertLessEqual(missing_total, 1)
+
+        # Q1.174 ("found in exam today") must NOT be promoted as a fake answer
+        q174 = next(q for q in ai103 if q["question_number"] == 174)
+        self.assertIsNone(q174.get("most_voted_answer"))
+
+
 if __name__ == "__main__":
     unittest.main()
