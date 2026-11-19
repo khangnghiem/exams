@@ -260,6 +260,25 @@ class StudyGuideBuilderTests(unittest.TestCase):
             self.assertIn(exam, builder_mod.TOPIC_LABELS)
             self.assertTrue(len(builder_mod.TOPIC_LABELS[exam]) >= 1)
 
+    def test_study_guide_titles_include_full_exam_names(self) -> None:
+        expected = {
+            "dp-600": "DP-600 Implementing Analytics Solutions Using Microsoft Fabric Study Guide",
+            "dp-700": "DP-700 Implementing Data Engineering Solutions Using Microsoft Fabric Study Guide",
+            "ai-103": "AI-103 Developing AI Apps and Agents on Azure Study Guide",
+            "ai-300": "AI-300 Operationalizing Machine Learning and Generative AI Solutions Study Guide",
+            "ai-500": "AI-500 Designing and Implementing Multi-Agent AI Solutions Study Guide",
+        }
+        for exam in builder_mod.TOPIC_LABELS:
+            self.assertIn(exam, builder_mod.EXAM_TITLES)
+        for exam, title in expected.items():
+            self.assertEqual(builder_mod.format_study_guide_title(exam), title)
+            html_doc = builder_mod.build_html(exam, [])
+            self.assertIn(f"<title>{title}</title>", html_doc)
+            self.assertIn(f"<h1>{title}</h1>", html_doc)
+            md_doc = builder_mod.build_markdown(exam, [])
+            self.assertTrue(md_doc.startswith(f"# {title}\n"))
+        self.assertEqual(builder_mod.format_study_guide_title("az-104"), "AZ-104 Study Guide")
+
     def test_code_exhibit_renders_html_fallback_not_empty(self) -> None:
         ex = {"kind": "code", "html": "<pre><code>print('hello foundry')</code></pre>", "language": "python"}
         rendered_html = builder_mod.render_exhibit(ex, 0, "Q1.1")
@@ -305,6 +324,21 @@ class StudyGuideBuilderTests(unittest.TestCase):
         self.assertIn('data-multiple="true"', rendered)
         self.assertIn('type="checkbox"', rendered)
         self.assertNotIn("Action 1<br>Action 1", rendered)
+
+        # Single-answer tuple question ("Which three columns...") with 1 correct choice stays radio
+        q_single_tuple = {
+            **q,
+            "question_type": "single",
+            "question_text": "Which three columns should you include in DimProduct?",
+            "choices": [
+                {"letter": "A", "text": "Col1, Col2, and Col3", "correct": True, "text_html": "Col1, Col2, and Col3"},
+                {"letter": "B", "text": "Col1, Col2, and Col4", "correct": False, "text_html": "Col1, Col2, and Col4"},
+            ],
+            "correct_answers": ["A"],
+        }
+        rendered_single = builder_mod.render_question_html(q_single_tuple)
+        self.assertIn('data-multiple="false"', rendered_single)
+        self.assertIn('type="radio"', rendered_single)
 
     def test_hotspot_js_surfaces_community_answer_when_available(self) -> None:
         html_doc = builder_mod.build_html(
