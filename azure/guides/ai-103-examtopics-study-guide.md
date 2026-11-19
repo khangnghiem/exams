@@ -170,12 +170,6 @@ _161 questions generated from ExamTopics discussions._
 ## Q1.1 (ID 412433)
 
 HOTSPOT
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -249,9 +243,19 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** &quot;the data prcessed by the model must remain in the EU&quot; | that is Standard for me: | By data residency requirement | No restrictions: Use Global Standard or Global Provisioned | EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region | US data zone: Use DataZone Standard or DataZone Provisioned in a US region | Single region only: Use Standard or Regional Provisioned
+**Most voted:** "the data prcessed by the model must remain in the EU" | that is Standard for me: | By data residency requirement | No restrictions: Use Global Standard or Global Provisioned | EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region | US data zone: Use DataZone Standard or DataZone Provisioned in a US region | Single region only: Use Standard or Regional Provisioned
 
 ### Top explanations
+- **profitchannel** (11 upvotes [Highly Voted]): "the data prcessed by the model must remain in the EU"
+that is Standard for me:
+By data residency requirement
+No restrictions: Use Global Standard or Global Provisioned
+EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region
+US data zone: Use DataZone Standard or DataZone Provisioned in a US region
+Single region only: Use Standard or Regional Provisioned
+- **RICHARDALEX007** (4 upvotes): The requirement asks for scalable, high-throughput, dynamically scaling capacity WITHOUT reserved throughput. That points to a pay-as-you-go consumption deployment rather than Provisioned (PTU). The highlighted 'Standard' is defensible, but 'Global Standard' is the offering Microsoft positions for the highest, most elastic throughput.
+Deployment type: Global Standard
+Version upgrade policy: Opt out of automatic model version upgrades
 - **mtbagent** (1 upvotes [Most Recent]): Standard
 Once the current version expires
 - **robert_ico** (1 upvotes): I would go with B) Global Standard (clues: scalable, high-throughput; Standard: specific Azure Region, capaicity associated to that region; Global Provisioned: reserves provisioned capacity) and B) Opt out... why? the model version used by Agent1 MUST remain CONSISTENT to ensure STABLE responses (so no automatic upgrades required)
@@ -262,12 +266,6 @@ Version update policy	Opt out of automatic model version upgrades
 <a id="q1-2"></a>
 ## Q1.2 (ID 412434)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -343,14 +341,15 @@ What should you use?
 **Most voted:** B
 
 ### Top explanations
-- **a5f05ea** (2 upvotes [Selected Answer: BC]): It should be B & C both, because for malicious text embedded in images prompt shields are used.
-For loss of user data PII detection.
-So this should be a multi answer question.
+- **seesee1** (4 upvotes [Selected Answer: B]): The requirement in question is: "The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images."
+This describes an indirect prompt injection attack - malicious instructions embedded in content (in this case, text hidden inside images) that could hijack the agent's behavior when it processes that document. Microsoft Foundry's Prompt Shields (part of Azure AI Content Safety) is purpose-built to detect and block both direct and indirect prompt injection attempts, including those embedded in documents/images ingested by an agent, before they reach the model.
+- **CharlieMike** (4 upvotes [Selected Answer: C]): I think it is C due to the security/compliance requirement
 - **Srikantha** (3 upvotes [Most Recent, Selected Answer: B]): Prompt Shields detect both direct prompt injection (jailbreaks) and indirect prompt injection attacks. Indirect prompt injection occurs when external sources (such as product documents or OCR-extracted text from embedded images) contain hidden adversarial instructions intended to hijack or manipulate the model's behavior.
-- **AdrienBnhm** (2 upvotes [Selected Answer: B]): it a question of malicious instruction set injection. The best answer here is B : "Prompt shield".
-See the documentation here : https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields
-"Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.
-The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images."
+- **RPC112** (3 upvotes [Selected Answer: C]): Personally Identifiable Information (PII) Detection
+The requirement"must never reveal customer information" is a hard compliance requirement.
+Prompt Shields solve the hidden-instructions problem, but they do not directly prevent disclosure of customer data. [learn.microsoft.com], [learn.microsoft.com]
+The latest AI‑103 discussion sites and explanations for this exact case study also mark PII Detection as the correct answer
+- **Vasent** (3 upvotes [Selected Answer: C]): Since the case-study question mentions the requirement of NOT including any Customer information, so Agent1 must have the configuration setting of any "Personally identifiable Information" to be identified.
 
 <a id="q1-3"></a>
 ## Q1.3 (ID 412435)
@@ -393,13 +392,13 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar) | 2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = "LangChain" and "Agent", query with kql : ... | where cloud_RoleName="LangChain") | 3) enable_content_recodring=False redacts message content and tool call ar...
 
 ### Top explanations
+- **RICHARDALEX007** (2 upvotes): A project connection centralizes the credential/endpoint once and is reused by every agent in the project, which is exactly 'centrally manage ... across all agents.' RBAC (A) and disabling key auth (B) are good security practices but do not centralize the credential reference, and a managed private endpoint (D) addresses network isolation, not credential management.
 - **robert_ico** (1 upvotes [Most Recent]): 1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar)
 2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = "LangChain" and "Agent",  query with kql :  ... | where cloud_RoleName="LangChain")
 3) enable_content_recodring=False redacts message content and tool call arguments from traces (almost a direct definition)
-- **RICHARDALEX007** (2 upvotes): A project connection centralizes the credential/endpoint once and is reused by every agent in the project, which is exactly 'centrally manage ... across all agents.' RBAC (A) and disabling key auth (B) are good security practices but do not centralize the credential reference, and a managed private endpoint (D) addresses network isolation, not credential management.
 
 <a id="q1-5"></a>
 ## Q1.5 (ID 412437)
@@ -418,17 +417,13 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Pipeline 1: D - Single-file, standard | Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning) | Pipeline 2: A- Multi in pro | Clues: Cross-document (&quot;multi-file&quot;), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)
+**Most voted:** Pipeline 1: D - Single-file, standard | Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning) | Pipeline 2: A- Multi in pro | Clues: Cross-document ("multi-file"), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)
 
 ### Top explanations
 - **robert_ico** (5 upvotes [Most Recent]): Pipeline 1: D - Single-file, standard
 Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning)
 Pipeline 2: A- Multi in pro
 Clues: Cross-document ("multi-file"), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)
-- **examtopics53932** (1 upvotes): pipeline1: Singlefile standard
-pipeline2: Multifile pro
-Note that pro-mode is only available in the 2025-05-01-preview API version.
-current API (2025-11-01) and latest preview (2026-06-01-preview) has replaced pro-mode with agentic mode.
 - **AIBoss** (3 upvotes): Content Understanding offers two modes for different scenarios:
 Standard mode
 - Ideal for processing single files with straightforward field extraction. Use standard mode when you need to extract structured data from individual documents, images, audio, or video files without cross-file analysis or complex reasoning requirements.
@@ -439,6 +434,10 @@ Process multiple input files in a single request
 Apply reasoning across different documents to validate, enrich, or aggregate data
 Use reference data (knowledge base) to guide extraction and validation
 Perform complex multi-step analysis that goes beyond simple field extraction
+- **examtopics53932** (1 upvotes): pipeline1: Singlefile standard
+pipeline2: Multifile pro
+Note that pro-mode is only available in the 2025-05-01-preview API version.
+current API (2025-11-01) and latest preview (2026-06-01-preview) has replaced pro-mode with agentic mode.
 
 <a id="q1-6"></a>
 ## Q1.6 (ID 412438)
@@ -460,8 +459,8 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** A managed identity is consumed through DefaultAzureCredential (not AzureKeyCredential, which is key-based, nor ClientSecretCredential, which needs a secret). The Responses API call to send a prompt is responses.create(); retrieve/compact are not the send operation.
 
 ### Top explanations
-- **robert_ico** (1 upvotes [Most Recent]): AzureKeyCredential needs an PI ley; ClientSecretCredential uses a service principal (not managed; requires client id and client secret), DefaultAzureCredential: can use the application's managed identity (as a matter of fact, this method is used as standard in dev (e.g., in VSCODE, to detect your az login) and in Foundry (after deployed) or the final app like teams or copilot (when published)).
 - **RICHARDALEX007** (9 upvotes [Highly Voted]): A managed identity is consumed through DefaultAzureCredential (not AzureKeyCredential, which is key-based, nor ClientSecretCredential, which needs a secret). The Responses API call to send a prompt is responses.create(); retrieve/compact are not the send operation.
+- **robert_ico** (1 upvotes [Most Recent]): AzureKeyCredential needs an PI ley; ClientSecretCredential uses a service principal (not managed; requires client id and client secret), DefaultAzureCredential: can use the application's managed identity (as a matter of fact, this method is used as standard in dev (e.g., in VSCODE, to detect your az login) and in Foundry (after deployed) or the final app like teams or copilot (when published)).
 
 <a id="q1-7"></a>
 ## Q1.7 (ID 412439)
@@ -486,11 +485,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **robert_ico** (4 upvotes [Most Recent]): IsEmpty(): used to determine if a table/collection has no records; IsBlank is for checking blank, null values in variables; Upper() converts to uppercase;  Local.Var01 is the correct way to address Var01.
 ANSWER: Not(IsBlank(Local.Var01)) and {Upper(Local.Var01)}
+- **AIBoss** (2 upvotes): Because it mentioned in the question.
+"...... that returns the stored user response in uppercase"
 - **Sridhar_AI_Engineer** (1 upvotes): Why Upper ? required
 A Send message expression that returns the stored user response
 Why not Local.Var01 ?
-- **AIBoss** (2 upvotes): Because it mentioned in the question.
-"...... that returns the stored user response in uppercase"
 
 <a id="q1-8"></a>
 ## Q1.8 (ID 412440)
@@ -511,10 +510,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** The state that you mention is about Content Safety Custom Categories, which is a different situation. For this question, following the principle of least privilege, Storage Blob Data Reader is the correct answer.
 
 ### Top explanations
+- **3f9a492** (4 upvotes): For the first question, select **Block** for all four intervention points: User input, Tool call, Tool response, and Output. For the second, select **system-assigned managed identity + Storage Blob Data Contributor**—Microsoft states that Content Safety access through `blobUrl` requires Contributor or Owner, so Reader is not supported.
 - **OnlineCH** (3 upvotes): Storage access: on https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-image?pivots=programming-language-rest&tabs=visual-studio%2Cwindows#prepare-a-sample-image it is mentioned "Only Storage Blob Data Contributor or Storage Blob Data Owner are valid roles to proceed." so "Storage Blob Data Contributor" instead of ".. Reader" might be correct.
 - **robert_ico** (3 upvotes): 1) For guardrails: two key parts; one says "prevent" so it's block, not just annotate (which would label, identify, but no prevent), and the complete configuration should include user input, oputput, tool response and tool call (option 1 is only the tool call, but doing so would not prevent harmfull content in what the user inputs, or what the tool outputs, or the ultimate output given by the agent).
 2) For Storage access: Content Safety needs to access the screenshots using their blob URLs; therefore, it needs READ permission (least priviledge); Contributor assigns unnecessary write/delete permissions.
-- **3f9a492** (4 upvotes): For the first question, select **Block** for all four intervention points: User input, Tool call, Tool response, and Output. For the second, select **system-assigned managed identity + Storage Blob Data Contributor**—Microsoft states that Content Safety access through `blobUrl` requires Contributor or Owner, so Reader is not supported.
+- **Alvarogc** (2 upvotes [Most Recent]): The state that you mention is about Content Safety Custom Categories, which is a different situation. For this question, following the principle of least privilege, Storage Blob Data Reader is the correct answer.
 
 <a id="q1-9"></a>
 ## Q1.9 (ID 412441)
@@ -560,6 +560,7 @@ To what should you set the project property?
 **Most voted:** B
 
 ### Top explanations
+- **cloudera** (2 upvotes [Selected Answer: B]): I am pretty sure the answer should be B. the custom speech project ID.
 - **robert_ico** (1 upvotes [Most Recent, Selected Answer: B]): Microsoft documents that when using a custom speech model through the Speech-to-Text REST API, the request can specify the custom speech project ID using the project query parameter. The key thing here is that there are 2 "projects": the foundry project, and the custom project. According to this reference, we need to specify the custom project id: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-speech-to-text
 - **maxng52** (1 upvotes): The error is an invalid project ID for a fine-tuned Custom Speech model, so the `project` property must be set to the GUID of the **Custom Speech project** that owns the model — not a URL (A/D, which aren't IDs) and not the generic Foundry project ID (C).
 - **RICHARDALEX007** (1 upvotes [Selected Answer: B]): The error is an invalid project ID for a custom speech model, so the project property must be set to the custom speech project ID (a GUID identifying the Custom Speech project). A URL or endpoint URL is not a project ID, and 'the project ID' (C) is the generic Foundry project, not the Custom Speech project that owns the fine-tuned model.
@@ -581,7 +582,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question. | In Microsoft Foundry, the ask_question step is specifically designed to pause a workflow, prompt a user for input (such as an approval or rejection), and store the response in a variable that can be evaluated by subsequent logic. | Box 2: approval == "approved" Execute Condition: Use a condition such a...
 
 ### Top explanations
 - **TuanJin** (1 upvotes [Most Recent]): Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question.
@@ -604,15 +605,19 @@ What is the expected behavior when the model expires?
 **Most voted:** C
 
 ### Top explanations
-- **Eloy522752** (1 upvotes [Most Recent, Selected Answer: A]): When a Custom Speech model passes its expiration, the deployed endpoint stops serving it and requests fail rather than silently using the expired model (B) or auto-deleting (D)
-- **Srini7** (1 upvotes [Selected Answer: C]): Transcription route : Question is about Custom endpoint, So it fall back to the most recent base model for the same locale.
-If the question is a batch transcription: then 'A" it will be fail with a 4xx error.
+- **cloudera** (7 upvotes [Highly Voted, Selected Answer: C]): C is correct.
+According to the Microsoft lifecycle policy for Custom Speech, when a custom model deployed to a custom endpoint expires, the endpoint does not suddenly shut down or throw errors. Instead, Azure Speech ensures service continuity by automatically falling back to the most recent available base model for that specific locale.
+For more visit - https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle?utm_source=chatgpt.com&pivots=ai-foundry-portal
 - **7b5220c** (3 upvotes [Selected Answer: C]): Answer C is the correct choice.
 When a custom Speech-to-Text model in Azure reaches its expiration date, the endpoint does not experience an immediate outage. To prevent a hard disruption of service, Azure utilizes a fallback mechanism:
 Speech recognition requests will automatically fall back to the most recent base model for the same locale.
 In practice, this means:
 The service continues to run: The agent will not receive 4xx errors (which makes Answer A incorrect).
 Accuracy may decrease: Since the system now uses the general base model instead of the specially trained custom model, the specific adaptations to your vocabulary or acoustic environment are lost until a new custom model is trained and deployed.
+- **Eloy522752** (1 upvotes [Most Recent, Selected Answer: A]): When a Custom Speech model passes its expiration, the deployed endpoint stops serving it and requests fail rather than silently using the expired model (B) or auto-deleting (D)
+- **Srini7** (1 upvotes [Selected Answer: C]): Transcription route : Question is about Custom endpoint, So it fall back to the most recent base model for the same locale.
+If the question is a batch transcription: then 'A" it will be fail with a 4xx error.
+- **RICHARDALEX007** (1 upvotes [Selected Answer: A]): When a Custom Speech model passes its expiration, the deployed endpoint stops serving it and requests fail rather than silently using the expired model (B) or auto-deleting (D)
 
 <a id="q1-13"></a>
 ## Q1.13 (ID 412445)
@@ -655,9 +660,24 @@ What should you add?
 **Most voted:** A
 
 ### Top explanations
-- **Sai8686** (1 upvotes [Most Recent, Selected Answer: A]): A is correct. required forces the model to call a tool on every run instead of answering from its own knowledge. Since the MCP knowledge base tool is the agent’s tool, every run is grounded and returns citations. This matches Microsoft’s Foundry IQ guidance for knowledge base agents.
-- **Barbara Chen** (1 upvotes [Selected Answer: D]): The requirement is to deterministically force the agent to invoke the MCP tool on every run. Setting tool_choice={"type":"mcp"} explicitly instructs the agent to use the Model Context Protocol (MCP) tool instead of allowing the model to decide whether to call a tool. This guarantees that the agent queries the Azure AI Search knowledge base through the MCP tool before generating a response, ensuring grounded answers with citations.
-- **jmlwonder** (1 upvotes [Selected Answer: A]): Required is correct
+- **Mattt** (6 upvotes [Selected Answer: D]): D is more precise. required only forces the use of some tool, while {"type":"mcp"} explicitly forces the MCP tool. Also, option A uses incorrect Python syntax.
+- **AzureGeek79** (3 upvotes [Selected Answer: D]): The correct answer is D. tool_choice ={"type":"mcp"}.
+In the Microsoft Foundry Agent Service, the tool_choice parameter controls whether and how the agent uses its attached tools during a run.
+• {"type":"mcp"} (Choice D): When you want to target a specific tool type and force the agent to use it deterministically for the processing turn, you must pass an object specifying that particular type. Since the agent is querying the Azure AI Search knowledge base explicitly via a Model Context Protocol (MCP) tool, specifying {"type":"mcp"} forces the model to invoke the protocol handler right away rather than attempting to answer directly from its internal pre-trained weights.
+• {"required"} (Choice A): While "required" forces the model to choose at least one tool from its toolbox, it does not explicitly guarantee which tool it will pick if multiple are defined. Furthermore, passing it as a Python set literal like {"required"} is a syntax misfit for the parameter expectations.
+• {"auto"} (Choice B): This is the default runtime behavior. It keeps tool selection non-deterministic, allowing the base model to skip the knowledge base if it feels confident enough to respond on its own—which is the exact behavior causing the ungrounded citations issue.
+• {"type":"knowledge_base"} (Choice C): "knowledge_base" is not a valid tool type identifier for an MCP-connected architecture in Foundry's Agent execution framework.
+- **Sky_Akash** (3 upvotes [Selected Answer: D]): Why not A ({"required"})?
+{"required"} only ensures some tool is used, not specifically the MCP tool.
+If multiple tools exist, the agent could pick another one.
+The question explicitly says “deterministically force the agent to invoke the MCP tool”, so you must specify its type.
+So even though A is “most voted,” D is the technically correct and exam-accurate choice.
+- **3f9a492** (3 upvotes [Selected Answer: A]): Must use a tool every run → required
+The option displays tool_choice={"required"}, but proper Python SDK syntax is normally tool_choice="required"
+- **cloudera** (3 upvotes [Selected Answer: A]): Syntax error but I will still go with A: tool_choice="required"
+The issue is that the agent sometimes answers from the base model without calling the knowledge base tool. tool_choice="required" forces the agent to call a tool on each run, which prevents it from skipping retrieval and helps ensure grounded citations.
+D is tempting because MCP is the tool type, but the question is about forcing tool use at runtime, not defining the MCP tool itself.
+For more - https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-pipeline
 
 <a id="q1-15"></a>
 ## Q1.15 (ID 412447)
@@ -677,7 +697,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answers unsupported by retrieved documents are a groundedness problem, measured by groundedness evaluation metrics. Responses flagged for policy violations map to the risk and safety evaluators
 
 ### Top explanations
 - **RICHARDALEX007** (3 upvotes [Most Recent]): Answers unsupported by retrieved documents are a groundedness problem, measured by groundedness evaluation metrics. Responses flagged for policy violations map to the risk and safety evaluators
@@ -724,8 +744,8 @@ What should you do?
 **Most voted:** B
 
 ### Top explanations
-- **shank23** (1 upvotes [Most Recent, Selected Answer: B]): A Model Cascade (also known as LLM Cascading) is an optimization and reliability pattern where an AI system chains multiple language models together sequentially. Instead of sending every single user query to a highly intelligent, expensive model, the system leverages a fast and cheap model first
 - **RICHARDALEX007** (2 upvotes [Selected Answer: B]): A model cascade sends simple FAQs to a small/cheap model and escalates complex queries to a capable model, reducing cost/latency without degrading hard-question quality. Routing everything to a small model (A) hurts complex answers; routing all to the largest model (D) keeps costs high; raising max_tokens (C) does not reduce cost or latency.
+- **shank23** (1 upvotes [Most Recent, Selected Answer: B]): A Model Cascade (also known as LLM Cascading) is an optimization and reliability pattern where an AI system chains multiple language models together sequentially. Instead of sending every single user query to a highly intelligent, expensive model, the system leverages a fast and cheap model first
 
 <a id="q1-18"></a>
 ## Q1.18 (ID 412450)
@@ -748,11 +768,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** I think the correct answer for diagnostic log is 'trace'. The question contains 'identify whether each issue is caused by model unavailability, resource limits or inference failures. That is a diagnostic/root-cause question hence 'trace'
 
 ### Top explanations
+- **Amelia233** (7 upvotes [Highly Voted]): Select Model Availability Rate and Provisioned Utilization because they help identify model availability issues and resource limits causing HTTP 429 errors. Select RequestResponse logs to investigate inference failures and understand why the agent returns “No relevant information found.”
 - **ArindamPal** (3 upvotes [Most Recent]): Should be this asnwer
 Metrics - Model Availability Rate and Provisioned Utilization
 Diagnostic log to collect - trace
 - **Retinol2** (3 upvotes): I think the correct answer for diagnostic log is 'trace'. The question contains 'identify whether each issue is caused by model unavailability, resource limits or inference failures. That is a diagnostic/root-cause question hence 'trace'
-- **Amelia233** (7 upvotes [Highly Voted]): Select Model Availability Rate and Provisioned Utilization because they help identify model availability issues and resource limits causing HTTP 429 errors. Select RequestResponse logs to investigate inference failures and understand why the agent returns “No relevant information found.”
 
 <a id="q1-19"></a>
 ## Q1.19 (ID 412451)
@@ -795,7 +815,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The problem statement notes that the agent is currently configured to "let the model decide when to call the tools" (which is what tool_choice: "auto" does). However, the compliance requirement mandates: | ​"Each workflow run must include a retrieval step before generating a response." | If left as auto, the model might choose to answer directly from parametric memory without executing a tool call. Setting tool_choice: "required" forces the model to cal...
 
 ### Top explanations
 - **8ac3742** (1 upvotes): The problem statement notes that the agent is currently configured to "let the model decide when to call the tools" (which is what tool_choice: "auto" does). However, the compliance requirement mandates:
@@ -822,13 +842,15 @@ What should you do?
 **Most voted:** D
 
 ### Top explanations
-- **afolabisbox** (1 upvotes [Most Recent, Selected Answer: D]): Tool must be bounded to connection holding the key
+- **RICHARDALEX007** (4 upvotes [Selected Answer: D]): The 401 with a missing key header means the tool is not bound to the connection holding the key. Connecting the tool to Connection1 makes Foundry inject the stored key automatically. Identity passthrough (A) sends the caller's Entra token, not the API key; manually adding the header (B) hardcodes secrets; the default project connection (C) is not necessarily Connection1.
 - **8ac3742** (3 upvotes [Selected Answer: D]): ​Bind to the Connection:
 ​In the tool configuration blade, scroll to the Authentication section.
 ​Switch the authentication method/source to Project Connection (or Saved Connection).
 ​From the dropdown list of available connections, select Connection1.
 ​Verify that the security scheme defined in the OpenAPI specification (e.g., apiKey in header) matches the key/secret stored in Connection1.
-- **RICHARDALEX007** (4 upvotes [Selected Answer: D]): The 401 with a missing key header means the tool is not bound to the connection holding the key. Connecting the tool to Connection1 makes Foundry inject the stored key automatically. Identity passthrough (A) sends the caller's Entra token, not the API key; manually adding the header (B) hardcodes secrets; the default project connection (C) is not necessarily Connection1.
+- **cloudera** (2 upvotes [Selected Answer: D]): D. Connect the tool to Connection1.
+B is incomplete answer and can expose secrets if done wrong.
+- **afolabisbox** (1 upvotes [Most Recent, Selected Answer: D]): Tool must be bounded to connection holding the key
 
 <a id="q1-22"></a>
 ## Q1.22 (ID 412454)
@@ -870,10 +892,12 @@ Does this meet the goal?
 **Most voted:** B
 
 ### Top explanations
+- **RICHARDALEX007** (4 upvotes [Selected Answer: B]): The threat is hidden instructions embedded in uploaded IMAGES (indirect/document attack) plus unsafe image content. A prompt shield for USER PROMPTS addresses direct jailbreak text from the user, not injected content extracted from images, so it does not meet the goal.
+- **Dinesh_87** (2 upvotes [Selected Answer: B]): Requires - Content Safety image/multimodal harm filters + Spotlighting, to mark extracted/image-derived text as untrusted so the model treats it as data, not instructions
+- **profitchannel** (2 upvotes [Selected Answer: A]): but since one of the 4 questions should have a right answer, this is more likely the one with the right answer?
 - **nnaidu** (1 upvotes [Most Recent, Selected Answer: B]): It does not protect against malicious instructions embedded inside uploaded documents
 - **a5f05ea** (1 upvotes [Selected Answer: B]): B. No
 A Prompt Shield for user prompts protects against prompt injection attacks coming directly from user-entered text. It does not protect against malicious instructions embedded inside uploaded documents or images.
-- **Dinesh_87** (2 upvotes [Selected Answer: B]): Requires - Content Safety image/multimodal harm filters + Spotlighting, to mark extracted/image-derived text as untrusted so the model treats it as data, not instructions
 
 <a id="q1-24"></a>
 ## Q1.24 (ID 412456)
@@ -893,14 +917,14 @@ Does this meet the goal?
 **Most voted:** B
 
 ### Top explanations
-- **RPC112** (2 upvotes [Most Recent, Selected Answer: B]): Hidden instructions in images/documents → Prompt Shields for documents
-Unsafe visual content (violence, nudity, illegal imagery, etc.) → Image content moderation / Analyze Image API
-The scenario in questions 23–26 describes both risks together, which is why none of the four individual solutions on their own "meets the goal" as stated — each one only solves half the problem.
-Would be A if Unsafe images were isolated and not combined with embedded hidden instructions.
 - **RICHARDALEX007** (3 upvotes [Selected Answer: B]): : Image moderation blocks unsafe visual content, which handles the 'unsafe images' half, but it does NOT neutralize hidden text instructions embedded in images (the prompt-injection half). Because the stated goal includes mitigating embedded instructions, image moderation alone does not fully meet the goal
 - **cloudera** (3 upvotes [Selected Answer: B]): Correct answer is B (No) again.
 There is two issues here 1)unsafe image 2) hidden instructions.
 Image moderation address unsafe image, but doesn't help with the #2 above. The 2nd part required prompt injection protection which is missing in the configuration.
+- **RPC112** (2 upvotes [Most Recent, Selected Answer: B]): Hidden instructions in images/documents → Prompt Shields for documents
+Unsafe visual content (violence, nudity, illegal imagery, etc.) → Image content moderation / Analyze Image API
+The scenario in questions 23–26 describes both risks together, which is why none of the four individual solutions on their own "meets the goal" as stated — each one only solves half the problem.
+Would be A if Unsafe images were isolated and not combined with embedded hidden instructions.
 
 <a id="q1-25"></a>
 ## Q1.25 (ID 412457)
@@ -920,12 +944,17 @@ Does this meet the goal?
 **Most voted:** A
 
 ### Top explanations
-- **Sai8686** (1 upvotes [Most Recent, Selected Answer: A]): Prompt shields for Documents is the correct answer
-- **CRdumps** (1 upvotes [Selected Answer: B]): The answer is B: No
-According to wiki:
-Prompt Shields detect attempts to manipulate model behavior through user input or document content. They don't determine whether content is harmful, factually accurate, grounded in source material, compliant with policy, or aligned with the application's task. Use other guardrails and application controls for those risks.
-So this solution alone is not enough
-- **Sai8686** (1 upvotes): please include citation as evidence
+- **ArindamPal** (3 upvotes [Selected Answer: A]): Prompt shields for Documents is the correct answer
+- **AzureGeek79** (3 upvotes [Selected Answer: A]): There is not a single answer to this question. It should be:
+a) You configure a prompt shield for documents.
+b) You configure image moderation to block unsafe content before processing the images.
+- **Srikantha** (3 upvotes [Selected Answer: B]): Correct Solution:
+To mitigate both risks, you must use:
+Azure AI Content Safety Image Moderation to scan uploaded images for unsafe visual content (Adult, Violence, Hate, Self-harm).
+Prompt Shields for User Input / Images (or running OCR text through Prompt Shields) to detect embedded prompt injection instructions hidden inside the image text.
+- **Mattt** (3 upvotes [Selected Answer: A]): A is correct.
+Here, “unsafe images” refers to images containing hidden malicious instructions. Prompt Shields for Documents can analyze the extracted text and detect these indirect prompt-injection attacks.
+- **a5f05ea** (2 upvotes [Selected Answer: B]): For unsafe images it should be Image moderation and for embed text prompt shield, since prompt shield aloe cannot solve both the issue.
 
 <a id="q1-26"></a>
 ## Q1.26 (ID 412458)
@@ -945,22 +974,16 @@ Does this meet the goal?
 **Most voted:** B
 
 ### Top explanations
+- **RICHARDALEX007** (2 upvotes [Selected Answer: B]): Protected material detection identifies copyrighted/owned content in output. It has nothing to do with unsafe images or embedded malicious instructions, so it does not meet the goal.
 - **Munish_20** (1 upvotes [Most Recent, Selected Answer: B]): protected material detection is for copy right related prevention, not for required protection
 - **Dinesh_87** (1 upvotes [Selected Answer: B]): Protected material detection serves a completely different purpose — it's designed to identify copyrighted or owned content, specifically pinpointing copyrighted content and providing sources for preexisting text and code. It checks whether the model's output matches known copyrighted text or code (song lyrics, articles, licensed code snippets, etc.)
 To actually meet the goal, you'd need:
 Content Safety image/multimodal harm filters → for unsafe images
 Prompt Shields for Documents → for hidden instructions in extracted image text
-- **RICHARDALEX007** (2 upvotes [Selected Answer: B]): Protected material detection identifies copyrighted/owned content in output. It has nothing to do with unsafe images or embedded malicious instructions, so it does not meet the goal.
 
 <a id="q1-27"></a>
 ## Q1.27 (ID 412459)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -1036,12 +1059,8 @@ What should you include in the recommendation?
 **Most voted:** A
 
 ### Top explanations
-- **Maor23** (1 upvotes [Most Recent, Selected Answer: D]): D. Groundedness evaluator✅ Verifies that responses are supported by the retrieved product sheets and helps ensure accuracy.
-- **3d259eb** (2 upvotes [Selected Answer: A]): The technical requirements say responses generated from the product sheets must be:
-Relevant
-Complete
-Accurate
-a RAG pipeline is systematically assessed using individual metrics like groundedness, coherence, relevance, and fluency.
+- **Darkren4eveR** (5 upvotes [Selected Answer: D]): Requirements says relevant, complete and Accurate
+So should be D
 - **fa62dd5** (3 upvotes [Selected Answer: A]): For this case study question, I would choose:
 ✅ A. a Retrieval Augmented Generation (RAG) evaluator
 Here's why, based on Microsoft Learn:
@@ -1059,16 +1078,23 @@ Groundedness only measures whether the response is supported by the retrieved co
 Exam answer
 A. a Retrieval Augmented Generation (RAG) evaluator
 This is one of the more controversial practice questions. If an official answer key marks D, it is usually because it focuses narrowly on validating responses against retrieved product-sheet content. However, Microsoft's evaluator definitions favor A when the requirement explicitly includes relevance, completeness, and accuracy.
+- **8ac3742** (3 upvotes [Selected Answer: A]): Groundedness Evaluator (Option D) measures only one dimension: whether the response is strictly derived from the context without fabricating informatio
+Retrieval Augmented Generation (RAG) Evaluator (Option A) evaluates the end-to-end RAG architecture across all three required metrics:
+Relevance (Retrieval & Question-Answer Relevance)
+Completeness (Context / Answer Completeness)
+Accuracy / Faithfulness (Groundedness)
+- **AIBoss** (3 upvotes): The question says "to assess the responses".
+Groundedness evaluator is a subset of RAG evaluators. RAG evaluators has other evaluators also which is not relevent here.
+https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators
+- **3d259eb** (2 upvotes [Selected Answer: A]): The technical requirements say responses generated from the product sheets must be:
+Relevant
+Complete
+Accurate
+a RAG pipeline is systematically assessed using individual metrics like groundedness, coherence, relevance, and fluency.
 
 <a id="q1-28"></a>
 ## Q1.28 (ID 412460)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -1144,11 +1170,11 @@ What should you do?
 **Most voted:** A
 
 ### Top explanations
-- **besquets** (1 upvotes [Most Recent, Selected Answer: A]): Has to be "A" here because system message can define the persona of an agent, hence helps with scope, none of the rest of the options do this.
+- **RICHARDALEX007** (5 upvotes [Selected Answer: A]): Constraining the agent to answer only about Contoso products is a scope/grounding instruction best enforced through the system message. Few-shot examples (B) shape style but do not reliably bound scope; top-p (C) and temperature (D) tune randomness, not topic restriction.
 - **Srikantha** (3 upvotes [Selected Answer: A]): he correct answer is A. Modify the system message instructions.
 Reasoning:
 The system message (system prompt) defines the agent's persona, operational boundaries, tone, and guardrails. Updating the system instructions with explicit domain-scoping rules (for example, "You are a support assistant for Contoso. You must answer questions ONLY about Contoso products and politely decline out-of-scope inquiries.") is the standard and most effective method to restrict the model's behavior and scope.
-- **RICHARDALEX007** (5 upvotes [Selected Answer: A]): Constraining the agent to answer only about Contoso products is a scope/grounding instruction best enforced through the system message. Few-shot examples (B) shape style but do not reliably bound scope; top-p (C) and temperature (D) tune randomness, not topic restriction.
+- **besquets** (1 upvotes [Most Recent, Selected Answer: A]): Has to be "A" here because system message can define the persona of an agent, hence helps with scope, none of the rest of the options do this.
 
 <a id="q1-29"></a>
 ## Q1.29 (ID 412461)
@@ -1169,16 +1195,16 @@ Which type of model should you use to power the agent?
 **Most voted:** D
 
 ### Top explanations
+- **_Lucifer_** (2 upvotes [Most Recent, Selected Answer: D]): Multimodal is usefull when in question they have asked image + text ,image + audio
+LLM fits in this case when u want multireasoning and other requirements
+so answer is D-LLM
+- **RICHARDALEX007** (2 upvotes [Selected Answer: D]): Deep multi-step reasoning over long contexts with detailed natural-language generation is the strength of an LLM. An SLM (B) trades reasoning depth for cost/latency; a multimodal model (A) adds image/audio not required here; key phrase extraction (C) is a narrow NLP task, not a generative reasoner.
 - **Shaharaz** (1 upvotes [Selected Answer: D]): An LLM is best suited because the agent must:
 Perform deep, multi-step reasoning
 Process long contexts
 Generate detailed natural-language responses
 Use retrieval-augmented generation, or RAG, to ground answers in internal product documentation retrieved from Azure AI Search
 RAG combines search with an LLM by retrieving relevant internal content, adding it to the model’s context, and generating an answer grounded in that content
-- **_Lucifer_** (2 upvotes [Most Recent, Selected Answer: D]): Multimodal is usefull when in question they have asked image + text ,image + audio
-LLM fits in this case when u want multireasoning and other requirements
-so answer is D-LLM
-- **RICHARDALEX007** (2 upvotes [Selected Answer: D]): Deep multi-step reasoning over long contexts with detailed natural-language generation is the strength of an LLM. An SLM (B) trades reasoning depth for cost/latency; a multimodal model (A) adds image/audio not required here; key phrase extraction (C) is a narrow NLP task, not a generative reasoner.
 
 <a id="q1-30"></a>
 ## Q1.30 (ID 412462)
@@ -1196,7 +1222,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** To guarantee a tool is invoked, set the tool_choice key to the value 'required'. The highlighted drag values place "tool_choice" as the key and "required" as the value, which forces tool usage on every run.
 
 ### Top explanations
 - **RICHARDALEX007** (4 upvotes [Most Recent]): To guarantee a tool is invoked, set the tool_choice key to the value 'required'. The highlighted drag values place "tool_choice" as the key and "required" as the value, which forces tool usage on every run.
@@ -1245,12 +1271,12 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Grounding with Bing Search supplies current public-web information; Code interpreter executes calculations during a conversation; File search retrieves from documents uploaded directly to the agent. Each highlighted pairing matches the canonical Foundry Agent Service tool.
 
 ### Top explanations
+- **RICHARDALEX007** (2 upvotes [Most Recent]): Grounding with Bing Search supplies current public-web information; Code interpreter executes calculations during a conversation; File search retrieves from documents uploaded directly to the agent. Each highlighted pairing matches the canonical Foundry Agent Service tool.
 - **8ac3742** (1 upvotes): (1)Access up-to-date information from public websites: Grounding with Bing Search   (2)Perform calculations during conversations: Code interpreter   Retrieve information from (3)documents uploaded directly to the agent: File search
 Code interpreter: Runs code in an isolated sandbox environment to execute precise mathematical operations, process datasets, and generate analytical calculations without hallucination.
-- **RICHARDALEX007** (2 upvotes [Most Recent]): Grounding with Bing Search supplies current public-web information; Code interpreter executes calculations during a conversation; File search retrieves from documents uploaded directly to the agent. Each highlighted pairing matches the canonical Foundry Agent Service tool.
 
 <a id="q1-33"></a>
 ## Q1.33 (ID 412465)
@@ -1271,8 +1297,8 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** BC
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Selected Answer: BC]): Application Insights (Option B):Microsoft Foundry projects integrate natively with Azure Application Insights to provide end-to-end distributed tracing, latency breakdowns (span timelines for LLM calls, tool executions, and retrieval), and automatic exception tracking across external application calls.   Connecting the Python service to the project’s linked Application Insights resource fulfills the entire requirement out of the box.   OpenTelemetry (Option C):The Azure AI Foundry SDK (azure-ai-projects / prompt flow / agent framework) is instrumented directly on top of the OpenTelemetry (OTel) open standard.   In a standalone Python service outside the portal, you can enable end-to-end tracing using the OpenTelemetry SDK (via azure-monitor-opentelemetry or an OTel tracer) to capture spans, measure component latency, and log exceptions to any compatible backend.
 - **RICHARDALEX007** (2 upvotes [Most Recent, Selected Answer: BC]): For end-to-end tracing of agent runs from an external Python service, OpenTelemetry instruments the code and Application Insights stores/visualizes the traces - each is a complete tracing solution as worded. A Log Analytics workspace (A) backs App Insights but is not itself the tracing capability; Azure Monitor Agent (D) and Sentinel (E) are not used for agent run tracing
+- **8ac3742** (1 upvotes [Selected Answer: BC]): Application Insights (Option B):Microsoft Foundry projects integrate natively with Azure Application Insights to provide end-to-end distributed tracing, latency breakdowns (span timelines for LLM calls, tool executions, and retrieval), and automatic exception tracking across external application calls.   Connecting the Python service to the project’s linked Application Insights resource fulfills the entire requirement out of the box.   OpenTelemetry (Option C):The Azure AI Foundry SDK (azure-ai-projects / prompt flow / agent framework) is instrumented directly on top of the OpenTelemetry (OTel) open standard.   In a standalone Python service outside the portal, you can enable end-to-end tracing using the OpenTelemetry SDK (via azure-monitor-opentelemetry or an OTel tracer) to capture spans, measure component latency, and log exceptions to any compatible backend.
 
 <a id="q1-34"></a>
 ## Q1.34 (ID 412466)
@@ -1293,8 +1319,8 @@ What should you do?
 **Most voted:** A
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Selected Answer: A]): In the Microsoft Foundry Agent Service (and the underlying OpenAI Assistants/threads model), a conversation (thread) is a stateful entity managed server-side by Azure.   It automatically appends and preserves:User inputs and assistant responses.   Internal reasoning steps, tool calls, and tool response outputs
 - **RICHARDALEX007** (4 upvotes [Most Recent, Selected Answer: A]): Persisting and reusing the conversation/thread ID reloads the full server-side history (user/agent messages, tool calls, tool outputs) on each new turn and supports cross-session resumption. Storing only the final response (B) loses tool history; memory summarization (C) condenses rather than reloads the complete interaction history.
+- **8ac3742** (1 upvotes [Selected Answer: A]): In the Microsoft Foundry Agent Service (and the underlying OpenAI Assistants/threads model), a conversation (thread) is a stateful entity managed server-side by Azure.   It automatically appends and preserves:User inputs and assistant responses.   Internal reasoning steps, tool calls, and tool response outputs
 
 <a id="q1-35"></a>
 ## Q1.35 (ID 412467)
@@ -1313,13 +1339,13 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Answer: temperature = 1, effort = “high” | This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature. | effort = &quot;high&quot; gives the deepest reasoning, which is what “maximize reasoning quality” ask...
+**Most voted:** Answer: temperature = 1, effort = “high” | This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature. | effort = "high" gives the deepest reasoning, which is what “maximize reasoning quality” ask...
 
 ### Top explanations
+- **RICHARDALEX007** (7 upvotes [Highly Voted]): To maximize output stability/determinism, set temperature to 0 (lowest randomness). To maximize reasoning quality on a reasoning model, set the effort to high. The two highlighted selections satisfy 'improve output stability' and 'maximize reasoning quality' respectively.
 - **dinizingrid** (1 upvotes [Most Recent]): Answer: temperature = 1, effort = “high”
 This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature.
 effort = "high" gives the deepest reasoning, which is what “maximize reasoning quality” asks for.
-- **RICHARDALEX007** (7 upvotes [Highly Voted]): To maximize output stability/determinism, set temperature to 0 (lowest randomness). To maximize reasoning quality on a reasoning model, set the effort to high. The two highlighted selections satisfy 'improve output stability' and 'maximize reasoning quality' respectively.
 
 <a id="q1-36"></a>
 ## Q1.36 (ID 412468)
@@ -1359,7 +1385,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Retaining user preferences across conversations requires persistent agent memory (conversation history alone resets per session; orchestration session context is in-session). Letting users ground via documents uploaded during chat is the File search tool (Azure AI Search tool targets a pre-built index; code interpreter is for compute).
 
 ### Top explanations
 - **RICHARDALEX007** (1 upvotes [Most Recent]): Retaining user preferences across conversations requires persistent agent memory (conversation history alone resets per session; orchestration session context is in-session). Letting users ground via documents uploaded during chat is the File search tool (Azure AI Search tool targets a pre-built index; code interpreter is for compute).
@@ -1380,8 +1406,8 @@ What should you do?
 **Most voted:** A
 
 ### Top explanations
-- **8ac3742** (2 upvotes [Selected Answer: A]): Read the prompt's first sentence carefully:"The agent generates summaries from retrieved policy documents."   Because the agent is already retrieving policy documents and generating summaries from them, it is already using Retrieval Augmented Generation (RAG). Switching to RAG is redundant and doesn't solve the issue.
 - **RICHARDALEX007** (4 upvotes [Most Recent, Selected Answer: A]): Implementing the fix 'in the logic of the application code before responses are returned' points to an evaluation/retry pass that checks completeness and regenerates if needed. Decreasing max_tokens (B) and using a smaller model (D) reduce completeness; switching to RAG (C) changes retrieval, not the in-code post-check requested.
+- **8ac3742** (2 upvotes [Selected Answer: A]): Read the prompt's first sentence carefully:"The agent generates summaries from retrieved policy documents."   Because the agent is already retrieving policy documents and generating summaries from them, it is already using Retrieval Augmented Generation (RAG). Switching to RAG is redundant and doesn't solve the issue.
 
 <a id="q1-39"></a>
 ## Q1.39 (ID 412471)
@@ -1418,7 +1444,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** GitHub Actions should authenticate to Azure with the Azure Login action using OIDC (federated credentials), avoiding stored secrets/PATs and managed identity isn't used for GitHub-hosted runners this way. To block merges when evaluation thresholds are not met, the workflow step must Fail (which fails the check and prevents merge); 'send an alert' or 'lock the branch' do not gate the PR check.
 
 ### Top explanations
 - **RICHARDALEX007** (2 upvotes [Most Recent]): GitHub Actions should authenticate to Azure with the Azure Login action using OIDC (federated credentials), avoiding stored secrets/PATs and managed identity isn't used for GitHub-hosted runners this way. To block merges when evaluation thresholds are not met, the workflow step must Fail (which fails the check and prevents merge); 'send an alert' or 'lock the branch' do not gate the PR check.
@@ -1441,6 +1467,9 @@ Does this meet the goal?
 **Most voted:** B
 
 ### Top explanations
+- **RICHARDALEX007** (5 upvotes [Selected Answer: B]): Clauses are present in the retrieved content but omitted from the summary, so the problem is selection/faithfulness, not output length truncation. Increasing max_tokens does not force inclusion of the missing clauses, so it does not meet the goal.
+- **Mattt** (4 upvotes [Selected Answer: B]): B. No.
+Increasing max_tokens only allows a longer response; it does not ensure that required clauses are included. The issue is response completeness, not output truncation.
 - **mamaMia2** (1 upvotes [Most Recent, Selected Answer: B]): as the rest said it only makes it longer, doesnt gaurantee what we need
 - **ArindamPal** (1 upvotes [Selected Answer: A]): Increasing the max_tokens parameter allows the model to generate a longer response, which can improve the likelihood that all required clauses are included in the summary.
 Therefore, increasing max_tokens can improve response completeness and meets the stated goal.
@@ -1464,6 +1493,7 @@ Does this meet the goal?
 **Most voted:** A
 
 ### Top explanations
+- **RICHARDALEX007** (2 upvotes [Selected Answer: A]): A reflection pass that regenerates the response when required clauses are missing directly enforces completeness by re-checking and re-prompting until the clauses appear. This meets the goal.
 - **8ac3742** (1 upvotes [Selected Answer: A]): reflection pass:
 1.Send the retrieved documents and the draft summary to a cheaper model with below prompt:
 You are a compliance reviewer. Inspect the generated summary against the source text.
@@ -1518,10 +1548,12 @@ Does this meet the goal?
 **Most voted:** B
 
 ### Top explanations
+- **NVIT2026** (4 upvotes [Selected Answer: B]): Simply blocking incomplete responses prevents poor output from reaching the user, but it does not fix, improve, or regenerate the response to make it complete. It results in a failed request or error message rather than delivering a complete summary containing the required regulatory clauses.
+- **cloudera** (4 upvotes [Selected Answer: B]): While implementing an evaluation flow to score responses is an excellent practice for monitoring, but it does not actually improve the completeness of the generated summaries.
+- **Mattt** (3 upvotes [Selected Answer: B]): B. No. The evaluation flow only detects and blocks incomplete responses; it does not regenerate them or add the missing clauses.
+- **RICHARDALEX007** (2 upvotes [Selected Answer: A]): Running an evaluation flow that scores completeness and blocks sub-threshold responses enforces the completeness requirement before delivery, so it meets the goal.
 - **AzureGeek79** (1 upvotes [Most Recent, Selected Answer: B]): Correct answer is B.
 While running an evaluation flow to score responses for completeness is a great way to measure and monitor the issue, simply blocking responses that fall below a defined threshold does not improve response completeness. Instead of fixing the problem or generating complete answers, it simply results in a broken experience where users receive an error message, a blocked state, or a generic refusal instead of the required summary.
-- **38df6fe** (1 upvotes [Selected Answer: A]): Running an evaluation flow that scores responses for completeness and blocks/gates those below a defined threshold directly addresses the problem: responses omitting required regulatory clauses even when present in the retrieved content.
-- **NVIT2026** (4 upvotes [Selected Answer: B]): Simply blocking incomplete responses prevents poor output from reaching the user, but it does not fix, improve, or regenerate the response to make it complete. It results in a failed request or error message rather than delivering a complete summary containing the required regulatory clauses.
 
 <a id="q1-45"></a>
 ## Q1.45 (ID 412477)
@@ -1657,7 +1689,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** To prevent prompt injection from document/image-embedded text, set the document-attack shield action to Block. Spotlighting is the Prompt Shields capability that marks third-party content as lower trust, directly satisfying 'treat third-party content as lower trust.' A custom blocklist or OCR pre-step do not provide the provenance/trust separation.
 
 ### Top explanations
 - **RICHARDALEX007** (5 upvotes [Most Recent]): To prevent prompt injection from document/image-embedded text, set the document-attack shield action to Block. Spotlighting is the Prompt Shields capability that marks third-party content as lower trust, directly satisfying 'treat third-party content as lower trust.' A custom blocklist or OCR pre-step do not provide the provenance/trust separation.
@@ -1678,10 +1710,11 @@ What should you do?
 **Most voted:** D
 
 ### Top explanations
+- **profitchannel** (13 upvotes [Most Recent, Highly Voted]): the comments are really helpful and provide background, you see from the answer match already when the answer ist correct!
+- **RICHARDALEX007** (5 upvotes [Selected Answer: D]): Image moderation classifies images into harm categories with severity levels and can block above a threshold. OCR keyword scanning (A) only handles embedded text; prompt shields (B) target injection; blocklists (C) match terms, not visual harm severity.
 - **cloudera** (2 upvotes [Selected Answer: D]): I thought we were supposed to leave the discussion section empty when the answer is already correct. Aren't to discuss only when the question requires correction or further clarification.
 It’s frustrating to see someone commenting on every single answer just to restate what’s already been said. It adds noise rather than value. Please avoid doing that — it’s unnecessary and distracting.
 - **038c182** (2 upvotes): youre mad someone went through and explained / justified the answers? lol
-- **profitchannel** (13 upvotes [Most Recent, Highly Voted]): the comments are really helpful and provide background, you see from the answer match already when the answer ist correct!
 
 <a id="q1-51"></a>
 ## Q1.51 (ID 412483)
@@ -1738,6 +1771,7 @@ What should you include in the solution?
 
 ### Top explanations
 - **2b61a0f** (9 upvotes [Highly Voted]): Some of us want to know also the details, not just the correct answer, I like that RICHARDALEX007 explains the answers.
+- **2b61a0f** (9 upvotes [Highly Voted]): Some of us want to know also the details, not just the correct answer, I like that RICHARDALEX007 explains the answers.
 - **RICHARDALEX007** (7 upvotes [Highly Voted, Selected Answer: B]): Content Understanding provides OCR, layout analysis, and template-generalizing field extraction without training a custom model and with minimal admin effort. Language (A) is text analytics, and an Azure ML model (C) requires building/training.
 - **cloudera** (1 upvotes [Most Recent]): The answer is already correct. Why are you plastering your comments everywhere. Seriously, stop it — full stop.
 
@@ -1760,6 +1794,7 @@ How should you configure the ingestion job?
 **Most voted:** A
 
 ### Top explanations
+- **RICHARDALEX007** (4 upvotes [Selected Answer: A]): Preserving tables/headings as structure-aware chunks with OCR and page-number metadata is what advanced/structure-aware data parsing provides; plain OCR with page-level chunking (B, C) stores whole pages and loses row-level table structure, and basic fixed-size chunking (D) ignores structure
 - **8ac3742** (3 upvotes [Selected Answer: A]): In Foundry AI Search, you configure the parsing strategy:
 Basic parsing: Extracts only unstructured raw text from files and applies standard fixed-size chunking, discarding tables, formatting, headers, and visual layout.
 Advanced data parsing (Option A): Automatically leverages the Azure AI Document Intelligence layout model during ingestion:
@@ -1769,6 +1804,8 @@ Extracts multipage tables into structured representations (Markdown/HTML).
 Produces structure-aware chunks while attaching page-number metadata to each chunk.
 - **Srikantha** (2 upvotes [Most Recent, Selected Answer: A]): Advanced data parsing: In Microsoft Foundry (Azure AI Studio), the "advanced" data parsing option utilizes Azure AI Document Intelligence (specifically the Layout model). This capability is explicitly designed to perform Optical Character Recognition (OCR) while preserving complex document structures such as tables (even those spanning multiple pages), headings, and reading order. It outputs the data into structure-aware chunks (often formatted as Markdown) and automatically tags those chunks with metadata, including page numbers. This perfectly matches the requirement for accurate RAG retrieval of specific table rows
 - **e886835** (1 upvotes [Selected Answer: A]): Not B because this handles the scanning part, blindly cutting chunks at strict page boundaries will slice multipage tables in half incorrectly, destroying row context that spans across page breaks
+- **cloudera** (1 upvotes): Well done, you finally got it right.
+BTW, if I were you, I’d seriously mask my username. Just saying.
 
 <a id="q1-55"></a>
 ## Q1.55 (ID 412487)
@@ -1794,12 +1831,6 @@ Which indexing approach should you use?
 <a id="q1-56"></a>
 ## Q1.56 (ID 412488)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -1965,12 +1996,6 @@ What should you do before sending the segments to Translator?
 <a id="q1-61"></a>
 ## Q1.61 (ID 412493)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -2062,12 +2087,6 @@ The word "embedding" comes directly from mathematics (topology and geometry): di
 <a id="q1-62"></a>
 ## Q1.62 (ID 412494)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -2215,12 +2234,6 @@ Refference: https://learn.microsoft.com/en-us/azure/foundry/concepts/built-in-ev
 ## Q1.66 (ID 421512)
 
 HOTSPOT
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -2294,7 +2307,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** create and retrieve | Generating video is a long-running, asynchronous operation. | client.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., "queued" or "processing"). | then retrieve | while video.status not in ["completed", "failed", "cancelled"]: | time.sleep(20) | video = client.videos.retrieve(video.id) | Why not list? list() takes no ID and returns a pa...
 
 ### Top explanations
 - **8ac3742** (2 upvotes [Most Recent]): create and retrieve
@@ -2309,12 +2322,6 @@ Why not list? list() takes no ID and returns a paginated list of all video gener
 <a id="q1-67"></a>
 ## Q1.67 (ID 421513)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -2402,12 +2409,6 @@ Final Answer: B. Memory
 ## Q1.68 (ID 421514)
 
 HOTSPOT
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -2481,7 +2482,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** (1) DefaultAzureCredential | Security & Compliance Requirement: | "API keys must NOT be used to access Foundry-deployed models." | "The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication." | DefaultAzureCredential() integrates with Microsoft Entra ID and honors the RBAC assignments granted to the security group SC_Agent1_Dev. | (2) get | Why not create_version? | create_version requires specifi...
 
 ### Top explanations
 - **8ac3742** (1 upvotes [Most Recent]): (1) DefaultAzureCredential
@@ -2621,14 +2622,6 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** AE
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Selected Answer: AE]): The two correct evaluation categories are:
-A. risk and safety metrics
-E. AI quality (AI assisted) metrics
-Why "AI assisted" and NOT "NLP"?
-Microsoft Foundry categorizes evaluation metrics into distinct buckets:
-AI quality (AI assisted) metrics:
-These use an LLM (such as GPT-4o) as an automated judge to reason over unstructured inputs and context.
-(NLP) metrics are traditional, deterministic mathematical string-matching and overlap formulas.They cannot assess complex semantic concepts like groundedness or contextual relevance.
 - **Srikantha** (4 upvotes [Selected Answer: AE]): The two correct evaluation categories are A. risk and safety metrics and E. AI quality (AI assisted) metrics.
 Explanation:
 E. AI quality (AI assisted) metrics: This category uses a judge model (such as GPT-4) to measure quality aspects like groundedness and relevance.
@@ -2641,6 +2634,16 @@ B. Fluency evaluator → Measures how naturally the response is written.
 C. Similarity evaluators → Focus on similarity between responses/reference content.
 E. AI Quality (AI-assisted) metrics → Uses AI-based evaluation for certain quality dimensions, but the question specifically maps groundedness/relevance and harmful content to the two categories above.
 👉 Final Answer: A and D.
+- **8ac3742** (1 upvotes [Selected Answer: AE]): The two correct evaluation categories are:
+A. risk and safety metrics
+E. AI quality (AI assisted) metrics
+Why "AI assisted" and NOT "NLP"?
+Microsoft Foundry categorizes evaluation metrics into distinct buckets:
+AI quality (AI assisted) metrics:
+These use an LLM (such as GPT-4o) as an automated judge to reason over unstructured inputs and context.
+(NLP) metrics are traditional, deterministic mathematical string-matching and overlap formulas.They cannot assess complex semantic concepts like groundedness or contextual relevance.
+- **CRdumps** (1 upvotes [Most Recent]): D. AI quality (NLP) metrics: These are traditional text-overlap metrics such as F1, BLEU, GLEU, ROUGE, and METEOR. They require ground truth and don’t provide groundedness, relevance, or safety scoring.
+I do not think D is a good answer
 
 <a id="q1-73"></a>
 ## Q1.73 (ID 421519)
@@ -2759,7 +2762,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** The correct values are: | scope= → "{{$userId}}" | tools= → [memory_tool] | Explanation: | {{$userId}} ensures that each authenticated user has a separate memory scope. This allows the agent to remember user preferences across different conversations without mixing one user's memories with another user's data.
 
 ### Top explanations
 - **Amelia233** (1 upvotes [Most Recent]): The correct values are:
@@ -2816,20 +2819,25 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Orchestration pattern The sequential template that passes outputs node-by-node | Approval checkpoints Add an Ask a question node
 
 ### Top explanations
-- **mhussey79** (1 upvotes [Most Recent]): Orchestration pattern	Human-in-the-loop template	Sequential template
-Approval checkpoints	Add a Condition statement	Add an Ask a question node
+- **ExamProAzure** (9 upvotes [Highly Voted]): Orchestration pattern	The sequential template that passes outputs node-by-node
+Approval checkpoints	Add an Ask a question node
 - **8ac3742** (5 upvotes): Orchestration pattern is the sequential template that passes outputs node-by-node
 Key requirement: "Ensures predictable execution across the agents" and "PolicyWriter generates draft updates... and RiskReviewer reviews the drafts."
 A sequential template defines a strict, deterministic pipeline: PolicyWriter runs first to generate the draft, passing its output directly to RiskReviewer.
 Why not "group chat"? The prompt specifically rules out dynamic routing: a group chat dynamically decides which agent speaks next using an LLM coordinator, which makes execution non-deterministic and unpredictable.
 Why not "human-in-the-loop template"? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint.
 Why not "human-in-the-loop template"? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint
+- **Srikantha** (5 upvotes): nswer Key
+Orchestration pattern: The sequential template that passes outputs node by-node
+Approval checkpoints: Add a Condition statement.
 - **jwlnewsome** (4 upvotes): Orchestration pattern: The sequential template that passes outputs node by-node
 Approval checkpoints: Add a Condition statement.
 Predictable execution across the agents requires a Sequential orchestration pattern, where PolicyWriter → RiskReviewer execute in a fixed order and outputs are passed between nodes.
 Finalize low-risk updates without manual intervention and require user approval for high-risk updates requires evaluating the risk score/review outcome and branching accordingly. This is done with a Condition node:
 If risk = Low → finalize automatically.
 If risk = High → route to a human approval step.
+- **mhussey79** (1 upvotes [Most Recent]): Orchestration pattern	Human-in-the-loop template	Sequential template
+Approval checkpoints	Add a Condition statement	Add an Ask a question node
 
 <a id="q1-80"></a>
 ## Q1.80 (ID 421526)
@@ -2870,15 +2878,26 @@ Which built-in analyzer should you use?
 **Most voted:** B
 
 ### Top explanations
-- **centri** (1 upvotes [Most Recent, Selected Answer: B]): prebuilt-documentSearch is optimised for RAG by parsing content of the PDF and creating markdown outputs which can be used as input in RAG developments. The other closest answer prebuilt-layout preserves the layout of the PDF document but is not optimised for RAG operations
-- **Foxthedogfather** (1 upvotes [Selected Answer: B]): This analyzer is designed for search and RAG workflows, producing structured Markdown ready for indexing and retrieval. That matches the requirement to provide document content to a downstream agent in a semantically organized format. learn.microsoft.com
-Why the others are incorrect:
-- A. prebuilt-documentFieldSchema — Focuses on generating a field schema, not RAG-ready document content.
-- C. prebuilt-read — Provides basic OCR and content extraction without layout analysis.
-- D. prebuilt-layout — Extracts tables, hyperlinks, sections, and layout, but prebuilt-documentSearch is the purpose-built choice for RAG optimization. learn.microsoft.com
-Exam tip: The deciding phrase is “optimized for RAG workflows.” Choose Document Search. For layout extraction without a language model, choose Layout.
-- **kinser123** (1 upvotes [Selected Answer: D]): Produce Markdown output suitable for downstream RAG and search scenarios
+- **mmpurnel** (2 upvotes [Selected Answer: D]): The prebuilt-layout analyzer is designed to:
+Preserve document structure
+Extract headings, sections, tables, paragraphs, and hyperlinks
+Maintain reading order
+Produce Markdown output suitable for downstream RAG and search scenarios
 Handle complex PDFs with multi-column layouts and tables
+This makes it the preferred analyzer for converting PDF content into semantically structured Markdown for indexing and retrieval workflows.
+- **a5f05ea** (2 upvotes [Selected Answer: B]): Answer: B. prebuilt-documentSearch ✅
+prebuilt-documentSearch is specifically a RAG analyzer, optimized for retrieval-augmented generation scenarios. It performs semantic analysis and produces structured Markdown suitable for document ingestion, search applications, and knowledge bases.
+Why not the others?
+A.prebuilt-documentFieldSchema: focused on schema/field extraction rather than RAG-ready document representation.
+C.prebuilt-read: primarily basic text/OCR extraction.
+D.prebuilt-layout: extracts layout elements such as words, paragraphs, figures, and tables, but isn't the analyzer specifically optimized for RAG.
+- **Srikantha** (2 upvotes [Selected Answer: B]): . prebuilt-documentSearch
+Explanation:
+prebuilt-documentSearch: This is a dedicated RAG analyzer in Azure Content Understanding that extracts content from documents (such as PDFs with tables and links) while maintaining layout preservation, table detection, and structured Markdown output optimized specifically for downstream RAG and agent workflows.
+Other options: prebuilt-read provides basic OCR without layout analysis; prebuilt-layout focuses primarily on general document structure rather than being the specific prebuilt RAG search analyzer; prebuilt-documentFieldSchema is a utility analyzer used for proposing field schemas rather than extracting content for search.
+- **Amelia233** (2 upvotes [Selected Answer: D]): Correct Answer: D. prebuilt-layout
+prebuilt-layout extracts document content while preserving layout and semantic structure, including tables and hyperlinks. This makes the Markdown output better suited for RAG workflows.
+- **centri** (1 upvotes [Most Recent, Selected Answer: B]): prebuilt-documentSearch is optimised for RAG by parsing content of the PDF and creating markdown outputs which can be used as input in RAG developments. The other closest answer prebuilt-layout preserves the layout of the PDF document but is not optimised for RAG operations
 
 <a id="q1-82"></a>
 ## Q1.82 (ID 421528)
@@ -2925,11 +2944,11 @@ What should you configure?
 **Most voted:** B
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Selected Answer: B]): hybrid of keyword search and vector search(embedding search)
 - **Amelia233** (2 upvotes [Most Recent, Selected Answer: B]): Hybrid search combines keyword search and vector search, allowing users to search with both exact terms and natural language.
 Exact product names/codes → Keyword search
 Natural language descriptions → Vector search
 👉 Final Answer: B. Hybrid Search
+- **8ac3742** (1 upvotes [Selected Answer: B]): hybrid of keyword search and vector search(embedding search)
 
 <a id="q1-84"></a>
 ## Q1.84 (ID 421530)
@@ -2950,9 +2969,15 @@ What should you add?
 **Most voted:** D
 
 ### Top explanations
+- **Srikantha** (3 upvotes [Most Recent, Selected Answer: B]): B. Azure Content Understanding in Foundry Tools
+Explanation:
+Azure Content Understanding: This skill combines layout-aware extraction, image and text location metadata, and advanced structural support for extracting complex elements like cross-page tables as single semantic units.
 - **a5f05ea** (2 upvotes [Selected Answer: D]): document layout skill to extract text, images, bounding polygons, and multi-page tables.
 Azure content understanding doesn't output individual bounding polygons.
 - **8ac3742** (2 upvotes [Selected Answer: D]): Notes Azure AI Search does not have to call Azure Content Understanding to create or store an index. Calling Content Understanding (or Document Intelligence) is entirely optional.
+- **Amelia233** (2 upvotes [Selected Answer: D]): The Document Layout skill can extract text, images, tables, and their location metadata, including bounding polygons. It also supports tables that span multiple pages, making it suitable for page-level citations in PDF documents.
+In short: Text + images + bounding polygons + multi-page tables → Document Layout
+✅ Answer: D. Document Layout
 - **a5f05ea** (1 upvotes [Selected Answer: B]): The deciding requirement is:
 “Extract tables that span multiple pages.”
 Document Layout does satisfy much of the first requirement. It supports text/image extraction and provides location metadata for images.
@@ -2998,7 +3023,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Answer | Field value type: string | Field method: generate | Short discussion: | Use string because the generated JSON field contains a textual description of the color scheme. Use generate because the analyzer needs to create this description automatically for each video segment.
 
 ### Top explanations
 - **8ac3742** (1 upvotes): generate: Uses a generative AI model to synthesize, describe, summarize, or reason over content (ideal for visual descriptions like describing a scene's color scheme).
@@ -3028,11 +3053,11 @@ You need to configure Pipeline1 and expose the pipeline as a single analyzer end
 **Most voted:** C
 
 ### Top explanations
+- **Amelia233** (2 upvotes [Most Recent, Selected Answer: C]): Correct answer: C. A multiple-file task in Pro mode that uses the vendor contract files as reference data.
+A multiple-file task is required because the pipeline must compare the invoice with its purchase order. Pro mode supports using reference data, allowing the analyzer to validate vendor information against static vendor documents and return the discrepancies in one structured output.
 - **8ac3742** (1 upvotes [Selected Answer: C]): In Content Understanding architecture, the invoice and the purchase order are the transaction-specific runtime inputs provided to the multiple-file task payload when calling the analyzer endpoint.
 The static vendor contract documents represent the persistent reference data configured in the analyzer schema.
 Option C defines the task architecture: "a multiple-file task in pro mode that uses the vendor contract files as reference data."
-- **Amelia233** (2 upvotes [Most Recent, Selected Answer: C]): Correct answer: C. A multiple-file task in Pro mode that uses the vendor contract files as reference data.
-A multiple-file task is required because the pipeline must compare the invoice with its purchase order. Pro mode supports using reference data, allowing the analyzer to validate vendor information against static vendor documents and return the discrepancies in one structured output.
 
 <a id="q1-88"></a>
 ## Q1.88 (ID 421534)
@@ -3104,12 +3129,12 @@ Which connection method should you use?
 **Most voted:** B
 
 ### Top explanations
+- **MarceloManhaes** (4 upvotes [Selected Answer: B]): The correct response should be letter B. WebRTC has low latency than WebSocket. Source: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio
 - **8ac3742** (1 upvotes [Selected Answer: B]): Targeting sub-second ultra-low latency (~100 ms): The GPT Realtime API supports two transport mechanisms: WebSocket and WebRTC.
 WebRTC operates primarily over UDP (via SRTP)
 WebSockets run over TCP. Packet loss requires TCP retransmission, introducing jitter and latency spikes well above 100 ms for streaming raw interactive voice over consumer network connections.
 - **Wella_** (1 upvotes [Most Recent, Selected Answer: B]): WebRTC - Correct answer
 WebSocket supports real-time bidirectional data, but WebRTC is the recommended method for browser-based real-time audio streaming with GPT Realtime.
-- **MarceloManhaes** (4 upvotes [Selected Answer: B]): The correct response should be letter B. WebRTC has low latency than WebSocket. Source: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio
 
 <a id="q1-91"></a>
 ## Q1.91 (ID 421537)
@@ -3212,7 +3237,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Capture all the nested operations across the entire agent run: Hierarchical spans (Captures parent-child execution flow and nested sub-tasks in open telemetry/tracing). | Record tool invocation arguments and returned results as metadata: Tool call attributes (Attaches tool input arguments and output values as metadata attributes to individual telemetry spans).
 
 ### Top explanations
 - **Amelia233** (1 upvotes [Most Recent]): Capture all the nested operations across the entire agent run: Hierarchical spans (Captures parent-child execution flow and nested sub-tasks in open telemetry/tracing).
@@ -3234,7 +3259,7 @@ NOTE: Each comet selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** correct answer | Why &quot;Implement exponential backoff and jitter&quot; instead of &quot;Increase tenant-wide quotas&quot;?Look closely at the constraint in the problem statement:&quot;The solution must remain within the service and model limits.&quot; HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiti...
+**Most voted:** correct answer | Why "Implement exponential backoff and jitter" instead of "Increase tenant-wide quotas"?Look closely at the constraint in the problem statement:"The solution must remain within the service and model limits." HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiti...
 
 ### Top explanations
 - **8ac3742** (1 upvotes): correct answer
@@ -3329,7 +3354,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** correct answer | Requirement: &quot;Grounds responses only in company policy documents stored in curated repositories&quot;. The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent. Why not &quot;Upload the policy documents direct to the a...
+**Most voted:** correct answer | Requirement: "Grounds responses only in company policy documents stored in curated repositories". The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent. Why not "Upload the policy documents direct to the a...
 
 ### Top explanations
 - **8ac3742** (1 upvotes): correct answer
@@ -3377,7 +3402,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct Answers | The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence &gt;= 0.75: condition filters and displays only brands with a 75%+ confidence score). | The code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).
+**Most voted:** Correct Answers | The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence >= 0.75: condition filters and displays only brands with a 75%+ confidence score). | The code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).
 
 ### Top explanations
 - **Amelia233** (1 upvotes [Most Recent]): Correct Answers
@@ -3425,6 +3450,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **mmpurnel** (5 upvotes [Most Recent]): Second one is encryption, not assign-identity.   The provided JSON is a customer-managed key (CMK) configuration using Azure Key Vault.
 - **8ac3742** (3 upvotes): OpenAI and encryption
 Why --encryption?The requirement states: "ensure that the resource uses a customer-managed key to protect data."   In the az cognitiveservices account create command, the parameter used to specify customer-managed key (CMK) settings backed by Azure Key Vault is --encryption.
+- **Alvarogc** (3 upvotes): First one is OpenAI, is the only one that generates free text.
+Second one is --encryption, is the property that can receive the JSON on this code; --assign-identity doesn't receive any JSON.
+Refference: https://learn.microsoft.com/en-us/cli/azure/cognitiveservices/account?view=azure-cli-latest
+- **AIBoss** (2 upvotes): Yes, Second one is --encryption.
+https://learn.microsoft.com/en-us/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-create:~:text=Create%20a%20Text%20Analytics%20Cognitive%20Services%20account%20in%20West%20Europe%20without%20confirmation%20required%20and%20user%20Customer%2Dmanaged%20encryption.
 - **AzureGeek79** (1 upvotes): Open AI and assign-identity are the correct answers.
 
 <a id="q1-104"></a>
@@ -3519,16 +3549,16 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 **Most voted:** Put Train the classifier model as number 3. | The correct full sequence is: | 1. Create a project | 2. Upload and tag images | 3. Train the classifier model | Here you’re classifying components (faulty vs non‑faulty), not locating multiple objects in an image, so classifier—not object detection—is the right choice.
 
 ### Top explanations
-- **ArindamPal** (2 upvotes [Most Recent]): The correct full sequence is:
-1. Create a project
-2. Upload and tag images
-3. Train the classifier model
 - **Az301301X** (9 upvotes [Highly Voted]): Put Train the classifier model as number 3.
 The correct full sequence is:
 1. Create a project
 2. Upload and tag images
 3. Train the classifier model
 Here you’re classifying components (faulty vs non‑faulty), not locating multiple objects in an image, so classifier—not object detection—is the right choice.
+- **ArindamPal** (2 upvotes [Most Recent]): The correct full sequence is:
+1. Create a project
+2. Upload and tag images
+3. Train the classifier model
 
 <a id="q1-109"></a>
 ## Q1.109 (ID 421555)
@@ -3629,6 +3659,10 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 **Most voted:** The order shown could cause service disruption. To minimize downtime, the correct sequence should be: | 1. Add a new query key | 2. Change the app to use the new query key | 3. Delete the compromised key
 
 ### Top explanations
+- **Alvarogc** (16 upvotes [Highly Voted]): The order shown could cause service disruption. To minimize downtime, the correct sequence should be:
+1. Add a new query key
+2. Change the app to use the new query key
+3. Delete the compromised key
 - **NielsLOL** (1 upvotes [Most Recent]): The comments below suggest to have less downtime, but would you rather have someone doing bad things with the compromised access and risk more damage, or have some downtime?
 I would go with the downtime, and replace the key as soon as possible.
 Therefore the answer that was given remains unchanged for me:
@@ -3636,10 +3670,6 @@ Therefore the answer that was given remains unchanged for me:
 2. Add a new query key
 3. Change the app to use the new key
 - **8ac3742** (1 upvotes): Add a new query key   Change the app to use the new key   Delete the compromised key   Why Not "Delete First"?If you delete the compromised key first, your production app immediately loses access and begins throwing 401 Unauthorized errors until you generate and deploy the replacement key. That creates avoidable downtime.
-- **Alvarogc** (16 upvotes [Highly Voted]): The order shown could cause service disruption. To minimize downtime, the correct sequence should be:
-1. Add a new query key
-2. Change the app to use the new query key
-3. Delete the compromised key
 
 <a id="q1-113"></a>
 ## Q1.113 (ID 421559)
@@ -3658,7 +3688,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct Answers | HTTP Method: PUT | kind: &quot;CognitiveServices&quot; | Explanations | HTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb. | kind (&quot;CognitiveServices&quot;): The multi-service Azure AI services resource type is denoted by the &quot;CognitiveServices&quot; kind. Single-service kinds (like &quot;ComputerVision&quot; or &quot;TextAnalytics&quot;) only provide access to individual APIs and...
+**Most voted:** Correct Answers | HTTP Method: PUT | kind: "CognitiveServices" | Explanations | HTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb. | kind ("CognitiveServices"): The multi-service Azure AI services resource type is denoted by the "CognitiveServices" kind. Single-service kinds (like "ComputerVision" or "TextAnalytics") only provide access to individual APIs and...
 
 ### Top explanations
 - **8ac3742** (1 upvotes [Most Recent]): put and cognitive resource
@@ -3687,7 +3717,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Step-by-Step Analysis | The percentage of false positives: | Precision Formula: | Precision= | True Positives (TP)+False Positives (FP) | True Positives (TP) | ​ | With a Precision of 100.0% (1.0), there are no false positive predictions made by the model (FP=0). | Therefore, the percentage of false positives is 0. | The value for the number of true positives divided by the total number of true positives and false negatives: | Recall Formula: | Recall=...
 
 ### Top explanations
 - **Srikantha** (1 upvotes [Most Recent]): Step-by-Step Analysis
@@ -3757,14 +3787,23 @@ What should you add?
 **Most voted:** C
 
 ### Top explanations
-- **jwlnewsome** (2 upvotes [Selected Answer: C]): Document Extraction/Layout does not preserve cross-page tables.
-- **a5f05ea** (2 upvotes [Most Recent, Selected Answer: C]): Document Layout → preserve/understand document structure
-Azure Content Understanding → richer multimodal understanding + semantic chunking + improved complex table extraction
 - **Srikantha** (4 upvotes [Selected Answer: A]): A. Document Layout
 Microsoft Documentation Explanation
 According to Microsoft Learn documentation on Azure AI Search multimodal skillsets:
 Location Metadata & Bounding Polygons: The built-in Document Layout skill uses Azure AI Document Intelligence under the hood to extract text, figures, and embedded images along with spatial location metadata—specifically page numbers (pageNumber) and bounding coordinates (boundingPolygons / locationMetadata) for both text and image elements.
 Multi-Page Table Extraction: The layout extraction capability natively parses complex document structures, retaining tables and tabular data that span across multi-page boundaries as cohesive structured objects rather than disconnected text fragments.
+- **554b579** (3 upvotes [Selected Answer: C]): C. Azure Content Understanding — TRUE per the key. The multimodal skill covering text and images in one pass, returning location metadata for both and handling tables spanning pages. The word “multimodal” in the stem is the hook
+A. Document Layout — FALSE per the key, and the community’s unanimous choice. It genuinely returns bounding polygons, structural elements, and multipage tables, which makes it a strong answer. The argument against it is that it is text-oriented, while the stem requires location metadata for images as well.
+- **jwlnewsome** (2 upvotes [Selected Answer: C]): Document Extraction/Layout does not preserve cross-page tables.
+- **a5f05ea** (2 upvotes [Most Recent, Selected Answer: C]): Document Layout → preserve/understand document structure
+Azure Content Understanding → richer multimodal understanding + semantic chunking + improved complex table extraction
+- **Amelia233** (1 upvotes [Selected Answer: A]): Correct answer: A. Document Layout ✅
+Short discussion:
+The Document Layout skill can extract both text and images with their location/bounding polygon metadata and supports tables that span multiple pages. This makes it suitable for generating page-level citations.
+A ✅ Document Layout — provides text/image positions and multi-page table extraction.
+B ❌ Document Extraction — focuses on extracting document content, not the required layout metadata.
+C ❌ Content Understanding — not the required built-in Search skill for this scenario.
+D ❌ GenAI Prompt — used for generative processing, not direct layout extraction.
 
 <a id="q1-117"></a>
 ## Q1.117 (ID 421563)
@@ -3783,6 +3822,13 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Answer: | JSON data: Object projection | Extracted text data: Table projection
 
 ### Top explanations
+- **Alvarogc** (6 upvotes): 1. Object projection
+2. Object projection
+It should be Object projection for both answers. There's no specified relational structure on the question, so second one may not be Table projection; but File projection is only for normalized, binary image files.
+Reference: https://learn.microsoft.com/en-us/azure/search/knowledge-store-projection-overview
+- **fa62dd5** (2 upvotes): Answer:
+JSON data: Object projection
+Extracted text data: Table projection
 - **8ac3742** (1 upvotes [Most Recent]): json: blob, text: file
 In Azure AI Search, an AI enrichment pipeline (indexer + skillset) extracts images, text, key phrases, sentiments, and entities from raw files.
 Normally, all that enriched data is stored solely inside the search index to answer search queries.
@@ -3790,13 +3836,6 @@ However, if you also want to save that enriched data outside of the search index
 The mechanism that takes the enriched data from the pipeline and shapes it into storage is called a Projection (think of "projecting" or casting the enriched data onto storage).
 JSON data $\rightarrow$ Object projection:Unstructured or deeply nested JSON documents cannot easily fit into flat database columns without breaking their hierarchy. Object projections save each enriched item as an individual, native JSON document in Azure Blob Storage.
 Text extracted from documents (along with metadata like document title, page number, sentiment score, extracted entities) is shaped into rows and columns using Table projections in Azure Table Storage, making the textual records queryable and structured for downstream analysis.
-- **fa62dd5** (2 upvotes): Answer:
-JSON data: Object projection
-Extracted text data: Table projection
-- **Alvarogc** (6 upvotes): 1. Object projection
-2. Object projection
-It should be Object projection for both answers. There's no specified relational structure on the question, so second one may not be Table projection; but File projection is only for normalized, binary image files.
-Reference: https://learn.microsoft.com/en-us/azure/search/knowledge-store-projection-overview
 
 <a id="q1-118"></a>
 ## Q1.118 (ID 424420)
@@ -3896,15 +3935,21 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Second one should be &quot;no&quot;, as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called &quot;bing_entity_search_api_id&quot;. | Final correct answer: | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python
+**Most voted:** Second one should be "no", as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called "bing_entity_search_api_id". | Final correct answer: | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python
 
 ### Top explanations
+- **Alvarogc** (5 upvotes): Second one should be "no", as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called "bing_entity_search_api_id".
+Final correct answer:
+1. No
+2. No
+3. Yes
+Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python
+- **Codia** (2 upvotes): The correct answer for Statement 2 is No. While Bing's Knowledge Graph is used internally behind the scenes to perform entity resolution, and the SDK exposes a separate bing_entity_search_api_id attribute for API integration, the url field itself links to the underlying data source page (primarily Wikipedia), not a Bing search result URL.
 - **[email protected]** (1 upvotes [Most Recent]): 1.	Statement: The code will detect the language of documents. Answer: No. Explanation: It calls recognize_linked_entities(), not detect_language().
 2.	Statement: The url attribute for each linked entity will be a Bing search link. Answer: No. Explanation: The URL points to the entity’s knowledge-base entry, typically Wikipedia.
 3.	Statement: The matches attribute provides the location in a document where the entity is referenced. Answer: Yes. Explanation: Each match includes offset and length, identifying the entity’s position in the text.
 - **8ac3742** (1 upvotes): no( not detect_language), no(wikipedia), yes(location)
 Statement 1: The code will detect the language of documents. (No)The code specifically calls recognize_linked_entities(documents).   To detect the language of documents, you must call detect_language(documents). recognize_linked_entities assumes a default language (English, if unspecified) or accepts an explicit language code parameter, but it does not return language detection analysis.Statement 2: The url attribute ... will be a Bing search link. (No)In Azure AI Language / Text Analytics Entity Linking, the default knowledge base used to ground and disambiguate recognized entities is Wikipedia (e.g., [https://en.wikipedia.org/wiki/Space_Needle](https://en.wikipedia.org/wiki/Space_Needle)), not a Bing search link.Statement 3: The matches attribute ... will provide the location in a document where the entity is referenced. (Yes)Each recognized entity in the response has a matches collection containing LinkedEntityMatch objects.Each match object exposes offset (starting character index position in the source text) and length, which explicitly define the exact location where that reference occurs in the document
-- **Codia** (2 upvotes): The correct answer for Statement 2 is No. While Bing's Knowledge Graph is used internally behind the scenes to perform entity resolution, and the SDK exposes a separate bing_entity_search_api_id attribute for API integration, the url field itself links to the underlying data source page (primarily Wikipedia), not a Bing search result URL.
 
 <a id="q1-122"></a>
 ## Q1.122 (ID 424414)
@@ -3978,7 +4023,7 @@ NOTE: Each correct selection is worth point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct Answers | The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation &quot;LLM&quot; is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions). | Changing &quot;What is an LLM?&quot; to &quot;What is an LLM in the context of AI models?&quot; will produce the intended response: Yes (Disambiguating the user prompt d...
+**Most voted:** Correct Answers | The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation "LLM" is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions). | Changing "What is an LLM?" to "What is an LLM in the context of AI models?" will produce the intended response: Yes (Disambiguating the user prompt d...
 
 ### Top explanations
 - **Amelia233** (1 upvotes [Most Recent]): Correct Answers
@@ -4025,13 +4070,22 @@ What should you include in the solution?
 **Most voted:** D
 
 ### Top explanations
-- **adilkhan** (1 upvotes [Most Recent, Selected Answer: D]): To secure an Azure AI service resource (such as the Language service) so that only specific Azure workloads or processes can access it, you can configure virtual network rules (network firewalls) directly on the resource. By allowing traffic only from selected subnets within an Azure Virtual Network (VNet), you can isolate the service from the public internet. This approach protects sensitive data and requires minimal administrative effort because it is handled entirely within Azure's built-in platform network configurations.
+- **Srikantha** (3 upvotes [Selected Answer: D]): Why this is correct:
+Virtual network rules (VNet firewalls) on the Azure AI Language resource allow you to restrict incoming traffic so that only applications or workloads running within designated Azure Virtual Network subnets can access the endpoint.
+This natively secures sensitive customer data by isolating PaaS access to authorized Azure processes with minimal administrative effort, eliminating the need to deploy or manage additional networking infrastructure.
 - **8ac3742** (2 upvotes [Selected Answer: D]): vNet
 Azure AI Language supports virtual network rules (Service Endpoints) directly in its built-in firewall.
 With a couple of clicks in the portal (or a simple template), you select the subnet where your Azure compute/processes live and allow it. Azure’s internal software-defined network automatically secures the path over the Azure backbone with zero VPNs, zero encryption tunnel management, and minimal administrative effort
 - **a5f05ea** (2 upvotes [Selected Answer: D]): Restrict an Azure service to selected VNets/subnets → Virtual network rules
 Connect/encrypt traffic between networks → VPN/IPsec
 ✅ Therefore, D is correct, not C.
+- **adilkhan** (1 upvotes [Most Recent, Selected Answer: D]): To secure an Azure AI service resource (such as the Language service) so that only specific Azure workloads or processes can access it, you can configure virtual network rules (network firewalls) directly on the resource. By allowing traffic only from selected subnets within an Azure Virtual Network (VNet), you can isolate the service from the public internet. This approach protects sensitive data and requires minimal administrative effort because it is handled entirely within Azure's built-in platform network configurations.
+- **Amelia233** (1 upvotes [Selected Answer: C]): Virtual network rules allow you to restrict access to the Azure Language service to specific virtual networks and subnets, helping protect sensitive customer data with minimal administration.
+A ❌ Application Gateway — manages web traffic, not direct service access control.
+B ❌ Virtual network gateway — connects networks but doesn't provide this access restriction.
+C ❌ IPsec rules — not the appropriate Azure Language access-control mechanism.
+D ✅ Virtual network rules — restrict access to trusted Azure network resources.
+Answer: D
 
 <a id="q1-127"></a>
 ## Q1.127 (ID 424407)
@@ -4053,12 +4107,17 @@ NOTE: Each correct answer is worth one point.
 **Most voted:** AC
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Most Recent, Selected Answer: AC]): To allow resources inside VNet1 to reach an Azure PaaS service (CSAccount1) privately over the Azure backbone, you must enable a Virtual Network Service Endpoint (specifically for Microsoft.CognitiveServices) on VNet1's subnet. This provides the network route from the VNet to the service without traversing the public internet.
-In CSAccount1 under Firewalls and Virtual Networks, you switch the firewall from All Networks to Selected Networks and Private Endpoints, and add VNet1 to the allowed list. This turns on the firewall to reject all external/public internet connections.
 - **AzureGeek79** (2 upvotes [Selected Answer: AC]): Correct answers: A & C
 - **a5f05ea** (2 upvotes [Selected Answer: AC]): Correct answers: A and C
 A. In CSAccount1, modify the virtual network settings
 C. In VNet1, enable a service endpoint for CSAccount1
+- **Srikantha** (2 upvotes [Selected Answer: AE]): ignore the previous
+Enable a service endpoint for CSAccount1 in VNet1 (Action A): This securely connects your virtual network to the Azure AI service resource over the Azure backbone network, routing traffic away from the public internet and helping satisfy the requirement to prevent external access.
+Modify the virtual network settings in CSAccount1 (Action E): This allows you to restrict network access directly on the resource by setting access rules that block public traffic and permit only designated virtual networks and subnets, keeping administrative overhead minimal compared to configuring complex firewalls or routing mechanisms.
+- **Srikantha** (2 upvotes [Selected Answer: AC]): Enable a service endpoint for CSAccount1 in VNet1 (Action A): This securely connects your virtual network to the Azure AI service resource over the Azure backbone network, routing traffic away from the public internet and helping satisfy the requirement to prevent external access.
+Modify the virtual network settings in CSAccount1 (Action E): This allows you to restrict network access directly on the resource by setting access rules that block public traffic and permit only designated virtual networks and subnets, keeping administrative overhead minimal compared to configuring complex firewalls or routing mechanisms.
+- **8ac3742** (1 upvotes [Most Recent, Selected Answer: AC]): To allow resources inside VNet1 to reach an Azure PaaS service (CSAccount1) privately over the Azure backbone, you must enable a Virtual Network Service Endpoint (specifically for Microsoft.CognitiveServices) on VNet1's subnet. This provides the network route from the VNet to the service without traversing the public internet.
+In CSAccount1 under Firewalls and Virtual Networks, you switch the firewall from All Networks to Selected Networks and Private Endpoints, and add VNet1 to the allowed list. This turns on the firewall to reject all external/public internet connections.
 
 <a id="q1-128"></a>
 ## Q1.128 (ID 424415)
@@ -4075,7 +4134,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** extract: vision, sentiment and opinion: language | Press releases are unstructured prose text (articles/announcements). | In Microsoft's official curriculum and exam design, raw text/prose extraction from PDFs and images is handled by the Read API in Azure Vision. | Why not Document Intelligence? Document Intelligence is specifically intended for structured/semi-structured form understanding (such as tables, key-value pairs, invoices, receipts, and tax...
 
 ### Top explanations
 - **8ac3742** (1 upvotes [Most Recent]): extract: vision, sentiment and opinion: language
@@ -4131,12 +4190,9 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** First one is a No, as you can see in the Microsoft Learn documentation: &quot; this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query&quot;. | Second one is a No too, as it's not configured, and third one is a trivial Yes per definition. | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers
+**Most voted:** First one is a No, as you can see in the Microsoft Learn documentation: " this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query". | Second one is a No too, as it's not configured, and third one is a trivial Yes per definition. | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers
 
 ### Top explanations
-- **Srikantha** (2 upvotes [Most Recent]): Going to http://localhost:5000/status will query the Azure endpoint to verify whether the API key used to start the container is valid: No (The /status endpoint verifies if the API key is valid locally without causing an endpoint query).
-The container logging provider will write log data: Yes (Docker containers automatically log output to the configured container logging provider).
-Going to http://localhost:5000/swagger will provide the details to access the documentation for the available endpoints: Yes (The Swagger UI provides the detailed description and documentation for the container's APIs).
 - **Alvarogc** (4 upvotes): First one is a No, as you can see in the Microsoft Learn documentation: " this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query".
 Second one is a No too, as it's not configured, and third one is a trivial Yes per definition.
 1. No
@@ -4145,6 +4201,9 @@ Second one is a No too, as it's not configured, and third one is a trivial Yes p
 Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers
 - **ExamProAzure** (4 upvotes): Yes, No, Yes
 The docker run command in the question includes only Eula, Billing, and ApiKey — no Logging: settings and no --mount for an output directory. Since none of the logging providers are explicitly configured or given a destination (like a mounted output folder), no log data will be written by the logging provider in this scenario.
+- **Srikantha** (2 upvotes [Most Recent]): Going to http://localhost:5000/status will query the Azure endpoint to verify whether the API key used to start the container is valid: No (The /status endpoint verifies if the API key is valid locally without causing an endpoint query).
+The container logging provider will write log data: Yes (Docker containers automatically log output to the configured container logging provider).
+Going to http://localhost:5000/swagger will provide the details to access the documentation for the available endpoints: Yes (The Swagger UI provides the detailed description and documentation for the container's APIs).
 
 <a id="q1-131"></a>
 ## Q1.131 (ID 424406)
@@ -4181,9 +4240,12 @@ What should you include in the solution?
 **Most voted:** B
 
 ### Top explanations
-- **8ac3742** (2 upvotes [Most Recent, Selected Answer: B]): Optimized for Pure Text Extraction at Scale:The requirement specifically asks to "extract text from the images" for one million scanned magazine articles with minimal development effort.   The Read API in Azure Vision is Azure’s dedicated, pre-built asynchronous Optical Character Recognition (OCR) engine optimized for reading high volumes of text-heavy scanned image files (printed and handwritten) without needing complex setup or model definitions.Why not C (Azure Vision in Foundry Tools Image Analysis)?Standard Image Analysis is designed for general computer vision tasks (generating image captions, object tags, detecting faces, color palettes, or detecting short scene text in photographs). It is not designed for bulk, multi-page, dense text reading like scanned articles.
-- **ArindamPal** (1 upvotes [Selected Answer: B]): The Read API in Azure Vision is specifically designed to extract printed and handwritten text from images and scanned documents with minimal development effort.
 - **ABHISHEK** (6 upvotes [Selected Answer: B]): The Read API is Azure's OCR engine for extracting printed and handwritten text from image files. It's a prebuilt, ready-to-call service, so you don't need to train a model or build a custom pipeline, which meets the "minimize development effort" requirement. It's also built to handle large volumes asynchronously, which suits one million images.
+- **8ac3742** (2 upvotes [Most Recent, Selected Answer: B]): Optimized for Pure Text Extraction at Scale:The requirement specifically asks to "extract text from the images" for one million scanned magazine articles with minimal development effort.   The Read API in Azure Vision is Azure’s dedicated, pre-built asynchronous Optical Character Recognition (OCR) engine optimized for reading high volumes of text-heavy scanned image files (printed and handwritten) without needing complex setup or model definitions.Why not C (Azure Vision in Foundry Tools Image Analysis)?Standard Image Analysis is designed for general computer vision tasks (generating image captions, object tags, detecting faces, color palettes, or detecting short scene text in photographs). It is not designed for bulk, multi-page, dense text reading like scanned articles.
+- **Alvarogc** (2 upvotes [Selected Answer: A]): Microsoft Learn recommends to use Azure Vision for labels, street signs or posters; while using Document Intelligence for books, articles and reports. In this case, we are talking about a million magazine ARTICLES, so A is the correct answer.
+Reference: https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-read-api
+- **ArindamPal** (1 upvotes [Selected Answer: B]): The Read API in Azure Vision is specifically designed to extract printed and handwritten text from images and scanned documents with minimal development effort.
+- **Srikantha** (1 upvotes [Selected Answer: A]): Based on the official Microsoft Learn documentation, the recommended answer is A. Azure Document Intelligence in Foundry Tools.
 
 <a id="q1-133"></a>
 ## Q1.133 (ID 424410)
@@ -4203,11 +4265,6 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 **Most voted:** Correct sequence: | - Provision an on-premises Kubernetes cluster that has internet connectivity. | The container needs to have internet connectivity for billing/usage purposes | - Pull an image from the Microsoft Container Registry (MCR). | Azure AI Language containers are distributed through MCR, not Docker Hub. | - Run the container and specify an API key and the Endpoint URL of the Azure AI resource. | Language containers require: | ApiKey | Billing (endpoint URI) | Eula=accept | when sta...
 
 ### Top explanations
-- **adilkhan** (4 upvotes [Most Recent]): Provision an on-premises Kubernetes cluster that has internet connectivity.
-Pull an image from the Microsoft Container Registry (MCR).
-Run the container and specify an API key and the Endpoint URL of the Azure AI resource.
-- **8ac3742** (1 upvotes): kubenetes with internet connection -> pull image from MCR -> run container with API key and endpoint URL
-Host environment selectionThe requirement explicitly states that "confidential documents remain on-premises."Azure Kubernetes Service (AKS) is a cloud-hosted managed service in Azure, so running workloads on AKS would upload/process the data in the cloud, violating the on-premises requirement.Connected Cognitive Services / Azure AI containers require outbound access to Azure for billing and metering verification. A cluster that is entirely isolated from the internet would prevent the container from communicating with the metering endpoint (Billing=...), causing it to fail startup.   Therefore, you must provision an on-premises Kubernetes cluster that has internet connectivity (so billing pings succeed while document data remains local).
 - **MarceloManhaes** (7 upvotes [Highly Voted]): Correct sequence:
 - Provision an on-premises Kubernetes cluster that has internet connectivity.
 The container needs to have internet connectivity for billing/usage purposes
@@ -4219,6 +4276,11 @@ ApiKey
 Billing (endpoint URI)
 Eula=accept
 when started.
+- **adilkhan** (4 upvotes [Most Recent]): Provision an on-premises Kubernetes cluster that has internet connectivity.
+Pull an image from the Microsoft Container Registry (MCR).
+Run the container and specify an API key and the Endpoint URL of the Azure AI resource.
+- **8ac3742** (1 upvotes): kubenetes with internet connection -> pull image from MCR -> run container with API key and endpoint URL
+Host environment selectionThe requirement explicitly states that "confidential documents remain on-premises."Azure Kubernetes Service (AKS) is a cloud-hosted managed service in Azure, so running workloads on AKS would upload/process the data in the cloud, violating the on-premises requirement.Connected Cognitive Services / Azure AI containers require outbound access to Azure for billing and metering verification. A cluster that is entirely isolated from the internet would prevent the container from communicating with the metering endpoint (Billing=...), causing it to fail startup.   Therefore, you must provision an on-premises Kubernetes cluster that has internet connectivity (so billing pings succeed while document data remains local).
 
 <a id="q1-134"></a>
 ## Q1.134 (ID 424405)
@@ -4487,12 +4549,6 @@ print(line.text)
 <a id="q1-145"></a>
 ## Q1.145 (ID 430792)
 
-Case Study
-This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.
-To answer the case study questions, you will bed to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.
-A Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.
-To start the case study
-To display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.
 Overview
 Company Information
 Contoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions by using Microsoft Foundry.
@@ -4568,6 +4624,11 @@ What should you include in the solution?
 **Most voted:** A
 
 ### Top explanations
+- **a5f05ea** (3 upvotes [Selected Answer: A]): A. Prompt shields
+Prompt Shields in Microsoft Foundry/Azure AI Content Safety are designed to detect and block adversarial prompt attacks, including attacks embedded in external documents or content. This directly addresses the requirement that Agent1 be protected from malicious instructions hidden within product-sheet content.
+- **Srikantha** (2 upvotes [Selected Answer: A]): A. prompt shields
+Why this is correct:
+Prompt shields are a key security feature within Azure AI Content Safety designed to defend applications from direct (jailbreak) and indirect prompt injection attacks. Based on the Contoso case study's security and compliance requirements, Agent1 must be protected from malicious instructions that might be hidden within uploaded documents or embedded as text inside images (indirect prompt injections). Prompt shields specifically detect and block these types of hidden instructions before they can hijack the model.
 - **8ac3742** (1 upvotes [Most Recent, Selected Answer: A]): Protected Material Detection: Protects against copyrighted/proprietary intellectual property leaks (e.g., songs, books, public code).
 For that specific requirement:
 "Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1."
@@ -4581,11 +4642,6 @@ Modern Foundry agent workflows and content safety filters include PII / Sensitiv
 Incoming retrieved text chunks and outgoing agent responses are evaluated against sensitive personal data policies so customer data is blocked or sanitized before reaching the user.
 In the Azure AI Search Indexing Pipeline (Skillsets):
 Contoso can add a PII Detection Cognitive Skill (Microsoft.Skills.Text.PIIDetectionSkill) to the ingestion/enrichment pipeline for storage1.
-- **a5f05ea** (3 upvotes [Selected Answer: A]): A. Prompt shields
-Prompt Shields in Microsoft Foundry/Azure AI Content Safety are designed to detect and block adversarial prompt attacks, including attacks embedded in external documents or content. This directly addresses the requirement that Agent1 be protected from malicious instructions hidden within product-sheet content.
-- **Srikantha** (2 upvotes [Selected Answer: A]): A. prompt shields
-Why this is correct:
-Prompt shields are a key security feature within Azure AI Content Safety designed to defend applications from direct (jailbreak) and indirect prompt injection attacks. Based on the Contoso case study's security and compliance requirements, Agent1 must be protected from malicious instructions that might be hidden within uploaded documents or embedded as text inside images (indirect prompt injections). Prompt shields specifically detect and block these types of hidden instructions before they can hijack the model.
 
 <a id="q1-147"></a>
 ## Q1.147 (ID 430781)
@@ -4623,7 +4679,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** AnalyzeTextOption and analyze_text | AnalyzeTextOptions takes the parameters visible directly below it:text=input_text blocklist_names=[blocklist_name] halt_on_blocklist_hit=False client.analyze_text accepts an AnalyzeTextOptions request object and executes the text moderation against the specified blocklist.
 
 ### Top explanations
 - **8ac3742** (1 upvotes [Most Recent]): AnalyzeTextOption and analyze_text
@@ -4764,9 +4820,13 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct Answer: A — Add a reflection pass before the responses are returned. | Why (from Microsoft Learn): | • A reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching &quot;implemented in the logic of the application code.&quot; | • Respon...
+**Most voted:** Correct Answer: A — Add a reflection pass before the responses are returned. | Why (from Microsoft Learn): | • A reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching "implemented in the logic of the application code." | • Respon...
 
 ### Top explanations
+- **Az301301X** (8 upvotes [Highly Voted]): Provide access to AI1 by using: An API key
+Connect to the deployment by using: A deployment name
+- **rokoskycloud** (3 upvotes): Provide access to AI1 by using: An API key | It says three apps call a REST API.
+Connect to the deployment by using: A deployment name | The deployment name is a path segment in the request URL. That's what routes each app to its own tuned deployment of the same underlying model.
 - **centri** (1 upvotes [Most Recent]): Bearer token and deployment name, the endpoint would be shared by the 3 apps
 - **AngusSzarpidrut** (1 upvotes): Correct Answer: A — Add a reflection pass before the responses are returned.
 Why (from Microsoft Learn):
@@ -4774,8 +4834,6 @@ Why (from Microsoft Learn):
 •	Response streaming (B) only changes how the text is delivered to the client (in chunks vs. all at once); it doesn't make the content itself more complete.
 •	Increasing presence_penalty (C) discourages the model from repeating the same tokens/topics, which can actually reduce coverage of a topic rather than improve completeness.
 •	Decreasing max_tokens (D) directly caps how much the model is allowed to write, which would make responses shorter and less complete, the opposite of what's needed here.
-- **Az301301X** (8 upvotes [Highly Voted]): Provide access to AI1 by using: An API key
-Connect to the deployment by using: A deployment name
 
 <a id="q1-156"></a>
 ## Q1.156 (ID 430709)
@@ -4802,13 +4860,13 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 Why (from Microsoft Learn):
 •	An IP firewall only allows or blocks specific public IP ranges — the service is still technically reachable over the internet, just filtered — while a private endpoint gives Search1 a private IP inside your virtual network and removes public internet exposure entirely, which is what "prevent access from the internet" actually requires.
 •	For scoping each app to only specific indexes, Azure roles (Azure RBAC data-plane roles for AI Search) let you assign fine-grained, per-resource permissions to each app's identity, whereas the older key-based authentication uses admin/query keys that grant blanket access across the whole search service with no per-index scoping — so only the RBAC/roles approach can satisfy the "specific indexes" requirement.
-- **8ac3742** (1 upvotes [Most Recent]): Built-in data plane roles like Search Index Data Reader can be assigned at the index scope:
-/subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.Search/searchServices/{service-name}/indexes/{index-name}
 - **Srikantha** (3 upvotes): To prevent access from the internet: Create a private endpoint.
 To limit access to query specific indexes: Use Azure roles.
 Key Reasons
 Prevent Public Internet Access: Creating a private endpoint routes traffic over a private IP within your Azure Virtual Network (VNet) using Azure Private Link, blocking direct public internet access to Search1.
 Index-Level Granular Control: Azure RBAC data-plane roles (such as Search Index Data Reader) can be assigned to individual app managed identities at the scope of a specific index (/indexes/index-name). In contrast, Azure AI Search query keys operate strictly at the service level, granting query access across all indexes in the service.
+- **8ac3742** (1 upvotes [Most Recent]): Built-in data plane roles like Search Index Data Reader can be assigned at the index scope:
+/subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.Search/searchServices/{service-name}/indexes/{index-name}
 
 <a id="q1-157"></a>
 ## Q1.157 (ID 430730)
@@ -4829,11 +4887,11 @@ Which Azure service endpoint should you use?
 **Most voted:** A
 
 ### Top explanations
-- **8ac3742** (1 upvotes [Most Recent, Selected Answer: A]): Azure Image Analysis has a pre-trained feature (visualFeatures=tags) that automatically identifies thousands of recognizable objects, living beings, scenery, and actions right out of the box without requiring any training data.
 - **Srikantha** (2 upvotes [Selected Answer: A]): The correct choice is A. Azure Vision in Foundry Tools Image Analysis.
 Key Reasons
 Native Multi-Language Tagging: Azure Vision Image Analysis includes pre-built tagging capabilities that natively support localized tag output (including English, French, Spanish, and other languages) by simply passing the target language query parameter in the API request.
 Minimal Development Effort: It provides a ready-to-use pre-trained AI model out of the box, completely eliminating the need to collect training images, label datasets, or train custom models.
+- **8ac3742** (1 upvotes [Most Recent, Selected Answer: A]): Azure Image Analysis has a pre-trained feature (visualFeatures=tags) that automatically identifies thousands of recognizable objects, living beings, scenery, and actions right out of the box without requiring any training data.
 
 <a id="q1-158"></a>
 ## Q1.158 (ID 430795)
@@ -4853,6 +4911,14 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 **Most voted:** Answer: Request approval → Export model1 to Host1 → Run the container | Export model1: the custom speech-to-text container takes the model ID (ModelId) in docker run. The model is downloaded on the first run and persisted on the host with a volume mount. | Run the container: docker run requires Eula, Billing and ApiKey; without all three, the container won’t start. | Not needed: disk logging is optional, and model1 is already trained, so no retraining. | Note: per current docs, approval is on...
 
 ### Top explanations
+- **Srikantha** (6 upvotes): To run the custom speech-to-text model on Host1, perform the following actions in sequence:
+Request approval to run the container.
+Export model1 to Host1.
+Run the container.
+Explanation of Steps:
+Step 1: Azure AI Speech containers are gated services that require submitting an access request form to receive approval from Microsoft before deploying the container image.
+Step 2: The custom speech model (model1) must be exported/downloaded from Speech Studio and copied locally to the host directory so it can be mounted into the container.
+Step 3: Execute the docker run command on Host1 with the necessary billing parameters, API key, and local volume mount path to start the container instance.
 - **adilkhan** (1 upvotes [Most Recent]): • Request approval to run the container: Azure Speech containers (including those utilizing Custom Speech-to-Text models) are gated services. You must submit a request form and get authorization from Microsoft before the container can validate its billing and initialization.
 • Export model1 to Host1: Because you are deploying a custom speech-to-text model, you must use the Azure AI Speech Studio portal or CLI to explicitly package and download/export your trained custom model artifacts (model1) to the destination Docker host.
 • Run the container: Once approval is granted and the model files are locally available on Host1, you execute the docker run command with volume mounts linking to the exported model files to spin up the local endpoint.
@@ -4871,6 +4937,9 @@ In Speech Studio, go to Custom Speech > your project > Train Custom Models.
 Select your trained model and choose Export for Container.
 Download the resulting .zip / model package and extract it to a directory on your Docker host
 Step 3: Pull and Run the Docker Container
+- **Kalut** (1 upvotes): Export model
+Run Container
+Configure disk logging
 
 <a id="q1-159"></a>
 ## Q1.159 (ID 430739)
@@ -4888,10 +4957,16 @@ Which service should you include in the solution?
 **Most voted:** B
 
 ### Top explanations
+- **Srikantha** (2 upvotes [Selected Answer: B]): The correct choice is B. Azure Language in Foundry Tools.
+Key Reasons
+Deterministic Responses: Azure Language includes the Question Answering feature (formerly QnA Maker). This service allows you to ingest documents like HR policy PDFs to create a knowledge base. Because it relies on matching user queries to static, predefined answers (or specific extracted passages) in the knowledge base, it guarantees that the exact identical answer is returned every time for a specific matched question.
+Minimal Development Effort: The Question Answering feature has built-in capabilities to automatically parse and extract question-answer pairs and hierarchical structures directly from PDFs, requiring almost no custom code compared to building a custom RAG (Retrieval-Augmented Generation) pipeline.
 - **mmpurnel** (1 upvotes [Most Recent, Selected Answer: D]): A generative AI solution using Azure OpenAI could produce slightly different responses to the same question because LLMs are probabilistic by nature. Even with low temperature settings, deterministic behavior is not guaranteed.
 - **8ac3742** (1 upvotes [Selected Answer: B]): Azure AI Language features Question Answering (formerly QnA Maker), which directly extracts question-and-answer pairs or exact text passages from uploaded source documents (PDFs, FAQs, manuals). When a matching question is recognized, it maps directly to the defined answer, guaranteeing the exact, identical answer every single time.
 Azure AI Search includes an AI Enrichment Pipeline (skillsets) where you can embed Azure AI Language as an enrichment step. During indexing, Azure AI Search extracts raw text, calls Azure AI Language to extract entities, key phrases, or translated text, and stores those extracted metadata fields directly in the search index for richer querying.
 - **marikifua** (1 upvotes [Selected Answer: B]): The correct answer is B because Azure Language in Foundry Tools allows you to download PDF documents, create a knowledge base and link specific answers to questions. For the same question, the system returns the same answer because it takes it from the knowledge base, rather than generating it anew each time.
+- **Az301301X** (1 upvotes [Selected Answer: B]): Correct answer: B. Azure Language in Foundry Tools
+The key phrase is “the identical answer to a specific question is returned every time.” That points to Exact Question Answering, not generative AI.
 
 <a id="q1-160"></a>
 ## Q1.160 (ID 430776)
@@ -4948,7 +5023,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** base image and billing org | docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \ | mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment \ | Eula=accept \ | Billing=http://contoso.cognitiveservices.azure.com \ | ApiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ### Top explanations
 - **8ac3742** (1 upvotes [Most Recent]): base image and billing org

@@ -26,11 +26,6 @@ _18 questions generated from ExamTopics discussions._
 <a id="q1-1"></a>
 ## Q1.1 (ID 430657)
 
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
 Contoso, Ltd. is a health provider. The company is building an Azure-based multi-agent solution to streamline patient triage, access historical medical records, and schedule specialist appointments.
 Existing Environment
@@ -92,11 +87,6 @@ Which workflow node should you add to the Lead Orchestrator workflow?
 <a id="q1-3"></a>
 ## Q1.3 (ID 430659)
 
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
 Litware, Inc. is a multinational retail company that builds, deploys, and manages Microsoft Foundry multi-agent solutions.
 Existing Environment
@@ -177,7 +167,6 @@ What should you do?
 **Most voted:** C
 
 ### Top explanations
-- **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: C]): The other option do not satisfy  equation
 - **ricopi** (2 upvotes [Selected Answer: C]): Claude:
 I don’t think B is right. The math points to C. B meets the concurrency cap but misses the throughput target.
 B (sequential, 10 workflows):
@@ -189,6 +178,7 @@ Each request fans out to 3 agents in parallel, so it takes about 5 s (the 95p ti
 10 workflows × 3 agents = 30 runs at once. That is exactly at the cap.
 Throughput is 10 requests every 5 s = 120 requests/min. That meets the target.
 ConcurrentBuilder’s fan-in aggregator waits for all three participants before it emits anything. You get one combined result per request, which directly fixes the “partial participant messages” problem. The default aggregator collects the participants’ messages, or you can plug in a custom aggregator to shape the payload.
+- **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: C]): The other option do not satisfy  equation
 
 <a id="q1-16"></a>
 ## Q1.16 (ID 430580)
@@ -236,7 +226,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes | Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement. | Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messag...
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent]): Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes
@@ -353,11 +343,6 @@ Publishing makes the agent available to other consumers through its own endpoint
 <a id="q3-2"></a>
 ## Q3.2 (ID 430667)
 
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
 Contoso, Ltd. is a health provider. The company is building an Azure-based multi-agent solution to streamline patient triage, access historical medical records, and schedule specialist appointments.
 Existing Environment
@@ -435,7 +420,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent]): Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.
@@ -488,7 +473,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only &quot;document retrieval&quot; has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...
+**Most voted:** Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only "document retrieval" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...
 
 ### Top explanations
 - **abhimkumar** (1 upvotes [Most Recent]): Support agent → Document Retrieval
@@ -536,7 +521,7 @@ NOTE: Each correct selection is worth one point.
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** Reliability alerts → Yes | The configured alerts cover two important reliability signals: | - Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations. | - Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services. | Together, these cover important reliability problems involving agent execution and external dependencies.
 
 ### Top explanations
 - **95624c6f** (1 upvotes [Most Recent]): Reliability alerts → Yes
@@ -633,7 +618,7 @@ NOTE: Each correct selection is worth one point.
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
 **Correct answer:** Not provided by ExamTopics
-**Most voted:** Not provided
+**Most voted:** 1. Interactive ticket lookup → Delegated permissions from the signed-in employee | "A ticket search tool that enforces the existing per-employee authorization model." | The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication. | 2. Approved article updates → Managed identity scoped to write production article r...
 
 ### Top explanations
 - **95624c6f** (1 upvotes [Most Recent]): 1. Interactive ticket lookup → Delegated permissions from the signed-in employee
