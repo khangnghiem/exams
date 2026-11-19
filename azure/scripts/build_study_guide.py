@@ -396,6 +396,7 @@ HTML_HEAD = """<!DOCTYPE html>
 
     /* Compact collapsible overview strip (content-first noise reduction) */
     .overview-banner {
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: rgb(var(--surface-rgb) / 0.86);
@@ -535,6 +536,7 @@ HTML_HEAD = """<!DOCTYPE html>
     .study-map {
       position: sticky;
       top: calc(var(--header-height) + 0.75rem);
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
       max-block-size: calc(100vh - var(--header-height) - 1.5rem);
       overflow: auto;
       border: 1px solid var(--border);
@@ -1458,6 +1460,12 @@ HTML_TAIL = """
   <script>
     const EXAM_SLUG = document.body.dataset.exam || '$exam';
     const STORAGE_PREFIX = 'examguide-v2-$exam';
+    const appHeader = document.querySelector('header.app-header');
+    if (appHeader && 'ResizeObserver' in window) {
+      new ResizeObserver(() => {
+        document.documentElement.style.setProperty('--header-height', `${appHeader.offsetHeight}px`);
+      }).observe(appHeader);
+    }
     const STORAGE_KEY = `${STORAGE_PREFIX}-reviewed`;
     const SELECTIONS_KEY = `${STORAGE_PREFIX}-selections`;
     const BOOKMARKS_KEY = `${STORAGE_PREFIX}-bookmarks`;
@@ -2628,6 +2636,8 @@ def _format_inline_code_tokens(escaped_text: str) -> str:
             placeholders.append(f"<code>{token}</code>")
             return key
 
+        # Normalize common ExamTopics OCR spacing inside snake_case parameter names
+        ch = re.sub(r"\b(tool|max|top|enable|api|model|project)\s+_([a-z][a-z0-9_]*)\b", r"\1_\2", ch)
         # 1. key=value assignments (including quoted/&quot; values or booleans/dicts)
         ch = re.sub(
             r"\b[A-Za-z_][\w.]*\s*=\s*(?:True|False|None|\d+(?:\.\d+)?|"

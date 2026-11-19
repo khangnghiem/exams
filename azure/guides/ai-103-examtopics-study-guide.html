@@ -244,6 +244,7 @@
 
     /* Compact collapsible overview strip (content-first noise reduction) */
     .overview-banner {
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: rgb(var(--surface-rgb) / 0.86);
@@ -383,6 +384,7 @@
     .study-map {
       position: sticky;
       top: calc(var(--header-height) + 0.75rem);
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
       max-block-size: calc(100vh - var(--header-height) - 1.5rem);
       overflow: auto;
       border: 1px solid var(--border);
@@ -2700,7 +2702,7 @@
 <div class="q-prompt"><p>You have a Microsoft Foundry project that contains an agent. The agent has a Model Context Protocol (MCP) tool that queries a knowledge base stored in Azure AI Search.</p>
 <p>Some agent runs return answers from the base model without invoking the knowledge base, which results in responses without grounded citations.</p>
 <p>You are provided with the following code snippet that runs the agent.</p>
-<p class="prompt-lead">You need to add the correct tool _choice parameter to the code to deterministically force the agent to invoke the MCP tool on each run.</p>
+<p class="prompt-lead">You need to add the correct <code>tool_choice</code> parameter to the code to deterministically force the agent to invoke the MCP tool on each run.</p>
 <p class="prompt-lead">What should you add?</p></div>
 </section>
 <div class="exhibits">
@@ -2807,7 +2809,7 @@
 <p>Option D (<code>tool_choice={&quot;type&quot;:&quot;mcp&quot;}</code>) is incorrect because it violates the expected schema for the Azure OpenAI API, which powers Microsoft Foundry agents.</p></div></div>
 <div class="comment"><div class="comment-meta"><strong>rqFamily</strong> · 1 upvote <span class="badge">Selected Answer: A</span></div><div class="comment-body"><p>Force-by-type works only when the type uniquely identifies one tool, so you do <code>tool_choice={&quot;type&quot;:&quot;file_search&quot;}</code>, otherwise you do {&quot;type&quot;:&quot;mcp&quot;,&quot;name&quot;:&quot;mcptoolname&quot;}, so our only option is A</p></div></div>
 <div class="comment"><div class="comment-meta"><strong>CharlieMike</strong> · 1 upvote <span class="badge">Selected Answer: A</span></div><div class="comment-body"><p><code>tool_choice(&quot;required&quot;)</code> forces the agent to invoke a tool every time. Since the MCP tool is the only applicable tool, the agent will use it on every run, ensuring grounded responses with citations instead of answering from the base model.</p></div></div>
-<div class="comment"><div class="comment-meta"><strong>Srini7</strong> · 1 upvote <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>Its D. Question Clearly state &quot; add the correct tool _choice parameter to the code to deterministically force the agent to invoke the MCP tool on each run&quot; in that case, we can&#x27;t say &quot;required&quot; , becuase if you have more than one tool , its not valid. So answer is D</p></div></div>
+<div class="comment"><div class="comment-meta"><strong>Srini7</strong> · 1 upvote <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>Its D. Question Clearly state &quot; add the correct <code>tool_choice</code> parameter to the code to deterministically force the agent to invoke the MCP tool on each run&quot; in that case, we can&#x27;t say &quot;required&quot; , becuase if you have more than one tool , its not valid. So answer is D</p></div></div>
 <div class="comment"><div class="comment-meta"><strong>Danielly</strong> · 1 upvote <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>Its D because <code>tool_choice=&quot;required&quot;</code> only forces it to use a tool its not speficifed if the agent has other tools . Then you have to force that SPECIFIC tool</p></div></div>
 <div class="comment"><div class="comment-meta"><strong>RICHARDALEX007</strong> · 1 upvote <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>To deterministically force a SPECIFIC tool, <code>tool_choice</code> must name the tool by type, so {&quot;type&quot;:&quot;mcp&quot;} (D) is the intent. &#x27;auto&#x27; (B) lets the model decide (the current bug), and {&quot;required&quot;} (A) is malformed set syntax; &#x27;required&#x27; as a value forces some tool but not specifically the MCP one. The exact accepted schema for MCP <code>tool_choice</code> should be confirmed against the current Agents SDK</p></div></div>
 </details>
@@ -12380,6 +12382,12 @@
   <script>
     const EXAM_SLUG = document.body.dataset.exam || 'ai-103';
     const STORAGE_PREFIX = 'examguide-v2-ai-103';
+    const appHeader = document.querySelector('header.app-header');
+    if (appHeader && 'ResizeObserver' in window) {
+      new ResizeObserver(() => {
+        document.documentElement.style.setProperty('--header-height', `${appHeader.offsetHeight}px`);
+      }).observe(appHeader);
+    }
     const STORAGE_KEY = `${STORAGE_PREFIX}-reviewed`;
     const SELECTIONS_KEY = `${STORAGE_PREFIX}-selections`;
     const BOOKMARKS_KEY = `${STORAGE_PREFIX}-bookmarks`;
