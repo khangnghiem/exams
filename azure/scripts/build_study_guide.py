@@ -2008,36 +2008,299 @@ def slug_id(value: Any) -> str:
     return re.sub(r"[^a-zA-Z0-9_-]+", "-", str(value)).strip("-").lower()
 
 
-def format_case_study_sections(text: str) -> str:
-    """Add visual section labels to common case-study headings."""
+CASE_STUDY_BOILERPLATE_RE = re.compile(
+    r"^(?:"
+    r"Case\s+Study(?:\s*-\s*)?$|"
+    r"This\s+is\s+a\s+case\s+study\..*|"
+    r"To\s+answer\s+(?:the\s+)?(?:case\s+study\s+questions|questions\s+included\s+in\s+a\s+case\s+study)\b.*|"
+    r"(?:A\s+Review\s+Screen|At\s+the\s+end\s+of\s+this\s+case\s+study,\s+a\s+review\s+screen)\b.*|"
+    r"To\s+start(?:\s+the\s+case\s+study)?(?:\s*-\s*)?$|"
+    r"To\s+display\s+the\s+first\s+question\s+in\s+this\s+case\s+study\b.*"
+    r")$",
+    re.IGNORECASE,
+)
+
+CASE_STUDY_TOP_HEADING_RE = re.compile(
+    r"^(?:"
+    r"Overview(?:\.\s+[^:\n]{1,50})?|"
+    r"Background|"
+    r"Existing\s+Environment(?:\.\s+[^:\n]{1,50})?|"
+    r"Current\s+Environment|"
+    r"Available\s+Data|"
+    r"Knowledge\s+Base|"
+    r"Consultant\s+Proposal|"
+    r"Problem\s+Statements?|"
+    r"Issues\s+and\s+Constraints|"
+    r"Planned\s+Changes|"
+    r"Requirements(?:\.\s+[^:\n]{1,50})?|"
+    r"(?:Technical|Security(?:\s+and\s+Compliance)?|Safety|Business|Performance|"
+    r"Data\s+Analytics|Data\s+Preparation|Semantic\s+Model|Report|General)\s+Requirements?"
+    r")(?:\s*-\s*)?$",
+    re.IGNORECASE,
+)
+
+CASE_STUDY_SUBHEADING_RE = re.compile(
+    r"^(?:"
+    r"Company\s+Information|"
+    r"(?:Identity|Generative|Data|Fabric|Foundry)\s+Environment|"
+    r"Microsoft\s+Foundry|"
+    r"Project[1-9]|"
+    r"Claim\s+(?:Project|Approval)|"
+    r"A\s+(?:custom|default)\s+semantic\s+model|"
+    r"Interactive\s+reports"
+    r")(?:\s*-\s*)?$",
+    re.IGNORECASE,
+)
+
+COLON_LIST_INTRO_RE = re.compile(
+    r"(?:\bfollowing\b[^:\n]{0,65}|\bconfigurations|\brequirements|\bissues|\bactions|\bchanges|\bcolumns|\bresources|\bsubscriptions|\bagents):\s*$",
+    re.IGNORECASE,
+)
+
+TASK_CUE_RE = re.compile(
+    r"^(?:Question\s*-\s*|You\s+need\s+to\b|For\s+each\s+of\s+the\s+following\b|"
+    r"Which\b|What\b|How\b|Where\b|Why\b|Select\b|Use\s+the\s+drop-down\b|"
+    r"Drag\b|In\s+which\b|To\s+answer\b|Does\s+this\s+meet\s+the\s+goal\b)",
+    re.IGNORECASE,
+)
+
+INSTRUCTION_NOTE_RE = re.compile(
+    r"^(?:To\s+answer,\s+|NOTE:\s*Each\s+correct\s+selection|"
+    r"Each\s+(?:correct\s+selection|configuration|item|option|value)\s+(?:is\s+worth|may\s+be\s+used)|"
+    r"You\s+may\s+need\s+to\s+drag\s+the\s+split\s+bar)",
+    re.IGNORECASE,
+)
+
+
+def _plain_line(line: str) -> str:
+    return re.sub(r"<[^>]+>", "", line).strip()
+
+
+def strip_case_study_boilerplate(text: str) -> str:
+    """Remove Pearson VUE case-study UI instructions while keeping scenario text."""
     if not text:
         return ""
-    section_labels = [
-        "Case study",
-        "Overview",
-        "Existing Environment",
-        "Planned Changes",
-        "Requirements",
-        "Data Analytics Requirements",
-        "Data Preparation Requirements",
-        "Semantic Model Requirements",
-        "General Requirements",
-        "To answer",
-        "To start",
-    ]
-    for label in section_labels:
-        pattern = re.compile(rf"(^|<br\s*/?>|\n|\s)\s*{re.escape(label)}\s*-\s*", re.IGNORECASE)
-        text = pattern.sub(rf'\1<span class="section-title">{label}</span>', text)
-    return text
+    out: list[str] = []
+    for raw_line in text.splitlines():
+        plain = _plain_line(raw_line)
+        if not plain or plain == "-":
+            continue
+        if CASE_STUDY_BOILERPLATE_RE.match(plain):
+            continue
+        out.append(raw_line.strip())
+    return "\n".join(out)
+
+
+def _format_inline_code_tokens(escaped_text: str) -> str:
+    """Wrap SDK calls, key=value params, CLI flags, and snake_case IDs in <code>."""
+    # Protect any existing tags or entities by splitting on HTML tags first.
+    chunks = re.split(r"(<[^>]+>)", escaped_text)
+    in_code = 0
+    for idx, ch in enumerate(chunks):
+        if ch.startswith("<"):
+            low = ch.lower()
+            if low.startswith("<code"):
+                in_code += 1
+            elif low.startswith("</code"):
+                in_code = max(0, in_code - 1)
+            continue
+        if in_code > 0 or not ch:
+            continue
+
+        placeholders: list[str] = []
+
+        def _stash(m: re.Match[str]) -> str:
+            token = m.group(0)
+            # Never wrap plural markers like agent(s), row(s), time(s)
+            if re.fullmatch(r"[A-Za-z]+\([sS]\)", token):
+                return token
+            key = f"\x00CODE{len(placeholders)}\x00"
+            placeholders.append(f"<code>{token}</code>")
+            return key
+
+        # 1. key=value assignments (including quoted/&quot; values or booleans/dicts)
+        ch = re.sub(
+            r"\b[A-Za-z_][\w.]*\s*=\s*(?:True|False|None|\d+(?:\.\d+)?|"
+            r"&quot;[^&]*&quot;|&#x27;[^&]*&#x27;|“[^”]*”|"
+            r"\[[^\]\n]{0,80}\]|\{[^{}\n]{0,80}\}|\.\.\.|[A-Za-z_][\w.-]*)",
+            _stash,
+            ch,
+        )
+        # 2. Method/function calls without space before '('
+        ch = re.sub(r"\b[A-Za-z_][\w.]*\([^()\n]{0,90}\)", _stash, ch)
+        # 3. snake_case identifiers & CLI flags & dotfile paths
+        ch = re.sub(r"(?:~\/\.[\w./-]+|--[a-z0-9][a-z0-9-]*|\b[A-Za-z]+(?:_[A-Za-z0-9]+)+\b)", _stash, ch)
+
+        for p_idx, replacement in enumerate(placeholders):
+            ch = ch.replace(f"\x00CODE{p_idx}\x00", replacement)
+        chunks[idx] = ch
+    return "".join(chunks)
+
+
+def _safe_line_html(line: str) -> str:
+    """Sanitize or escape a single line and highlight inline code tokens."""
+    stripped = line.strip()
+    if "<" in stripped and ">" in stripped:
+        cleaned = (
+            sanitize_exhibit_html(stripped)
+            if (SANITIZER_AVAILABLE and sanitize_exhibit_html is not None)
+            else clean_html(stripped)
+        )
+        return _format_inline_code_tokens(cleaned)
+    return _format_inline_code_tokens(html.escape(html.unescape(stripped)))
+
+
+def format_stem_html(text: str, *, emphasize_question: bool = False) -> str:
+    """Format question or section text into semantic paragraphs, <ul> lists,
+    <code> pills, .proposed-solution callouts, and muted exam notes.
+    """
+    if not text:
+        return ""
+    raw_lines = [ln.strip() for ln in clean_html(text).splitlines() if ln.strip()]
+    if not raw_lines:
+        return ""
+
+    blocks: list[str] = []
+    list_items: list[str] = []
+    in_colon_list = False
+
+    def _flush_list() -> None:
+        nonlocal list_items, in_colon_list
+        if list_items:
+            items_html = "".join(f"<li>{item}</li>" for item in list_items)
+            blocks.append(f'<ul class="stem-list">{items_html}</ul>')
+            list_items = []
+        in_colon_list = False
+
+    # Identify which trailing lines represent the core question when requested.
+    question_start = len(raw_lines)
+    if emphasize_question:
+        for i in range(len(raw_lines) - 1, -1, -1):
+            pl = _plain_line(raw_lines[i])
+            if INSTRUCTION_NOTE_RE.match(pl):
+                continue
+            if pl.endswith("?") or TASK_CUE_RE.match(pl):
+                question_start = i
+            else:
+                if question_start < len(raw_lines):
+                    break
+
+    for idx, line in enumerate(raw_lines):
+        plain = _plain_line(line)
+        if not plain or plain == "-":
+            continue
+
+        # Subheading inside a case-study section
+        if CASE_STUDY_SUBHEADING_RE.match(plain):
+            _flush_list()
+            label = re.sub(r"\s*-\s*$", "", plain).strip()
+            blocks.append(f'<div class="cs-subheading">{html.escape(label)}</div>')
+            continue
+
+        # Inline legacy hyphenated heading fallback
+        m_legacy = re.match(
+            r"^(Overview|Existing Environment|Planned Changes|Requirements|"
+            r"Data Analytics Requirements|Data Preparation Requirements|"
+            r"Semantic Model Requirements|Report Requirements|General Requirements)\s*-\s*(.+)$",
+            plain,
+            flags=re.IGNORECASE,
+        )
+        if m_legacy:
+            _flush_list()
+            blocks.append(f'<span class="section-title">{html.escape(m_legacy.group(1))}</span>')
+            blocks.append(f"<p>{_safe_line_html(m_legacy.group(2))}</p>")
+            continue
+
+        # Proposed solution callout ("Does this meet the goal?" series)
+        m_sol = re.match(r"^Solution:\s*(.+)$", plain, flags=re.IGNORECASE)
+        if m_sol:
+            _flush_list()
+            blocks.append(
+                '<div class="proposed-solution">'
+                '<span class="solution-label">Proposed solution</span>'
+                f"<p>{_safe_line_html(m_sol.group(1))}</p>"
+                "</div>"
+            )
+            continue
+
+        # Trailing Pearson VUE instructions ("To answer, ...", "NOTE: Each correct selection...")
+        if INSTRUCTION_NOTE_RE.match(plain):
+            _flush_list()
+            blocks.append(f'<p class="exam-instruction-note">{_safe_line_html(line)}</p>')
+            continue
+
+        # Explicit bullet character
+        m_bullet = re.match(r"^[•●▪]\s*(.+)$", line)
+        if m_bullet:
+            list_items.append(_safe_line_html(m_bullet.group(1)))
+            continue
+
+        # If currently collecting an unbulleted post-colon list, check whether this line continues it
+        if in_colon_list:
+            if (
+                idx >= question_start
+                or TASK_CUE_RE.match(plain)
+                or CASE_STUDY_TOP_HEADING_RE.match(plain)
+                or COLON_LIST_INTRO_RE.search(plain)
+                or len(list_items) >= 8
+            ):
+                _flush_list()
+            else:
+                list_items.append(_safe_line_html(line))
+                continue
+
+        # Check if this line introduces a list on subsequent lines
+        if COLON_LIST_INTRO_RE.search(plain) and idx + 1 < len(raw_lines):
+            _flush_list()
+            cls = ' class="prompt-lead"' if idx >= question_start else ""
+            blocks.append(f"<p{cls}>{_safe_line_html(line)}</p>")
+            in_colon_list = True
+            continue
+
+        # Split inline "...? To answer, select..." on a single line cleanly
+        m_inline_instr = re.match(r"^(.+?\?)\s+(To\s+answer,\s+.+)$", plain, flags=re.IGNORECASE)
+        if m_inline_instr:
+            _flush_list()
+            q_cls = ' class="prompt-lead"' if emphasize_question else ""
+            blocks.append(f"<p{q_cls}>{_safe_line_html(m_inline_instr.group(1))}</p>")
+            blocks.append(f'<p class="exam-instruction-note">{_safe_line_html(m_inline_instr.group(2))}</p>')
+            continue
+
+        _flush_list()
+        if emphasize_question and idx >= question_start:
+            blocks.append(f'<p class="prompt-lead">{_safe_line_html(line)}</p>')
+        else:
+            blocks.append(f"<p>{_safe_line_html(line)}</p>")
+
+    _flush_list()
+    return "\n".join(blocks)
+
+
+def format_case_study_sections(text: str) -> str:
+    """Backwards-compatible wrapper formatting rich stem & section HTML."""
+    return format_stem_html(text)
 
 
 def html_text(text: str) -> str:
-    """Format question text for HTML while preserving simple source markup."""
-    return format_case_study_sections(clean_html(text)).replace("\n", "<br>")
+    """Format question text for HTML with semantic paragraphs, lists, and code pills."""
+    return format_stem_html(text)
+
+
+def _is_case_study(cleaned: str, lines: list[str], labels: list[str]) -> bool:
+    if "Case study" in labels:
+        return True
+    if "this is a case study" in cleaned.lower():
+        return True
+    if len(cleaned) >= 1800:
+        return True
+    heading_hits = sum(1 for ln in lines if CASE_STUDY_TOP_HEADING_RE.match(_plain_line(ln)))
+    return heading_hits >= 2
 
 
 def split_question_text(text: str) -> tuple[list[str], str, str]:
-    """Separate long case-study context from the actual exam task."""
+    """Separate genuine multi-section case studies from the exam task while
+    keeping regular non-case-study stems unified.
+    """
     cleaned = clean_html(text).strip()
     if not cleaned:
         return [], "", ""
@@ -2052,9 +2315,14 @@ def split_question_text(text: str) -> tuple[list[str], str, str]:
         "SIMULATION": "Simulation",
     }
     while lines:
-        lead = re.sub(r"\s*-\s*$", "", re.sub(r"<[^>]+>", "", lines[0])).strip().upper()
+        lead_raw = _plain_line(lines[0])
+        if lead_raw == "-":
+            lines.pop(0)
+            continue
+        lead = re.sub(r"\s*-\s*$", "", lead_raw).strip().upper()
         if lead in lead_label_map:
-            labels.append(lead_label_map[lead])
+            if lead_label_map[lead] not in labels:
+                labels.append(lead_label_map[lead])
             lines.pop(0)
         else:
             break
@@ -2062,31 +2330,127 @@ def split_question_text(text: str) -> tuple[list[str], str, str]:
     if not lines:
         return labels, "", ""
 
-    # Short questions (≤ 4 lines) don't have a real case-study preamble; keep
-    # the entire text as the prompt so the cue-detection heuristic doesn't
-    # mis-segment a 2- or 3-sentence question into "context + task" pairs.
-    if len(lines) <= 4:
+    if not _is_case_study(cleaned, lines, labels):
         return labels, "", "\n".join(lines).strip()
 
-    cue = re.compile(
-        r"^(You need to|Which\b|What\b|How\b|Where\b|When\b|Why\b|Select\b|Use the drop-down|Drag\b|For each\b|In which\b|To answer\b)",
-        re.IGNORECASE,
-    )
-    cue_indices = [i for i, line in enumerate(lines) if cue.search(re.sub(r"<[^>]+>", "", line).strip())]
-    start = 0
-    if cue_indices:
-        tail_floor = max(0, len(lines) - 10)
-        tail_candidates = [i for i in cue_indices if i >= tail_floor or i >= int(len(lines) * 0.55)]
-        start = min(tail_candidates) if tail_candidates else (cue_indices[-1] if len(lines) > 4 else min(cue_indices))
-    elif len(lines) > 5:
-        start = len(lines) - 2
+    if "Case study" not in labels:
+        labels.append("Case study")
 
-    preamble = "\n".join(lines[:start]).strip()
-    prompt = "\n".join(lines[start:]).strip()
+    # Strip Pearson VUE case-study UI boilerplate before segmenting
+    filtered_lines = [
+        ln for ln in lines
+        if _plain_line(ln) and _plain_line(ln) != "-" and not CASE_STUDY_BOILERPLATE_RE.match(_plain_line(ln))
+    ]
+    if not filtered_lines:
+        return labels, "", ""
+
+    # Locate the last case-study top heading so mid-scenario sentences (e.g.
+    # "When testing Claim Approval...") never get mistaken for the exam task.
+    last_heading_idx = -1
+    for i, ln in enumerate(filtered_lines):
+        if CASE_STUDY_TOP_HEADING_RE.match(_plain_line(ln)):
+            last_heading_idx = i
+
+    search_floor = max(last_heading_idx + 1, len(filtered_lines) - 8)
+
+    # Check explicit "Question -" marker first (used in several DP-600 case studies)
+    q_marker_idx = next(
+        (
+            i for i in range(max(0, last_heading_idx), len(filtered_lines))
+            if re.match(r"^Question\s*-\s*$", _plain_line(filtered_lines[i]), flags=re.IGNORECASE)
+        ),
+        None,
+    )
+    if q_marker_idx is not None and q_marker_idx + 1 < len(filtered_lines):
+        preamble = "\n".join(filtered_lines[:q_marker_idx]).strip()
+        prompt = "\n".join(filtered_lines[q_marker_idx + 1:]).strip()
+        return labels, preamble, prompt
+
+    cue_indices = [
+        i
+        for i in range(search_floor, len(filtered_lines))
+        if TASK_CUE_RE.match(_plain_line(filtered_lines[i]))
+        and not INSTRUCTION_NOTE_RE.match(_plain_line(filtered_lines[i]))
+    ]
+    start = cue_indices[0] if cue_indices else max(last_heading_idx + 1, len(filtered_lines) - 2)
+
+    preamble = "\n".join(filtered_lines[:start]).strip()
+    prompt = "\n".join(filtered_lines[start:]).strip()
     if not prompt:
         prompt = preamble
         preamble = ""
     return labels, preamble, prompt
+
+
+def parse_case_study_sections(preamble: str, prompt: str = "") -> list[dict[str, Any]]:
+    """Parse a case-study preamble into structured sections and flag sections
+    referenced by ``prompt`` as ``relevant=True``.
+    """
+    stripped = strip_case_study_boilerplate(preamble)
+    if not stripped.strip():
+        return []
+
+    raw_sections: list[dict[str, Any]] = []
+    current_title = "Overview"
+    current_lines: list[str] = []
+
+    for line in stripped.splitlines():
+        plain = _plain_line(line)
+        if not plain or plain == "-":
+            continue
+        if CASE_STUDY_TOP_HEADING_RE.match(plain):
+            title_clean = re.sub(r"\s*-\s*$", "", plain).strip()
+            if current_lines:
+                raw_sections.append({"title": current_title, "lines": current_lines})
+            current_title = title_clean
+            current_lines = []
+        else:
+            current_lines.append(line.strip())
+
+    if current_lines:
+        raw_sections.append({"title": current_title, "lines": current_lines})
+
+    if not raw_sections:
+        return []
+
+    prompt_low = (prompt or "").lower()
+    stop_words = {
+        "overview", "background", "existing", "current", "environment", "requirements",
+        "requirement", "general", "company", "information", "the", "and", "for", "data",
+    }
+    sections: list[dict[str, Any]] = []
+    for sec in raw_sections:
+        title = sec["title"]
+        body_text = "\n".join(sec["lines"])
+        title_low = title.lower()
+        relevant = False
+        # 1. Direct phrase match (e.g. "security and compliance requirements", "technical requirements")
+        norm_phrase = re.sub(r"s$", "", title_low)
+        if len(norm_phrase) >= 6 and norm_phrase in prompt_low:
+            relevant = True
+        # 2. Specific domain modifier match
+        if not relevant:
+            tokens = [t for t in re.findall(r"[a-z0-9]+", title_low) if len(t) >= 4 and t not in stop_words]
+            if tokens and any(re.search(rf"\b{re.escape(tok)}", prompt_low) for tok in tokens):
+                relevant = True
+        # 3. Named entity / subheading inside section referenced by prompt (e.g. Project2, Claim Approval)
+        if not relevant:
+            for ln in sec["lines"]:
+                pl = _plain_line(ln)
+                if CASE_STUDY_SUBHEADING_RE.match(pl) and pl.lower() in prompt_low:
+                    relevant = True
+                    break
+
+        sections.append(
+            {
+                "title": title,
+                "text": body_text,
+                "html": format_stem_html(body_text),
+                "relevant": relevant,
+            }
+        )
+
+    return sections
 
 
 def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
