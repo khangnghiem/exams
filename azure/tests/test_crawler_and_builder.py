@@ -364,5 +364,76 @@ class StudyGuideBuilderTests(unittest.TestCase):
         self.assertRegex(html_doc, r"q\.dataset\.qtype === 'hotspot'[\s\S]{0,450}mostVoted")
 
 
+class ReadabilityEngineTests(unittest.TestCase):
+    def test_strip_case_study_boilerplate_removes_pearson_instructions_only(self) -> None:
+        q12_data = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q12 = next(q for q in q12_data if q["topic"] == 1 and q["question_number"] == 2)
+        stripped = builder_mod.strip_case_study_boilerplate(q12["question_text"])
+        self.assertNotIn("Case studies are not timed separately", stripped)
+        self.assertNotIn("select the “Question” button to return to the question", stripped)
+        self.assertIn("Contoso, Ltd is a multinational retail company", stripped)
+        self.assertIn("Security and Compliance Requirements", stripped)
+
+    def test_split_question_text_handles_case_studies_and_short_stems_accurately(self) -> None:
+        # AI-500 Q1.3 previously leaked 1,909 chars ("When testing Claim Approval...") into prompt
+        ai500 = json.loads((REPO_AZURE / "data" / "ai-500.json").read_text(encoding="utf-8"))
+        q13 = next(q for q in ai500 if q["topic"] == 1 and q["question_number"] == 3)
+        _, preamble_500, prompt_500 = builder_mod.split_question_text(q13["question_text"])
+        self.assertIn("When testing Claim Approval", preamble_500)
+        self.assertLess(len(prompt_500), 300)
+        self.assertIn("You need to implement the business rule for Claim Approval", prompt_500)
+
+        # DP-700 Q2.22 previously leaked 1,478 chars ("When the authors have new book releases...")
+        dp700 = json.loads((REPO_AZURE / "data" / "dp-700.json").read_text(encoding="utf-8"))
+        q222 = next(q for q in dp700 if q["topic"] == 2 and q["question_number"] == 22)
+        _, preamble_700, prompt_700 = builder_mod.split_question_text(q222["question_text"])
+        self.assertIn("When the authors have new book releases", preamble_700)
+        self.assertLess(len(prompt_700), 350)
+
+        # Short non-case-study question (AI-103 Q1.5, 796 chars) stays unified (no 1-sentence preamble box)
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q15 = next(q for q in ai103 if q["topic"] == 1 and q["question_number"] == 5)
+        labels_15, preamble_15, prompt_15 = builder_mod.split_question_text(q15["question_text"])
+        self.assertIn("Drag drop", labels_15)
+        self.assertEqual(preamble_15, "")
+        self.assertIn("procurement documents", prompt_15)
+
+    def test_parse_case_study_sections_and_auto_relevance_on_ai_103_q1_2(self) -> None:
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q12 = next(q for q in ai103 if q["topic"] == 1 and q["question_number"] == 2)
+        _, preamble, prompt = builder_mod.split_question_text(q12["question_text"])
+        sections = builder_mod.parse_case_study_sections(preamble, prompt=prompt)
+        titles = [s["title"] for s in sections]
+        self.assertGreaterEqual(len(sections), 4)
+        self.assertTrue(any("Overview" in t for t in titles))
+        self.assertTrue(any("Existing Environment" in t for t in titles))
+        self.assertTrue(any("Security and Compliance" in t or "Requirements" in t for t in titles))
+        relevant_titles = [s["title"] for s in sections if s.get("relevant")]
+        self.assertTrue(
+            any("Security" in t for t in relevant_titles),
+            f"Expected Security section to be marked relevant, got {relevant_titles}",
+        )
+
+    def test_smart_stem_formatting_lists_code_solution_and_notes(self) -> None:
+        raw = (
+            "Your service calls project_client.telemetry.get_connection_string() with enable_recording=False.\n"
+            "The solution must meet the following requirements:\n"
+            "Include a pipeline named Pipeline1 for standalone PDFs.\n"
+            "Secrets must NOT be stored in span attributes.\n"
+            "You need to implement controls to mitigate the risk.\n"
+            "Solution: You configure prompt shields for indirect attacks.\n"
+            "Does this meet the goal?\n"
+            "To answer, select the appropriate options in the answer area.\n"
+            "NOTE: Each correct selection is worth one point."
+        )
+        formatted = builder_mod.format_stem_html(raw)
+        self.assertIn("<ul", formatted)
+        self.assertIn("<li>Include a pipeline named", formatted)
+        self.assertIn("<code>project_client.telemetry.get_connection_string()</code>", formatted)
+        self.assertIn("<code>enable_recording=False</code>", formatted)
+        self.assertIn('class="proposed-solution"', formatted)
+        self.assertIn('class="exam-instruction-note"', formatted)
+
+
 if __name__ == "__main__":
     unittest.main()
