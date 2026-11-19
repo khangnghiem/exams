@@ -23,7 +23,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
-DEFAULT_DATA_FILES: list[str] = ["dp-600.json", "dp-700.json"]
+DEFAULT_DATA_FILES: list[str] = [
+    "dp-600.json",
+    "dp-700.json",
+    "ai-103.json",
+    "ai-300.json",
+    "ai-500.json",
+]
 
 
 def _load_json(path: Path) -> list[dict[str, Any]]:

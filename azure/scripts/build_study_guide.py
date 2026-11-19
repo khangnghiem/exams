@@ -30,6 +30,46 @@ except Exception:  # pragma: no cover - defensive
     SANITIZER_AVAILABLE = False
 
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+MULTI_SELECT_PROMPT_RE = re.compile(
+    r"\b(?:select\s+(?:two|three|four|five|\d+)|"
+    r"which\s+(?:two|three|four|five|\d+)|"
+    r"choose\s+(?:two|three|four|five|\d+)|"
+    r"each\s+correct\s+answer\s+presents\s+part\s+of\s+the\s+solution|"
+    r"more\s+than\s+one\s+answer\s+choice\s+may\s+achieve\s+the\s+goal)\b",
+    re.IGNORECASE,
+)
+
+
+def _exhibit_exists(local: str) -> bool:
+    """Return True if ``local`` exists directly or relative to ``PROJECT_ROOT``."""
+    if not local:
+        return False
+    p = Path(local)
+    if p.exists():
+        return True
+    marker = "assets/exhibits/"
+    norm = local.replace("\\", "/")
+    idx = norm.find(marker)
+    if idx >= 0:
+        return (PROJECT_ROOT / norm[idx:]).exists()
+    return (PROJECT_ROOT / local.lstrip("/")).exists()
+
+
+def _extract_code_text(exhibit: dict[str, Any]) -> str:
+    """Extract plain code text from ``code``, ``text``, or ``html`` exhibit fields."""
+    raw_code = exhibit.get("code") or exhibit.get("text") or ""
+    if raw_code:
+        return str(raw_code)
+    raw_html = exhibit.get("html") or exhibit.get("raw_html") or ""
+    if not raw_html:
+        return ""
+    text = re.sub(r"<br\s*/?>", "\n", str(raw_html), flags=re.IGNORECASE)
+    text = re.sub(r"<[^>]+>", "", text)
+    return html.unescape(text).strip()
+
+
 # Map each exam's numeric topic tags to Microsoft official skill area names.
 # Update these if the source data's topic ordering changes.
 TOPIC_LABELS: dict[str, dict[int, str]] = {
@@ -44,6 +84,30 @@ TOPIC_LABELS: dict[str, dict[int, str]] = {
         1: "Implement and manage an analytics solution",
         2: "Ingest and transform data",
         3: "Monitor and optimize an analytics solution",
+    },
+    # AI-103: Developing AI Apps and Agents on Azure
+    "ai-103": {
+        1: "Exam A — Developing AI Apps and Agents on Azure",
+        2: "Implement generative AI and agentic solutions",
+        3: "Implement computer vision solutions",
+        4: "Implement text analysis solutions",
+        5: "Implement information extraction solutions",
+    },
+    # AI-300: Operationalizing Machine Learning and Generative AI Solutions
+    "ai-300": {
+        1: "Case Studies & End-to-End Scenarios",
+        2: "Design and implement an MLOps infrastructure",
+        3: "Implement machine learning model lifecycle and operations",
+        4: "Design and implement a GenAIOps infrastructure",
+        5: "Implement generative AI quality assurance and observability",
+        6: "Optimize generative AI systems and model performance",
+    },
+    # AI-500: Designing and Implementing Multi-Agent AI Solutions
+    "ai-500": {
+        1: "Architect multi-agent solutions",
+        2: "Develop multi-agent solutions in Azure",
+        3: "Evaluate, optimize, and monitor multi-agent solutions",
+        4: "Secure, govern, and deploy multi-agent solutions",
     },
 }
 
@@ -1147,9 +1211,13 @@ HTML_TAIL = """
       // Hotspot / drag-drop / other — informational status only.
       if (!hasChoices) {
         if (q.dataset.qtype === 'hotspot') {
+          const mostVoted = q.dataset.mostVoted || '';
           if (!revealed) {
             status.className = 'answer-status empty';
             status.textContent = 'Review the exhibits above and reason about which areas to select.';
+          } else if (mostVoted) {
+            status.className = 'answer-status';
+            status.textContent = `Community answer: ${mostVoted}`;
           } else {
             status.className = 'answer-status empty';
             status.textContent = 'HOTSPOT answer not available from ExamTopics.';
@@ -1685,9 +1753,15 @@ def render_choice_content(choice: dict[str, Any]) -> str:
 
         if not plain_text:
             return cleaned
-        # Both plain text and HTML present: render plain text on top of HTML
-        # so screen-readers and copy/paste still get something useful.
-        return f"{html.escape(plain_text)}<br>{cleaned}"
+        # Avoid duplicating text when ``cleaned`` already renders the choice body
+        # (e.g. plain text or ``<code>``). Only prepend ``plain_text`` when the
+        # HTML is purely an ``<img>`` whose alt/caption differs from ``plain_text``.
+        cleaned_text = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", cleaned))).strip()
+        if cleaned_text == re.sub(r"\s+", " ", plain_text).strip():
+            return cleaned
+        if "<img" in cleaned.lower() and not cleaned_text:
+            return f"{html.escape(plain_text)}<br>{cleaned}"
+        return cleaned
 
     if plain_text:
         return clean_html(plain_text).replace("\n", "<br>")
@@ -1741,7 +1815,7 @@ def render_exhibit(exhibit: dict, idx: int, q_label: str) -> str:
             src_fallback = exhibit.get("src") or ""
             if src_fallback and not src_fallback.startswith("http"):
                 rel = f"../{src_fallback.lstrip('/')}"
-        if local and Path(local).exists() and rel:
+        if local and _exhibit_exists(local) and rel:
             return (
                 f'<figure class="exhibit exhibit-image">'
                 f'<img src="{html.escape(rel, quote=True)}" alt="{alt}" loading="lazy">'
@@ -1770,7 +1844,7 @@ def render_exhibit(exhibit: dict, idx: int, q_label: str) -> str:
         )
 
     if kind == "code":
-        code = exhibit.get("code") or exhibit.get("text") or ""
+        code = _extract_code_text(exhibit)
         return (
             f'<figure class="exhibit exhibit-code">'
             f'<pre><code>{html.escape(code)}</code></pre>'
@@ -2048,7 +2122,11 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
     has_correct_answer = len(correct) > 0
 
     if choices:
-        is_multiple = len(correct) > 1
+        is_multiple = (
+            len(correct) > 1
+            or q_type == "multiple"
+            or bool(MULTI_SELECT_PROMPT_RE.search(q.get("question_text", "") or ""))
+        )
         input_type = "checkbox" if is_multiple else "radio"
         input_name = f"choice-{anchor}"
         parts.append(f'<ol class="choices" type="A" data-multiple="{str(is_multiple).lower()}">')
@@ -2288,7 +2366,7 @@ def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
                     rel = exhibit_rel_path(local)
                     if not rel and ex.get("src") and not ex["src"].startswith("http"):
                         rel = f"../{ex['src'].lstrip('/')}"
-                    if rel and local and Path(local).exists():
+                    if rel and local and _exhibit_exists(local):
                         alt = ex.get("alt") or f"Exhibit {idx + 1}"
                         lines.append(f"- Exhibit {idx + 1}: ![{alt}]({rel})")
                     else:
@@ -2310,7 +2388,7 @@ def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
                         lines.append(cleaned)
                         lines.append("")
                 elif kind == "code":
-                    code = ex.get("code") or ex.get("text") or ""
+                    code = _extract_code_text(ex)
                     lines.append(f"- Exhibit {idx + 1} (code):")
                     lines.append("")
                     lines.append("```")

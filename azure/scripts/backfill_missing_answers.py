@@ -66,6 +66,9 @@ DATA = REPO / "data"
 TARGETS = [
     DATA / "dp-600.json",
     DATA / "dp-700.json",
+    DATA / "ai-103.json",
+    DATA / "ai-300.json",
+    DATA / "ai-500.json",
 ]
 
 # Explicit answer-label patterns. Matched case-insensitively against the whole
@@ -502,6 +505,12 @@ def main(argv: list[str] | None = None) -> int:
         ),
     )
     parser.add_argument(
+        "--files",
+        nargs="*",
+        default=None,
+        help="Specific JSON filenames inside data/ to process (default: all TARGETS).",
+    )
+    parser.add_argument(
         "--verbose",
         "-v",
         action="store_true",
@@ -514,10 +523,11 @@ def main(argv: list[str] | None = None) -> int:
         format="%(asctime)s [%(levelname)s] %(message)s",
     )
 
+    targets = [DATA / name for name in args.files] if args.files else TARGETS
     mode = "APPLY" if args.apply else "preview"
     loose_tag = "loose" if args.loose else "safe"
     print(f"\nMode: {mode} ({loose_tag})")
-    print(f"Targets: {[str(p) for p in TARGETS]}")
+    print(f"Targets: {[str(p) for p in targets]}")
     print(f"Min accept score: {MIN_ACCEPT_SCORE}")
     if args.loose:
         print(
@@ -529,7 +539,7 @@ def main(argv: list[str] | None = None) -> int:
 
     total_updated = 0
     total_skipped = 0
-    for path in TARGETS:
+    for path in targets:
         if not path.exists():
             logger.warning("Skipping missing file %s", path)
             continue
