@@ -207,12 +207,6 @@ _199 questions generated from ExamTopics discussions._
 <a id="q1-1"></a>
 ## Q1.1 (ID 911291)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -276,7 +270,14 @@ Currently, only Git in Azure Repos with the same tenant as the Fabric tenant is 
 If the workspace and Git repo are in two different geographical regions, the tenant admin must enable cross-geo exports.
 Azure DevOps on-prem isn't supported.
 Sovereign clouds aren't supported.
-- **valerylobra** (1 upvotes [Most Recent]): C - Azure Repos
+- **Nefirs** (5 upvotes): dont trust the revealed "correct answer", always check the discussion. 
+I guess the "correct answer" is from the person who took the exam or whatever and uploaded the question and answer sheets. Of course no one except Microsoft knows the real correct answers to these questions.
+- **VAzureD** (5 upvotes): Option C
+A. Storing semantic models and reports in Data Lake Gen2 storage might provide a storage solution, but it does not address the requirement for version control.
+B. While GitHub is a popular version control platform and supports branching, it may not integrate seamlessly with Contoso's Azure-based environment.
+D. Microsoft OneDrive is primarily a file hosting service and is not well-suited for version control of complex datasets, semantic models, and reports.
+- **David_Webb** (4 upvotes): C as only Git in Azure Repos is supported currently.
+https://learn.microsoft.com/en-us/fabric/cicd/git-integration/intro-to-git-integration#considerations-and-limitations
 
 <a id="q1-20"></a>
 ## Q1.20 (ID 911310)
@@ -297,7 +298,13 @@ What should be modified first?
 - **a_51** (27 upvotes [Highly Voted]): As XMLA is set to Read-Only first, you must go to the capacity settings to enable read-write.
 https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-connect-tools#enable-xmla-read-write
 - **STH** (11 upvotes [Highly Voted]): The question concerns changing from read-only to read-write (in the Capacity settings), not about enabling XMLA endpoints (in the Tenant settings), which, as per the query, are already set up.
-- **KitHsia** (1 upvotes [Most Recent]): Tenant1 settings should be modified first
+- **Jons123son** (4 upvotes): The questions asked what should be modified FIRST. Therefore, I would go with D because C requires that D is activated. Although, I am not sure if D is not activated by default, thus making C the ONLY modification required.
+I hate it when MS exam questions leave room for interpretation. Why don't they ask for two answers...
+
+Weirdly enough Questions 21 covers basically the same topic and there people agree that Tenant settings are definitely required next to capacity settings.
+- **thuss** (4 upvotes): Again, bad wording in the question. If it is specifically about read-write, it's C. If it's about having XMLA endpoints available in the first place, it's D. Judging by Microsoft's wordings and ways of referring to their own documentation, I guess they want us to go for C.
+- **wojciech_wie** (3 upvotes): C1 
+https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-connect-tools
 
 <a id="q1-24"></a>
 ## Q1.24 (ID 911314)
@@ -327,13 +334,29 @@ B - Admin access is provided to the developers for the developers to manage the 
 D - To restrict the access on the Production workspace, provide an overriding Viewer access which lets the developers only view the Production environment and not make any changes.
 
 E - This is to provide the developers with the permissions to develop, edit and update the Dev and Test pipelines.
-- **rmeng** (2 upvotes [Most Recent]): If you made them pipeline admins, they’d gain the right to deploy all the way to Production — which fails the explicit “prevent deployment to Production” requirement.
-Therefore, B is not correct under the principle of least privilege.
-- **elma_qhor_19** (1 upvotes): B - Admin access is provided to the developers for the developers to manage the deployent process across the various stages (in this case Dev and Test). This is a basic necessary.
+- **XiltroX** (4 upvotes): I think the answer should be BDE. If you have contributer access to the workspace, then you don't need to assign an additional viewer access (C) to the developers. One of the requirements is to grant access to the pipeline and the only option that fulfills that is (B). D and E fulfill the rest of the requirements in the question.
+- **estrelle2008** (4 upvotes): I think build permission to the production semantic model, conflicts with requirement that any changes to the Production workspace should be prevented.
+If question really requires 3 answers, I think both Viewer access (C) and Contributor access (E) can coexist effectively for the Development and Test workspaces.
+- **72bd3bc** (3 upvotes): I see that contributors aren't able to deploy. Only members
 
-D - To restrict the access on the Production workspace, provide an overriding Viewer access which lets the developers only view the Production environment and not make any changes.
+Workspace contributor
+(and pipeline admin)	
+Consume content​
+Compare stages
+View semantic models
+Unassign a workspace from a stage
 
-E - This is to provide the developers with the permissions to develop, edit and update the Dev and Test pipelines.
+Workspace member
+(and pipeline admin)	
+View workspace content​
+Compare stages
+Deploy items (must be a member or admin of both source and target workspaces)
+Update semantic models
+Unassign a workspace from a stage
+Configure semantic model rules (you must be the semantic model owner)
+
+https://learn.microsoft.com/en-us/fabric/cicd/deployment-pipelines/understand-the-deployment-process#permissions-table
+- **thuss** (3 upvotes): I get a feeling the "trick" is making you think that B would allow publishing on Prod, but I think if you don't give them access to the workspace, they can indeed have admin rights on the build pipeline but not deploy on Prod? So BDE would be my guess. Also B is the only option granting access to the pipeline at all, and D and E are a must.
 
 <a id="q1-34"></a>
 ## Q1.34 (ID 911324)
@@ -357,7 +380,12 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **Momoanwar** (28 upvotes [Highly Voted]): 1: Some.blue icone fold and red dont fold
 2 : on power query. all process after the step that dont fold are on power query
 - **SamuComqi** (7 upvotes [Highly Voted]): The red icon suggests where query folding is interrupted, therefore only SOME steps are folded. All the other steps after the red icon will not fold and will be executed by the POWER QUERY engine.
-- **Acrious** (2 upvotes [Most Recent]): I also felt that it would be none, due to the location of the first Red icon, nothing has actually happened  yet, and the rest of the stuff would be in power query engine, so I thought None for 1
+- **a_51** (5 upvotes): Correct as shown. If the query folded the work is pushed to the data source. the icons help to tell you if folding is occurring or not.
+
+https://learn.microsoft.com/en-us/power-query/step-folding-indicators#step-diagnostics-indicators
+- **Spam_Account** (3 upvotes): Isn't query folding when the query steps are pushed back into the engine, in order to optimise queries? This isn't happening at all, since the red icon occurs immediately after the navigation step. So the entire query WILL necessarily be pulled into power query, so no query folding will occur.
+- **NewB87** (3 upvotes): Reference in MS Learn: 
+https://learn.microsoft.com/en-us/power-query/step-folding-indicators
 
 <a id="q1-35"></a>
 ## Q1.35 (ID 911325)
@@ -382,8 +410,10 @@ What should you do for the Copy data activity?
 
 ### Top explanations
 - **Momoanwar** (8 upvotes [Highly Voted]): Replace all with overwrite
+- **Nefirs** (3 upvotes): this answer option is not available. Additionally, truncate a table does only delete the data but does not touch schema.
+- **2dc6125** (2 upvotes): B Since the plan is to drop the destination schema and replace it with data source schema.
+- **IshtarSQL** (2 upvotes): Correct: Enable "Truncate table" option: This option truncates the target table before copying data, ensuring that all existing data is replaced with the new data from the external source.
 - **Egocentric** (1 upvotes [Most Recent]): Destination tab set table action to overwrite
-- **NRezgui** (1 upvotes): From the Destination tab, set Table action to Overwrite.
 
 <a id="q1-38"></a>
 ## Q1.38 (ID 911328)
@@ -411,7 +441,19 @@ When setting up the Copy Activity, you need to choose the Overwrite mode to make
 https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-lakehouse-partition#load-data-to-lakehouse-using-partition-columns
 
 Expand Advanced, in Table action, select Overwrite, and then select Enable partition, under Partition columns, select Add column, and choose the column you want to use as the partition column. You can choose to use a single column or multiple columns as the partition column.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s D
+- **estrelle2008** (6 upvotes): A makes no sense, it leaves data that is already in table1 unpartitioned
+B makes no sense, it is the statement that you are asked to decide for the step before that. 
+C MIGHT assign date column in source data as requested partition column, but only and if source data is complete and unambiguous
+D re-creates table1, ensuring that the partitioning is applied consistently.
+
+Hoping that the data that is already in table1 is also in this source data, D should be recommended answer, I guess?
+- **Pegooli** (4 upvotes): In Microsoft Fabric, partitioning a table during a Copy activity is only supported in "Append" mode, not "Overwrite" mode.
+- **stilferx** (4 upvotes): IMHO, the answer is "D".
+
+Because:
+Expand Advanced, in Table action, select Overwrite, and then select Enable partition, under Partition columns, select Add column, and choose the column you want to use as the partition column. You can choose to use a single column or multiple columns as the partition column.
+
+in https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-lakehouse-partition#load-data-to-lakehouse-using-partition-columns
 
 <a id="q1-41"></a>
 ## Q1.41 (ID 911331)
@@ -433,8 +475,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **Momoanwar** (39 upvotes [Highly Voted]): I think yes yes yes. 
 Parquet= compression
+- **estrelle2008** (8 upvotes [Highly Voted]): I think so too: YYY
+code snippet according to Learn
 - **Blue_MSBI** (7 upvotes): I think the same
-- **Training_ND** (1 upvotes): Yup, agreed
+- **vernillen** (6 upvotes): Snappy is the default compression type of parquet, though. So it will create chunks of your file by default and compress them. If you want to have it all in one file, that's when you have to overwrite your default compression. So I disagree with the 'No'
+- **estrelle2008** (5 upvotes): additional: Parquet files are compressed by default, and you don’t need to take any additional actions to enable compression. When writing Parquet files, you can specify the desired compression codec (if needed) to further optimize storage and performance
 
 <a id="q1-42"></a>
 ## Q1.42 (ID 911332)
@@ -464,6 +509,7 @@ Because of: Unpivot other columns
  This command unpivots unselected columns. Use this command in a query when not all columns are known. New columns added during a refresh operation are also unpivoted.
 
 description is here: https://support.microsoft.com/en-us/office/unpivot-columns-power-query-0f7bad4b-9ea1-49c1-9d95-f588221c7098#:~:text=Select%20the%20columns%20you%20do,Transform%20%3E%20Unpivot%20Only%20Selected%20Columns.
+- **XiltroX** (3 upvotes): C is the correct answer
 - **Nefirs** (1 upvotes): clearly C
 
 <a id="q1-50"></a>
@@ -486,17 +532,19 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **wellingtonluis** (43 upvotes [Highly Voted]): HTTPS, DFS
 https://learn.microsoft.com/en-us/fabric/onelake/create-adls-shortcut
+- **Felgas** (12 upvotes [Highly Voted]): It's asking to create a shortcut in the lakehouse. To do that, the URL should be https://adls.dfs.core.windows.net/file.
+To access the shortcut in Fabric, you use the abfss path
+- **282b85d** (8 upvotes): • Connection (abfss): The abfss (Azure Blob File System Secure) protocol is used for secure connections to Azure Data Lake Storage Gen2. This protocol ensures that the connection is encrypted, providing a secure method to access the storage.
+• Endpoint (dfs): The dfs (Data Lake Storage) endpoint is used to connect to the hierarchical namespace of Azure Data Lake Storage Gen2, which is optimized for big data analytics workloads. It allows for file and directory-based operations, making it suitable for data lake scenarios.
+- **ca63a55** (7 upvotes): I have just passed the exam, instead of 'connection' the question said: 'protocol'
 - **testtaker45** (5 upvotes): Someone give WellingtonLuis a medal for this answer. Spot on. 
 So if we are working in apache spark, we would use the abfss protocol. 
 As we are creating the shortcut in Fabric the protocol is https, and the endpoint is dfs.core.windows.net. I had to go deep to figure this out, and your documentation was very helpful.
-- **Felgas** (12 upvotes [Highly Voted]): It's asking to create a shortcut in the lakehouse. To do that, the URL should be https://adls.dfs.core.windows.net/file.
-To access the shortcut in Fabric, you use the abfss path
 
 <a id="q1-68"></a>
 ## Q1.68 (ID 916070)
 
 HOTSPOT
--
 You have a Fabric tenant.
 You need to configure OneLake security for users shown in the following table.
 The solution must follow the principle of least privilege.
@@ -523,6 +571,10 @@ Roles:
 ReadData permission on SQL endpoint to access data without SQL policy.
 ReadAll permission on the lakehouse to access all data using Apache Spark.
 from https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sharing#sharing-and-permissions
+- **282b85d** (3 upvotes): • User1: Assign ReadAll. This is because User1 needs to read all Spark data, which would require broad access across multiple datasets and objects managed by Spark.
+• User2: Assign ReadData. This permission is more likely to be specific to data endpoints, including SQL endpoints.
+- **a998450** (3 upvotes): ReadAll and ReadData is Correct
+https://blog.fabric.microsoft.com/en/blog/lakehouse-sharing-and-access-permission-management?ft=All
 - **AbhiShar** (2 upvotes [Most Recent]): the selections of ReadAll for User1 and Read for User2 ensure that each user gets the appropriate level of access according to their stated needs while adhering to the principle of least privilege. ReadData may imply limited access and could restrict User2 from reading all SQL endpoint data effectively.
 
 <a id="q1-77"></a>
@@ -543,6 +595,7 @@ What should you do?
 ### Top explanations
 - **Nefirs** (10 upvotes [Highly Voted]): D: https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-table-maintenance
 - **vernillen** (4 upvotes [Most Recent]): Just think of the aspect of a real VACUUM: Cleanup of dust just lying around
+- **prabhjot** (4 upvotes): Yes D - To remove files from a Delta table that are no longer referenced by the current version of the table, you should run the VACUUM command.
 - **stilferx** (2 upvotes): IMHO, D) Vacuum is good
 
 <a id="q1-86"></a>
@@ -562,17 +615,18 @@ Which conditional path should you configure between the first activity and the s
 **Most voted:** B
 
 ### Top explanations
+- **2dc6125** (4 upvotes): B: Upon Complete will move to next activities regardless of its success or failure.
+- **Nefirs** (4 upvotes): completion is correct
 - **vernillen** (3 upvotes): A: Will only launch the second one if the first one fails, but it's not given that it will ALWAYS fail
 
 C&D: Upon skip -> activity should be executed
-- **2dc6125** (4 upvotes): B: Upon Complete will move to next activities regardless of its success or failure.
-- **stilferx** (1 upvotes): IMHO, B - easy game
+- **clux** (2 upvotes): Correct
+- **luiruipu** (2 upvotes): B. Its correct
 
 <a id="q1-93"></a>
 ## Q1.93 (ID 916095)
 
 DRAG DROP
--
 You create a semantic model by using Microsoft Power BI Desktop. The model contains one security role named SalesRegionManager and the following tables:
 •	Sales
 •	SalesRegion
@@ -603,6 +657,19 @@ https://www.insightsarena.com/post/mastering-object-level-security-in-power-bi-f
 2 Select the address column in SalesAddress
 3 Set the Object Level Security to None for the sales manager role.
 - **e4e2ec8** (7 upvotes [Highly Voted]): Answer is correct; ref: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table
+- **stilferx** (2 upvotes): 1) Tabular Editor - Open the Model
+2) Select Address
+3) Object Level Security (OLS) = None
+
+Because: 
+To create roles on Power BI Desktop semantic models, use external tools such as Tabular Editor.
+...
+Object-level security (OLS) enables model authors to secure specific tables or columns from report viewers.
+...
+None: OLS is enforced and the table or column will be hidden from that role
+Read: The table or column will be visible to that role
+
+Link: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table
 - **282b85d** (1 upvotes [Most Recent]): Not 100% sure, but I would:
 1. Open the model in Tabular Editor.
 2. Select the Address column in SalesAddress.
@@ -654,16 +721,16 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** BD
 
 ### Top explanations
-- **b8ef1c5** (2 upvotes): https://learn.microsoft.com/en-au/fabric/onelake/create-s3-compatible-shortcut#:~:text=Access%20Key%20ID,Your%20secret%20key.
 - **Pegooli** (4 upvotes): https://learn.microsoft.com/en-us/fabric/onelake/create-s3-shortcut
 - **NikeshShah** (3 upvotes): https://learn.microsoft.com/sl-si/fabric/onelake/create-s3-compatible-shortcut
 Correct Answer BD
+- **helmon** (3 upvotes): https://learn.microsoft.com/sl-si/fabric/onelake/create-s3-compatible-shortcut
+- **b8ef1c5** (2 upvotes): https://learn.microsoft.com/en-au/fabric/onelake/create-s3-compatible-shortcut#:~:text=Access%20Key%20ID,Your%20secret%20key.
 
 <a id="q1-131"></a>
 ## Q1.131 (ID 936832)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a PySpark notebook named Notebook1.
 You define sas_token as a variable in the first cell of Notebook1 and store a shared access signature (SAS) token in the variable.
 In the second cell, you run the following code.
@@ -689,7 +756,14 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 3. Yes.  The path `wasbs://
 [email protected]
 /customers?{sas.token}` indicates that the source data is located in the `customers` folder within a container named `contacts` in the Azure Blob Storage account `contoso`.
+- **Sr18** (3 upvotes): 1. NO: Spark Data Frame 
+2. NO: It will create one, if already exists then overwrite it
+3. YES: contacts is container and folder is customer
 - **Sowwy1** (1 upvotes [Most Recent]): No, no, yes
+- **MYPE** (1 upvotes): Yes No No
+1. customers is a pandas dataframe 
+2. no error if the file is saved with another name
+3. the container is not named contacts but customers
 
 <a id="q1-135"></a>
 ## Q1.135 (ID 936836)
@@ -717,6 +791,13 @@ Which role should you assign to User1?
 (third line under "Create a domain" section)
 - **SVCDIA** (7 upvotes [Highly Voted]): You can only create a new domain as a fabric admin
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s A
+- **ab483f6** (1 upvotes): Correct Answer: A. Domain admin
+This role provides the necessary permissions to create domains and subdomains and assign workspaces, without granting excessive tenant-level rights.
+
+Answer C is wrong because it has full tenant-level permissions (too much privilege, violates least privilege principle).
+- **elimey** (1 upvotes): Create a new domain → Only Domain Admins can create domains
+also
+Principle of least privilege → Assign Domain Admin role only for the domain-related tasks, not Fabric Admin.
 
 <a id="q1-142"></a>
 ## Q1.142 (ID 936843)
@@ -735,8 +816,20 @@ Which file should you reference?
 **Most voted:** B
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s B
+- **pk07** (4 upvotes): B. cache.abf
+Justification: This file contains the cached data for the semantic model. It is a binary file and can be very large. Excluding this file from version control is necessary to prevent pushing large amounts of unnecessary data, and will prevent data from data sources from being pushed to the repository.
+Why it's the correct option: Contains the cached data from the data model.
+- **pk07** (3 upvotes): You have a Microsoft Power BI project that contains a semantic model.
+
+You plan to use Azure DevOps for version control.
+
+You need to modify the .gitignore file to prevent the data values from the data sources from being pushed to the repository.
+
+Which file should you reference?
+
+B. cache.abf
 - **73f4438** (2 upvotes): A, C, and D options are of JSON format files needed by the project as reference, which makes sense to be in git. B is of binary format type which typically is large in size. Storage of this file might be for other options like git-lfs.
+- **Sowwy1** (1 upvotes): I think it s B
 - **CamiU** (1 upvotes): When you save as a project, Power BI Desktop saves report and semantic model items as folders, each containing text files that define the item:
 
 Project/
@@ -755,7 +848,6 @@ Specifies intentionally untracked files Git should ignore for Power BI Project f
 ## Q1.150 (ID 939100)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 contains a warehouse named DW1. DW1 contains two tables named Employees and Sales. All users have read access to Dw1.
 You need to implement access controls to meet the following requirements:
 •	For the Sales table, ensure that the users can see only the sales data from their respective region.
@@ -808,8 +900,8 @@ A PBIT (Power BI Template file):
 ✔️ Includes predefined data source connections.
 ✔️ Includes report structure and formatting.
 ✔️ Does NOT contain any actual data—only metadata (queries, measures, visual
-- **testtaker45** (2 upvotes [Most Recent]): PBIT is the answer for sure.
 - **marp94** (3 upvotes): PBIT is a Power BI Template file, which is designed to meet the requirements specified in your question
+- **testtaker45** (2 upvotes [Most Recent]): PBIT is the answer for sure.
 
 <a id="q1-153"></a>
 ## Q1.153 (ID 939103)
@@ -842,6 +934,9 @@ D. Users can sync workspace items with their Git repositories:
 
 This setting enables synchronization of workspace items with users' Git repository, allowing them to commit and push.
 This feature is essential to ensure that User1 can synchronize his local items with the remote repository.
+- **4e5cf3d** (1 upvotes): Im not sure. Github is already supported. 
+You can find both options here:
+https://learn.microsoft.com/en-us/fabric/admin/git-integration-admin-settings
 
 <a id="q1-154"></a>
 ## Q1.154 (ID 939104)
@@ -873,7 +968,22 @@ Under the "Folders in deployment pipelines (preview)" section in the provided te
 Folders representation:
 "Folders are considered part of an item’s name (an item name includes its full path). When an item is deployed, after its path was changed (moved from folder A to folder B, for example), then Deployment pipelines applies this change to its paired item during deployment - the paired item will be moved as well to folder B. If folder B doesn't exist in the stage we're deploying to, it's created in its workspace first."
 - **testtaker45** (7 upvotes [Highly Voted]): It just makes the most sense from the question. Like, the pipeline isn't a folder, and it goes between the workspaces. You have Folder1 added to Workspace1, and then you add Lakehouse1 in Folder1. This gives \Folder1\Lakehouse1.
-- **6f38739** (1 upvotes): folders are not supported when you move between workspaces with deployment pipelines
+- **Tika989** (5 upvotes): B. \Pipeline1 \Lakehouse1
+
+Explanation:
+Deployment pipelines in Microsoft Fabric are used to promote items between workspaces (e.g., from Workspace1 to Workspace2).
+Folders are not part of the deployment pipeline process—they are a workspace-level organization feature but do not impact how items are deployed.
+When DeployPipeline1 runs, it will deploy Pipeline1 and Lakehouse1 to Workspace2, but Folder1 will not be replicated.
+Thus, Workspace2 will contain only Pipeline1 and Lakehouse1 at the root level, without Folder1.
+- **aks2304** (4 upvotes): The correct answer is D. \Folder1\Lakehouse1.
+
+When you run DeployPipeline1, it will replicate the structure from Workspace1 to Workspace2. Since you moved Lakehouse1 to Folder1 before running the deployment pipeline, Workspace2 will have the following structure:
+
+Workspace2
+Folder1
+Lakehouse1
+Pipeline1 will not be inside Folder1, so it won't be included in the structure of Workspace2 as described in the other options.
+- **Devoteam2025** (3 upvotes): In Microsoft Fabric, when you deploy content from one workspace to another using a deployment pipeline, the folder structure is preserved. This means that if you have a folder named Folder1 in Workspace1 containing Lakehouse1, deploying to Workspace2 via DeployPipeline1 will replicate Folder1 and its contents in Workspace2. The folder hierarchy of the deployed items is automatically applied in the target workspace.
 
 <a id="q1-155"></a>
 ## Q1.155 (ID 939105)
@@ -898,21 +1008,20 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** AB
 
 ### Top explanations
-- **aks2304** (2 upvotes): Assign the Contributor role to Group1: This ensures that all finance department users can create and edit items in Workspace1 with minimal administrative effort1.
-Create a workspace identity: This allows Workspace1 to securely access storage1 for reading and writing data.
-These actions will help you maintain control as the sole admin while enabling the finance department to work efficiently.
 - **Rahalcer** (4 upvotes): correct :
 A. Assign the Contributor role to Group1:
 Since Group1 already contains all finance department users, assigning the Contributor role to the group grants them the necessary permissions (create and edit items) in Workspace1 with minimal administrative effort. This avoids having to assign roles to each user individually.
 B. Create a workspace identity:
 A workspace identity (or managed identity) allows Workspace1 to securely access external resources like storage1. By creating and configuring a workspace identity, you can grant it the appropriate permissions on storage1 for secure read and write access.
 Additionally, because you created the workspace, you are automatically the admin—meeting the requirement that you are the only admin of Workspace1.
+- **aks2304** (2 upvotes): Assign the Contributor role to Group1: This ensures that all finance department users can create and edit items in Workspace1 with minimal administrative effort1.
+Create a workspace identity: This allows Workspace1 to securely access storage1 for reading and writing data.
+These actions will help you maintain control as the sole admin while enabling the finance department to work efficiently.
 
 <a id="q1-157"></a>
 ## Q1.157 (ID 939107)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Workspace_DEV. Workspace_DEV contains the semantic models shown in the following table.
 Workspace_DEV contains the dataflows shown in the following table.
 You create a new workspace named Workspace_TEST.
@@ -951,14 +1060,43 @@ Answer: No.
 
 Do with this information what you will. Enjoy -
 - **jackjack1** (11 upvotes [Highly Voted]): data and refresh schedule are not copied, https://learn.microsoft.com/en-us/fabric/cicd/deployment-pipelines/understand-the-deployment-process?tabs=new-ui#item-properties-copied-during-deployment dataflow gen1 also not listed as supported (only gen2) so no,no,no
-- **Sr18** (2 upvotes): Yes, No, No
-Yes: DF1 will get deployed to workspace_test with configurations. But reconfiguration need to be done like gateway and any credentials changes or connection changes if required.
+- **97b39d5** (5 upvotes): I tested and refesh schedule is not deployed: Y,N,N
+- **wgaignard2** (4 upvotes): Y,N,N
+Item properties that are not copied
+The following item properties aren't copied during deployment:
+•	Data - Data isn't copied. Only metadata is copied
+•	URL
+•	ID
+•	Permissions - For a workspace or a specific item
+•	Workspace settings - Each stage has its own workspace
+•	App content and settings - To update your apps, see Update content to Power BI apps
+•	Personal bookmarks
+The following semantic model properties are also not copied during deployment:
+•	Role assignment
+•	Refresh schedule
+•	Data source credentials
+•	Query caching settings (can be inherited from the capacity)
+•	Endorsement settings
+
+https://learn.microsoft.com/en-us/fabric/cicd/deployment-pipelines/understand-the-deployment-process?tabs=new-ui#item-properties-copied-during-deployment%20dataflow%20gen1
+- **jakkuc92** (3 upvotes): N N N
+
+Reports	✅ Yes	Report definitions are deployed, not the data.
+Semantic Models (Datasets)	✅ Yes	Model structure is deployed; data is not copied.
+Paginated Reports	✅ Yes	Supported in Premium capacities.
+Dataflows Gen2	✅ Yes	Fully supported in deployment pipelines.
+Dataflows Gen1	❌ No	Must be migrated to Gen2 for pipeline deployment.
+Dashboards	✅ Yes	Deployed along with reports.
+Refresh Schedules	❌ No	Must be reconfigured in the target workspace.
+Permissions (Access)	❌ No	Not copied; must be set manually or via scripts.
+Row-Level Security (RLS)	✅ Yes	RLS roles and definitions are deployed with the dataset.
+Subscriptions	❌ No	Not deployed.
+Alerts	❌ No	Not deployed.
 
 <a id="q1-167"></a>
 ## Q1.167 (ID 939117)
 
 DRAG DROP
--
 You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 uses the Pro license mode and contains a semantic model named Model1.
 You have an Azure DevOps organization.
 You need to enable version control for Workspace1. The solution must ensure that Model1 is added to the repository.
@@ -973,14 +1111,12 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 **Most voted:** 1. Connect Wokspace1 to a Git provider | 2. Sync Workspace1 with the repository. | 3. Configure branch policies in Azure DevOps | | Create a deployment pipeline is for CI/CD automation bout not for versioning, Power BI Pro support Git integration so is not necessary a Fabric capacity.
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): Assign to Fabric capacity
-Connect
-Sync
-- **PradeepikaGadai** (1 upvotes): Assign to Fabric capacity – unlocks Git capabilities.
+- **b01d700** (3 upvotes): 1. Connect Wokspace1 to a Git provider 
+2. Sync Workspace1 with the repository.
+3. Configure branch policies in Azure DevOps
 
-Connect Workspace1 to Git provider – connects to Azure DevOps.
-
-Sync Workspace1 with repository – this is the step that pushes Model1 to the repository.
+Create a deployment pipeline is for CI/CD automation bout not for versioning, Power BI Pro support Git integration so is not necessary a Fabric capacity.
+- **c51777f** (3 upvotes): Power BI Pro does not support Git integration, you need a Fabric oder Premium-Capacity for Git integration.
 - **JuanGonzalezT** (2 upvotes): Correct:
 
 Assing Workspace1 to Fabric Capacity
@@ -990,12 +1126,19 @@ To access the Git integration feature, you need a Fabric capacity. A Fabric capa
 then Connect and Sync:
 https://learn.microsoft.com/en-us/fabric/cicd/git-integration/git-get-started?tabs=azure-devops%2CAzure%2Ccommit-to-git#connect-to-a-git-repo
 https://learn.microsoft.com/en-us/fabric/cicd/git-integration/git-get-started?tabs=azure-devops%2CAzure%2Ccommit-to-git#connect-to-a-workspace
+- **Sowwy1** (1 upvotes): Assign to Fabric capacity
+Connect
+Sync
+- **PradeepikaGadai** (1 upvotes): Assign to Fabric capacity – unlocks Git capabilities.
+
+Connect Workspace1 to Git provider – connects to Azure DevOps.
+
+Sync Workspace1 with repository – this is the step that pushes Model1 to the repository.
 
 <a id="q1-168"></a>
 ## Q1.168 (ID 939118)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Enterprise. Enterprise contains a semantic model named Model1. Model1 contains a date parameter named Date1 that was created in Power Query.
 You build a deployment pipeline named Enterprise Data that includes two stages named Development and Test. You assign the Enterprise workspace to the Development stage.
 You need to perform the following actions:
@@ -1046,10 +1189,27 @@ What can User1 do?
 **Most voted:** C
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s B
+- **Azure_2023** (4 upvotes): https://learn.microsoft.com/en-us/fabric/data-warehouse/share-warehouse-manage-permissions#share-a-warehouse
+
+"If no additional permissions are selected - The shared recipient by default receives "Read" permission, which only allows the recipient to connect to the SQL analytics endpoint"
 - **osaid** (2 upvotes): https://learn.microsoft.com/en-us/fabric/data-warehouse/share-warehouse-manage-permissions#share-a-warehouse
-- **Dusica** (1 upvotes): Grant People access
-comes up with selected : Build reports on the default semantic model(Build)
+- **c21f505** (2 upvotes): A. Build reports by using the default dataset
+→ This is possible only if the user has Build permission on the dataset. Default sharing does not grant this.
+
+
+C. Connect to DW1 via the Azure SQL Analytics endpoint
+→ This requires specific permissions and enabling the endpoint. Default sharing does not guarantee this.
+
+
+D. Read the underlying Parquet files from OneLake
+→ Access to OneLake files requires Lakehouse or OneLake permissions, not just Warehouse sharing.
+- **c21f505** (2 upvotes): When you share a warehouse (DW1) in Microsoft Fabric with a user (User1) and assign default permissions, the user is granted read-only access to the data in the warehouse. This means:
+
+✅ User1 can query and read data from the tables in DW1.
+❌ User1 cannot build reports using the default dataset unless explicitly granted permissions to the dataset.
+❌ User1 cannot connect via the Azure SQL Analytics endpoint unless they have specific permissions and the endpoint is enabled.
+❌ User1 cannot access the underlying Parquet files in OneLake unless they have OneLake file-level access, which is not part of default warehouse permissions.
+- **b8ef1c5** (2 upvotes): I just tried it. By default, only "Build reports on the default semantic model (Build)" is selected. Others can be selected, but this is the default.
 
 <a id="q1-181"></a>
 ## Q1.181 (ID 942892)
@@ -1072,9 +1232,23 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** AD
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s A and D
+- **praticewizards** (3 upvotes): Correct!
+A. Enable Git integration for Workspace1:
+Git integration allows version control, enabling you to revert to previous versions of Model1 and identify differences between saved versions. This meets the requirement for managing and tracking changes.
+
+D. Save Model1 in Power BI Desktop as a PBIP file:
+PBIP format is ideal for development workflows. It supports editing item definition files using tools like Visual Studio Code, making it suitable for collaborative and detailed editing. 
+
+Why not the other options?
+B. Save Model1 in Power BI Desktop as a PBIT file:
+PBIT files are template files, but they do not support editing definition files with tools like Visual Studio Code or version control features.
+
+C. Enable users to edit data models in the Power BI service:
+This option does not meet the requirement for identifying version differences or editing with Visual Studio Code.
 - **KalinT** (2 upvotes): A and D
 - **PradeepikaGadai** (2 upvotes): Correct Option
+- **c88fc0c** (2 upvotes): The correct
+- **Sowwy1** (1 upvotes): I think it s A and D
 
 <a id="q1-182"></a>
 ## Q1.182 (ID 942893)
@@ -1093,12 +1267,14 @@ What should you do?
 **Most voted:** D
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s D
 - **JuanGonzalezT** (4 upvotes): answer: D
 
 https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-connect-tools#client-applications-and-tools
 Tabular Editor - An open-source tool ... Requires XMLA read-only for query operations. Requires read-write for metadata operations.
+- **ba2bfdf** (3 upvotes): D is right
+- **Sowwy1** (1 upvotes): I think it s D
 - **hecke** (1 upvotes): 100% agree and thank you for sharing the source.
+- **Azure_2023** (1 upvotes): You need Git for publishing changes
 
 <a id="q1-192"></a>
 ## Q1.192 (ID 955739)
@@ -1142,6 +1318,12 @@ What should you do?
 **Most voted:** A
 
 ### Top explanations
+- **Juanes55** (3 upvotes): - Data source: a data source rule tells the deployment pipeline to automatically replace the connection with the correct one in the target workspace.
+
+-Parameter rule: Even if the connection changes, the path inside the storage often also changes between dev and prod.
+A parameter rule lets you override these values during deployment.
+- **Aiden90** (2 upvotes): A. Create a data source rule only.
+✅ Correct — this remaps the storage account from dev → prod during deployment.
 - **a8d510b** (1 upvotes): first modify Dataflow in Workspace1 so that the "Path" or "Connection" string for the blob storage is controlled by a Power Query Parameter
 - **21ad543** (1 upvotes): a is answer but idk
 - **LILIA97** (1 upvotes): C, Data source: a data source rule tells the deployment pipeline to automatically replace the connection with the correct one in the target workspace.
@@ -1150,12 +1332,6 @@ What should you do?
 ## Q2.2 (ID 911292)
 
 HOTSPOT -
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -1218,16 +1394,17 @@ From MS Learn
 - **testtaker45** (4 upvotes [Most Recent]): The right answer is Doamin \ OneLake Data Hub. 
 The key wording is the Research Group will use 'Lakehouse Explorer'. This tool will connect to the Onelake Data Hub. 
 From an admin perspective, you use the Fabric Admin portal to create the Domain Grouping. I think that is the confusion. Hope that helps someone.
+- **David_Webb** (4 upvotes): Group method: Domain
+Tool: The Fabric Admin Portal
+The tool here should mean the tool to implement the grouping solution. Thus, the answer should be the Fabric admin portal instead.
+https://learn.microsoft.com/en-us/fabric/governance/domains#create-a-domain
+- **theseon** (4 upvotes): Should the tool not be Fabric Admin Portal?
+
+https://learn.microsoft.com/en-us/fabric/governance/domains#configure-domain-settings
 
 <a id="q2-3"></a>
 ## Q2.3 (ID 911293)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -1282,18 +1459,21 @@ What should you include in the solution?
 
 ### Top explanations
 - **theseon** (29 upvotes [Highly Voted]): we need to retrieve the maximum OrderID in the destination table to minimize the number of rows added during refresh. this would be an incremental load. can be done with data flows
-- **sraakesh95** (3 upvotes): Totally agree on the max value to be retrieved on incremental load
+- **Jons123son** (9 upvotes [Highly Voted]): D - As other people pointed out, the exact same use case for retrieving the max OrderID is showcased in the documentation 
+
+https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-setup-incremental-refresh-with-dataflows-gen2#add-a-query-to-the-dataflow-to-filter-the-data-based-on-the-data-destination
+
+Thought at first that A would be correct because SP support least privilege and because how real incremental refresh is not yet supported in data flow gen 2 https://ideas.fabric.microsoft.com/ideas/idea/?ideaid=4814b098-efff-ed11-a81c-6045bdb98602
+- **metiii** (7 upvotes): The answer is A. You should query the last ID from the destination by lookup activity which uses the stored procedure, data flow is not used for this purpose.
+https://learn.microsoft.com/en-us/azure/data-factory/tutorial-incremental-copy-portal
 - **AsitTrivedi** (5 upvotes): https://learn.microsoft.com/en-au/fabric/data-factory/tutorial-setup-incremental-refresh-with-dataflows-gen2
+- **NabilR** (5 upvotes): I agree.
+Azure Data Factory "pipelines" is different from Azure Data Factory "Data Flows".
+All the options are directing us to use Azure Data Factory "pipelines", so it should be using a stored procedure.
 
 <a id="q2-4"></a>
 ## Q2.4 (ID 911294)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -1348,24 +1528,23 @@ Which syntax should you use in a notebook to access the Research division data f
 ### Top explanations
 - **David_Webb** (15 upvotes [Highly Voted]): The correct answer is B.
 The folder hierarchy of Tables in Lakehouse is incorrect for A.
-- **a998450** (6 upvotes): Yes B is correct answer as per the requirement specified in case study - For the Research division workspaces, the members of ResearchReviewersGroup1 must be able to read lakehouse and warehouse data and shortcuts by using SQL endpoints.
 - **wispa2001** (11 upvotes [Highly Voted]): df = spark.read.format("delta").load("Tables/MyShortcut")
 display(df)
 OR
 df = spark.sql("SELECT * FROM MyLakehouse.MyShortcut LIMIT 1000")
 display(df)
 https://learn.microsoft.com/en-us/fabric/onelake/onelake-shortcuts
+- **a998450** (6 upvotes): Yes B is correct answer as per the requirement specified in case study - For the Research division workspaces, the members of ResearchReviewersGroup1 must be able to read lakehouse and warehouse data and shortcuts by using SQL endpoints.
+- **nyoike** (6 upvotes): With the recent introduction of schema-enabled Lakehouses, BOTH A and B are correct. That is assuming ResearchProduct table was created in a schema-enabled Lakehouse in the productline1 schema. I have tested A in a Fabric Spark notebook that is schema-enabled and it works.
+- **stilferx** (5 upvotes): My bad, the right answer is B.
+There is a requirement: Research Division - all tables should be managed. It means, no subfolders should be.
+
+https://learn.microsoft.com/en-us/training/modules/use-apache-spark-work-files-lakehouse/5-spark-sql
 
 <a id="q2-5"></a>
 ## Q2.5 (ID 911295)
 
 HOTSPOT -
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -1457,25 +1636,32 @@ Data Engineers: Read all Apache Spark - because they need to be able to work wit
 Data Analysts: Build Reports on the default dataset - because they are report builders
 Data Scientists: Read SQL Endpoints - They leverage curated data (by engineers) to do predictive analytics.
 Let me know what you think.
-- **Training_be2** (4 upvotes): Data analysts --> Build Reports on the default dataset
-Data Scientist will access the data through a Notebook --> Read all Apache Spark
-Data Engineers will read and write to the data store (lakehouse) --> Read all Apache Spark
-SQL Analytics Endpoint is read-only mode. You can analyze Delta tables using T-SQL (instead of Spark SQL), save functions, or create views. However, you cannot write data to a Delta table.
-- **scorradi** (4 upvotes): My guest based in the question description:
-Data analysts --> Build Reports on the default dataset.
-Data Scientist -> Spark, because they need to use Notebooks as the question says.
-Data Engineers -> Spark, because the need to write data.
+- **vissu_settipally** (40 upvotes [Highly Voted]): Data Engineers = Read sql endpoints
+Data Analyst = Build Reports
+Data Scientist = They prefer Spark Always
+- **stilferx** (15 upvotes): IMHO,
+- DEs - Spark, 
+- Analysts - Build Report, 
+- DS - Spark (as well). 
+
+Why?
+
+1. Here is the description of the options: https://blog.fabric.microsoft.com/en-us/blog/data-warehouse-sharing/
+
+2. Here is the role description in the question itself:
+The data engineers must be able to !!!read from and write!!! to the data store. No access must be granted to datasets or reports.
+The data scientists must be able to read from the data store, but not write to it. They will access the data by using a !!! Spark notebook
+The data analysts must have read access to only the dimensional model objects in the data store. They also must have access to create Power BI reports by !!! using the semantic models created by the analytics engineers.
+The date dimension must be available to all users of the data store.
+- **dp600** (11 upvotes): stop using chatgpt as a source, it's not trustworthy
+- **vish9** (10 upvotes): Data Analysts – Build Reports
+Data Scientists – Read All Apache Spark.
+The confusion is about the Data Engineers: They must be able to read and write to the data store. The SQL end point is read only. They should not have build reports. Hence the remaining option is read all Apache spark. Hence in this question no one gets access to the SQL Endpoint.
 
 <a id="q2-6"></a>
 ## Q2.6 (ID 911296)
 
 HOTSPOT -
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -1567,18 +1753,34 @@ AVERAGE('Survery'[Respone Value]) and Period
 
 I do not unterstand why we would use the CustomerKey for Average Calculation.
 - **a_51** (11 upvotes [Highly Voted]): Average('Survey'[Response Value]) and Period
+- **VAzureD** (7 upvotes): AVERAGE('Survey'[Response Value]),
+Period.
+
+
+AVERAGEA('Question'[Question Text]),
+It doesn't make much sense to average a text field when you have to extract a value from it, although AVERAGEA can do it.
+
+AVERAGEX(VALUES('Survey'[Customer Key]),
+Syntax is wrong, discarded. AVERAGEX(, )
+Additionally VALUES leaves only the distinct values
+
+
+LastCurrentDate,
+In this case we would have only half a day. Has no sense.
+
+NumberOfMonths,
+We would be filtering by 12. It doesn't make sense.
+
+Period,
+In the variable we have the dates of the last 12 months.
 - **a_51** (6 upvotes): Response Value is the only one that even likely could be aggregated. The question text and customer key do not make sense.
+- **SamuComqi** (6 upvotes): For the first part, "AVERAGE('Survey'[Response Value])" because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations).
+For the second part, "Period": data is filtered to compute the average in the last 12 months (interval defined in the variable).
 
 <a id="q2-7"></a>
 ## Q2.7 (ID 911297)
 
 HOTSPOT -
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -1668,20 +1870,15 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **SamuComqi** (77 upvotes [Highly Voted]): * VIEW: from an existing table.
 * CASE: correct syntax before the WHENs.
 * WHEN ListPrice BETWEEN 50 AND 1000 THEN 'medium': the other two options miss value 1000; on the other hand, the BETWEEN includes both 50 and 1000.
-- **ryanghafoerkhan** (1 upvotes): I think a view is better than a table... A view requires minimal execution time
-- **semauni** (11 upvotes): I agree with your answer, but with some nuance:
-- I think that you're right that it is a view, but not because it is created from an existing table. Nothing prevents you from creating a table from a table (CTAS statement). However, it should be a view because 'data should be visible as soon as the datastore is updated'. A table from a table is not automatically refreshed when its source table is updated, but a view on this source table will immediately show the new results.
-- I agree that in the last option, there now is no correct option since none meet the requirements and BETWEEN is the least wrong. Either a bad question or a badly remembered question :)
+- **thuss** (31 upvotes [Highly Voted]): All options for the last one are wrong, which is irritating. Should be > 50 AND <= 1000.
+- **calvintcy** (21 upvotes): I took the test a few days ago. This question was included, but Microsoft has made a change to: WHEN(ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'. Therefore, I chose this option.
+- **Tuki93** (13 upvotes): The range BETWEEN 50 AND 1000 is also a valid answer. However, if the value is 50, it will be returned from the previous ‘when’ clause, ListPrice <= 50 Then 'low', before reaching the second ‘when’ clause.”
+- **pirate84** (12 upvotes): I took the test the last week. This question was included, with a important modification:
+They changes the information,¡ of the first option for "WHEN": ListPrice > 50 AND ListPrice  50 AND ListPrice <= 1000) THEN 'medium'.
 
 <a id="q2-8"></a>
 ## Q2.8 (ID 911298)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -1784,17 +1981,17 @@ KQL es para datos en tiempo real
 C. a Spark notebook
 Podría valer, pero el texto pone,
 "Whenever possible, the data engineers will use low-code tools for data ingestion."
-- **amar5555** (2 upvotes): i feel answer is pipeline with KQL and using kql we get real time data
+- **roflcopter123** (5 upvotes): That's a report requirement, not a data ingestion requirement. You are talking here how to get data from a place to the analyticsPOC, not getting the data from a semantic model directly into the report.
+- **SamuComqi** (5 upvotes): D. a dataflow
+
+Even though the text reads "Data will be loaded without transformation in one area of the AnalyticsPOC data store": in general, dataflows are used when data transformations are involved after ingestion. As suggested by user BHARAT, the Copy Activity should be the optimal solution.
+- **stilferx** (4 upvotes): IMHO,
+D (dataflow), because of this:  
+"Whenever possible, the data engineers will use low-code tools for data ingestion."
 
 <a id="q2-9"></a>
 ## Q2.9 (ID 911299)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -1899,7 +2096,12 @@ D. an external Hive metastore
 Has no sense.
 The Hive Metastore is a centralized repository that stores metadata related to the tables, partitions, columns, schemas, and other data structures used by Hive and Spark.
 Contains information about the PHYSICAL location of the data, the schemas of the tables, and the relationships between them.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s C
+- **David_Webb** (4 upvotes): In the technical requirement, it stated "Semi-structured and unstructured data" for the AnalyticsPOC data store. Thus, it must be a lakehouse.
+- **Nicofr** (4 upvotes): "Read access by using T-SQL or Python
+Semi-structured and unstructured data"
+- **SamuComqi** (3 upvotes): C. a lakehouse
+
+The data store must handle semi-structured and unstructured data, therefore a Lakehouse should be the optimal solution supporting read access with T-SQL and Python.
 
 <a id="q2-10"></a>
 ## Q2.10 (ID 911300)
@@ -1921,11 +2123,15 @@ Which query should you use?
 
 ### Top explanations
 - **TashaP** (26 upvotes [Highly Voted]): Anything without HAVING() + an aggregate is incorrect. HAVING was created for SQL to deal with filtering using an aggregate. Any option that references TotalAmount is incorrect because there is no nested statement in the syntax. Anything that uses HAVING() + DATEPART() is incorrect because you use a where clause for that. The answer is A.
-- **ladywhiteadder** (1 upvotes [Most Recent]): Option A works. But I have one comment about the code quality: Datepart will return an integer value. You could use "= 2023" without the quotation. This way the query will do an implicit conversion - not necessary and potentially costs performance.
-- **e1ec325** (1 upvotes): Es A, necesitamos:
-Filtrar por el año 2023 → usar WHERE DATEPART(YEAR, SaleDate) = '2023'.
-Agrupar por ProductID y ProductName.
-Calcular la suma de Amount y mostrar solo los grupos cuya suma sea mayor a 10,000 → usar HAVING SUM(Amount) > 10000.
+- **werka** (7 upvotes): In D TotalAmount is an alias (HAVING TotalAmount > 10000) and only ORDER BY accepts aliases.
+- **rmeng** (4 upvotes): SELECT ProductID, ProductName, SUM(Amount) AS TotalAmount
+FROM Staging.Sales
+WHERE DATEPART(YEAR, SaleDate) = '2023'
+GROUP BY ProductID, ProductName
+HAVING SUM(Amount) > 10000
+- **objecto** (4 upvotes): TotalAmount can not be used with HAVING. You must use SUM(Amount)
+- **JpLZa** (3 upvotes): I would say Option D. 
+Sum(Amount) AS TotalAmount is effectively TotalAmount > 10000
 
 <a id="q2-11"></a>
 ## Q2.11 (ID 911301)
@@ -1955,8 +2161,15 @@ WITH CUSTOMERBASE AS (
 SELECT CustomerID, CustomerName, PostalCode, LastUpdated
 FROM CUSTOMERBASE
 WHERE X = 1
-- **semauni** (2 upvotes): Thanks, this makes sense. I was already wondering where the X was coming from, it appears part of the syntax is missing in the question.
-- **AdventureChick** (2 upvotes): In the CTE, the X =   is assigning the alias "X" to the value returned from the ROW_NUMBER statement.  It's the same as using "AS X" to assign an alias.
+- **varun_r** (17 upvotes [Highly Voted]): Answer is RowNumber and X=1 -- No Brainer
+- **TashaP** (5 upvotes): ROW_NUMBER() + X = 1
+- **David_Webb** (5 upvotes): First drop-down box:  ROW_NUMBER()
+Second drop-down box:  WHERE X = 1 
+As ORDER BY LastUpdated DESC was used, the first row will be the most recent row.
+- **Momoanwar** (5 upvotes): Row_number
+X=1
+
+Row_number give row position and start from 1
 
 <a id="q2-13"></a>
 ## Q2.13 (ID 911303)
@@ -1981,15 +2194,16 @@ What will you be able to do after connecting to Lakehouse1?
 C is out because when you create external table using spark, you can see the table from the lakehouse but you can’t see the table from SQL endpoint let alone ready.
 
 A is the answer, as I was able to see and read a managed table using SQL Endpoint
-- **i_have_a_name** (2 upvotes): It seems  there is a way to have an external table created using Spark viewed using the Lkehouse SQL End point .
-This is the spark code I used for testing: 
-df.write.format("delta").option("path","Tables/externalfolder").saveAsTable("testmanagedcsveditors")
-When I run the catalog query :
-spark.catalog.listTables(), it is returning as below :
-Table(name='unmanagedcsveditors', catalog='spark_catalog', namespace=['training_lakehouse'], description=None, tableType='EXTERNAL', isTemporary=False)
-Now if I go to the SQL end point, I can see a table named "externalfolder" .
-I agree that the table name should be "umanagedcsveditors", I can infact see 2 tables in the Lakehouse explorer - externalfolder and unmanagedcsveditors
-- **semauni** (2 upvotes): Usually if it's this complicated, it's not the answer ;) even if you're right
+- **stilferx** (4 upvotes): IMHO, 
+the answer is A.
+
+updates are prohibited at all. reading spark external table is a big no-no.
+Link: https://www.linkedin.com/pulse/use-shortcuts-instead-external-tables-reference-data-fabric-popovic/
+- **a_51** (4 upvotes): A is correct, D is not. SQL endpoint is read-only.
+https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sql-analytics-endpoint
+- **Sara0724** (3 upvotes): The SQL analytics endpoint operates in read-only mode over lakehouse Delta tables.
+External Delta tables created with Spark code won't be visible to the SQL analytics endpoint. https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sql-analytics-endpoint
+- **Aruuu6** (3 upvotes): A is answer
 
 <a id="q2-14"></a>
 ## Q2.14 (ID 911304)
@@ -2011,8 +2225,10 @@ Which function should you include in the step?
 - **lengzhai** (41 upvotes [Highly Voted]): D. Table.Profile
 
 https://learn.microsoft.com/en-us/powerquery-m/table-profile
+- **woliveiras** (10 upvotes [Highly Voted]): B guys, "you need to add a step..."
 - **amar5555** (9 upvotes): you will get summary in that max will include but it doesn't add as power query step so i think it is option b
 - **PazaBIandData** (7 upvotes): Table.Max provides only a row with the max value per a single column. We have multiple of columns. It's d
+- **stilferx** (5 upvotes): Sorry, was wrong. Answer id D, because of "for the numeric columns.", not only for one column
 
 <a id="q2-15"></a>
 ## Q2.15 (ID 911305)
@@ -2032,8 +2248,16 @@ NOTE: Each correct answer is worth one point.
 
 ### Top explanations
 - **mtroyano** (19 upvotes [Highly Voted]): Notebook only accepts the languages: PySpark, Spark, Spark SQL and SparkR
-- **DarioReymago** (4 upvotes): yes but you can use "%%sql" in a notebook
 - **dev2dev** (6 upvotes): that indicates to use spark sql language.
+- **DarioReymago** (4 upvotes): yes but you can use "%%sql" in a notebook
+- **gtc108** (3 upvotes): https://learn.microsoft.com/en-us/fabric/data-science/tutorial-data-science-batch-scoring
+ou'll load the test dataset into a spark DataFrame and create an MLFlowTransformer object to generate batch predictions. You can then invoke the PREDICT function using one of following three ways:
+
+Transformer API from SynapseML
+Spark SQL API
+PySpark user-defined function (UDF)
+- **olavrab8** (3 upvotes): Answer CD Correct
+T-SQL Cannot be used, nor DAX
 
 <a id="q2-16"></a>
 ## Q2.16 (ID 911306)
@@ -2058,12 +2282,14 @@ the answer is D.
 Link is here: https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-visualization
 
 Point is: You can use the display function on dataframes that created in PySpark and Scala on Spark DataFrames or Resilient Distributed Datasets (RDD) functions to produce the rich dataframe table view and chart view.
-- **JG1984** (3 upvotes): Out of all the reviewers, I like the way you explain all the answers. Just wondering if you were able to ace the exam
 - **TashaP** (5 upvotes [Highly Voted]): D is the correct answer (the keyword is chart view)
 
 A is another possibility for displaying data but not based on the requirements of this question,  it is separate from chart view. 
 
 https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-visualization
+- **JG1984** (3 upvotes): Out of all the reviewers, I like the way you explain all the answers. Just wondering if you were able to ace the exam
+- **Miro_dd** (3 upvotes): Display dataframe function should be correct
+- **arrow040** (2 upvotes): The .show function displays the contents of a Spark DataFrame in a tabular format within the notebook but does not enable interactive data exploration with the Chart view. To make the data available in the Chart view for interactive visualization, you should use the display function (Answer D)
 
 <a id="q2-18"></a>
 ## Q2.18 (ID 911308)
@@ -2097,7 +2323,18 @@ FILTER (
     SUMMARIZE ( 'Product', 'Product'[Product Name], 'Product'[Available Date] ),
     'Product'[Available Date] >= _SalesSince
 )
-- **sajjuh** (1 upvotes [Most Recent]): Table fn doesnt exist?
+- **6d1de25** (5 upvotes): The correct syntax is:
+Define
+Evaluate
+Table
+
+https://learn.microsoft.com/en-us/dax/define-statement-dax
+https://learn.microsoft.com/en-us/dax/evaluate-statement-dax
+- **a_51** (5 upvotes): The VAR_SalesSince should have a space between them to be:
+VAR _SalesSince.
+- **Jeff_Zhu** (4 upvotes): DEFINE
+EVALUATE
+SUMMARIZE
 
 <a id="q2-19"></a>
 ## Q2.19 (ID 911309)
@@ -2123,9 +2360,18 @@ What can you identify about the pickupLongitude column?
 B - Not all the rows are profiled in the sample (only 1000 of 2000)
 C- From the column statistics, you don't have any missing values in the sample
 D- The values that occur only once are 871 (unique count)
-- **wojciech_wie** (3 upvotes): correct
 - **a_51** (5 upvotes [Highly Voted]): A
 We see a count of 1000 (which is the limit by default) we do not know all the data is read, but we can see of the 1000 distinct is less and so we have duplicate values.
+- **Naqib** (4 upvotes): Answer A:
+
+Distinct Value: This refers to all different values present in a dataset. When you retrieve distinct values from a column, you eliminate duplicate values so that each value is shown once. For example, if a column contains the values [1, 2, 2, 3, 3, 3], the distinct values would be [1, 2, 3].
+
+Unique Value: This usually refers to values that appear only once in the dataset. Unlike distinct values, a unique value will only be considered if it has no duplicates at all. For example, if a column contains the values [1, 2, 2, 3, 3, 3], the unique values would be [1], since only 1 appears without repetition.
+- **Momoanwar** (4 upvotes): Its A
+Only one column selected here
+No informations about missing values
+Distinct count not mean exist only once
+- **wojciech_wie** (3 upvotes): correct
 
 <a id="q2-23"></a>
 ## Q2.23 (ID 911313)
@@ -2148,9 +2394,16 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **estrelle2008** (32 upvotes [Highly Voted]): ALTER/SCHEMA 
 This statement allows to alter (which includes truncating) tables within the specified schema. It ensures that the permission is restricted to schemaA and does not grant access to other schemas or objects.
 - **KipngenohVinnie** (6 upvotes [Highly Voted]): GRANT ALTER ON SCHEMA::schemaA TO User1;
-- **py2356863** (1 upvotes [Most Recent]): ALTER/SCHEMA
-https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver16#permissions
-https://learn.microsoft.com/th-th/sql/t-sql/statements/alter-schema-transact-sql?view=fabric&preserve-view=true
+- **Valcon_doo_NoviSad** (5 upvotes): truncating tables is not even supported in warehouse so this question is pointless, good job microsoft...
+- **VAzureD** (4 upvotes): ALTER/SCHEMA
+
+https://learn.microsoft.com/en-us/sql/t-sql/statements/grant-schema-permissions-transact-sql?view=sql-server-ver16
+
+GRANT permission  [ ,...n ] ON SCHEMA :: schema_name  
+    TO database_principal [ ,...n ]  
+    [ WITH GRANT OPTION ]  
+    [ AS granting_principal ]
+- **thomaski123** (4 upvotes): ALTER is required for Truncate https://learn.microsoft.com/en-us/sql/t-sql/statements/truncate-table-transact-sql?view=sql-server-ver16&viewFallbackFrom=fabric
 
 <a id="q2-31"></a>
 ## Q2.31 (ID 911321)
@@ -2174,6 +2427,9 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **thuss** (38 upvotes [Highly Voted]): I think what they are trying to get at is that you denormalize the company information into both tables so that you do not need the CompanyID anymore, which would then make the relationship between OrderItem and Product only based on ProductID. Hence I think A and C.
 But honestly that whole model is just weird.
+- **zerone72** (25 upvotes [Highly Voted]): the question says : "You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer."
+Therefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) ! 
+The answer is A and A
 - **d47320d** (16 upvotes): Agree up to the denormalization part. 
 
 But that does not imply that the relationship between OrderItem and Product should only be based on ProductID. The Product table has two columns as a primary key, ProductID and CompanyID.
@@ -2181,9 +2437,11 @@ But that does not imply that the relationship between OrderItem and Product shou
 After denormalization, a two columns join should be performed in order to establish the proper relationships and proper analysis.
 
 So correct answers are B, C i.e. the given one.
-- **zerone72** (25 upvotes [Highly Voted]): the question says : "You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer."
-Therefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) ! 
-The answer is A and A
+- **metiii** (9 upvotes): The given answer is correct. 
+The company entity should be denormalized into both product and customer tables. Company ID is part of the customer table and you cannot just denormalize it into the product table.
+and for the relationship between OrderItem and Product, you cannot just reference a part of the primary key. This is not how referencing works, your relationship would be wrong, if you only use product id and a product id is repeated for two different company IDs your relationship would consider both of them as the same product.
+- **IK247** (6 upvotes): C and C 
+The company ID and Product ID combined together will make a unique Identifier.  You have to denormalise to reduce the number of joins in the model.
 
 <a id="q2-36"></a>
 ## Q2.36 (ID 911326)
@@ -2206,8 +2464,16 @@ NOTE: Each correct answer is worth one point.
 ### Top explanations
 - **Felgas** (36 upvotes [Highly Voted]): Answer is DE.
 To be able to use the SQL Endpoint you need to create the shortcut in the Tables section. The file also needs to be in the delta format to be recognised as a managed table. If you try to add a parquet file to the tables section, it will not be recognised as a table object and you won't be able to query it.
+- **d47320d** (24 upvotes [Highly Voted]): B,D are the correct answers, since the Parquet file format within S3, and the pointing to it via a lakehouse Table shortcut, allows the shorcut to be recognized by Fabric as a Delta table and hence provide access to the SQL endpoint.
+
+
+Explanation:
+As per the provided links: "If the target of the shortcut contains data in the Delta\Parquet format, the lakehouse automatically synchronizes the metadata and recognizes the folder as a table".
+It is stated that S3 contains sales data files, that is files not tables. Besides, delta tables are not supported in S3. So the file format needs to be either CSV or Parquet, leading us to choose the latter for all the reasons stated in other comments.
+So creating a shortcut in Table section that points to S3 Parquet files, will allow Fabric to recognise it as a Delta table, which in turn enables the SQL endpoint.
 - **d47320d** (11 upvotes): A parquet file shortcut is recognized as a managed table. Delta format not supported by S3. The answer cannot be E.
-- **kilowd** (3 upvotes): E: Only the tables in Delta format are available in The SQL analytics endpoint. Parquet, csv and other formats cannot be queried using SQL analytics endpoint.
+- **woliveiras** (7 upvotes): D and E. Tested. You can turn delta files available in your AWS Service and create a shortcut here.
+- **woliveiras** (4 upvotes): If you need just query, as they mentioned. Parquet (read in parallel) and shortcut in the table solve this problem. you don't need delta.
 
 <a id="q2-37"></a>
 ## Q2.37 (ID 911327)
@@ -2227,14 +2493,12 @@ What should you do from Lakehouse explorer?
 ### Top explanations
 - **Sanji931** (11 upvotes [Highly Voted]): With ''Load to tables'' : tables are always loaded using the Delta Lake table format with V-Order optimization enabled.
 https://learn.microsoft.com/en-us/fabric/data-engineering/load-to-tables#load-to-table-capabilities-overview
-- **cafb698** (1 upvotes [Most Recent]): A, since optimize alone won't convert the CSV to Delta Format
-- **cafb698** (1 upvotes): Optimize feature alone does not convert CSV files to Delta format. It is used for optimizing Delta tables after they have been created.
-
-To fully address the requirement of converting CSV files into Delta format with V-Order optimization, the correct approach involves:
-
-Loading CSV files into a Delta table: This is typically done using features that allow for the import and conversion of data into Delta format.
-Applying V-Order optimization: Once the data is in Delta format, you use the Optimize feature to apply V-Order.
-Hence, D
+- **XiltroX** (4 upvotes): A is the correct answer.
+- **Momoanwar** (3 upvotes): Correct
+- **fabric1** (3 upvotes): Hi IshtarSQL, 
+the "Optimize" feature is only applicable on already existing tables and cannot convert CSV files as far as I know. When loading a CSV file as table using the "Load to Tables" functionality, the Optimize check mark is set by default. Therefore, A should be correct. 
+Cheers fabric1
+- **byyleoo** (2 upvotes): A is correct
 
 <a id="q2-40"></a>
 ## Q2.40 (ID 911330)
@@ -2255,13 +2519,18 @@ Which type of data store should you use?
 
 ### Top explanations
 - **bvmony2294** (24 upvotes [Highly Voted]): I have recently taken the exam and this question was asked.Its a multiple choice question.we need to select 2 options.so as per the comments both lakehouse and warehouse are support delta tables and v-order optimization.Its A,C
-- **testtaker45** (3 upvotes): Makes a ton of sense. Thanks for Sharing!
 - **bigdave987** (10 upvotes [Highly Voted]): The answer is correct - C Warehouse
 The key to this question is "Ensure that Delta tables are V-Order optimized".
 V-Order optimization isn't guaranteed in Lakehouse, and there are times when you need to run OPTIMIZE to ensure the tables are V-Order Optimized.
 This link here shows the answer:
 https://learn.microsoft.com/en-us/fabric/data-warehouse/ingest-data#best-practices
 The Note says "Regardless of how you ingest data into warehouses, the parquet files produced by the data ingestion task will be optimized using V-Order write optimization... Unlike in Fabric Data Engineering, V-Order is a global setting in Synapse Data Warehouse that cannot be disabled."
+- **XiltroX** (8 upvotes): A - The only logical answer here. B is an Azure SQL database and is an Azure product but doesn't have V-Order. C is a just a generic warehouse and once again, doesn't necessarily contain any V-Order feature. D is a database that uses KQL and is irrelevant of the question.
+- **Gecig** (5 upvotes): https://learn.microsoft.com/en-us/fabric/data-warehouse/ingest-data#best-practices
+The Note says "Regardless of how you ingest data into warehouses, the parquet files produced by the data ingestion task will be optimized using V-Order write optimization... Unlike in Fabric Data Engineering, V-Order is a global setting in Synapse Data Warehouse that cannot be disabled."
+
+Therefore the answer is warehouse
+- **Momoanwar** (5 upvotes): Delta table... = Lakehouse
 
 <a id="q2-43"></a>
 ## Q2.43 (ID 911333)
@@ -2281,10 +2550,12 @@ To what should you set Repeat for the schedule?
 ### Top explanations
 - **Sanji931** (18 upvotes [Highly Voted]): Answer C : Weekly.
 The only way to do this is to set the schedule to ''Weekly'', set the days on Monday and Friday and add manually 6 Time of 4 hour intervals.
-- **Bonga1** (1 upvotes [Most Recent]): Weekly
+- **XiltroX** (4 upvotes): This is a no-brainer as the only way to make this work is to set the schedule as weekly and specify the pipeline to run on Mondays and Wednesdays.
+- **Nicofr** (4 upvotes): Weekly allow to choose the days and the time
 - **282b85d** (3 upvotes): Schedule Type: Weekly
 Days: Monday, Friday
 Interval: Every 4 hours
+- **Momoanwar** (3 upvotes): Weekly
 
 <a id="q2-44"></a>
 ## Q2.44 (ID 911334)
@@ -2306,6 +2577,7 @@ What should you use to identify whether throttling is occurring?
 The Microsoft Capacity Metrics app, also known as the metrics app, serves as a monitoring tool within the Microsoft Power BI service. It offers functionalities to track and analyze the resource utilization
 - **AndreaRosho1** (3 upvotes [Most Recent]): https://learn.microsoft.com/en-us/fabric/data-warehouse/compute-capacity-smoothing-throttling
 "Just like most Warehouse operations, dynamic management views (DMVs) are also classified as background and covered by the "Background Rejection" policy. As a result, DMVs cannot be queried when capacity is throttled. Even though DMVs are not available, capacity admins can go to Microsoft Fabric Capacity Metrics app to understand the root cause."
+- **Momoanwar** (2 upvotes): Microsoft Fabric Capacity Metrics app for trottling
 - **stilferx** (1 upvotes): IMHO, "D"
 
 Because:
@@ -2313,6 +2585,7 @@ Track rejected operations
 The Microsoft Fabric Capacity Metrics app drilldown allows admins to see operations that were rejected during a throttling event. 
 
 Here: https://learn.microsoft.com/en-us/fabric/enterprise/throttling#track-rejected-operations
+- **prabhjot** (1 upvotes): yes Ans D - https://learn.microsoft.com/en-us/fabric/enterprise/metrics-app
 
 <a id="q2-45"></a>
 ## Q2.45 (ID 911335)
@@ -2341,9 +2614,19 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 •No: The Spark engine will initially read all columns from the CSV file because the .select() transformation is applied after the data has been read into memory. Therefore, all 12 columns from Sales_raw.csv are read before the selection of specific columns is applied.
 •No: Removing the partition might not necessarily reduce the execution time. While there might be some overhead in writing data to partitions, the overall impact on read performance, especially for large datasets, is usually beneficial. The query execution time for saving might be higher due to partitioning, but the read performance improvement usually outweighs this cost.
 •Yes: Adding inferSchema = 'true' will increase the execution time of the query because Spark will need to read through the entire dataset to determine the data types of each column. This extra pass over the data adds to the initial read time.
-- **Huepig** (1 upvotes): This is not correct. Partitioning is not recommended because of both read and write overheads. Most often than not, partitioning results in “many small file” problem and data skew. Also, partitioning will result in reshuffle which causes longer write durations.
-In this case, unless the csv is so massive that each “year” partition is greater 128mb as parquet, the partition will increase both read and write durations.
-To add to this
+- **calvintcy** (11 upvotes): I took the test today. This question was included, but the option 'Removing the partition will reduce the execution time of the query' has been replaced by 'Will the Year column replace the OrderDate column?'. My answer was No.
+- **XiltroX** (11 upvotes): The answer is probably YNY
+1. Those are exactly the columns that are being read. So Yes
+2. Removing the PartitionBy line would not result in any performance changes. So NO
+3. Adding inferSchema as True WILL result in extra time in execution as it will make the engine go over the data twice (one to read data and the other time to read Schema). So YES.
+- **stilferx** (6 upvotes): IMHO, 
+1. N
+2. N - arguable
+3. Y
+
+1 No - because it is CSV. It will be read in full (in contrast to parquet)
+2 No - well, maybe 0.5% slower due to creating a new files. But actually - no
+3 Yes - because infering schema - it is additional process
 
 <a id="q2-46"></a>
 ## Q2.46 (ID 911336)
@@ -2364,8 +2647,18 @@ Which dynamic management view (DMV) should you use?
 ### Top explanations
 - **Sanji931** (14 upvotes [Highly Voted]): Answer is A. 
 https://learn.microsoft.com/en-us/fabric/data-warehouse/monitor-using-dmv
-- **thuss** (2 upvotes): Yeah they finally got rid of the PDW bit.
-- **a_51** (1 upvotes): If you look at docs it is still out there for a parallel datawarehouse, but considering this is an exam about fabric, then the link mentioned for fabric monitor would make the answer A I agree.
+- **Pegooli** (3 upvotes): sys.dm_pdw_exec_requests: This DMV provides information about the status of requests (queries) executed in SQL Data Warehouse (now known as Azure Synapse Analytics) environments. It includes details about query execution, such as start time, end time, status, and any error messages. This DMV is particularly useful for diagnosing long-running or stuck queries.
+- **rlo123** (3 upvotes): D.   A or D are really close, but since it is Azure Synapse Analytics D is probably the best answer.   Why sys.dm_pdw_exec_requests is better for this Fabric scenario:
+
+Fabric's MPP architecture: Fabric warehouses utilize a distributed architecture where queries are broken down and processed across multiple compute nodes. This is why sys.dm_pdw_exec_requests is the ideal tool.
+MPP-specific insights: This DMV gives you visibility into how the query is being executed across the nodes, which can reveal bottlenecks or performance issues that wouldn't be apparent in sys.dm_exec_requests.
+Targeted troubleshooting: With the MPP-specific data from sys.dm_pdw_exec_requests, you can pinpoint the exact steps or nodes causing the slow performance, leading to a more efficient resolution.
+- **rlo123** (3 upvotes): sys.dm_exec_requests is the correct answer after a lot more review and searching, can't delete my original comment, but here is why....In the context of Microsoft Fabric, sys.dm_exec_requests would be the appropriate DMV to use for monitoring running queries, as it is specifically designed for the SQL engine within Fabric.
+
+sys.dm_pdw_exec_requests is a DMV designed for Azure Synapse Analytics dedicated SQL pools (formerly SQL Data Warehouse). While Fabric's warehouse engine is based on SQL Server technology, it's not directly compatible with the DMVs specific to Azure Synapse Analytics.
+- **dvenkatesh** (3 upvotes): Answer would be D, I guess...
+Here the key word might be warehouse...
+The sys.dm_exec_requests dynamic management view is used in SQL Server to provide information about each request that is executing within SQL Server. On the other hand, the sys.dm_pdw_exec_requests dynamic management view is used in Azure SQL Data Warehouse to provide similar information about each request executing within the data warehouse environment. Both views offer insights into the current status and details of queries running in their respective environments.
 
 <a id="q2-47"></a>
 ## Q2.47 (ID 911337)
@@ -2400,6 +2693,8 @@ Value.NativeQuery(Source, "SELECT DepartmentID, Name FROM HumanResources.Departm
 
 Link: 
 https://learn.microsoft.com/en-us/power-query/native-query-folding#use-valuenativequery-function
+- **XiltroX** (3 upvotes): Answer is correct
+- **Momoanwar** (2 upvotes): Correct
 
 <a id="q2-48"></a>
 ## Q2.48 (ID 911338)
@@ -2429,7 +2724,11 @@ Sources:
 * https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql
 * VACUUM: https://docs.delta.io/latest/delta-utility.html#-delta-vacuum
 * OPTIMIZE: https://docs.delta.io/latest/optimizations-oss.html
+- **Momoanwar** (3 upvotes): Correct :
+OPTIMIZE	Improves query performance by optimizing file sizes. See Compact data files with optimize on Delta Lake.
+VACUUM	Reduces storage costs by deleting data files no longer referenced by the table. See Remove unused data files with vacuum.
 - **Pegooli** (2 upvotes [Most Recent]): answer is correct :)
+- **Valcon_doo_NoviSad** (2 upvotes): I agree that it is VACUUM and OPTIMIZE, but I would say Set the optimizeWrite table setting (B) and not Run the OPTIMIZE command on a schedule (E).
 - **282b85d** (1 upvotes): • Remove the files that are no longer used:
 Run the VACUUM command on a schedule: The VACUUM command cleans up old files and log files that are no longer needed by the Delta table, helping to free up storage and potentially improve performance by reducing the number of files the query engine needs to consider.
 • Combine small files into larger files:
@@ -2452,8 +2751,17 @@ NOTE: Each correct answer is worth one point.
 
 ### Top explanations
 - **fabric1** (22 upvotes [Highly Voted]): Type 1 SCD does not preserve history, therefore no end dates for table entries exists. A and D are correct.
-- **CamiU** (1 upvotes [Most Recent]): The wording here is confusing. Instead of "updating" it is about "replacing".
-- **Joly** (1 upvotes): A and D
+- **sraakesh95** (4 upvotes): AD makes sense given the type of SCD as no history is maintained and any updates on the columns are taken care of by replacing the values then and there.
+
+But, still a bit skeptical about C, since that is a part of SCD too in case we have certain audit columns that we would have to update. If the end_date is an audit column to update the date and time of last entry into a record, then, it would be required to be updated too.
+- **282b85d** (3 upvotes): A. Update rows when the non-key attributes have changed: In a Type 1 SCD, when a change is detected in any of the non-key attributes of an existing row, the current row is updated with the new values. This type of SCD does not keep any historical data; it simply overwrites the old data with the new data.
+D. Insert new records when the natural key is a new value in the table: When a new record (with a new natural key) is encountered that does not already exist in the dimension table, it is inserted as a new row. This is necessary to ensure that all new entities are captured in the dimension.
+- **thuss** (3 upvotes): AD = SCD1, BC = SCD2
+- **stilferx** (2 upvotes): IMHO, A & D is good.
+
+Taking into account this: A Type 1 SCD always reflects the latest values, and when changes in source data are detected, the dimension table data is overwritten. 
+
+Link: https://learn.microsoft.com/en-us/training/modules/populate-slowly-changing-dimensions-azure-synapse-analytics-pipelines/3-choose-between-dimension-types
 
 <a id="q2-51"></a>
 ## Q2.51 (ID 911341)
@@ -2478,6 +2786,14 @@ Which code should you run to populate the results DataFrame?
 ### Top explanations
 - **Momoanwar** (33 upvotes [Highly Voted]): In Apache Spark, broadcasting refers to an optimization technique for join operations. When you join two DataFrames or RDDs and one of them is significantly smaller than the other, Spark can "broadcast" the smaller table to all nodes in the cluster. This approach avoids the need for network shuffles for each row of the larger table, significantly reducing the execution time of the join operation.
 - **sraakesh95** (7 upvotes [Highly Voted]): A - Broadcasting generates a copy of the data across all the nodes in the Spark cluster. Therefore, during a join operation, it won't require any I/Os from other nodes, thereby, reducing the shuffling requirement.
+- **stilferx** (3 upvotes): IMHO, "A" is correct!
+
+Broadcast joining copies the smaller table to each worker in Spark, which may significantly improve performance by reducing shuffling
+- **SamuComqi** (2 upvotes): A. transactions.join(F.broadcast(customers), transactions.customer_id == customers.customer_id)
+
+Optimized method to perform a join between a very large table and a smaller one.
+
+Source: https://sparkbyexamples.com/spark/broadcast-join-in-spark/"
 - **282b85d** (1 upvotes [Most Recent]): Broadcasting: The F.broadcast(customers) function is used to broadcast the smaller DataFrame (customers). This ensures that the smaller DataFrame is replicated across all nodes, and each node can perform the join locally with its partition of the larger DataFrame (transactions). This significantly reduces the data movement (shuffling) required during the join operation.
 
 <a id="q2-53"></a>
@@ -2509,7 +2825,20 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **Momoanwar** (13 upvotes [Highly Voted]): We need to add column not rename existing column. Here is the correct answer :
 df.withColumn('pickupDate', df['pickupDateTime'].cast(DateType())) \
              .filter("fareAmount > 0 AND fareAmount < 100")
-- **Sowwy1** (1 upvotes [Most Recent]): Correct
+- **woliveiras** (8 upvotes): The correct answers:
+1. withColumn
+2. cast('date')
+3. .filter('fareAmount
+Tested!!!
+- **earlqq** (8 upvotes): A bit incorrect.
+.withcolumn
+.cast(date)
+.filter(fareamount >0 and <100)
+- **stilferx** (6 upvotes): IMHO, 
+withColumn -> cast(dateType()) -> filter("fareAmount > 0 AND fareAmount < 100")
+is correct.
+
+As colleagues said, cast(dateType()), not cast('date'). Let's consider it a typo from Microsoft.
 
 <a id="q2-54"></a>
 ## Q2.54 (ID 911344)
@@ -2537,6 +2866,8 @@ Does this meet the goal?
 Sources:
 * describe --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.describe.html
 * explain --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.explain.html
+- **Momoanwar** (4 upvotes): No explain is for the execut plan
+- **a_51** (2 upvotes): describe is how you get the information.
 - **SamuComqi** (1 upvotes): Also df.summary() is a valid solution.
 
 Source ---> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.summary.html
@@ -2565,6 +2896,12 @@ Does this meet the goal?
 
 df.show() - shows the data in the dataframe
 - **a_51** (2 upvotes): Use describe
+- **SamuComqi** (2 upvotes): The correct syntax is df.describe().
+
+Sources:
+* describe --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.describe.html
+* show --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.show.html
+- **XiltroX** (1 upvotes): df.summary() is the only right answer.
 
 <a id="q2-56"></a>
 ## Q2.56 (ID 911346)
@@ -2600,10 +2937,15 @@ min	1	10
 50%	2	10
 75%	2	15
 max	2	15
-- **ab483f6** (1 upvotes [Most Recent]): df.summary() in PySpark returns descriptive statistics for numeric columns by default, including count, mean, stddev, min, max.
-For string columns, summary() only provides count and sometimes min/max if applicable, but not mean or stddev (since those don't apply to strings).
-- **Juanes55** (1 upvotes): The correct answer is: df.describe().show(). 
-This That option will find it in the question #113 pag 29. therefore all option in this page are NO
+- **7d97b62** (4 upvotes): In pandas, use df.describe() for summary statistics of numeric columns.
+In PySpark, use df.summary() for summary statistics of both numeric and string columns in a distributed computing environment.
+- **282b85d** (4 upvotes): while df.summary() does provide valuable information for numeric columns, it does not fully meet the goal of evaluating both string and numeric columns with the required statistical measures. Use df.summary() and df.agg() to cover numeric columns, and additional custom aggregations for string columns.
+- **SamuComqi** (4 upvotes): Also df.describe() is a valid solution.
+
+Sources:
+* summary --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.summary.html
+* describe --> https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.describe.html
+- **Aiden90** (2 upvotes): A , df1.summary()
 
 <a id="q2-57"></a>
 ## Q2.57 (ID 911347)
@@ -2625,10 +2967,13 @@ Does this meet the goal?
 
 ### Top explanations
 - **Martin_Nbg** (4 upvotes): OPTIMIZE and VACUUM activities in the last 30 days are stored in the history. So, yes, you can see using this query whether maintenance took place in the last 30 days. https://learn.microsoft.com/en-us/azure/databricks/delta/history
-- **282b85d** (3 upvotes): Yes, running DESCRIBE HISTORY customer meets the goal of identifying whether maintenance tasks were performed on the Delta table.
 - **stilferx** (4 upvotes): IMHO, A
 
 Link: https://learn.microsoft.com/en-us/azure/databricks/delta/history
+- **282b85d** (3 upvotes): Yes, running DESCRIBE HISTORY customer meets the goal of identifying whether maintenance tasks were performed on the Delta table.
+- **a_51** (2 upvotes): A correct.
+display(spark.sql('describe history customer'))
+- **XiltroX** (2 upvotes): Right answer. Describe HISTORY
 
 <a id="q2-58"></a>
 ## Q2.58 (ID 911348)
@@ -2652,6 +2997,7 @@ Does this meet the goal?
 - **282b85d** (7 upvotes [Highly Voted]): No, running REFRESH TABLE customer does not meet the goal of identifying whether maintenance tasks were performed on the Delta table. This Spark SQL command is used to refresh the metadata of a table. It ensures that the latest schema and data are available for queries but does not give any historical information about maintenance operations.
 - **stilferx** (1 upvotes [Most Recent]): IMHO, NOOO
 - **dp600** (1 upvotes): correct
+- **Momoanwar** (1 upvotes): Correct
 
 <a id="q2-59"></a>
 ## Q2.59 (ID 911349)
@@ -2673,18 +3019,15 @@ Does this meet the goal?
 
 ### Top explanations
 - **282b85d** (10 upvotes [Highly Voted]): The EXPLAIN statement in Spark SQL is used to display the execution plan of a query. This plan shows how Spark will execute the query, including details about the operations and stages involved. While it is useful for understanding and optimizing query performance, it does not provide historical information about maintenance tasks like optimization, compaction, or vacuuming performed on the table.
-- **stilferx** (1 upvotes [Most Recent]): IMHO, NOOOO
 - **wellingtonluis** (2 upvotes): Good luck !!!
+- **XiltroX** (2 upvotes): Correct answer is DESCRIBE HISTORY customer. 
+Good luck everyone.
+- **Momoanwar** (2 upvotes): Given answer is correct. Explain is for query execution plan
+- **stilferx** (1 upvotes [Most Recent]): IMHO, NOOOO
 
 <a id="q2-60"></a>
 ## Q2.60 (ID 916062)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -2780,16 +3123,11 @@ Enable the Users can create Fabric items option for specific security groups: Th
 
 Here, we use only for "specific groups", but not "C" which is for guests.
 - **VAzureD** (2 upvotes): I agree with the answer. The POC is only for a certain group of users.
+- **4371883** (2 upvotes): This is a POC with internal users, B & E make sense on the principle of least privilege.
 
 <a id="q2-62"></a>
 ## Q2.62 (ID 916064)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -2892,17 +3230,19 @@ so the answer is A and D
 - **DirectX** (9 upvotes [Highly Voted]): C,D.
 I always create dimDate using a views (T-Sql select statement with recursive CTE).
 A. is too complicated.
-- **testtaker45** (1 upvotes): Thank you for your answer. I would say A, D. You would use T-SQL at the data frame layer in a Notebook, this wouldn't be at the Data Source Layer. That is the trick, to be affecting the Data Source.
+- **c119533** (5 upvotes): It is specified: "The data store must support the following: Semi-structured and unstructured data".
+So the data store is a lakehouse.
+Stored procedures don't exist in a lakehouse.
+I think A and C
+- **os_ca** (3 upvotes): I am not able to create a view with CTE. Could you let us know how?
+- **stilferx** (3 upvotes): IMHO, AD may be good
+
+Agree, B is not good, C is just a weird way. But possible.
+So, the question is kind of ambiguous, with no particular directions from the Microsoft site. Among ABD, I am choosing AD
 
 <a id="q2-63"></a>
 ## Q2.63 (ID 916065)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment -
@@ -3000,25 +3340,12 @@ https://learn.microsoft.com/en-us/fabric/data-factory/activity-overview#data-tra
 ## Q2.67 (ID 916069)
 
 HOTSPOT
--
-Case study
--
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
--
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
--
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment
--
 Identity Environment
--
 Contoso has a Microsoft Entra tenant named contoso.com. The tenant contains two groups named ResearchReviewersGroup1 and ResearchReviewersGroup2.
 Data Environment
--
 Contoso has the following data environment:
 •	The Sales division uses a Microsoft Power BI Premium capacity.
 •	The semantic model of the Online Sales department includes a fact table named Orders that uses Import made. In the system of origin, the OrderID value represents the sequence in which orders are created.
@@ -3027,9 +3354,7 @@ Contoso has the following data environment:
 •	An Azure Data Lake Storage Gen2 storage account named storage1 contains Research division data for a product line named Productline1. The data is in the delta format.
 •	A Data Lake Storage Gen2 storage account named storage2 contains Research division data for a product line named Productline2. The data is in the CSV format.
 Requirements
--
 Planned Changes
--
 Contoso plans to make the following changes:
 •	Enable support for Fabric in the Power BI Premium capacity used by the Sales division.
 •	Make all the data for the Sales division and the Research division available in Fabric.
@@ -3037,7 +3362,6 @@ Contoso plans to make the following changes:
 •	In Productline1ws, create a lakehouse named Lakehouse1.
 •	In Lakehouse1, create a shortcut to storage1 named ResearchProduct.
 Data Analytics Requirements
--
 Contoso identifies the following data analytics requirements:
 •	All the workspaces for the Sales division and the Research division must support all Fabric experiences.
 •	The Research division workspaces must use a dedicated, on-demand capacity that has per-minute billing.
@@ -3046,17 +3370,14 @@ Contoso identifies the following data analytics requirements:
 •	For the Research division workspaces, the members of ResearchReviewersGroup2 must be able to read lakehouse data by using Lakehouse explorer.
 •	All the semantic models and reports for the Research division must use version control that supports branching.
 Data Preparation Requirements
--
 Contoso identifies the following data preparation requirements:
 •	The Research division data for Productline1 must be retrieved from Lakehouse1 by using Fabric notebooks.
 •	All the Research division data in the lakehouses must be presented as managed tables in Lakehouse explorer.
 Semantic Model Requirements
--
 Contoso identifies the following requirements for implementing and managing semantic models:
 The number of rows added to the Orders table during refreshes must be minimized.
 •	The semantic models in the Research division workspaces must use Direct Lake mode.
 General Requirements
--
 Contoso identifies the following high-level requirements that must be considered for all solutions:
 •	Follow the principle of least privilege when applicable.
 •	Minimize implementation and maintenance effort when possible.
@@ -3083,6 +3404,11 @@ From https://learn.microsoft.com/en-us/fabric/get-started/roles-workspaces
 1) Viewer+: Read Lakehouse and Data warehouse data and shortcuts2 with T-SQL through TDS endpoint.
 
 2) Contributor+: Read Lakehouse data through Lakehouse explorer.
+- **dp600** (5 upvotes): Viewer and contributor
+
+Read using sql endpoint -> Min. Viewer
+Read using lakehouse explorer -> Min. Contributor
+- **luiruipu** (2 upvotes): Answer is correct
 - **OlivierFerrari** (1 upvotes [Most Recent]): 1--> Viewer
 2 --> Member
 
@@ -3090,7 +3416,6 @@ From https://learn.microsoft.com/en-us/fabric/get-started/roles-workspaces
 ## Q2.70 (ID 916072)
 
 DRAG DROP
--
 You are implementing a medallion architecture in a single Fabric workspace.
 You have a lakehouse that contains the Bronze and Silver layers and a warehouse that contains the Gold layer.
 You create the items required to populate the layers as shown in the following table.
@@ -3115,14 +3440,26 @@ Orchestration pipeline: Schedule
 Bronze layer: An invoke pipeline activity (see table -> PIPELINE is already there)
 Silver: Dataflow activity
 Gold: Stored procedure activity
-- **Sowwy1** (1 upvotes [Most Recent]): Bronze Layer: A pipeline Copy activity • Silver Layer: A pipeline Dataflow activity • Gold Layer: A pipeline Stored procedure activity
-• Orchestration Pipeline: Invoke pipeline activity
+- **BRW** (8 upvotes): • Orchestration Pipeline:  Invoke pipeline activity - because the requirement is to update each layer in a sequence. So orchestration pipeline invokes Bronze, Silver and Gold pipelines one after another. 
+• Bronze Layer: Invoke pipeline activity - because there are multiple pipelines with Copy activity in this layer. We must group them together in one Bronze Layer pipeline
+• Silver Layer: A pipeline Dataflow activity
+• Gold Layer: A pipeline Stored procedure activity
+
+Schedule is type of trigger not a pipeline
+- **Nefirs** (7 upvotes): I'd say answer is correct.
+However, IMO there is no suitable item for "orchestration pipeline". "A schedule" seems the most appropriate. But I'd imagine "data pipeline" would be a better option since one would use an data pipeline to orchestrate the different activities.
+- **AbhiShar** (4 upvotes): Orchestration pipeline: Use An Invoke pipeline activity to manage the orchestration and invoke other pipelines in the correct sequence.
+
+Bronze layer: Use A pipeline Copy activity because the Bronze layer typically involves raw data ingestion, where data is copied into the lakehouse.
+
+Silver layer: Use A pipeline Dataflow activity as this layer involves transforming and cleaning the data, for which Dataflows are typically used.
+
+Gold layer: Use A pipeline Stored procedure activity because the Gold layer often involves aggregations and advanced processing, which can be handled using stored procedures in a warehouse.
 
 <a id="q2-71"></a>
 ## Q2.71 (ID 916073)
 
 DRAG DROP
--
 You are building a solution by using a Fabric notebook.
 You have a Spark DataFrame assigned to a variable named df. The DataFrame returns four columns.
 You need to change the data type of a string column named Age to integer. The solution must return a DataFrame that includes all the columns.
@@ -3155,6 +3492,9 @@ considering the 3rd method for the answer
 withColumn | col | cast
 
 It's the very basic syntax of data type allocation
+- **Nefirs** (4 upvotes): correct - withColumn, col, cast
+- **stilferx** (3 upvotes): IMHO, withColumn -> col -> cast 
+is good!
 - **byyleoo** (1 upvotes [Most Recent]): withColumn > column> cast
 
 <a id="q2-72"></a>
@@ -3178,8 +3518,14 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **taphyoe** (46 upvotes [Highly Voted]): delta
 sales
-- **neoverma** (3 upvotes): why? please provide some explanation
 - **harshalt10** (15 upvotes): I think it should only be sales because if saveastable is used, the argument should only be table name. Link: https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-notebook-load-data.
+- **dp600dataroots** (9 upvotes [Highly Voted]): delta
+tables/sales
+- **vernillen** (9 upvotes): Yep, you're wrong. This would have been right with .save but ALWAYS look carefully: saveAsTable can just be used with the table name
+- **earlqq** (9 upvotes): i missed that it has saveastable, so "Tables/" is not needed, it`s included to save function.
+So only 
+1.Delta
+2.sales.
 
 <a id="q2-73"></a>
 ## Q2.73 (ID 916075)
@@ -3200,8 +3546,10 @@ Which type of activity should you add?
 
 ### Top explanations
 - **Nefirs** (13 upvotes [Highly Voted]): I think Dataflow since dataflow is like Power Query. But question is a bit unclear. Because data flow in itself is more like a whole, well, dataflow but not a singular activity like e.g. Copy Data.
-- **d47320d** (1 upvotes): Data flow being "more like a whole" doesn't related to Power Query m. Instead, the Copy Data activity, when added within the pipeline, will allow access to Power query m.
-- **MYPE** (1 upvotes [Most Recent]): Dataflow is Power Query. As we need to support M formulas from Power Query, dataflow is the answer
+- **Estratech** (3 upvotes): The answer is Correct! To copy data from CSV files to Lakehouse1 in Workspace1, you should add a copy activity to Pipeline1. https://learn.microsoft.com/en-us/fabric/data-factory/connector-lakehouse-copy-activity
+- **werka** (2 upvotes): You can add dataflow to pipeline as activity: https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-dataflows-gen2-pipeline-activity
+- **vernillen** (2 upvotes): Although you're just copying data, which would result in a 'Copy Data' activity... you would preferably go with a Dataflow in Fabric. Especially because the big take away is that the activity must support Power Query M
+- **2dc6125** (2 upvotes): A. Dataflow use powerquery. i don't think you have powerquery with copy data
 
 <a id="q2-74"></a>
 ## Q2.74 (ID 916076)
@@ -3236,6 +3584,13 @@ Columns that are present in the DataFrame but missing from the table are automat
 
 write or writeStream have .option("mergeSchema", "true")
 spark.databricks.delta.schema.autoMerge.enabled is true
+- **4371883** (7 upvotes): append
+mergeschema="true"
+
+append as all existing rows must be kept.
+according to this: https://learn.microsoft.com/en-us/azure/databricks/delta/update-schema
+overwriteschema is for "change a column’s type or name or drop a column"
+mergeschema is for "Columns that are present in the DataFrame but missing from the table are automatically added"
 - **vernillen** (5 upvotes [Most Recent]): 1. Append
 --> Because of "Keep all the existing rows"
 
@@ -3246,7 +3601,6 @@ spark.databricks.delta.schema.autoMerge.enabled is true
 ## Q2.75 (ID 916077)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains a table named Sales.Orders. Sales.Orders contains the following columns.
 You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
@@ -3268,13 +3622,14 @@ https://learn.microsoft.com/de-de/sql/t-sql/language-elements/coalesce-transact-
 https://learn.microsoft.com/de-de/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16
 - **goldy29** (3 upvotes [Most Recent]): COALESCE(Weight, Quantity, 1) will return the first non-null value among Weight, Quantity, or 1, it is the most appropriate choice.
 LEAST(ListPrice, SalePrice) finds the smaller value between ListPrice and SalePrice, it is the best choice for calculating OrderPrice.
-- **72bd3bc** (1 upvotes): strange question. In the second box coalesce is not correct because it doesn't choose the smallest. Least also has problems - it doesn't ignore null:
+- **dev2dev** (3 upvotes): Its simple, COALESCE returns first non-null value from the parameters passed, see there are three parameters used in the specific order which is asked in the question. MIN is grouping function which is not in the query so LEAST should be used
+- **serch_engine** (3 upvotes): IMHO answer is correct: COALESCE, LEAST
+- **stilferx** (2 upvotes): IMHO, Coalesce -> Least is winner.
+
+Least because of that:
 If one or more arguments aren't NULL, then NULL arguments are ignored during comparison. If all arguments are NULL, then LEAST returns NULL.
-https://learn.microsoft.com/en-us/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16
 
-MIN compares all the rows in one column and choose the smallest, so it is also the wrong choice. 
-
-I feel confused.
+Link: https://learn.microsoft.com/en-us/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16
 
 <a id="q2-76"></a>
 ## Q2.76 (ID 916078)
@@ -3295,17 +3650,20 @@ Which type of join should you use?
 **Most voted:** B
 
 ### Top explanations
-- **nappi1** (1 upvotes): since there is no other information on the tables, the answer is the academical one
-- **vernillen** (1 upvotes): Just making it more obvious, but yea... all other options wouldn't return all the rows in both tables but exclude some.
+- **VAzureD** (4 upvotes): FULL (OUTER) JOIN
+
+https://www.w3schools.com/sql/sql_join.asp
 - **stilferx** (3 upvotes): IMHO, 1st grage of SQL school - FULL OUTER JOIN.
 
 Because - ALL rows, not from left, right, ... table(s)
+- **2dc6125** (3 upvotes): B. Left or right will only return one table all rows and other table if exist in the other table. inner will only return if data match in both tables so Full (outer) join will return all data from both tables
+- **Nefirs** (2 upvotes): full outer keeps rows from both sides
+- **nappi1** (1 upvotes): since there is no other information on the tables, the answer is the academical one
 
 <a id="q2-78"></a>
 ## Q2.78 (ID 916080)
 
 DRAG DROP
--
 You are implementing two dimension tables named Customers and Products in a Fabric warehouse.
 You need to use slowly changing dimension (SCD) to manage the versioning of data. The solution must meet the requirements shown in the following table.
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
@@ -3339,6 +3697,7 @@ Type 6 – Hybrid SCD.
 Type 1 SCD, we overwrite existing data with new values. Historical versions are not preserved.
 
 Type 2 SCD involves adding new rows to the dimension table when changes occur. It allows us to track historical versions of attributes.
+- **Nefirs** (4 upvotes): correct, Type 2 (new row) and Type 1 (overwrite)
 - **nappi1** (1 upvotes [Most Recent]): Customers -> Type 2
 Products -> Type 1
 
@@ -3360,15 +3719,20 @@ What should you do?
 
 ### Top explanations
 - **9878eb9** (23 upvotes [Highly Voted]): Fuzzy Matching: Fuzzy matching allows you to match data even when there are minor differences, such as extra spaces, in the values. This eliminates the need to manually clean or preprocess the data before the join.
+- **stilferx** (4 upvotes): IMHO, B is good.
+
+Not append (append is like UNION).
+Not  D, because spaces, and we need minimal efforts
 - **Mhunity** (3 upvotes [Most Recent]): Merge = join
 append = union
 so the answer is B 
 why?
  Fuzzy Matching: Fuzzy matching allows you to match data even when there are minor differences, such as extra spaces, in the values. This eliminates the need to manually clean or preprocess the data before the join.
-- **stilferx** (4 upvotes): IMHO, B is good.
-
-Not append (append is like UNION).
-Not  D, because spaces, and we need minimal efforts
+- **4371883** (3 upvotes): Merge as the requirement is for inner join. 
+doc on fuzzy join and fuzzy match:
+https://learn.microsoft.com/en-us/powerquery-m/table-fuzzyjoin
+https://learn.microsoft.com/en-us/power-query/merge-queries-fuzzy-match
+- **Nefirs** (3 upvotes): B should be correct
 
 <a id="q2-80"></a>
 ## Q2.80 (ID 916082)
@@ -3394,13 +3758,16 @@ Option D, CREATE TABLE … AS SELECT, would also work to create a copy of the ta
 - **utsuha** (6 upvotes): To clarify, AS CLONE OF does not copy the data. See this documentation: https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-as-clone-of-transact-sql?view=fabric
 
 Option C will only copy over the metadata of table schema1.city, so I guess it is minimizing the copying of data by copying no data, lol. Option D is most correct if we want to duplicate the table itself, data and metadata. I'm sure the question is just slightly worded wrong and the intended correct answer is C, i.e. we only want to make a copy of the metadata.
-- **DarioReymago** (1 upvotes): Tested option D "clone" is the best because clone is like a link to original source
+- **clux** (6 upvotes [Highly Voted]): https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table
+Microsoft Fabric offers the capability to create near-instantaneous zero-copy clones with minimal storage costs.
+- **Karthiknaidu123** (3 upvotes): utsuha, the question clearly mentions "The solution must minimize the copying of data."
+That's why, IMO option C is correct.
+- **vernillen** (3 upvotes): AS CLONE basically minimizes the copying of data. That's the biggest requirement.
 
 <a id="q2-82"></a>
 ## Q2.82 (ID 916084)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 contains a lakehouse named Lakehouse1 and a warehouse named Warehouse1.
 You need to create a new table in Warehouse1 named POSCustomers by querying the customer table in Lakehouse1.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
@@ -3420,6 +3787,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 Table clones across warehouses in a workspace are not currently supported.
 
 ANSWER, AS SELECT
+- **282b85d** (6 upvotes): CREATE TABLE dbo.POSCustomers
+AS
+SELECT DISTINCT customerid, customer, postalcode, category
+FROM lakehouse1.dbo.customer
+- **Nefirs** (2 upvotes): answer is correct
 - **Sowwy1** (1 upvotes [Most Recent]): Correct
 
 <a id="q2-83"></a>
@@ -3444,11 +3816,16 @@ Which type of activity should you add?
 - **Fer079** (7 upvotes [Highly Voted]): Lookup activity reads and returns the content of a configuration file or table. It also returns the result of executing a query or stored procedure. The output can be a singleton value or an array of attributes, which can be consumed in a subsequent copy, transformation, or control flow activities like ForEach activity.
 
 https://learn.microsoft.com/en-us/azure/data-factory/control-flow-lookup-activity
+- **72bd3bc** (3 upvotes): Lookup activity reads and returns the content of a configuration file or table. It also returns the result of executing a query or stored procedure. The output can be a singleton value or an array of attributes, which can be consumed in a subsequent copy, transformation, or control flow activities like ForEach activity.
+the quote from https://learn.microsoft.com/en-us/fabric/data-factory/lookup-activity
+
+so I suppose the answer is correct. But why Append variable isn't correct?
 - **2fe10ed** (2 upvotes [Most Recent]): Script or Lookup activity
 
 https://learn.microsoft.com/en-us/fabric/data-factory/lookup-activity
 
 https://blog.fabric.microsoft.com/id-id/blog/automate-fabric-data-warehouse-queries-and-commands-with-data-factory?ft=All
+- **matmat25810** (2 upvotes): Script -> https://learn.microsoft.com/en-us/fabric/data-factory/tutorial-preprocess-data-with-stored-procedure-load-into-lakehouse
 
 <a id="q2-84"></a>
 ## Q2.84 (ID 916086)
@@ -3469,7 +3846,11 @@ What should you use?
 - **pppppppppie** (24 upvotes [Highly Voted]): you can not create view directly. you need to create shortcuts first to access table in different workspaces
 .https://community.fabric.microsoft.com/t5/General-Discussion/Cross-Workspace-access/m-p/3744282#:~:text=You%20cannot%20directly%20query%20the,and%20then%20query%20the%20shortcut.
 - **vernillen** (17 upvotes [Highly Voted]): It's a fabric exam and they're really proud of their shortcuts, which are specifically designed for accessing data without making an additional copy of it.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it’s A
+- **woliveiras** (5 upvotes): shortcut (100%)
+- **woliveiras** (3 upvotes): Shortcuts enable you to do it in an easy way.
+- **prabhjot** (3 upvotes): C. a view
+A view is a virtual table that contains data from one or more tables.
+You can create a view that references tables from different lakehouses (in this case, dbo.Sales from Lakehouse1 and dbo.Customers from Lakehouse2).
 
 <a id="q2-85"></a>
 ## Q2.85 (ID 916087)
@@ -3491,17 +3872,23 @@ NOTE: Each correct answer is worth one point.
 
 ### Top explanations
 - **6c79d6f** (14 upvotes [Highly Voted]): Because the table is set to SCD2 there will be a new row for each change in an existing row with an start and an end date (from when to when the row was valid). therefore the ' old' primary key will be duplicated. That is why a new key, a surrogate key, is introduced which makes each row unique again
-- **Dusica** (1 upvotes [Most Recent]): it must have both natural and surogate key
-it must have end date time
-start date time and current flag are more optional
-- **Dusica** (1 upvotes): withdrawing my answer and voting for CDE;
-Did not notice that "column must not exist already in the table" and natural key obviously exists
+- **dp600** (7 upvotes): chatgpt is not a source
+- **stilferx** (4 upvotes): IMHO, CDE,
+because:
+start & end - must
+surrogate - which is autoincremental id - is must.
+
+Link: https://learn.microsoft.com/en-us/training/modules/populate-slowly-changing-dimensions-azure-synapse-analytics-pipelines/3-choose-between-dimension-types
+- **2fe10ed** (4 upvotes): A dimension's "Natural Key" is usually part of its description elements, like the SSN in the US. That information would already be present in the source table, and it's not the object of the question since it states that "The columns must NOT already exist in the source."
+Since the question states that we are building a star schema, the foreign keys should be present only on the fact table.
+
+Thus, the correct answer needs to be CDE.
+- **newusername** (3 upvotes): To create SCD type 2 one needs to add a surrogate key + start/end date beside the other technical attributes. Therefore CDE.
 
 <a id="q2-88"></a>
 ## Q2.88 (ID 916090)
 
 DRAG DROP
--
 You have a Fabric tenant that contains a Microsoft Power BI report named Report1.
 Report1 is slow to render. You suspect that an inefficient DAX query is being executed.
 You need to identify the slowest DAX query, and then review how long the query spends in the formula engine as compared to the storage engine.
@@ -3528,6 +3915,22 @@ View Server timings
 -Copy the first query to Dax Studio.
 -Enable Query Timings and Server Timings. Run the query.
 -View the Server Timings tab.
+- **stilferx** (3 upvotes): IMHO, 
+
+1. Start Recording
+2. Sort in descending order
+3. Copy to DAX studio (the problematic query)
+4. Enable query t and server t (to gather additional info)
+5. View Server Timings (to understand it is storage engine or formula engine)
+
+It is taken from the YouTube video below.
+- **hello2tomoki** (3 upvotes): Here are the steps you should follow to identify the slowest DAX query and review how long the query spends in the formula engine compared to the storage engine:
+
+1.Open the report in Power BI Desktop. Go to the 'View' tab and click on 'Performance Analyzer' and Click on 'Start Recording', then 'Refresh Visuals' 
+2.Review the DAX query and duration in the performance analyzer pane. Sort the Duration (ms) column in descending order
+3.Copy the first query to DAX Studio 
+4.In DAX Studio, enable Query Timings and Server Timings. Run the query
+5.View the Server Timings tab to see data for the formula engine (FE) and the storage engine (SE)
 - **Sowwy1** (1 upvotes [Most Recent]): From performance analyzer capture code.  Sort duration descending by DAX query time. Copy the first query over to Dax Studio Enable query and server timings and run the query View Server timings
 
 <a id="q2-94"></a>
@@ -3548,13 +3951,17 @@ In which use case will replacing the FILTER function with the KEEPFILTERS functi
 ### Top explanations
 - **lpuech** (20 upvotes [Highly Voted]): Explanation here: https://learn.microsoft.com/en-us/dax/best-practices/dax-avoid-avoid-filter-as-filter-argument
 FILTER returns a table whereas KEEPFILTERS returns a Boolean. So, A, B and C are limitations of uses of Boolean expressions.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s D
-- **ZozoG** (1 upvotes): The KEEPFILTERS function in DAX is used to preserve the filter context when applying filters inside a CALCULATE function. It can improve performance in Import mode models when:
+- **trietnv** (4 upvotes): D. ref: https://learn.microsoft.com/en-us/dax/best-practices/dax-avoid-avoid-filter-as-filter-argument
+- **pppppppppie** (4 upvotes): he KEEPFILTERS function in Power BI is primarily designed to work with single-table or single-column filter contexts. When you use the FILTER function to reference columns from multiple tables, KEEPFILTERS may not work directly because it operates within the context of a single table or column.
 
-1. The filter is simple (e.g., on a single column from a single table).
-2. The model is optimized for columnar storage (as Import mode is).
-3. The original FILTER function introduces unnecessary complexity by overriding existing filters.
-In this scenario, replacing FILTER with KEEPFILTERS allows the engine to leverage existing filter context more efficiently, reducing the need for additional scans or recalculations.
+A is the ans
+- **neoverma** (4 upvotes): can someone clarify this answer
+- **IAMcertified** (3 upvotes): The answer is D based on this page: https://learn.microsoft.com/en-us/dax/best-practices/dax-avoid-avoid-filter-as-filter-argument . Check out this Note in the given link "This article is especially relevant for model calculations that apply filters to Import tables.". Also, see this section extract in the given link :  "restrictions that apply to Boolean expressions(KEEP Filters) when they're used as filter arguments. They:
+
+-Cannot reference columns from multiple tables
+-Cannot reference a measure
+-Cannot use nested CALCULATE functions
+-Cannot use functions that scan or return a table
 
 <a id="q2-95"></a>
 ## Q2.95 (ID 916097)
@@ -3576,7 +3983,13 @@ What should you do to validate the data seen by the HR Manager?
 - **hmntkmr** (10 upvotes [Highly Voted]): Role name is HR not HR manager so the answer is A.
 - **ab695** (10 upvotes [Highly Voted]): Correct answer is C., 100%. The key is in the "dynamic" row-level security. 
 Selecting A. (HR Role only) would work for a static rule for RLS, but as it is dynamic you will need to input as well the HR manager email and make sure the rule is applied correctly.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s C
+- **belha** (4 upvotes): you can test roles on report view , so you can see the report as " " 
+answer is C
+- **thisiston** (4 upvotes): A. Select Test as role to view the data as the HR role.
+This option allows you to impersonate the HR role directly within the environment where the data is published, such as Microsoft Power BI Service. By using the "Test as role" feature, you can see exactly what data the HR role (and thus the HR managers) can access according to the dynamic row-level security settings. This method provides a straightforward way to validate the RLS implementation and ensure it is working as intended.
+- **Babzy** (3 upvotes): In Power BI Service, after publishing the model, you can test the report using a specific user account who is assigned to an RLS role.This allows you to simulate the exact view that the HR manager sees with their username and role membership applied.
+
+This helps confirm whether the RLS logic is working as expected for that specific user.
 
 <a id="q2-96"></a>
 ## Q2.96 (ID 916098)
@@ -3602,15 +4015,21 @@ Which three Data view options should you select? Each correct answer presents pa
 - **taphyoe** (23 upvotes [Highly Voted]): C Enable column profile
 A Show column value distribution
 D Show Column quality details
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s ACD
-- **Dusica** (1 upvotes): but only A and D really needed
-because column profile screen is not there; so not C and not E
+- **woliveiras** (4 upvotes): ACD for sure. Tested
+- **emmanuelkech** (4 upvotes): A: Show column value 
+C: Enable column profile
+D: Show Column quality
+- **d42f1dd** (3 upvotes): I find this question infuriating. There is no 'enable column profile' there is the option to show it, similar to the show value distribution and show quality. There is also no profile information stats shown in the image. I choose Enable Details pane as it is closest to View pane
+- **282b85d** (3 upvotes): Show column value distribution: This option provides a visual representation of the distribution of values in each column, which is visible in the exhibit.
+
+Enable column profile: This option displays statistics and other detailed information about each column, including value distribution, which aligns with the data shown in the exhibit.
+
+Show column quality details: This option shows the quality of the data in each column, indicating valid, error, and empty values, as displayed in the exhibit.
 
 <a id="q2-97"></a>
 ## Q2.97 (ID 916099)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains a table named Sales.Products. Sales.Products contains the following columns.
 You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
@@ -3628,15 +4047,21 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 
 ### Top explanations
 - **clux** (28 upvotes [Highly Voted]): GREATEST, COALESCE
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s greatest and coalesce
+- **taphyoe** (5 upvotes): correct - GREATEST  and  COALESCE
 - **7d97b62** (4 upvotes): Correct Answer 
 GREATEST, COALESCE
+- **OLGIS** (4 upvotes): SELECT 
+    ProductID,
+    GREATEST(ListPrice, WholesalePrice, AgentPrice) AS HighestSellingPrice,
+    COALESCE(AgentPrice, WholesalePrice, ListPrice) AS TradePrice
+FROM 
+    Sales.Products;
+- **PaweuG** (4 upvotes): I believe that the 2nd box should be COALESCE, but if you read requirements for TradePrice column, you will realize that actually, COALESCE will not work here. Clearly there's a mistake somewhere.
 
 <a id="q2-99"></a>
 ## Q2.99 (ID 916101)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains a table named Sales.Orders. Sales.Orders contains the following columns.
 You need to write a T-SQL query that will return the following columns.
 How should you complete the code? To answer, select the appropriate options in the answer area.
@@ -3659,6 +4084,8 @@ https://learn.microsoft.com/en-us/sql/t-sql/functions/datetrunc-transact-sql?vie
 
 https://learn.microsoft.com/en-us/sql/t-sql/functions/datename-transact-sql?view=sql-server-ver16
 - **e0f0ce6** (10 upvotes [Highly Voted]): Just echecked it. Date trunc returns the first date of the month and datepart just the month number. So given answer is correct.
+- **Nefirs** (4 upvotes): answer is correct
+- **clux** (2 upvotes): correct
 - **Sowwy1** (1 upvotes [Most Recent]): Datetrunc and weekday
 
 <a id="q2-101"></a>
@@ -3687,14 +4114,10 @@ Final Answer:
 
 The type of analytics being performed in the scenario described is descriptive analytics.
 https://www.selecthub.com/business-intelligence/predictive-descriptive-prescriptive-analytics/
-- **ZozoG** (1 upvotes [Most Recent]): You're performing descriptive analytics because you're:
-
-1. Reading and transforming data from Parquet files.
-2. Creating column charts to show distributions of retained vs. lost customers.
-3. Analyzing customer characteristics like geography, age, tenure, and product usage.
-
-Descriptive analytics focuses on summarizing historical data to understand what happened. It helps identify patterns and trends but does not predict future outcomes or prescribe actions.
-- **nappi1** (1 upvotes): comparison = descriptive analytics
+- **slu239** (3 upvotes): Compare retained customers vs. lost customers based on geography, the number of products purchased, age, and customer tenure cannot tell us why customer churn. Factors like time spent on customer service, customer satisfaction rate will be more ... will be more effective.
+- **parx** (3 upvotes): https://azure.microsoft.com/es-es/blog/answering-whats-happening-whys-happening-and-what-will-happen-with-iot-analytics/ contains text "Examine data from multiple angles to understand why something is happening." for Diagnostic. In this case we are looking at data from multiple angles.
+- **manolet** (3 upvotes): No. It's just describing what happened, not explaining why.
+- **THC1138** (3 upvotes): Descriptive - it's just describing the customers, not saying why they stayed or left
 
 <a id="q2-102"></a>
 ## Q2.102 (ID 916104)
@@ -3719,12 +4142,23 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 The entire expression calculates the sales amount for the same period last year based on the current date context.
 
 The SUMMARIZE function creates a summary table based on grouping and aggregation.
-- **a89bfbf** (4 upvotes [Most Recent]): I dissagree with the second answer.
-It says that "You need to write a DAX query that will be executed by using the XMLA endpoint."
-Therefore...it uses EVALUATE, so it can return a Table.
-A 1 Row and 1 Column table, but a Table (because the external tool requires it)
+- **Lucetmi** (11 upvotes): Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value). 
+The correct answers are then: CALCULATE, {_LYSales}
+- **Nefirs** (7 upvotes): CALCULATE & _LYSales
+- **seaverick** (6 upvotes): right ans -> CALCULATE
+I tried in DAX.do with Contoso data and return an error (In query, I have changed [Total Sales] by [Sales Amount] and Orders[Orde Date] by Sales[Order Date]):
 
-Therefore it should be { _LYSales }
+EVALUATE
+VAR _LYSales = SUMMARIZE ([Sales Amount],SAMEPERIODLASTYEAR (Sales[Order Date]))
+RETURN
+_LYSales
+
+Error:
+Query (2, 42) Function SUMMARIZE expects a column name as argument number 2.
+
+Technical Details:
+RootActivityId: 435f1c64-89c5-4587-9d79-187541b1e1e3
+Date (UTC): 9/15/2024 8:04:33 AM
 
 <a id="q2-103"></a>
 ## Q2.103 (ID 916105)
@@ -3748,9 +4182,15 @@ NOTE: Each correct answer is worth one point.
 E Enable details pane
 C Show column profile in details pane
 - **AGTraining** (7 upvotes [Highly Voted]): answer is BEC
-- **ZozoG** (1 upvotes [Most Recent]): B. Enable column profile - This activates profiling, allowing Power Query to compute statistics like Min, Max, Count, etc.
-C. Show column profile in details pane - This displays the Min/Max/Avg/Distinct values for the selected column in the details pane.
-E. Enable details pane - Without this, you won’t see the column profile at all — it’s the UI component that shows the stats.
+- **282b85d** (4 upvotes): Column quality: % of Valid, Error, Empty
+Column distribution: Number of distinct and unique values
+- **bigdave987** (4 upvotes): B - Enable column profile; this needs to be enabled to be able to select...
+C - Show column profile in details pane
+E - Enable details pane; this needs to be enabled to be able to see the output of (C)
+- **72bd3bc** (3 upvotes): I have checked in Fabric. 
+B. profile
+E. Enable detail pane
+C Show column profile in details pane.
 
 <a id="q2-104"></a>
 ## Q2.104 (ID 916106)
@@ -3817,6 +4257,7 @@ Does this meet the goal?
 
 Describe Detail give general info about delta table, not the historical operations.
 https://learn.microsoft.com/en-us/azure/databricks/delta/table-details
+- **bigdave987** (4 upvotes): DESCRIBE HISTORY will show maintenance history of the table.
 - **ZozoG** (2 upvotes [Most Recent]): DESCRIBE DETAIL customer is not the correct answer (This command provides metadata about the Delta table, such as:
 1. Table size
 2. Number of files
@@ -3851,6 +4292,12 @@ Does this meet the goal?
 
 ### Top explanations
 - **bigdave987** (6 upvotes [Highly Voted]): No. describe() and summary() provide the summary statistics.
+- **stilferx** (3 upvotes): IMHO, No,
+
+Because:
+df.explain gives execution plan.
+https://spark.apache.org/docs/3.1.2/api/python/reference/api/pyspark.sql.DataFrame.explain.html
+- **hello2tomoki** (2 upvotes): https://www.datasciencemadesimple.com/descriptive-statistics-or-summary-statistics-of-dataframe-in-pyspark/
 - **ZozoG** (1 upvotes [Most Recent]): df.explain().show() - does not meet the goal of calculating min, max, mean, and standard deviation for string and numeric columns.
 
 df.explain() - is used to display the execution plan of a DataFrame operation in PySpark.
@@ -3882,11 +4329,11 @@ Does this meet the goal?
 
 ### Top explanations
 - **Chrys941** (4 upvotes): NOT ISEMPTY IS THE CORRECT.
-- **stilferx** (1 upvotes): IMHO, No
-
-It should be NOT EMPTY, to have same meaning
 - **bigdave987** (2 upvotes): No. The suggested logic would show where COUNTROWS = 0, not > 0.
 Answer is correct
+- **klashxx** (2 upvotes): B is correct (NO) because the suggested change does not meet the goal because it reverses the logic of the query.
+- **Lucetmi** (2 upvotes): Should be NOT ISEMPTY
+- **Mr_Fabricator** (2 upvotes): Hence the answer B is only correct!!
 
 <a id="q2-108"></a>
 ## Q2.108 (ID 916110)
@@ -3913,31 +4360,14 @@ Does this meet the goal?
 - **282b85d** (14 upvotes [Highly Voted]): The original query uses the COUNTROWS function inside a CALCULATE function to count the number of rows in the 'Order Item' table. This approach can be inefficient because it involves counting rows even if just one row exists, which might be resource-intensive especially with large datasets.
 
 The suggested solution NOT ISEMPTY ( CALCULATETABLE ( 'Order Item' ) ) simplifies the logic to check if the 'Order Item' table related to the customer is empty or not. This approach can be faster as it stops as soon as it finds one row, rather than counting all rows.
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s YES
-- **nappi1** (1 upvotes): Thinking about the option in SQL-like terms, we filter out the customers without the need for an aggregation step, but by using a boolean condition after a join. Aggregations are generally one of the most computationally intensive operations, so I expect the performance to diverge as the fact table grows.
-Indeed, when running the DAX code, the SQL queries executed by the PBI engine underneath are:
+- **hello2tomoki** (4 upvotes): Yes, replacing CALCULATE ( COUNTROWS( 'Order Item' ) ) > 0 with NOT ISEMPTY ( CALCULATETABLE ( 'Order Item ' ) ) should reduce the execution time of the query. It is a simpler, more meaningful, and faster way to check if a table is empty. https://www.sqlbi.com/articles/check-empty-table-condition-with-dax/
+- **neoverma** (4 upvotes): isnt the syntax incorrect? 
+NOT(ISEMPTY(Calculate ... 
 
-***DAX
-CALCULATE( COUNTROWS( Sales ) ) > 0
-
-***SQL
-SELECT
-    'Customer'[Customer Name],
-    COUNT ( )
-FROM 'Order Item'
-    LEFT OUTER JOIN 'Customer'
-        ON 'Order Item'[CustomerKey]='Customer'[CustomerKey];
-
-
-***DAX
-NOT ISEMPTY( CALCULATETABLE( Sales ) )
-
-***SQL
-SELECT
-    'Customer'[Customer Name]
-FROM 'Order Item'
-    LEFT OUTER JOIN 'Customer'
-        ON 'Order Item'[CustomerKey]='Customer'[CustomerKey];
+there should be a ( after NOT
+- **bigdave987** (3 upvotes): Yes. Answer is correct.
+CALCULATETABLE will accept the row context for each of the rows returned by VALUES, and in turn NOT ISEMPTY will check if the calculated table has rows. This is like using EXISTS in T-SQL. It will check if any rows exists, but doesn't return rows, thus improving performance.
+- **nappi1** (2 upvotes): as shown in DAX Studio under "Server Timings" --> "Query".
 
 <a id="q2-109"></a>
 ## Q2.109 (ID 916111)
@@ -3964,16 +4394,13 @@ Does this meet the goal?
 - **Test_1132** (13 upvotes [Highly Voted]): No - Good luck everyone :)
 - **282b85d** (8 upvotes [Highly Voted]): The provided solution does not meet the goal as it does not correctly filter out customers without orders and does not provide an optimization in terms of performance.
 - **Mitchell12345** (4 upvotes [Most Recent]): Well, we made it boys!
+- **b6daab0** (4 upvotes): A silly question..
+- **VAzureD** (4 upvotes): No.
+By adding the = the only thing we achieve is changing the logic, not the performance.
 
 <a id="q2-111"></a>
 ## Q2.111 (ID 931007)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -4035,19 +4462,22 @@ Instead, you must read directly from the underlying Delta files by referencing t
 
 Correct Sintax
 spark.sql("SELECT * FROM .")
-- **02d2971** (2 upvotes [Most Recent]): Personally I think C is the correct answer.
+- **chq23** (5 upvotes): ResearchProduct is a shortcut
+- **4e5cf3d** (4 upvotes): A is wrong: Table not Files
+- **f0dd605** (3 upvotes): A according to ChatGPT:
+The question requires accessing Research division data for Productline1 stored in delta format from the lakehouse (Lakehouse1) in a Fabric notebook. Here’s why option A is the correct choice:
 
-The question here refers to the fact that both research divisions are clearly storing the data within Lakehouses as Tables, in the previous question within the scope of the case study we're working in we specified to store the data within a tables across the organisation.
+Delta Format Access in Spark:
+The data for Productline1 is stored in Delta format, as per the scenario.
+When working with Delta format in Spark notebooks, the standard way to read data is using spark.read.format("delta").load().
+Files/ResearchProduct Path:
 
-Hence specifying the route of the Table within the SparkSQL statement is important regardless of the Lakehouse1-whatever + also the specific Table we're looking to query,
-
-C is the correct answer if we're considering best practices in my opinion.
+A shortcut named ResearchProduct has been created in Lakehouse1. In Microsoft Fabric, the Files/ResearchProduct path refers to the shortcut to the Delta Lake storage (storage1), which makes the data available within the lakehouse.
 
 <a id="q2-112"></a>
 ## Q2.112 (ID 931008)
 
 HOTSPOT
--
 You have a Fabric workspace that uses the default Spark starter pool and runtime version 1.2.
 You plan to read a CSV file named Sales_raw.csv in a lakehouse, select columns, and save the data as a Delta table to the managed area of the lakehouse. Sales_raw.csv contains 12 columns.
 You have the following code.
@@ -4066,13 +4496,16 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **mghf61** (41 upvotes [Highly Voted]): No, No, Yes
 The spark reads all columns first before selection , so spark.read , read all columns
-- **Mhunity** (9 upvotes): correct N,N,Y
 - **Mike5611** (12 upvotes [Highly Voted]): 1. YES - The .select() function in the code specifies the exact columns ('SalesOrderNumber', 'OrderDate', 'CustomerName', and 'UnitPrice') to be selected. 
               Therefore, only these columns will be read from the CSV.
 2. NO - The withColumn("Year", year("OrderDate")) function adds a new column called "Year" by extracting the year from the "OrderDate" column. 
              However, it does not replace the "OrderDate" column—it only adds the new "Year" column.
 3. YES - The inferSchema='true' tells Spark to infer the data types of each column in the CSV, which requires an extra scan of the data to determine these types. 
              This can indeed increase execution time.
+- **Mhunity** (9 upvotes): correct N,N,Y
+- **nappi1** (5 upvotes): Yes, No, Yes is right
+- **zxc01** (3 upvotes): No, No, Yes. 
+you need to use paraquet/orc or some similar file formats where they can provide file metadata and searchable organization of data. otherwise, spark will load the complete record in-memory, apply schema and can pick that particular column. CSV file will load whole file in Spark engine memory, then get columns with select.
 
 <a id="q2-113"></a>
 ## Q2.113 (ID 931009)
@@ -4094,9 +4527,11 @@ Does this meet the goal?
 
 ### Top explanations
 - **Martin_Nbg** (16 upvotes [Highly Voted]): I think A is correct https://learn.microsoft.com/en-us/dotnet/api/microsoft.spark.sql.dataframe.describe?view=spark-dotnet
-- **Gunstsings** (3 upvotes): DataFrame.Describe = Computes basic statistics for numeric and string columns, including count, mean, stddev, min, and max. If no columns are given, this function computes statistics for all numerical or string columns.
 - **maia01** (6 upvotes [Highly Voted]): describe: only numeric columns with limited summary
 summary: numeric and non-numeric, broader summary
+- **Gunstsings** (6 upvotes): DataFrame.Describe = Computes basic statistics for numeric and string columns, including count, mean, stddev, min, and max. If no columns are given, this function computes statistics for all numerical or string columns.
+- **zeeneuser** (5 upvotes): A is correct, confirming after trying the command from Notebook. Displays count as well in addition to min, max, mean, and standard deviation.
+- **Gunstsings** (3 upvotes): DataFrame.Describe = Computes basic statistics for numeric and string columns, including count, mean, stddev, min, and max. If no columns are given, this function computes statistics for all numerical or string columns.
 
 <a id="q2-114"></a>
 ## Q2.114 (ID 931010)
@@ -4116,6 +4551,14 @@ Which type of activity should you add?
 **Most voted:** D
 
 ### Top explanations
+- **Pegooli** (3 upvotes): D is correct - A Lookup activity in Fabric Data Factory is specifically designed to execute a query or stored procedure and retrieve data from a data source.
+- **2fe10ed** (2 upvotes): Script or Lookup activity
+
+https://learn.microsoft.com/en-us/fabric/data-factory/lookup-activity
+
+https://blog.fabric.microsoft.com/id-id/blog/automate-fabric-data-warehouse-queries-and-commands-with-data-factory?ft=All
+- **nappi1** (2 upvotes): to execute a stored procedure in a Fabric Data Factory pipeline and make the returned values available for downstream activities, you should use the Lookup activity.
+the Lookup activity allows you to execute a query or stored procedure and retrieve the results, which can then be used in subsequent activities within the pipeline.
 - **ZozoG** (1 upvotes): The Lookup activity is the right choice.
 
 It allows you to:
@@ -4124,17 +4567,11 @@ It allows you to:
 2. Retrieve single values or a dataset
 3. Use the output in expressions, conditions, or parameters in later pipeline steps
 - **nappi1** (1 upvotes): Lookup is correct
-- **2fe10ed** (2 upvotes): Script or Lookup activity
-
-https://learn.microsoft.com/en-us/fabric/data-factory/lookup-activity
-
-https://blog.fabric.microsoft.com/id-id/blog/automate-fabric-data-warehouse-queries-and-commands-with-data-factory?ft=All
 
 <a id="q2-116"></a>
 ## Q2.116 (ID 931012)
 
 DRAG DROP
--
 You have a Fabric tenant that contains a data warehouse named DW1. DW1 contains a table named DimCustomer. DimCustomer contains the fields shown in the following table.
 You need to identify duplicate email addresses in DimCustomer. The solution must return a maximum of 1,000 records.
 Which four T-SQL statements should you run in sequence? To answer, move the appropriate statements from the list of statements to the answer area and arrange them in the correct order.
@@ -4156,7 +4593,6 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 ## Q2.117 (ID 931013)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a warehouse named WH1.
 You run the following T-SQL query against WH1.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
@@ -4173,7 +4609,6 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 
 ### Top explanations
 - **Martin_Nbg** (22 upvotes [Highly Voted]): Correct answer is no-no-yes. You couldn't select columns from the return value of a scalar function as done in line 4 and 5 of the SQL code.
-- **4f3a33d** (6 upvotes): A scalar function returns one value. (Ref No for the first)
 - **adane** (10 upvotes): Agree
 NO NO YES
 No, Dimension.getDirectReports is not a scalar function; it is a table-valued function (TVF).
@@ -4182,16 +4617,14 @@ Why is it a Table-Valued Function (TVF)?
 o	The OUTER APPLY operator is specifically designed to work with functions that return a result set, which can be thought of as a table. This indicates that Dimension.getDirectReports returns multiple rows and columns, making it a table-valued function.
 No, the Dimension.getDirectReports function will run once for every row in the Dimension.employee table when the query runs. This is because OUTER APPLY evaluates the function for each row in the outer (main) table.
 Yes, the output of the query using OUTER APPLY will include at least one row for each row in Dimension.employee, even if the Dimension.getDirectReports function does not return any results for some rows.
+- **4f3a33d** (6 upvotes): A scalar function returns one value. (Ref No for the first)
+- **Sowwy1** (1 upvotes [Most Recent]): No, no, yes
+- **d91f9ca** (1 upvotes): The Correct Order is NO-NO-YES:
+1- a scalar function retur only one values  or in this case we have a Dimension.GetDirectReports which is used with a outer Apply this means the result will be a set of ligne in this case we are talking about a funtion table TVF not a scalar
 
 <a id="q2-119"></a>
 ## Q2.119 (ID 931015)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -4244,16 +4677,18 @@ Which syntax should you use in a notebook to access the Research division data f
 **Most voted:** A
 
 ### Top explanations
-- **Aashu1234** (1 upvotes): How it is different from question 111?
+- **Martin_Nbg** (9 upvotes): My bad, A is correct, I found the example: https://learn.microsoft.com/en-us/fabric/onelake/onelake-shortcuts#apache-spark
+Although, technically both, A and B, could be correct, looking at the requirements, the datalake should be linked as a table shortcut, not as a file shortcut, and then A is correct.
+- **Pegooli** (4 upvotes): A is loading the data from the ResearchProduct table stored in Delta format within the Tables directory of your lakehouse
+- **EdwardLiang** (3 upvotes): B I think
 - **mishravikas7** (2 upvotes): "df = spark.read.format("delta").load("Tables/MyShortcut")" or
 "df = spark.sql("SELECT * FROM MyLakehouse.MyShortcut")"
-- **zxc01** (1 upvotes): both A and B can match requirement because we can build both table and file shourtcuts with delta format file. However, I tend to choose A because we can also use other method, such as SQL endpoint. Or even build semantic model on it directly.
+- **zxc01** (2 upvotes): No, you can create shortcut as table in lakehouse if source file has been formatted by delta format.
 
 <a id="q2-121"></a>
 ## Q2.121 (ID 934199)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a warehouse named WH1.
 You have source data in a CSV file that has the following fields:
 •	SalesTransactionID
@@ -4282,8 +4717,10 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **abhijitger12** (20 upvotes [Highly Voted]): Fact tables record the "events" or "transactions" that you want to analyze. SaleDate represents the date of a sales transaction, which is a key aspect of the event itself.
 
 Answer : Dim, Dim, Fact
-- **a89bfbf** (2 upvotes): Couldn't it be part of a DimDate table? And you would have DateKey in the fact table as a FK.
 - **6f38739** (11 upvotes [Highly Voted]): Dim, Dim, Fact
+- **ba2bfdf** (4 upvotes): Answer : Dim, Dim, Fact
+- **ba2bfdf** (4 upvotes): Dim, Dim, Fact
+- **a89bfbf** (2 upvotes): Couldn't it be part of a DimDate table? And you would have DateKey in the fact table as a FK.
 
 <a id="q2-122"></a>
 ## Q2.122 (ID 934200)
@@ -4304,8 +4741,8 @@ Which type of activity should you add?
 
 ### Top explanations
 - **MultiCloudIronMan** (7 upvotes [Highly Voted]): The Lookup activity allows you to execute a stored procedure and retrieve the results, which can then be used in subsequent activities within the pipeline.
-- **32950cb** (1 upvotes [Most Recent]): repeted question
 - **adane** (2 upvotes): Lookup activity
+- **32950cb** (1 upvotes [Most Recent]): repeted question
 
 <a id="q2-123"></a>
 ## Q2.123 (ID 934201)
@@ -4329,10 +4766,7 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **mghf61** (24 upvotes [Highly Voted]): it should be Yes.No.No
 
 the clone will create same table structure as first one
-- **shorymor** (4 upvotes): Agree. Correct answer should be 
-yes 
-no 
-no
+- **MultiCloudIronMan** (7 upvotes): I disagree, No No No - No, the CREATE TABLE ... AS CLONE statement does not copy only the metadata. It creates a new table that includes both the structure (metadata) and the data of the original table. This means that the new table test.FactSales will have the same columns, data types, and data as the original table dbo.FactSales.
 - **4b35503** (6 upvotes): Yes, No, No
 
 REF https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-as-clone-of-transact-sql?view=fabric&preserve-view=true
@@ -4342,6 +4776,12 @@ REF https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table
 Separate and independent
 Upon creation, a table clone is an independent and separate copy of the data from its source.
 Any changes made through DML or DDL on the source of the clone table are not reflected in the clone table.Similarly, any changes made through DDL or DML on the table clone are not reflected on the source of the clone table.
+- **SKM1964** (5 upvotes): Creates a new table as a zero-copy clone of another table in Warehouse in Microsoft Fabric. Only the metadata of the table is copied. The underlying data of the table, stored as parquet files, is not copied.
+Reference: https://learn.microsoft.com/en-us/sql/t-sql/statements/create-table-as-clone-of-transact-sql?view=fabric
+- **shorymor** (4 upvotes): Agree. Correct answer should be 
+yes 
+no 
+no
 
 <a id="q2-125"></a>
 ## Q2.125 (ID 934203)
@@ -4363,20 +4803,17 @@ Which T-SQL statement should you use?
 so it must be UPDATE and INSERT
 C – TRUNCATE TABLE AND INSERT would eliminate history (which is the whole point of SCD Type 2)
 D – CREATE TABLE AS SELECT – this can be used for an initial load if the table doesn’t exist, but it won’t work for an SCD Type 2 because it would eliminate retention of historical changes.
-- **Sr18** (2 upvotes): Update: MERGE support is planned as part of ongoing SQL capabilities improvements in Fabric Warehouse, but: No official ETA has been provided publicly by Microsoft. Based on trends, it is expected sometime in 2025, possibly in H2 2025
-
-SO UPDATE and INSERT
 - **notsqlbot** (5 upvotes [Highly Voted]): Normally I would say its MERGE.  However MERGE is not currently supported by Fabric (I think its due to be GA Q1 2025),so the answer needs to be UPDATE and INSERT.
+- **liou_gr** (4 upvotes): it is now supported
+- **Pegooli** (3 upvotes): Merg allow you to do :
+-Insert new records for changes.
+-Update existing records to mark them as historical.
+-Maintain the history of changes efficiently.
+- **MultiCloudIronMan** (3 upvotes): Its a merge with merge you can define what happens after the merge
 
 <a id="q2-126"></a>
 ## Q2.126 (ID 934204)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -4429,13 +4866,15 @@ Which syntax should you use in a notebook to access the Research division data f
 **Most voted:** D
 
 ### Top explanations
+- **Pegooli** (3 upvotes): B is not correct because it specifies an incorrect path
+- **joedxb** (2 upvotes): There must be a typo! none of the answers is correct. Shortcut named ResearchProduct can be found only in Files section of the Lakehouse1. Closest is C, if it had used single quotes for external_table('ResearchProduct')
 - **c21f505** (1 upvotes): In Microsoft Fabric, when you create a shortcut in a lakehouse (like ResearchProduct pointing to Delta data in storage1), it becomes accessible under the Tables/ directory.
 The correct way to read Delta-formatted data from a shortcut in a notebook is using the Spark DataFrame API with the delta format.
 "Tables/ResearchProduct" is the correct path to the shortcut inside the lakehouse.
 - **Aiden90** (1 upvotes): spark.sql("SELECT * FROM Lakehouse1.Tables.ResearchProduct").
 
 D (spark.read.format("delta").load("Tables/ResearchProduct")) — might work only if you use the exact internal lakehouse filesystem path (and even then you should prefer the fully qualified SQL/catalog access). The SQL/catalog approach avoids path details and respects table metadata and permissions.
-- **joedxb** (2 upvotes): There must be a typo! none of the answers is correct. Shortcut named ResearchProduct can be found only in Files section of the Lakehouse1. Closest is C, if it had used single quotes for external_table('ResearchProduct')
+- **MultiCloudIronMan** (1 upvotes): This syntax correctly specifies the format as Delta and loads the data from the specified table in the lakehouse.
 
 <a id="q2-128"></a>
 ## Q2.128 (ID 934206)
@@ -4456,8 +4895,8 @@ Which type of activity should you add?
 
 ### Top explanations
 - **MultiCloudIronMan** (8 upvotes [Highly Voted]): Asked multiple times
-- **32950cb** (1 upvotes [Most Recent]): repeted question
 - **Pegooli** (2 upvotes): B Lookup activity is the correct answer
+- **32950cb** (1 upvotes [Most Recent]): repeted question
 
 <a id="q2-131"></a>
 ## Q2.131 (ID 934209)
@@ -4492,7 +4931,26 @@ This ensures that the USERNAME() function can retrieve the UPN correctly.
 Does the solution meet the goal?
 Yes.
 Adding the user objects to the sync configuration in Microsoft Entra Connect ensures that the UPNs are available in Microsoft Entra ID, allowing the USERNAME() function to return the correct result.
-- **a8d510b** (1 upvotes [Most Recent]): By adding the user objects to the Microsoft Entra Connect sync list, identities are pushed from local domain  to the cloud. Once the sync is complete, the user can log in.
+- **VojtechSima** (6 upvotes): I think it should be No. 
+You should use USERPRINCIPALNAME(), if you want to make sure, you get always UPN.
+- **Stants** (3 upvotes): The answer is A: Yes
+
+Here's why:
+
+The USERNAME() function requirement:
+USERNAME() returns the UPN of the current user
+UPN is needed for dynamic RLS to work properly
+UPN must be available in Microsoft Entra ID
+Microsoft Entra Connect sync:
+By default, not all user attributes might be synced
+User objects need to be explicitly included in sync configuration
+UPN is a critical attribute for user identification
+Why this solution works:
+Adding user objects to sync ensures UPN attributes are synchronized
+Ensures proper user identity flow from AD DS to Microsoft Entra ID
+Enables USERNAME() function to retrieve the correct UPN
+Completes the identity chain needed for dynamic RLS
+- **joedxb** (2 upvotes): absolutely right!
 
 <a id="q2-132"></a>
 ## Q2.132 (ID 936833)
@@ -4512,14 +4970,16 @@ Which operation should you use?
 
 ### Top explanations
 - **nappi1** (8 upvotes [Highly Voted]): since it must be a table and it comes from a join, it cannot be a clone, it must be B.
-- **b8ef1c5** (1 upvotes): B: CTAS. I was thinking CLONE as it minimizes operations and allows for point in time, but you're right, you can't clone a query that uses a join. You can only clone a table.
 - **adane** (5 upvotes [Highly Voted]): The CREATE TABLE AS SELECT (CTAS) statement allows you to create a new table directly from the results of a query, including joining tables. It automatically determines the column types based on the query's result set, ensuring they match the source tables. This minimizes the number of operations required
+- **b8ef1c5** (1 upvotes): B: CTAS. I was thinking CLONE as it minimizes operations and allows for point in time, but you're right, you can't clone a query that uses a join. You can only clone a table.
+- **Dusica** (1 upvotes [Most Recent]): Why not D - materialized view as select?
+Looking at: "automated process" and "point-in-time": table would have to be refreshed all the time - like full load. View would be alive and showing new coming orders.
+- **Dusica** (1 upvotes): withdrawing the above; just read about the current limitations of materialised views - amongst others : no incremental refresh. So table is then better choice
 
 <a id="q2-136"></a>
 ## Q2.136 (ID 936837)
 
 HOTSPOT
--
 You have a Fabric tenant that contains three users named User1, User2, and User3. The tenant contains a security group named Group1. User1 and User3 are members of Group1.
 The tenant contains the workspaces shown in the following table.
 The tenant contains the domains shown in the following table.
@@ -4556,6 +5016,8 @@ Hope this helps someone!
 
 Answer: N, N, N
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s no, no, no
+- **Stef6108** (1 upvotes): No-No-No
+All three statements are false. Setting a default domain for a security group only associates new (and certain existing) workspaces with that domain and grants domain-level contributor rights—it does not assign or modify any workspace-level roles such as Contributor or Viewer. Workspace access always requires an explicit assignment of the appropriate role to the user or group.
 
 <a id="q2-137"></a>
 ## Q2.137 (ID 936838)
@@ -4576,21 +5038,28 @@ NOTE: Each correct selection is worth one point.
 
 ### Top explanations
 - **adane** (13 upvotes [Highly Voted]): To implement RLS for Table1 in Fabric, create a FUNCTION to define row-filtering logic and a SECURITY POLICY to enforce it. This ensures users only see the rows they are permitted to access.
+- **nappi1** (4 upvotes): correct
+- **73f4438** (2 upvotes): AE
+A. DATABASE ROLE
+Assigning users to roles is essential for managing which users can access which rows. You associate users with database roles, and your RLS logic can use this mapping to filter data.
+E. SECURITY POLICY
+A security policy enforces a predicate function that defines which rows are visible to which users. It's what actually applies the RLS logic to the table.
+
+Note on D. FUNCTION
+Inline Table-Valued Functions (TVFs) are often used within RLS, but they must be bound to a SECURITY POLICY to take effect. So on its own, a function is not sufficient unless combined with a security policy.
+- **5099e2d** (2 upvotes): To implement row-level security (RLS) for the Table1 in your Fabric warehouse (Warehouse1), ensuring that users can only see their respective data, the solution would typically involve the following objects:
+
+Correct Answers:
+A. DATABASE ROLE
+
+A DATABASE ROLE defines a group of users and their permissions. When implementing RLS, roles are often used to determine which users or groups of users have access to specific rows in the table.
+
+E. SECURITY POLICY
+
+A SECURITY POLICY is essential for enforcing row-level security. It allows you to filter rows in a table based on a predicate function, ensuring that users can only view the data they are authorized to access. 
+
+Why Not FUNCTION: While functions (e.g., inline table-valued functions) might be involved in defining RLS filters, they are not the solution by themselves. Instead, they are used alongside SECURITY POLICY.
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s DE
-- **elimey** (1 upvotes): implement Row-Level Security (RLS) in a Fabric Warehouse (or SQL-based system), you need:
-
-
-DATABASE ROLE
-
-Used to group users and assign permissions.
-You create roles like SalesRegionRole or CustomerRole and add users to them.
-
-
-
-SECURITY POLICY
-
-Defines the filtering logic for RLS.
-It applies a predicate function to restrict rows based on user identity or role.
 
 <a id="q2-138"></a>
 ## Q2.138 (ID 936839)
@@ -4613,15 +5082,14 @@ Which three columns should you include in DimProduct?
 **Most voted:** A
 
 ### Top explanations
+- **orallony** (3 upvotes): correct
 - **MYPE** (2 upvotes): A is the only suggestion that does not have columns that should be part of facts tables = salesAmount, Date.
 - **JWJW1234** (2 upvotes): They are the Dimension(Characteristics) of the product
-- **orallony** (3 upvotes): correct
 
 <a id="q2-139"></a>
 ## Q2.139 (ID 936840)
 
 DRAG DROP
--
 You have a Fabric workspace that contains a Dataflow Gen2 query. The query returns the following data.
 You need to filter the results to ensure that only the latest version of each customer’s record is retained. The solution must ensure that no new columns are loaded to the semantic model.
 Which four actions should you perform in sequence in Power Query Editor? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.
@@ -4658,6 +5126,19 @@ This step filters the data, keeping only the rows where the VersionDate matches 
 
 Step 4: Remove duplicates based on CustomerID
 This step removes any remaining duplicate rows based on CustomerID. Since we've already filtered for the latest record, this step ensures only one record per customer remains.
+- **zxc01** (2 upvotes): Step 1: Group by CustomerID, use "All Rows" operation, and calculate the max version date per customer ID.  
+In Group by advance setting, you can build a new column, such as "Customer" which choose option "All rows". 
+Step 2: Expand the All Rows details column. 
+you just choose which columns do you need to add in table
+Step 3: Filter the query where the version date value equals the max version date value: 
+in same table, you can filter 2 columns and only keep max value rows.
+Step 4: Remove the max version date column
+- **zxc01** (2 upvotes): I cannot understand this question. after step "Group by CustomerID and calculate the max version date per customer ID", we just can get 2 columns, CustomerID and Max version date. How can we expand the all rows detail column? 
+Normally I tend to choose these steps: 
+Step 1: duplicate or reference source customer table 
+Step 2: Group by CustomerID and calculate the max version date per customer ID in duplicated table 
+Step 3: merge customer table and new grouped table with inner join 
+Step 4: drop extended column which come from grouped table in this table.
 - **Stef6108** (1 upvotes): Step 4 is: Remove max Version date column.
 Because in the question is stated: "The solution must ensure that no new columns are loaded to the semantic model."
 
@@ -4665,7 +5146,6 @@ Because in the question is stated: "The solution must ensure that no new columns
 ## Q2.146 (ID 936847)
 
 HOTSPOT
--
 You have the following KQL query.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
@@ -4680,9 +5160,18 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Not provided
 
 ### Top explanations
+- **jackjack1** (4 upvotes): Would say yes no no, why would second be yes if we are filtering where sales >0?
+- **testtaker45** (3 upvotes): Yes Yes No
+The code is pretty easy to read. Try to say what each line says. 
+Symbols Explination 
+!= means 'is not'
+>= means greater than or equal to
+> means greater than. 
+Hope this helps!
+- **testtaker45** (2 upvotes): It is yes, yes, no. 
+To answer your inquiry, 'Where OrderDate >= ago(30d)' is read 'Where Order Date is Greater than or equal to 30 days ago' or are less than 31 days old...
 - **Sowwy1** (1 upvotes): Yes,yes,no
 - **Acrious** (1 upvotes): I do not follow how it Yes Yes No. If I specifically state where the OrderDate is Greater than or equal to 30 days,  while you could say it includes the 30th day, is to does not include 1-29 at best case.. So why is it Yes (and the explanation at the bottom makes no sense to me)
-- **73f4438** (1 upvotes): The ago keyword takes the timespan value which is 30d. This is the interval to subtract from the current UTC clock time now(). So it's like taking the range of 30 days ago up to the current date.
 
 <a id="q2-147"></a>
 ## Q2.147 (ID 936848)
@@ -4700,15 +5189,16 @@ Which T-SQL statement should you run?
 **Most voted:** D
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it’s D
+- **kaixin** (3 upvotes): partition by salesorder ID
 - **JuanGonzalezT** (2 upvotes): I had a hard time noticing that B said Order and not Partition. The answer is D. You need to do the operation over the whole sale by product.
+- **Sowwy1** (1 upvotes): I think it’s D
 - **Rataxe** (1 upvotes): This partitions by SalesOrderID, which calculates the proportion within each sales order, ensuring the correct context for the calculation.
+- **Acrious** (1 upvotes): excepts it an order by , not partition in B, so is D
 
 <a id="q2-149"></a>
 ## Q2.149 (ID 939099)
 
 HOTSPOT
--
 You have a Fabric lakehouse named Lakehouse1 that contains the following data.
 You need build a T-SQL statement that will return the total sales amount by OrderDate only for the days that are holidays in Australia. The total sales amount must sum the quantity multiplied by the price on each row in the dbo.sales table.
 How should you complete the statement? To answer, select the appropriate options in the answer area.
@@ -4728,12 +5218,12 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 So I think the first one is just syntax. Ensure it looks correct. For the type of Joins, they only want it if it is Australia. Inner will only bring over the matches, making it an ideal Join Type. To be fair, I had to look it up, but once I learned that I wanted to share.
 - **YellowSky002** (1 upvotes): So what is the difference between the 2 and 3 choices of the first option. If the price does not change, what difference would it make?
 - **k0s** (1 upvotes): In the third option, "quantity" is written in lowercase instead of "Quantity", and that's what makes the difference and makes the second option correct.
+- **Sowwy1** (1 upvotes [Most Recent]): Sum(s.Quantity * s.UnitPrice), Inner
 
 <a id="q2-158"></a>
 ## Q2.158 (ID 939108)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains two tables named DimDate and Trips.
 DimDate contains the following fields.
 Trips contains the following fields.
@@ -4762,7 +5252,6 @@ group by d.IsHoliday
 ## Q2.159 (ID 939109)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Workspace1. Workspace1 contains a lakehouse named LH1 and a warehouse named DW1. LH1 contains a table named signindata that is in the dbo schema.
 You need to create a stored procedure in DW1 that deduplicates the data in the signindata table.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
@@ -4816,8 +5305,9 @@ Which type of activity should you add?
 **Most voted:** C
 
 ### Top explanations
-- **32950cb** (1 upvotes): REPETED QUESTION
 - **Sr18** (2 upvotes): Lookup is for running SP
+- **MYPE** (2 upvotes): this question comes many times
+- **32950cb** (1 upvotes): REPETED QUESTION
 - **tizian10** (1 upvotes): The Lookup activity is specifically designed to execute a query or stored procedure and retrieve a single value (or a small set of values) from a data source.
 
 The Lookup activity will allow you to execute your stored procedure that returns the required values (active customers and average sales).
@@ -4827,7 +5317,6 @@ The results of the stored procedure can be captured into a variable, which can t
 ## Q2.161 (ID 939111)
 
 HOTSPOT
--
 You have the following T-SQL statement.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
@@ -4846,12 +5335,19 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **AngryJack** (10 upvotes): The 1st question is, will Region values still returned even though they have RefundStatus value of "Refunded". The answer is yes, Regions will still get returned.
 - **JuanGonzalezT** (6 upvotes): it always returns a value, 0 when refunded, but always a value
 Yes, Yes, No
+- **Sr18** (4 upvotes): Region value will be returned no matter the refund status, look at case statement and there are no where clause for region. 
+So "Statement returns Region values when a sales item has a refund status of refunded  " : NO
+It will always return some values no matter the refund or not.
+- **Pegooli** (3 upvotes): The answer is NO, Yes, NO
+
+The statement return sales items that is refunded. if status is refunded then return zero - NO
+The statement return transaction dates that created this year - Yes
+The TotalRevenue is aggregation of sales items that are Refunded - NO
 
 <a id="q2-162"></a>
 ## Q2.162 (ID 939112)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains the following data.
 The data has the following characteristics:
 •	Each customer is assigned a unique CustomerID value.
@@ -4876,7 +5372,11 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 - **wgaignard2** (15 upvotes [Highly Voted]): Inner Join and  A.AddressId = CA.AddressId
 "All foreign key values are non-null."
 - **Azure_2023** (6 upvotes [Highly Voted]): Should be Inner Join, A.AddressId = CA.AddressId
-- **elimey** (2 upvotes [Most Recent]): Inner join
+- **JuanGonzalezT** (4 upvotes): A.- Inner Join
+B.- A.AdresId = CA.AddresId
+- **d91f9ca** (3 upvotes): All foreign key values are non-null., it should be an inner join not a left join
+- **Pegooli** (3 upvotes): A.- Inner Join - All keys are non null, Inner Join has better performance of Left Join
+B.- A.AdresId = CA.AddresId
 
 <a id="q2-166"></a>
 ## Q2.166 (ID 939116)
@@ -4897,19 +5397,18 @@ Which type of data store should you create?
 **Most voted:** C
 
 ### Top explanations
+- **4390015** (2 upvotes): Other Fabric storage options like Lakehouse or KQL Database do not fully support T-SQL transactions or dynamic data masking.
+
+Thus, the best choice for your requirements is a Warehouse in Microsoft Fabric.
 - **JuanGonzalezT** (1 upvotes): Answer: C
 
 https://learn.microsoft.com/en-us/fabric/data-warehouse/dynamic-data-masking
 Applies to: ✅ SQL analytics endpoint and Warehouse in Microsoft Fabric
-- **4390015** (2 upvotes): Other Fabric storage options like Lakehouse or KQL Database do not fully support T-SQL transactions or dynamic data masking.
-
-Thus, the best choice for your requirements is a Warehouse in Microsoft Fabric.
 
 <a id="q2-169"></a>
 ## Q2.169 (ID 939119)
 
 HOTSPOT
--
 You have two Microsoft Power BI queries named Employee and Retired Roles.
 You need to merge the Employee query with the Retired Roles query. The solution must ensure that duplicate rows in each query are removed.
 Which column and Join Kind should you use in Power Query Editor? To answer, select the appropriate options in the answer area.
@@ -4926,6 +5425,9 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **0915fb2** (6 upvotes [Highly Voted]): How can a join ever remove duplicates at all? I dont understand this question.
 - **testtaker45** (2 upvotes): They mean nulls, or only bring over matching values for sure right?
+- **57f5e84** (2 upvotes): division + role
+Inner join
+- **Sr18** (2 upvotes): Question is very vague. Specially if you can't see the full dataset. But with what we can see. Joining over "Role" is good, considering the fact that both tables don't have duplicates. But it will be good to have INNER JOIN, just to make sure if any role is missing in Retried Roles it should not create an null data.
 - **Sowwy1** (1 upvotes [Most Recent]): Role column
 Inner join
 
@@ -4933,7 +5435,6 @@ Inner join
 ## Q2.171 (ID 942882)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a workspace named Workspace1 and a user named DBUser. Workspace1 contains a lakehouse named Lakehouse1. DBUser does NOT have access to the tenant.
 You grant DBUser access to Lakehouse1 as shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
@@ -4954,12 +5455,14 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 OneLake File Explorer is not for query
 SSMSL: SQL Endpoint
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s one lake and sql (not sure for the second)
+- **Dusica** (1 upvotes): Tabular data stream - because spark sql reads in tabular data stream
+SSMS can connect to SQL analytics endpoint
+- **b979df8** (1 upvotes): OneLake endpoint and SSMS (sql endpoint)
 
 <a id="q2-172"></a>
 ## Q2.172 (ID 942883)
 
 DRAG DROP
--
 You have a Fabric workspace named Workspace1.
 You have three groups named Group1, Group2, and Group3.
 You need to assign a workspace role to each group. The solution must follow the principle of least privilege and meet the following requirements:
@@ -4982,10 +5485,27 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 - Group1: Contributor (This role allows writing data but does not permit adding members.)
 - Group2: Admin (This role enables configuring and maintaining workspace settings.)
 - Group3: Member (This role allows writing data and adding members but does not permit deleting the workspace.)
-- **Sr18** (2 upvotes): Prefect, see my comment for more explanation and link.
-- **abojoj** (1 upvotes [Most Recent]): Group 1: contributor
+- **4e5cf3d** (5 upvotes): Group 1: be UNABLE to add members - must be contributor because still needs to write.
+Group 3: Member: can add member but can't delete the workspace https://learn.microsoft.com/en-us/fabric/fundamentals/roles-workspaces
+- **Sr18** (4 upvotes): I will suggest not misleading people, for others...
+PBI Access level work as Admin > Member > Contributor > Viewer.
+ADMIN: GOD
+MEMBER: DEMIGOD Can add user with less privileges, can add contributors and viewers
+Contributors: Mostly Developers, sometime I give this access to testers also
+- **wemoe** (4 upvotes): Group1: Member
+The Member role allows users to contribute data and work with the content in the workspace, but does not grant permission to modify workspace membership.
+
+Group2: Admin
+The Admin role grants full control over workspace settings, including managing the workspace settings but not the actual data content.
+
+Group3: Contributor
+The Contributor role allows for adding data and managing workspace membership, but prevents workspace deletion, which satisfies the requirement of not allowing the deletion of Workspace1.
+- **Pegooli** (3 upvotes): Group 1 : Member
 Group 2 : Admin
-Group 3 : member
+Group 3 : Contributer
+
+Member can't add a member to workspace but can read and write the data
+Contributor can add a member to workspace and read and write the data
 
 <a id="q2-173"></a>
 ## Q2.173 (ID 942884)
@@ -5004,14 +5524,24 @@ What should you use to add the data?
 
 ### Top explanations
 - **JuanGonzalezT** (7 upvotes [Highly Voted]): Answer A: shorcut does not add the data
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s A
-- **Denji_777** (1 upvotes): ADD the data is the keyword, we need to actually add the data not reference it
+- **VojtechSima** (4 upvotes): If "add data" means physically add them to Lakehouse, then Copy. A.
+- **wemoe** (3 upvotes): Lakehouse Shortcuts are a minimal effort solution in Fabric to reference external data. This allows you to avoid complex development processes (like writing custom scripts or transforming the data manually) and still make the external data available within Lakehouse1.
+Shortcuts in Fabric Lakehouses enable you to connect to external data sources (such as data in Azure Storage accounts) directly, without physically copying the data into Lakehouse1.
+This solution allows you to easily access and work with the CSV data as if it were part of your Lakehouse1 data store, making it a highly efficient and low-code approach.
+- **SDW** (2 upvotes): Using a shortcut is closer to what Microsoft is looking for.
+- **praticewizards** (2 upvotes): Using a shortcut in Microsoft Fabric allows you to create a direct reference to data in an external Azure Storage account, such as a CSV file, without physically copying the data into the lakehouse. This minimizes development effort and avoids unnecessary data duplication. Once the shortcut is created, the data can be accessed and used directly in Lakehouse1.
+
+Why not the other options?
+A. copy job: While a copy job can import data from Azure Storage into the lakehouse, it physically moves the data, which requires more effort compared to using a shortcut and increases data duplication.
+
+C. pipeline: A pipeline can automate the data movement process, but it requires setting up ETL (Extract, Transform, Load) processes, which is more complex than creating a shortcut.
+
+D. Dataflow Gen2: Dataflow Gen2 is used for data transformation and integration but is less suitable for directly accessing external data with minimal effort.
 
 <a id="q2-174"></a>
 ## Q2.174 (ID 942885)
 
 HOTSPOT
--
 You have a Fabric warehouse that contains a table named Table1. Table1 contains the following data.
 You need to create a T-SQL statement that meets the following requirements:
 •	Outputs the item name of each item and returns a null value if the item name is longer than 20 characters
@@ -5030,6 +5560,15 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 
 ### Top explanations
 - **b8ef1c5** (15 upvotes [Highly Voted]): TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???
+- **York92** (3 upvotes): CONVERT:
+•	Syntax: CONVERT(varchar(20), item_name)
+•	Purpose: Converts the item_name to a varchar(20) data type.
+•	Behavior: If the conversion fails, it will raise an error.
+TRY_CAST:
+•	Syntax: TRY_CAST(item_name AS varchar(20))
+•	Purpose: Attempts to cast item_name to a varchar(20) data type.
+•	Behavior: If the conversion fails, it returns NULL instead of raising an error.
+- **Azure_2023** (3 upvotes): Correct
 - **Dusica** (1 upvotes): I don't :D
 - **Sowwy1** (1 upvotes [Most Recent]): Try cast
 7
@@ -5038,7 +5577,6 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ## Q2.175 (ID 942886)
 
 DRAG DROP
--
 You have a Fabric warehouse named Warehouse1 that contains a table named dbo.Product.
 dbo.Product contains the following columns.
 You need to use a T-SQL query to add a column named PriceRange to dbo.Product. The column must categorize each product based on UnitPrice. The solution must meet the following requirements:
@@ -5084,13 +5622,15 @@ Which type of activity should you add?
 ### Top explanations
 - **4e5cf3d** (7 upvotes [Highly Voted]): "When the stored procedure has Output parameters, instead of using stored procedure activity, use lookup activity and Script activity. Stored procedure activity does not support calling SPs with Output parameter yet." Literally on MS documentation
 - **hecke** (3 upvotes): To back this, here is the source: https://learn.microsoft.com/en-us/azure/data-factory/transform-data-using-stored-procedure
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s B
+- **Lotusss** (3 upvotes): Script activity offers flexibility and can execute stored procedures, it is more suited for scenarios where you need to combine multiple SQL operations or handle complex workflows. For this specific task, the Stored Procedure activity is more efficient and purpose-built.
+- **wudixh** (3 upvotes): According to MS Copilot:
+To execute the stored procedure and make the returned values available to downstream activities in your Fabric Data Factory pipeline, you should add a Stored procedure activity (option C). This activity is specifically designed to execute stored procedures in a database and can pass the output to subsequent activities in the pipeline.
+- **nvukas** (2 upvotes): Script or lookup
 
 <a id="q2-177"></a>
 ## Q2.177 (ID 942888)
 
 HOTSPOT
--
 You have a Fabric workspace that contains a warehouse named Warehouse1. Warehouse1 contains the following data.
 You need to create a T-SQL statement that will denormalize the tables and include the ContractType and StartDate attributes in the results. The solution must meet the following requirements:
 •	Include attributes from matching rows in the Contract table.
@@ -5109,14 +5649,13 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Not provided
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): Left and having
 - **VojtechSima** (4 upvotes): LEFT OUTER JOIN, HAVING.
+- **Sowwy1** (1 upvotes): Left and having
 
 <a id="q2-178"></a>
 ## Q2.178 (ID 942889)
 
 HOTSPOT
--
 You have a KQL database that contains a table named Readings.
 You need to query Readings and return the results shown in the following table.
 How should you complete the query? To answer, select the appropriate options in the answer area.
@@ -5132,6 +5671,13 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Extend : new columns based on calculations for each row | Project: Works like select clause | Why Not | Summarize: Used for aggregating data | lookup: Similar to Join clause | evaluate: its literally called Plugin Operator
 
 ### Top explanations
+- **Azure_2023** (2 upvotes): Correct
+- **Sr18** (2 upvotes): Extend : new columns based on calculations for each row
+Project: Works like select clause
+Why Not 
+Summarize: Used for aggregating data
+lookup: Similar to Join clause
+evaluate: its literally called Plugin Operator
 - **Sowwy1** (1 upvotes): Extend
 Project
 - **Aiden90** (1 upvotes): Readings
@@ -5142,13 +5688,11 @@ Project
     PrevMeterReading = prev(MeterReading),
     PrevDateTime = prev(DateTime)
 | project City, Area, MeterReading, DateTime, PrevMeterReading, PrevDateTime
-- **Azure_2023** (2 upvotes): Correct
 
 <a id="q2-179"></a>
 ## Q2.179 (ID 942890)
 
 HOTSPOT
--
 You have a Fabric workspace that contains a warehouse named DW1. DW1 contains the following tables and columns.
 You need to summarize order quantities by year and product. The solution must include the yearly sum of order quantities for all the products in each row.
 How should you complete the T-SQL statement? To answer, select the appropriate options in the answer area.
@@ -5164,15 +5708,18 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Not provided
 
 ### Top explanations
+- **Azure_2023** (4 upvotes): This is a confusing one as both YEAR and ROLLUP would work here.
+- **Sr18** (3 upvotes): Year, Year(SO.Modified Date), P.Name
+Beacause RollUp will cause few extra rows with accumulate values.
+Grouping set could have been potential ans but  Extra Year is throwing me off. But you can test and correct me.
+- **zxc01** (2 upvotes): As I understood, "You need to summarize order quantities by year and product. The solution must include the yearly sum of order quantities for all the products in each row." means we need build report on 2 levels, top one is year and second level is year plus P.name. I think both ROLLUP and GROUPING SETS can match it. However, ROLLUP will give another row of total summary on whole table level. I cannot say which one this better because no enough information in question.
 - **Sowwy1** (1 upvotes): I think it s year and rollup
 - **liou_gr** (1 upvotes): YEAR, YEAR(SO.Modified Date), P.Name
-- **zxc01** (2 upvotes): As I understood, "You need to summarize order quantities by year and product. The solution must include the yearly sum of order quantities for all the products in each row." means we need build report on 2 levels, top one is year and second level is year plus P.name. I think both ROLLUP and GROUPING SETS can match it. However, ROLLUP will give another row of total summary on whole table level. I cannot say which one this better because no enough information in question.
 
 <a id="q2-184"></a>
 ## Q2.184 (ID 955731)
 
 DRAG DROP
--
 You have a Fabric lakehouse named Lakehouse1.
 You have the data sources shown in the following table.
 You need to ingest data from both data sources into Lakehouse1. The solution must minimize maintenance and development time.
@@ -5191,6 +5738,8 @@ _DRAG DROP — the original ExamTopics question expects you to drag and drop ite
 ### Top explanations
 - **maquint** (9 upvotes [Highly Voted]): A pipeline with a copy activity
 An eventstream
+- **Dusica** (3 upvotes): A pipeline with a copy activity - DF gen 2 is slow and no transformation needed. Copy activity for huge amounts of data
+An eventstream
 - **Sowwy1** (1 upvotes [Most Recent]): A pipeline with a copy activity 
 
 An eventstream
@@ -5200,12 +5749,14 @@ Best option: A pipeline with a Copy activity
 Pipelines are designed for large batch loads and CDC scenarios.
 Handles >500,000 rows efficiently.
 Minimizes maintenance compared to notebooks.
+- **Dusica** (1 upvotes): DF Gen2, Eventstream
+Only dataflow gen 2 and Copy Job in fabric support CDC.
+Copy job is not in options so Gen2
 
 <a id="q2-186"></a>
 ## Q2.186 (ID 955733)
 
 DRAG DROP
--
 You have a Fabric eventhouse named Eventhouse1 that contains a table named Weatherdata. A sample of the data in Weatherdata is shown in the following table.
 You plan to use a KQL queryset to manipulate the data in Eventhouse1. The result set must have the following columns.
 You need to build the query.
@@ -5228,13 +5779,14 @@ Sort rows by Datetime so that prev() works correctly:
 Use prev() to calculate difference from previous row:
 | extend Delta_temperature = Temperature - prev(Temperature)
 | project Datetime, Lat, Long, Temperature, Delta_temperature
-- **Sowwy1** (1 upvotes [Most Recent]): Weatherdata
- | sort by Datetime asc 
- | extend Delta_temperature = Temperature - prev(Temperature)
 - **Dusica** (3 upvotes): Weatherdata
 | sort by Datetime asc
 | extend Delta_temperature = Temperature - prev(Temperature)
 | project Datetime, Lat, Long, Temperature, Delta_temperature
+- **Dusica** (2 upvotes): And my screeshot is not even showing the project ...
+- **Sowwy1** (1 upvotes [Most Recent]): Weatherdata
+ | sort by Datetime asc 
+ | extend Delta_temperature = Temperature - prev(Temperature)
 
 <a id="q2-187"></a>
 ## Q2.187 (ID 955734)
@@ -5291,6 +5843,8 @@ KQL (Kusto Query Language) can calculate percentiles, including continuous perce
 This approach would work if you are allowed to query the eventstream with KQL.
 
 However, the question emphasizes minimizing development effort inside the eventstream itself, not post-query.
+- **kaushikcbs** (1 upvotes): Add an aggregate transformation to event stream
+- **maquint** (1 upvotes): percentile(expr, percentile)
 
 <a id="q2-188"></a>
 ## Q2.188 (ID 955735)
@@ -5310,11 +5864,14 @@ NOTE: Each correct selection is worth one point.
 **Most voted:** CD
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s CD
 - **Aiden90** (2 upvotes): Filter the table to only include last quarter transactions.
 Aggregate the sales by product category.
+- **maquint** (2 upvotes): B does not achieve the goal.
+- **Sowwy1** (1 upvotes): I think it s CD
 - **VrajBhavsar** (1 upvotes): Its C and D. 
 C because Power Query has the ability to filter to the last/this/next quarter and would be dynamic and always correct. B can go wrong with the top 90 rows rule if not sorted properly first and considering that 3 months isn't always going to total to 90 days.
+- **73f4438** (1 upvotes): C. This limits the dataset to only transactions in the last quarter, which is required.
+D. This groups the filtered rows by category and calculates the total sales amount for each group.
 
 <a id="q2-190"></a>
 ## Q2.190 (ID 955737)
@@ -5345,7 +5902,6 @@ Data type
 ## Q2.191 (ID 955738)
 
 HOTSPOT
--
 You have a Fabric warehouse named Warehouse1 that contains a table named TaxiTrips.
 TaxiTrips contains the following columns.
 You need to create a query that shows the top three taxi companies based on the total miles traveled.
@@ -5380,6 +5936,20 @@ What can User1 do?
 **Most voted:** A
 
 ### Top explanations
+- **gwaff** (2 upvotes): Correct answer is D, as according to Microsoft doc:
+
+- The shared recipient by default receives "Read" permission, which only allows the recipient to connect to the SQL analytics endpoint
+(see https://learn.microsoft.com/en-us/fabric/data-warehouse/share-warehouse-manage-permissions#fabric-security-roles)
+
+- In Fabric, TDS endpoint and SQL analytics endpoint are basically the same
+"Each Lakehouse has a built-in TDS endpoint called the SQL analytics endpoint"
+(see https://learn.microsoft.com/en-us/fabric/data-engineering/tutorial-lakehouse-introduction#architecture)
+"In Microsoft Fabric, a Lakehouse SQL analytics endpoint or Warehouse is accessible through a Tabular Data Stream, or TDS endpoint." 
+(https://learn.microsoft.com/en-us/fabric/data-warehouse/connectivity)
+- **b979df8** (2 upvotes): A is the answer
+D is for dataverse
+B is additional permission not default
+C is not relevant
 - **Dusica** (1 upvotes): In warehouse you get access to default semantic model and can create reports.
 But that is only few more days until default is fully discontinued
 - **c21f505** (1 upvotes): agreed
@@ -5393,7 +5963,6 @@ D. Connect to DW1 via the TDS (Tabular Data Stream) endpoint.
 ## Q2.197 (ID 955744)
 
 DRAG DROP
--
 You are implementing two dimension tables named Customers and Products in a Fabric warehouse.
 You need to create two slowly changing dimensions that meet the requirements shown in the following table.
 Which type of SCD should you use for each table? To answer, drag the appropriate SCD types to the correct tables. Each SCD type may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.
@@ -5416,7 +5985,6 @@ Same question Q78
 ## Q2.198 (ID 955745)
 
 HOTSPOT
--
 You have a Fabric eventhouse that contains a KQL database. The database contains a table named TaxiData that stores the following data.
 You need to create a column named FirstPickupDateTime that will contain the first value of each hour from tpep_pickup_datetime partitioned by payment_type.
 How should you complete the query? To answer, select the appropriate options in the answer area.
@@ -5485,10 +6053,21 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **Momoanwar** (49 upvotes [Highly Voted]): I think : No yes no
 To display summary its describe() or sumarry()
+- **TashaP** (21 upvotes [Highly Voted]): Answer is No, Yes, Yes
+
+The code is displaying a summary of the data frame using the visualizations. Point 3 is a technicality and I think to some extent depends on your interpretation of the question. I am going with Yes.
 - **bltemrah** (12 upvotes): The code displays a summary of the DataFrame.
 
 The last one should be Yes: The QuickVisualize function generates and displays a summary visualization of the DataFrame.
-- **scorradi** (4 upvotes): My guess: No, Yes, Yes. The "summary" word in this question is not referring to a function called summary. But summary is what QuickVisualization does for us.
+- **vka11** (11 upvotes): The answer is No Yes Yes.
+See the documentation link, contains the exact code that is in the question
+https://learn.microsoft.com/en-us/fabric/data-engineering/notebook-visualization
+- **stilferx** (8 upvotes): IMHO,
+No -> Yes -> Yes.
+
+Link is here: https://learn.microsoft.com/en-us/power-bi/create-reports/jupyter-quick-report#create-and-render-a-quick-visualize-instance
+
+It is not embedded, it is an actual report. The 3rd one - is philosophical, but it summarizes the info from the data frame, so it makes sense to have "Yes" there
 
 <a id="q3-17"></a>
 ## Q3.17 (ID 911307)
@@ -5515,8 +6094,15 @@ In some cases, you might not want automatic grouping to occur, or you might want
 https://learn.microsoft.com/en-us/power-bi/connect-data/desktop-python-visuals
 
 There are always multiple approaches in application but if you do the MS exam give the MS answer.
-- **thuss** (3 upvotes): It even says "The default aggregation is Don't summarize" already. Helpful link, definitely correct answer.
+- **Fermd** (14 upvotes [Highly Voted]): The right answer is D: By setting the "Summarize By" property to "None" for all columns, you disable automatic aggregation and ensure all rows, including duplicates, are displayed in the Python visual.
 - **SKN08** (13 upvotes): sorry but that (A) sounds incorrect. This is from the MS documentation: "In those cases, you can add an index field to your dataset that causes all rows to be considered unique and prevents grouping." and it means create new column that has a unique value for each and every row of the dataset. *C* is correct
+- **semauni** (9 upvotes): "In some cases, you might not want automatic grouping to occur, or you might want all rows to appear, including duplicates. In those cases, you can add an index field to your dataset that causes all rows to be considered unique and prevents grouping."
+
+I was leaning towards A because of the word 'index', and usually if a specific term is mentioned, Microsoft wants to hear you use that term. But option A talks about REFERENCING the index in the CODE. The quote above is not about how you write your code (like cgroven mentioned, e.g. df["streetName"] vs. df[1] for example), but it is about how you should modify your data structure and visual to handle the results. If you read the above statement with this distinction in mind, then it clearly reads C.
+- **[Removed]** (8 upvotes): I think people are misunderstanding what option A is saying. The option says to reference columns INSIDE the Python code by index, which does not help. That means writing df.iloc[:, columnIndex] instead of df[columnName], see Pandas documentation for more on this:
+https://pandas.pydata.org/docs/user_guide/indexing.html
+
+The Microsoft learn article that's referenced several times in these comments clearly says that you need to add a column that's unique to all rows which "causes all rows to be considered unique and prevents grouping" -- this is what option C means.
 
 <a id="q3-21"></a>
 ## Q3.21 (ID 911311)
@@ -5547,7 +6133,27 @@ B&C have concerns with the principle of least privilege and security concerns wh
 - **282b85d** (12 upvotes [Highly Voted]): A. Enabling XMLA Endpoints is crucial because it allows external tools (like SQL Server Management Studio, Tabular Editor, or any other tool that can connect via XMLA) to connect to Power BI datasets. This is essential for users who need to create, modify, or manage semantic models using these external tools. 
 D. Setting the XMLA Endpoint to Read Write allows users not only to read the data from the Power BI service but also to write back to it. This is necessary for users to create and publish custom Direct Lake semantic models. Without write access, users would be unable to publish or update their models, which is a critical part of managing semantic models.
 E. Enabling users to create Fabric items is essential because it allows users to create new Power BI datasets, dataflows, and other necessary components within the workspace.
-- **NRezgui** (2 upvotes [Most Recent]): D - The XMLA endpoint needs to be enabled from the capacity settings as it is crucial for allowing external tools to only read, but also, publish and manage custom Direct Lake semantic models.
+- **kelvin3105** (3 upvotes): sraakesh95 Highly Voted  1 month, 3 weeks ago
+D - The XMLA endpoint needs to be enabled from the capacity settings as it is crucial for allowing external tools to only read, but also, publish and manage custom Direct Lake semantic models.
+
+A - Again from Tenant settings, we need to enable XMLA endpoints ; This is to ensure that external tools interact with the data models as and when necessary within the tenant's workspace ; The analyze in excel is just complimentary to this setting in Fabric and is irrelevant
+
+E - Sets appropriate permissions to users by allowing them to edit models and publish them as when required abiding by the principle of least privilege.
+
+B&C have concerns with the principle of least privilege and security concerns while publishing to the Web
+   upvoted 8 times
+
+JUST TO VOTE GUYS
+- **azure_bimonster** (3 upvotes): ADF seems correct answer
+- **metiii** (3 upvotes): It's ADE
+from https://learn.microsoft.com/en-us/fabric/admin/tenant-settings-index
+A: We need this to connect to XMLA endpoint.
+D: Obviously this is required for Read Write access throufg XMLA endpoint.
+E: This is required to create a direct lake semantic model which is a fabrci item.
+
+C:from link above: "This setting doesn't apply to DirectLake semantic models or editing a semantic model through an API or XMLA endpoint"
+B: This setting allows guest users to access our tenant, it's Irrelevant.
+F: This is Irrelevant too, it allows us to publish a report to web.
 
 <a id="q3-22"></a>
 ## Q3.22 (ID 911312)
@@ -5579,7 +6185,10 @@ PBIX (Power BI Desktop File): This is the standard file format for Power BI Desk
 PBIT (Power BI Template File): This format is used for Power BI templates, which are useful for creating new reports based on a predefined structure, but it is not suitable for bulk editing using TMDL.
 PBIDS (Power BI Data Source File): This format is used for defining data sources for Power BI reports, not for semantic models.
 - **mtroyano** (23 upvotes [Highly Voted]): The correct option is PBIP - https://powerbiblogscdn.azureedge.net/wp-content/uploads/2024/02/tmdlPreviewFeature.png
-- **NRezgui** (1 upvotes [Most Recent]): The correct option is PBIP
+- **IshtarSQL** (4 upvotes): ".pbit" file is a Power BI Desktop template file. It includes both the data model and any reports or visuals you've created.
+- **a_51** (3 upvotes): A https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview
+- **Jeff_Zhu** (3 upvotes): The answer is A
+The PBIP will create one file and two folders, PBIP.Dataset contains definition folder that is use to host the .tmdl files
 
 <a id="q3-25"></a>
 ## Q3.25 (ID 911315)
@@ -5609,7 +6218,13 @@ C - Although caching helps improve performance on large datasets, it doesn't sup
 C: only at loading for first page
 
 So AV
-- **Momoanwar** (1 upvotes): I mean AB*
+- **lengzhai** (7 upvotes): Agree with A B
+https://learn.microsoft.com/en-us/power-bi/transform-model/aggregations-advanced
+https://learn.microsoft.com/en-us/power-bi/enterprise/aggregations-auto
+- **Fermd** (4 upvotes): A. User-defined aggregations (UDAs) allow you to pre-aggregate specific calculations directly in the semantic model. This reduces the amount of data that needs to be retrieved from the source each time a visual requires the calculation, significantly improving query execution time.
+C. Power BI Desktop enables query caching for DirectQuery models. This stores frequently used queries on the client machine, eliminating the need to re-send them to the source data for subsequent interactions.
+- **BrandonPerks** (3 upvotes): Agreed to AB.
+Both UDA's and AA optimize direct query performance. One just requires more manual work and in depth knowledge data modelling and query optimization techniques (UDA), whereas the other makes simplifies this process through the use of ML algorithms (AA).
 
 <a id="q3-26"></a>
 ## Q3.26 (ID 911316)
@@ -5634,6 +6249,14 @@ Query folding refers to the ability of Power Query to push data transformation l
 E. The delta type of the column used to partition the data has changed: While this could cause issues with incremental refresh accuracy, it would not typically result in "running out of resources" during the refresh.
 - **Nefirs** (16 upvotes [Highly Voted]): i don't really know.
 But A and D regarding query folding seem for me not to be relevant since query folding does not make sense anyway on CSV/Flatfile connections. In my understanding, query folding sends a query back to the source. And what kind of query would that be to a CSV source?
+- **PiyushT** (5 upvotes): For efficient data processing, Power BI aims to push as much of the filtering and calculations as possible to the source system (OneLake in this case). This is called query folding. When query folding fails, Power BI needs to pull all the raw data into the semantic model and perform operations there, increasing memory and processing strain.
+
+E This could lead to refresh errors but is less likely to cause the specific behavior of running out of resources.
+- **d47320d** (5 upvotes): Correct Answer: "E. The delta type of the column used to partition the data has changed."
+
+Explanation:
+Query folding is not applicable with csv files, which rules out A,D answers.
+The provided Microsoft link related to "problem-loading-data-takes-too-long", states two causes, one related to query folding (we've already ruled it out) and another one related to the data type, which in turn leads us to answer E.
 - **Plb2** (4 upvotes): Don't think so too
 https://learn.microsoft.com/en-us/power-query/query-folding-examples#no-query-folding-example
 
@@ -5654,6 +6277,8 @@ What should you do first?
 
 ### Top explanations
 - **Nicofr** (18 upvotes [Highly Voted]): https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-scale-out-configure
+- **Charley92** (4 upvotes): To enable scale-out for a semantic model in Power BI Premium, the Large dataset storage format must first be turned On. This is because the large dataset storage format allows models to take advantage of premium capacity features, including scale-out capabilities, which help distribute the load across multiple replicas for high-concurrency scenarios.
+- **DarioReymago** (3 upvotes): Defini...defini...definitively is C
 - **kaixin** (1 upvotes [Most Recent]): https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-scale-out 
 "The Scale-out queries for large semantic models setting for your tenant is enabled (default)."
 - **NRezgui** (1 upvotes): . At the semantic model level, set Large dataset storage format to On.
@@ -5676,12 +6301,17 @@ When users interact with a report built from the model, which mode will be used 
 ### Top explanations
 - **wojciech_wie** (77 upvotes [Highly Voted]): A. Direct Query "Row-level security only applies to queries on a Warehouse or SQL analytics endpoint in Fabric. Power BI queries on a warehouse in Direct Lake mode will fall back to Direct Query mode to abide by row-level security."
 https://learn.microsoft.com/en-us/fabric/data-warehouse/row-level-security
-- **FilipKrk** (8 upvotes): Confirm:
-https://learn.microsoft.com/en-us/fabric/get-started/direct-lake-overview
-"Queries using row-level security against tables in the warehouse (including the Lakehouse SQL analytics endpoint) will fall back to DirectQuery mode."
 - **Estratech** (27 upvotes [Highly Voted]): Direct lake . When users interact with a report built from a Direct Lake semantic model that uses Delta tables and RLS of the warehouse, the DAX queries will operate in Direct Lake mode. This mode is specifically designed for analyzing large data volumes in Power BI and is based on loading parquet-formatted files directly from a data lake without querying a Lakehouse or Warehouse endpoint. Unlike DirectQuery, there is no translation from DAX to other query languages, and it does not execute queries on other database systems. This results in performance similar to import mode, with the added benefit of picking up any changes at the data source as they occur12.
 
 Direct Lake mode supports row-level security (RLS), ensuring that users only see the data they have permission to view. It combines the advantages of both DirectQuery and import modes while avoiding their disadvantages, making it an ideal choice for very large models and models with frequent updates at the data source2.
+- **FilipKrk** (8 upvotes): Confirm:
+https://learn.microsoft.com/en-us/fabric/get-started/direct-lake-overview
+"Queries using row-level security against tables in the warehouse (including the Lakehouse SQL analytics endpoint) will fall back to DirectQuery mode."
+- **Jons123son** (6 upvotes): C. https://learn.microsoft.com/en-us/fabric/get-started/direct-lake-overview
+"Before using Direct Lake, you must provision a lakehouse (or a warehouse) with one or more Delta tables in a workspace...Direct Lake also supports row-level security and object-level security so users"
+
+And it is Fabric exam, so the obvious correct answers is a Fabric feature.
+- **IshtarSQL** (5 upvotes): When users interact with a report built from a Direct Lake semantic model, which leverages row-level security (RLS) and Delta tables from a warehouse, the DAX queries will operate in DirectQuery mode.
 
 <a id="q3-29"></a>
 ## Q3.29 (ID 911319)
@@ -5699,11 +6329,15 @@ What should you use from Microsoft Power BI Desktop?
 **Most voted:** C
 
 ### Top explanations
+- **XiltroX** (4 upvotes): Well this was kinda Captain Obvious.
 - **DocE** (2 upvotes): See:  https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationship-view
 - **NRezgui** (2 upvotes): C. Model view
 - **stilferx** (2 upvotes): IMHO, "C"
 
 Link: https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationship-view
+- **SamuComqi** (2 upvotes): C. Model view
+
+In the Model view, it is possible to analyze the semantic model and create new layouts.
 
 <a id="q3-30"></a>
 ## Q3.30 (ID 911320)
@@ -5736,8 +6370,20 @@ C. Query the $System.DISCOVER_STORAGE_TABLE_COLUMN_SEGMENTS dynamic management v
 DMVs: Dynamic Management Views (DMVs) provide detailed information about the operations of your Power BI models. Specifically, the $System.DISCOVER_STORAGE_TABLE_COLUMN_SEGMENTS DMV can give you insights into the storage and usage patterns of individual columns within your model.
 - **Momoanwar** (8 upvotes [Highly Voted]): I think BC.
 A is only tobread data and D only memory allocations
-- **NRezgui** (1 upvotes [Most Recent]): Use the Vertipaq Analyzer tool.
-C. Query the $System.DISCOVER_STORAGE_TABLE_COLUMN_SEGMENTS dynamic management view (DMV).
+- **FSCH_111** (5 upvotes): Other Options: WRONG
+A. Use the Analyze in Excel feature: This feature allows for interaction with the model data in Excel but does not provide detailed insights into column-level memory usage.
+
+D. Query the DISCOVER_MEMORYGRANT DMV: This DMV provides information about memory grants for queries but does not provide detailed information about the columns loaded into memory.
+- **stilferx** (4 upvotes): IMHO, 
+
+B & C
+Because:
+1. The DISCOVER_STORAGE_TABLE_COLUMN_SEGMENTS schema rowset returns information about the column segments used for storing data for in-memory tables.
+2. Very often there could be a few columns that are not required in your Power BI model, but they take up a lot of space. This is easy to find with Vertipaq Analyzer.
+
+Links: https://learn.microsoft.com/en-us/openspecs/sql_server_protocols/ms-ssas/948d5135-5bf4-4cf7-82c5-3a38746c2fb8
+https://www.fourmoo.com/2020/11/11/how-to-use-vertipaq-analyzer-with-dax-studio-for-power-bi-model-analysis/
+- **XiltroX** (3 upvotes): B and C is the right answer.
 
 <a id="q3-32"></a>
 ## Q3.32 (ID 911322)
@@ -5762,7 +6408,10 @@ NOTE: Each correct answer is worth one point.
 - **Momoanwar** (28 upvotes [Highly Voted]): A : Best practice
 D : measure better than column
 - **fabric1** (9 upvotes [Highly Voted]): I was under the impression that A should be correct due to the fact that separate date and time column achieve higher columnar redundancy and allow better data compression. Whereas solution B, an additional calculated column, would inflate the memory usage. Measure are not stored in memory and would therefore be favorable concerning the stated objective of reducing memory used and minimizing refresh times.
-- **NRezgui** (1 upvotes [Most Recent]): A & D is the answer
+- **Momoanwar** (7 upvotes): Its AD
+- **Nicofr** (3 upvotes): A should compress the memory size
+D should reduce the memory usage but
+- **Nefirs** (2 upvotes): It's A D
 
 <a id="q3-33"></a>
 ## Q3.33 (ID 911323)
@@ -5785,7 +6434,11 @@ NOTE: Each correct answer is worth one point.
 - **a_51** (8 upvotes [Highly Voted]): A,B turn enable discourage implicit measure for the semantic model. 
 https://learn.microsoft.com/en-us/power-bi/transform-model/model-explorer#discourage-implicit-measures
 https://docs.tabulareditor.com/api/TabularEditor.TOMWrapper.Model.html#TabularEditor_TOMWrapper_Model_DiscourageImplicitMeasures
-- **goldy29** (1 upvotes [Most Recent]): Only Power BI Desktop and Tabular Editor allow for schema-level changes to a Power BI dataset, so you can add, modify, or delete tables, columns, and relationships in the data model.
+- **estrelle2008** (4 upvotes): Microsoft Power BI Desktop and Tabular Editor are your go-to for creating explicit measures.
+- **stilferx** (3 upvotes): IMHO, A & B.
+
+SSMS - big NO, Dax Studio - only for DAX programming.
+- **Momoanwar** (3 upvotes): Ssms have nothing to do here and dax studio not alter model
 
 <a id="q3-52"></a>
 ## Q3.52 (ID 911342)
@@ -5813,34 +6466,24 @@ In this article you can see there are table1 and view1, performance analyser sho
 •	Second card is linked to View1 so it does direct query
 As the model can use direct lake and direct query you can conclude that the fallback behavior is automatic. 
 For direct lake behavior you can read this: https://powerbi.microsoft.com/en-us/blog/leveraging-pure-direct-lake-mode-for-maximum-query-performance
+- **wellingtonluis** (8 upvotes [Highly Voted]): There is no table visual in this image.
+- **AndreaRosho1** (7 upvotes): Asnwer: Automatic - DirectLake.
+ the image is cut bad. if you follow this link: https://learn.microsoft.com/en-us/fabric/get-started/direct-lake-analyze-query-processing you can see that in Data section of Power BI they are using two different tables
 - **SKM1964** (5 upvotes): In the article mentioned, it is written 
 "If the semantic model falls back to DirectQuery mode to process the visual’s DAX query, you see a Direct query performance metric, as shown in the following image:".
 So in my opinion, it should be Automatic and DirectQuery
-- **wellingtonluis** (8 upvotes [Highly Voted]): There is no table visual in this image.
+- **Valcon_doo_NoviSad** (5 upvotes): Additionally, this link (https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-analyze-qp) explicitly says the following: If the dataset falls back to DirectQuery mode to process the visual’s DAX query, you see a Direct query performance metric, as shown in the following image --> and the image is the exact same as in the question.
 
 <a id="q3-61"></a>
 ## Q3.61 (ID 916063)
 
 HOTSPOT
--
-Case study
--
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
--
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
--
 Litware, Inc. is a manufacturing company that has offices throughout North America. The analytics team at Litware contains data engineers, analytics engineers, data analysts, and data scientists.
 Existing Environment
--
 Fabric Environment
--
 Litware has been using a Microsoft Power BI tenant for three years. Litware has NOT enabled any Fabric capacities and features.
 Available Data
--
 Litware has data that must be analyzed as shown in the following table.
 The Product data contains a single table and the following columns.
 The customer satisfaction data contains the following tables:
@@ -5852,13 +6495,10 @@ For each survey submitted, the following occurs:
 •	One row is added to the Response table for each question in the survey.
 The Question table contains the text of each survey question. The third question in each survey response is an overall satisfaction score. Customers can submit a survey after each purchase.
 User Problems
--
 The analytics team has large volumes of data, some of which is semi-structured. The team wants to use Fabric to create a new data store.
 Product data is often classified into three pricing groups: high, medium, and low. This logic is implemented in several databases and semantic models, but the logic does NOT always match across implementations.
 Requirements
--
 Planned Changes
--
 Litware plans to enable Fabric features in the existing tenant. The analytics team will create a new data store as a proof of concept (PoC). The remaining Liware users will only get access to the Fabric features once the PoC is complete. The PoC will be completed by using a Fabric trial capacity
 The following three workspaces will be created:
 •	AnalyticsPOC: Will contain the data store, semantic models, reports pipelines, dataflow, and notebooks used to populate the data store
@@ -5872,7 +6512,6 @@ The following will be created in the AnalyticsPOC workspace:
 The data engineers will create data pipelines to load data to OneLake either hourly or daily depending on the data source. The analytics engineers will create processes to ingest, transform, and load the data to the data store in the AnalyticsPOC workspace daily. Whenever possible, the data engineers will use low-code tools for data ingestion. The choice of which data cleansing and transformation tools to use will be at the data engineers’ discretion.
 All the semantic models and reports in the Analytics POC workspace will use the data store as the sole data source.
 Technical Requirements
--
 The data store must support the following:
 •	Read access by using T-SQL or Python
 •	Semi-structured and unstructured data
@@ -5886,7 +6525,6 @@ The product pricing group logic must be maintained by the analytics engineers in
 •	List prices that are greater than 50 and less than or equal to 1,000 are in the medium pricing group.
 •	List prices that are greater than 1,000 are in the high pricing group.
 Security Requirements
--
 Only Fabric administrators and the analytics team must be able to see the Fabric items created as part of the PoC.
 Litware identifies the following security requirements for the Fabric items in the AnalyticsPOC workspace:
 •	Fabric administrators will be the workspace administrators.
@@ -5904,7 +6542,6 @@ Both the default and custom semantic models must include only tables or views fr
 •	DataEngineers: The data engineers on the analytics team
 •	AnalyticsEngineers: The analytics engineers on the analytics team
 Report Requirements
--
 The data analysts must create a customer satisfaction report that meets the following requirements:
 •	Enables a user to select a product to filter customer survey responses to only those who have purchased that product.
 •	Displays the average overall satisfaction score of all the surveys submitted during the last 12 months up to a selected dat.
@@ -5929,18 +6566,16 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ### Top explanations
 - **dp600** (15 upvotes [Highly Voted]): Direct Lake also supports row-level security and object-level security so that users only see the data they have permission to see.
 https://learn.microsoft.com/es-es/power-bi/enterprise/directlake-overview
-- **Allapanda** (3 upvotes): It's also saying "The analytics team has large volumes of data, some of which is semi-structured",as far as we know Direct Query can't handle semi-structured data, but DirectLake as well.
 - **gtc108** (8 upvotes [Highly Voted]): SSO and Direct Lake
+- **Fer079** (8 upvotes): According to the link you shared, it says "By default, Direct Lake models use single sign-on (SSO), so the effective permissions of the interactive user determine if the user is allowed or denied access to the data. If the Direct Lake model is configured to use a fixed identity, the effective permission of the fixed identity determines if users interacting with the semantic model can access the data."
+Therefore, why do you think that the authentication method is Service principal (fixed identity) instead of SSO (interactive user)?.
+- **dp600** (8 upvotes): Direct lake supports RLS
+- **pppppppppie** (6 upvotes): it should be service principle and direct lake.
+https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-fixed-identity
 
 <a id="q3-64"></a>
 ## Q3.64 (ID 916066)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -5995,35 +6630,30 @@ What should you recommend?
 
 ### Top explanations
 - **4371883** (11 upvotes [Highly Voted]): Fabric capacity SKUs all start with F, they allows for Pay as you go by the minute. Reserved capacity is also available. https://azure.microsoft.com/en-us/pricing/details/microsoft-fabric/
+- **2dc6125** (3 upvotes): fabric capacity SKU only start with F, so F is the only option.
+- **593150a** (3 upvotes): D. F  because : "The Research division workspaces must use a dedicated, on-demand capacity that has per-minute billing."
+- **stilferx** (2 upvotes): IMHO, D,
+
+Requirement:  The Research division workspaces must use a dedicated, on-demand capacity that has per-minute billing.
+
+Why: Microsoft Fabric Capacity (Pay-as-you-go or Reservation)
+Get a shared pool of capacity that powers all capabilities in Microsoft Fabric, from data modeling and data warehousing to business intelligence and AI experiences (one minute minimum).
+It is F license. Link: https://azure.microsoft.com/en-us/pricing/details/microsoft-fabric/
 - **282b85d** (1 upvotes [Most Recent]): Dedicated, On-Demand Capacity with Per-Minute Billing
 Support for All Fabric Experiences
 Grouping for OneLake Data Hub Filtering
 ead Access via SQL Endpoints and Lakehouse Explorer
-- **2dc6125** (3 upvotes): fabric capacity SKU only start with F, so F is the only option.
 
 <a id="q3-65"></a>
 ## Q3.65 (ID 916067)
 
 HOTSPOT
--
-Case study
--
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
--
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
--
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment
--
 Identity Environment
--
 Contoso has a Microsoft Entra tenant named contoso.com. The tenant contains two groups named ResearchReviewersGroup1 and ResearchReviewersGroup2.
 Data Environment
--
 Contoso has the following data environment:
 •	The Sales division uses a Microsoft Power BI Premium capacity.
 •	The semantic model of the Online Sales department includes a fact table named Orders that uses Import made. In the system of origin, the OrderID value represents the sequence in which orders are created.
@@ -6032,9 +6662,7 @@ Contoso has the following data environment:
 •	An Azure Data Lake Storage Gen2 storage account named storage1 contains Research division data for a product line named Productline1. The data is in the delta format.
 •	A Data Lake Storage Gen2 storage account named storage2 contains Research division data for a product line named Productline2. The data is in the CSV format.
 Requirements
--
 Planned Changes
--
 Contoso plans to make the following changes:
 •	Enable support for Fabric in the Power BI Premium capacity used by the Sales division.
 •	Make all the data for the Sales division and the Research division available in Fabric.
@@ -6042,7 +6670,6 @@ Contoso plans to make the following changes:
 •	In Productline1ws, create a lakehouse named Lakehouse1.
 •	In Lakehouse1, create a shortcut to storage1 named ResearchProduct.
 Data Analytics Requirements
--
 Contoso identifies the following data analytics requirements:
 •	All the workspaces for the Sales division and the Research division must support all Fabric experiences.
 •	The Research division workspaces must use a dedicated, on-demand capacity that has per-minute billing.
@@ -6051,17 +6678,14 @@ Contoso identifies the following data analytics requirements:
 •	For the Research division workspaces, the members of ResearchReviewersGroup2 must be able to read lakehouse data by using Lakehouse explorer.
 •	All the semantic models and reports for the Research division must use version control that supports branching.
 Data Preparation Requirements
--
 Contoso identifies the following data preparation requirements:
 •	The Research division data for Productline1 must be retrieved from Lakehouse1 by using Fabric notebooks.
 •	All the Research division data in the lakehouses must be presented as managed tables in Lakehouse explorer.
 Semantic Model Requirements
--
 Contoso identifies the following requirements for implementing and managing semantic models:
 •	The number of rows added to the Orders table during refreshes must be minimized.
 •	The semantic models in the Research division workspaces must use Direct Lake mode.
 General Requirements
--
 Contoso identifies the following high-level requirements that must be considered for all solutions:
 •	Follow the principle of least privilege when applicable.
 •	Minimize implementation and maintenance effort when possible.
@@ -6088,20 +6712,41 @@ If you use saveAsTable() you don't need to specify the path "Table/"
 If you you save() you specify the full path
 
 Ignore my previous comment!
-- **MultiCloudIronMan** (1 upvotes): Something is missing in the folder - The case study mentions that Contoso plans to create a lakehouse named Lakehouse1 in the workspace Productline1ws. Additionally, a shortcut to storage1 named ResearchProduct will be created in Lakehouse1. The data for Productline1 is stored in storage1 in the delta format.
+- **VAzureD** (10 upvotes [Highly Voted]): I just checked it in Fabric,
 
-Given this information, the path "Tables/productline1/ResearchProduct" in the code snippet:
-- **MultiCloudIronMan** (2 upvotes): I changed it should be Tables/productline1
+df.write.mode("overwrite").format("delta").save("productline1")
+It gives an error when executed, "productline1" would be valid if we use saveAsTable().
+
+df.write.mode("overwrite").format("delta").save("Tables/productline2")
+It works, it does what we expect, it is the correct solution.
+Create a managed table.
+
+df.write.mode("overwrite").format("delta").save("Tables/research/productline3")
+What it does is load a folder with our dataframe into the lakehouse.
+- **72bd3bc** (4 upvotes): can anyone explain why in the code we read csv file, not delta? if we have in the task:
+ An Azure Data Lake Storage Gen2 storage account named storage1 contains Research division data for a product line named Productline1. The data is in the delta format.
+Thank you.
+- **stilferx** (4 upvotes): IMHO, delta and Tables/productline1
+
+Data Preparation Requirements:
+• The Research division data for Productline1 must be retrieved from Lakehouse1 by using Fabric notebooks.
+• All the Research division data in the lakehouses must be presented as managed tables in Lakehouse explorer.
+
+Answers:
+- delta
+- Tables/productline1 - because of the root folder in Tables, no subfolder
+- **9878eb9** (3 upvotes): Correct.
+- "delta" 
+- "productline1"
+
+Requirements: Use managed tables.
+
+If you use saveAsTable()  you don't need to specify the path "Table/"
+If you you save() you specify the full path
 
 <a id="q3-66"></a>
 ## Q3.66 (ID 916068)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -6156,8 +6801,6 @@ What should you use to implement calculation groups for the Research division se
 ### Top explanations
 - **obii** (13 upvotes [Highly Voted]): The answer is D
 https://www.bing.com/videos/riverview/relatedvideo?q=how+to+implement+calculation+group+in+fabric&mid=DE305C502B1A6DA8AA03DE305C502B1A6DA8AA03&FORM=VIRE
-- **MM_GG** (4 upvotes): seems the answer is really D
-https://powerbi.microsoft.com/en-us/blog/announcing-calculation-groups-for-direct-lake-datasets/
 - **b65ecca** (8 upvotes [Highly Voted]): I was studying with practice assessment on Microsoft Learn's own page. I came across to a similar question:
 "You have a Fabric workspace that contains a lakehouse named Lakehouse1.
 Lakehouse1 requires additional time intelligence calculations added to its semantic model. The model has XMLA read/write permissions enabled.
@@ -6166,6 +6809,17 @@ What should you use?"
 The answer is Tabular Editor and explanation is as follows:
 
 Only Tabular Editor 2/3 can currently add calculation groups to a lakehouse semantic model. https://learn.microsoft.com/en-us/training/modules/create-calculation-groups/
+- **SKM1964** (5 upvotes): I am in trouble.
+Today Power BI Desktop permits the creation of Calculation Group.
+So A seems to be a valid answer
+- **MM_GG** (4 upvotes): seems the answer is really D
+https://powerbi.microsoft.com/en-us/blog/announcing-calculation-groups-for-direct-lake-datasets/
+- **stilferx** (4 upvotes): IMHO, D (Tabular Editor)
+
+Requirements:
+The semantic models in the Research division workspaces must use Direct Lake mode.
+
+Considering Contoso's requirement to minimize implementation and maintenance effort (general requirement), Tabular Editor offers a more efficient way to define calculation groups compared to manually writing DAX code. Additionally, since calculation groups are part of the semantic model itself, they can be deployed and managed alongside the model, simplifying maintenance.
 
 <a id="q3-69"></a>
 ## Q3.69 (ID 916071)
@@ -6189,12 +6843,14 @@ In which file format should you save the changes?
 -> Folder Hierarchy: It saves the project structure in a folder hierarchy, where each component of the Power BI project (like datasets, reports, data sources) is stored in separate files.
 -> Text-Based: Being a text-based format, it integrates well with Git repositories and supports diff and merge operations.
 - **PaweuG** (2 upvotes [Most Recent]): A - no-brainer
+- **luiruipu** (2 upvotes): A.PBIP Correct
 - **stilferx** (1 upvotes): IMHO, A) PBIP is correct.
 
 Why:
 Power BI Desktop introduces a new way to author, collaborate, and save your projects. When you save your work as a Power BI Project (PBIP), report and semantic model item definitions are saved as individual plain text files in a simple, intuitive folder structure.
 
 Link: https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview
+- **ES_Capgemini_IandD** (1 upvotes): https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-overview#:~:text=Power%20BI%20Desktop%20introduces%20a%20new%20way%20to%20author%2C%20collaborate%2C%20and%20save%20your%20projects.%20You%20can%20now%20save%20your%20work%20as%20a%20Power%20BI%20Project%20(PBIP).%20As%20a%20project%2C%20report%20and%20semantic%20model%20item%20definitions%20are%20saved%20as%20individual%20plain%20text%20files%20in%20a%20simple%2C%20intuitive%20folder%20structure.
 
 <a id="q3-81"></a>
 ## Q3.81 (ID 916083)
@@ -6213,13 +6869,18 @@ What should you configure?
 
 ### Top explanations
 - **gfors** (25 upvotes [Highly Voted]): Read the question carefully: "You need to prevent new tables added to Lakehouse1 from being added automatically to the default semantic model of the lakehouse." The answer is in the article https://learn.microsoft.com/en-us/fabric/data-warehouse/semantic-models but "Sync the default Power BI semantic model". The correct answer is there A
+- **2fe10ed** (13 upvotes [Highly Voted]): I've confirmed it on Fabric, and the correct answer is A.
+To change this setting, you need to open the settings of either the SQL analytics endpoint object of a Lakehouse or the warehouse object of a warehouse.
+- **Nefirs** (6 upvotes): A - check here: https://learn.microsoft.com/en-us/fabric/data-warehouse/default-power-bi-semantic-model#add-or-remove-objects-to-the-default-power-bi-semantic-model
+- **4f3a33d** (5 upvotes): Tested in Fabric; go to >  SQL Endpoint > ... > Settings > Default Power BI semantic model > Sync the default Power BI semantic model > On | Off
+
+Add objects from the lakehouse to the default Power BI semantic model. Also, update the model with any new objects added to the lakehouse. You can use this model to build reports faster with lakehouse data.
 - **ManuelG00** (4 upvotes): So, pay attention. The Answer is C
 "Previously we auto added all tables and views in the Warehouse to the default Power BI semantic model. Based on feedback, we have modified the default behavior to not automatically add tables and views to the default Power BI semantic model. This change will ensure the background sync will not get triggered. This will also disable some actions like "New Measure", "Create Report", "Analyze in Excel".
 
 If you want to change this default behavior, you can:
 
 Manually enable the Sync the default Power BI semantic model setting for each Warehouse or SQL analytics endpoint in the workspace. This will restart the background sync that will incur some consumption costs."
-- **4f3a33d** (1 upvotes): Just curious, where you  can do this in the workspace settings, I cannot find it here, but I can find it under the SQL endpoint.
 
 <a id="q3-87"></a>
 ## Q3.87 (ID 916089)
@@ -6238,8 +6899,18 @@ What should you use?
 
 ### Top explanations
 - **Nefirs** (13 upvotes [Highly Voted]): Best Practice Analyzer should be able to identify these with some rules
-- **Sowwy1** (1 upvotes [Most Recent]): I think it’s D
+- **harshalt10** (9 upvotes): The question is about identifying, not changing. I think it should be D.
 - **Rataxe** (3 upvotes): Model view in Microsoft Power BI Desktop: This tool allows you to visually inspect and manage the relationships and properties of tables and columns in your Power BI model. You can easily identify surrogate key columns and check their Summarize By property.
+- **rlo123** (3 upvotes): D (although it can be done it B, but not as efficiently as D)
+To identify surrogate key columns with the 'Summarize By' property set to a value other than 'None,' the Best Practice Analyzer in Tabular Editor is the most efficient tool. The Best Practice Analyzer can analyze the entire model and provide a report on all columns that do not meet a specified best practice, such as having the 'Summarize By' property set correctly for surrogate key columns. Here's how you would proceed:
+Open your Power BI model in Tabular Editor.
+Go to the Advanced Scripting window.
+Write or use an existing script that checks the 'Summarize By' property of each column.
+Execute the script to get a report on the surrogate key columns that do not have their 'Summarize By' property set to 'None'.
+
+You can then review and adjust the properties of the columns directly within the Tabular Editor.
+- **282b85d** (2 upvotes): The Best Practice Analyzer (BPA) in Tabular Editor can be configured to check for specific properties and configurations in your model. This includes identifying columns with certain "Summarize By" settings.
+You can create or use existing BPA rules to quickly identify any surrogate key columns that do not have the "Summarize By" property set to "None," thus minimizing the manual effort required.
 
 <a id="q3-89"></a>
 ## Q3.89 (ID 916091)
@@ -6262,6 +6933,7 @@ What should you use?
 **Most voted:** C
 
 ### Top explanations
+- **andrewkravchuk97** (9 upvotes): Tabular Editor allows you to use C# scripts to automate these changes. In PBI Desktop you can do this only manually
 - **stilferx** (6 upvotes [Highly Voted]): IMHO, C) Tabulr Editor is good.
 
 Here's why the other options are not ideal for this scenario:
@@ -6269,18 +6941,18 @@ Here's why the other options are not ideal for this scenario:
 1) Microsoft Power BI Desktop: doesn't offer functionalities for bulk programmatic changes based on naming conventions.
 2) ALM Toolkit: it's not specifically designed for modifying the structure of semantic models within the tool itself.
 3) DAX Studio doesn't provide functionalities for directly modifying model structure or properties en masse.
+- **Nefirs** (3 upvotes): Tabular Editor seems most correct for me
+- **Nefirs** (3 upvotes): yes, in theory, however, not programmatically, only manually
 - **ZozoG** (1 upvotes [Most Recent]): You need a tool that allows bulk editing and scripting. Tabular Editor is the only option among the choices that:
 
 Supports C# scripting to automate changes across multiple columns.
 Provides access to advanced metadata properties.
 Can save and apply changes directly to the semantic model.
-- **Nefirs** (3 upvotes): Tabular Editor seems most correct for me
 
 <a id="q3-90"></a>
 ## Q3.90 (ID 916092)
 
 HOTSPOT
--
 You have a Microsoft Power BI semantic model.
 You plan to implement calculation groups.
 You need to create a calculation item that will change the context from the selected date to month-to-date (MTD).
@@ -6296,6 +6968,7 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 **Most voted:** Don't confuse people, the answer is correct. Calculate + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.
 
 ### Top explanations
+- **andrewkravchuk97** (33 upvotes): Don't confuse people, the answer is correct. Calculate  + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.
 - **4371883** (21 upvotes [Highly Voted]): CALCULATE
 SELECTEDMEASURE
 more info refer to:
@@ -6303,6 +6976,18 @@ https://www.sqlbi.com/articles/using-calculation-groups-to-selectively-replace-m
 - **stilferx** (7 upvotes [Highly Voted]): IMHO, Calculate / SELECTEDMEASURE,
 
 Source: https://learn.microsoft.com/en-us/dax/selectedmeasure-function-dax#example
+- **554b579** (6 upvotes): CALCULATE(Selectedvalue(), DATESMTD('Date'[Date])) combines two DAX functions to achieve a specific result
+Selectedvalue():
+This function returns the value of the currently selected item in a column.
+It is commonly used in scenarios where you want to retrieve a single value from a column (such as a slicer selection).
+DATESMTD('Date'[Date]):
+The DATESMTD function calculates the month-to-date (MTD) total for a given expression.
+It considers all dates from the beginning of the month up to the current date defined by the filter context.
+In this case, it operates on the 'Date'[Date] column.
+Overall Purpose:
+The entire expression calculates the MTD value for the currently selected item (such as a date) based on the date context.
+It’s useful for creating dynamic MTD calculations that adjust automatically based on user selections.
+For example, if you have a measure called “Sales Amount” and you want to calculate the MTD sales amount based on the selected date, this expression would give you that value.
 - **Sowwy1** (1 upvotes [Most Recent]): Calculate
 Selectedmeasure
 
@@ -6330,7 +7015,10 @@ What will provide the greatest reduction in the rendering duration of Report1?
 
 "Other - This is the time required by the visual for preparing queries, waiting for other visuals to complete, or performing other background processing."
 - **282b85d** (5 upvotes [Highly Voted]): While optimizing the DAX query could slightly improve performance, the DAX query duration (27 ms) is already very low. The "Other" duration (1047 ms) is significantly higher than the DAX query (27 ms) and the visual display (39 ms) durations combined. This indicates that most of the time is spent on backend processes such as data preparation, transformations, or communication with the data source. By reducing the number of visuals in Report1, you can decrease the overall load on the report rendering process.
-- **zoeinola** (1 upvotes [Most Recent]): The duration breakdown for Orders By Date is shown, not duration breakdown of Report1. Technically speaking and taking into consideration the English language context of the question, the question does not provide duration of other visuals in Report1 and the question mentioned that the problem was with a particular visual Order By Date, so I don't think reducing other visuals in Report1 would solve the problem caused by Order By Date. The correct answer should be B. Another thing I have noticed about the Microsoft exams is that the use of English language are poorly worded, my suspicion is that English language is not the first language of those responsible for setting the questions.
+- **Nefirs** (4 upvotes): "Other is slow" -> "Other" implies e.g. waiting time for other visuals. D is the solutio.
+- **nappi1** (2 upvotes): very unclever question. there isn't enough context, it can be any of these.
+ofc you point to Other as the cause, so what referenced by neoverma seems reasonable
+- **David_Webb** (2 upvotes): Other is referring to the time needed to waiting for other visuals to complete.
 
 <a id="q3-92"></a>
 ## Q3.92 (ID 916094)
@@ -6370,6 +7058,17 @@ https://powerbi.microsoft.com/en-au/blog/leveraging-pure-direct-lake-mode-for-ma
 - **ZozoG** (2 upvotes [Most Recent]): In Microsoft Fabric, when working with a Direct Lake semantic model, ensuring that queries always use Direct Lake mode (instead of falling back to Import or DirectQuery) requires configuring the Direct Lake Behavior setting.
 
 This setting controls how the model interacts with the Delta tables in the lakehouse and ensures that query execution remains in Direct Lake mode, which is optimized for performance and scalability—especially important with large datasets like your one billion rows.
+- **Ous01** (2 upvotes): In Tabular Editor version 3, it is possible to change the Default Mode to Direct Lake and it will be the right answer. Now I am confused with this question as TE version 2.5 does not allow the Default Mode of Direct Lake, so the only option is the Direct Lake Behavior.
+- **stilferx** (2 upvotes): IMHO, D, 
+
+Because:
+Direct Lake models include the DirectLakeBehavior property, which has three options:
+...
+**DirectLakeOnly** - Specifies all queries use Direct Lake mode only. Fallback to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned. Use this setting to determine if DAX queries fail to load data into memory, forcing an error to be returned.
+...
+The DirectLakeBehavior property can be configured by using Tabular Object Model (TOM) or Tabular Model Scripting Language (TMSL).
+
+Link: https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-overview#fallback-behavior
 
 <a id="q3-100"></a>
 ## Q3.100 (ID 916102)
@@ -6391,34 +7090,21 @@ What should you use to transform and visualize the data?
 
 ### Top explanations
 - **282b85d** (5 upvotes [Highly Voted]): PySpark provides robust capabilities for data transformation and manipulation, making it well-suited for preparing data for time series analysis. You can then use libraries like pandas for further data manipulation if needed and leverage Spark's machine learning capabilities for anomaly detection.
+- **clux** (4 upvotes): Correct
 - **stilferx** (2 upvotes [Most Recent]): IMHO, A) PySpark is winner.
 
 Because of parallelization (Pandas is not distributed, PBI - has different doals)
-- **clux** (4 upvotes): Correct
 
 <a id="q3-110"></a>
 ## Q3.110 (ID 931006)
 
 HOTSPOT
--
-Case study
--
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study
--
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview
--
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment
--
 Identity Environment
--
 Contoso has a Microsoft Entra tenant named contoso.com. The tenant contains two groups named ResearchReviewersGroup1 and ResearchReviewersGroup2.
 Data Environment
--
 Contoso has the following data environment:
 •	The Sales division uses a Microsoft Power BI Premium capacity.
 •	The semantic model of the Online Sales department includes a fact table named Orders that uses Import made. In the system of origin, the OrderID value represents the sequence in which orders are created.
@@ -6427,9 +7113,7 @@ Contoso has the following data environment:
 •	An Azure Data Lake Storage Gen2 storage account named storage1 contains Research division data for a product line named Productline1. The data is in the delta format.
 •	A Data Lake Storage Gen2 storage account named storage2 contains Research division data for a product line named Productline2. The data is in the CSV format.
 Requirements
--
 Planned Changes
--
 Contoso plans to make the following changes:
 •	Enable support for Fabric in the Power BI Premium capacity used by the Sales division.
 •	Make all the data for the Sales division and the Research division available in Fabric.
@@ -6437,7 +7121,6 @@ Contoso plans to make the following changes:
 •	In Productline1ws, create a lakehouse named Lakehouse1.
 •	In Lakehouse1, create a shortcut to storage1 named ResearchProduct.
 Data Analytics Requirements
--
 Contoso identifies the following data analytics requirements:
 •	All the workspaces for the Sales division and the Research division must support all Fabric experiences.
 •	The Research division workspaces must use a dedicated, on-demand capacity that has per-minute billing.
@@ -6446,17 +7129,14 @@ Contoso identifies the following data analytics requirements:
 •	For the Research division workspaces, the members of ResearchReviewersGroup2 must be able to read lakehouse data by using Lakehouse explorer.
 •	All the semantic models and reports for the Research division must use version control that supports branching.
 Data Preparation Requirements
--
 Contoso identifies the following data preparation requirements:
 •	The Research division data for Productline1 must be retrieved from Lakehouse1 by using Fabric notebooks.
 •	All the Research division data in the lakehouses must be presented as managed tables in Lakehouse explorer.
 Semantic Model Requirements
--
 Contoso identifies the following requirements for implementing and managing semantic models:
 •	The number of rows added to the Orders table during refreshes must be minimized.
 •	The semantic models in the Research division workspaces must use Direct Lake mode.
 General Requirements
--
 Contoso identifies the following high-level requirements that must be considered for all solutions:
 •	Follow the principle of least privilege when applicable.
 •	Minimize implementation and maintenance effort when possible.
@@ -6479,7 +7159,6 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 ## Q3.115 (ID 931011)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a semantic model named model1. The two largest columns in model1 are shown in the following table.
 You need to optimize model1. The solution must meet the following requirements:
 •	Reduce the model size.
@@ -6536,8 +7215,8 @@ Does this meet the goal?
 
 ### Top explanations
 - **Pegooli** (6 upvotes [Highly Voted]): This change is logically equivalent to the original condition and does not optimize the performance.
-- **nappi1** (1 upvotes [Most Recent]): The performance must be the same
 - **Martin_Nbg** (3 upvotes): No is correct. Performance would be about the same.
+- **nappi1** (1 upvotes [Most Recent]): The performance must be the same
 
 <a id="q3-120"></a>
 ## Q3.120 (ID 934198)
@@ -6558,8 +7237,17 @@ What should you do first?
 
 ### Top explanations
 - **MultiCloudIronMan** (7 upvotes [Highly Voted]): Adding a managed identity to App1 will allow it to authenticate and access resources securely without needing to manage credentials explicitly. This is the first step in configuring the app to use a service account for accessing the model via the XMLA endpoint.
+- **Bumstar1** (3 upvotes): A. Add a managed identity to the workspace.
+Incorrect. Managed identities are associated with Azure resources (e.g., App Services), not directly with Power BI workspaces.
+B. Modify the XMLA Endpoint setting.
+Incorrect. While XMLA endpoints are required, modifying their settings alone won't enable service account access for App1.
+C. Upgrade the workspace to Premium capacity.
+Correct. To use a service account (managed identity or service principal), the workspace must be in Premium capacity. PPU does not support service principal authentication.
+D. Add a managed identity to App1.
+Incorrect. While adding a managed identity is necessary for App1, this step comes after ensuring the workspace supports service principal authentication, which requires Premium capacity.
+- **abhijitger12** (3 upvotes): First line mentions it uses premium per user workspace
 - **0954007** (2 upvotes [Most Recent]): This is the key one. PPU does NOT support service principals / service accounts via XMLA. Only Premium capacity (P-SKU) or Fabric F-SKU supports service principal access to the XMLA endpoint. PPU is limited to interactive user sign-in only — which is exactly the problem described. You must upgrade first before anything else works.
-- **a8d510b** (1 upvotes): To enable app-only authentication, the semantic model must reside in a Premium capacity.
+- **Dusica** (2 upvotes): PPU workspace cannot be accessed by service account
 
 <a id="q3-127"></a>
 ## Q3.127 (ID 934205)
@@ -6639,17 +7327,16 @@ Does this meet the goal?
 **Most voted:** A
 
 ### Top explanations
+- **shorymor** (2 upvotes): Answer is correct. you should use USERPRINCIPALNAME()
 - **b979df8** (1 upvotes): https://learn.microsoft.com/en-us/fabric/security/service-admin-row-level-security
 
 Within the Power BI service, username() and userprincipalname() will both return the user's User Principal Name (UPN). This looks similar to an email address.
 - **nappi1** (1 upvotes): user principal name (UPN) of a user is returned by the USERPRINCIPALNAME() function
-- **shorymor** (2 upvotes): Answer is correct. you should use USERPRINCIPALNAME()
 
 <a id="q3-133"></a>
 ## Q3.133 (ID 936834)
 
 HOTSPOT
--
 You have a Fabric tenant that contains the semantic model shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
 NOTE: Each correct selection is worth one point.
@@ -6669,6 +7356,10 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 "DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned."
 
 Answer is Direct Lake
+- **testtaker45** (4 upvotes): DirectQuery, Undefined
+Here is the kicker, if you are in Direct Lake Mode, and see 'Querying SQL', it will fall back to Direct Query. Direct Lake Mode can't handle SQL for various reasons, some being the type of data (likely Parquet), others being Direct Lake mode can't handle SQL Operations like Queries and Aggregations, joins, etc. 
+If you see Direct Lake, and they are talking about SQL, think Direct Query. Good luck everyone -
+- **Chandler9714** (4 upvotes): Normally this would be true, but the visual shows that the Direct Lake Behavior is set to Direct Lake Only to ensure fall back to DirectQuery will not occur.
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s direct query and undefined
 
 <a id="q3-134"></a>
@@ -6697,7 +7388,6 @@ Does this meet the goal?
 ## Q3.140 (ID 936841)
 
 HOTSPOT
--
 You have a Microsoft Power Bl project that contains a file named definition.pbir. definition.pbir contains the following JSON.
 For each of the following statements, select Yes if the statement is true. Otherwise, select No.
 NOTE: Each correct selection is worth one point.
@@ -6721,6 +7411,16 @@ _HOTSPOT — the original ExamTopics question expects you to mark areas on the e
 3. Since the semantic model is referenced locally (via byPath), Power BI Desktop can load the dataset file and allow edits to the model. This behavior aligns with how local datasets are treated in Power BI Desktop.
 
 Hope this helps!
+- **4e5cf3d** (3 upvotes): 1. "definition.pbir is in the PBIR-Legacy format."
+The file uses the .pbir extension, which is associated with Power BI Report files. The JSON structure shows "version": "1.0", which is consistent with the newer format (not legacy). The legacy format typically uses .pbix or .rdl files.
+Answer: No.
+"The semantic model referenced by definition.pbir is located in the Power BI service."
+The JSON references the semantic model using "byPath" with a local path "../Sales.Dataset". This indicates the semantic model is stored locally, not in the Power BI service. If it were in the service, it would likely use "byConnection" with a service URL or similar.
+Answer: No.
+"When the related report is opened, Power BI Desktop will open the semantic model in full edit mode."
+Since the semantic model is referenced locally ("byPath"), Power BI Desktop will open it in full edit mode, allowing modifications to the model.
+Answer: Yes.
+- **jackjack1** (2 upvotes): Yes, no, no https://learn.microsoft.com/en-us/power-bi/developer/projects/projects-report#definitionpbir. When byConnection is set, it will not open in full edit mode, when version 1.0 is specified it must be stored as legacy format, and there is no path specified for the pbi service
 - **Sowwy1** (1 upvotes [Most Recent]): I think it s no, no, yes
 - **ab483f6** (1 upvotes): No, No, Yes
 No – Version 1.0 is the new PBIR format, not legacy
@@ -6747,10 +7447,12 @@ What should you do in Workspace1?
 - **02d22cb** (5 upvotes [Highly Voted]): From Microsoft learn : If you're planning to use XMLA endpoint-based tools for semantic model write operations, be sure to enable the setting, even for semantic models that you wouldn't necessarily characterize as a large semantic model. When enabled, the large semantic model storage format can improve XMLA write operations performance.
 
 https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-large-models
-- **Sowwy1** (1 upvotes [Most Recent]): I think it s D
 - **aks2304** (2 upvotes): To optimize the deployment of Model1 using the XMLA endpoint and minimize the deployment time, you should select Large semantic model storage format. This format is designed to handle larger datasets more efficiently, which can significantly reduce the time required for deployment and processing.
 
 So, the correct answer is D. Select Large semantic model storage format.
+- **Jonelp** (2 upvotes): Incorrect because small models have lower memory and storage limits, which could slow down large deployments.
+- **Sowwy1** (1 upvotes [Most Recent]): I think it s D
+- **g2000** (1 upvotes): smaller semantic model storage format --> remove unnecessary data model size --> faster deployment
 
 <a id="q3-143"></a>
 ## Q3.143 (ID 936844)
@@ -6768,11 +7470,11 @@ Which setting should modify?
 **Most voted:** D
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s D
-- **JuanGonzalezT** (1 upvotes): "Power BI Premium, Premium Per User, and Power BI Embedded workspaces use an XMLA endpoint to support open-platform connectivity from Microsoft and third-party client applications and tools."
 - **02d22cb** (3 upvotes): XMLA Endpoints are only supported on Premium, Premium Per User, and Power BI Embedded workspaces. 
 
 https://learn.microsoft.com/en-us/power-bi/enterprise/service-premium-connect-tools
+- **Sowwy1** (1 upvotes): I think it s D
+- **JuanGonzalezT** (1 upvotes): "Power BI Premium, Premium Per User, and Power BI Embedded workspaces use an XMLA endpoint to support open-platform connectivity from Microsoft and third-party client applications and tools."
 
 <a id="q3-144"></a>
 ## Q3.144 (ID 936845)
@@ -6790,20 +7492,19 @@ What should you use from Microsoft Power BI Desktop?
 **Most voted:** C
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s C
-- **JuanGonzalezT** (1 upvotes): Answer: C
-https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-modeling-view#create-separate-diagrams
-"With Model view, you can create diagrams of your model that contain only a subset of the tables in your model."
 - **zmeya** (3 upvotes): ChatGPT: The correct answer is C. Model view
 
 Explanation:
 The Model view in Microsoft Power BI Desktop allows you to visualize the relationships between tables in a semantic model. It displays a diagram of the data model, where you can focus on specific tables, such as the Sales fact table and its related tables, by arranging or filtering the view. This is the ideal tool for analyzing the structure of a star schema and understanding table relationships.
+- **Sowwy1** (1 upvotes): I think it s C
+- **JuanGonzalezT** (1 upvotes): Answer: C
+https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-modeling-view#create-separate-diagrams
+"With Model view, you can create diagrams of your model that contain only a subset of the tables in your model."
 
 <a id="q3-145"></a>
 ## Q3.145 (ID 936846)
 
 HOTSPOT
--
 You have a Fabric tenant that contains a lakehouse named LH1.
 You need to deploy a new semantic model. The solution must meet the following requirements:
 •	Support complex calculated columns that include aggregate functions, calculated tables, and Multidimensional Expressions (MDX) user hierarchies.
@@ -6825,6 +7526,9 @@ Mode: Import
 Provides the necessary support for calculated columns, calculated tables, and MDX hierarchies while optimizing performance.
 Query Caching: On
 Ensures minimal page rendering times by enabling caching.
+- **6f38739** (4 upvotes): Import, On
+
+Calculated columns with direct lake are not supported
 - **JuanGonzalezT** (1 upvotes [Most Recent]): Answer:
 A: Import
 
@@ -6839,19 +7543,10 @@ B: On
 https://learn.microsoft.com/en-us/power-bi/connect-data/power-bi-query-caching
 
 "Organizations with Power BI Premium or Power BI Embedded can take advantage of query caching to speed up reports associated with a semantic model. Query caching instructs the Power BI Premium or Power BI Embedded capacity to use its local caching service to maintain query results, avoiding having the underlying data source compute those results."
-- **6f38739** (4 upvotes): Import, On
-
-Calculated columns with direct lake are not supported
 
 <a id="q3-148"></a>
 ## Q3.148 (ID 939098)
 
-Case study -
-This is a case study. Case studies are not timed separately. You can use as much exam time as you would like to complete each case. However, there may be additional case studies and sections on this exam. You must manage your time to ensure that you are able to complete all questions included on this exam in the time provided.
-To answer the questions included in a case study, you will need to reference information that is provided in the case study. Case studies might contain exhibits and other resources that provide more information about the scenario that is described in the case study. Each question is independent of the other questions in this case study.
-At the end of this case study, a review screen will appear. This screen allows you to review your answers and to make changes before you move to the next section of the exam. After you begin a new section, you cannot return to this section.
-To start the case study -
-To display the first question in this case study, click the Next button. Use the buttons in the left pane to explore the content of the case study before you answer the questions. Clicking these buttons displays information such as business requirements, existing environment, and problem statements. If the case study has an All Information tab, note that the information displayed is identical to the information displayed on the subsequent tabs. When you are ready to answer a question, click the Question button to return to the question.
 Overview -
 Contoso, Ltd. is a US-based health supplements company. Contoso has two divisions named Sales and Research. The Sales division contains two departments named Online Sales and Retail Sales. The Research division assigns internally developed product lines to individual teams of researchers and analysts.
 Existing Environment -
@@ -6904,13 +7599,19 @@ Which syntax should you use in a notebook to access the Research division data f
 **Most voted:** A
 
 ### Top explanations
-- **Sowwy1** (1 upvotes): I think it s A
-- **305f883** (1 upvotes): The Delta format doesn't support tables with space characters in the name. Any shortcut containing a space in the name won't be discovered as a Delta table in the lakehouse
+- **JuanGonzalezT** (4 upvotes): It's A, we've seen it before:
+
+https://learn.microsoft.com/en-us/fabric/onelake/onelake-shortcuts#apache-spark
+
+"df = spark.read.format("delta").load("Tables/MyShortcut")" or
+"df = spark.sql("SELECT * FROM MyLakehouse.MyShortcut")"
 - **7973c85** (2 upvotes): Les shortcuts dans un lakehouse apparaissent dans le dossier /Files.
 
 Pour accéder à ces shortcuts dans un notebook Spark (notamment PySpark), il faut utiliser une syntaxe du type :
 df = spark.read.format("delta").load("Files/")
 Cela s'applique aux raccourcis pointant vers Azure Data Lake, Amazon S3, ou Google Cloud Storage.
+- **Sowwy1** (1 upvotes): I think it s A
+- **305f883** (1 upvotes): The Delta format doesn't support tables with space characters in the name. Any shortcut containing a space in the name won't be discovered as a Delta table in the lakehouse
 
 <a id="q3-152"></a>
 ## Q3.152 (ID 939102)
@@ -6929,13 +7630,14 @@ What should you do?
 **Most voted:** Not provided
 
 ### Top explanations
+- **wgaignard2** (2 upvotes): Apply sensitivity labels to the semantic model and reports.
+https://learn.microsoft.com/en-us/fabric/governance/data-loss-prevention-configure
+- **testtaker45** (2 upvotes): Sensitivity Labels are usually integrated with DLP. C is the right answer.
 - **JuanGonzalezT** (1 upvotes): Answer: C
 
 https://learn.microsoft.com/en-us/purview/dlp-powerbi-get-started#how-dlp-policies-for-fabric-and-power-bi-work
 
 "You define a DLP policy in the data loss prevention section of the Microsoft Purview portal. In the policy, you specify the conditions, such as which sensitivity labels and/or sensitive info types you want to detect."
-- **wgaignard2** (2 upvotes): Apply sensitivity labels to the semantic model and reports.
-https://learn.microsoft.com/en-us/fabric/governance/data-loss-prevention-configure
 - **aks2304** (1 upvotes): To apply the DLP policy (DLP1) to the items in Workspace1, you should apply sensitivity labels to the semantic model and reports. Sensitivity labels are used to classify and protect data across Microsoft 365 services, including Power BI
 
 So, the correct answer is C. Apply sensitivity labels to the semantic model and reports.
@@ -6961,9 +7663,12 @@ What will the contents of Workspace_TEST be once the deployment is complete?
 
 ### Top explanations
 - **testtaker45** (5 upvotes [Highly Voted]): This is a silly question. In the pipeline, you can copy the contents if desired, from items like Lakehouse1 to Lakehouse2, you could even rename them if you wanted. This is very specific to say the names of the matching items will be paired. I thought this was a strange way of wording it, but when I saw A, I knew what they meant. This is just a trick question. It almost got me...
+- **MYPE** (3 upvotes): you are right @testtaker45.
+to find the solution, just think of elements that are currently in DEV + elements already in TEST. Add them and this is Answer A.
 - **Dusica** (1 upvotes [Most Recent]): However, question says deploys using pipeline one which sounds to me like pipeline 1 is a deployment and not a data pipeline? anyone?
 - **Dusica** (1 upvotes): withdrawing selection, aimed to tick A 
 comment is ok since 2 pipeline1s  make question ambiguous.
+- **Dusica** (1 upvotes): what about the semantic model. It is not listed in A, should have been semantic model 1 instead of pipeline 1
 
 <a id="q3-163"></a>
 ## Q3.163 (ID 939113)
@@ -7035,11 +7740,11 @@ What should you include in the solution?
 **Most voted:** Not provided
 
 ### Top explanations
+- **Rataxe** (3 upvotes): To format the value returned by TotalSalesAmount with the correct currency symbol in your semantic model, you can use a dynamic format string in your DAX expression. Dynamic format strings allow you to apply custom formatting based on the context or user selection, such as displaying the appropriate currency symbol.
 - **JuanGonzalezT** (1 upvotes): Answer: C
 
 https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-dynamic-format-strings
 "With dynamic format strings for measures, you can determine how measures appear in visuals by conditionally applying a format string with a separate DAX formula."
-- **Rataxe** (3 upvotes): To format the value returned by TotalSalesAmount with the correct currency symbol in your semantic model, you can use a dynamic format string in your DAX expression. Dynamic format strings allow you to apply custom formatting based on the context or user selection, such as displaying the appropriate currency symbol.
 
 <a id="q3-180"></a>
 ## Q3.180 (ID 942891)
@@ -7085,7 +7790,6 @@ This format is optimized for scenarios where semantic models are frequently upda
 ## Q3.183 (ID 942894)
 
 HOTSPOT
--
 You are creating a report and a semantic model in Microsoft Power BI Desktop.
 The Value measure has the expression shown in the following exhibit.
 Use the drop-down menus to select the answer choice that completes each statement based on the information presented in the graphic.
@@ -7109,12 +7813,12 @@ Percentages or decimal number: This is the correct choice. The measure can retur
 Where as other is confusing in verbiage 
 It can be Whole Number, Percentage with 2 decimal and last part 3 decimal place number.
 So I will go with Percentages and Whole Numbers
+- **Sr18** (1 upvotes): for last part I mean thousand separator
 
 <a id="q3-185"></a>
 ## Q3.185 (ID 955732)
 
 HOTSPOT
--
 You have a Fabric workspace named Workspace1 that uses the Premium Per User (PPU) license mode and contains a semantic model named Model1.
 Large semantic model storage format is selected for Model1.
 You need to ensure that tables imported into Model1 are written automatically to Delta tables in OneLake.
@@ -7150,9 +7854,10 @@ What should you use?
 **Most voted:** C
 
 ### Top explanations
+- **Sdigi** (4 upvotes): Model view allow to check columns. Also Tabular Editor
+- **Aiden90** (3 upvotes): B. Model explorer in Microsoft Power BI Desktop
 - **Sowwy1** (1 upvotes): I think it s C
 - **Fawzi_94** (1 upvotes): Model view allow to check columns.
-- **Sdigi** (4 upvotes): Model view allow to check columns. Also Tabular Editor
 
 <a id="q3-195"></a>
 ## Q3.195 (ID 955742)
@@ -7175,9 +7880,6 @@ What should you add to Model1?
 **Most voted:** B
 
 ### Top explanations
-- **21ad543** (1 upvotes): B based off links in discussion
-- **Arathy1990** (2 upvotes): Bridge table or factless fact table between the two Dimension tables is right. The same example is demonstrated in the below link
-https://learn.microsoft.com/en-us/power-bi/guidance/relationships-many-to-many#relate-many-to-many-dimensions
 - **Aiden90** (3 upvotes): B. a bridge table with relationships to DimCustomer and DimAccount
 
 Yes. A bridge table (often called an account-customer mapping table) resolves the many-to-many relationship between accounts and customers.
@@ -7185,6 +7887,9 @@ Yes. A bridge table (often called an account-customer mapping table) resolves th
 Then, FactTransaction → DimAccount → Bridge → DimCustomer allows correct aggregation.
 
 ✅ Correct.
+- **Arathy1990** (2 upvotes): Bridge table or factless fact table between the two Dimension tables is right. The same example is demonstrated in the below link
+https://learn.microsoft.com/en-us/power-bi/guidance/relationships-many-to-many#relate-many-to-many-dimensions
+- **21ad543** (1 upvotes): B based off links in discussion
 
 <a id="q3-196"></a>
 ## Q3.196 (ID 955743)
@@ -7204,10 +7909,12 @@ What is a possible cause of the failure?
 **Most voted:** E
 
 ### Top explanations
+- **Dusica** (2 upvotes): The data type of the column used to partition the data has changed
+- **LILIA97** (2 upvotes): The data type of the column used to partition the data has changed
 - **Sowwy1** (1 upvotes): I think it s E
 - **elimey** (1 upvotes): Incremental refresh in Power BI (and Fabric semantic models) relies heavily on query folding to push filtering and partitioning logic back to the data source.
 If query folding does not occur, Power BI must load all data from the source and then apply filters locally, which consumes a lot of memory and CPU resources.
-- **Dusica** (2 upvotes): The data type of the column used to partition the data has changed
+- **hhhhh123** (1 upvotes): Answer is E. Same question Q26
 
 <a id="q3-216"></a>
 ## Q3.216 (ID 999487)

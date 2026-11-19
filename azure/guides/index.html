@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azure AI &amp; Microsoft Fabric Certification Study Hub</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --bg: #f4efe7;
+      --surface: #fffdf8;
+      --surface-2: #f8f1e5;
+      --text: #211f1b;
+      --text-secondary: #625a50;
+      --accent: #175cd3;
+      --accent-ink: #0f3f92;
+      --accent-soft: #dbeafe;
+      --success: #147a46;
+      --border: #e0d4c3;
+      --shadow: 0 16px 44px rgba(52, 38, 20, 0.1);
+    }
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #10141f;
+      --surface: #171d2b;
+      --surface-2: #20283a;
+      --text: #f5efe7;
+      --text-secondary: #b7ad9d;
+      --accent: #8ab4ff;
+      --accent-ink: #d7e6ff;
+      --accent-soft: #19345f;
+      --success: #62d393;
+      --border: #333b4d;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1.25rem 4rem;
+    }
+    .wrap { max-inline-size: 1080px; margin: 0 auto; }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
+    h1 { margin: 0.35rem 0 0; font-family: var(--font-display); font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.12; }
+    .sub { margin: 0.5rem 0 0; color: var(--text-secondary); max-inline-size: 64ch; }
+    .theme-btn {
+      min-block-size: 2.35rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+    .hub-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 150ms ease, border-color 150ms ease;
+    }
+    .hub-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .hub-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; }
+    .hub-badge { padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }
+    .hub-code { font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }
+    .hub-card h2 { margin: 0 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }
+    .hub-meta { margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }
+    .hub-bar { margin-top: auto; block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+    .hub-bar-fill { block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }
+    .hub-stats { margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <span class="hub-badge">Offline Study Workstation</span>
+        <h1>Microsoft Azure AI &amp; Fabric Study Hub</h1>
+        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all five certification guides.</p>
+      </div>
+      <button type="button" id="hub-theme" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
+    </header>
+    <section class="grid" aria-label="Available certification study guides">
+      <a class="hub-card" href="ai-103-examtopics-study-guide.html" data-exam-card="ai-103" data-total="161"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-103</span></div><h2>Developing AI Apps and Agents on Azure</h2><p class="hub-meta">161 questions · 5 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 161 reviewed (0%)</div></a><a class="hub-card" href="ai-300-examtopics-study-guide.html" data-exam-card="ai-300" data-total="107"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-300</span></div><h2>Operationalizing Machine Learning and Generative AI Solutions</h2><p class="hub-meta">107 questions · 5 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 107 reviewed (0%)</div></a><a class="hub-card" href="ai-500-examtopics-study-guide.html" data-exam-card="ai-500" data-total="18"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-500</span></div><h2>Designing and Implementing Multi-Agent AI Solutions</h2><p class="hub-meta">18 questions · 4 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 18 reviewed (0%)</div></a><a class="hub-card" href="dp-600-examtopics-study-guide.html" data-exam-card="dp-600" data-total="199"><div class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-600</span></div><h2>Implementing Analytics Solutions Using Microsoft Fabric</h2><p class="hub-meta">199 questions · 3 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 199 reviewed (0%)</div></a><a class="hub-card" href="dp-700-examtopics-study-guide.html" data-exam-card="dp-700" data-total="139"><div class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-700</span></div><h2>Implementing Data Engineering Solutions Using Microsoft Fabric</h2><p class="hub-meta">139 questions · 3 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 139 reviewed (0%)</div></a>
+    </section>
+  </main>
+  <script>
+    const themeBtn = document.getElementById('hub-theme');
+    const saved = localStorage.getItem('examguide-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+    function syncTheme() {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeBtn.textContent = dark ? '☀️' : '🌙';
+    }
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('examguide-theme', next);
+      syncTheme();
+    });
+    syncTheme();
+
+    document.querySelectorAll('[data-exam-card]').forEach(card => {
+      const slug = card.dataset.examCard;
+      const total = Number(card.dataset.total) || 1;
+      let rev = [];
+      let bm = [];
+      try { rev = JSON.parse(localStorage.getItem(`examguide-v2-${slug}-reviewed`) || '[]'); } catch (e) {}
+      try { bm = JSON.parse(localStorage.getItem(`examguide-v2-${slug}-bookmarks`) || '[]'); } catch (e) {}
+      const pct = Math.min(100, Math.round((rev.length / total) * 100));
+      const fill = card.querySelector('[data-fill]');
+      const stats = card.querySelector('[data-stats]');
+      if (fill) fill.style.inlineSize = `${pct}%`;
+      if (stats) stats.textContent = `${rev.length} / ${total} reviewed (${pct}%)${bm.length ? ' · ★ ' + bm.length : ''}`;
+    });
+  </script>
+</body>
+</html>

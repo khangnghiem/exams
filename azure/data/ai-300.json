@@ -104,7 +104,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
   },
   {
     "discussion_id": "404550",
@@ -172,7 +176,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
   },
   {
     "discussion_id": "404551",
@@ -221,7 +229,9 @@
       "score": 101.5,
       "pattern": "explicit_pattern",
       "upvotes": 3
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404552",
@@ -289,7 +299,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404553",
@@ -383,7 +395,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404554",
@@ -451,7 +465,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404555",
@@ -519,7 +535,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404556",
@@ -639,7 +657,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404557",
@@ -707,7 +727,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404558",
@@ -719,7 +741,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Trigger provisioning on repository changes. Configure a GitHub Actions workflow. | Authenticate securely during workflow execution. Use an Azure service principal.",
     "comments": [
       {
         "comment_id": "1768975",
@@ -750,7 +772,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1768975",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404559",
@@ -818,7 +848,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404560",
@@ -886,7 +918,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404561",
@@ -1011,7 +1045,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404562",
@@ -1112,7 +1148,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404563",
@@ -1196,7 +1234,9 @@
       "score": 54.0,
       "pattern": "highly_voted",
       "upvotes": 8
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404564",
@@ -1252,7 +1292,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "404565",
@@ -1321,7 +1363,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415889",
@@ -1333,7 +1377,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Statement 1: Yes | Statement 2: No | Statement 3: No",
     "comments": [
       {
         "comment_id": "1805482",
@@ -1383,7 +1427,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1770603",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415890",
@@ -1478,7 +1530,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415891",
@@ -1490,7 +1544,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. Run ssh-keygen in the Azure Machine Learning terminal. | 2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key. | 3. Add the public key to the GitHub account. | 4. Run git clone from the Azure Machine Learning terminal. | ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone",
     "comments": [
       {
         "comment_id": "1805704",
@@ -1543,7 +1597,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805704",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415892",
@@ -1637,7 +1699,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415893",
@@ -1705,7 +1769,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415894",
@@ -1786,7 +1852,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415895",
@@ -1854,7 +1922,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "415896",
@@ -1935,7 +2005,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "420692",
@@ -2016,7 +2088,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "424431",
@@ -2028,7 +2102,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "conda create -n \"python_env\" | conda activate \"python_env\" | conda install -r \"requirements.txt\" | ipython kernel install --user --name=\"python_env\" | conda create → conda activate → conda install -r → ipython kernel install",
     "comments": [
       {
         "comment_id": "1805699",
@@ -2070,7 +2144,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805699",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "424432",
@@ -2195,7 +2277,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "424433",
@@ -2289,7 +2373,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure"
   },
   {
     "discussion_id": "424434",
@@ -2301,7 +2387,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. Container_name=\"data1\" | 2. Credentials=SaSTokenConfiguration",
     "comments": [
       {
         "comment_id": "1805707",
@@ -2332,7 +2418,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805707",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "424435",
@@ -2344,7 +2438,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. load_component | 2. components.create_or_update",
     "comments": [
       {
         "comment_id": "1805708",
@@ -2375,7 +2469,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805708",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "424436",
@@ -2387,7 +2489,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 → Create a compute instance | 2 → Open a terminal window | 3 → Generate a Secure Shell (SSH) key pair | 4 → Add a public key to account1 | Public key → GitHub. Private key → stays securely on the machine.",
     "comments": [
       {
         "comment_id": "1805709",
@@ -2418,7 +2520,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805709",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "424437",
@@ -2430,7 +2540,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. pandas | 2. describe",
     "comments": [
       {
         "comment_id": "1805710",
@@ -2461,7 +2571,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1805710",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404567",
@@ -2529,7 +2647,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
   },
   {
     "discussion_id": "404600",
@@ -2541,7 +2663,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 → Enable data drift monitoring | 2 → Configure alerts",
     "comments": [
       {
         "comment_id": "1805711",
@@ -2583,7 +2705,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1805711",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404601",
@@ -2664,7 +2794,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404602",
@@ -2676,7 +2808,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 → Review deployment logs | 2 → Validate scoring script and model version | 3 → Adjust autoscaling configuration",
     "comments": [
       {
         "comment_id": "1805713",
@@ -2707,7 +2839,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1805713",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404603",
@@ -2796,7 +2936,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404604",
@@ -2808,7 +2950,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Automated response → Configure alert rules ✅ | Infrastructure optimization → Enable autoscaling ✅",
     "comments": [
       {
         "comment_id": "1805715",
@@ -2872,7 +3014,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1805715",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404605",
@@ -2884,7 +3034,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 → MLflow tracking URI ✅ | 2 → MLflow metrics logging ✅ | Where should runs go? → Tracking URI | What records performance values? → Metrics logging",
     "comments": [
       {
         "comment_id": "1805730",
@@ -2926,7 +3076,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1805730",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404606",
@@ -3032,7 +3190,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404568",
@@ -3113,7 +3273,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404569",
@@ -3125,7 +3287,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Yes No Yes: | mlflow.set_experiment(&quot;classification-experiment&quot;) | --&gt; experiment association, not artefact path definition | mlflow.sklearn.log_model(model, &quot;model&quot;) | --&gt; &quot;model&quot; is the artefact path.",
+    "most_voted_answer": "Yes No Yes: | mlflow.set_experiment(\"classification-experiment\") | --> experiment association, not artefact path definition | mlflow.sklearn.log_model(model, \"model\") | --> \"model\" is the artefact path.",
     "comments": [
       {
         "comment_id": "1805733",
@@ -3203,7 +3365,9 @@
       "score": 101.5,
       "pattern": "loose:label_pair",
       "upvotes": 3
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404570",
@@ -3285,7 +3449,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404571",
@@ -3369,7 +3535,9 @@
       "score": 56.5,
       "pattern": "highly_voted",
       "upvotes": 13
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404572",
@@ -3450,7 +3618,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404573",
@@ -3531,7 +3701,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "404574",
@@ -3543,7 +3715,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. YES ✅ | 2. NO ✅ | 3. NO ✅ | 4. YES ✅ | YES → NO → NO → YES.",
     "comments": [
       {
         "comment_id": "1805742",
@@ -3582,7 +3754,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1805742",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415898",
@@ -3663,7 +3843,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
   },
   {
     "discussion_id": "415899",
@@ -3719,7 +3903,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415900",
@@ -3775,7 +3961,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415901",
@@ -3831,7 +4019,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415902",
@@ -3843,7 +4033,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "To mitigate disparities across each Ethnicity category, a Fairlearn reductions technique (Grid search) with a fairness constraint (demographic parity) is used.",
     "comments": [
       {
         "comment_id": "1770124",
@@ -3874,7 +4064,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770124",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415903",
@@ -3942,7 +4140,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415904",
@@ -4067,7 +4267,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415905",
@@ -4135,7 +4337,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415906",
@@ -4147,7 +4351,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Predictable, consistent global performance uses Global Provisioned (provisioned throughput); variable, cost-efficient workloads use Global Standard (pay-as-you-go).",
     "comments": [
       {
         "comment_id": "1770130",
@@ -4178,7 +4382,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770130",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415907",
@@ -4246,7 +4458,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415908",
@@ -4306,7 +4520,9 @@
       "score": 101.0,
       "pattern": "loose:numbered_list",
       "upvotes": 2
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415909",
@@ -4318,7 +4534,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Detect when the system is slow at returning output → Latency | Identify when the system cannot sustain expected request volume → Throughput | Measure the duration of handling a request → Response time",
     "comments": [
       {
         "comment_id": "1770616",
@@ -4349,7 +4565,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770616",
+      "upvotes": 4,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415910",
@@ -4361,7 +4585,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Input feature distributions differ from training data → Analyze dataset drift metrics. | Model accuracy drops without code changes → Review prediction and ground truth trends. | Endpoint latency increases under load → Investigate scaling and infrastructure metrics",
     "comments": [
       {
         "comment_id": "1770618",
@@ -4392,7 +4616,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770618",
+      "upvotes": 5,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415912",
@@ -4404,7 +4636,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Terminating runs when the primary metric is >=25% worse than the best run is exactly the Bandit policy governed by slack_factor (a run within (1/(1+slack)) of the best survives).",
     "comments": [
       {
         "comment_id": "1770141",
@@ -4435,7 +4667,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770141",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415914",
@@ -4510,7 +4750,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415915",
@@ -4522,7 +4764,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "An AML real-time entry/scoring script uses init() to load the model on startup and run(data) to score each request",
     "comments": [
       {
         "comment_id": "1770144",
@@ -4553,7 +4795,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770144",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "415917",
@@ -4622,7 +4872,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "415919",
@@ -4634,7 +4886,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Define how features are retrieved at inference → Feature retrieval specification | Ensure feature consistency between training and inference → Feature retrieval specification | Enable automated feature lookup in production → Feature set materialization",
     "comments": [
       {
         "comment_id": "1772816",
@@ -4676,7 +4928,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1770621",
+      "upvotes": 3,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "420695",
@@ -4725,7 +4985,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "420700",
@@ -4794,7 +5056,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations"
   },
   {
     "discussion_id": "424452",
@@ -4806,7 +5070,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "According to GPT 5.6: | 1. Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED. | 2. The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution. | 3. The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED. | 4. All metrics and their values are returned for the returned experiment runs: N...",
     "comments": [
       {
         "comment_id": "1803126",
@@ -4845,7 +5109,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement machine learning model lifecycle and operations",
+    "_backfill_source": {
+      "comment_id": "1803126",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404575",
@@ -4918,7 +5190,9 @@
       "score": 55.0,
       "pattern": "highly_voted",
       "upvotes": 10
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404577",
@@ -5006,7 +5280,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404579",
@@ -5018,7 +5294,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1 - global standard, 2 - standard | https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
     "comments": [
       {
         "comment_id": "1748620",
@@ -5049,7 +5325,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1748620",
+      "upvotes": 6,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404607",
@@ -5117,7 +5401,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404609",
@@ -5186,7 +5472,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404610",
@@ -5254,7 +5542,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404611",
@@ -5323,7 +5613,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404612",
@@ -5379,7 +5671,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "404613",
@@ -5492,7 +5786,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "416072",
@@ -5548,7 +5844,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "416073",
@@ -5623,7 +5921,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "416074",
@@ -5635,7 +5935,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "In prompt flow, prompt/LLM variants are configured on the LLM tool, and calling a custom external API with minimal effort uses the Python tool.",
     "comments": [
       {
         "comment_id": "1770214",
@@ -5666,7 +5966,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1770214",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "416076",
@@ -5678,7 +5986,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "According to GPT5.6: | The correct sequence is: | 1-Create a data asset. | 2-Create a vector index. | 3-Create a Foundry Search resource. | 4-Create a flow. | Why? | Create a data asset: Register the local text files as a data source in Microsoft Foundry. | Create a vector index: Index the file content so it can be retrieved based on semantic similarity. | Create a Foundry Search resource: Provide the search capability needed to retrieve relevant inform...",
     "comments": [
       {
         "comment_id": "1803125",
@@ -5731,7 +6039,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1803125",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "416077",
@@ -5743,7 +6059,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, &quot;Developer deployments are designed for model candidate evaluation and not for production use&quot;. Correct answer then should be: | 1. Create a Developer Tier deployment | 2. Evaluate and validate the model | 3. Create a Global Standard deployment | Reference: https://learn.microsoft.com/en-us/azu...",
+    "most_voted_answer": "As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, \"Developer deployments are designed for model candidate evaluation and not for production use\". Correct answer then should be: | 1. Create a Developer Tier deployment | 2. Evaluate and validate the model | 3. Create a Global Standard deployment | Reference: https://learn.microsoft.com/en-us/azu...",
     "comments": [
       {
         "comment_id": "1786267",
@@ -5802,7 +6118,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "420707",
@@ -5851,7 +6169,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure"
   },
   {
     "discussion_id": "420709",
@@ -5863,7 +6183,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Data asset type: mltable | URL scheme: wasbs | Why: An MLTable can define multiple file paths, including images stored across different storage locations. The wasbs:// scheme addresses Azure Blob Storage securely. | uri_file represents a single file. | uri_folder normally references one folder location. | abfss:// is used for Azure Data Lake Storage Gen2. | azureml:// references a location through an Azure Machine Learning datastore rather than directly...",
     "comments": [
       {
         "comment_id": "1783222",
@@ -5894,7 +6214,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1783222",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "420712",
@@ -5906,7 +6234,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "GPT-4o | Global Batch | Global Batch handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at 50% less cost than Global Standard. With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online wor...",
     "comments": [
       {
         "comment_id": "1789358",
@@ -5937,7 +6265,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Design and implement a GenAIOps infrastructure",
+    "_backfill_source": {
+      "comment_id": "1789358",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404615",
@@ -6008,7 +6344,9 @@
       "score": 101.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
-    }
+    },
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "404616",
@@ -6076,7 +6414,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "404617",
@@ -6144,7 +6484,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "404618",
@@ -6156,7 +6498,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Diagnistic logs, Evaluation workflow | Diagnostic logs are used because they provide detailed, real-time information about runtime behavior and errors (such as timeouts), whereas observability metrics only offer aggregated data and are less suitable for troubleshooting specific issue",
     "comments": [
       {
         "comment_id": "1752923",
@@ -6198,7 +6540,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability",
+    "_backfill_source": {
+      "comment_id": "1752043",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404619",
@@ -6266,7 +6616,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "404620",
@@ -6334,7 +6686,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "416080",
@@ -6346,7 +6700,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Install the Foundry SDK project client locally. | Configure safety evaluators. | Submit an evaluation to the Microsoft Foundry project in the cloud",
     "comments": [
       {
         "comment_id": "1770627",
@@ -6377,7 +6731,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability",
+    "_backfill_source": {
+      "comment_id": "1770627",
+      "upvotes": 5,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "420719",
@@ -6458,7 +6820,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement generative AI quality assurance and observability"
   },
   {
     "discussion_id": "404621",
@@ -6547,7 +6911,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "404622",
@@ -6618,7 +6984,9 @@
       "score": 101.0,
       "pattern": "loose:numbered_list",
       "upvotes": 2
-    }
+    },
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "404623",
@@ -6630,7 +6998,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The requirement is low latency => should be Managed real-time (online) endpoint instead of serverless endpoint",
     "comments": [
       {
         "comment_id": "1790311",
@@ -6694,7 +7062,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance",
+    "_backfill_source": {
+      "comment_id": "1790311",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404624",
@@ -6706,7 +7082,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication. | 2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision. | 3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd rai...",
     "comments": [
       {
         "comment_id": "1777295",
@@ -6745,7 +7121,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance",
+    "_backfill_source": {
+      "comment_id": "1777295",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404625",
@@ -6802,7 +7186,9 @@
       "score": 101.0,
       "pattern": "loose:numbered_list",
       "upvotes": 2
-    }
+    },
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "404627",
@@ -6871,7 +7257,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "416081",
@@ -6883,7 +7271,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Domain specialization → Supervised fine-tuning | The case study hands you the clue: \"use the existing evaluation datasets that are based on real data with input-output pairs.\" Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the \"align with ranked preferences\" requirement, but that's not what this row asks. Reinforcement fine-tuning nee...",
     "comments": [
       {
         "comment_id": "1777296",
@@ -6914,7 +7302,17 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc",
+    "_backfill_source": {
+      "comment_id": "1777296",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "416082",
@@ -6982,7 +7380,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance",
+    "case_study_id": "ai-300-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
   },
   {
     "discussion_id": "416083",
@@ -6994,7 +7396,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Low utilization means the model isn't getting enough context, so increase chunk size; high utilization with low completeness means retrieved chunks are present but not the right ones, so verify/improve retrieval relevance.",
     "comments": [
       {
         "comment_id": "1770271",
@@ -7025,7 +7427,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance",
+    "_backfill_source": {
+      "comment_id": "1770271",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "416084",
@@ -7111,7 +7521,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "416085",
@@ -7179,7 +7591,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "419531",
@@ -7239,7 +7653,9 @@
       "score": 102.0,
       "pattern": "loose:label_pair",
       "upvotes": 4
-    }
+    },
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   },
   {
     "discussion_id": "420724",
@@ -7308,6 +7724,8 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 6,
+    "skill_area_label": "Optimize generative AI systems and model performance"
   }
 ]

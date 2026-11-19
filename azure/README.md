@@ -29,8 +29,10 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 │   └── dp-700.{json,jsonl}
 ├── docs/
 │   └── specs/               # Feature & architecture specifications
-│       └── F-01-ai-103-300-500-study-guides.md
+│       ├── F-01-ai-103-300-500-study-guides.md
+│       └── F-02-question-readability-and-html-app-v2.md
 ├── guides/                  # Student-facing offline HTML & Markdown study guides
+│   ├── index.html           # Cross-exam study hub with live progress across all 5 exams
 │   ├── ai-103-examtopics-study-guide.{html,md}
 │   ├── ai-300-examtopics-study-guide.{html,md}
 │   ├── ai-500-examtopics-study-guide.{html,md}
@@ -45,9 +47,10 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 │       ├── dp-700-study-guide.md
 │       ├── certification-poster.pdf
 │       └── choose-your-microsoft-credential.pdf
-├── scripts/                 # Python crawler, backfill, sync & guide builder tooling
+├── scripts/                 # Python crawler, enrichment, backfill, sync & guide builder tooling
 │   ├── crawl_fabric_discussions.py
 │   ├── build_study_guide.py
+│   ├── enrich_ai_exams.py
 │   ├── backfill_missing_answers.py
 │   ├── backfill_exhibits.py
 │   ├── backfill_choice_markup.py
@@ -64,9 +67,10 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 
 ## Quick start
 
-Open any guide directly in your browser (from `azure/`):
+Open the unified Exam Hub or any individual guide directly in your browser (from `azure/`):
 
 ```bash
+open guides/index.html
 open guides/ai-103-examtopics-study-guide.html
 open guides/ai-300-examtopics-study-guide.html
 open guides/ai-500-examtopics-study-guide.html
@@ -76,14 +80,32 @@ Or serve the folder locally:
 
 ```bash
 python3 -m http.server 8000
-# then open http://localhost:8000/guides/ai-103-examtopics-study-guide.html
+# then open http://localhost:8000/guides/index.html
 ```
+
+## Study App v2 features
+
+- **Structured Case Studies**: Strips Pearson VUE exam-screen boilerplate, parses sections into searchable `<details>` accordions with `Expand all / Collapse all`, auto-opens and badges sections relevant to the current prompt, uses a prompt-first 2-column split-pane inspector on wide screens, and provides a sibling jumper bar across all questions in the same case study.
+- **Smart Stem Readability**: Automatically formats post-colon requirement blocks into `<ul>` checklists, wraps inline SDK/CLI/parameter identifiers in `<code>` pills, highlights `"Solution:"` variants in `"Does this meet the goal?"` series, and de-emphasizes trailing exam instructions.
+- **Microsoft Learn Skill Areas**: Classifies all 161 AI-103 questions (plus AI-300 and AI-500) into official Microsoft Learn skill areas with a sidebar toggle between **Skill Area** and **Question #** views while preserving stable `Q<topic>.<num>` IDs.
+- **Community Consensus & Full Explanations**: Displays visual vote-distribution bars from `voted_answers_tally`, flags contested community splits (`Contested`), sorts discussion comments by upvotes with an inline expander for all comments, and links directly to the original ExamTopics thread.
+- **Non-MCQ Self-Grading & Exhibit Lightbox**: Provides `Got it right` / `Needs work` self-assessment on HOTSPOT and DRAG DROP questions after reveal, and click-to-zoom modal `<dialog>` inspection on every exhibit image.
+- **Search, Filters, Bookmarks & Keyboard Shortcuts**:
+  - `/` — Focus instant search
+  - `←` / `→` — Previous / next visible question
+  - `1`–`9` — Toggle answer choice `A`–`I`
+  - `A` — Reveal / hide answer (with live grading feedback)
+  - `R` — Mark / unmark reviewed
+  - `B` — Toggle bookmark (`★`)
+  - Filter chips for `All`, `Unreviewed`, `Needs work`, `Bookmarked`, `Case Studies`, `Hotspot / Drag-Drop`, and `Contested`.
 
 ## Regenerating guides
 
-Rebuild both HTML and Markdown guides from the `data/*.json` files:
+Enrich AI exam metadata & community notes (`ai-103`, `ai-300`, `ai-500`), sync JSONL, and rebuild all HTML guides, Markdown guides, and `guides/index.html`:
 
 ```bash
+python3 scripts/enrich_ai_exams.py --apply
+python3 scripts/sync_jsonl.py --files ai-103.json ai-300.json ai-500.json
 python3 scripts/build_study_guide.py \
   data/dp-600.json data/dp-700.json \
   data/ai-103.json data/ai-300.json data/ai-500.json \
@@ -91,12 +113,6 @@ python3 scripts/build_study_guide.py \
 ```
 
 To produce only one format, swap `--format both` for `--format html` or `--format markdown`.
-
-After updating any `data/*.json` file via backfill scripts, keep `data/*.jsonl` in lock-step:
-
-```bash
-python3 scripts/sync_jsonl.py
-```
 
 ## Refresh the crawl
 
@@ -116,6 +132,7 @@ Backfill community-voted answers for HOTSPOT and DRAG DROP questions from discus
 ```bash
 python3 scripts/backfill_missing_answers.py --files ai-103.json ai-300.json ai-500.json --apply
 python3 scripts/backfill_missing_answers.py --files ai-103.json ai-300.json ai-500.json --loose --apply
+python3 scripts/enrich_ai_exams.py --apply
 python3 scripts/sync_jsonl.py --files ai-103.json ai-300.json ai-500.json
 ```
 
@@ -130,13 +147,12 @@ python3 -m unittest discover -s tests -v
 These guides are offline study aids derived from public ExamTopics discussions. Be aware of these caveats before relying on them:
 
 - **Coverage reflects public discussion threads.** ExamTopics only creates a public discussion thread once a user comments on a question, so newer 2026 exams (such as AI-500) include only questions with active community threads so far.
-- **HOTSPOT and DRAG DROP questions are display-only.** ExamTopics embeds the interactive UI as static images without parseable coordinates or draggable items, so the guide shows the exhibits and a community-voted answer (when available) rather than graded click/drag regions.
-- **Some non-MCQ threads show "Not provided" for the most-voted answer** (~19 in AI-103, ~32 in AI-300, ~4 in AI-500, and ~21 across DP-600/DP-700) when no comment meets the consensus/explicit-pattern threshold. All 179 multiple-choice questions across AI-103, AI-300, and AI-500 have community-verified answers.
-- **The HTML guide requires JavaScript** for navigation (question map, prev/next, deep-link scrolling), answer reveal, progress tracking, and dark-mode toggle.
+- **HOTSPOT and DRAG DROP questions use self-grading.** ExamTopics embeds interactive UI as static images without machine-gradable coordinates; the HTML app surfaces community consensus / community notes on reveal and lets you self-grade (`Got it right` / `Needs work`).
+- **Low-vote 2026 community notes are explicitly badged.** All 179 multiple-choice questions and all 107 non-MCQ questions across AI-103, AI-300, and AI-500 include community answers or extracted discussion notes; items derived from low-upvote threads display a `Community note` badge so you can verify them against the full discussion.
+- **The HTML guide requires JavaScript** for navigation, search/filtering, answer reveal, progress tracking, exhibit lightbox, and dark-mode toggle.
 - **`data/*.jsonl` is auto-generated** from `data/*.json` via `scripts/sync_jsonl.py`.
 
 ## Notes
 
-- The HTML guides support dark mode, progress tracking, single/multi-select partial-credit grading, and reveal-with-feedback.
-- Selections and reviewed state are stored in the browser's `localStorage`.
+- Selections, bookmarks, self-grades, and reviewed state are stored in portable exam-scoped `localStorage` keys (`examguide-v2-<exam>-*`) with automatic migration from legacy path-based keys.
 - Data is intended for personal study only; respect examtopics.com's terms of service.

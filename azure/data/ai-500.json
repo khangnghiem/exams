@@ -65,7 +65,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Architect multi-agent solutions",
+    "case_study_id": "ai-500-contoso-health",
+    "case_study_title": "Contoso Health"
   },
   {
     "discussion_id": "430659",
@@ -133,7 +137,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Architect multi-agent solutions",
+    "case_study_id": "ai-500-litware-inc",
+    "case_study_title": "Litware, Inc"
   },
   {
     "discussion_id": "430573",
@@ -214,7 +222,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Architect multi-agent solutions"
   },
   {
     "discussion_id": "430580",
@@ -263,7 +273,9 @@
       "score": 102.0,
       "pattern": "loose:label_pair",
       "upvotes": 4
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Architect multi-agent solutions"
   },
   {
     "discussion_id": "430586",
@@ -275,7 +287,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes | Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement. | Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messag...",
     "comments": [
       {
         "comment_id": "1808459",
@@ -306,7 +318,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop multi-agent solutions in Azure",
+    "_backfill_source": {
+      "comment_id": "1808459",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "430593",
@@ -387,7 +407,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop multi-agent solutions in Azure"
   },
   {
     "discussion_id": "430596",
@@ -455,7 +477,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop multi-agent solutions in Azure"
   },
   {
     "discussion_id": "430598",
@@ -523,7 +547,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop multi-agent solutions in Azure"
   },
   {
     "discussion_id": "430661",
@@ -604,7 +630,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop multi-agent solutions in Azure"
   },
   {
     "discussion_id": "430667",
@@ -685,7 +713,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions",
+    "case_study_id": "ai-500-contoso-health",
+    "case_study_title": "Contoso Health"
   },
   {
     "discussion_id": "430675",
@@ -697,7 +729,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.",
     "comments": [
       {
         "comment_id": "1807002",
@@ -739,7 +771,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions",
+    "_backfill_source": {
+      "comment_id": "1807002",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "430602",
@@ -816,7 +856,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions"
   },
   {
     "discussion_id": "430603",
@@ -828,7 +870,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only &quot;document retrieval&quot; has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...",
+    "most_voted_answer": "Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only \"document retrieval\" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...",
     "comments": [
       {
         "comment_id": "1806733",
@@ -884,7 +926,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions"
   },
   {
     "discussion_id": "430606",
@@ -896,7 +940,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Reliability alerts → Yes | The configured alerts cover two important reliability signals: | - Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations. | - Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services. | Together, these cover important reliability problems involving agent execution and external dependencies.",
     "comments": [
       {
         "comment_id": "1802662",
@@ -927,7 +971,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions",
+    "_backfill_source": {
+      "comment_id": "1802662",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "430681",
@@ -995,7 +1047,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Secure, govern, and deploy multi-agent solutions"
   },
   {
     "discussion_id": "430620",
@@ -1063,7 +1117,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Secure, govern, and deploy multi-agent solutions"
   },
   {
     "discussion_id": "430626",
@@ -1131,7 +1187,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Secure, govern, and deploy multi-agent solutions"
   },
   {
     "discussion_id": "430628",
@@ -1143,7 +1201,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1. Interactive ticket lookup → Delegated permissions from the signed-in employee | \"A ticket search tool that enforces the existing per-employee authorization model.\" | The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication. | 2. Approved article updates → Managed identity scoped to write production article r...",
     "comments": [
       {
         "comment_id": "1802758",
@@ -1174,6 +1232,14 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 4,
+    "skill_area_label": "Secure, govern, and deploy multi-agent solutions",
+    "_backfill_source": {
+      "comment_id": "1802758",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   }
 ]

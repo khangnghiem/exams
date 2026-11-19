@@ -364,5 +364,275 @@ class StudyGuideBuilderTests(unittest.TestCase):
         self.assertRegex(html_doc, r"q\.dataset\.qtype === 'hotspot'[\s\S]{0,450}mostVoted")
 
 
+class ReadabilityEngineTests(unittest.TestCase):
+    def test_strip_case_study_boilerplate_removes_pearson_instructions_only(self) -> None:
+        q12_data = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q12 = next(q for q in q12_data if q["topic"] == 1 and q["question_number"] == 2)
+        stripped = builder_mod.strip_case_study_boilerplate(q12["question_text"])
+        self.assertNotIn("Case studies are not timed separately", stripped)
+        self.assertNotIn("select the “Question” button to return to the question", stripped)
+        self.assertIn("Contoso, Ltd is a multinational retail company", stripped)
+        self.assertIn("Security and Compliance Requirements", stripped)
+
+    def test_split_question_text_handles_case_studies_and_short_stems_accurately(self) -> None:
+        # AI-500 Q1.3 previously leaked 1,909 chars ("When testing Claim Approval...") into prompt
+        ai500 = json.loads((REPO_AZURE / "data" / "ai-500.json").read_text(encoding="utf-8"))
+        q13 = next(q for q in ai500 if q["topic"] == 1 and q["question_number"] == 3)
+        _, preamble_500, prompt_500 = builder_mod.split_question_text(q13["question_text"])
+        self.assertIn("When testing Claim Approval", preamble_500)
+        self.assertLess(len(prompt_500), 300)
+        self.assertIn("You need to implement the business rule for Claim Approval", prompt_500)
+
+        # DP-700 Q2.22 previously leaked 1,478 chars ("When the authors have new book releases...")
+        dp700 = json.loads((REPO_AZURE / "data" / "dp-700.json").read_text(encoding="utf-8"))
+        q222 = next(q for q in dp700 if q["topic"] == 2 and q["question_number"] == 22)
+        _, preamble_700, prompt_700 = builder_mod.split_question_text(q222["question_text"])
+        self.assertIn("When the authors have new book releases", preamble_700)
+        self.assertLess(len(prompt_700), 350)
+
+        # Short non-case-study question (AI-103 Q1.5, 796 chars) stays unified (no 1-sentence preamble box)
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q15 = next(q for q in ai103 if q["topic"] == 1 and q["question_number"] == 5)
+        labels_15, preamble_15, prompt_15 = builder_mod.split_question_text(q15["question_text"])
+        self.assertIn("Drag drop", labels_15)
+        self.assertEqual(preamble_15, "")
+        self.assertIn("procurement documents", prompt_15)
+
+    def test_parse_case_study_sections_and_auto_relevance_on_ai_103_q1_2(self) -> None:
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        q12 = next(q for q in ai103 if q["topic"] == 1 and q["question_number"] == 2)
+        _, preamble, prompt = builder_mod.split_question_text(q12["question_text"])
+        sections = builder_mod.parse_case_study_sections(preamble, prompt=prompt)
+        titles = [s["title"] for s in sections]
+        self.assertGreaterEqual(len(sections), 4)
+        self.assertTrue(any("Overview" in t for t in titles))
+        self.assertTrue(any("Existing Environment" in t for t in titles))
+        self.assertTrue(any("Security and Compliance" in t or "Requirements" in t for t in titles))
+        relevant_titles = [s["title"] for s in sections if s.get("relevant")]
+        self.assertTrue(
+            any("Security" in t for t in relevant_titles),
+            f"Expected Security section to be marked relevant, got {relevant_titles}",
+        )
+
+    def test_smart_stem_formatting_lists_code_solution_and_notes(self) -> None:
+        raw = (
+            "Your service calls project_client.telemetry.get_connection_string() with enable_recording=False.\n"
+            "The solution must meet the following requirements:\n"
+            "Include a pipeline named Pipeline1 for standalone PDFs.\n"
+            "Secrets must NOT be stored in span attributes.\n"
+            "You need to implement controls to mitigate the risk.\n"
+            "Solution: You configure prompt shields for indirect attacks.\n"
+            "Does this meet the goal?\n"
+            "To answer, select the appropriate options in the answer area.\n"
+            "NOTE: Each correct selection is worth one point."
+        )
+        formatted = builder_mod.format_stem_html(raw)
+        self.assertIn("<ul", formatted)
+        self.assertIn("<li>Include a pipeline named", formatted)
+        self.assertIn("<code>project_client.telemetry.get_connection_string()</code>", formatted)
+        self.assertIn("<code>enable_recording=False</code>", formatted)
+        self.assertIn('class="proposed-solution"', formatted)
+        self.assertIn('class="exam-instruction-note"', formatted)
+
+
+class AIExamEnrichmentTests(unittest.TestCase):
+    def test_ai_exams_enriched_skill_areas_entities_and_non_mcq_backfill(self) -> None:
+        import enrich_ai_exams  # type: ignore
+
+        for exam in ("ai-103", "ai-300", "ai-500"):
+            data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
+            jsonl_lines = [
+                json.loads(line)
+                for line in (REPO_AZURE / "data" / f"{exam}.jsonl").read_text(encoding="utf-8").splitlines()
+                if line.strip()
+            ]
+            self.assertEqual(data, jsonl_lines, f"{exam} JSON and JSONL out of sync")
+
+            for q in data:
+                self.assertIn("skill_area", q)
+                self.assertIn("skill_area_label", q)
+                mv = str(q.get("most_voted_answer") or "")
+                self.assertNotIn("&quot;", mv, f"Unescaped &quot; in {exam} Q{q['topic']}.{q['question_number']}")
+                self.assertNotIn("&gt;", mv, f"Unescaped &gt; in {exam} Q{q['topic']}.{q['question_number']}")
+
+        # All 5 official Microsoft Learn AI-103 skill areas must be populated
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        distinct_skills = {q["skill_area"] for q in ai103}
+        self.assertEqual(distinct_skills, {1, 2, 3, 4, 5})
+        self.assertEqual(len(enrich_ai_exams.AI_103_SKILL_AREAS), 5)
+
+        # Missing non-MCQ answers across AI-103/300/500 reduced from 55 to <= 1 (meta-chatter rejected)
+        missing_total = 0
+        for exam in ("ai-103", "ai-300", "ai-500"):
+            data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
+            missing_total += sum(1 for q in data if not q.get("choices") and not q.get("most_voted_answer"))
+        self.assertLessEqual(missing_total, 1)
+
+        # Q1.174 ("found in exam today") must NOT be promoted as a fake answer
+        q174 = next(q for q in ai103 if q["question_number"] == 174)
+        self.assertIsNone(q174.get("most_voted_answer"))
+
+
+class StudyAppV2Tests(unittest.TestCase):
+    def test_case_study_html_prompt_first_accordion_relevant_open_and_sibling_jumper(self) -> None:
+        import re
+
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
+        subset = [q for q in ai103 if q["question_number"] in (1, 2)]
+        html_doc = builder_mod.build_html("ai-103", subset)
+
+        # Prompt-first DOM order inside Q1.2: prompt-card comes BEFORE case-study-panel
+        q12_start = html_doc.index('data-label="Q1.2"')
+        q12_html = html_doc[q12_start:]
+        self.assertIn("is-case-study", html_doc[: q12_start + 120])
+        self.assertLess(q12_html.index('class="prompt-card"'), q12_html.index('class="case-study-panel"'))
+
+        # Structured <details class="cs-section"> without heading tags inside <summary>
+        self.assertIn('class="cs-section', q12_html)
+        for summary_inner in re.findall(r"<summary[^>]*>([\s\S]*?)</summary>", q12_html):
+            self.assertIsNone(re.search(r"<h[1-6]\b", summary_inner, flags=re.IGNORECASE))
+
+        # Security and Compliance Requirements auto-opened & badged Relevant
+        self.assertRegex(
+            q12_html,
+            r'<details[^>]*class="cs-section[^"]*relevant"[^>]*open[^>]*>[\s\S]{0,260}Security and Compliance Requirements',
+        )
+        # Sibling jumper bar & Expand/Collapse all control
+        self.assertIn("cs-jumper", q12_html)
+        self.assertIn("Contoso, Ltd", q12_html)
+        self.assertIn("cs-toggle-all", q12_html)
+
+    def test_vote_distribution_contested_badge_sorted_comments_and_thread_link(self) -> None:
+        q_contested = {
+            "exam": "ai-103",
+            "topic": 1,
+            "question_number": 14,
+            "question_id": "412446",
+            "question_text": "Which parameter should you set?",
+            "question_type": "single",
+            "skill_area": 2,
+            "skill_area_label": "Implement generative AI and agentic solutions",
+            "choices": [
+                {"letter": "A", "text": "Choice A", "correct": True, "text_html": "Choice A"},
+                {"letter": "D", "text": "Choice D", "correct": False, "text_html": "Choice D"},
+            ],
+            "correct_answers": ["A"],
+            "most_voted_answer": "A",
+            "voted_answers_tally": [
+                {"voted_answers": "A", "vote_count": 14, "is_most_voted": True},
+                {"voted_answers": "D", "vote_count": 12, "is_most_voted": False},
+            ],
+            "url": "https://www.examtopics.com/discussions/microsoft/view/412446-test/",
+            "comments": [
+                {"comment_id": "1", "author": "low1", "upvotes": 1, "badges": [], "text": "First posted"},
+                {"comment_id": "2", "author": "low2", "upvotes": 0, "badges": [], "text": "Second posted"},
+                {"comment_id": "3", "author": "low3", "upvotes": 2, "badges": [], "text": "Third posted"},
+                {"comment_id": "4", "author": "top_expert", "upvotes": 15, "badges": ["Highly Voted"], "text": "Best explanation"},
+            ],
+        }
+        rendered = builder_mod.render_question_html(q_contested)
+        self.assertIn("contested-badge", rendered)
+        self.assertIn("vote-bars", rendered)
+        # Highest-upvoted comment (top_expert, 15 upvotes) must appear BEFORE low1
+        self.assertLess(rendered.index("top_expert"), rendered.index("low1"))
+        self.assertIn("comments-more", rendered)
+        self.assertIn("https://www.examtopics.com/discussions/microsoft/view/412446-test/", rendered)
+
+        # Non-MCQ with community_note: Most voted card NOT marked answer-missing, shows Community note badge
+        q_note = {
+            "exam": "ai-300",
+            "topic": 2,
+            "question_number": 31,
+            "question_id": "424434",
+            "question_text": "HOTSPOT\nComplete the snippet.",
+            "question_type": "hotspot",
+            "choices": [],
+            "correct_answers": [],
+            "most_voted_answer": '1. Container_name="data1" | 2. Credentials=SaSTokenConfiguration',
+            "_backfill_source": {"confidence": "community_note", "upvotes": 1},
+            "comments": [],
+        }
+        rendered_note = builder_mod.render_question_html(q_note)
+        self.assertIn("Community note", rendered_note)
+        self.assertNotIn("&amp;quot;", rendered_note)
+
+    def test_exhibit_lightbox_dialog_and_non_mcq_self_grading(self) -> None:
+        import re
+
+        q_hotspot = {
+            "exam": "ai-103",
+            "topic": 1,
+            "question_number": 66,
+            "question_id": "421512",
+            "question_text": "HOTSPOT\nComplete the Python video code.",
+            "question_type": "hotspot",
+            "exhibits": [
+                {
+                    "kind": "image",
+                    "src": "assets/exhibits/ai-103/421512_0.png",
+                    "local_path": "assets/exhibits/ai-103/421512_0.png",
+                    "alt": "Video code exhibit",
+                    "original_url": "https://img.examtopics.com/ai-103/img.png",
+                }
+            ],
+            "choices": [],
+            "correct_answers": [],
+            "most_voted_answer": "create and retrieve",
+            "comments": [],
+        }
+        html_doc = builder_mod.build_html("ai-103", [q_hotspot])
+        # Native <dialog closedby="any"> without redundant role="dialog" or aria-modal
+        m_dlg = re.search(r'<dialog[^>]*id="exhibit-lightbox"[^>]*>', html_doc)
+        self.assertIsNotNone(m_dlg)
+        dlg_tag = m_dlg.group(0)
+        self.assertIn('closedby="any"', dlg_tag)
+        self.assertNotIn('role="dialog"', dlg_tag)
+        self.assertNotIn("aria-modal", dlg_tag)
+        self.assertIn("overscroll-behavior: contain", html_doc)
+        self.assertIn("HTMLDialogElement.prototype", html_doc)
+        self.assertIn("exhibit-zoom-btn", html_doc)
+        # Non-MCQ self-grading controls
+        self.assertIn('data-self-grade="correct"', html_doc)
+        self.assertIn('data-self-grade="incorrect"', html_doc)
+
+    def test_search_filters_hotkeys_unique_ids_offline_hygiene_and_hub_index(self) -> None:
+        import re
+
+        ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))[:12]
+        html_doc = builder_mod.build_html("ai-103", ai103)
+
+        # 100% offline: no Google Fonts or remote scripts/stylesheets
+        self.assertNotIn("fonts.googleapis.com", html_doc)
+
+        # Every id="..." in the generated HTML must be unique
+        ids = re.findall(r'\bid="([^"]+)"', html_doc)
+        dupes = {x for x in ids if ids.count(x) > 1}
+        self.assertEqual(dupes, set(), f"Duplicate HTML IDs found: {dupes}")
+
+        # Search, filter chips, bookmark, skill-area map toggle, portable storage, and fixed 'a' hotkey
+        self.assertIn('id="question-search"', html_doc)
+        for flt in ("unreviewed", "incorrect", "bookmarked", "casestudy", "contested"):
+            self.assertIn(f'data-filter="{flt}"', html_doc)
+        self.assertIn("btn-bookmark", html_doc)
+        self.assertIn('data-map-mode="skill"', html_doc)
+        self.assertIn("examguide-v2-ai-103", html_doc)
+        # Pressing 'a' must invoke toggleCurrentAnswer / updateAnswerFeedback
+        self.assertRegex(html_doc, r"e\.key\.toLowerCase\(\)\s*===\s*'a'[\s\S]{0,180}(?:toggleQuestionReveal|updateAnswerFeedback)")
+
+        # Cross-exam index hub
+        hub_html = builder_mod.build_index_html(
+            [
+                {"exam": "ai-103", "count": 161, "topics": 5},
+                {"exam": "ai-300", "count": 107, "topics": 5},
+                {"exam": "ai-500", "count": 18, "topics": 4},
+                {"exam": "dp-600", "count": 199, "topics": 3},
+                {"exam": "dp-700", "count": 139, "topics": 3},
+            ]
+        )
+        self.assertNotIn("fonts.googleapis.com", hub_html)
+        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700"):
+            self.assertIn(f"{slug}-examtopics-study-guide.html", hub_html)
+
+
 if __name__ == "__main__":
     unittest.main()
