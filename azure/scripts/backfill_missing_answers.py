@@ -52,6 +52,7 @@ Usage (from repo root):
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import logging
 import re
@@ -79,6 +80,10 @@ ANSWER_PATTERNS = (
     "second dropdown",
     "first box",
     "second box",
+    "box 1:",
+    "box 2:",
+    "statement 1:",
+    "statement 2:",
     "first select",
     "second select",
     "first option",
@@ -91,7 +96,7 @@ ANSWER_PATTERNS = (
 )
 
 # Arrow separators used heavily in DRAG DROP answer posts.
-ARROW_PATTERNS = ("=>", "->")
+ARROW_PATTERNS = ("=>", "->", "→")
 
 # Comment prefixes that mean "this is a question, not an answer".
 QUESTION_PREFIXES = (
@@ -240,8 +245,8 @@ def _score_comment(comment: dict[str, Any]) -> float | None:
 
 
 def _format_answer(text: str) -> str:
-    """Single-line, truncated to MAX_ANSWER_LEN, with newlines collapsed."""
-    cleaned = text.replace("\r", " ").replace("\n", " | ")
+    """Single-line, unescaped, truncated to MAX_ANSWER_LEN, with newlines collapsed."""
+    cleaned = html.unescape(text).replace("\r", " ").replace("\n", " | ")
     cleaned = " ".join(cleaned.split())  # collapse runs of whitespace
     if len(cleaned) > MAX_ANSWER_LEN:
         cleaned = cleaned[: MAX_ANSWER_LEN - 3].rstrip() + "..."

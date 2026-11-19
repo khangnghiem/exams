@@ -9,7 +9,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "&quot;the data prcessed by the model must remain in the EU&quot; | that is Standard for me: | By data residency requirement | No restrictions: Use Global Standard or Global Provisioned | EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region | US data zone: Use DataZone Standard or DataZone Provisioned in a US region | Single region only: Use Standard or Regional Provisioned",
+    "most_voted_answer": "\"the data prcessed by the model must remain in the EU\" | that is Standard for me: | By data residency requirement | No restrictions: Use Global Standard or Global Provisioned | EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region | US data zone: Use DataZone Standard or DataZone Provisioned in a US region | Single region only: Use Standard or Regional Provisioned",
     "comments": [
       {
         "comment_id": "1808169",
@@ -92,7 +92,11 @@
       "score": 55.5,
       "pattern": "highly_voted",
       "upvotes": 11
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412434",
@@ -357,7 +361,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412435",
@@ -425,7 +433,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412436",
@@ -437,7 +447,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar) | 2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = \"LangChain\" and \"Agent\", query with kql : ... | where cloud_RoleName=\"LangChain\") | 3) enable_content_recodring=False redacts message content and tool call ar...",
     "comments": [
       {
         "comment_id": "1787140",
@@ -479,7 +489,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1787140",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412437",
@@ -491,7 +509,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Pipeline 1: D - Single-file, standard | Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning) | Pipeline 2: A- Multi in pro | Clues: Cross-document (&quot;multi-file&quot;), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)",
+    "most_voted_answer": "Pipeline 1: D - Single-file, standard | Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning) | Pipeline 2: A- Multi in pro | Clues: Cross-document (\"multi-file\"), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)",
     "comments": [
       {
         "comment_id": "1787141",
@@ -550,7 +568,9 @@
       "score": 102.5,
       "pattern": "loose:label_pair",
       "upvotes": 5
-    }
+    },
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412438",
@@ -612,7 +632,9 @@
       "score": 54.5,
       "pattern": "highly_voted",
       "upvotes": 9
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412439",
@@ -683,7 +705,9 @@
       "score": 102.0,
       "pattern": "explicit_pattern",
       "upvotes": 4
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412440",
@@ -765,7 +789,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412441",
@@ -855,7 +881,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412442",
@@ -960,7 +988,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412443",
@@ -972,7 +1002,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question. | In Microsoft Foundry, the ask_question step is specifically designed to pause a workflow, prompt a user for input (such as an approval or rejection), and store the response in a variable that can be evaluated by subsequent logic. | Box 2: approval == \"approved\" Execute Condition: Use a condition such a...",
     "comments": [
       {
         "comment_id": "1792533",
@@ -1003,7 +1033,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1792533",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412444",
@@ -1129,7 +1167,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412445",
@@ -1197,7 +1237,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412446",
@@ -1604,7 +1646,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412447",
@@ -1616,7 +1660,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answers unsupported by retrieved documents are a groundedness problem, measured by groundedness evaluation metrics. Responses flagged for policy violations map to the risk and safety evaluators",
     "comments": [
       {
         "comment_id": "1766373",
@@ -1647,7 +1691,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1766373",
+      "upvotes": 3,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412448",
@@ -1728,7 +1780,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412449",
@@ -1809,7 +1863,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412450",
@@ -1882,7 +1938,9 @@
       "score": 101.5,
       "pattern": "explicit_pattern",
       "upvotes": 3
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412451",
@@ -1963,7 +2021,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412452",
@@ -1975,7 +2035,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The problem statement notes that the agent is currently configured to \"let the model decide when to call the tools\" (which is what tool_choice: \"auto\" does). However, the compliance requirement mandates: | ​\"Each workflow run must include a retrieval step before generating a response.\" | If left as auto, the model might choose to answer directly from parametric memory without executing a tool call. Setting tool_choice: \"required\" forces the model to cal...",
     "comments": [
       {
         "comment_id": "1801154",
@@ -2017,7 +2077,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1801154",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412453",
@@ -2124,7 +2192,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412454",
@@ -2205,7 +2275,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412455",
@@ -2331,7 +2403,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412456",
@@ -2413,7 +2487,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412457",
@@ -2691,7 +2767,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412458",
@@ -2773,7 +2851,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412459",
@@ -3013,7 +3093,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412460",
@@ -3107,7 +3191,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412461",
@@ -3201,7 +3289,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412462",
@@ -3213,7 +3303,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "To guarantee a tool is invoked, set the tool_choice key to the value 'required'. The highlighted drag values place \"tool_choice\" as the key and \"required\" as the value, which forces tool usage on every run.",
     "comments": [
       {
         "comment_id": "1766401",
@@ -3244,7 +3334,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1766401",
+      "upvotes": 4,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412463",
@@ -3338,7 +3436,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "412464",
@@ -3350,7 +3450,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Grounding with Bing Search supplies current public-web information; Code interpreter executes calculations during a conversation; File search retrieves from documents uploaded directly to the agent. Each highlighted pairing matches the canonical Foundry Agent Service tool.",
     "comments": [
       {
         "comment_id": "1801786",
@@ -3392,7 +3492,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1766403",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412465",
@@ -3480,7 +3588,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412466",
@@ -3555,7 +3665,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412467",
@@ -3567,7 +3679,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: temperature = 1, effort = “high” | This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature. | effort = &quot;high&quot; gives the deepest reasoning, which is what “maximize reasoning quality” ask...",
+    "most_voted_answer": "Answer: temperature = 1, effort = “high” | This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature. | effort = \"high\" gives the deepest reasoning, which is what “maximize reasoning quality” ask...",
     "comments": [
       {
         "comment_id": "1804490",
@@ -3617,7 +3729,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412468",
@@ -3685,7 +3799,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412469",
@@ -3697,7 +3813,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Retaining user preferences across conversations requires persistent agent memory (conversation history alone resets per session; orchestration session context is in-session). Letting users ground via documents uploaded during chat is the File search tool (Azure AI Search tool targets a pre-built index; code interpreter is for compute).",
     "comments": [
       {
         "comment_id": "1766408",
@@ -3728,7 +3844,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1766408",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412470",
@@ -3809,7 +3933,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412471",
@@ -3877,7 +4003,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412472",
@@ -3889,7 +4017,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "GitHub Actions should authenticate to Azure with the Azure Login action using OIDC (federated credentials), avoiding stored secrets/PATs and managed identity isn't used for GitHub-hosted runners this way. To block merges when evaluation thresholds are not met, the workflow step must Fail (which fails the check and prevents merge); 'send an alert' or 'lock the branch' do not gate the PR check.",
     "comments": [
       {
         "comment_id": "1766411",
@@ -3920,7 +4048,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
+    "_backfill_source": {
+      "comment_id": "1766411",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412473",
@@ -4081,7 +4217,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412474",
@@ -4176,7 +4314,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412475",
@@ -4232,7 +4372,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412476",
@@ -4358,7 +4500,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412477",
@@ -4439,7 +4583,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412478",
@@ -4520,7 +4666,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "412479",
@@ -4601,7 +4749,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412480",
@@ -4687,7 +4837,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "412481",
@@ -4699,7 +4851,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "To prevent prompt injection from document/image-embedded text, set the document-attack shield action to Block. Spotlighting is the Prompt Shields capability that marks third-party content as lower trust, directly satisfying 'treat third-party content as lower trust.' A custom blocklist or OCR pre-step do not provide the provenance/trust separation.",
     "comments": [
       {
         "comment_id": "1766420",
@@ -4730,7 +4882,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions",
+    "_backfill_source": {
+      "comment_id": "1766420",
+      "upvotes": 5,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "412482",
@@ -4835,7 +4995,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "412483",
@@ -4903,7 +5065,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "412484",
@@ -4971,7 +5135,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412485",
@@ -5072,7 +5238,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412486",
@@ -5190,7 +5358,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "412487",
@@ -5258,7 +5428,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "412488",
@@ -5339,7 +5511,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412489",
@@ -5407,7 +5583,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412490",
@@ -5475,7 +5653,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412491",
@@ -5543,7 +5723,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412492",
@@ -5611,7 +5793,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "412493",
@@ -5705,7 +5889,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412494",
@@ -5786,7 +5974,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "412495",
@@ -5854,7 +6046,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412496",
@@ -5922,7 +6116,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "412497",
@@ -5990,7 +6186,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421512",
@@ -6002,7 +6200,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "create and retrieve | Generating video is a long-running, asynchronous operation. | client.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., \"queued\" or \"processing\"). | then retrieve | while video.status not in [\"completed\", \"failed\", \"cancelled\"]: | time.sleep(20) | video = client.videos.retrieve(video.id) | Why not list? list() takes no ID and returns a pa...",
     "comments": [
       {
         "comment_id": "1801888",
@@ -6033,7 +6231,17 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd",
+    "_backfill_source": {
+      "comment_id": "1801888",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421513",
@@ -6101,7 +6309,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "421514",
@@ -6113,7 +6325,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "(1) DefaultAzureCredential | Security & Compliance Requirement: | \"API keys must NOT be used to access Foundry-deployed models.\" | \"The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication.\" | DefaultAzureCredential() integrates with Microsoft Entra ID and honors the RBAC assignments granted to the security group SC_Agent1_Dev. | (2) get | Why not create_version? | create_version requires specifi...",
     "comments": [
       {
         "comment_id": "1801889",
@@ -6144,7 +6356,17 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd",
+    "_backfill_source": {
+      "comment_id": "1801889",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421515",
@@ -6248,7 +6470,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421516",
@@ -6316,7 +6540,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421517",
@@ -6376,7 +6602,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421518",
@@ -6494,7 +6722,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421519",
@@ -6562,7 +6792,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421520",
@@ -6630,7 +6862,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421521",
@@ -6711,7 +6945,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421522",
@@ -6810,7 +7046,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421523",
@@ -6822,7 +7060,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The correct values are: | scope= → \"{{$userId}}\" | tools= → [memory_tool] | Explanation: | {{$userId}} ensures that each authenticated user has a separate memory scope. This allows the agent to remember user preferences across different conversations without mixing one user's memories with another user's data.",
     "comments": [
       {
         "comment_id": "1795899",
@@ -6853,7 +7091,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1795899",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421524",
@@ -6921,7 +7167,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421525",
@@ -7016,7 +7264,9 @@
       "score": 54.5,
       "pattern": "highly_voted",
       "upvotes": 9
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421526",
@@ -7084,7 +7334,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421527",
@@ -7261,7 +7513,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "421528",
@@ -7342,7 +7596,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421529",
@@ -7423,7 +7679,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421530",
@@ -7548,7 +7806,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "421531",
@@ -7629,7 +7889,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421532",
@@ -7641,7 +7903,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Answer | Field value type: string | Field method: generate | Short discussion: | Use string because the generated JSON field contains a textual description of the color scheme. Use generate because the analyzer needs to create this description automatically for each video segment.",
     "comments": [
       {
         "comment_id": "1801908",
@@ -7683,7 +7945,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions",
+    "_backfill_source": {
+      "comment_id": "1795956",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421533",
@@ -7764,7 +8034,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "421534",
@@ -7832,7 +8104,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421535",
@@ -7900,7 +8174,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421536",
@@ -7994,7 +8270,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421537",
@@ -8075,7 +8353,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421538",
@@ -8124,7 +8404,9 @@
       "score": 101.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421539",
@@ -8184,7 +8466,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421540",
@@ -8196,7 +8480,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Capture all the nested operations across the entire agent run: Hierarchical spans (Captures parent-child execution flow and nested sub-tasks in open telemetry/tracing). | Record tool invocation arguments and returned results as metadata: Tool call attributes (Attaches tool input arguments and output values as metadata attributes to individual telemetry spans).",
     "comments": [
       {
         "comment_id": "1795962",
@@ -8227,7 +8511,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1795962",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421541",
@@ -8239,7 +8531,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "correct answer | Why &quot;Implement exponential backoff and jitter&quot; instead of &quot;Increase tenant-wide quotas&quot;?Look closely at the constraint in the problem statement:&quot;The solution must remain within the service and model limits.&quot; HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiti...",
+    "most_voted_answer": "correct answer | Why \"Implement exponential backoff and jitter\" instead of \"Increase tenant-wide quotas\"?Look closely at the constraint in the problem statement:\"The solution must remain within the service and model limits.\" HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiti...",
     "comments": [
       {
         "comment_id": "1801916",
@@ -8287,7 +8579,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421542",
@@ -8355,7 +8649,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421543",
@@ -8423,7 +8719,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421544",
@@ -8472,7 +8770,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421545",
@@ -8484,7 +8784,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "correct answer | Requirement: &quot;Grounds responses only in company policy documents stored in curated repositories&quot;. The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent. Why not &quot;Upload the policy documents direct to the a...",
+    "most_voted_answer": "correct answer | Requirement: \"Grounds responses only in company policy documents stored in curated repositories\". The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent. Why not \"Upload the policy documents direct to the a...",
     "comments": [
       {
         "comment_id": "1801917",
@@ -8532,7 +8832,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421546",
@@ -8600,7 +8902,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421547",
@@ -8612,7 +8916,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence &gt;= 0.75: condition filters and displays only brands with a 75%+ confidence score). | The code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).",
+    "most_voted_answer": "Correct Answers | The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence >= 0.75: condition filters and displays only brands with a 75%+ confidence score). | The code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).",
     "comments": [
       {
         "comment_id": "1795968",
@@ -8657,7 +8961,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421548",
@@ -8725,7 +9031,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421549",
@@ -8829,7 +9137,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421550",
@@ -8900,7 +9210,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "421551",
@@ -8968,7 +9280,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "421552",
@@ -9042,7 +9356,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "421554",
@@ -9104,7 +9420,9 @@
       "score": 54.5,
       "pattern": "highly_voted",
       "upvotes": 9
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421555",
@@ -9185,7 +9503,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421556",
@@ -9266,7 +9586,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "421557",
@@ -9347,7 +9669,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421558",
@@ -9420,7 +9744,9 @@
       "score": 58.0,
       "pattern": "highly_voted",
       "upvotes": 16
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "421559",
@@ -9432,7 +9758,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | HTTP Method: PUT | kind: &quot;CognitiveServices&quot; | Explanations | HTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb. | kind (&quot;CognitiveServices&quot;): The multi-service Azure AI services resource type is denoted by the &quot;CognitiveServices&quot; kind. Single-service kinds (like &quot;ComputerVision&quot; or &quot;TextAnalytics&quot;) only provide access to individual APIs and...",
+    "most_voted_answer": "Correct Answers | HTTP Method: PUT | kind: \"CognitiveServices\" | Explanations | HTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb. | kind (\"CognitiveServices\"): The multi-service Azure AI services resource type is denoted by the \"CognitiveServices\" kind. Single-service kinds (like \"ComputerVision\" or \"TextAnalytics\") only provide access to individual APIs and...",
     "comments": [
       {
         "comment_id": "1805609",
@@ -9480,7 +9806,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "421560",
@@ -9492,7 +9820,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Step-by-Step Analysis | The percentage of false positives: | Precision Formula: | Precision= | True Positives (TP)+False Positives (FP) | True Positives (TP) | ​ | With a Precision of 100.0% (1.0), there are no false positive predictions made by the model (FP=0). | Therefore, the percentage of false positives is 0. | The value for the number of true positives divided by the total number of true positives and false negatives: | Recall Formula: | Recall=...",
     "comments": [
       {
         "comment_id": "1799400",
@@ -9531,7 +9859,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions",
+    "_backfill_source": {
+      "comment_id": "1799400",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "421561",
@@ -9626,7 +9962,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "421562",
@@ -9751,7 +10089,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "421563",
@@ -9822,7 +10162,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424420",
@@ -9871,7 +10213,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "424416",
@@ -9948,7 +10292,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424419",
@@ -10025,7 +10371,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424413",
@@ -10037,7 +10385,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Second one should be &quot;no&quot;, as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called &quot;bing_entity_search_api_id&quot;. | Final correct answer: | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python",
+    "most_voted_answer": "Second one should be \"no\", as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called \"bing_entity_search_api_id\". | Final correct answer: | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python",
     "comments": [
       {
         "comment_id": "1810224",
@@ -10115,7 +10463,9 @@
       "score": 102.5,
       "pattern": "explicit_pattern",
       "upvotes": 5
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "424414",
@@ -10175,7 +10525,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424404",
@@ -10243,7 +10595,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "424417",
@@ -10255,7 +10609,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation &quot;LLM&quot; is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions). | Changing &quot;What is an LLM?&quot; to &quot;What is an LLM in the context of AI models?&quot; will produce the intended response: Yes (Disambiguating the user prompt d...",
+    "most_voted_answer": "Correct Answers | The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation \"LLM\" is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions). | Changing \"What is an LLM?\" to \"What is an LLM in the context of AI models?\" will produce the intended response: Yes (Disambiguating the user prompt d...",
     "comments": [
       {
         "comment_id": "1795996",
@@ -10300,7 +10654,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424411",
@@ -10368,7 +10724,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424421",
@@ -10493,7 +10851,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "424407",
@@ -10625,7 +10985,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "424415",
@@ -10637,7 +10999,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "extract: vision, sentiment and opinion: language | Press releases are unstructured prose text (articles/announcements). | In Microsoft's official curriculum and exam design, raw text/prose extraction from PDFs and images is handled by the Read API in Azure Vision. | Why not Document Intelligence? Document Intelligence is specifically intended for structured/semi-structured form understanding (such as tables, key-value pairs, invoices, receipts, and tax...",
     "comments": [
       {
         "comment_id": "1805596",
@@ -10679,7 +11041,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions",
+    "_backfill_source": {
+      "comment_id": "1805596",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "424412",
@@ -10747,7 +11117,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "424418",
@@ -10759,7 +11131,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "First one is a No, as you can see in the Microsoft Learn documentation: &quot; this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query&quot;. | Second one is a No too, as it's not configured, and third one is a trivial Yes per definition. | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers",
+    "most_voted_answer": "First one is a No, as you can see in the Microsoft Learn documentation: \" this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query\". | Second one is a No too, as it's not configured, and third one is a trivial Yes per definition. | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers",
     "comments": [
       {
         "comment_id": "1795145",
@@ -10826,7 +11198,9 @@
       "score": 102.0,
       "pattern": "loose:numbered_list",
       "upvotes": 4
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424406",
@@ -10894,7 +11268,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "424409",
@@ -11019,7 +11395,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "424410",
@@ -11092,7 +11470,9 @@
       "score": 53.5,
       "pattern": "highly_voted",
       "upvotes": 7
-    }
+    },
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "424405",
@@ -11141,7 +11521,9 @@
       "score": 102.0,
       "pattern": "explicit_pattern",
       "upvotes": 4
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "424408",
@@ -11229,7 +11611,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430814",
@@ -11297,7 +11681,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430824",
@@ -11353,7 +11739,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430766",
@@ -11409,7 +11797,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430808",
@@ -11465,7 +11855,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430777",
@@ -11534,7 +11926,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430813",
@@ -11602,7 +11996,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions"
   },
   {
     "discussion_id": "430733",
@@ -11670,7 +12066,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430719",
@@ -11738,7 +12136,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430718",
@@ -11816,7 +12216,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430792",
@@ -11910,7 +12312,11 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
+    "case_study_id": "ai-103-contoso-ltd",
+    "case_study_title": "Contoso, Ltd"
   },
   {
     "discussion_id": "430781",
@@ -11978,7 +12384,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "430787",
@@ -11990,7 +12398,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "AnalyzeTextOption and analyze_text | AnalyzeTextOptions takes the parameters visible directly below it:text=input_text blocklist_names=[blocklist_name] halt_on_blocklist_hit=False client.analyze_text accepts an AnalyzeTextOptions request object and executes the text moderation against the specified blocklist.",
     "comments": [
       {
         "comment_id": "1805556",
@@ -12021,7 +12429,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions",
+    "_backfill_source": {
+      "comment_id": "1805556",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "430798",
@@ -12089,7 +12505,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430778",
@@ -12138,7 +12556,9 @@
       "score": 101.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430745",
@@ -12206,7 +12626,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "430729",
@@ -12256,7 +12678,9 @@
       "score": 56.5,
       "pattern": "highly_voted",
       "upvotes": 13
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430713",
@@ -12324,7 +12748,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "430726",
@@ -12336,7 +12762,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answer: A — Add a reflection pass before the responses are returned. | Why (from Microsoft Learn): | • A reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching &quot;implemented in the logic of the application code.&quot; | • Respon...",
+    "most_voted_answer": "Correct Answer: A — Add a reflection pass before the responses are returned. | Why (from Microsoft Learn): | • A reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching \"implemented in the logic of the application code.\" | • Respon...",
     "comments": [
       {
         "comment_id": "1809387",
@@ -12408,7 +12834,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "430709",
@@ -12479,7 +12907,9 @@
       "score": 101.5,
       "pattern": "loose:label_pair",
       "upvotes": 3
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430730",
@@ -12560,7 +12990,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430795",
@@ -12653,7 +13085,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   },
   {
     "discussion_id": "430739",
@@ -12778,7 +13212,9 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Implement information extraction solutions"
   },
   {
     "discussion_id": "430776",
@@ -12849,7 +13285,9 @@
       "score": 101.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
-    }
+    },
+    "skill_area": 3,
+    "skill_area_label": "Implement computer vision solutions"
   },
   {
     "discussion_id": "430811",
@@ -12861,7 +13299,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "base image and billing org | docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \\ | mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment \\ | Eula=accept \\ | Billing=http://contoso.cognitiveservices.azure.com \\ | ApiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "comments": [
       {
         "comment_id": "1805543",
@@ -12892,7 +13330,15 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Implement text analysis solutions",
+    "_backfill_source": {
+      "comment_id": "1805543",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "435372",
@@ -12949,7 +13395,9 @@
       "score": 100.5,
       "pattern": "explicit_pattern",
       "upvotes": 1
-    }
+    },
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "436013",
@@ -13003,7 +13451,9 @@
     ],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "433809",
@@ -13078,6 +13528,8 @@
     "exhibits": [],
     "drag_drop_items": [],
     "drag_drop_targets": [],
-    "drag_drop_error": null
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution"
   }
 ]
