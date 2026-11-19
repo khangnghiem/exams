@@ -1,40 +1,41 @@
 #!/usr/bin/env python3
 """
-Crawl DP-600 and DP-700 exam discussion questions from examtopics.com.
+Crawl Microsoft certification exam discussion questions from examtopics.com.
 
-Outputs (default: current working directory; use --output-dir to change):
-  - dp-600.jsonl / dp-700.jsonl (line-delimited JSON, one question per line)
-  - dp-600.json / dp-700.json (consolidated JSON arrays, written at the end)
-  - state.json (checkpoint/resume state)
+Supports DP-600, DP-700, AI-103, AI-300, AI-500 (and any Microsoft exam slug
+passed via ``--exams``). Handles both legacy ExamTopics discussion markup
+(``div.question-choices-container`` + ``div.voted-answers-tally``) and late-2026
+discussion markup (inline ``A. ... B. ...`` choices in ``p.card-text``, static
+``data-id="825909"`` placeholder, ``Selected Answer: X`` voter badges, and
+``"N times"`` upvote counters).
 
-Usage (from repo root):
-    python scripts/crawl_fabric_discussions.py --output-dir data
+Outputs (use ``--output-dir`` to set destination):
+  - <exam>.jsonl (line-delimited JSON, one question per line)
+  - <exam>.json  (consolidated JSON array, sorted by topic & question_number)
+  - state file   (checkpoint/resume state)
 
-Politeness:
-  - Honest user-agent
-  - Max concurrent requests limited
-  - Delay between requests
-  - Retries with exponential backoff
-  - Respects robots.txt (target paths are not disallowed)
+Usage (from azure/ directory):
+    python3 scripts/crawl_fabric_discussions.py --output-dir data --exams ai-103 ai-300 ai-500
 """
 
 from __future__ import annotations
 
 import argparse
 import asyncio
+from collections import Counter
+from dataclasses import asdict, dataclass, field
 import json
 import logging
-import os
+from mimetypes import guess_extension
+from pathlib import Path
 import random
 import re
 import sys
-import time
-from dataclasses import asdict, dataclass, field
-from pathlib import Path
 from typing import Any
+from urllib.parse import urljoin, urlparse
 
-import httpx
 from bs4 import BeautifulSoup
+import httpx
 
 # Local imports (kept absolute to avoid implicit relative-import issues when
 # run as a script from the repo root).
@@ -43,13 +44,38 @@ from sanitize_exhibit_html import sanitize_exhibit_html  # noqa: E402
 
 BASE_URL = "https://www.examtopics.com"
 LIST_URL = BASE_URL + "/discussions/microsoft/{page}/"
+EXAM_VIEW_URL = BASE_URL + "/exams/microsoft/{exam}/view/"
+
+# Matches both relative (/discussions/...) and absolute (https://www.examtopics.com/discussions/...) hrefs.
 DISCUSSION_RE = re.compile(
-    r"/discussions/microsoft/view/(?P<id>\d+)-exam-(?P<exam>dp-[67]00)-topic-(?P<topic>\d+)-question-(?P<qnum>\d+)-discussion/"
+    r"^(?:https?://(?:www\.)?examtopics\.com)?"
+    r"(?P<path>/discussions/microsoft/view/(?P<id>\d+)-exam-(?P<exam>[a-z0-9-]+)-topic-(?P<topic>\d+)-question-(?P<qnum>\d+)-discussion/?)",
+    re.IGNORECASE,
 )
 
+DEFAULT_EXAMS = ("dp-600", "dp-700", "ai-103", "ai-300", "ai-500")
 TARGET_EXAMS = {"dp-600", "dp-700"}
 
-# Project root (parent of /scripts).
+# Static placeholder data-id emitted by ExamTopics on 2026 discussion pages.
+PLACEHOLDER_QUESTION_IDS = {"", "825909"}
+
+MULTI_SELECT_PROMPT_RE = re.compile(
+    r"\b(?:select\s+(?:two|three|four|five|\d+)|"
+    r"which\s+(?:two|three|four|five|\d+)|"
+    r"choose\s+(?:two|three|four|five|\d+)|"
+    r"each\s+correct\s+answer\s+presents\s+part\s+of\s+the\s+solution|"
+    r"more\s+than\s+one\s+answer\s+choice\s+may\s+achieve\s+the\s+goal)\b",
+    re.IGNORECASE,
+)
+
+INLINE_CHOICE_MARKER_RE = re.compile(
+    r"(?:^|(?:<br\s*/?>[\s\r\n]*)+|\n[\s\r\n]*)(?P<letter>[A-Z])\.\s+",
+    re.MULTILINE,
+)
+
+RICH_CHOICE_HTML_RE = re.compile(r"<(?:img|pre|code|table)\b", re.IGNORECASE)
+
+# Project root (parent of /scripts -> azure/).
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_EXHIBITS_DIR = PROJECT_ROOT / "assets" / "exhibits"
 
@@ -79,9 +105,8 @@ class Choice:
     letter: str
     text: str
     correct: bool = False
-    # Raw HTML inside the ``<li>`` with the letter chip removed. Used to
-    # preserve image- and code-based choices where ``get_text(strip=True)``
-    # would have produced an empty string.
+    # Raw HTML inside the choice when rich media/code is present. Kept empty for
+    # plain-text choices so the study guide doesn't duplicate text + HTML.
     text_html: str = ""
 
 
@@ -102,9 +127,6 @@ class Question:
     question_type: str = "unknown"
     raw_html: str = ""
     exhibits: list[dict[str, Any]] = field(default_factory=list)
-    # Drag-drop specific: source items and target slots extracted from the
-    # discussion page. ``drag_drop_error`` records a short human-readable
-    # reason when extraction failed (e.g. markup wasn't parseable).
     drag_drop_items: list[Any] = field(default_factory=list)
     drag_drop_targets: list[Any] = field(default_factory=list)
     drag_drop_error: str | None = None
@@ -130,6 +152,11 @@ class Question:
             "drag_drop_targets": list(self.drag_drop_targets),
             "drag_drop_error": self.drag_drop_error,
         }
+
+
+def is_multiselect_prompt(question_text: str) -> bool:
+    """Return True if the question stem explicitly asks for multiple answers."""
+    return bool(MULTI_SELECT_PROMPT_RE.search(question_text or ""))
 
 
 def _infer_code_language(element: Any) -> str:
@@ -165,13 +192,14 @@ def infer_question_type(
         return "hotspot"
     if text.startswith("drag drop"):
         return "drag_drop"
-    if text.startswith("case study"):
-        return "case_study"
     if has_choices:
-        if len(correct_answers) == 1:
-            return "single"
-        if len(correct_answers) > 1:
+        if len(correct_answers) > 1 or is_multiselect_prompt(question_text):
             return "multiple"
+        if text.startswith("case study") or text.startswith("this is a case study"):
+            return "case_study"
+        return "single"
+    if text.startswith("case study") or text.startswith("this is a case study"):
+        return "case_study"
     return "unknown"
 
 
@@ -179,26 +207,21 @@ def _resolve_url(base_url: str, src: str) -> str:
     """Resolve a possibly-relative ``src`` against the page's base URL."""
     if not src:
         return ""
-    from urllib.parse import urljoin
-
     return urljoin(base_url, src)
 
 
 def _guess_image_extension(url: str, content_type: str | None = None) -> str:
     """Return a file extension (with dot, lowercase) for an image URL."""
-    from urllib.parse import urlparse
-    from mimetypes import guess_extension
-
     path = urlparse(url).path
     if "." in path.rsplit("/", 1)[-1]:
         ext = "." + path.rsplit(".", 1)[-1].lower()
-        if len(ext) <= 6:  # sanity bound
+        if len(ext) <= 6:
             return ext
     if content_type:
         ext = guess_extension(content_type.split(";")[0].strip())
         if ext:
             return ext.lower()
-    return ".bin"
+    return ".png"
 
 
 async def _download_one_image(
@@ -208,7 +231,9 @@ async def _download_one_image(
     dest: Path,
 ) -> bool:
     """Download a single image with retries. Returns True on success."""
-    delay_low, delay_high = 0.2, 0.6
+    if dest.exists() and dest.stat().st_size > 0:
+        return True
+    delay_low, delay_high = 0.15, 0.45
     for attempt in range(4):
         try:
             async with sem:
@@ -223,14 +248,13 @@ async def _download_one_image(
                     },
                     follow_redirects=True,
                 )
-            if resp.status_code == 200:
+            if resp.status_code == 200 and resp.content:
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 dest.write_bytes(resp.content)
                 return True
             if resp.status_code in (403, 429, 502, 503, 504):
                 await asyncio.sleep(2 ** attempt + random.uniform(0, 1))
                 continue
-            # Other non-200: treat as a failure but don't retry forever.
             return False
         except (httpx.RequestError, httpx.HTTPStatusError):
             await asyncio.sleep(2 ** attempt + random.uniform(0, 1))
@@ -240,28 +264,17 @@ async def _download_one_image(
 
 
 def _extract_drag_drop(html: str, url: str) -> tuple[list[Any], list[Any], str | None]:
-    """Best-effort extractor for drag-drop source items and target slots.
-
-    On the current ExamTopics markup the actual draggable items and drop
-    zones live inside a single exhibit image, so ``drag_drop_items`` and
-    ``drag_drop_targets`` are normally empty and ``drag_drop_error`` carries
-    a short reason (e.g. ``"items live in exhibit image"``). This function
-    still walks the HTML looking for explicit ``.drag-source`` /
-    ``.drag-target`` / ``[data-drag-item]`` / ``[data-drop-target]``
-    containers so a future markup change is picked up automatically.
-    """
+    """Best-effort extractor for drag-drop source items and target slots."""
     soup = BeautifulSoup(html or "", "html.parser")
 
     def _label(el: Any) -> str:
         if el is None:
             return ""
-        text = el.get_text(" ", strip=True)
-        return text.strip()
+        return el.get_text(" ", strip=True).strip()
 
     items: list[dict[str, str]] = []
     targets: list[dict[str, str]] = []
 
-    # Modern markup (hypothetical): containers tagged with drag-drop classes.
     for el in soup.select(".drag-source [data-drag-item], .drag-source li, .drag-source .drag-item"):
         label = _label(el)
         if label:
@@ -272,11 +285,8 @@ def _extract_drag_drop(html: str, url: str) -> tuple[list[Any], list[Any], str |
         ".drag-target .drop-zone, .drag-target li"
     ):
         label = _label(el)
-        # Drop-target slots often contain placeholder text like "Drop here".
-        placeholder = label or "Drop here"
-        targets.append({"placeholder": placeholder})
+        targets.append({"placeholder": label or "Drop here"})
 
-    # Fall back: any element with data attributes signalling role.
     if not items:
         for el in soup.select("[data-drag-item]"):
             label = _label(el)
@@ -290,8 +300,6 @@ def _extract_drag_drop(html: str, url: str) -> tuple[list[Any], list[Any], str |
     if items and targets:
         error = None
     else:
-        # The current ExamTopics page renders the entire drag-drop UI as a
-        # single <img>, so HTML-only extraction can't see items or targets.
         has_image = bool(soup.select("p.card-text img"))
         if has_image:
             error = "drag-drop UI is rendered as a single image (see exhibit)"
@@ -299,6 +307,104 @@ def _extract_drag_drop(html: str, url: str) -> tuple[list[Any], list[Any], str |
             error = "no drag-drop markup found in discussion HTML"
 
     return items, targets, error
+
+
+def _extract_inline_choices(raw_html: str) -> tuple[str, list[Choice]]:
+    """Split 2026 ``p.card-text`` HTML into ``(stem_html, choices)``.
+
+    On late-2026 ExamTopics discussion pages, multiple-choice options are
+    appended directly inside ``p.card-text`` as ``<br/>A. ... <br/>B. ...``.
+    We locate the last ``A.`` marker whose subsequent markers to the end of
+    ``raw_html`` form a contiguous ``A, B[, C, D, ...]`` sequence of length >= 2.
+    """
+    if not raw_html:
+        return "", []
+
+    matches = list(INLINE_CHOICE_MARKER_RE.finditer(raw_html))
+    if len(matches) < 2:
+        return raw_html, []
+
+    chosen_start_idx: int | None = None
+    for idx in range(len(matches) - 1, -1, -1):
+        if matches[idx].group("letter") != "A":
+            continue
+        tail = matches[idx:]
+        if len(tail) < 2:
+            continue
+        expected = [chr(ord("A") + offset) for offset in range(len(tail))]
+        actual = [m.group("letter") for m in tail]
+        if actual == expected:
+            chosen_start_idx = idx
+            break
+
+    if chosen_start_idx is None:
+        return raw_html, []
+
+    tail_matches = matches[chosen_start_idx:]
+    stem_html = raw_html[: tail_matches[0].start()].rstrip()
+    choices: list[Choice] = []
+
+    for i, m in enumerate(tail_matches):
+        letter = m.group("letter")
+        seg_start = m.end()
+        seg_end = tail_matches[i + 1].start() if i + 1 < len(tail_matches) else len(raw_html)
+        seg_html = raw_html[seg_start:seg_end]
+        # Trim trailing <br>, </br>, and whitespace artifacts.
+        seg_html = re.sub(r"(?:\s|</?br\s*/?>)+$", "", seg_html, flags=re.IGNORECASE).strip()
+        seg_soup = BeautifulSoup(seg_html, "html.parser")
+        plain = re.sub(r"\s+", " ", seg_soup.get_text(" ", strip=True)).strip()
+        text_html = sanitize_exhibit_html(seg_html) if RICH_CHOICE_HTML_RE.search(seg_html) else ""
+        choices.append(Choice(letter=letter, text=plain, correct=False, text_html=text_html))
+
+    return stem_html, choices
+
+
+async def _download_choice_images(
+    choices: list[Choice],
+    base_url: str,
+    exam: str,
+    question_id: str,
+    *,
+    client: httpx.AsyncClient,
+    sem: asyncio.Semaphore,
+    exhibits_dir: Path | None = None,
+) -> None:
+    """Download any ``<img>`` tags inside ``choice.text_html`` and rewrite ``src``."""
+    exhibits_root = exhibits_dir or DEFAULT_EXHIBITS_DIR
+    target_dir = exhibits_root / exam
+    tasks: list[tuple[Any, str, Path, str]] = []
+
+    choice_soups: list[tuple[Choice, BeautifulSoup]] = []
+    for ch in choices:
+        if not ch.text_html or "<img" not in ch.text_html.lower():
+            continue
+        soup = BeautifulSoup(ch.text_html, "html.parser")
+        choice_soups.append((ch, soup))
+        safe_letter = re.sub(r"[^A-Za-z0-9_-]", "_", ch.letter or "X")
+        for idx, img in enumerate(soup.find_all("img")):
+            src = str(img.get("src", ""))
+            if not src:
+                continue
+            orig_url = _resolve_url(base_url, src)
+            ext = _guess_image_extension(orig_url)
+            filename = f"{question_id}_{safe_letter}_{idx}{ext}"
+            dest = target_dir / filename
+            rel_src = f"assets/exhibits/{exam}/{filename}"
+            tasks.append((img, orig_url, dest, rel_src))
+
+    if not tasks:
+        return
+
+    results = await asyncio.gather(
+        *[_download_one_image(client, sem, orig_url, dest) for _, orig_url, dest, _ in tasks]
+    )
+    for (img, _, _, rel_src), ok in zip(tasks, results):
+        if ok:
+            img["src"] = rel_src
+            img["loading"] = "lazy"
+
+    for ch, soup in choice_soups:
+        ch.text_html = sanitize_exhibit_html(str(soup))
 
 
 async def _extract_exhibits(
@@ -311,21 +417,7 @@ async def _extract_exhibits(
     sem: asyncio.Semaphore | None = None,
     exhibits_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
-    """Extract images, tables, and code blocks from raw question HTML.
-
-    For ``<img>`` tags the image is downloaded (when ``client``/``sem`` are
-    provided) into ``assets/exhibits/{exam}/{question_id}_{idx}{ext}``. The
-    returned dict for each image includes the local relative path under
-    ``src``/``local_path`` and the original URL under ``original_url``.
-
-    For ``<table>`` tags the sanitized HTML is returned along with any
-    caption. For ``<pre>``/``code>`` blocks the language is inferred from the
-    element's class (e.g. ``language-python``) or falls back to ``"generic"``.
-
-    The matching elements are *removed* from ``raw_html`` (in-place via a
-    BeautifulSoup parse) so the caller can keep ``question_text`` as plain
-    text without double-counting visual content.
-    """
+    """Extract images, tables, and block code snippets from question stem HTML."""
     exhibits: list[dict[str, Any]] = []
     if not raw_html:
         return exhibits
@@ -345,17 +437,16 @@ async def _extract_exhibits(
         if not original_url:
             img.decompose()
             continue
-        # Provisional extension; refined after download if needed.
         ext = _guess_image_extension(original_url)
         filename = f"{question_id}_{img_index}{ext}"
         local_path = target_dir / filename
-        rel_src = str(Path("assets") / "exhibits" / exam / filename)
+        rel_src = f"assets/exhibits/{exam}/{filename}"
         exhibit: dict[str, Any] = {
             "kind": "image",
             "src": rel_src,
             "alt": alt,
             "original_url": original_url,
-            "local_path": str(local_path),
+            "local_path": rel_src,
         }
         exhibits.append(exhibit)
         img_tasks.append((exhibit, original_url, local_path))
@@ -378,18 +469,14 @@ async def _extract_exhibits(
         )
         tbl.decompose()
 
-    # 3) Code blocks. Two patterns exist in the wild:
-    #    - <pre><code class="language-x">...</code></pre>  (most common)
-    #    - <pre class="language-x">...</pre>                (no inner <code>)
-    #    - <code>...</code> alone                           (inline snippets)
-    # To avoid iterating over decomposed children, process <pre> blocks
-    # first and skip <code> elements whose nearest pre ancestor we handled.
+    # 3) Code blocks (<pre> and multiline standalone <code>).
     handled_pre_ids: set[int] = set()
     for pre in list(soup.find_all("pre")):
         language = _infer_code_language(pre)
         exhibits.append(
             {
                 "kind": "code",
+                "code": pre.get_text(),
                 "html": sanitize_exhibit_html(str(pre)),
                 "language": language,
             }
@@ -397,9 +484,7 @@ async def _extract_exhibits(
         handled_pre_ids.add(id(pre))
         pre.decompose()
 
-    # Now standalone <code> elements (not inside any <pre>).
     for code in list(soup.find_all("code")):
-        # If this <code> lives inside a <pre> we already handled, skip.
         ancestor = code.parent
         inside_handled_pre = False
         while ancestor is not None and ancestor is not soup:
@@ -409,36 +494,161 @@ async def _extract_exhibits(
             ancestor = ancestor.parent
         if inside_handled_pre:
             continue
+        code_text = code.get_text()
+        # Keep short single-line inline identifiers inside prose rather than
+        # turning every ``<code>foo</code>`` token into a standalone exhibit.
+        if "\n" not in code_text and len(code_text.strip()) < 60:
+            continue
         language = _infer_code_language(code)
         exhibits.append(
             {
                 "kind": "code",
+                "code": code_text,
                 "html": sanitize_exhibit_html(str(code)),
                 "language": language,
             }
         )
         code.decompose()
 
-    # Download images concurrently when an HTTP client is available.
     if img_tasks and client is not None and sem is not None:
         results = await asyncio.gather(
-            *[
-                _download_one_image(client, sem, url, dest)
-                for _, url, dest in img_tasks
-            ]
+            *[_download_one_image(client, sem, url, dest) for _, url, dest in img_tasks]
         )
-        # Refine the file extension from the saved file's magic bytes / path.
-        for (exhibit, url, dest), ok in zip(img_tasks, results):
+        for (exhibit, _, _), ok in zip(img_tasks, results):
             exhibit["downloaded"] = bool(ok)
-            if ok and dest.exists():
-                # If the URL didn't have a real extension, sniff from path.
-                pass
     elif img_tasks:
-        # No client provided; mark as not downloaded.
         for exhibit, _, _ in img_tasks:
             exhibit["downloaded"] = False
 
     return exhibits
+
+
+def _normalize_selected_letters(raw: str, valid_letters: set[str] | None = None) -> str | None:
+    """Normalize ``'B, D'`` or ``'BD'`` into sorted uppercase letters ``'BD'``."""
+    if not raw:
+        return None
+    letters = sorted(set(re.findall(r"[A-Z]", raw.upper())))
+    if not letters:
+        return None
+    if valid_letters is not None and not all(ch in valid_letters for ch in letters):
+        return None
+    return "".join(letters)
+
+
+def _infer_mcq_letters_from_comments(
+    comments: list[Comment],
+    choices: list[Choice],
+) -> tuple[list[dict[str, Any]], str | None]:
+    """Compute ``(voted_answers_tally, most_voted_answer)`` for an MCQ from comments."""
+    valid_letters = {c.letter.upper() for c in choices if c.letter}
+    if not valid_letters or not comments:
+        return [], None
+
+    # 1) Primary signal: explicit ``Selected Answer: X`` voter badges / declarations.
+    vote_counts: Counter[str] = Counter()
+    weighted_scores: Counter[str] = Counter()
+    for c in comments:
+        norm = _normalize_selected_letters(c.selected_answer or "", valid_letters)
+        if not norm:
+            continue
+        vote_counts[norm] += 1
+        bonus = 2 if "Highly Voted" in c.badges else 0
+        weighted_scores[norm] += 1 + max(c.upvotes, 0) + bonus
+
+    if vote_counts:
+        ranked = sorted(
+            vote_counts.keys(),
+            key=lambda ans: (weighted_scores[ans], vote_counts[ans], -len(ans), ans),
+            reverse=True,
+        )
+        top = ranked[0]
+        tally = [
+            {
+                "voted_answers": ans,
+                "vote_count": vote_counts[ans],
+                "is_most_voted": ans == top,
+            }
+            for ans in ranked
+        ]
+        return tally, top
+
+    # 2) Secondary signal: explicit answer statements in comment bodies
+    #    (e.g. "The answer is B: No", "Correct answer: A and C", "B is correct").
+    explicit_patterns = (
+        # With explicit delimiter (: or =), allow upper or lower letter(s), e.g. "Answer: B" or "Answer: b".
+        re.compile(
+            r"(?i:(?:the\s+answer\s+is|correct\s+answer\s*(?:is)?|selected\s+answer|answer\s+is|answer))\s*[:=]\s*([A-Za-z](?:\s*(?i:,|and|&|/)\s*[A-Za-z])*)(?![A-Za-z])"
+        ),
+        # Without delimiter ("The answer is B: No", "correct answer is A and C"), require UPPERCASE letter(s)
+        # so English prose like "The answer is a managed identity" never matches lowercase "a".
+        re.compile(
+            r"(?i:(?:the\s+answer\s+is|correct\s+answer\s+is|selected\s+answer\s+is|answer\s+is))\s+([A-Z](?:\s*(?i:,|and|&|/)\s*[A-Z])*)(?![A-Za-z])"
+        ),
+        re.compile(
+            r"^\s*([A-Z](?:\s*(?i:,|and|&)\s*[A-Z])*)(?![A-Za-z])\s+(?i:(?:is|are)\s+(?:the\s+)?correct)\b",
+            re.MULTILINE,
+        ),
+        re.compile(r"^\s*([A-Z])\s*[:.-]\s+\S", re.MULTILINE),
+    )
+
+    best_ans: str | None = None
+    best_score = -1.0
+    for c in comments:
+        body = (c.text or "").strip()
+        if not body or body.endswith("?"):
+            continue
+        matched_ans: str | None = None
+        for pat in explicit_patterns:
+            m = pat.search(body)
+            if m:
+                cand = _normalize_selected_letters(m.group(1), valid_letters)
+                if cand:
+                    matched_ans = cand
+                    break
+        # 3) Tertiary signal: comment uniquely names the exact text of one choice
+        #    (useful for 2026 single-comment explanations like "The Ask a question node...").
+        if matched_ans is None:
+            matching_letters = []
+            body_lower = body.lower()
+            for ch in choices:
+                ctext = (ch.text or "").strip()
+                if len(ctext) < 4 or ctext.lower() in {"yes", "no", "true", "false"}:
+                    continue
+                if re.search(rf"\b{re.escape(ctext.lower())}\b", body_lower):
+                    matching_letters.append(ch.letter.upper())
+            if len(matching_letters) == 1:
+                matched_ans = matching_letters[0]
+
+        if matched_ans:
+            score = 10.0 + max(c.upvotes, 0) * 2.0 + (20.0 if "Highly Voted" in c.badges else 0.0)
+            if score > best_score:
+                best_score = score
+                best_ans = matched_ans
+
+    if best_ans:
+        return (
+            [{"voted_answers": best_ans, "vote_count": 1, "is_most_voted": True}],
+            best_ans,
+        )
+    return [], None
+
+
+def _record_richness(rec: dict[str, Any]) -> tuple[int, int, int, int, int]:
+    """Ranking key when deduplicating multiple discussions for the same (exam, topic, qnum)."""
+    has_correct = int(bool(rec.get("correct_answers")))
+    has_most_voted = int(bool(rec.get("most_voted_answer")))
+    n_comments = len(rec.get("comments") or [])
+    n_exhibits = len(rec.get("exhibits") or [])
+    try:
+        did = int(rec.get("discussion_id") or 0)
+    except (TypeError, ValueError):
+        did = 0
+    return (has_correct, has_most_voted, n_comments, n_exhibits, did)
+
+
+def _normalize_stem_key(text: str) -> str:
+    """Normalized alphanumeric fingerprint for matching /view/ cards to discussions."""
+    return re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).strip()[:240]
 
 
 class Crawler:
@@ -446,16 +656,23 @@ class Crawler:
         self,
         output_dir: Path,
         max_concurrent: int = 3,
-        delay: tuple[float, float] = (1.2, 2.0),
+        delay: tuple[float, float] = (1.0, 1.8),
         max_retries: int = 4,
         timeout: int = 45,
+        exams: set[str] | list[str] | tuple[str, ...] | None = None,
+        state_path: Path | None = None,
+        start_page: int = 1,
+        stop_after_empty_pages: int | None = None,
     ) -> None:
         self.output_dir = output_dir
         self.max_concurrent = max_concurrent
         self.delay = delay
         self.max_retries = max_retries
         self.timeout = timeout
-        self.state_path = output_dir / "state.json"
+        self.exams: set[str] = {e.lower() for e in (exams or TARGET_EXAMS)}
+        self.state_path = state_path or (output_dir / "state.json")
+        self.start_page = max(1, start_page)
+        self.stop_after_empty_pages = stop_after_empty_pages
         self.state: dict[str, Any] = self._load_state()
         self.client: httpx.AsyncClient | None = None
         self.sem = asyncio.Semaphore(max_concurrent)
@@ -464,21 +681,20 @@ class Crawler:
         if self.state_path.exists():
             try:
                 data = json.loads(self.state_path.read_text(encoding="utf-8"))
-                # JSON cannot serialize sets; restore them here
                 data["list_pages_completed"] = set(data.get("list_pages_completed", []))
                 data["urls_processed"] = set(data.get("urls_processed", []))
                 return data
             except Exception as e:
-                logger.warning("Could not load state file: %s", e)
+                logger.warning("Could not load state file %s: %s", self.state_path, e)
         return {
             "list_pages_completed": set(),
-            "urls_collected": {},  # exam -> list of dicts
+            "urls_collected": {},
             "urls_processed": set(),
             "errors": {},
         }
 
     def _save_state(self) -> None:
-        # Convert sets to lists for JSON serialization
+        self.state_path.parent.mkdir(parents=True, exist_ok=True)
         serializable = {
             "list_pages_completed": sorted(self.state["list_pages_completed"]),
             "urls_collected": {
@@ -519,16 +735,27 @@ class Crawler:
                     if resp.status_code == 200:
                         return resp.text
                     if resp.status_code in (403, 429, 503, 502, 504):
-                        logger.warning("HTTP %d for %s (attempt %d)", resp.status_code, url, attempt + 1)
+                        logger.warning(
+                            "HTTP %d for %s (attempt %d)",
+                            resp.status_code,
+                            url,
+                            attempt + 1,
+                        )
                         last_err = httpx.HTTPStatusError(
                             f"HTTP {resp.status_code}", request=resp.request, response=resp
                         )
-                        await asyncio.sleep(2 ** attempt + random.uniform(0, 1))
+                        await asyncio.sleep(2 ** (attempt + 1) + random.uniform(0.5, 2.0))
                     else:
                         resp.raise_for_status()
-                except (httpx.RequestError, httpx.HTTPStatusError) as e:
+                except httpx.HTTPStatusError as e:
+                    if e.response is not None and e.response.status_code == 404:
+                        raise
                     last_err = e
                     logger.warning("Fetch error for %s (attempt %d): %s", url, attempt + 1, e)
+                    await asyncio.sleep(2 ** attempt + random.uniform(0, 1))
+                except httpx.RequestError as e:
+                    last_err = e
+                    logger.warning("Request error for %s (attempt %d): %s", url, attempt + 1, e)
                     await asyncio.sleep(2 ** attempt + random.uniform(0, 1))
         raise last_err or RuntimeError(f"Failed to fetch {url}")
 
@@ -536,37 +763,35 @@ class Crawler:
         soup = BeautifulSoup(html, "html.parser")
 
         q_body = soup.find("div", class_="question-body")
-        question_id = str(q_body.get("data-id", "")) if q_body else ""
-        raw_html = ""
-        question_text = ""
+        raw_qid = str(q_body.get("data-id", "")).strip() if q_body else ""
+        question_id = str(meta["id"]) if raw_qid in PLACEHOLDER_QUESTION_IDS else raw_qid
+
+        full_card_html = ""
         if q_body:
             p = q_body.find("p", class_="card-text")
             if p:
-                raw_html = str(p.decode_contents())
-                question_text = p.get_text(separator="\n", strip=True)
+                full_card_html = str(p.decode_contents())
 
         choices: list[Choice] = []
         correct_answers: list[str] = []
         choices_container = soup.find("div", class_="question-choices-container")
         if choices_container:
+            stem_html = full_card_html
             for li in choices_container.find_all("li", class_="multi-choice-item"):
                 letter_span = li.find("span", class_="multi-choice-letter")
                 letter = str(letter_span.get("data-choice-letter", "")) if letter_span else ""
                 text = li.get_text(strip=True)
-                # Remove leading letter prefix like "A." from text
                 text = re.sub(r"^[A-Z]\.\s*", "", text).strip()
 
-                # Capture the inner HTML with the letter chip removed so
-                # image- and code-based choices (which strip to empty
-                # ``text``) still render. We work on a *copy* so we don't
-                # mutate the parsed soup used by exhibit extraction.
                 text_html = ""
                 li_copy = BeautifulSoup(str(li), "html.parser").find("li")
                 if li_copy is not None:
                     chip = li_copy.find("span", class_="multi-choice-letter")
                     if chip:
                         chip.decompose()
-                    text_html = li_copy.decode_contents().strip()
+                    inner_raw = li_copy.decode_contents().strip()
+                    if RICH_CHOICE_HTML_RE.search(inner_raw):
+                        text_html = sanitize_exhibit_html(inner_raw)
 
                 correct = "correct-hidden" in (li.get("class") or [])
                 choices.append(
@@ -574,6 +799,14 @@ class Crawler:
                 )
                 if correct:
                     correct_answers.append(letter)
+        else:
+            stem_html, choices = _extract_inline_choices(full_card_html)
+
+        question_text = (
+            BeautifulSoup(stem_html, "html.parser").get_text(separator="\n", strip=True)
+            if stem_html
+            else ""
+        )
 
         voted_tally: list[dict[str, Any]] = []
         most_voted: str | None = None
@@ -590,17 +823,20 @@ class Crawler:
                 except json.JSONDecodeError as e:
                     logger.warning("Could not parse voted answers tally: %s", e)
 
+        comments = self._parse_comments(soup)
+        self._apply_comment_consensus(choices, correct_answers, voted_tally, most_voted, comments)
+        if not most_voted and voted_tally:
+            for item in voted_tally:
+                if item.get("is_most_voted"):
+                    most_voted = item.get("voted_answers")
+                    break
+
         question_type = infer_question_type(
             question_text=question_text,
             has_choices=bool(choices),
             correct_answers=correct_answers,
         )
 
-        # Drag-drop questions on ExamTopics don't expose the source/target
-        # markup as HTML — the draggable items and drop zones live inside a
-        # single exhibit image. We still attempt to extract any markup hints
-        # here so future markup changes surface immediately, but on the
-        # current site we expect empty lists + a populated ``drag_drop_error``.
         drag_items: list[Any] = []
         drag_targets: list[Any] = []
         drag_error: str | None = None
@@ -611,8 +847,8 @@ class Crawler:
                 logger.warning("Drag-drop parse failed for %s: %s", url, e)
                 drag_error = f"parse: {e}"
 
-        question = Question(
-            discussion_id=meta["id"],
+        return Question(
+            discussion_id=str(meta["id"]),
             exam=meta["exam"],
             topic=meta["topic"],
             question_number=meta["qnum"],
@@ -622,17 +858,40 @@ class Crawler:
             correct_answers=correct_answers,
             voted_answers_tally=voted_tally,
             most_voted_answer=most_voted,
+            comments=comments,
             url=url,
             question_type=question_type,
-            raw_html=raw_html,
+            raw_html=stem_html,
             exhibits=[],
             drag_drop_items=drag_items,
             drag_drop_targets=drag_targets,
             drag_drop_error=drag_error,
         )
 
-        question.comments = self._parse_comments(soup)
-        return question
+    @staticmethod
+    def _apply_comment_consensus(
+        choices: list[Choice],
+        correct_answers: list[str],
+        voted_tally: list[dict[str, Any]],
+        most_voted: str | None,
+        comments: list[Comment],
+    ) -> None:
+        """Mutate ``voted_tally`` and ``correct_answers`` from community votes when missing."""
+        if not choices:
+            return
+        valid_letters = {c.letter.upper() for c in choices if c.letter}
+        if not voted_tally and most_voted is None:
+            inferred_tally, inferred_most = _infer_mcq_letters_from_comments(comments, choices)
+            if inferred_tally:
+                voted_tally.extend(inferred_tally)
+            most_voted = inferred_most
+
+        if not correct_answers and most_voted:
+            norm = _normalize_selected_letters(most_voted, valid_letters)
+            if norm:
+                correct_answers.extend(list(norm))
+                for ch in choices:
+                    ch.correct = ch.letter.upper() in correct_answers
 
     def _parse_comments(self, soup: BeautifulSoup) -> list[Comment]:
         comments: list[Comment] = []
@@ -644,20 +903,34 @@ class Crawler:
             date_title = str(date_el.get("title", "")) if date_el else ""
             content_el = c.find("div", class_="comment-content")
             text = content_el.get_text(separator="\n", strip=True) if content_el else ""
+
             upvote_el = c.find("span", class_="upvote-count")
             upvotes = 0
             if upvote_el:
-                try:
-                    upvotes = int(upvote_el.get_text(strip=True))
-                except ValueError:
-                    pass
-            badges = [b.get_text(strip=True) for b in c.find_all("span", class_="badge")]
+                m_up = re.search(r"(\d+)", upvote_el.get_text(" ", strip=True))
+                if m_up:
+                    upvotes = int(m_up.group(1))
 
-            # Some comments explicitly state "Selected Answer: X"
-            selected_answer = None
-            selected_match = re.search(r"Selected Answer:\s*([A-Z]+)", text, re.IGNORECASE)
-            if selected_match:
-                selected_answer = selected_match.group(1)
+            raw_badges = [b.get_text(" ", strip=True) for b in c.select(".badge")]
+            badges: list[str] = []
+            selected_answer: str | None = None
+
+            for btxt in raw_badges:
+                m_sel = re.search(r"Selected\s+Answer\s*:\s*([A-Z,\s]+)", btxt, re.IGNORECASE)
+                if m_sel:
+                    selected_answer = _normalize_selected_letters(m_sel.group(1))
+                    badges.append(f"Selected Answer: {selected_answer}" if selected_answer else btxt)
+                elif btxt:
+                    badges.append(btxt)
+
+            if selected_answer is None:
+                selected_match = re.search(
+                    r"Selected\s+Answer\s*:\s*([A-Z](?:\s*,\s*[A-Z]|[A-Z])*)",
+                    text,
+                    re.IGNORECASE,
+                )
+                if selected_match:
+                    selected_answer = _normalize_selected_letters(selected_match.group(1))
 
             comments.append(
                 Comment(
@@ -675,32 +948,24 @@ class Crawler:
     async def _crawl_discussion(self, meta: dict[str, Any]) -> Question | None:
         url = f"{BASE_URL}{meta['path']}"
         try:
-            html = await self._fetch(url)
-            question = self._parse_discussion_html(html, url, meta)
+            question: Question | None = None
+            html = ""
+            for attempt in range(3):
+                html = await self._fetch(url)
+                question = self._parse_discussion_html(html, url, meta)
+                if question.question_text or question.raw_html or question.choices:
+                    break
+                logger.warning(
+                    "Empty question-body on %s (attempt %d/3); backing off",
+                    url,
+                    attempt + 1,
+                )
+                await asyncio.sleep(3 * (attempt + 1) + random.uniform(0.5, 1.5))
 
-            # Extract exhibits (downloads images) using the active client.
-            if question.raw_html and self.client is not None:
-                try:
-                    exhibits = await _extract_exhibits(
-                        question.raw_html,
-                        url,
-                        exam=question.exam,
-                        question_id=question.question_id or question.discussion_id,
-                        client=self.client,
-                        sem=self.sem,
-                    )
-                    question.exhibits = exhibits
-                    if exhibits:
-                        logger.debug(
-                            "Extracted %d exhibits for %s Q%s",
-                            len(exhibits),
-                            question.exam,
-                            question.question_number,
-                        )
-                except Exception as e:
-                    logger.warning("Exhibit extraction failed for %s: %s", url, e)
+            if question is None or not (question.question_text or question.raw_html):
+                raise RuntimeError("Empty question-body after retries")
 
-            # Load full discussion if paginated
+            # Load full discussion if paginated BEFORE computing final consensus!
             load_more = BeautifulSoup(html, "html.parser").find("div", class_="load-more-section")
             if load_more:
                 discussion_id = load_more.get("data-discussion-id", meta["id"])
@@ -708,9 +973,63 @@ class Crawler:
                 try:
                     full_html = await self._fetch(ajax_url)
                     full_soup = BeautifulSoup(full_html, "html.parser")
-                    question.comments = self._parse_comments(full_soup)
+                    full_comments = self._parse_comments(full_soup)
+                    if full_comments:
+                        question.comments = full_comments
+                        # Recompute consensus over the complete comment thread when needed.
+                        if question.choices and not any(
+                            "correct-hidden" in str(html) for _ in (1,)
+                        ):
+                            question.voted_answers_tally = []
+                            question.most_voted_answer = None
+                            question.correct_answers = []
+                            for ch in question.choices:
+                                ch.correct = False
+                            self._apply_comment_consensus(
+                                question.choices,
+                                question.correct_answers,
+                                question.voted_answers_tally,
+                                None,
+                                question.comments,
+                            )
+                            for item in question.voted_answers_tally:
+                                if item.get("is_most_voted"):
+                                    question.most_voted_answer = item.get("voted_answers")
+                                    break
+                            question.question_type = infer_question_type(
+                                question_text=question.question_text,
+                                has_choices=bool(question.choices),
+                                correct_answers=question.correct_answers,
+                            )
                 except Exception as e:
                     logger.warning("Could not load full discussion for %s: %s", url, e)
+
+            # Extract stem exhibits and choice images using active HTTP client.
+            if self.client is not None:
+                if question.raw_html:
+                    try:
+                        question.exhibits = await _extract_exhibits(
+                            question.raw_html,
+                            url,
+                            exam=question.exam,
+                            question_id=question.question_id or question.discussion_id,
+                            client=self.client,
+                            sem=self.sem,
+                        )
+                    except Exception as e:
+                        logger.warning("Exhibit extraction failed for %s: %s", url, e)
+                if question.choices:
+                    try:
+                        await _download_choice_images(
+                            question.choices,
+                            url,
+                            exam=question.exam,
+                            question_id=question.question_id or question.discussion_id,
+                            client=self.client,
+                            sem=self.sem,
+                        )
+                    except Exception as e:
+                        logger.warning("Choice image download failed for %s: %s", url, e)
 
             return question
         except Exception as e:
@@ -723,26 +1042,28 @@ class Crawler:
         html = await self._fetch(url)
         soup = BeautifulSoup(html, "html.parser")
 
-        found: dict[str, list[dict[str, Any]]] = {exam: [] for exam in TARGET_EXAMS}
-        for a in soup.find_all("a", href=DISCUSSION_RE):
-            href = str(a.get("href", ""))
+        found: dict[str, list[dict[str, Any]]] = {exam: [] for exam in self.exams}
+        for a in soup.find_all("a", href=True):
+            href = str(a.get("href", "")).strip()
             m = DISCUSSION_RE.match(href)
             if not m:
                 continue
-            exam = m.group("exam")
-            if exam not in TARGET_EXAMS:
+            exam = m.group("exam").lower()
+            if exam not in self.exams:
                 continue
+            norm_path = m.group("path")
+            if not norm_path.endswith("/"):
+                norm_path += "/"
             meta = {
                 "id": m.group("id"),
                 "exam": exam,
                 "topic": int(m.group("topic")),
                 "qnum": int(m.group("qnum")),
-                "path": href,
+                "path": norm_path,
                 "title": a.get_text(strip=True),
             }
             found[exam].append(meta)
 
-        # Detect last page from pagination indicator
         last_page = None
         page_indicator = soup.find("span", class_="discussion-list-page-indicator")
         if page_indicator:
@@ -753,61 +1074,171 @@ class Crawler:
         return found, last_page
 
     async def discover_urls(self, max_pages: int | None = None) -> int:
-        logger.info("Phase 1: Discovering discussion URLs...")
-        last_page = None
-        start_page = 1
+        logger.info("Phase 1: Discovering discussion URLs for %s...", sorted(self.exams))
+        last_page: int | None = self.state.get("total_list_pages")
+        page = self.start_page
+        empty_streak = 0
+        # Use single-page stepping for tiny test thresholds so streak counts are exact;
+        # use bounded concurrent batches for real crawls while respecting self.sem.
+        step_size = (
+            1
+            if (self.stop_after_empty_pages is not None and self.stop_after_empty_pages < 5)
+            else max(1, self.max_concurrent)
+        )
 
-        # If we already know total pages from a prior run, respect max_pages override
-        if self.state.get("total_list_pages"):
-            last_page = self.state["total_list_pages"]
-
-        page = start_page
-        while True:
-            if max_pages is not None and page > max_pages:
-                logger.info("Reached max_pages limit: %d", max_pages)
-                break
-            if last_page is not None and page > last_page:
-                break
-            if page in self.state["list_pages_completed"]:
+        stop_discovery = False
+        while not stop_discovery:
+            batch_pages: list[int] = []
+            while len(batch_pages) < step_size:
+                if max_pages is not None and page > max_pages:
+                    if not batch_pages:
+                        logger.info("Reached max_pages limit: %d", max_pages)
+                    stop_discovery = True
+                    break
+                if last_page is not None and page > last_page:
+                    stop_discovery = True
+                    break
+                if page in self.state["list_pages_completed"]:
+                    page += 1
+                    continue
+                batch_pages.append(page)
                 page += 1
-                continue
 
-            logger.info("Crawling discussion list page %d%s", page, f"/{last_page}" if last_page else "")
-            try:
-                found, detected_last = await self._crawl_list_page(page)
+            if not batch_pages:
+                break
+
+            logger.info(
+                "Crawling discussion list page(s) %s%s",
+                batch_pages[0] if len(batch_pages) == 1 else f"{batch_pages[0]}..{batch_pages[-1]}",
+                f"/{last_page}" if last_page else "",
+            )
+            outcomes = await asyncio.gather(
+                *[self._crawl_list_page(p) for p in batch_pages],
+                return_exceptions=True,
+            )
+
+            for p, outcome in zip(batch_pages, outcomes):
+                if isinstance(outcome, BaseException):
+                    if (
+                        isinstance(outcome, httpx.HTTPStatusError)
+                        and outcome.response is not None
+                        and outcome.response.status_code == 404
+                        and p > 1
+                    ):
+                        logger.info("Reached HTTP 404 at list page %d; stopping discovery.", p)
+                        stop_discovery = True
+                        break
+                    logger.error("Error on list page %d: %s", p, outcome)
+                    self._save_state()
+                    raise outcome
+
+                found, detected_last = outcome
                 if detected_last and last_page is None:
                     last_page = detected_last
                     self.state["total_list_pages"] = last_page
                     logger.info("Detected total discussion list pages: %d", last_page)
 
+                any_target_hit = False
                 for exam, urls in found.items():
+                    if urls:
+                        any_target_hit = True
                     existing = {u["path"] for u in self.state["urls_collected"].get(exam, [])}
                     new_urls = [u for u in urls if u["path"] not in existing]
                     if new_urls:
                         self.state["urls_collected"].setdefault(exam, []).extend(new_urls)
-                        logger.info("Page %d: found %d new %s URLs", page, len(new_urls), exam.upper())
+                        logger.info("Page %d: found %d new %s URLs", p, len(new_urls), exam.upper())
 
-                self.state["list_pages_completed"].add(page)
-                self._save_state()
-                page += 1
-            except Exception as e:
-                logger.error("Error on list page %d: %s", page, e)
-                self._save_state()
-                raise
+                self.state["list_pages_completed"].add(p)
 
-        total = sum(len(v) for v in self.state["urls_collected"].values())
-        logger.info("Discovery complete. Total URLs collected: %d", total)
-        for exam, urls in self.state["urls_collected"].items():
-            logger.info("  %s: %d", exam.upper(), len(urls))
+                if any_target_hit:
+                    empty_streak = 0
+                else:
+                    empty_streak += 1
+                    if (
+                        self.stop_after_empty_pages is not None
+                        and empty_streak >= self.stop_after_empty_pages
+                    ):
+                        logger.info(
+                            "Reached %d consecutive list pages with no %s discussions at page %d; stopping discovery.",
+                            empty_streak,
+                            "/".join(sorted(self.exams)),
+                            p,
+                        )
+                        stop_discovery = True
+                        break
+
+            self._save_state()
+
+        total = sum(
+            len(v) for k, v in self.state["urls_collected"].items() if k in self.exams
+        )
+        logger.info("Discovery complete. Total URLs collected for target exams: %d", total)
+        for exam in sorted(self.exams):
+            logger.info("  %s: %d", exam.upper(), len(self.state["urls_collected"].get(exam, [])))
         return total
+
+    async def _fetch_exam_view_enrichment(self, exam: str) -> dict[str, dict[str, Any]]:
+        """Fetch public page 1 of ``/exams/microsoft/{exam}/view/`` to harvest
+        official ``correct_answers`` and ``voted_answers_tally`` for its 10 cards.
+        """
+        url = EXAM_VIEW_URL.format(exam=exam)
+        enrichment: dict[str, dict[str, Any]] = {}
+        try:
+            html = await self._fetch(url)
+        except Exception as e:
+            logger.warning("Could not fetch exam view page %s: %s", url, e)
+            return enrichment
+
+        soup = BeautifulSoup(html, "html.parser")
+        for card in soup.select(".exam-question-card"):
+            q_body = card.find("div", class_="question-body")
+            p = q_body.find("p", class_="card-text") if q_body else None
+            if not p:
+                continue
+            stem_text = p.get_text(separator="\n", strip=True)
+            key = _normalize_stem_key(stem_text)
+            if not key:
+                continue
+
+            correct_letters: list[str] = []
+            container = card.find("div", class_="question-choices-container")
+            if container:
+                for li in container.find_all("li", class_="multi-choice-item"):
+                    if "correct-hidden" in (li.get("class") or []):
+                        ls = li.find("span", class_="multi-choice-letter")
+                        if ls and ls.get("data-choice-letter"):
+                            correct_letters.append(str(ls.get("data-choice-letter")).strip().upper())
+
+            tally: list[dict[str, Any]] = []
+            most_voted: str | None = None
+            tally_div = card.find("div", class_="voted-answers-tally")
+            if tally_div:
+                script = tally_div.find("script", type="application/json")
+                if script and script.string:
+                    try:
+                        tally = json.loads(script.string)
+                        for item in tally:
+                            if item.get("is_most_voted"):
+                                most_voted = item.get("voted_answers")
+                                break
+                    except json.JSONDecodeError:
+                        pass
+
+            if correct_letters or tally or most_voted:
+                enrichment[key] = {
+                    "correct_answers": sorted(set(correct_letters)),
+                    "voted_answers_tally": tally,
+                    "most_voted_answer": most_voted,
+                }
+        return enrichment
 
     async def crawl_discussions(self) -> dict[str, list[dict[str, Any]]]:
         logger.info("Phase 2: Crawling individual discussions...")
-        results: dict[str, list[dict[str, Any]]] = {exam: [] for exam in TARGET_EXAMS}
+        results: dict[str, list[dict[str, Any]]] = {exam: [] for exam in self.exams}
 
-        tasks = []
-        for exam, urls in self.state["urls_collected"].items():
-            for meta in urls:
+        tasks: list[tuple[str, dict[str, Any]]] = []
+        for exam in sorted(self.exams):
+            for meta in self.state["urls_collected"].get(exam, []):
                 if meta["path"] in self.state["urls_processed"]:
                     continue
                 tasks.append((exam, meta))
@@ -818,7 +1249,10 @@ class Crawler:
 
         logger.info("Discussions to crawl: %d", len(tasks))
 
-        # Process in batches to allow periodic state saves
+        view_enrichment: dict[str, dict[str, dict[str, Any]]] = {}
+        for exam in sorted(self.exams):
+            view_enrichment[exam] = await self._fetch_exam_view_enrichment(exam)
+
         batch_size = 20
         for i in range(0, len(tasks), batch_size):
             batch = tasks[i : i + batch_size]
@@ -828,18 +1262,39 @@ class Crawler:
             for (exam, meta), q in zip(batch, questions):
                 if q is None:
                     continue
+                key = _normalize_stem_key(q.question_text)
+                enrich = view_enrichment.get(exam, {}).get(key)
+                if enrich and q.choices:
+                    valid_letters = {ch.letter.upper() for ch in q.choices}
+                    official = [
+                        ch for ch in enrich.get("correct_answers", []) if ch in valid_letters
+                    ]
+                    if official and not q.correct_answers:
+                        q.correct_answers = official
+                        for ch in q.choices:
+                            ch.correct = ch.letter.upper() in official
+                    if enrich.get("voted_answers_tally") and not q.voted_answers_tally:
+                        q.voted_answers_tally = enrich["voted_answers_tally"]
+                    if enrich.get("most_voted_answer") and not q.most_voted_answer:
+                        q.most_voted_answer = enrich["most_voted_answer"]
+                    q.question_type = infer_question_type(
+                        q.question_text, bool(q.choices), q.correct_answers
+                    )
+
                 results[exam].append(q.to_dict())
                 self.state["urls_processed"].add(meta["path"])
 
             self._save_state()
-            logger.info("Completed batch %d/%d (%d discussions)", i // batch_size + 1, (len(tasks) + batch_size - 1) // batch_size, len(batch))
+            logger.info(
+                "Completed batch %d/%d (%d discussions)",
+                i // batch_size + 1,
+                (len(tasks) + batch_size - 1) // batch_size,
+                len(batch),
+            )
 
         return results
 
     def _load_existing_records(self, exam: str) -> list[dict[str, Any]]:
-        """Read any pre-existing ``.json`` records so resume runs merge with
-        previously-crawled questions instead of overwriting them. When neither
-        ``.json`` nor ``.jsonl`` exists this returns an empty list."""
         json_path = self.output_dir / f"{exam}.json"
         if json_path.exists():
             try:
@@ -864,70 +1319,49 @@ class Crawler:
         self,
         results: dict[str, list[dict[str, Any]]] | None = None,
     ) -> None:
-        """Write both ``.json`` and ``.jsonl`` from the same in-memory data.
-
-        When ``results`` is provided (the normal crawl path), newly-crawled
-        questions are merged with any pre-existing records so resume runs
-        don't drop previous output. When ``results`` is ``None``, we fall
-        back to reading the existing ``.json`` so manual re-runs still work.
-
-        Writing both formats from the same list guarantees they stay in sync
-        even when later backfills only updated ``.json``.
-        """
-        for exam in TARGET_EXAMS:
+        """Write deduplicated ``.json`` and ``.jsonl`` files for each target exam."""
+        for exam in sorted(self.exams):
             json_path = self.output_dir / f"{exam}.json"
             jsonl_path = self.output_dir / f"{exam}.jsonl"
 
             if results is not None and exam in results:
                 existing = self._load_existing_records(exam)
                 new_records = results[exam]
-                # Drop any pre-existing record with the same discussion_id so
-                # the freshly-crawled copy wins. Keep insertion order so the
-                # output is deterministic and matches a fresh crawl.
-                new_ids = {str(r.get("discussion_id")) for r in new_records if r.get("discussion_id")}
-                merged: list[dict[str, Any]] = []
-                seen: set[str] = set()
-                for rec in existing + new_records:
-                    rid_raw = rec.get("discussion_id")
-                    rid: str | None = str(rid_raw) if rid_raw else None
-                    if rid and rid in new_ids:
-                        if rid in seen:
-                            continue
-                        # Find the matching new record.
-                        for nrec in new_records:
-                            nrid_raw = nrec.get("discussion_id")
-                            if nrid_raw and str(nrid_raw) == rid:
-                                merged.append(nrec)
-                                seen.add(rid)
-                                break
-                    else:
-                        if rid and rid in seen:
-                            continue
-                        merged.append(rec)
-                        if rid:
-                            seen.add(rid)
-                # Append any new records that weren't in ``existing``.
+                by_discussion: dict[str, dict[str, Any]] = {}
+                for rec in existing:
+                    did = str(rec.get("discussion_id") or "")
+                    if did:
+                        by_discussion[did] = rec
                 for nrec in new_records:
-                    nrid_raw = nrec.get("discussion_id")
-                    nrid: str | None = str(nrid_raw) if nrid_raw else None
-                    if nrid and nrid not in seen:
-                        merged.append(nrec)
-                        if nrid:
-                            seen.add(nrid)
-                records = merged
+                    did = str(nrec.get("discussion_id") or "")
+                    if did:
+                        by_discussion[did] = nrec
+                candidates = list(by_discussion.values()) if by_discussion else (existing + new_records)
             else:
-                records = self._load_existing_records(exam)
-                if not records:
+                candidates = self._load_existing_records(exam)
+                if not candidates:
                     continue
 
-            # Sort by topic then question number for readability.
-            records.sort(key=lambda r: (r.get("topic", 0), r.get("question_number", 0)))
+            # Deduplicate multiple discussion threads targeting the same (topic, question_number)
+            # so question labels (Q1.5) and Markdown anchors (#q1-5) stay 1-to-1.
+            by_slot: dict[tuple[int, int], dict[str, Any]] = {}
+            for rec in candidates:
+                slot = (int(rec.get("topic", 0)), int(rec.get("question_number", 0)))
+                prev = by_slot.get(slot)
+                if prev is None or _record_richness(rec) >= _record_richness(prev):
+                    by_slot[slot] = rec
+
+            records = sorted(
+                by_slot.values(),
+                key=lambda r: (r.get("topic", 0), r.get("question_number", 0)),
+            )
+            if not records:
+                continue
+
             json_path.write_text(
                 json.dumps(records, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
-            # Rewrite the JSONL from the same in-memory list so the two formats
-            # never diverge.
             with jsonl_path.open("w", encoding="utf-8") as f:
                 for rec in records:
                     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
@@ -945,32 +1379,48 @@ class Crawler:
             self.client = client
             await self.discover_urls(max_pages=max_list_pages)
             results = await self.crawl_discussions()
-            # Pass the freshly-crawled results so consolidate_json writes
-            # both .json and .jsonl from the same in-memory list and merges
-            # with any pre-existing records.
             self.consolidate_json(results=results)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Crawl DP-600/DP-700 discussions from examtopics.com")
-    parser.add_argument("--output-dir", type=Path, default=Path("."), help="Output directory")
+    parser = argparse.ArgumentParser(description="Crawl Microsoft exam discussions from examtopics.com")
+    parser.add_argument("--output-dir", type=Path, default=Path("data"), help="Output directory")
+    parser.add_argument(
+        "--exams",
+        nargs="+",
+        default=list(DEFAULT_EXAMS),
+        help="Exam slugs to crawl (e.g. ai-103 ai-300 ai-500)",
+    )
+    parser.add_argument(
+        "--state-file",
+        type=Path,
+        default=None,
+        help="Path to checkpoint state JSON (defaults to <output-dir>/state.json)",
+    )
     parser.add_argument("--max-concurrent", type=int, default=3, help="Max concurrent requests")
-    parser.add_argument("--delay", type=float, nargs=2, default=[1.2, 2.0], help="Min/max delay seconds")
-    parser.add_argument("--max-list-pages", type=int, default=None, help="Limit list pages for testing")
+    parser.add_argument("--delay", type=float, nargs=2, default=[1.0, 1.8], help="Min/max delay seconds")
+    parser.add_argument("--start-page", type=int, default=1, help="List page to start discovery from")
+    parser.add_argument("--max-list-pages", type=int, default=None, help="Limit list pages")
+    parser.add_argument(
+        "--stop-after-empty-pages",
+        type=int,
+        default=None,
+        help="Stop list discovery after N consecutive pages without target-exam links",
+    )
     parser.add_argument("--max-retries", type=int, default=4, help="Max retries per request")
-    parser.add_argument("--reset", action="store_true", help="Delete state and output files and restart")
+    parser.add_argument("--reset", action="store_true", help="Delete target state/output files and restart")
     args = parser.parse_args()
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    exams = [e.lower() for e in args.exams]
+    state_path = args.state_file or (args.output_dir / "state.json")
 
     if args.reset:
-        for p in [
-            args.output_dir / "state.json",
-            args.output_dir / "dp-600.jsonl",
-            args.output_dir / "dp-600.json",
-            args.output_dir / "dp-700.jsonl",
-            args.output_dir / "dp-700.json",
-        ]:
+        targets = [state_path]
+        for ex in exams:
+            targets.append(args.output_dir / f"{ex}.json")
+            targets.append(args.output_dir / f"{ex}.jsonl")
+        for p in targets:
             if p.exists():
                 p.unlink()
                 logger.info("Removed %s", p)
@@ -980,6 +1430,10 @@ def main() -> None:
         max_concurrent=args.max_concurrent,
         delay=tuple(args.delay),
         max_retries=args.max_retries,
+        exams=exams,
+        state_path=state_path,
+        start_page=args.start_page,
+        stop_after_empty_pages=args.stop_after_empty_pages,
     )
     try:
         asyncio.run(crawler.run(max_list_pages=args.max_list_pages))

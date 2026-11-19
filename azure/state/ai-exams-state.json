@@ -1,0 +1,2849 @@
+{
+  "list_pages_completed": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260
+  ],
+  "urls_collected": {
+    "ai-103": [
+      {
+        "id": "412433",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/412433-exam-ai-103-topic-1-question-1-discussion/",
+        "title": "Exam AI-103 topic 1 question 1 discussion"
+      },
+      {
+        "id": "412434",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/412434-exam-ai-103-topic-1-question-2-discussion/",
+        "title": "Exam AI-103 topic 1 question 2 discussion"
+      },
+      {
+        "id": "412435",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/412435-exam-ai-103-topic-1-question-3-discussion/",
+        "title": "Exam AI-103 topic 1 question 3 discussion"
+      },
+      {
+        "id": "412436",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 4,
+        "path": "/discussions/microsoft/view/412436-exam-ai-103-topic-1-question-4-discussion/",
+        "title": "Exam AI-103 topic 1 question 4 discussion"
+      },
+      {
+        "id": "412437",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/412437-exam-ai-103-topic-1-question-5-discussion/",
+        "title": "Exam AI-103 topic 1 question 5 discussion"
+      },
+      {
+        "id": "412438",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 6,
+        "path": "/discussions/microsoft/view/412438-exam-ai-103-topic-1-question-6-discussion/",
+        "title": "Exam AI-103 topic 1 question 6 discussion"
+      },
+      {
+        "id": "412439",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/412439-exam-ai-103-topic-1-question-7-discussion/",
+        "title": "Exam AI-103 topic 1 question 7 discussion"
+      },
+      {
+        "id": "412440",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 8,
+        "path": "/discussions/microsoft/view/412440-exam-ai-103-topic-1-question-8-discussion/",
+        "title": "Exam AI-103 topic 1 question 8 discussion"
+      },
+      {
+        "id": "412441",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/412441-exam-ai-103-topic-1-question-9-discussion/",
+        "title": "Exam AI-103 topic 1 question 9 discussion"
+      },
+      {
+        "id": "412442",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/412442-exam-ai-103-topic-1-question-10-discussion/",
+        "title": "Exam AI-103 topic 1 question 10 discussion"
+      },
+      {
+        "id": "412443",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 11,
+        "path": "/discussions/microsoft/view/412443-exam-ai-103-topic-1-question-11-discussion/",
+        "title": "Exam AI-103 topic 1 question 11 discussion"
+      },
+      {
+        "id": "412444",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/412444-exam-ai-103-topic-1-question-12-discussion/",
+        "title": "Exam AI-103 topic 1 question 12 discussion"
+      },
+      {
+        "id": "412445",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 13,
+        "path": "/discussions/microsoft/view/412445-exam-ai-103-topic-1-question-13-discussion/",
+        "title": "Exam AI-103 topic 1 question 13 discussion"
+      },
+      {
+        "id": "412446",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 14,
+        "path": "/discussions/microsoft/view/412446-exam-ai-103-topic-1-question-14-discussion/",
+        "title": "Exam AI-103 topic 1 question 14 discussion"
+      },
+      {
+        "id": "412447",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 15,
+        "path": "/discussions/microsoft/view/412447-exam-ai-103-topic-1-question-15-discussion/",
+        "title": "Exam AI-103 topic 1 question 15 discussion"
+      },
+      {
+        "id": "412448",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 16,
+        "path": "/discussions/microsoft/view/412448-exam-ai-103-topic-1-question-16-discussion/",
+        "title": "Exam AI-103 topic 1 question 16 discussion"
+      },
+      {
+        "id": "412449",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/412449-exam-ai-103-topic-1-question-17-discussion/",
+        "title": "Exam AI-103 topic 1 question 17 discussion"
+      },
+      {
+        "id": "412450",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 18,
+        "path": "/discussions/microsoft/view/412450-exam-ai-103-topic-1-question-18-discussion/",
+        "title": "Exam AI-103 topic 1 question 18 discussion"
+      },
+      {
+        "id": "412451",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 19,
+        "path": "/discussions/microsoft/view/412451-exam-ai-103-topic-1-question-19-discussion/",
+        "title": "Exam AI-103 topic 1 question 19 discussion"
+      },
+      {
+        "id": "412452",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/412452-exam-ai-103-topic-1-question-20-discussion/",
+        "title": "Exam AI-103 topic 1 question 20 discussion"
+      },
+      {
+        "id": "412453",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 21,
+        "path": "/discussions/microsoft/view/412453-exam-ai-103-topic-1-question-21-discussion/",
+        "title": "Exam AI-103 topic 1 question 21 discussion"
+      },
+      {
+        "id": "412454",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 22,
+        "path": "/discussions/microsoft/view/412454-exam-ai-103-topic-1-question-22-discussion/",
+        "title": "Exam AI-103 topic 1 question 22 discussion"
+      },
+      {
+        "id": "412455",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 23,
+        "path": "/discussions/microsoft/view/412455-exam-ai-103-topic-1-question-23-discussion/",
+        "title": "Exam AI-103 topic 1 question 23 discussion"
+      },
+      {
+        "id": "412456",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 24,
+        "path": "/discussions/microsoft/view/412456-exam-ai-103-topic-1-question-24-discussion/",
+        "title": "Exam AI-103 topic 1 question 24 discussion"
+      },
+      {
+        "id": "412457",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 25,
+        "path": "/discussions/microsoft/view/412457-exam-ai-103-topic-1-question-25-discussion/",
+        "title": "Exam AI-103 topic 1 question 25 discussion"
+      },
+      {
+        "id": "412458",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 26,
+        "path": "/discussions/microsoft/view/412458-exam-ai-103-topic-1-question-26-discussion/",
+        "title": "Exam AI-103 topic 1 question 26 discussion"
+      },
+      {
+        "id": "412459",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 27,
+        "path": "/discussions/microsoft/view/412459-exam-ai-103-topic-1-question-27-discussion/",
+        "title": "Exam AI-103 topic 1 question 27 discussion"
+      },
+      {
+        "id": "412460",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 28,
+        "path": "/discussions/microsoft/view/412460-exam-ai-103-topic-1-question-28-discussion/",
+        "title": "Exam AI-103 topic 1 question 28 discussion"
+      },
+      {
+        "id": "412461",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 29,
+        "path": "/discussions/microsoft/view/412461-exam-ai-103-topic-1-question-29-discussion/",
+        "title": "Exam AI-103 topic 1 question 29 discussion"
+      },
+      {
+        "id": "412462",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 30,
+        "path": "/discussions/microsoft/view/412462-exam-ai-103-topic-1-question-30-discussion/",
+        "title": "Exam AI-103 topic 1 question 30 discussion"
+      },
+      {
+        "id": "412463",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 31,
+        "path": "/discussions/microsoft/view/412463-exam-ai-103-topic-1-question-31-discussion/",
+        "title": "Exam AI-103 topic 1 question 31 discussion"
+      },
+      {
+        "id": "412464",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 32,
+        "path": "/discussions/microsoft/view/412464-exam-ai-103-topic-1-question-32-discussion/",
+        "title": "Exam AI-103 topic 1 question 32 discussion"
+      },
+      {
+        "id": "412465",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 33,
+        "path": "/discussions/microsoft/view/412465-exam-ai-103-topic-1-question-33-discussion/",
+        "title": "Exam AI-103 topic 1 question 33 discussion"
+      },
+      {
+        "id": "412466",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 34,
+        "path": "/discussions/microsoft/view/412466-exam-ai-103-topic-1-question-34-discussion/",
+        "title": "Exam AI-103 topic 1 question 34 discussion"
+      },
+      {
+        "id": "412467",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 35,
+        "path": "/discussions/microsoft/view/412467-exam-ai-103-topic-1-question-35-discussion/",
+        "title": "Exam AI-103 topic 1 question 35 discussion"
+      },
+      {
+        "id": "412468",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 36,
+        "path": "/discussions/microsoft/view/412468-exam-ai-103-topic-1-question-36-discussion/",
+        "title": "Exam AI-103 topic 1 question 36 discussion"
+      },
+      {
+        "id": "412469",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 37,
+        "path": "/discussions/microsoft/view/412469-exam-ai-103-topic-1-question-37-discussion/",
+        "title": "Exam AI-103 topic 1 question 37 discussion"
+      },
+      {
+        "id": "412470",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 38,
+        "path": "/discussions/microsoft/view/412470-exam-ai-103-topic-1-question-38-discussion/",
+        "title": "Exam AI-103 topic 1 question 38 discussion"
+      },
+      {
+        "id": "412471",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 39,
+        "path": "/discussions/microsoft/view/412471-exam-ai-103-topic-1-question-39-discussion/",
+        "title": "Exam AI-103 topic 1 question 39 discussion"
+      },
+      {
+        "id": "412472",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 40,
+        "path": "/discussions/microsoft/view/412472-exam-ai-103-topic-1-question-40-discussion/",
+        "title": "Exam AI-103 topic 1 question 40 discussion"
+      },
+      {
+        "id": "412473",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 41,
+        "path": "/discussions/microsoft/view/412473-exam-ai-103-topic-1-question-41-discussion/",
+        "title": "Exam AI-103 topic 1 question 41 discussion"
+      },
+      {
+        "id": "412474",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 42,
+        "path": "/discussions/microsoft/view/412474-exam-ai-103-topic-1-question-42-discussion/",
+        "title": "Exam AI-103 topic 1 question 42 discussion"
+      },
+      {
+        "id": "412475",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 43,
+        "path": "/discussions/microsoft/view/412475-exam-ai-103-topic-1-question-43-discussion/",
+        "title": "Exam AI-103 topic 1 question 43 discussion"
+      },
+      {
+        "id": "412476",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 44,
+        "path": "/discussions/microsoft/view/412476-exam-ai-103-topic-1-question-44-discussion/",
+        "title": "Exam AI-103 topic 1 question 44 discussion"
+      },
+      {
+        "id": "412477",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 45,
+        "path": "/discussions/microsoft/view/412477-exam-ai-103-topic-1-question-45-discussion/",
+        "title": "Exam AI-103 topic 1 question 45 discussion"
+      },
+      {
+        "id": "412478",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 46,
+        "path": "/discussions/microsoft/view/412478-exam-ai-103-topic-1-question-46-discussion/",
+        "title": "Exam AI-103 topic 1 question 46 discussion"
+      },
+      {
+        "id": "412479",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 47,
+        "path": "/discussions/microsoft/view/412479-exam-ai-103-topic-1-question-47-discussion/",
+        "title": "Exam AI-103 topic 1 question 47 discussion"
+      },
+      {
+        "id": "412480",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 48,
+        "path": "/discussions/microsoft/view/412480-exam-ai-103-topic-1-question-48-discussion/",
+        "title": "Exam AI-103 topic 1 question 48 discussion"
+      },
+      {
+        "id": "412481",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 49,
+        "path": "/discussions/microsoft/view/412481-exam-ai-103-topic-1-question-49-discussion/",
+        "title": "Exam AI-103 topic 1 question 49 discussion"
+      },
+      {
+        "id": "412482",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 50,
+        "path": "/discussions/microsoft/view/412482-exam-ai-103-topic-1-question-50-discussion/",
+        "title": "Exam AI-103 topic 1 question 50 discussion"
+      },
+      {
+        "id": "412483",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 51,
+        "path": "/discussions/microsoft/view/412483-exam-ai-103-topic-1-question-51-discussion/",
+        "title": "Exam AI-103 topic 1 question 51 discussion"
+      },
+      {
+        "id": "412484",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 52,
+        "path": "/discussions/microsoft/view/412484-exam-ai-103-topic-1-question-52-discussion/",
+        "title": "Exam AI-103 topic 1 question 52 discussion"
+      },
+      {
+        "id": "412485",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 53,
+        "path": "/discussions/microsoft/view/412485-exam-ai-103-topic-1-question-53-discussion/",
+        "title": "Exam AI-103 topic 1 question 53 discussion"
+      },
+      {
+        "id": "412486",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 54,
+        "path": "/discussions/microsoft/view/412486-exam-ai-103-topic-1-question-54-discussion/",
+        "title": "Exam AI-103 topic 1 question 54 discussion"
+      },
+      {
+        "id": "412487",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 55,
+        "path": "/discussions/microsoft/view/412487-exam-ai-103-topic-1-question-55-discussion/",
+        "title": "Exam AI-103 topic 1 question 55 discussion"
+      },
+      {
+        "id": "412488",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 56,
+        "path": "/discussions/microsoft/view/412488-exam-ai-103-topic-1-question-56-discussion/",
+        "title": "Exam AI-103 topic 1 question 56 discussion"
+      },
+      {
+        "id": "412489",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 57,
+        "path": "/discussions/microsoft/view/412489-exam-ai-103-topic-1-question-57-discussion/",
+        "title": "Exam AI-103 topic 1 question 57 discussion"
+      },
+      {
+        "id": "412490",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 58,
+        "path": "/discussions/microsoft/view/412490-exam-ai-103-topic-1-question-58-discussion/",
+        "title": "Exam AI-103 topic 1 question 58 discussion"
+      },
+      {
+        "id": "412491",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 59,
+        "path": "/discussions/microsoft/view/412491-exam-ai-103-topic-1-question-59-discussion/",
+        "title": "Exam AI-103 topic 1 question 59 discussion"
+      },
+      {
+        "id": "412492",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 60,
+        "path": "/discussions/microsoft/view/412492-exam-ai-103-topic-1-question-60-discussion/",
+        "title": "Exam AI-103 topic 1 question 60 discussion"
+      },
+      {
+        "id": "412493",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 61,
+        "path": "/discussions/microsoft/view/412493-exam-ai-103-topic-1-question-61-discussion/",
+        "title": "Exam AI-103 topic 1 question 61 discussion"
+      },
+      {
+        "id": "412494",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 62,
+        "path": "/discussions/microsoft/view/412494-exam-ai-103-topic-1-question-62-discussion/",
+        "title": "Exam AI-103 topic 1 question 62 discussion"
+      },
+      {
+        "id": "412495",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 63,
+        "path": "/discussions/microsoft/view/412495-exam-ai-103-topic-1-question-63-discussion/",
+        "title": "Exam AI-103 topic 1 question 63 discussion"
+      },
+      {
+        "id": "412496",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 64,
+        "path": "/discussions/microsoft/view/412496-exam-ai-103-topic-1-question-64-discussion/",
+        "title": "Exam AI-103 topic 1 question 64 discussion"
+      },
+      {
+        "id": "412497",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 65,
+        "path": "/discussions/microsoft/view/412497-exam-ai-103-topic-1-question-65-discussion/",
+        "title": "Exam AI-103 topic 1 question 65 discussion"
+      },
+      {
+        "id": "421512",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 66,
+        "path": "/discussions/microsoft/view/421512-exam-ai-103-topic-1-question-66-discussion/",
+        "title": "Exam AI-103 topic 1 question 66 discussion"
+      },
+      {
+        "id": "421513",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 67,
+        "path": "/discussions/microsoft/view/421513-exam-ai-103-topic-1-question-67-discussion/",
+        "title": "Exam AI-103 topic 1 question 67 discussion"
+      },
+      {
+        "id": "421514",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 68,
+        "path": "/discussions/microsoft/view/421514-exam-ai-103-topic-1-question-68-discussion/",
+        "title": "Exam AI-103 topic 1 question 68 discussion"
+      },
+      {
+        "id": "421515",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 69,
+        "path": "/discussions/microsoft/view/421515-exam-ai-103-topic-1-question-69-discussion/",
+        "title": "Exam AI-103 topic 1 question 69 discussion"
+      },
+      {
+        "id": "421516",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 70,
+        "path": "/discussions/microsoft/view/421516-exam-ai-103-topic-1-question-70-discussion/",
+        "title": "Exam AI-103 topic 1 question 70 discussion"
+      },
+      {
+        "id": "421517",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 71,
+        "path": "/discussions/microsoft/view/421517-exam-ai-103-topic-1-question-71-discussion/",
+        "title": "Exam AI-103 topic 1 question 71 discussion"
+      },
+      {
+        "id": "421518",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 72,
+        "path": "/discussions/microsoft/view/421518-exam-ai-103-topic-1-question-72-discussion/",
+        "title": "Exam AI-103 topic 1 question 72 discussion"
+      },
+      {
+        "id": "421519",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 73,
+        "path": "/discussions/microsoft/view/421519-exam-ai-103-topic-1-question-73-discussion/",
+        "title": "Exam AI-103 topic 1 question 73 discussion"
+      },
+      {
+        "id": "421520",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 74,
+        "path": "/discussions/microsoft/view/421520-exam-ai-103-topic-1-question-74-discussion/",
+        "title": "Exam AI-103 topic 1 question 74 discussion"
+      },
+      {
+        "id": "421521",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 75,
+        "path": "/discussions/microsoft/view/421521-exam-ai-103-topic-1-question-75-discussion/",
+        "title": "Exam AI-103 topic 1 question 75 discussion"
+      },
+      {
+        "id": "421522",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 76,
+        "path": "/discussions/microsoft/view/421522-exam-ai-103-topic-1-question-76-discussion/",
+        "title": "Exam AI-103 topic 1 question 76 discussion"
+      },
+      {
+        "id": "421523",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 77,
+        "path": "/discussions/microsoft/view/421523-exam-ai-103-topic-1-question-77-discussion/",
+        "title": "Exam AI-103 topic 1 question 77 discussion"
+      },
+      {
+        "id": "421524",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 78,
+        "path": "/discussions/microsoft/view/421524-exam-ai-103-topic-1-question-78-discussion/",
+        "title": "Exam AI-103 topic 1 question 78 discussion"
+      },
+      {
+        "id": "421525",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 79,
+        "path": "/discussions/microsoft/view/421525-exam-ai-103-topic-1-question-79-discussion/",
+        "title": "Exam AI-103 topic 1 question 79 discussion"
+      },
+      {
+        "id": "421526",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 80,
+        "path": "/discussions/microsoft/view/421526-exam-ai-103-topic-1-question-80-discussion/",
+        "title": "Exam AI-103 topic 1 question 80 discussion"
+      },
+      {
+        "id": "421527",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 81,
+        "path": "/discussions/microsoft/view/421527-exam-ai-103-topic-1-question-81-discussion/",
+        "title": "Exam AI-103 topic 1 question 81 discussion"
+      },
+      {
+        "id": "421528",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 82,
+        "path": "/discussions/microsoft/view/421528-exam-ai-103-topic-1-question-82-discussion/",
+        "title": "Exam AI-103 topic 1 question 82 discussion"
+      },
+      {
+        "id": "421529",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 83,
+        "path": "/discussions/microsoft/view/421529-exam-ai-103-topic-1-question-83-discussion/",
+        "title": "Exam AI-103 topic 1 question 83 discussion"
+      },
+      {
+        "id": "421530",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 84,
+        "path": "/discussions/microsoft/view/421530-exam-ai-103-topic-1-question-84-discussion/",
+        "title": "Exam AI-103 topic 1 question 84 discussion"
+      },
+      {
+        "id": "421531",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 85,
+        "path": "/discussions/microsoft/view/421531-exam-ai-103-topic-1-question-85-discussion/",
+        "title": "Exam AI-103 topic 1 question 85 discussion"
+      },
+      {
+        "id": "421532",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 86,
+        "path": "/discussions/microsoft/view/421532-exam-ai-103-topic-1-question-86-discussion/",
+        "title": "Exam AI-103 topic 1 question 86 discussion"
+      },
+      {
+        "id": "421533",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 87,
+        "path": "/discussions/microsoft/view/421533-exam-ai-103-topic-1-question-87-discussion/",
+        "title": "Exam AI-103 topic 1 question 87 discussion"
+      },
+      {
+        "id": "421534",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 88,
+        "path": "/discussions/microsoft/view/421534-exam-ai-103-topic-1-question-88-discussion/",
+        "title": "Exam AI-103 topic 1 question 88 discussion"
+      },
+      {
+        "id": "421535",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 89,
+        "path": "/discussions/microsoft/view/421535-exam-ai-103-topic-1-question-89-discussion/",
+        "title": "Exam AI-103 topic 1 question 89 discussion"
+      },
+      {
+        "id": "421536",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 90,
+        "path": "/discussions/microsoft/view/421536-exam-ai-103-topic-1-question-90-discussion/",
+        "title": "Exam AI-103 topic 1 question 90 discussion"
+      },
+      {
+        "id": "421537",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 91,
+        "path": "/discussions/microsoft/view/421537-exam-ai-103-topic-1-question-91-discussion/",
+        "title": "Exam AI-103 topic 1 question 91 discussion"
+      },
+      {
+        "id": "421538",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 92,
+        "path": "/discussions/microsoft/view/421538-exam-ai-103-topic-1-question-92-discussion/",
+        "title": "Exam AI-103 topic 1 question 92 discussion"
+      },
+      {
+        "id": "421539",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 93,
+        "path": "/discussions/microsoft/view/421539-exam-ai-103-topic-1-question-93-discussion/",
+        "title": "Exam AI-103 topic 1 question 93 discussion"
+      },
+      {
+        "id": "421540",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 94,
+        "path": "/discussions/microsoft/view/421540-exam-ai-103-topic-1-question-94-discussion/",
+        "title": "Exam AI-103 topic 1 question 94 discussion"
+      },
+      {
+        "id": "421541",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 95,
+        "path": "/discussions/microsoft/view/421541-exam-ai-103-topic-1-question-95-discussion/",
+        "title": "Exam AI-103 topic 1 question 95 discussion"
+      },
+      {
+        "id": "421542",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 96,
+        "path": "/discussions/microsoft/view/421542-exam-ai-103-topic-1-question-96-discussion/",
+        "title": "Exam AI-103 topic 1 question 96 discussion"
+      },
+      {
+        "id": "421543",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 97,
+        "path": "/discussions/microsoft/view/421543-exam-ai-103-topic-1-question-97-discussion/",
+        "title": "Exam AI-103 topic 1 question 97 discussion"
+      },
+      {
+        "id": "421544",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 98,
+        "path": "/discussions/microsoft/view/421544-exam-ai-103-topic-1-question-98-discussion/",
+        "title": "Exam AI-103 topic 1 question 98 discussion"
+      },
+      {
+        "id": "421545",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 99,
+        "path": "/discussions/microsoft/view/421545-exam-ai-103-topic-1-question-99-discussion/",
+        "title": "Exam AI-103 topic 1 question 99 discussion"
+      },
+      {
+        "id": "421546",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 100,
+        "path": "/discussions/microsoft/view/421546-exam-ai-103-topic-1-question-100-discussion/",
+        "title": "Exam AI-103 topic 1 question 100 discussion"
+      },
+      {
+        "id": "421547",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 101,
+        "path": "/discussions/microsoft/view/421547-exam-ai-103-topic-1-question-101-discussion/",
+        "title": "Exam AI-103 topic 1 question 101 discussion"
+      },
+      {
+        "id": "421548",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 102,
+        "path": "/discussions/microsoft/view/421548-exam-ai-103-topic-1-question-102-discussion/",
+        "title": "Exam AI-103 topic 1 question 102 discussion"
+      },
+      {
+        "id": "421549",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 103,
+        "path": "/discussions/microsoft/view/421549-exam-ai-103-topic-1-question-103-discussion/",
+        "title": "Exam AI-103 topic 1 question 103 discussion"
+      },
+      {
+        "id": "421550",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 104,
+        "path": "/discussions/microsoft/view/421550-exam-ai-103-topic-1-question-104-discussion/",
+        "title": "Exam AI-103 topic 1 question 104 discussion"
+      },
+      {
+        "id": "421551",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 105,
+        "path": "/discussions/microsoft/view/421551-exam-ai-103-topic-1-question-105-discussion/",
+        "title": "Exam AI-103 topic 1 question 105 discussion"
+      },
+      {
+        "id": "421552",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 106,
+        "path": "/discussions/microsoft/view/421552-exam-ai-103-topic-1-question-106-discussion/",
+        "title": "Exam AI-103 topic 1 question 106 discussion"
+      },
+      {
+        "id": "421554",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 108,
+        "path": "/discussions/microsoft/view/421554-exam-ai-103-topic-1-question-108-discussion/",
+        "title": "Exam AI-103 topic 1 question 108 discussion"
+      },
+      {
+        "id": "421555",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 109,
+        "path": "/discussions/microsoft/view/421555-exam-ai-103-topic-1-question-109-discussion/",
+        "title": "Exam AI-103 topic 1 question 109 discussion"
+      },
+      {
+        "id": "421556",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 110,
+        "path": "/discussions/microsoft/view/421556-exam-ai-103-topic-1-question-110-discussion/",
+        "title": "Exam AI-103 topic 1 question 110 discussion"
+      },
+      {
+        "id": "421557",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 111,
+        "path": "/discussions/microsoft/view/421557-exam-ai-103-topic-1-question-111-discussion/",
+        "title": "Exam AI-103 topic 1 question 111 discussion"
+      },
+      {
+        "id": "421558",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 112,
+        "path": "/discussions/microsoft/view/421558-exam-ai-103-topic-1-question-112-discussion/",
+        "title": "Exam AI-103 topic 1 question 112 discussion"
+      },
+      {
+        "id": "421559",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 113,
+        "path": "/discussions/microsoft/view/421559-exam-ai-103-topic-1-question-113-discussion/",
+        "title": "Exam AI-103 topic 1 question 113 discussion"
+      },
+      {
+        "id": "421560",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 114,
+        "path": "/discussions/microsoft/view/421560-exam-ai-103-topic-1-question-114-discussion/",
+        "title": "Exam AI-103 topic 1 question 114 discussion"
+      },
+      {
+        "id": "421561",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 115,
+        "path": "/discussions/microsoft/view/421561-exam-ai-103-topic-1-question-115-discussion/",
+        "title": "Exam AI-103 topic 1 question 115 discussion"
+      },
+      {
+        "id": "421562",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 116,
+        "path": "/discussions/microsoft/view/421562-exam-ai-103-topic-1-question-116-discussion/",
+        "title": "Exam AI-103 topic 1 question 116 discussion"
+      },
+      {
+        "id": "421563",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 117,
+        "path": "/discussions/microsoft/view/421563-exam-ai-103-topic-1-question-117-discussion/",
+        "title": "Exam AI-103 topic 1 question 117 discussion"
+      },
+      {
+        "id": "424420",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 118,
+        "path": "/discussions/microsoft/view/424420-exam-ai-103-topic-1-question-118-discussion/",
+        "title": "Exam AI-103 topic 1 question 118 discussion"
+      },
+      {
+        "id": "424416",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 119,
+        "path": "/discussions/microsoft/view/424416-exam-ai-103-topic-1-question-119-discussion/",
+        "title": "Exam AI-103 topic 1 question 119 discussion"
+      },
+      {
+        "id": "424419",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 120,
+        "path": "/discussions/microsoft/view/424419-exam-ai-103-topic-1-question-120-discussion/",
+        "title": "Exam AI-103 topic 1 question 120 discussion"
+      },
+      {
+        "id": "424413",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 121,
+        "path": "/discussions/microsoft/view/424413-exam-ai-103-topic-1-question-121-discussion/",
+        "title": "Exam AI-103 topic 1 question 121 discussion"
+      },
+      {
+        "id": "424414",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 122,
+        "path": "/discussions/microsoft/view/424414-exam-ai-103-topic-1-question-122-discussion/",
+        "title": "Exam AI-103 topic 1 question 122 discussion"
+      },
+      {
+        "id": "424404",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 123,
+        "path": "/discussions/microsoft/view/424404-exam-ai-103-topic-1-question-123-discussion/",
+        "title": "Exam AI-103 topic 1 question 123 discussion"
+      },
+      {
+        "id": "424417",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 124,
+        "path": "/discussions/microsoft/view/424417-exam-ai-103-topic-1-question-124-discussion/",
+        "title": "Exam AI-103 topic 1 question 124 discussion"
+      },
+      {
+        "id": "424411",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 125,
+        "path": "/discussions/microsoft/view/424411-exam-ai-103-topic-1-question-125-discussion/",
+        "title": "Exam AI-103 topic 1 question 125 discussion"
+      },
+      {
+        "id": "424421",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 126,
+        "path": "/discussions/microsoft/view/424421-exam-ai-103-topic-1-question-126-discussion/",
+        "title": "Exam AI-103 topic 1 question 126 discussion"
+      },
+      {
+        "id": "424407",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 127,
+        "path": "/discussions/microsoft/view/424407-exam-ai-103-topic-1-question-127-discussion/",
+        "title": "Exam AI-103 topic 1 question 127 discussion"
+      },
+      {
+        "id": "424415",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 128,
+        "path": "/discussions/microsoft/view/424415-exam-ai-103-topic-1-question-128-discussion/",
+        "title": "Exam AI-103 topic 1 question 128 discussion"
+      },
+      {
+        "id": "424412",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 129,
+        "path": "/discussions/microsoft/view/424412-exam-ai-103-topic-1-question-129-discussion/",
+        "title": "Exam AI-103 topic 1 question 129 discussion"
+      },
+      {
+        "id": "424418",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 130,
+        "path": "/discussions/microsoft/view/424418-exam-ai-103-topic-1-question-130-discussion/",
+        "title": "Exam AI-103 topic 1 question 130 discussion"
+      },
+      {
+        "id": "424406",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 131,
+        "path": "/discussions/microsoft/view/424406-exam-ai-103-topic-1-question-131-discussion/",
+        "title": "Exam AI-103 topic 1 question 131 discussion"
+      },
+      {
+        "id": "424409",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 132,
+        "path": "/discussions/microsoft/view/424409-exam-ai-103-topic-1-question-132-discussion/",
+        "title": "Exam AI-103 topic 1 question 132 discussion"
+      },
+      {
+        "id": "424410",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 133,
+        "path": "/discussions/microsoft/view/424410-exam-ai-103-topic-1-question-133-discussion/",
+        "title": "Exam AI-103 topic 1 question 133 discussion"
+      },
+      {
+        "id": "424405",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 134,
+        "path": "/discussions/microsoft/view/424405-exam-ai-103-topic-1-question-134-discussion/",
+        "title": "Exam AI-103 topic 1 question 134 discussion"
+      },
+      {
+        "id": "424408",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 135,
+        "path": "/discussions/microsoft/view/424408-exam-ai-103-topic-1-question-135-discussion/",
+        "title": "Exam AI-103 topic 1 question 135 discussion"
+      },
+      {
+        "id": "430814",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 136,
+        "path": "/discussions/microsoft/view/430814-exam-ai-103-topic-1-question-136-discussion/",
+        "title": "Exam AI-103 topic 1 question 136 discussion"
+      },
+      {
+        "id": "430824",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 137,
+        "path": "/discussions/microsoft/view/430824-exam-ai-103-topic-1-question-137-discussion/",
+        "title": "Exam AI-103 topic 1 question 137 discussion"
+      },
+      {
+        "id": "430766",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 138,
+        "path": "/discussions/microsoft/view/430766-exam-ai-103-topic-1-question-138-discussion/",
+        "title": "Exam AI-103 topic 1 question 138 discussion"
+      },
+      {
+        "id": "430808",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 139,
+        "path": "/discussions/microsoft/view/430808-exam-ai-103-topic-1-question-139-discussion/",
+        "title": "Exam AI-103 topic 1 question 139 discussion"
+      },
+      {
+        "id": "430777",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 140,
+        "path": "/discussions/microsoft/view/430777-exam-ai-103-topic-1-question-140-discussion/",
+        "title": "Exam AI-103 topic 1 question 140 discussion"
+      },
+      {
+        "id": "430813",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 141,
+        "path": "/discussions/microsoft/view/430813-exam-ai-103-topic-1-question-141-discussion/",
+        "title": "Exam AI-103 topic 1 question 141 discussion"
+      },
+      {
+        "id": "430733",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 142,
+        "path": "/discussions/microsoft/view/430733-exam-ai-103-topic-1-question-142-discussion/",
+        "title": "Exam AI-103 topic 1 question 142 discussion"
+      },
+      {
+        "id": "430719",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 143,
+        "path": "/discussions/microsoft/view/430719-exam-ai-103-topic-1-question-143-discussion/",
+        "title": "Exam AI-103 topic 1 question 143 discussion"
+      },
+      {
+        "id": "430718",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 144,
+        "path": "/discussions/microsoft/view/430718-exam-ai-103-topic-1-question-144-discussion/",
+        "title": "Exam AI-103 topic 1 question 144 discussion"
+      },
+      {
+        "id": "430792",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 145,
+        "path": "/discussions/microsoft/view/430792-exam-ai-103-topic-1-question-145-discussion/",
+        "title": "Exam AI-103 topic 1 question 145 discussion"
+      },
+      {
+        "id": "430781",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 147,
+        "path": "/discussions/microsoft/view/430781-exam-ai-103-topic-1-question-147-discussion/",
+        "title": "Exam AI-103 topic 1 question 147 discussion"
+      },
+      {
+        "id": "430787",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 148,
+        "path": "/discussions/microsoft/view/430787-exam-ai-103-topic-1-question-148-discussion/",
+        "title": "Exam AI-103 topic 1 question 148 discussion"
+      },
+      {
+        "id": "430798",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 149,
+        "path": "/discussions/microsoft/view/430798-exam-ai-103-topic-1-question-149-discussion/",
+        "title": "Exam AI-103 topic 1 question 149 discussion"
+      },
+      {
+        "id": "430778",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 150,
+        "path": "/discussions/microsoft/view/430778-exam-ai-103-topic-1-question-150-discussion/",
+        "title": "Exam AI-103 topic 1 question 150 discussion"
+      },
+      {
+        "id": "430745",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 151,
+        "path": "/discussions/microsoft/view/430745-exam-ai-103-topic-1-question-151-discussion/",
+        "title": "Exam AI-103 topic 1 question 151 discussion"
+      },
+      {
+        "id": "430729",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 152,
+        "path": "/discussions/microsoft/view/430729-exam-ai-103-topic-1-question-152-discussion/",
+        "title": "Exam AI-103 topic 1 question 152 discussion"
+      },
+      {
+        "id": "430713",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 153,
+        "path": "/discussions/microsoft/view/430713-exam-ai-103-topic-1-question-153-discussion/",
+        "title": "Exam AI-103 topic 1 question 153 discussion"
+      },
+      {
+        "id": "430726",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 154,
+        "path": "/discussions/microsoft/view/430726-exam-ai-103-topic-1-question-154-discussion/",
+        "title": "Exam AI-103 topic 1 question 154 discussion"
+      },
+      {
+        "id": "430709",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 156,
+        "path": "/discussions/microsoft/view/430709-exam-ai-103-topic-1-question-156-discussion/",
+        "title": "Exam AI-103 topic 1 question 156 discussion"
+      },
+      {
+        "id": "430730",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 157,
+        "path": "/discussions/microsoft/view/430730-exam-ai-103-topic-1-question-157-discussion/",
+        "title": "Exam AI-103 topic 1 question 157 discussion"
+      },
+      {
+        "id": "430795",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 158,
+        "path": "/discussions/microsoft/view/430795-exam-ai-103-topic-1-question-158-discussion/",
+        "title": "Exam AI-103 topic 1 question 158 discussion"
+      },
+      {
+        "id": "430739",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 159,
+        "path": "/discussions/microsoft/view/430739-exam-ai-103-topic-1-question-159-discussion/",
+        "title": "Exam AI-103 topic 1 question 159 discussion"
+      },
+      {
+        "id": "430776",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 160,
+        "path": "/discussions/microsoft/view/430776-exam-ai-103-topic-1-question-160-discussion/",
+        "title": "Exam AI-103 topic 1 question 160 discussion"
+      },
+      {
+        "id": "430811",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 161,
+        "path": "/discussions/microsoft/view/430811-exam-ai-103-topic-1-question-161-discussion/",
+        "title": "Exam AI-103 topic 1 question 161 discussion"
+      },
+      {
+        "id": "435372",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 172,
+        "path": "/discussions/microsoft/view/435372-exam-ai-103-topic-1-question-172-discussion/",
+        "title": "Exam AI-103 topic 1 question 172 discussion"
+      },
+      {
+        "id": "436013",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 174,
+        "path": "/discussions/microsoft/view/436013-exam-ai-103-topic-1-question-174-discussion/",
+        "title": "Exam AI-103 topic 1 question 174 discussion"
+      },
+      {
+        "id": "433809",
+        "exam": "ai-103",
+        "topic": 1,
+        "qnum": 178,
+        "path": "/discussions/microsoft/view/433809-exam-ai-103-topic-1-question-178-discussion/",
+        "title": "Exam AI-103 topic 1 question 178 discussion"
+      }
+    ],
+    "ai-300": [
+      {
+        "id": "404549",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/404549-exam-ai-300-topic-2-question-1-discussion/",
+        "title": "Exam AI-300 topic 2 question 1 discussion"
+      },
+      {
+        "id": "404550",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/404550-exam-ai-300-topic-2-question-2-discussion/",
+        "title": "Exam AI-300 topic 2 question 2 discussion"
+      },
+      {
+        "id": "404551",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/404551-exam-ai-300-topic-2-question-3-discussion/",
+        "title": "Exam AI-300 topic 2 question 3 discussion"
+      },
+      {
+        "id": "404552",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 4,
+        "path": "/discussions/microsoft/view/404552-exam-ai-300-topic-2-question-4-discussion/",
+        "title": "Exam AI-300 topic 2 question 4 discussion"
+      },
+      {
+        "id": "404553",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/404553-exam-ai-300-topic-2-question-5-discussion/",
+        "title": "Exam AI-300 topic 2 question 5 discussion"
+      },
+      {
+        "id": "404554",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 6,
+        "path": "/discussions/microsoft/view/404554-exam-ai-300-topic-2-question-6-discussion/",
+        "title": "Exam AI-300 topic 2 question 6 discussion"
+      },
+      {
+        "id": "404555",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/404555-exam-ai-300-topic-2-question-7-discussion/",
+        "title": "Exam AI-300 topic 2 question 7 discussion"
+      },
+      {
+        "id": "404556",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 8,
+        "path": "/discussions/microsoft/view/404556-exam-ai-300-topic-2-question-8-discussion/",
+        "title": "Exam AI-300 topic 2 question 8 discussion"
+      },
+      {
+        "id": "404557",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/404557-exam-ai-300-topic-2-question-9-discussion/",
+        "title": "Exam AI-300 topic 2 question 9 discussion"
+      },
+      {
+        "id": "404558",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/404558-exam-ai-300-topic-2-question-10-discussion/",
+        "title": "Exam AI-300 topic 2 question 10 discussion"
+      },
+      {
+        "id": "404559",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 11,
+        "path": "/discussions/microsoft/view/404559-exam-ai-300-topic-2-question-11-discussion/",
+        "title": "Exam AI-300 topic 2 question 11 discussion"
+      },
+      {
+        "id": "404560",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/404560-exam-ai-300-topic-2-question-12-discussion/",
+        "title": "Exam AI-300 topic 2 question 12 discussion"
+      },
+      {
+        "id": "404561",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 13,
+        "path": "/discussions/microsoft/view/404561-exam-ai-300-topic-2-question-13-discussion/",
+        "title": "Exam AI-300 topic 2 question 13 discussion"
+      },
+      {
+        "id": "404562",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 14,
+        "path": "/discussions/microsoft/view/404562-exam-ai-300-topic-2-question-14-discussion/",
+        "title": "Exam AI-300 topic 2 question 14 discussion"
+      },
+      {
+        "id": "404563",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 15,
+        "path": "/discussions/microsoft/view/404563-exam-ai-300-topic-2-question-15-discussion/",
+        "title": "Exam AI-300 topic 2 question 15 discussion"
+      },
+      {
+        "id": "404564",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 16,
+        "path": "/discussions/microsoft/view/404564-exam-ai-300-topic-2-question-16-discussion/",
+        "title": "Exam AI-300 topic 2 question 16 discussion"
+      },
+      {
+        "id": "404565",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/404565-exam-ai-300-topic-2-question-17-discussion/",
+        "title": "Exam AI-300 topic 2 question 17 discussion"
+      },
+      {
+        "id": "415889",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 19,
+        "path": "/discussions/microsoft/view/415889-exam-ai-300-topic-2-question-19-discussion/",
+        "title": "Exam AI-300 topic 2 question 19 discussion"
+      },
+      {
+        "id": "415890",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/415890-exam-ai-300-topic-2-question-20-discussion/",
+        "title": "Exam AI-300 topic 2 question 20 discussion"
+      },
+      {
+        "id": "415891",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 21,
+        "path": "/discussions/microsoft/view/415891-exam-ai-300-topic-2-question-21-discussion/",
+        "title": "Exam AI-300 topic 2 question 21 discussion"
+      },
+      {
+        "id": "415892",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 22,
+        "path": "/discussions/microsoft/view/415892-exam-ai-300-topic-2-question-22-discussion/",
+        "title": "Exam AI-300 topic 2 question 22 discussion"
+      },
+      {
+        "id": "415893",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 23,
+        "path": "/discussions/microsoft/view/415893-exam-ai-300-topic-2-question-23-discussion/",
+        "title": "Exam AI-300 topic 2 question 23 discussion"
+      },
+      {
+        "id": "415894",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 24,
+        "path": "/discussions/microsoft/view/415894-exam-ai-300-topic-2-question-24-discussion/",
+        "title": "Exam AI-300 topic 2 question 24 discussion"
+      },
+      {
+        "id": "415895",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 25,
+        "path": "/discussions/microsoft/view/415895-exam-ai-300-topic-2-question-25-discussion/",
+        "title": "Exam AI-300 topic 2 question 25 discussion"
+      },
+      {
+        "id": "415896",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 26,
+        "path": "/discussions/microsoft/view/415896-exam-ai-300-topic-2-question-26-discussion/",
+        "title": "Exam AI-300 topic 2 question 26 discussion"
+      },
+      {
+        "id": "420692",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 27,
+        "path": "/discussions/microsoft/view/420692-exam-ai-300-topic-2-question-27-discussion/",
+        "title": "Exam AI-300 topic 2 question 27 discussion"
+      },
+      {
+        "id": "424431",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 28,
+        "path": "/discussions/microsoft/view/424431-exam-ai-300-topic-2-question-28-discussion/",
+        "title": "Exam AI-300 topic 2 question 28 discussion"
+      },
+      {
+        "id": "424432",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 29,
+        "path": "/discussions/microsoft/view/424432-exam-ai-300-topic-2-question-29-discussion/",
+        "title": "Exam AI-300 topic 2 question 29 discussion"
+      },
+      {
+        "id": "424433",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 30,
+        "path": "/discussions/microsoft/view/424433-exam-ai-300-topic-2-question-30-discussion/",
+        "title": "Exam AI-300 topic 2 question 30 discussion"
+      },
+      {
+        "id": "424434",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 31,
+        "path": "/discussions/microsoft/view/424434-exam-ai-300-topic-2-question-31-discussion/",
+        "title": "Exam AI-300 topic 2 question 31 discussion"
+      },
+      {
+        "id": "424435",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 32,
+        "path": "/discussions/microsoft/view/424435-exam-ai-300-topic-2-question-32-discussion/",
+        "title": "Exam AI-300 topic 2 question 32 discussion"
+      },
+      {
+        "id": "424436",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 33,
+        "path": "/discussions/microsoft/view/424436-exam-ai-300-topic-2-question-33-discussion/",
+        "title": "Exam AI-300 topic 2 question 33 discussion"
+      },
+      {
+        "id": "424437",
+        "exam": "ai-300",
+        "topic": 2,
+        "qnum": 34,
+        "path": "/discussions/microsoft/view/424437-exam-ai-300-topic-2-question-34-discussion/",
+        "title": "Exam AI-300 topic 2 question 34 discussion"
+      },
+      {
+        "id": "404567",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/404567-exam-ai-300-topic-3-question-1-discussion/",
+        "title": "Exam AI-300 topic 3 question 1 discussion"
+      },
+      {
+        "id": "404600",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/404600-exam-ai-300-topic-3-question-2-discussion/",
+        "title": "Exam AI-300 topic 3 question 2 discussion"
+      },
+      {
+        "id": "404601",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/404601-exam-ai-300-topic-3-question-3-discussion/",
+        "title": "Exam AI-300 topic 3 question 3 discussion"
+      },
+      {
+        "id": "404602",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 4,
+        "path": "/discussions/microsoft/view/404602-exam-ai-300-topic-3-question-4-discussion/",
+        "title": "Exam AI-300 topic 3 question 4 discussion"
+      },
+      {
+        "id": "404603",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/404603-exam-ai-300-topic-3-question-5-discussion/",
+        "title": "Exam AI-300 topic 3 question 5 discussion"
+      },
+      {
+        "id": "404604",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 6,
+        "path": "/discussions/microsoft/view/404604-exam-ai-300-topic-3-question-6-discussion/",
+        "title": "Exam AI-300 topic 3 question 6 discussion"
+      },
+      {
+        "id": "404605",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/404605-exam-ai-300-topic-3-question-7-discussion/",
+        "title": "Exam AI-300 topic 3 question 7 discussion"
+      },
+      {
+        "id": "404606",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 8,
+        "path": "/discussions/microsoft/view/404606-exam-ai-300-topic-3-question-8-discussion/",
+        "title": "Exam AI-300 topic 3 question 8 discussion"
+      },
+      {
+        "id": "404568",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/404568-exam-ai-300-topic-3-question-9-discussion/",
+        "title": "Exam AI-300 topic 3 question 9 discussion"
+      },
+      {
+        "id": "404569",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/404569-exam-ai-300-topic-3-question-10-discussion/",
+        "title": "Exam AI-300 topic 3 question 10 discussion"
+      },
+      {
+        "id": "404570",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 11,
+        "path": "/discussions/microsoft/view/404570-exam-ai-300-topic-3-question-11-discussion/",
+        "title": "Exam AI-300 topic 3 question 11 discussion"
+      },
+      {
+        "id": "404571",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/404571-exam-ai-300-topic-3-question-12-discussion/",
+        "title": "Exam AI-300 topic 3 question 12 discussion"
+      },
+      {
+        "id": "404572",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 13,
+        "path": "/discussions/microsoft/view/404572-exam-ai-300-topic-3-question-13-discussion/",
+        "title": "Exam AI-300 topic 3 question 13 discussion"
+      },
+      {
+        "id": "404573",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 14,
+        "path": "/discussions/microsoft/view/404573-exam-ai-300-topic-3-question-14-discussion/",
+        "title": "Exam AI-300 topic 3 question 14 discussion"
+      },
+      {
+        "id": "404574",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 15,
+        "path": "/discussions/microsoft/view/404574-exam-ai-300-topic-3-question-15-discussion/",
+        "title": "Exam AI-300 topic 3 question 15 discussion"
+      },
+      {
+        "id": "415898",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/415898-exam-ai-300-topic-3-question-17-discussion/",
+        "title": "Exam AI-300 topic 3 question 17 discussion"
+      },
+      {
+        "id": "415899",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 18,
+        "path": "/discussions/microsoft/view/415899-exam-ai-300-topic-3-question-18-discussion/",
+        "title": "Exam AI-300 topic 3 question 18 discussion"
+      },
+      {
+        "id": "415900",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 19,
+        "path": "/discussions/microsoft/view/415900-exam-ai-300-topic-3-question-19-discussion/",
+        "title": "Exam AI-300 topic 3 question 19 discussion"
+      },
+      {
+        "id": "415901",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/415901-exam-ai-300-topic-3-question-20-discussion/",
+        "title": "Exam AI-300 topic 3 question 20 discussion"
+      },
+      {
+        "id": "415902",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 21,
+        "path": "/discussions/microsoft/view/415902-exam-ai-300-topic-3-question-21-discussion/",
+        "title": "Exam AI-300 topic 3 question 21 discussion"
+      },
+      {
+        "id": "415903",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 22,
+        "path": "/discussions/microsoft/view/415903-exam-ai-300-topic-3-question-22-discussion/",
+        "title": "Exam AI-300 topic 3 question 22 discussion"
+      },
+      {
+        "id": "415904",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 23,
+        "path": "/discussions/microsoft/view/415904-exam-ai-300-topic-3-question-23-discussion/",
+        "title": "Exam AI-300 topic 3 question 23 discussion"
+      },
+      {
+        "id": "415905",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 24,
+        "path": "/discussions/microsoft/view/415905-exam-ai-300-topic-3-question-24-discussion/",
+        "title": "Exam AI-300 topic 3 question 24 discussion"
+      },
+      {
+        "id": "415906",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 25,
+        "path": "/discussions/microsoft/view/415906-exam-ai-300-topic-3-question-25-discussion/",
+        "title": "Exam AI-300 topic 3 question 25 discussion"
+      },
+      {
+        "id": "415907",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 26,
+        "path": "/discussions/microsoft/view/415907-exam-ai-300-topic-3-question-26-discussion/",
+        "title": "Exam AI-300 topic 3 question 26 discussion"
+      },
+      {
+        "id": "415908",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 27,
+        "path": "/discussions/microsoft/view/415908-exam-ai-300-topic-3-question-27-discussion/",
+        "title": "Exam AI-300 topic 3 question 27 discussion"
+      },
+      {
+        "id": "415909",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 28,
+        "path": "/discussions/microsoft/view/415909-exam-ai-300-topic-3-question-28-discussion/",
+        "title": "Exam AI-300 topic 3 question 28 discussion"
+      },
+      {
+        "id": "415910",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 29,
+        "path": "/discussions/microsoft/view/415910-exam-ai-300-topic-3-question-29-discussion/",
+        "title": "Exam AI-300 topic 3 question 29 discussion"
+      },
+      {
+        "id": "415912",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 31,
+        "path": "/discussions/microsoft/view/415912-exam-ai-300-topic-3-question-31-discussion/",
+        "title": "Exam AI-300 topic 3 question 31 discussion"
+      },
+      {
+        "id": "415914",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 33,
+        "path": "/discussions/microsoft/view/415914-exam-ai-300-topic-3-question-33-discussion/",
+        "title": "Exam AI-300 topic 3 question 33 discussion"
+      },
+      {
+        "id": "415915",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 34,
+        "path": "/discussions/microsoft/view/415915-exam-ai-300-topic-3-question-34-discussion/",
+        "title": "Exam AI-300 topic 3 question 34 discussion"
+      },
+      {
+        "id": "415917",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 36,
+        "path": "/discussions/microsoft/view/415917-exam-ai-300-topic-3-question-36-discussion/",
+        "title": "Exam AI-300 topic 3 question 36 discussion"
+      },
+      {
+        "id": "415919",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 38,
+        "path": "/discussions/microsoft/view/415919-exam-ai-300-topic-3-question-38-discussion/",
+        "title": "Exam AI-300 topic 3 question 38 discussion"
+      },
+      {
+        "id": "420695",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 41,
+        "path": "/discussions/microsoft/view/420695-exam-ai-300-topic-3-question-41-discussion/",
+        "title": "Exam AI-300 topic 3 question 41 discussion"
+      },
+      {
+        "id": "420700",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 46,
+        "path": "/discussions/microsoft/view/420700-exam-ai-300-topic-3-question-46-discussion/",
+        "title": "Exam AI-300 topic 3 question 46 discussion"
+      },
+      {
+        "id": "424452",
+        "exam": "ai-300",
+        "topic": 3,
+        "qnum": 67,
+        "path": "/discussions/microsoft/view/424452-exam-ai-300-topic-3-question-67-discussion/",
+        "title": "Exam AI-300 topic 3 question 67 discussion"
+      },
+      {
+        "id": "404575",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/404575-exam-ai-300-topic-4-question-1-discussion/",
+        "title": "Exam AI-300 topic 4 question 1 discussion"
+      },
+      {
+        "id": "404577",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/404577-exam-ai-300-topic-4-question-3-discussion/",
+        "title": "Exam AI-300 topic 4 question 3 discussion"
+      },
+      {
+        "id": "404579",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/404579-exam-ai-300-topic-4-question-5-discussion/",
+        "title": "Exam AI-300 topic 4 question 5 discussion"
+      },
+      {
+        "id": "404607",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/404607-exam-ai-300-topic-4-question-7-discussion/",
+        "title": "Exam AI-300 topic 4 question 7 discussion"
+      },
+      {
+        "id": "404609",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/404609-exam-ai-300-topic-4-question-9-discussion/",
+        "title": "Exam AI-300 topic 4 question 9 discussion"
+      },
+      {
+        "id": "404610",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/404610-exam-ai-300-topic-4-question-10-discussion/",
+        "title": "Exam AI-300 topic 4 question 10 discussion"
+      },
+      {
+        "id": "404611",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 11,
+        "path": "/discussions/microsoft/view/404611-exam-ai-300-topic-4-question-11-discussion/",
+        "title": "Exam AI-300 topic 4 question 11 discussion"
+      },
+      {
+        "id": "404612",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/404612-exam-ai-300-topic-4-question-12-discussion/",
+        "title": "Exam AI-300 topic 4 question 12 discussion"
+      },
+      {
+        "id": "404613",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 13,
+        "path": "/discussions/microsoft/view/404613-exam-ai-300-topic-4-question-13-discussion/",
+        "title": "Exam AI-300 topic 4 question 13 discussion"
+      },
+      {
+        "id": "416072",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 14,
+        "path": "/discussions/microsoft/view/416072-exam-ai-300-topic-4-question-14-discussion/",
+        "title": "Exam AI-300 topic 4 question 14 discussion"
+      },
+      {
+        "id": "416073",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 15,
+        "path": "/discussions/microsoft/view/416073-exam-ai-300-topic-4-question-15-discussion/",
+        "title": "Exam AI-300 topic 4 question 15 discussion"
+      },
+      {
+        "id": "416074",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 16,
+        "path": "/discussions/microsoft/view/416074-exam-ai-300-topic-4-question-16-discussion/",
+        "title": "Exam AI-300 topic 4 question 16 discussion"
+      },
+      {
+        "id": "416076",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 18,
+        "path": "/discussions/microsoft/view/416076-exam-ai-300-topic-4-question-18-discussion/",
+        "title": "Exam AI-300 topic 4 question 18 discussion"
+      },
+      {
+        "id": "416077",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 19,
+        "path": "/discussions/microsoft/view/416077-exam-ai-300-topic-4-question-19-discussion/",
+        "title": "Exam AI-300 topic 4 question 19 discussion"
+      },
+      {
+        "id": "420707",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/420707-exam-ai-300-topic-4-question-20-discussion/",
+        "title": "Exam AI-300 topic 4 question 20 discussion"
+      },
+      {
+        "id": "420709",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 22,
+        "path": "/discussions/microsoft/view/420709-exam-ai-300-topic-4-question-22-discussion/",
+        "title": "Exam AI-300 topic 4 question 22 discussion"
+      },
+      {
+        "id": "420712",
+        "exam": "ai-300",
+        "topic": 4,
+        "qnum": 25,
+        "path": "/discussions/microsoft/view/420712-exam-ai-300-topic-4-question-25-discussion/",
+        "title": "Exam AI-300 topic 4 question 25 discussion"
+      },
+      {
+        "id": "404615",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/404615-exam-ai-300-topic-5-question-2-discussion/",
+        "title": "Exam AI-300 topic 5 question 2 discussion"
+      },
+      {
+        "id": "404616",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/404616-exam-ai-300-topic-5-question-3-discussion/",
+        "title": "Exam AI-300 topic 5 question 3 discussion"
+      },
+      {
+        "id": "404617",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 4,
+        "path": "/discussions/microsoft/view/404617-exam-ai-300-topic-5-question-4-discussion/",
+        "title": "Exam AI-300 topic 5 question 4 discussion"
+      },
+      {
+        "id": "404618",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/404618-exam-ai-300-topic-5-question-5-discussion/",
+        "title": "Exam AI-300 topic 5 question 5 discussion"
+      },
+      {
+        "id": "404619",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 6,
+        "path": "/discussions/microsoft/view/404619-exam-ai-300-topic-5-question-6-discussion/",
+        "title": "Exam AI-300 topic 5 question 6 discussion"
+      },
+      {
+        "id": "404620",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/404620-exam-ai-300-topic-5-question-7-discussion/",
+        "title": "Exam AI-300 topic 5 question 7 discussion"
+      },
+      {
+        "id": "416080",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/416080-exam-ai-300-topic-5-question-10-discussion/",
+        "title": "Exam AI-300 topic 5 question 10 discussion"
+      },
+      {
+        "id": "420719",
+        "exam": "ai-300",
+        "topic": 5,
+        "qnum": 16,
+        "path": "/discussions/microsoft/view/420719-exam-ai-300-topic-5-question-16-discussion/",
+        "title": "Exam AI-300 topic 5 question 16 discussion"
+      },
+      {
+        "id": "404621",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/404621-exam-ai-300-topic-6-question-1-discussion/",
+        "title": "Exam AI-300 topic 6 question 1 discussion"
+      },
+      {
+        "id": "404622",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/404622-exam-ai-300-topic-6-question-2-discussion/",
+        "title": "Exam AI-300 topic 6 question 2 discussion"
+      },
+      {
+        "id": "404623",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/404623-exam-ai-300-topic-6-question-3-discussion/",
+        "title": "Exam AI-300 topic 6 question 3 discussion"
+      },
+      {
+        "id": "404624",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 4,
+        "path": "/discussions/microsoft/view/404624-exam-ai-300-topic-6-question-4-discussion/",
+        "title": "Exam AI-300 topic 6 question 4 discussion"
+      },
+      {
+        "id": "404625",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/404625-exam-ai-300-topic-6-question-5-discussion/",
+        "title": "Exam AI-300 topic 6 question 5 discussion"
+      },
+      {
+        "id": "404627",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 7,
+        "path": "/discussions/microsoft/view/404627-exam-ai-300-topic-6-question-7-discussion/",
+        "title": "Exam AI-300 topic 6 question 7 discussion"
+      },
+      {
+        "id": "416081",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 8,
+        "path": "/discussions/microsoft/view/416081-exam-ai-300-topic-6-question-8-discussion/",
+        "title": "Exam AI-300 topic 6 question 8 discussion"
+      },
+      {
+        "id": "416082",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/416082-exam-ai-300-topic-6-question-9-discussion/",
+        "title": "Exam AI-300 topic 6 question 9 discussion"
+      },
+      {
+        "id": "416083",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/416083-exam-ai-300-topic-6-question-10-discussion/",
+        "title": "Exam AI-300 topic 6 question 10 discussion"
+      },
+      {
+        "id": "416084",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 11,
+        "path": "/discussions/microsoft/view/416084-exam-ai-300-topic-6-question-11-discussion/",
+        "title": "Exam AI-300 topic 6 question 11 discussion"
+      },
+      {
+        "id": "416085",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/416085-exam-ai-300-topic-6-question-12-discussion/",
+        "title": "Exam AI-300 topic 6 question 12 discussion"
+      },
+      {
+        "id": "419531",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/419531-exam-ai-300-topic-6-question-17-discussion/",
+        "title": "Exam AI-300 topic 6 question 17 discussion"
+      },
+      {
+        "id": "420724",
+        "exam": "ai-300",
+        "topic": 6,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/420724-exam-ai-300-topic-6-question-20-discussion/",
+        "title": "Exam AI-300 topic 6 question 20 discussion"
+      }
+    ],
+    "ai-500": [
+      {
+        "id": "430657",
+        "exam": "ai-500",
+        "topic": 1,
+        "qnum": 1,
+        "path": "/discussions/microsoft/view/430657-exam-ai-500-topic-1-question-1-discussion/",
+        "title": "Exam AI-500 topic 1 question 1 discussion"
+      },
+      {
+        "id": "430659",
+        "exam": "ai-500",
+        "topic": 1,
+        "qnum": 3,
+        "path": "/discussions/microsoft/view/430659-exam-ai-500-topic-1-question-3-discussion/",
+        "title": "Exam AI-500 topic 1 question 3 discussion"
+      },
+      {
+        "id": "430573",
+        "exam": "ai-500",
+        "topic": 1,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/430573-exam-ai-500-topic-1-question-9-discussion/",
+        "title": "Exam AI-500 topic 1 question 9 discussion"
+      },
+      {
+        "id": "430580",
+        "exam": "ai-500",
+        "topic": 1,
+        "qnum": 16,
+        "path": "/discussions/microsoft/view/430580-exam-ai-500-topic-1-question-16-discussion/",
+        "title": "Exam AI-500 topic 1 question 16 discussion"
+      },
+      {
+        "id": "430586",
+        "exam": "ai-500",
+        "topic": 2,
+        "qnum": 5,
+        "path": "/discussions/microsoft/view/430586-exam-ai-500-topic-2-question-5-discussion/",
+        "title": "Exam AI-500 topic 2 question 5 discussion"
+      },
+      {
+        "id": "430593",
+        "exam": "ai-500",
+        "topic": 2,
+        "qnum": 12,
+        "path": "/discussions/microsoft/view/430593-exam-ai-500-topic-2-question-12-discussion/",
+        "title": "Exam AI-500 topic 2 question 12 discussion"
+      },
+      {
+        "id": "430596",
+        "exam": "ai-500",
+        "topic": 2,
+        "qnum": 15,
+        "path": "/discussions/microsoft/view/430596-exam-ai-500-topic-2-question-15-discussion/",
+        "title": "Exam AI-500 topic 2 question 15 discussion"
+      },
+      {
+        "id": "430598",
+        "exam": "ai-500",
+        "topic": 2,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/430598-exam-ai-500-topic-2-question-17-discussion/",
+        "title": "Exam AI-500 topic 2 question 17 discussion"
+      },
+      {
+        "id": "430661",
+        "exam": "ai-500",
+        "topic": 2,
+        "qnum": 20,
+        "path": "/discussions/microsoft/view/430661-exam-ai-500-topic-2-question-20-discussion/",
+        "title": "Exam AI-500 topic 2 question 20 discussion"
+      },
+      {
+        "id": "430667",
+        "exam": "ai-500",
+        "topic": 3,
+        "qnum": 2,
+        "path": "/discussions/microsoft/view/430667-exam-ai-500-topic-3-question-2-discussion/",
+        "title": "Exam AI-500 topic 3 question 2 discussion"
+      },
+      {
+        "id": "430675",
+        "exam": "ai-500",
+        "topic": 3,
+        "qnum": 10,
+        "path": "/discussions/microsoft/view/430675-exam-ai-500-topic-3-question-10-discussion/",
+        "title": "Exam AI-500 topic 3 question 10 discussion"
+      },
+      {
+        "id": "430602",
+        "exam": "ai-500",
+        "topic": 3,
+        "qnum": 13,
+        "path": "/discussions/microsoft/view/430602-exam-ai-500-topic-3-question-13-discussion/",
+        "title": "Exam AI-500 topic 3 question 13 discussion"
+      },
+      {
+        "id": "430603",
+        "exam": "ai-500",
+        "topic": 3,
+        "qnum": 14,
+        "path": "/discussions/microsoft/view/430603-exam-ai-500-topic-3-question-14-discussion/",
+        "title": "Exam AI-500 topic 3 question 14 discussion"
+      },
+      {
+        "id": "430606",
+        "exam": "ai-500",
+        "topic": 3,
+        "qnum": 17,
+        "path": "/discussions/microsoft/view/430606-exam-ai-500-topic-3-question-17-discussion/",
+        "title": "Exam AI-500 topic 3 question 17 discussion"
+      },
+      {
+        "id": "430681",
+        "exam": "ai-500",
+        "topic": 4,
+        "qnum": 9,
+        "path": "/discussions/microsoft/view/430681-exam-ai-500-topic-4-question-9-discussion/",
+        "title": "Exam AI-500 topic 4 question 9 discussion"
+      },
+      {
+        "id": "430620",
+        "exam": "ai-500",
+        "topic": 4,
+        "qnum": 24,
+        "path": "/discussions/microsoft/view/430620-exam-ai-500-topic-4-question-24-discussion/",
+        "title": "Exam AI-500 topic 4 question 24 discussion"
+      },
+      {
+        "id": "430626",
+        "exam": "ai-500",
+        "topic": 4,
+        "qnum": 30,
+        "path": "/discussions/microsoft/view/430626-exam-ai-500-topic-4-question-30-discussion/",
+        "title": "Exam AI-500 topic 4 question 30 discussion"
+      },
+      {
+        "id": "430628",
+        "exam": "ai-500",
+        "topic": 4,
+        "qnum": 32,
+        "path": "/discussions/microsoft/view/430628-exam-ai-500-topic-4-question-32-discussion/",
+        "title": "Exam AI-500 topic 4 question 32 discussion"
+      }
+    ]
+  },
+  "urls_processed": [
+    "/discussions/microsoft/view/404549-exam-ai-300-topic-2-question-1-discussion/",
+    "/discussions/microsoft/view/404550-exam-ai-300-topic-2-question-2-discussion/",
+    "/discussions/microsoft/view/404551-exam-ai-300-topic-2-question-3-discussion/",
+    "/discussions/microsoft/view/404552-exam-ai-300-topic-2-question-4-discussion/",
+    "/discussions/microsoft/view/404553-exam-ai-300-topic-2-question-5-discussion/",
+    "/discussions/microsoft/view/404554-exam-ai-300-topic-2-question-6-discussion/",
+    "/discussions/microsoft/view/404555-exam-ai-300-topic-2-question-7-discussion/",
+    "/discussions/microsoft/view/404556-exam-ai-300-topic-2-question-8-discussion/",
+    "/discussions/microsoft/view/404557-exam-ai-300-topic-2-question-9-discussion/",
+    "/discussions/microsoft/view/404558-exam-ai-300-topic-2-question-10-discussion/",
+    "/discussions/microsoft/view/404559-exam-ai-300-topic-2-question-11-discussion/",
+    "/discussions/microsoft/view/404560-exam-ai-300-topic-2-question-12-discussion/",
+    "/discussions/microsoft/view/404561-exam-ai-300-topic-2-question-13-discussion/",
+    "/discussions/microsoft/view/404562-exam-ai-300-topic-2-question-14-discussion/",
+    "/discussions/microsoft/view/404563-exam-ai-300-topic-2-question-15-discussion/",
+    "/discussions/microsoft/view/404564-exam-ai-300-topic-2-question-16-discussion/",
+    "/discussions/microsoft/view/404565-exam-ai-300-topic-2-question-17-discussion/",
+    "/discussions/microsoft/view/404567-exam-ai-300-topic-3-question-1-discussion/",
+    "/discussions/microsoft/view/404568-exam-ai-300-topic-3-question-9-discussion/",
+    "/discussions/microsoft/view/404569-exam-ai-300-topic-3-question-10-discussion/",
+    "/discussions/microsoft/view/404570-exam-ai-300-topic-3-question-11-discussion/",
+    "/discussions/microsoft/view/404571-exam-ai-300-topic-3-question-12-discussion/",
+    "/discussions/microsoft/view/404572-exam-ai-300-topic-3-question-13-discussion/",
+    "/discussions/microsoft/view/404573-exam-ai-300-topic-3-question-14-discussion/",
+    "/discussions/microsoft/view/404574-exam-ai-300-topic-3-question-15-discussion/",
+    "/discussions/microsoft/view/404575-exam-ai-300-topic-4-question-1-discussion/",
+    "/discussions/microsoft/view/404577-exam-ai-300-topic-4-question-3-discussion/",
+    "/discussions/microsoft/view/404579-exam-ai-300-topic-4-question-5-discussion/",
+    "/discussions/microsoft/view/404600-exam-ai-300-topic-3-question-2-discussion/",
+    "/discussions/microsoft/view/404601-exam-ai-300-topic-3-question-3-discussion/",
+    "/discussions/microsoft/view/404602-exam-ai-300-topic-3-question-4-discussion/",
+    "/discussions/microsoft/view/404603-exam-ai-300-topic-3-question-5-discussion/",
+    "/discussions/microsoft/view/404604-exam-ai-300-topic-3-question-6-discussion/",
+    "/discussions/microsoft/view/404605-exam-ai-300-topic-3-question-7-discussion/",
+    "/discussions/microsoft/view/404606-exam-ai-300-topic-3-question-8-discussion/",
+    "/discussions/microsoft/view/404607-exam-ai-300-topic-4-question-7-discussion/",
+    "/discussions/microsoft/view/404609-exam-ai-300-topic-4-question-9-discussion/",
+    "/discussions/microsoft/view/404610-exam-ai-300-topic-4-question-10-discussion/",
+    "/discussions/microsoft/view/404611-exam-ai-300-topic-4-question-11-discussion/",
+    "/discussions/microsoft/view/404612-exam-ai-300-topic-4-question-12-discussion/",
+    "/discussions/microsoft/view/404613-exam-ai-300-topic-4-question-13-discussion/",
+    "/discussions/microsoft/view/404615-exam-ai-300-topic-5-question-2-discussion/",
+    "/discussions/microsoft/view/404616-exam-ai-300-topic-5-question-3-discussion/",
+    "/discussions/microsoft/view/404617-exam-ai-300-topic-5-question-4-discussion/",
+    "/discussions/microsoft/view/404618-exam-ai-300-topic-5-question-5-discussion/",
+    "/discussions/microsoft/view/404619-exam-ai-300-topic-5-question-6-discussion/",
+    "/discussions/microsoft/view/404620-exam-ai-300-topic-5-question-7-discussion/",
+    "/discussions/microsoft/view/404621-exam-ai-300-topic-6-question-1-discussion/",
+    "/discussions/microsoft/view/404622-exam-ai-300-topic-6-question-2-discussion/",
+    "/discussions/microsoft/view/404623-exam-ai-300-topic-6-question-3-discussion/",
+    "/discussions/microsoft/view/404624-exam-ai-300-topic-6-question-4-discussion/",
+    "/discussions/microsoft/view/404625-exam-ai-300-topic-6-question-5-discussion/",
+    "/discussions/microsoft/view/404627-exam-ai-300-topic-6-question-7-discussion/",
+    "/discussions/microsoft/view/412433-exam-ai-103-topic-1-question-1-discussion/",
+    "/discussions/microsoft/view/412434-exam-ai-103-topic-1-question-2-discussion/",
+    "/discussions/microsoft/view/412435-exam-ai-103-topic-1-question-3-discussion/",
+    "/discussions/microsoft/view/412436-exam-ai-103-topic-1-question-4-discussion/",
+    "/discussions/microsoft/view/412437-exam-ai-103-topic-1-question-5-discussion/",
+    "/discussions/microsoft/view/412438-exam-ai-103-topic-1-question-6-discussion/",
+    "/discussions/microsoft/view/412439-exam-ai-103-topic-1-question-7-discussion/",
+    "/discussions/microsoft/view/412440-exam-ai-103-topic-1-question-8-discussion/",
+    "/discussions/microsoft/view/412441-exam-ai-103-topic-1-question-9-discussion/",
+    "/discussions/microsoft/view/412442-exam-ai-103-topic-1-question-10-discussion/",
+    "/discussions/microsoft/view/412443-exam-ai-103-topic-1-question-11-discussion/",
+    "/discussions/microsoft/view/412444-exam-ai-103-topic-1-question-12-discussion/",
+    "/discussions/microsoft/view/412445-exam-ai-103-topic-1-question-13-discussion/",
+    "/discussions/microsoft/view/412446-exam-ai-103-topic-1-question-14-discussion/",
+    "/discussions/microsoft/view/412447-exam-ai-103-topic-1-question-15-discussion/",
+    "/discussions/microsoft/view/412448-exam-ai-103-topic-1-question-16-discussion/",
+    "/discussions/microsoft/view/412449-exam-ai-103-topic-1-question-17-discussion/",
+    "/discussions/microsoft/view/412450-exam-ai-103-topic-1-question-18-discussion/",
+    "/discussions/microsoft/view/412451-exam-ai-103-topic-1-question-19-discussion/",
+    "/discussions/microsoft/view/412452-exam-ai-103-topic-1-question-20-discussion/",
+    "/discussions/microsoft/view/412453-exam-ai-103-topic-1-question-21-discussion/",
+    "/discussions/microsoft/view/412454-exam-ai-103-topic-1-question-22-discussion/",
+    "/discussions/microsoft/view/412455-exam-ai-103-topic-1-question-23-discussion/",
+    "/discussions/microsoft/view/412456-exam-ai-103-topic-1-question-24-discussion/",
+    "/discussions/microsoft/view/412457-exam-ai-103-topic-1-question-25-discussion/",
+    "/discussions/microsoft/view/412458-exam-ai-103-topic-1-question-26-discussion/",
+    "/discussions/microsoft/view/412459-exam-ai-103-topic-1-question-27-discussion/",
+    "/discussions/microsoft/view/412460-exam-ai-103-topic-1-question-28-discussion/",
+    "/discussions/microsoft/view/412461-exam-ai-103-topic-1-question-29-discussion/",
+    "/discussions/microsoft/view/412462-exam-ai-103-topic-1-question-30-discussion/",
+    "/discussions/microsoft/view/412463-exam-ai-103-topic-1-question-31-discussion/",
+    "/discussions/microsoft/view/412464-exam-ai-103-topic-1-question-32-discussion/",
+    "/discussions/microsoft/view/412465-exam-ai-103-topic-1-question-33-discussion/",
+    "/discussions/microsoft/view/412466-exam-ai-103-topic-1-question-34-discussion/",
+    "/discussions/microsoft/view/412467-exam-ai-103-topic-1-question-35-discussion/",
+    "/discussions/microsoft/view/412468-exam-ai-103-topic-1-question-36-discussion/",
+    "/discussions/microsoft/view/412469-exam-ai-103-topic-1-question-37-discussion/",
+    "/discussions/microsoft/view/412470-exam-ai-103-topic-1-question-38-discussion/",
+    "/discussions/microsoft/view/412471-exam-ai-103-topic-1-question-39-discussion/",
+    "/discussions/microsoft/view/412472-exam-ai-103-topic-1-question-40-discussion/",
+    "/discussions/microsoft/view/412473-exam-ai-103-topic-1-question-41-discussion/",
+    "/discussions/microsoft/view/412474-exam-ai-103-topic-1-question-42-discussion/",
+    "/discussions/microsoft/view/412475-exam-ai-103-topic-1-question-43-discussion/",
+    "/discussions/microsoft/view/412476-exam-ai-103-topic-1-question-44-discussion/",
+    "/discussions/microsoft/view/412477-exam-ai-103-topic-1-question-45-discussion/",
+    "/discussions/microsoft/view/412478-exam-ai-103-topic-1-question-46-discussion/",
+    "/discussions/microsoft/view/412479-exam-ai-103-topic-1-question-47-discussion/",
+    "/discussions/microsoft/view/412480-exam-ai-103-topic-1-question-48-discussion/",
+    "/discussions/microsoft/view/412481-exam-ai-103-topic-1-question-49-discussion/",
+    "/discussions/microsoft/view/412482-exam-ai-103-topic-1-question-50-discussion/",
+    "/discussions/microsoft/view/412483-exam-ai-103-topic-1-question-51-discussion/",
+    "/discussions/microsoft/view/412484-exam-ai-103-topic-1-question-52-discussion/",
+    "/discussions/microsoft/view/412485-exam-ai-103-topic-1-question-53-discussion/",
+    "/discussions/microsoft/view/412486-exam-ai-103-topic-1-question-54-discussion/",
+    "/discussions/microsoft/view/412487-exam-ai-103-topic-1-question-55-discussion/",
+    "/discussions/microsoft/view/412488-exam-ai-103-topic-1-question-56-discussion/",
+    "/discussions/microsoft/view/412489-exam-ai-103-topic-1-question-57-discussion/",
+    "/discussions/microsoft/view/412490-exam-ai-103-topic-1-question-58-discussion/",
+    "/discussions/microsoft/view/412491-exam-ai-103-topic-1-question-59-discussion/",
+    "/discussions/microsoft/view/412492-exam-ai-103-topic-1-question-60-discussion/",
+    "/discussions/microsoft/view/412493-exam-ai-103-topic-1-question-61-discussion/",
+    "/discussions/microsoft/view/412494-exam-ai-103-topic-1-question-62-discussion/",
+    "/discussions/microsoft/view/412495-exam-ai-103-topic-1-question-63-discussion/",
+    "/discussions/microsoft/view/412496-exam-ai-103-topic-1-question-64-discussion/",
+    "/discussions/microsoft/view/412497-exam-ai-103-topic-1-question-65-discussion/",
+    "/discussions/microsoft/view/415889-exam-ai-300-topic-2-question-19-discussion/",
+    "/discussions/microsoft/view/415890-exam-ai-300-topic-2-question-20-discussion/",
+    "/discussions/microsoft/view/415891-exam-ai-300-topic-2-question-21-discussion/",
+    "/discussions/microsoft/view/415892-exam-ai-300-topic-2-question-22-discussion/",
+    "/discussions/microsoft/view/415893-exam-ai-300-topic-2-question-23-discussion/",
+    "/discussions/microsoft/view/415894-exam-ai-300-topic-2-question-24-discussion/",
+    "/discussions/microsoft/view/415895-exam-ai-300-topic-2-question-25-discussion/",
+    "/discussions/microsoft/view/415896-exam-ai-300-topic-2-question-26-discussion/",
+    "/discussions/microsoft/view/415898-exam-ai-300-topic-3-question-17-discussion/",
+    "/discussions/microsoft/view/415899-exam-ai-300-topic-3-question-18-discussion/",
+    "/discussions/microsoft/view/415900-exam-ai-300-topic-3-question-19-discussion/",
+    "/discussions/microsoft/view/415901-exam-ai-300-topic-3-question-20-discussion/",
+    "/discussions/microsoft/view/415902-exam-ai-300-topic-3-question-21-discussion/",
+    "/discussions/microsoft/view/415903-exam-ai-300-topic-3-question-22-discussion/",
+    "/discussions/microsoft/view/415904-exam-ai-300-topic-3-question-23-discussion/",
+    "/discussions/microsoft/view/415905-exam-ai-300-topic-3-question-24-discussion/",
+    "/discussions/microsoft/view/415906-exam-ai-300-topic-3-question-25-discussion/",
+    "/discussions/microsoft/view/415907-exam-ai-300-topic-3-question-26-discussion/",
+    "/discussions/microsoft/view/415908-exam-ai-300-topic-3-question-27-discussion/",
+    "/discussions/microsoft/view/415909-exam-ai-300-topic-3-question-28-discussion/",
+    "/discussions/microsoft/view/415910-exam-ai-300-topic-3-question-29-discussion/",
+    "/discussions/microsoft/view/415912-exam-ai-300-topic-3-question-31-discussion/",
+    "/discussions/microsoft/view/415914-exam-ai-300-topic-3-question-33-discussion/",
+    "/discussions/microsoft/view/415915-exam-ai-300-topic-3-question-34-discussion/",
+    "/discussions/microsoft/view/415917-exam-ai-300-topic-3-question-36-discussion/",
+    "/discussions/microsoft/view/415919-exam-ai-300-topic-3-question-38-discussion/",
+    "/discussions/microsoft/view/416072-exam-ai-300-topic-4-question-14-discussion/",
+    "/discussions/microsoft/view/416073-exam-ai-300-topic-4-question-15-discussion/",
+    "/discussions/microsoft/view/416074-exam-ai-300-topic-4-question-16-discussion/",
+    "/discussions/microsoft/view/416076-exam-ai-300-topic-4-question-18-discussion/",
+    "/discussions/microsoft/view/416077-exam-ai-300-topic-4-question-19-discussion/",
+    "/discussions/microsoft/view/416080-exam-ai-300-topic-5-question-10-discussion/",
+    "/discussions/microsoft/view/416081-exam-ai-300-topic-6-question-8-discussion/",
+    "/discussions/microsoft/view/416082-exam-ai-300-topic-6-question-9-discussion/",
+    "/discussions/microsoft/view/416083-exam-ai-300-topic-6-question-10-discussion/",
+    "/discussions/microsoft/view/416084-exam-ai-300-topic-6-question-11-discussion/",
+    "/discussions/microsoft/view/416085-exam-ai-300-topic-6-question-12-discussion/",
+    "/discussions/microsoft/view/419531-exam-ai-300-topic-6-question-17-discussion/",
+    "/discussions/microsoft/view/420692-exam-ai-300-topic-2-question-27-discussion/",
+    "/discussions/microsoft/view/420695-exam-ai-300-topic-3-question-41-discussion/",
+    "/discussions/microsoft/view/420700-exam-ai-300-topic-3-question-46-discussion/",
+    "/discussions/microsoft/view/420707-exam-ai-300-topic-4-question-20-discussion/",
+    "/discussions/microsoft/view/420709-exam-ai-300-topic-4-question-22-discussion/",
+    "/discussions/microsoft/view/420712-exam-ai-300-topic-4-question-25-discussion/",
+    "/discussions/microsoft/view/420719-exam-ai-300-topic-5-question-16-discussion/",
+    "/discussions/microsoft/view/420724-exam-ai-300-topic-6-question-20-discussion/",
+    "/discussions/microsoft/view/421512-exam-ai-103-topic-1-question-66-discussion/",
+    "/discussions/microsoft/view/421513-exam-ai-103-topic-1-question-67-discussion/",
+    "/discussions/microsoft/view/421514-exam-ai-103-topic-1-question-68-discussion/",
+    "/discussions/microsoft/view/421515-exam-ai-103-topic-1-question-69-discussion/",
+    "/discussions/microsoft/view/421516-exam-ai-103-topic-1-question-70-discussion/",
+    "/discussions/microsoft/view/421517-exam-ai-103-topic-1-question-71-discussion/",
+    "/discussions/microsoft/view/421518-exam-ai-103-topic-1-question-72-discussion/",
+    "/discussions/microsoft/view/421519-exam-ai-103-topic-1-question-73-discussion/",
+    "/discussions/microsoft/view/421520-exam-ai-103-topic-1-question-74-discussion/",
+    "/discussions/microsoft/view/421521-exam-ai-103-topic-1-question-75-discussion/",
+    "/discussions/microsoft/view/421522-exam-ai-103-topic-1-question-76-discussion/",
+    "/discussions/microsoft/view/421523-exam-ai-103-topic-1-question-77-discussion/",
+    "/discussions/microsoft/view/421524-exam-ai-103-topic-1-question-78-discussion/",
+    "/discussions/microsoft/view/421525-exam-ai-103-topic-1-question-79-discussion/",
+    "/discussions/microsoft/view/421526-exam-ai-103-topic-1-question-80-discussion/",
+    "/discussions/microsoft/view/421527-exam-ai-103-topic-1-question-81-discussion/",
+    "/discussions/microsoft/view/421528-exam-ai-103-topic-1-question-82-discussion/",
+    "/discussions/microsoft/view/421529-exam-ai-103-topic-1-question-83-discussion/",
+    "/discussions/microsoft/view/421530-exam-ai-103-topic-1-question-84-discussion/",
+    "/discussions/microsoft/view/421531-exam-ai-103-topic-1-question-85-discussion/",
+    "/discussions/microsoft/view/421532-exam-ai-103-topic-1-question-86-discussion/",
+    "/discussions/microsoft/view/421533-exam-ai-103-topic-1-question-87-discussion/",
+    "/discussions/microsoft/view/421534-exam-ai-103-topic-1-question-88-discussion/",
+    "/discussions/microsoft/view/421535-exam-ai-103-topic-1-question-89-discussion/",
+    "/discussions/microsoft/view/421536-exam-ai-103-topic-1-question-90-discussion/",
+    "/discussions/microsoft/view/421537-exam-ai-103-topic-1-question-91-discussion/",
+    "/discussions/microsoft/view/421538-exam-ai-103-topic-1-question-92-discussion/",
+    "/discussions/microsoft/view/421539-exam-ai-103-topic-1-question-93-discussion/",
+    "/discussions/microsoft/view/421540-exam-ai-103-topic-1-question-94-discussion/",
+    "/discussions/microsoft/view/421541-exam-ai-103-topic-1-question-95-discussion/",
+    "/discussions/microsoft/view/421542-exam-ai-103-topic-1-question-96-discussion/",
+    "/discussions/microsoft/view/421543-exam-ai-103-topic-1-question-97-discussion/",
+    "/discussions/microsoft/view/421544-exam-ai-103-topic-1-question-98-discussion/",
+    "/discussions/microsoft/view/421545-exam-ai-103-topic-1-question-99-discussion/",
+    "/discussions/microsoft/view/421546-exam-ai-103-topic-1-question-100-discussion/",
+    "/discussions/microsoft/view/421547-exam-ai-103-topic-1-question-101-discussion/",
+    "/discussions/microsoft/view/421548-exam-ai-103-topic-1-question-102-discussion/",
+    "/discussions/microsoft/view/421549-exam-ai-103-topic-1-question-103-discussion/",
+    "/discussions/microsoft/view/421550-exam-ai-103-topic-1-question-104-discussion/",
+    "/discussions/microsoft/view/421551-exam-ai-103-topic-1-question-105-discussion/",
+    "/discussions/microsoft/view/421552-exam-ai-103-topic-1-question-106-discussion/",
+    "/discussions/microsoft/view/421554-exam-ai-103-topic-1-question-108-discussion/",
+    "/discussions/microsoft/view/421555-exam-ai-103-topic-1-question-109-discussion/",
+    "/discussions/microsoft/view/421556-exam-ai-103-topic-1-question-110-discussion/",
+    "/discussions/microsoft/view/421557-exam-ai-103-topic-1-question-111-discussion/",
+    "/discussions/microsoft/view/421558-exam-ai-103-topic-1-question-112-discussion/",
+    "/discussions/microsoft/view/421559-exam-ai-103-topic-1-question-113-discussion/",
+    "/discussions/microsoft/view/421560-exam-ai-103-topic-1-question-114-discussion/",
+    "/discussions/microsoft/view/421561-exam-ai-103-topic-1-question-115-discussion/",
+    "/discussions/microsoft/view/421562-exam-ai-103-topic-1-question-116-discussion/",
+    "/discussions/microsoft/view/421563-exam-ai-103-topic-1-question-117-discussion/",
+    "/discussions/microsoft/view/424404-exam-ai-103-topic-1-question-123-discussion/",
+    "/discussions/microsoft/view/424405-exam-ai-103-topic-1-question-134-discussion/",
+    "/discussions/microsoft/view/424406-exam-ai-103-topic-1-question-131-discussion/",
+    "/discussions/microsoft/view/424407-exam-ai-103-topic-1-question-127-discussion/",
+    "/discussions/microsoft/view/424408-exam-ai-103-topic-1-question-135-discussion/",
+    "/discussions/microsoft/view/424409-exam-ai-103-topic-1-question-132-discussion/",
+    "/discussions/microsoft/view/424410-exam-ai-103-topic-1-question-133-discussion/",
+    "/discussions/microsoft/view/424411-exam-ai-103-topic-1-question-125-discussion/",
+    "/discussions/microsoft/view/424412-exam-ai-103-topic-1-question-129-discussion/",
+    "/discussions/microsoft/view/424413-exam-ai-103-topic-1-question-121-discussion/",
+    "/discussions/microsoft/view/424414-exam-ai-103-topic-1-question-122-discussion/",
+    "/discussions/microsoft/view/424415-exam-ai-103-topic-1-question-128-discussion/",
+    "/discussions/microsoft/view/424416-exam-ai-103-topic-1-question-119-discussion/",
+    "/discussions/microsoft/view/424417-exam-ai-103-topic-1-question-124-discussion/",
+    "/discussions/microsoft/view/424418-exam-ai-103-topic-1-question-130-discussion/",
+    "/discussions/microsoft/view/424419-exam-ai-103-topic-1-question-120-discussion/",
+    "/discussions/microsoft/view/424420-exam-ai-103-topic-1-question-118-discussion/",
+    "/discussions/microsoft/view/424421-exam-ai-103-topic-1-question-126-discussion/",
+    "/discussions/microsoft/view/424431-exam-ai-300-topic-2-question-28-discussion/",
+    "/discussions/microsoft/view/424432-exam-ai-300-topic-2-question-29-discussion/",
+    "/discussions/microsoft/view/424433-exam-ai-300-topic-2-question-30-discussion/",
+    "/discussions/microsoft/view/424434-exam-ai-300-topic-2-question-31-discussion/",
+    "/discussions/microsoft/view/424435-exam-ai-300-topic-2-question-32-discussion/",
+    "/discussions/microsoft/view/424436-exam-ai-300-topic-2-question-33-discussion/",
+    "/discussions/microsoft/view/424437-exam-ai-300-topic-2-question-34-discussion/",
+    "/discussions/microsoft/view/424452-exam-ai-300-topic-3-question-67-discussion/",
+    "/discussions/microsoft/view/430573-exam-ai-500-topic-1-question-9-discussion/",
+    "/discussions/microsoft/view/430580-exam-ai-500-topic-1-question-16-discussion/",
+    "/discussions/microsoft/view/430586-exam-ai-500-topic-2-question-5-discussion/",
+    "/discussions/microsoft/view/430593-exam-ai-500-topic-2-question-12-discussion/",
+    "/discussions/microsoft/view/430596-exam-ai-500-topic-2-question-15-discussion/",
+    "/discussions/microsoft/view/430598-exam-ai-500-topic-2-question-17-discussion/",
+    "/discussions/microsoft/view/430602-exam-ai-500-topic-3-question-13-discussion/",
+    "/discussions/microsoft/view/430603-exam-ai-500-topic-3-question-14-discussion/",
+    "/discussions/microsoft/view/430606-exam-ai-500-topic-3-question-17-discussion/",
+    "/discussions/microsoft/view/430620-exam-ai-500-topic-4-question-24-discussion/",
+    "/discussions/microsoft/view/430626-exam-ai-500-topic-4-question-30-discussion/",
+    "/discussions/microsoft/view/430628-exam-ai-500-topic-4-question-32-discussion/",
+    "/discussions/microsoft/view/430657-exam-ai-500-topic-1-question-1-discussion/",
+    "/discussions/microsoft/view/430659-exam-ai-500-topic-1-question-3-discussion/",
+    "/discussions/microsoft/view/430661-exam-ai-500-topic-2-question-20-discussion/",
+    "/discussions/microsoft/view/430667-exam-ai-500-topic-3-question-2-discussion/",
+    "/discussions/microsoft/view/430675-exam-ai-500-topic-3-question-10-discussion/",
+    "/discussions/microsoft/view/430681-exam-ai-500-topic-4-question-9-discussion/",
+    "/discussions/microsoft/view/430709-exam-ai-103-topic-1-question-156-discussion/",
+    "/discussions/microsoft/view/430713-exam-ai-103-topic-1-question-153-discussion/",
+    "/discussions/microsoft/view/430718-exam-ai-103-topic-1-question-144-discussion/",
+    "/discussions/microsoft/view/430719-exam-ai-103-topic-1-question-143-discussion/",
+    "/discussions/microsoft/view/430726-exam-ai-103-topic-1-question-154-discussion/",
+    "/discussions/microsoft/view/430729-exam-ai-103-topic-1-question-152-discussion/",
+    "/discussions/microsoft/view/430730-exam-ai-103-topic-1-question-157-discussion/",
+    "/discussions/microsoft/view/430733-exam-ai-103-topic-1-question-142-discussion/",
+    "/discussions/microsoft/view/430739-exam-ai-103-topic-1-question-159-discussion/",
+    "/discussions/microsoft/view/430745-exam-ai-103-topic-1-question-151-discussion/",
+    "/discussions/microsoft/view/430766-exam-ai-103-topic-1-question-138-discussion/",
+    "/discussions/microsoft/view/430776-exam-ai-103-topic-1-question-160-discussion/",
+    "/discussions/microsoft/view/430777-exam-ai-103-topic-1-question-140-discussion/",
+    "/discussions/microsoft/view/430778-exam-ai-103-topic-1-question-150-discussion/",
+    "/discussions/microsoft/view/430781-exam-ai-103-topic-1-question-147-discussion/",
+    "/discussions/microsoft/view/430787-exam-ai-103-topic-1-question-148-discussion/",
+    "/discussions/microsoft/view/430792-exam-ai-103-topic-1-question-145-discussion/",
+    "/discussions/microsoft/view/430795-exam-ai-103-topic-1-question-158-discussion/",
+    "/discussions/microsoft/view/430798-exam-ai-103-topic-1-question-149-discussion/",
+    "/discussions/microsoft/view/430808-exam-ai-103-topic-1-question-139-discussion/",
+    "/discussions/microsoft/view/430811-exam-ai-103-topic-1-question-161-discussion/",
+    "/discussions/microsoft/view/430813-exam-ai-103-topic-1-question-141-discussion/",
+    "/discussions/microsoft/view/430814-exam-ai-103-topic-1-question-136-discussion/",
+    "/discussions/microsoft/view/430824-exam-ai-103-topic-1-question-137-discussion/",
+    "/discussions/microsoft/view/433809-exam-ai-103-topic-1-question-178-discussion/",
+    "/discussions/microsoft/view/435372-exam-ai-103-topic-1-question-172-discussion/",
+    "/discussions/microsoft/view/436013-exam-ai-103-topic-1-question-174-discussion/"
+  ],
+  "errors": {}
+}
