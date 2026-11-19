@@ -70,6 +70,25 @@ def _extract_code_text(exhibit: dict[str, Any]) -> str:
     return html.unescape(text).strip()
 
 
+# Official Microsoft certification exam names keyed by lowercase exam slug.
+EXAM_TITLES: dict[str, str] = {
+    "dp-600": "Implementing Analytics Solutions Using Microsoft Fabric",
+    "dp-700": "Implementing Data Engineering Solutions Using Microsoft Fabric",
+    "ai-103": "Developing AI Apps and Agents on Azure",
+    "ai-300": "Operationalizing Machine Learning and Generative AI Solutions",
+    "ai-500": "Designing and Implementing Multi-Agent AI Solutions",
+}
+
+
+def format_study_guide_title(exam: str) -> str:
+    """Return the human-readable study guide title for ``exam``."""
+    code = exam.strip().upper()
+    exam_title = EXAM_TITLES.get(exam.strip().lower())
+    if exam_title:
+        return f"{code} {exam_title} Study Guide"
+    return f"{code} Study Guide"
+
+
 # Map each exam's numeric topic tags to Microsoft official skill area names.
 # Update these if the source data's topic ordering changes.
 TOPIC_LABELS: dict[str, dict[int, str]] = {
@@ -2125,7 +2144,10 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
         is_multiple = (
             len(correct) > 1
             or q_type == "multiple"
-            or bool(MULTI_SELECT_PROMPT_RE.search(q.get("question_text", "") or ""))
+            or (
+                not has_correct_answer
+                and bool(MULTI_SELECT_PROMPT_RE.search(q.get("question_text", "") or ""))
+            )
         )
         input_type = "checkbox" if is_multiple else "radio"
         input_name = f"choice-{anchor}"
@@ -2200,7 +2222,7 @@ def render_question_html(q: dict[str, Any], is_active: bool = False) -> str:
 def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
     # Sort by topic then question number
     questions = sorted(questions, key=lambda q: (q.get("topic", 0), q.get("question_number", 0)))
-    title = f"{exam.upper()} ExamTopics Study Guide"
+    title = format_study_guide_title(exam)
     stats = f"{len(questions)} questions · generated from ExamTopics discussions"
     CHUNK_SIZE = 25
 
@@ -2212,7 +2234,7 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
         return f"q-{exam}-t{topic}-n{num}-{slug_id(qid)}"
 
     topic_count = len({q.get("topic", 0) for q in questions})
-    lines = [HTML_HEAD.replace("$title", title).replace("$stats", stats)]
+    lines = [HTML_HEAD.replace("$title", html.escape(title)).replace("$stats", html.escape(stats))]
 
     lines.append('<section class="hero" aria-labelledby="hero-title">')
     lines.append('<div class="hero-content">')
@@ -2330,8 +2352,9 @@ def _choice_to_md(choice: dict[str, Any]) -> str:
 
 def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
     questions = sorted(questions, key=lambda q: (q.get("topic", 0), q.get("question_number", 0)))
+    title = format_study_guide_title(exam)
     lines = [
-        f"# {exam.upper()} ExamTopics Study Guide",
+        f"# {title}",
         "",
         f"_{len(questions)} questions generated from ExamTopics discussions._",
         "",

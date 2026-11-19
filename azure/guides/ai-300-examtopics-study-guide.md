@@ -1,4 +1,4 @@
-# AI-300 ExamTopics Study Guide
+# AI-300 Operationalizing Machine Learning and Generative AI Solutions Study Guide
 
 _107 questions generated from ExamTopics discussions._
 

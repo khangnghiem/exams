@@ -1,4 +1,4 @@
-# AI-500 ExamTopics Study Guide
+# AI-500 Designing and Implementing Multi-Agent AI Solutions Study Guide
 
 _18 questions generated from ExamTopics discussions._
 

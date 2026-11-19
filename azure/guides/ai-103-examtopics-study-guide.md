@@ -1,4 +1,4 @@
-# AI-103 ExamTopics Study Guide
+# AI-103 Developing AI Apps and Agents on Azure Study Guide
 
 _161 questions generated from ExamTopics discussions._
 

@@ -1,4 +1,4 @@
-# DP-600 ExamTopics Study Guide
+# DP-600 Implementing Analytics Solutions Using Microsoft Fabric Study Guide
 
 _199 questions generated from ExamTopics discussions._
 
