@@ -9,7 +9,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "\"the data prcessed by the model must remain in the EU\" | that is Standard for me: | By data residency requirement | No restrictions: Use Global Standard or Global Provisioned | EU data zone: Use DataZone Standard or DataZone Provisioned in an EU region | US data zone: Use DataZone Standard or DataZone Provisioned in a US region | Single region only: Use Standard or Regional Provisioned",
+    "most_voted_answer": "Deployment type: Standard\nVersion update policy: Opt out of automatic model version upgrades",
     "comments": [
       {
         "comment_id": "1808169",
@@ -50,7 +50,7 @@
         "comment_id": "1766998",
         "author": "profitchannel",
         "date_title": "June 12, 2026 10:24 am",
-        "text": "&quot;the data prcessed by the model must remain in the EU&quot;\nthat is Standard for me:\nBy data residency requirement\nNo restrictions: Use Global Standard or Global Provisioned\nEU data zone: Use DataZone Standard or DataZone Provisioned in an EU region\nUS data zone: Use DataZone Standard or DataZone Provisioned in a US region\nSingle region only: Use Standard or Regional Provisioned",
+        "text": "\"the data prcessed by the model must remain in the EU\"\nthat is Standard for me:\nBy data residency requirement\nNo restrictions: Use Global Standard or Global Provisioned\nEU data zone: Use DataZone Standard or DataZone Provisioned in an EU region\nUS data zone: Use DataZone Standard or DataZone Provisioned in a US region\nSingle region only: Use Standard or Regional Provisioned",
         "upvotes": 11,
         "badges": [
           "Highly Voted"
@@ -88,10 +88,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1766998",
-      "score": 55.5,
-      "pattern": "highly_voted",
-      "upvotes": 11
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution",
@@ -157,7 +157,7 @@
         "comment_id": "1802206",
         "author": "a5f05ea",
         "date_title": "October 06, 2026 04:09 pm",
-        "text": "It should be B &amp; C both, because for malicious text embedded in images prompt shields are used.\nFor loss of user data PII detection.\nSo this should be a multi answer question.",
+        "text": "It should be B & C both, because for malicious text embedded in images prompt shields are used.\nFor loss of user data PII detection.\nSo this should be a multi answer question.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: BC"
@@ -184,7 +184,7 @@
         "comment_id": "1792372",
         "author": "AdrienBnhm",
         "date_title": "August 27, 2026 01:59 pm",
-        "text": "it a question of malicious instruction set injection. The best answer here is B : &quot;Prompt shield&quot;.\nSee the documentation here : https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields\n&quot;Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.\nThe product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.&quot;",
+        "text": "it a question of malicious instruction set injection. The best answer here is B : \"Prompt shield\".\nSee the documentation here : https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields\n\"Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.\nThe product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\"",
         "upvotes": 2,
         "badges": [
           "Selected Answer: B"
@@ -197,7 +197,7 @@
         "comment_id": "1783481",
         "author": "momo53",
         "date_title": "August 06, 2026 11:08 am",
-        "text": "Answer C. From what I understand, the requirements here mention protection against text in images, which is not addressed by Prompt Shields (which protects only from user prompts &amp; document prompt). To protect from text in images, it must uses Azure Content Safety image moderation module.\nSources:\n- &quot;Securing Azure AI Applications: Against Prompt Injection | Part - 2&quot; in Tech Community\n- &quot;Azure AI Content Safety documentation&quot; in MS Learn (Quickstarts part)",
+        "text": "Answer C. From what I understand, the requirements here mention protection against text in images, which is not addressed by Prompt Shields (which protects only from user prompts & document prompt). To protect from text in images, it must uses Azure Content Safety image moderation module.\nSources:\n- \"Securing Azure AI Applications: Against Prompt Injection | Part - 2\" in Tech Community\n- \"Azure AI Content Safety documentation\" in MS Learn (Quickstarts part)",
         "upvotes": 2,
         "badges": [
           "Selected Answer: C"
@@ -210,7 +210,7 @@
         "comment_id": "1783175",
         "author": "seesee1",
         "date_title": "August 04, 2026 09:35 am",
-        "text": "The requirement in question is: &quot;The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.&quot;\nThis describes an indirect prompt injection attack - malicious instructions embedded in content (in this case, text hidden inside images) that could hijack the agent's behavior when it processes that document. Microsoft Foundry's Prompt Shields (part of Azure AI Content Safety) is purpose-built to detect and block both direct and indirect prompt injection attempts, including those embedded in documents/images ingested by an agent, before they reach the model.",
+        "text": "The requirement in question is: \"The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\"\nThis describes an indirect prompt injection attack - malicious instructions embedded in content (in this case, text hidden inside images) that could hijack the agent's behavior when it processes that document. Microsoft Foundry's Prompt Shields (part of Azure AI Content Safety) is purpose-built to detect and block both direct and indirect prompt injection attempts, including those embedded in documents/images ingested by an agent, before they reach the model.",
         "upvotes": 4,
         "badges": [
           "Selected Answer: B"
@@ -236,7 +236,7 @@
         "comment_id": "1776839",
         "author": "RPC112",
         "date_title": "July 16, 2026 11:32 am",
-        "text": "Personally Identifiable Information (PII) Detection\nThe requirement&quot;must never reveal customer information&quot; is a hard compliance requirement.\nPrompt Shields solve the hidden-instructions problem, but they do not directly prevent disclosure of customer data. [learn.microsoft.com], [learn.microsoft.com]\nThe latest AI‑103 discussion sites and explanations for this exact case study also mark PII Detection as the correct answer",
+        "text": "Personally Identifiable Information (PII) Detection\nThe requirement\"must never reveal customer information\" is a hard compliance requirement.\nPrompt Shields solve the hidden-instructions problem, but they do not directly prevent disclosure of customer data. [learn.microsoft.com], [learn.microsoft.com]\nThe latest AI‑103 discussion sites and explanations for this exact case study also mark PII Detection as the correct answer",
         "upvotes": 3,
         "badges": [
           "Selected Answer: C"
@@ -286,7 +286,7 @@
         "comment_id": "1765269",
         "author": "cayenne06",
         "date_title": "June 06, 2026 08:51 pm",
-        "text": "I think it's B due to :&quot;The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.&quot;",
+        "text": "I think it's B due to :\"The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\"",
         "upvotes": 2,
         "badges": [
           "Selected Answer: B"
@@ -310,7 +310,7 @@
         "comment_id": "1765268",
         "author": "cayenne06",
         "date_title": "June 06, 2026 08:51 pm",
-        "text": "I think it's C due to :&quot;The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.&quot;",
+        "text": "I think it's C due to :\"The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\"",
         "upvotes": 2,
         "badges": [
           "Selected Answer: B"
@@ -345,7 +345,7 @@
         "comment_id": "1763374",
         "author": "Vasent",
         "date_title": "June 02, 2026 09:55 am",
-        "text": "Since the case-study question mentions the requirement of NOT including any Customer information, so Agent1 must have the configuration setting of any &quot;Personally identifiable Information&quot; to be identified.",
+        "text": "Since the case-study question mentions the requirement of NOT including any Customer information, so Agent1 must have the configuration setting of any \"Personally identifiable Information\" to be identified.",
         "upvotes": 3,
         "badges": [
           "Selected Answer: C"
@@ -447,13 +447,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar) | 2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = \"LangChain\" and \"Agent\", query with kql : ... | where cloud_RoleName=\"LangChain\") | 3) enable_content_recodring=False redacts message content and tool call ar...",
+    "most_voted_answer": "1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar)\n3) enable_content_recodring=False redacts message content and tool call arguments from traces (almost a direct definition)",
     "comments": [
       {
         "comment_id": "1787140",
         "author": "robert_ico",
         "date_title": "August 14, 2026 06:38 pm",
-        "text": "1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar)\n2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = &quot;LangChain&quot; and &quot;Agent&quot;,  query with kql :  ... | where cloud_RoleName=&quot;LangChain&quot;)\n3) enable_content_recodring=False redacts message content and tool call arguments from traces (almost a direct definition)",
+        "text": "1) The configuration of Azure Monitor Telemetry does not magically instrument an independent LangChain service (or similar)\n2) OTEL_SERVICE_NAME = OpenTelemetry Service Name, and is the service name used in Application Insights (we would then query by cloud_RoleName; e.g., if OTEL_SERVICE_NAME = \"LangChain\" and \"Agent\",  query with kql :  ... | where cloud_RoleName=\"LangChain\")\n3) enable_content_recodring=False redacts message content and tool call arguments from traces (almost a direct definition)",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -509,13 +509,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Pipeline 1: D - Single-file, standard | Clues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning) | Pipeline 2: A- Multi in pro | Clues: Cross-document (\"multi-file\"), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)",
+    "most_voted_answer": "Pipeline 1: D - Single-file, standard\nPipeline 2: A- Multi in pro",
     "comments": [
       {
         "comment_id": "1787141",
         "author": "robert_ico",
         "date_title": "August 14, 2026 06:49 pm",
-        "text": "Pipeline 1: D - Single-file, standard\nClues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning)\nPipeline 2: A- Multi in pro\nClues: Cross-document (&quot;multi-file&quot;), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)",
+        "text": "Pipeline 1: D - Single-file, standard\nClues: standalone files (one document at a time), high volume, cost-effective. These are basically the definition for standard mode (individual documents without complex reasoning)\nPipeline 2: A- Multi in pro\nClues: Cross-document (\"multi-file\"), multi-step reasongin, reference data (pro mode: multi-step, complex reasoning)",
         "upvotes": 5,
         "badges": [
           "Most Recent"
@@ -565,8 +565,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1787141",
-      "score": 102.5,
-      "pattern": "loose:label_pair",
+      "score": 136.0,
+      "pattern": "explicit_pattern",
       "upvotes": 5
     },
     "skill_area": 5,
@@ -582,7 +582,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "A managed identity is consumed through DefaultAzureCredential (not AzureKeyCredential, which is key-based, nor ClientSecretCredential, which needs a secret). The Responses API call to send a prompt is responses.create(); retrieve/compact are not the send operation.",
+    "most_voted_answer": "credential: DefaultAzureCredential\nopenai_client.responses: create",
     "comments": [
       {
         "comment_id": "1787143",
@@ -628,10 +628,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1766346",
-      "score": 54.5,
-      "pattern": "highly_voted",
-      "upvotes": 9
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution"
@@ -646,7 +646,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IsEmpty(): used to determine if a table/collection has no records; IsBlank is for checking blank, null values in variables; Upper() converts to uppercase; Local.Var01 is the correct way to address Var01. | ANSWER: Not(IsBlank(Local.Var01)) and {Upper(Local.Var01)}",
+    "most_voted_answer": "Not(IsBlank(Local.Var01)) and {Upper(Local.Var01)}",
     "comments": [
       {
         "comment_id": "1787390",
@@ -676,7 +676,7 @@
         "comment_id": "1784594",
         "author": "AIBoss",
         "date_title": "August 11, 2026 10:46 am",
-        "text": "Because it mentioned in the question.\n&quot;...... that returns the stored user response in uppercase&quot;",
+        "text": "Because it mentioned in the question.\n\"...... that returns the stored user response in uppercase\"",
         "upvotes": 2,
         "badges": [],
         "selected_answer": null,
@@ -702,7 +702,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1787390",
-      "score": 102.0,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 4
     },
@@ -719,13 +719,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The state that you mention is about Content Safety Custom Categories, which is a different situation. For this question, following the principle of least privilege, Storage Blob Data Reader is the correct answer.",
+    "most_voted_answer": "Guardrails: Select User input, Output, Tool response, and Tool call and set Action to Block.\nStorage access: A system-assigned managed identity that is assigned the Storage Blob Data Contributor role",
     "comments": [
       {
         "comment_id": "1801198",
         "author": "OnlineCH",
         "date_title": "September 30, 2026 09:00 pm",
-        "text": "Storage access: on https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-image?pivots=programming-language-rest&amp;tabs=visual-studio%2Cwindows#prepare-a-sample-image it is mentioned &quot;Only Storage Blob Data Contributor or Storage Blob Data Owner are valid roles to proceed.&quot; so &quot;Storage Blob Data Contributor&quot; instead of &quot;.. Reader&quot; might be correct.",
+        "text": "Storage access: on https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-image?pivots=programming-language-rest&tabs=visual-studio%2Cwindows#prepare-a-sample-image it is mentioned \"Only Storage Blob Data Contributor or Storage Blob Data Owner are valid roles to proceed.\" so \"Storage Blob Data Contributor\" instead of \".. Reader\" might be correct.",
         "upvotes": 3,
         "badges": [],
         "selected_answer": null,
@@ -736,7 +736,7 @@
         "comment_id": "1787947",
         "author": "robert_ico",
         "date_title": "August 14, 2026 07:24 pm",
-        "text": "1) For guardrails: two key parts; one says &quot;prevent&quot; so it's block, not just annotate (which would label, identify, but no prevent), and the complete configuration should include user input, oputput, tool response and tool call (option 1 is only the tool call, but doing so would not prevent harmfull content in what the user inputs, or what the tool outputs, or the ultimate output given by the agent).\n2) For Storage access: Content Safety needs to access the screenshots using their blob URLs; therefore, it needs READ permission (least priviledge); Contributor assigns unnecessary write/delete permissions.",
+        "text": "1) For guardrails: two key parts; one says \"prevent\" so it's block, not just annotate (which would label, identify, but no prevent), and the complete configuration should include user input, oputput, tool response and tool call (option 1 is only the tool call, but doing so would not prevent harmfull content in what the user inputs, or what the tool outputs, or the ultimate output given by the agent).\n2) For Storage access: Content Safety needs to access the screenshots using their blob URLs; therefore, it needs READ permission (least priviledge); Contributor assigns unnecessary write/delete permissions.",
         "upvotes": 3,
         "badges": [],
         "selected_answer": null,
@@ -785,10 +785,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1790226",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 2
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution"
@@ -934,7 +934,7 @@
         "comment_id": "1788005",
         "author": "robert_ico",
         "date_title": "August 14, 2026 07:49 pm",
-        "text": "Microsoft documents that when using a custom speech model through the Speech-to-Text REST API, the request can specify the custom speech project ID using the project query parameter. The key thing here is that there are 2 &quot;projects&quot;: the foundry project, and the custom project. According to this reference, we need to specify the custom project id: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-speech-to-text",
+        "text": "Microsoft documents that when using a custom speech model through the Speech-to-Text REST API, the request can specify the custom speech project ID using the project query parameter. The key thing here is that there are 2 \"projects\": the foundry project, and the custom project. According to this reference, we need to specify the custom project id: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-speech-to-text",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -1002,13 +1002,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question. | In Microsoft Foundry, the ask_question step is specifically designed to pause a workflow, prompt a user for input (such as an approval or rejection), and store the response in a variable that can be evaluated by subsequent logic. | Box 2: approval == \"approved\" Execute Condition: Use a condition such a...",
+    "most_voted_answer": "type: ask_question\ncondition: approval == \"approved\"",
     "comments": [
       {
         "comment_id": "1792533",
         "author": "TuanJin",
         "date_title": "August 28, 2026 11:55 am",
-        "text": "Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question.\nIn Microsoft Foundry, the ask_question step is specifically designed to pause a workflow, prompt a user for input (such as an approval or rejection), and store the response in a variable that can be evaluated by subsequent logic.\nBox 2: approval == &quot;approved&quot; Execute Condition: Use a condition such as steps.approval.output == 'approved' (or a similar logical check based on your choice variable) to ensure the refund only executes when authorized.",
+        "text": "Box 1: ask_question To create a human-in-the-loop approval step in a Microsoft Foundry workflow, you should fill in the missing type with ask_question.\nIn Microsoft Foundry, the ask_question step is specifically designed to pause a workflow, prompt a user for input (such as an approval or rejection), and store the response in a variable that can be evaluated by subsequent logic.\nBox 2: approval == \"approved\" Execute Condition: Use a condition such as steps.approval.output == 'approved' (or a similar logical check based on your choice variable) to ensure the refund only executes when authorized.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -1037,10 +1037,10 @@
     "skill_area": 2,
     "skill_area_label": "Implement generative AI and agentic solutions",
     "_backfill_source": {
-      "comment_id": "1792533",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     }
   },
   {
@@ -1111,7 +1111,7 @@
         "comment_id": "1773264",
         "author": "Srini7",
         "date_title": "July 08, 2026 01:14 am",
-        "text": "Transcription route : Question is about Custom endpoint, So it fall back to the most recent base model for the same locale.\nIf the question is a batch transcription: then 'A&quot; it will be fail with a 4xx error.",
+        "text": "Transcription route : Question is about Custom endpoint, So it fall back to the most recent base model for the same locale.\nIf the question is a batch transcription: then 'A\" it will be fail with a 4xx error.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: C"
@@ -1137,7 +1137,7 @@
         "comment_id": "1766617",
         "author": "cloudera",
         "date_title": "June 10, 2026 03:42 pm",
-        "text": "C is correct.\nAccording to the Microsoft lifecycle policy for Custom Speech, when a custom model deployed to a custom endpoint expires, the endpoint does not suddenly shut down or throw errors. Instead, Azure Speech ensures service continuity by automatically falling back to the most recent available base model for that specific locale.\nFor more visit - https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle?utm_source=chatgpt.com&amp;pivots=ai-foundry-portal",
+        "text": "C is correct.\nAccording to the Microsoft lifecycle policy for Custom Speech, when a custom model deployed to a custom endpoint expires, the endpoint does not suddenly shut down or throw errors. Instead, Azure Speech ensures service continuity by automatically falling back to the most recent available base model for that specific locale.\nFor more visit - https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-custom-speech-model-and-endpoint-lifecycle?utm_source=chatgpt.com&pivots=ai-foundry-portal",
         "upvotes": 7,
         "badges": [
           "Highly Voted",
@@ -1309,7 +1309,7 @@
         "comment_id": "1809339",
         "author": "Barbara Chen",
         "date_title": "November 12, 2026 07:33 pm",
-        "text": "The requirement is to deterministically force the agent to invoke the MCP tool on every run. Setting tool_choice={&quot;type&quot;:&quot;mcp&quot;} explicitly instructs the agent to use the Model Context Protocol (MCP) tool instead of allowing the model to decide whether to call a tool. This guarantees that the agent queries the Azure AI Search knowledge base through the MCP tool before generating a response, ensuring grounded answers with citations.",
+        "text": "The requirement is to deterministically force the agent to invoke the MCP tool on every run. Setting tool_choice={\"type\":\"mcp\"} explicitly instructs the agent to use the Model Context Protocol (MCP) tool instead of allowing the model to decide whether to call a tool. This guarantees that the agent queries the Azure AI Search knowledge base through the MCP tool before generating a response, ensuring grounded answers with citations.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -1348,7 +1348,7 @@
         "comment_id": "1806765",
         "author": "dinizingrid",
         "date_title": "November 02, 2026 10:05 am",
-        "text": "The knowledge base is connected to the agent through an MCP tool, so the tool type is mcp. To force one specific tool, tool_choice takes its type, the same pattern Microsoft documents with {&quot;type&quot;: &quot;bing_grounding&quot;}.\nA: &quot;required&quot; forces a tool, but the model still picks which one (and {&quot;required&quot;} is malformed).\nB: &quot;auto&quot; is the default that causes the problem.\nC: knowledge_base isn’t a tool type; the knowledge base is accessed through the MCP tool.",
+        "text": "The knowledge base is connected to the agent through an MCP tool, so the tool type is mcp. To force one specific tool, tool_choice takes its type, the same pattern Microsoft documents with {\"type\": \"bing_grounding\"}.\nA: \"required\" forces a tool, but the model still picks which one (and {\"required\"} is malformed).\nB: \"auto\" is the default that causes the problem.\nC: knowledge_base isn’t a tool type; the knowledge base is accessed through the MCP tool.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: D"
@@ -1361,7 +1361,7 @@
         "comment_id": "1806357",
         "author": "tibarihbib",
         "date_title": "October 30, 2026 11:30 am",
-        "text": "A is correct. required forces the model to call a tool on every run instead of answering from its own knowledge. Since the MCP knowledge base tool is the agent’s tool, every run is grounded and returns citations. This matches Microsoft’s Foundry IQ guidance for knowledge base agents.\nB is wrong. auto is the default: the model decides whether to call a tool. That’s exactly what causes the current problem.\nC is wrong. knowledge_base isn’t a valid tool_choice type. The knowledge base is reached through the MCP tool.\nD is wrong. {&quot;type&quot;: &quot;mcp&quot;} alone is incomplete. Targeting a specific MCP tool also needs its server_label (and tool name), so this form isn’t the expected answer.",
+        "text": "A is correct. required forces the model to call a tool on every run instead of answering from its own knowledge. Since the MCP knowledge base tool is the agent’s tool, every run is grounded and returns citations. This matches Microsoft’s Foundry IQ guidance for knowledge base agents.\nB is wrong. auto is the default: the model decides whether to call a tool. That’s exactly what causes the current problem.\nC is wrong. knowledge_base isn’t a valid tool_choice type. The knowledge base is reached through the MCP tool.\nD is wrong. {\"type\": \"mcp\"} alone is incomplete. Targeting a specific MCP tool also needs its server_label (and tool name), so this form isn’t the expected answer.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -1374,7 +1374,7 @@
         "comment_id": "1806349",
         "author": "NielsLOL",
         "date_title": "October 30, 2026 10:10 am",
-        "text": "The most logic answer in my opinion is answer A, because the question states ´The agent has a Model Context Protocol (MCP) tool that queries a knowledge base stored in Azure AI Search.'\nSo it already has a tool configured, and tool_choice={&quot;required&quot;} enforces that tool.",
+        "text": "The most logic answer in my opinion is answer A, because the question states ´The agent has a Model Context Protocol (MCP) tool that queries a knowledge base stored in Azure AI Search.'\nSo it already has a tool configured, and tool_choice={\"required\"} enforces that tool.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -1413,7 +1413,7 @@
         "comment_id": "1804455",
         "author": "fresco",
         "date_title": "October 20, 2026 03:11 pm",
-        "text": "The answer is D. Per this link: https://ai.azure.com/api-reference/responses/, you can call a parameter for mcp and it states that doing so will &quot;Use this option to force the model to call a specific tool on a remote MCP server.&quot; Note that it will FORCE the model hence it will be required.",
+        "text": "The answer is D. Per this link: https://ai.azure.com/api-reference/responses/, you can call a parameter for mcp and it states that doing so will \"Use this option to force the model to call a specific tool on a remote MCP server.\" Note that it will FORCE the model hence it will be required.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: D"
@@ -1426,7 +1426,7 @@
         "comment_id": "1804269",
         "author": "ArindamPal",
         "date_title": "October 19, 2026 08:29 pm",
-        "text": "The correct answer is A\nthe agent is required to invoke a tool before generating a response. This ensures the agent doesn't answer directly from the base model and instead uses the configured tool, such as the MCP tool connected to the Azure AI Search knowledge base. This helps guarantee grounded responses with citations.\nWhy the others are incorrect:\nB. tool_choice={&quot;auto&quot;}\nLets the model decide whether to call a tool or answer directly.\nThis is the behavior causing the problem. ❌\nC. tool_choice={&quot;type&quot;:&quot;knowledge_base&quot;}\nNot a valid tool-choice value for forcing an MCP tool invocation. ❌\nD. tool_choice={&quot;type&quot;:&quot;mcp&quot;}\nSpecifies a tool type but does not deterministically force a tool call on every run. ❌",
+        "text": "The correct answer is A\nthe agent is required to invoke a tool before generating a response. This ensures the agent doesn't answer directly from the base model and instead uses the configured tool, such as the MCP tool connected to the Azure AI Search knowledge base. This helps guarantee grounded responses with citations.\nWhy the others are incorrect:\nB. tool_choice={\"auto\"}\nLets the model decide whether to call a tool or answer directly.\nThis is the behavior causing the problem. ❌\nC. tool_choice={\"type\":\"knowledge_base\"}\nNot a valid tool-choice value for forcing an MCP tool invocation. ❌\nD. tool_choice={\"type\":\"mcp\"}\nSpecifies a tool type but does not deterministically force a tool call on every run. ❌",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -1439,7 +1439,7 @@
         "comment_id": "1804111",
         "author": "AzureGeek79",
         "date_title": "October 18, 2026 06:51 pm",
-        "text": "The correct answer is D. tool_choice ={&quot;type&quot;:&quot;mcp&quot;}.\nIn the Microsoft Foundry Agent Service, the tool_choice parameter controls whether and how the agent uses its attached tools during a run.\n• {&quot;type&quot;:&quot;mcp&quot;} (Choice D): When you want to target a specific tool type and force the agent to use it deterministically for the processing turn, you must pass an object specifying that particular type. Since the agent is querying the Azure AI Search knowledge base explicitly via a Model Context Protocol (MCP) tool, specifying {&quot;type&quot;:&quot;mcp&quot;} forces the model to invoke the protocol handler right away rather than attempting to answer directly from its internal pre-trained weights.\n• {&quot;required&quot;} (Choice A): While &quot;required&quot; forces the model to choose at least one tool from its toolbox, it does not explicitly guarantee which tool it will pick if multiple are defined. Furthermore, passing it as a Python set literal like {&quot;required&quot;} is a syntax misfit for the parameter expectations.\n• {&quot;auto&quot;} (Choice B): This is the default runtime behavior. It keeps tool selection non-deterministic, allowing the base model to skip the knowledge base if it feels confident enough to respond on its own—which is the exact behavior causing the ungrounded citations issue.\n• {&quot;type&quot;:&quot;knowledge_base&quot;} (Choice C): &quot;knowledge_base&quot; is not a valid tool type identifier for an MCP-connected architecture in Foundry's Agent execution framework.",
+        "text": "The correct answer is D. tool_choice ={\"type\":\"mcp\"}.\nIn the Microsoft Foundry Agent Service, the tool_choice parameter controls whether and how the agent uses its attached tools during a run.\n• {\"type\":\"mcp\"} (Choice D): When you want to target a specific tool type and force the agent to use it deterministically for the processing turn, you must pass an object specifying that particular type. Since the agent is querying the Azure AI Search knowledge base explicitly via a Model Context Protocol (MCP) tool, specifying {\"type\":\"mcp\"} forces the model to invoke the protocol handler right away rather than attempting to answer directly from its internal pre-trained weights.\n• {\"required\"} (Choice A): While \"required\" forces the model to choose at least one tool from its toolbox, it does not explicitly guarantee which tool it will pick if multiple are defined. Furthermore, passing it as a Python set literal like {\"required\"} is a syntax misfit for the parameter expectations.\n• {\"auto\"} (Choice B): This is the default runtime behavior. It keeps tool selection non-deterministic, allowing the base model to skip the knowledge base if it feels confident enough to respond on its own—which is the exact behavior causing the ungrounded citations issue.\n• {\"type\":\"knowledge_base\"} (Choice C): \"knowledge_base\" is not a valid tool type identifier for an MCP-connected architecture in Foundry's Agent execution framework.",
         "upvotes": 3,
         "badges": [
           "Selected Answer: D"
@@ -1452,7 +1452,7 @@
         "comment_id": "1803450",
         "author": "ChrisJ99",
         "date_title": "October 14, 2026 01:09 pm",
-        "text": "Option A (&quot;required&quot;) forces the agent to call a tool. But, it does not specify which tool. If the agent has more than one tool, it can select a different tool. Thus, this option is not deterministic for the MCP tool. Also, the syntax {&quot;required&quot;} is not correct. The correct form is a string: tool_choice=&quot;required&quot;.",
+        "text": "Option A (\"required\") forces the agent to call a tool. But, it does not specify which tool. If the agent has more than one tool, it can select a different tool. Thus, this option is not deterministic for the MCP tool. Also, the syntax {\"required\"} is not correct. The correct form is a string: tool_choice=\"required\".",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -1465,7 +1465,7 @@
         "comment_id": "1803276",
         "author": "shank23",
         "date_title": "October 13, 2026 03:49 pm",
-        "text": "&quot;required&quot; explicitly forces the model to select and execute at least one tool before returning a text response. This overrides the base model's default behavior, ensuring it cannot answer directly using only its pre-trained internal weights",
+        "text": "\"required\" explicitly forces the model to select and execute at least one tool before returning a text response. This overrides the base model's default behavior, ensuring it cannot answer directly using only its pre-trained internal weights",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -1491,7 +1491,7 @@
         "comment_id": "1801650",
         "author": "Sky_Akash",
         "date_title": "October 03, 2026 08:21 am",
-        "text": "Why not A ({&quot;required&quot;})?\n{&quot;required&quot;} only ensures some tool is used, not specifically the MCP tool.\nIf multiple tools exist, the agent could pick another one.\nThe question explicitly says “deterministically force the agent to invoke the MCP tool”, so you must specify its type.\nSo even though A is “most voted,” D is the technically correct and exam-accurate choice.",
+        "text": "Why not A ({\"required\"})?\n{\"required\"} only ensures some tool is used, not specifically the MCP tool.\nIf multiple tools exist, the agent could pick another one.\nThe question explicitly says “deterministically force the agent to invoke the MCP tool”, so you must specify its type.\nSo even though A is “most voted,” D is the technically correct and exam-accurate choice.",
         "upvotes": 3,
         "badges": [
           "Selected Answer: D"
@@ -1504,7 +1504,7 @@
         "comment_id": "1798556",
         "author": "Srikantha",
         "date_title": "September 17, 2026 02:07 am",
-        "text": "Why Option D is Incorrect\nOption D (tool_choice={&quot;type&quot;:&quot;mcp&quot;}) is incorrect because it violates the expected schema for the Azure OpenAI API, which powers Microsoft Foundry agents.",
+        "text": "Why Option D is Incorrect\nOption D (tool_choice={\"type\":\"mcp\"}) is incorrect because it violates the expected schema for the Azure OpenAI API, which powers Microsoft Foundry agents.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -1517,7 +1517,7 @@
         "comment_id": "1784452",
         "author": "3f9a492",
         "date_title": "August 10, 2026 03:22 am",
-        "text": "Must use a tool every run → required\nThe option displays tool_choice={&quot;required&quot;}, but proper Python SDK syntax is normally tool_choice=&quot;required&quot;",
+        "text": "Must use a tool every run → required\nThe option displays tool_choice={\"required\"}, but proper Python SDK syntax is normally tool_choice=\"required\"",
         "upvotes": 3,
         "badges": [
           "Selected Answer: A"
@@ -1530,7 +1530,7 @@
         "comment_id": "1784358",
         "author": "rqFamily",
         "date_title": "August 09, 2026 05:17 pm",
-        "text": "Force-by-type works only when the type uniquely identifies one tool, so you do tool_choice={&quot;type&quot;:&quot;file_search&quot;}, otherwise you do {&quot;type&quot;:&quot;mcp&quot;,&quot;name&quot;:&quot;mcptoolname&quot;}, so our only option is A",
+        "text": "Force-by-type works only when the type uniquely identifies one tool, so you do tool_choice={\"type\":\"file_search\"}, otherwise you do {\"type\":\"mcp\",\"name\":\"mcptoolname\"}, so our only option is A",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -1543,7 +1543,7 @@
         "comment_id": "1778337",
         "author": "Mattt",
         "date_title": "July 22, 2026 03:48 pm",
-        "text": "D is more precise. required only forces the use of some tool, while {&quot;type&quot;:&quot;mcp&quot;} explicitly forces the MCP tool. Also, option A uses incorrect Python syntax.",
+        "text": "D is more precise. required only forces the use of some tool, while {\"type\":\"mcp\"} explicitly forces the MCP tool. Also, option A uses incorrect Python syntax.",
         "upvotes": 6,
         "badges": [
           "Selected Answer: D"
@@ -1556,7 +1556,7 @@
         "comment_id": "1778044",
         "author": "RPC112",
         "date_title": "July 21, 2026 01:54 pm",
-        "text": "Its not D. Its A.\nThe question says:&quot;force the agent to invoke the MCP tool on each run&quot;\nThe documented behavior of tool_choice=&quot;required&quot; is:\nForce the model to call a tool instead of answering directly.\nThat directly addresses the problem statement:\nSome runs return answers from the base model without invoking the knowledge base.\nD. tool_choice={&quot;type&quot;:&quot;mcp&quot;}\nMCP is the tool protocol, not the standard tool_choice value used to force invocation.\nSimply specifying &quot;mcp&quot; does not represent the documented way to require tool use.",
+        "text": "Its not D. Its A.\nThe question says:\"force the agent to invoke the MCP tool on each run\"\nThe documented behavior of tool_choice=\"required\" is:\nForce the model to call a tool instead of answering directly.\nThat directly addresses the problem statement:\nSome runs return answers from the base model without invoking the knowledge base.\nD. tool_choice={\"type\":\"mcp\"}\nMCP is the tool protocol, not the standard tool_choice value used to force invocation.\nSimply specifying \"mcp\" does not represent the documented way to require tool use.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -1569,7 +1569,7 @@
         "comment_id": "1773512",
         "author": "CharlieMike",
         "date_title": "July 09, 2026 01:09 am",
-        "text": "tool_choice(&quot;required&quot;) forces the agent to invoke a tool every time. Since the MCP tool is the only applicable tool, the agent will use it on every run, ensuring grounded responses with citations instead of answering from the base model.",
+        "text": "tool_choice(\"required\") forces the agent to invoke a tool every time. Since the MCP tool is the only applicable tool, the agent will use it on every run, ensuring grounded responses with citations instead of answering from the base model.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -1582,7 +1582,7 @@
         "comment_id": "1773267",
         "author": "Srini7",
         "date_title": "July 08, 2026 01:40 am",
-        "text": "Its D. Question Clearly state &quot; add the correct tool _choice parameter to the code to deterministically force the agent to invoke the MCP tool on each run&quot; in that case, we can't say &quot;required&quot; , becuase if you have more than one tool , its not valid. So answer is D",
+        "text": "Its D. Question Clearly state \" add the correct tool _choice parameter to the code to deterministically force the agent to invoke the MCP tool on each run\" in that case, we can't say \"required\" , becuase if you have more than one tool , its not valid. So answer is D",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -1595,7 +1595,7 @@
         "comment_id": "1772724",
         "author": "Danielly",
         "date_title": "July 03, 2026 03:23 pm",
-        "text": "Its D because tool_choice=&quot;required&quot; only forces it to use a tool its not speficifed if the agent has other tools . Then you have to force that SPECIFIC tool",
+        "text": "Its D because tool_choice=\"required\" only forces it to use a tool its not speficifed if the agent has other tools . Then you have to force that SPECIFIC tool",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -1608,7 +1608,7 @@
         "comment_id": "1767003",
         "author": "cloudera",
         "date_title": "June 12, 2026 11:27 am",
-        "text": "Syntax error but I will still go with A: tool_choice=&quot;required&quot;\nThe issue is that the agent sometimes answers from the base model without calling the knowledge base tool. tool_choice=&quot;required&quot; forces the agent to call a tool on each run, which prevents it from skipping retrieval and helps ensure grounded citations.\nD is tempting because MCP is the tool type, but the question is about forcing tool use at runtime, not defining the MCP tool itself.\nFor more - https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-pipeline",
+        "text": "Syntax error but I will still go with A: tool_choice=\"required\"\nThe issue is that the agent sometimes answers from the base model without calling the knowledge base tool. tool_choice=\"required\" forces the agent to call a tool on each run, which prevents it from skipping retrieval and helps ensure grounded citations.\nD is tempting because MCP is the tool type, but the question is about forcing tool use at runtime, not defining the MCP tool itself.\nFor more - https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-create-pipeline",
         "upvotes": 3,
         "badges": [
           "Selected Answer: A"
@@ -1621,7 +1621,7 @@
         "comment_id": "1766372",
         "author": "RICHARDALEX007",
         "date_title": "June 10, 2026 03:34 am",
-        "text": "To deterministically force a SPECIFIC tool, tool_choice must name the tool by type, so {&quot;type&quot;:&quot;mcp&quot;} (D) is the intent. 'auto' (B) lets the model decide (the current bug), and {&quot;required&quot;} (A) is malformed set syntax; 'required' as a value forces some tool but not specifically the MCP one. The exact accepted schema for MCP tool_choice should be confirmed against the current Agents SDK",
+        "text": "To deterministically force a SPECIFIC tool, tool_choice must name the tool by type, so {\"type\":\"mcp\"} (D) is the intent. 'auto' (B) lets the model decide (the current bug), and {\"required\"} (A) is malformed set syntax; 'required' as a value forces some tool but not specifically the MCP one. The exact accepted schema for MCP tool_choice should be confirmed against the current Agents SDK",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -1877,7 +1877,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "I think the correct answer for diagnostic log is 'trace'. The question contains 'identify whether each issue is caused by model unavailability, resource limits or inference failures. That is a diagnostic/root-cause question hence 'trace'",
+    "most_voted_answer": "Metrics to enable: Model Availability Rate and Provisioned Utilization\nDiagnostic log to collect: RequestResponse",
     "comments": [
       {
         "comment_id": "1804275",
@@ -1934,10 +1934,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1803084",
-      "score": 101.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 3
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution"
@@ -2035,13 +2035,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The problem statement notes that the agent is currently configured to \"let the model decide when to call the tools\" (which is what tool_choice: \"auto\" does). However, the compliance requirement mandates: | ​\"Each workflow run must include a retrieval step before generating a response.\" | If left as auto, the model might choose to answer directly from parametric memory without executing a tool call. Setting tool_choice: \"required\" forces the model to cal...",
+    "most_voted_answer": "The problem statement notes that the agent is currently configured to \"let the model decide when to call the tools\" (which is what tool_choice: \"auto\" does). However, the compliance requirement mandates:\n\"Each workflow run must include a retrieval step before generating a response.\"",
     "comments": [
       {
         "comment_id": "1801154",
         "author": "8ac3742",
         "date_title": "September 30, 2026 03:48 pm",
-        "text": "The problem statement notes that the agent is currently configured to &quot;let the model decide when to call the tools&quot; (which is what tool_choice: &quot;auto&quot; does). However, the compliance requirement mandates:\n​&quot;Each workflow run must include a retrieval step before generating a response.&quot;\nIf left as auto, the model might choose to answer directly from parametric memory without executing a tool call. Setting tool_choice: &quot;required&quot; forces the model to call one of its available tools before generating an answer.",
+        "text": "The problem statement notes that the agent is currently configured to \"let the model decide when to call the tools\" (which is what tool_choice: \"auto\" does). However, the compliance requirement mandates:\n​\"Each workflow run must include a retrieval step before generating a response.\"\nIf left as auto, the model might choose to answer directly from parametric memory without executing a tool call. Setting tool_choice: \"required\" forces the model to call one of its available tools before generating an answer.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -2444,7 +2444,7 @@
         "comment_id": "1777448",
         "author": "RPC112",
         "date_title": "July 18, 2026 08:39 am",
-        "text": "Hidden instructions in images/documents → Prompt Shields for documents\nUnsafe visual content (violence, nudity, illegal imagery, etc.) → Image content moderation / Analyze Image API\nThe scenario in questions 23–26 describes both risks together, which is why none of the four individual solutions on their own &quot;meets the goal&quot; as stated — each one only solves half the problem.\nWould be A if Unsafe images were isolated and not combined with embedded hidden instructions.",
+        "text": "Hidden instructions in images/documents → Prompt Shields for documents\nUnsafe visual content (violence, nudity, illegal imagery, etc.) → Image content moderation / Analyze Image API\nThe scenario in questions 23–26 describes both risks together, which is why none of the four individual solutions on their own \"meets the goal\" as stated — each one only solves half the problem.\nWould be A if Unsafe images were isolated and not combined with embedded hidden instructions.",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -2949,7 +2949,7 @@
         "comment_id": "1804114",
         "author": "AzureGeek79",
         "date_title": "October 18, 2026 07:31 pm",
-        "text": "The correct answer is D. a groundedness evaluator.\nAccording to the case study's Technical Requirements, you must ensure that &quot;Responses generated by using the product sheet information must be relevant, complete, and accurate&quot;.\n• Why a groundedness evaluator works: When an agent utilizes a knowledge base (in this scenario, the product information PDFs stored in storage1) via an indexed semantic/vector search engine, the primary metric used to validate that the model's generated answers are entirely supported by and rooted only in that source data (and not hallucinated or based on external weights) is groundedness. A groundedness evaluator directly measures if the generated content is accurate and strictly derived from the retrieved documents.\n• Why Option A is incorrect: While this is a Retrieval-Augmented Generation (RAG) architecture, there is no generic single tool explicitly called &quot;a RAG evaluator&quot; in Microsoft Foundry's standard testing and evaluation metrics. Instead, a RAG pipeline is systematically assessed using individual metrics like groundedness, coherence, relevance, and fluency.\n• Why Option B is incorrect: Custom guardrails are a runtime filtering mechanism used to block or alter inappropriate or unauthorized input/output content (such as protecting against revealed customer data or hidden instructions). They are not an evaluation tool used to systematically assess and measure the relevance or accuracy of generated responses over a test dataset.\n• Why Option C is incorrect: Model fine-tuning is an optimization technique used to adapt a model's style, tone, or specialty layout formatting by retraining it on domain-specific examples. It is a modification option, not an evaluation framework to assess and measure response metrics.",
+        "text": "The correct answer is D. a groundedness evaluator.\nAccording to the case study's Technical Requirements, you must ensure that \"Responses generated by using the product sheet information must be relevant, complete, and accurate\".\n• Why a groundedness evaluator works: When an agent utilizes a knowledge base (in this scenario, the product information PDFs stored in storage1) via an indexed semantic/vector search engine, the primary metric used to validate that the model's generated answers are entirely supported by and rooted only in that source data (and not hallucinated or based on external weights) is groundedness. A groundedness evaluator directly measures if the generated content is accurate and strictly derived from the retrieved documents.\n• Why Option A is incorrect: While this is a Retrieval-Augmented Generation (RAG) architecture, there is no generic single tool explicitly called \"a RAG evaluator\" in Microsoft Foundry's standard testing and evaluation metrics. Instead, a RAG pipeline is systematically assessed using individual metrics like groundedness, coherence, relevance, and fluency.\n• Why Option B is incorrect: Custom guardrails are a runtime filtering mechanism used to block or alter inappropriate or unauthorized input/output content (such as protecting against revealed customer data or hidden instructions). They are not an evaluation tool used to systematically assess and measure the relevance or accuracy of generated responses over a test dataset.\n• Why Option C is incorrect: Model fine-tuning is an optimization technique used to adapt a model's style, tone, or specialty layout formatting by retraining it on domain-specific examples. It is a modification option, not an evaluation framework to assess and measure response metrics.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -2988,7 +2988,7 @@
         "comment_id": "1803281",
         "author": "shank23",
         "date_title": "October 13, 2026 04:27 pm",
-        "text": "In Azure, you explicitly load GroundednessEvaluator to measure this specific risk, whereas &quot;RAG&quot; refers to the entire multi-metric pipeline (which includes other elements like search indexing performance that you don't need to measure for this specific compliance constraint)",
+        "text": "In Azure, you explicitly load GroundednessEvaluator to measure this specific risk, whereas \"RAG\" refers to the entire multi-metric pipeline (which includes other elements like search indexing performance that you don't need to measure for this specific compliance constraint)",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -3014,7 +3014,7 @@
         "comment_id": "1801781",
         "author": "8ac3742",
         "date_title": "October 04, 2026 02:32 am",
-        "text": "Groundedness Evaluator (Option D) measures only one dimension: whether the response is strictly derived from the context without fabricating informatio\nRetrieval Augmented Generation (RAG) Evaluator (Option A) evaluates the end-to-end RAG architecture across all three required metrics:\nRelevance (Retrieval &amp; Question-Answer Relevance)\nCompleteness (Context / Answer Completeness)\nAccuracy / Faithfulness (Groundedness)",
+        "text": "Groundedness Evaluator (Option D) measures only one dimension: whether the response is strictly derived from the context without fabricating informatio\nRetrieval Augmented Generation (RAG) Evaluator (Option A) evaluates the end-to-end RAG architecture across all three required metrics:\nRelevance (Retrieval & Question-Answer Relevance)\nCompleteness (Context / Answer Completeness)\nAccuracy / Faithfulness (Groundedness)",
         "upvotes": 3,
         "badges": [
           "Selected Answer: A"
@@ -3040,7 +3040,7 @@
         "comment_id": "1800414",
         "author": "a5f05ea",
         "date_title": "September 26, 2026 04:40 pm",
-        "text": "Groundedness measures whether Agent1's generated answers are actually supported by the retrieved product information in storage1 — i.e., it detects hallucinated or unsupported claims against the source context. That's precisely &quot;assess the responses when the agent uses the product information stored in storage1.&quot;",
+        "text": "Groundedness measures whether Agent1's generated answers are actually supported by the retrieved product information in storage1 — i.e., it detects hallucinated or unsupported claims against the source context. That's precisely \"assess the responses when the agent uses the product information stored in storage1.\"",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -3053,7 +3053,7 @@
         "comment_id": "1794595",
         "author": "_QzL",
         "date_title": "September 04, 2026 01:19 pm",
-        "text": "Retrieval Augmented Generation (RAG) evaluator because : &quot;Responses generated by using the product sheet information must be relevant, complete, and accurate&quot;",
+        "text": "Retrieval Augmented Generation (RAG) evaluator because : \"Responses generated by using the product sheet information must be relevant, complete, and accurate\"",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -3066,7 +3066,7 @@
         "comment_id": "1795084",
         "author": "AIBoss",
         "date_title": "September 06, 2026 11:02 am",
-        "text": "The question says &quot;to assess the responses&quot;.\nGroundedness evaluator is a subset of RAG evaluators. RAG evaluators has other evaluators also which is not relevent here.\nhttps://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators",
+        "text": "The question says \"to assess the responses\".\nGroundedness evaluator is a subset of RAG evaluators. RAG evaluators has other evaluators also which is not relevent here.\nhttps://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/rag-evaluators",
         "upvotes": 3,
         "badges": [],
         "selected_answer": null,
@@ -3148,7 +3148,7 @@
         "comment_id": "1809678",
         "author": "besquets",
         "date_title": "November 14, 2026 01:04 pm",
-        "text": "Has to be &quot;A&quot; here because system message can define the persona of an agent, hence helps with scope, none of the rest of the options do this.",
+        "text": "Has to be \"A\" here because system message can define the persona of an agent, hence helps with scope, none of the rest of the options do this.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -3162,7 +3162,7 @@
         "comment_id": "1798742",
         "author": "Srikantha",
         "date_title": "September 17, 2026 03:08 am",
-        "text": "he correct answer is A. Modify the system message instructions.\nReasoning:\nThe system message (system prompt) defines the agent's persona, operational boundaries, tone, and guardrails. Updating the system instructions with explicit domain-scoping rules (for example, &quot;You are a support assistant for Contoso. You must answer questions ONLY about Contoso products and politely decline out-of-scope inquiries.&quot;) is the standard and most effective method to restrict the model's behavior and scope.",
+        "text": "he correct answer is A. Modify the system message instructions.\nReasoning:\nThe system message (system prompt) defines the agent's persona, operational boundaries, tone, and guardrails. Updating the system instructions with explicit domain-scoping rules (for example, \"You are a support assistant for Contoso. You must answer questions ONLY about Contoso products and politely decline out-of-scope inquiries.\") is the standard and most effective method to restrict the model's behavior and scope.",
         "upvotes": 3,
         "badges": [
           "Selected Answer: A"
@@ -3309,7 +3309,7 @@
         "comment_id": "1766401",
         "author": "RICHARDALEX007",
         "date_title": "June 10, 2026 04:50 am",
-        "text": "To guarantee a tool is invoked, set the tool_choice key to the value 'required'. The highlighted drag values place &quot;tool_choice&quot; as the key and &quot;required&quot; as the value, which forces tool usage on every run.",
+        "text": "To guarantee a tool is invoked, set the tool_choice key to the value 'required'. The highlighted drag values place \"tool_choice\" as the key and \"required\" as the value, which forces tool usage on every run.",
         "upvotes": 4,
         "badges": [
           "Most Recent"
@@ -3406,7 +3406,7 @@
         "comment_id": "1773083",
         "author": "e886835",
         "date_title": "July 06, 2026 11:19 am",
-        "text": "Centralized Configuration: Configuring the Azure AI Search connection at the project level (Project1) satisfies the requirement that multiple client applications use the same search configuration, minimizing redundancy.\nSecurity &amp; Compliance: Azure AI Foundry connections support Microsoft Entra ID (Azure RBAC) for authentication. This allows you to avoid API keys completely, ensuring compliance with the policy against key-based authentication.\nMinimized Administrative Effort: Instead of managing endpoints, credentials, or custom code across every single client application individually (as suggested in options A, C, and D), you manage a single, shared connection within the Foundry project that the applications can simply reference.",
+        "text": "Centralized Configuration: Configuring the Azure AI Search connection at the project level (Project1) satisfies the requirement that multiple client applications use the same search configuration, minimizing redundancy.\nSecurity & Compliance: Azure AI Foundry connections support Microsoft Entra ID (Azure RBAC) for authentication. This allows you to avoid API keys completely, ensuring compliance with the policy against key-based authentication.\nMinimized Administrative Effort: Instead of managing endpoints, credentials, or custom code across every single client application individually (as suggested in options A, C, and D), you manage a single, shared connection within the Foundry project that the applications can simply reference.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -3450,7 +3450,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Grounding with Bing Search supplies current public-web information; Code interpreter executes calculations during a conversation; File search retrieves from documents uploaded directly to the agent. Each highlighted pairing matches the canonical Foundry Agent Service tool.",
+    "most_voted_answer": "Access up-to-date information from public websites: Grounding with Bing Search\nPerform calculations during conversations: Code interpreter\nRetrieve information from (3)documents uploaded directly to the agent: File search",
     "comments": [
       {
         "comment_id": "1801786",
@@ -3496,10 +3496,10 @@
     "skill_area": 2,
     "skill_area_label": "Implement generative AI and agentic solutions",
     "_backfill_source": {
-      "comment_id": "1766403",
-      "upvotes": 2,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "1801786",
+      "score": 122.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -3679,13 +3679,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: temperature = 1, effort = “high” | This code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature. | effort = \"high\" gives the deepest reasoning, which is what “maximize reasoning quality” ask...",
+    "most_voted_answer": "temperature = 1, effort = “high”",
     "comments": [
       {
         "comment_id": "1804490",
         "author": "dinizingrid",
         "date_title": "October 20, 2026 07:35 pm",
-        "text": "Answer: temperature = 1, effort = “high”\nThis code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature.\neffort = &quot;high&quot; gives the deepest reasoning, which is what “maximize reasoning quality” asks for.",
+        "text": "Answer: temperature = 1, effort = “high”\nThis code uses the Anthropic Messages API, so it calls a Claude model in Foundry. Since thinking is enabled, Claude does not allow temperature changes: temperature may only be set to 1 when thinking is enabled. Setting it to 0 returns an error, and 2 is out of range. With thinking on, stability comes from the reasoning itself, not from temperature.\neffort = \"high\" gives the deepest reasoning, which is what “maximize reasoning quality” asks for.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -3726,7 +3726,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1804490",
-      "score": 100.5,
+      "score": 118.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -3903,7 +3903,7 @@
         "comment_id": "1801874",
         "author": "8ac3742",
         "date_title": "October 04, 2026 10:23 pm",
-        "text": "Read the prompt's first sentence carefully:&quot;The agent generates summaries from retrieved policy documents.&quot;   Because the agent is already retrieving policy documents and generating summaries from them, it is already using Retrieval Augmented Generation (RAG). Switching to RAG is redundant and doesn't solve the issue.",
+        "text": "Read the prompt's first sentence carefully:\"The agent generates summaries from retrieved policy documents.\"   Because the agent is already retrieving policy documents and generating summaries from them, it is already using Retrieval Augmented Generation (RAG). Switching to RAG is redundant and doesn't solve the issue.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -4017,7 +4017,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "GitHub Actions should authenticate to Azure with the Azure Login action using OIDC (federated credentials), avoiding stored secrets/PATs and managed identity isn't used for GitHub-hosted runners this way. To block merges when evaluation thresholds are not met, the workflow step must Fail (which fails the check and prevents merge); 'send an alert' or 'lock the branch' do not gate the PR check.",
+    "most_voted_answer": "GitHub Actions should authenticate to Azure with the Azure Login action using OIDC (federated credentials), avoiding stored secrets/PATs and managed identity isn't used for GitHub-hosted runners this way. To block merges when evaluation thresholds are not met, the workflow step must Fail (which fails the check and prevents merge); 'send an alert' or...",
     "comments": [
       {
         "comment_id": "1766411",
@@ -4258,7 +4258,7 @@
         "comment_id": "1801877",
         "author": "8ac3742",
         "date_title": "October 04, 2026 11:01 pm",
-        "text": "reflection pass:\n1.Send the retrieved documents and the draft summary to a cheaper model with below prompt:\nYou are a compliance reviewer. Inspect the generated summary against the source text.\nCheck if any regulatory, compliance, or mandatory policy clauses present in the\nsource documents were omitted from the summary.\nReturn JSON:\n{\n&quot;is_complete&quot;: true | false,\n&quot;missing_clauses&quot;: [&quot;list of omitted clauses&quot;],\n&quot;critique&quot;: &quot;guidance on what needs to be added&quot;\n}\n2.If is_complete is false, the application issues a second call to the generator model:\n&quot;Your previous draft omitted: {missing_clauses}. Please regenerate the summary to ensure these required regulatory clauses are included.&quot;",
+        "text": "reflection pass:\n1.Send the retrieved documents and the draft summary to a cheaper model with below prompt:\nYou are a compliance reviewer. Inspect the generated summary against the source text.\nCheck if any regulatory, compliance, or mandatory policy clauses present in the\nsource documents were omitted from the summary.\nReturn JSON:\n{\n\"is_complete\": true | false,\n\"missing_clauses\": [\"list of omitted clauses\"],\n\"critique\": \"guidance on what needs to be added\"\n}\n2.If is_complete is false, the application issues a second call to the generator model:\n\"Your previous draft omitted: {missing_clauses}. Please regenerate the summary to ensure these required regulatory clauses are included.\"",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -4553,7 +4553,7 @@
         "comment_id": "1801880",
         "author": "8ac3742",
         "date_title": "October 04, 2026 11:27 pm",
-        "text": "In Microsoft Foundry / Azure AI, &quot;image-edit&quot; is not an agent. It is a  inference workflow mode provided by diffusion models such as Stable Diffusion / FLUX models deployed through Foundry Model Catalog).\nWhen you invoke image models in Foundry workflows, the model supports different task modes:\ntext_to_image (Option B): Generates a brand-new image completely from scratch based on a textual prompt. It cannot edit an existing image in place.\nimage_variation (Option A): Takes an existing image and generates diverse stylistic variants of the whole picture. It does not allow targeted object removal.\nimage_to_image (Option C): Modifies the whole image globally according to a prompt and a strength parameter. Even with high or low strength, it evaluates and alters pixels across the entire frame, failing the requirement that edits apply exclusively inside the target area.\nmask_inpainting (Option D): The dedicated editing mode where the API accepts image + mask + prompt. The model regenerates only the masked pixels and blends them seamlessly into the surrounding context.\nBelow is one sample image workflow\n# Requirement: Input image and mask must be square PNGs with alpha channel\n# The mask transparent area indicates where the model should edit.\ndef run_mask_inpainting(original_png_path: str, mask_png_path: str):\nprint(&quot;Performing mask-based inpainting...&quot;)\nwith open(original_png_path, &quot;rb&quot;) as image_file, open(mask_png_path, &quot;rb&quot;) as mask_file:\nedit_response = client.images.edit(\nmodel=&quot;dall-e-2&quot;,  # Deployment supporting mask-based edits\nimage=image_file,\nmask=mask_file,\nprompt=&quot;Seamless natural meadow background, matching the original grass and lighting perfectly&quot;,\nn=1,\nsize=&quot;1024x1024&quot;,\n)\nedited_url = edit_response.data[0].url\nprint(f&quot;Edited Image URL: {edited_url}&quot;)\nreturn edited_url",
+        "text": "In Microsoft Foundry / Azure AI, \"image-edit\" is not an agent. It is a  inference workflow mode provided by diffusion models such as Stable Diffusion / FLUX models deployed through Foundry Model Catalog).\nWhen you invoke image models in Foundry workflows, the model supports different task modes:\ntext_to_image (Option B): Generates a brand-new image completely from scratch based on a textual prompt. It cannot edit an existing image in place.\nimage_variation (Option A): Takes an existing image and generates diverse stylistic variants of the whole picture. It does not allow targeted object removal.\nimage_to_image (Option C): Modifies the whole image globally according to a prompt and a strength parameter. Even with high or low strength, it evaluates and alters pixels across the entire frame, failing the requirement that edits apply exclusively inside the target area.\nmask_inpainting (Option D): The dedicated editing mode where the API accepts image + mask + prompt. The model regenerates only the masked pixels and blends them seamlessly into the surrounding context.\nBelow is one sample image workflow\n# Requirement: Input image and mask must be square PNGs with alpha channel\n# The mask transparent area indicates where the model should edit.\ndef run_mask_inpainting(original_png_path: str, mask_png_path: str):\nprint(\"Performing mask-based inpainting...\")\nwith open(original_png_path, \"rb\") as image_file, open(mask_png_path, \"rb\") as mask_file:\nedit_response = client.images.edit(\nmodel=\"dall-e-2\",  # Deployment supporting mask-based edits\nimage=image_file,\nmask=mask_file,\nprompt=\"Seamless natural meadow background, matching the original grass and lighting perfectly\",\nn=1,\nsize=\"1024x1024\",\n)\nedited_url = edit_response.data[0].url\nprint(f\"Edited Image URL: {edited_url}\")\nreturn edited_url",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -4719,7 +4719,7 @@
         "comment_id": "1801881",
         "author": "8ac3742",
         "date_title": "October 04, 2026 11:36 pm",
-        "text": "A. prebuilt-documentFieldSchema: This analyzer is used to discover or propose structured field definitions for unknown document schemas; it does not perform raw layout preservation.\nB. prebuilt-read: Provides basic optical character recognition (OCR) and text lines, but it strips away complex document layout hierarchy and does not reconstruct structured tables.\nC. prebuilt-documentSearch: A RAG-optimized analyzer intended to generate markdown chunks and semantic embeddings/descriptions for downstream search, typically utilizing language model processing\nD. prebuilt-layout:\n(1)Preserve PDF Layout &amp; Tables: extract structure, paragraphs, reading order, and complex tables.\n(2)QR Codes &amp; Barcodes\n(3)No Language Model Required",
+        "text": "A. prebuilt-documentFieldSchema: This analyzer is used to discover or propose structured field definitions for unknown document schemas; it does not perform raw layout preservation.\nB. prebuilt-read: Provides basic optical character recognition (OCR) and text lines, but it strips away complex document layout hierarchy and does not reconstruct structured tables.\nC. prebuilt-documentSearch: A RAG-optimized analyzer intended to generate markdown chunks and semantic embeddings/descriptions for downstream search, typically utilizing language model processing\nD. prebuilt-layout:\n(1)Preserve PDF Layout & Tables: extract structure, paragraphs, reading order, and complex tables.\n(2)QR Codes & Barcodes\n(3)No Language Model Required",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -4883,8 +4883,8 @@
     "drag_drop_items": [],
     "drag_drop_targets": [],
     "drag_drop_error": null,
-    "skill_area": 3,
-    "skill_area_label": "Implement computer vision solutions",
+    "skill_area": 1,
+    "skill_area_label": "Plan and manage an Azure AI solution",
     "_backfill_source": {
       "comment_id": "1766420",
       "upvotes": 5,
@@ -5304,7 +5304,7 @@
         "comment_id": "1793668",
         "author": "Srikantha",
         "date_title": "August 30, 2026 06:20 pm",
-        "text": "Advanced data parsing: In Microsoft Foundry (Azure AI Studio), the &quot;advanced&quot; data parsing option utilizes Azure AI Document Intelligence (specifically the Layout model). This capability is explicitly designed to perform Optical Character Recognition (OCR) while preserving complex document structures such as tables (even those spanning multiple pages), headings, and reading order. It outputs the data into structure-aware chunks (often formatted as Markdown) and automatically tags those chunks with metadata, including page numbers. This perfectly matches the requirement for accurate RAG retrieval of specific table rows",
+        "text": "Advanced data parsing: In Microsoft Foundry (Azure AI Studio), the \"advanced\" data parsing option utilizes Azure AI Document Intelligence (specifically the Layout model). This capability is explicitly designed to perform Optical Character Recognition (OCR) while preserving complex document structures such as tables (even those spanning multiple pages), headings, and reading order. It outputs the data into structure-aware chunks (often formatted as Markdown) and automatically tags those chunks with metadata, including page numbers. This perfectly matches the requirement for accurate RAG retrieval of specific table rows",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -5859,7 +5859,7 @@
         "comment_id": "1801885",
         "author": "8ac3742",
         "date_title": "October 05, 2026 12:20 am",
-        "text": "Let's look directly at the requirement in the case study:&quot;The product sheets must be processed by using an indexing pipeline that enables semantic and vector search, so that Agent1 can retrieve the relevant product information.\nIn Azure AI Search / Foundry indexing pipelines, generating vector embeddings from unstructured text documents (like the product sheets in storage1) requires two fundamental, coupled built-in skills:\n(1)Text Split (#Microsoft.Skills.Text.SplitSkill):Documents like product detail sheets in PDF format are typically multi-page and exceed model token limits.Before text can be vectorized, it must be chunked into semantically meaningful segments (pages, paragraphs, or fixed token lengths).\n(2)Azure OpenAI Embedding (#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill):Takes the individual text chunks output by the Text Split skill and generates the high-dimensional numerical vectors (embeddings) needed to populate the search index.This is what directly enables vector search.Together, Text Split then Azure OpenAI Embedding is the standard, foundational enrichment pipeline for vector search indexing in Azure.\nThe word &quot;embedding&quot; comes directly from mathematics (topology and geometry): discrete, symbolic human language is being embedded into a continuous, geometric vector space.\n{&quot;dog&quot;} = [1, 0, 0, 0}\n{&quot;cat&quot;} = [0, 1, 0, 0}\n{&quot;apple&quot;} = [0, 0, 1, 0}",
+        "text": "Let's look directly at the requirement in the case study:\"The product sheets must be processed by using an indexing pipeline that enables semantic and vector search, so that Agent1 can retrieve the relevant product information.\nIn Azure AI Search / Foundry indexing pipelines, generating vector embeddings from unstructured text documents (like the product sheets in storage1) requires two fundamental, coupled built-in skills:\n(1)Text Split (#Microsoft.Skills.Text.SplitSkill):Documents like product detail sheets in PDF format are typically multi-page and exceed model token limits.Before text can be vectorized, it must be chunked into semantically meaningful segments (pages, paragraphs, or fixed token lengths).\n(2)Azure OpenAI Embedding (#Microsoft.Skills.Text.AzureOpenAIEmbeddingSkill):Takes the individual text chunks output by the Text Split skill and generates the high-dimensional numerical vectors (embeddings) needed to populate the search index.This is what directly enables vector search.Together, Text Split then Azure OpenAI Embedding is the standard, foundational enrichment pipeline for vector search indexing in Azure.\nThe word \"embedding\" comes directly from mathematics (topology and geometry): discrete, symbolic human language is being embedded into a continuous, geometric vector space.\n{\"dog\"} = [1, 0, 0, 0}\n{\"cat\"} = [0, 1, 0, 0}\n{\"apple\"} = [0, 0, 1, 0}",
         "upvotes": 5,
         "badges": [
           "Selected Answer: AC"
@@ -5944,7 +5944,7 @@
         "comment_id": "1801886",
         "author": "8ac3742",
         "date_title": "October 05, 2026 12:27 am",
-        "text": "Notice the exact wording of the question:\n&quot;You need to recommend a solution to support the planned changes and technical requirements for Agent1 to use the product information stored in storage1.&quot;\nThe Trap: You are thinking about the vendor invoices (which would  use Document Intelligence / Content Understanding for layouts and tables).\nThe Actual Subject: The question is specifically asking about Agent1 retrieving the product information in storage1, not processing vendor invoices.\nThe core service that provides the indexing pipeline, vector search, and semantic search over documents stored in Azure Blob Storage to ground an agent via RAG is Azure AI Search.",
+        "text": "Notice the exact wording of the question:\n\"You need to recommend a solution to support the planned changes and technical requirements for Agent1 to use the product information stored in storage1.\"\nThe Trap: You are thinking about the vendor invoices (which would  use Document Intelligence / Content Understanding for layouts and tables).\nThe Actual Subject: The question is specifically asking about Agent1 retrieving the product information in storage1, not processing vendor invoices.\nThe core service that provides the indexing pipeline, vector search, and semantic search over documents stored in Azure Blob Storage to ground an agent via RAG is Azure AI Search.",
         "upvotes": 5,
         "badges": [
           "Selected Answer: C"
@@ -6200,13 +6200,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "create and retrieve | Generating video is a long-running, asynchronous operation. | client.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., \"queued\" or \"processing\"). | then retrieve | while video.status not in [\"completed\", \"failed\", \"cancelled\"]: | time.sleep(20) | video = client.videos.retrieve(video.id) | Why not list? list() takes no ID and returns a pa...",
+    "most_voted_answer": "create and retrieve\nGenerating video is a long-running, asynchronous operation.\nclient.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., \"queued\" or \"processing\").\nthen retrieve\nwhile video.status not in [\"completed\", \"failed\", \"cancelled\"]: time.sleep(20)",
     "comments": [
       {
         "comment_id": "1801888",
         "author": "8ac3742",
         "date_title": "October 05, 2026 12:36 am",
-        "text": "create and retrieve\nGenerating video is a long-running, asynchronous operation.\nclient.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., &quot;queued&quot; or &quot;processing&quot;).\nthen retrieve\nwhile video.status not in [&quot;completed&quot;, &quot;failed&quot;, &quot;cancelled&quot;]:\ntime.sleep(20)\nvideo = client.videos.retrieve(video.id)\nWhy not list? list() takes no ID and returns a paginated list of all video generation jobs.",
+        "text": "create and retrieve\nGenerating video is a long-running, asynchronous operation.\nclient.videos.create(...) initiates the video generation job and immediately returns an initial job object containing an id and an initial status (e.g., \"queued\" or \"processing\").\nthen retrieve\nwhile video.status not in [\"completed\", \"failed\", \"cancelled\"]:\ntime.sleep(20)\nvideo = client.videos.retrieve(video.id)\nWhy not list? list() takes no ID and returns a paginated list of all video generation jobs.",
         "upvotes": 2,
         "badges": [
           "Most Recent"
@@ -6325,13 +6325,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "(1) DefaultAzureCredential | Security & Compliance Requirement: | \"API keys must NOT be used to access Foundry-deployed models.\" | \"The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication.\" | DefaultAzureCredential() integrates with Microsoft Entra ID and honors the RBAC assignments granted to the security group SC_Agent1_Dev. | (2) get | Why not create_version? | create_version requires specifi...",
+    "most_voted_answer": "(1) DefaultAzureCredential\n(2) get",
     "comments": [
       {
         "comment_id": "1801889",
         "author": "8ac3742",
         "date_title": "October 05, 2026 12:44 am",
-        "text": "(1) DefaultAzureCredential\nSecurity &amp; Compliance Requirement:\n&quot;API keys must NOT be used to access Foundry-deployed models.&quot;\n&quot;The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication.&quot;\nDefaultAzureCredential() integrates with Microsoft Entra ID and honors the RBAC assignments granted to the security group SC_Agent1_Dev.\n(2) get\nWhy not create_version?\ncreate_version requires specification of model deployments, instructions, and tools to construct a new revision. It is an authoring method, not a retrieval method.",
+        "text": "(1) DefaultAzureCredential\nSecurity & Compliance Requirement:\n\"API keys must NOT be used to access Foundry-deployed models.\"\n\"The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication.\"\nDefaultAzureCredential() integrates with Microsoft Entra ID and honors the RBAC assignments granted to the security group SC_Agent1_Dev.\n(2) get\nWhy not create_version?\ncreate_version requires specification of model deployments, instructions, and tools to construct a new revision. It is an authoring method, not a retrieval method.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -6363,9 +6363,9 @@
     "case_study_title": "Contoso, Ltd",
     "_backfill_source": {
       "comment_id": "1801889",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 117.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -6429,7 +6429,7 @@
         "comment_id": "1801891",
         "author": "8ac3742",
         "date_title": "October 05, 2026 12:53 am",
-        "text": "Groundness and retrieval\nRequirement 1: &quot;responses include claims not supported by the retrieved source content&quot;\nEvaluated by D. Groundedness (GroundednessEvaluator)\nRequirement 2: &quot;retrieved source content does not align with the labeled expected context&quot;\nEvaluated by A. Retrieval : Compares the chunks/documents retrieved by the system against the ground-truth expected context in the labeled test dataset to ensure the search component fetches the correct grounding data.\nNotes tell about retrieval and coherence/fluence\nBelow is the examples of coherence/fluence\n(1)High Fluency, Low Coherence\n&quot;It was pouring rain outside. Therefore, she put on her favorite sunglasses and went swimming in the lake to stay dry.&quot;\nCoherence: Low (1/5) — It makes no logical sense. Rain does not lead to wearing sunglasses, and swimming in a lake will not keep you dry.\n(2)High Coherence, low Fluency\n&quot;Rain heavy fall sky. Girl take umbrella. Water no wet coat.&quot;",
+        "text": "Groundness and retrieval\nRequirement 1: \"responses include claims not supported by the retrieved source content\"\nEvaluated by D. Groundedness (GroundednessEvaluator)\nRequirement 2: \"retrieved source content does not align with the labeled expected context\"\nEvaluated by A. Retrieval : Compares the chunks/documents retrieved by the system against the ground-truth expected context in the labeled test dataset to ensure the search component fetches the correct grounding data.\nNotes tell about retrieval and coherence/fluence\nBelow is the examples of coherence/fluence\n(1)High Fluency, Low Coherence\n\"It was pouring rain outside. Therefore, she put on her favorite sunglasses and went swimming in the lake to stay dry.\"\nCoherence: Low (1/5) — It makes no logical sense. Rain does not lead to wearing sunglasses, and swimming in a lake will not keep you dry.\n(2)High Coherence, low Fluency\n\"Rain heavy fall sky. Girl take umbrella. Water no wet coat.\"",
         "upvotes": 2,
         "badges": [
           "Selected Answer: AD"
@@ -6442,7 +6442,7 @@
         "comment_id": "1802101",
         "author": "8ac3742",
         "date_title": "October 05, 2026 11:28 pm",
-        "text": "translate &quot;compares the chunks/documents retrieved by the system against the ground-truth expected context in the labeled test dataset&quot;\nfor example, in the test dataset for evaluation,\nfor question &quot; what is the counterparty of trade A&quot;?\nthe expected context: chunk = B, RBC\nIf retrieval returns : chuck = A, the settlement date = 2026-10-10\nThen the retrieval evaluation failed",
+        "text": "translate \"compares the chunks/documents retrieved by the system against the ground-truth expected context in the labeled test dataset\"\nfor example, in the test dataset for evaluation,\nfor question \" what is the counterparty of trade A\"?\nthe expected context: chunk = B, RBC\nIf retrieval returns : chuck = A, the settlement date = 2026-10-10\nThen the retrieval evaluation failed",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -6554,7 +6554,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Metrics | Whether responses address the user query → Response Completeness | Whether responses are supported by the provided context → Groundedness | Whether responses contain sensitive or proprietary information → Content Safety | 👉 Final Answer: | Response Completeness + Groundedness + Content Safety",
+    "most_voted_answer": "Whether responses address the user query → Response Completeness\nWhether responses are supported by the provided context → Groundedness\nWhether responses contain sensitive or proprietary information → Content Safety",
     "comments": [
       {
         "comment_id": "1801893",
@@ -6599,7 +6599,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795888",
-      "score": 100.5,
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -6667,7 +6667,7 @@
         "comment_id": "1801894",
         "author": "8ac3742",
         "date_title": "October 05, 2026 01:05 am",
-        "text": "The two correct evaluation categories are:\nA. risk and safety metrics\nE. AI quality (AI assisted) metrics\nWhy &quot;AI assisted&quot; and NOT &quot;NLP&quot;?\nMicrosoft Foundry categorizes evaluation metrics into distinct buckets:\nAI quality (AI assisted) metrics:\nThese use an LLM (such as GPT-4o) as an automated judge to reason over unstructured inputs and context.\n(NLP) metrics are traditional, deterministic mathematical string-matching and overlap formulas.They cannot assess complex semantic concepts like groundedness or contextual relevance.",
+        "text": "The two correct evaluation categories are:\nA. risk and safety metrics\nE. AI quality (AI assisted) metrics\nWhy \"AI assisted\" and NOT \"NLP\"?\nMicrosoft Foundry categorizes evaluation metrics into distinct buckets:\nAI quality (AI assisted) metrics:\nThese use an LLM (such as GPT-4o) as an automated judge to reason over unstructured inputs and context.\n(NLP) metrics are traditional, deterministic mathematical string-matching and overlap formulas.They cannot assess complex semantic concepts like groundedness or contextual relevance.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: AE"
@@ -6775,7 +6775,7 @@
         "comment_id": "1795893",
         "author": "Amelia233",
         "date_title": "September 10, 2026 12:08 pm",
-        "text": "Correct Answer: A. {“type”: “bing_grounding”}\nTo ensure the agent deterministically uses only the internet for a specific run, set tool_choice to the Bing grounding/web search tool.\nA. {&quot;type&quot;: &quot;bing_grounding&quot;} ✅ → Forces the agent to use internet search.\nB. {&quot;type&quot;: &quot;azure_ai-search&quot;} ❌ → Uses the private Azure AI Search index.\nC. &quot;auto&quot; ❌ → Allows the model to decide which tool to use.\nD. &quot;required&quot; ❌ → Requires a tool to be used but does not specify which tool.\nFinal Answer: A. {&quot;type&quot;: &quot;bing_grounding&quot;}",
+        "text": "Correct Answer: A. {“type”: “bing_grounding”}\nTo ensure the agent deterministically uses only the internet for a specific run, set tool_choice to the Bing grounding/web search tool.\nA. {\"type\": \"bing_grounding\"} ✅ → Forces the agent to use internet search.\nB. {\"type\": \"azure_ai-search\"} ❌ → Uses the private Azure AI Search index.\nC. \"auto\" ❌ → Allows the model to decide which tool to use.\nD. \"required\" ❌ → Requires a tool to be used but does not specify which tool.\nFinal Answer: A. {\"type\": \"bing_grounding\"}",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -6915,7 +6915,7 @@
         "comment_id": "1801895",
         "author": "8ac3742",
         "date_title": "October 05, 2026 01:10 am",
-        "text": "&quot;Showing the model how correct classifications look&quot; means providing input-output demonstration examples directly within the prompt.\n&quot;Without retraining the model or storing knowledge permanently&quot; describes in-context learning.\nThe examples live strictly within the prompt context window of that specific API call; the underlying model weights are not altered or fine-tuned, and no permanent state is kept.\nDo not choose zero-shot learning: Provides only instructions and the input data without any example demonstrations of the expected output format or classification",
+        "text": "\"Showing the model how correct classifications look\" means providing input-output demonstration examples directly within the prompt.\n\"Without retraining the model or storing knowledge permanently\" describes in-context learning.\nThe examples live strictly within the prompt context window of that specific API call; the underlying model weights are not altered or fine-tuned, and no permanent state is kept.\nDo not choose zero-shot learning: Provides only instructions and the input data without any example demonstrations of the expected output format or classification",
         "upvotes": 1,
         "badges": [
           "Selected Answer: D"
@@ -7017,7 +7017,7 @@
         "comment_id": "1801897",
         "author": "8ac3742",
         "date_title": "October 05, 2026 01:16 am",
-        "text": "tell about session and conversation(chat)\nYou open ChatGPT or your customer support chat portal (Session starts).\nYou have one chat\nYou click &quot;New Chat&quot; (Conversation 1 ends, Conversation 2 starts).\nBoth happened inside the exact same login Session.",
+        "text": "tell about session and conversation(chat)\nYou open ChatGPT or your customer support chat portal (Session starts).\nYou have one chat\nYou click \"New Chat\" (Conversation 1 ends, Conversation 2 starts).\nBoth happened inside the exact same login Session.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -7060,13 +7060,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The correct values are: | scope= → \"{{$userId}}\" | tools= → [memory_tool] | Explanation: | {{$userId}} ensures that each authenticated user has a separate memory scope. This allows the agent to remember user preferences across different conversations without mixing one user's memories with another user's data.",
+    "most_voted_answer": "scope= → \"{{$userId}}\"\ntools= → [memory_tool]",
     "comments": [
       {
         "comment_id": "1795899",
         "author": "Amelia233",
         "date_title": "September 10, 2026 12:19 pm",
-        "text": "The correct values are:\nscope= → &quot;{{$userId}}&quot;\ntools= → [memory_tool]\nExplanation:\n{{$userId}} ensures that each authenticated user has a separate memory scope. This allows the agent to remember user preferences across different conversations without mixing one user's memories with another user's data.",
+        "text": "The correct values are:\nscope= → \"{{$userId}}\"\ntools= → [memory_tool]\nExplanation:\n{{$userId}} ensures that each authenticated user has a separate memory scope. This allows the agent to remember user preferences across different conversations without mixing one user's memories with another user's data.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -7096,9 +7096,9 @@
     "skill_area_label": "Implement generative AI and agentic solutions",
     "_backfill_source": {
       "comment_id": "1795899",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -7181,7 +7181,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Orchestration pattern The sequential template that passes outputs node-by-node | Approval checkpoints Add an Ask a question node",
+    "most_voted_answer": "Orchestration pattern: The sequential template that passes outputs node-by-node\nApproval checkpoints: Add an Ask a question node",
     "comments": [
       {
         "comment_id": "1809016",
@@ -7200,7 +7200,7 @@
         "comment_id": "1801899",
         "author": "8ac3742",
         "date_title": "October 05, 2026 01:23 am",
-        "text": "Orchestration pattern is the sequential template that passes outputs node-by-node\nKey requirement: &quot;Ensures predictable execution across the agents&quot; and &quot;PolicyWriter generates draft updates... and RiskReviewer reviews the drafts.&quot;\nA sequential template defines a strict, deterministic pipeline: PolicyWriter runs first to generate the draft, passing its output directly to RiskReviewer.\nWhy not &quot;group chat&quot;? The prompt specifically rules out dynamic routing: a group chat dynamically decides which agent speaks next using an LLM coordinator, which makes execution non-deterministic and unpredictable.\nWhy not &quot;human-in-the-loop template&quot;? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint.\nWhy not &quot;human-in-the-loop template&quot;? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint",
+        "text": "Orchestration pattern is the sequential template that passes outputs node-by-node\nKey requirement: \"Ensures predictable execution across the agents\" and \"PolicyWriter generates draft updates... and RiskReviewer reviews the drafts.\"\nA sequential template defines a strict, deterministic pipeline: PolicyWriter runs first to generate the draft, passing its output directly to RiskReviewer.\nWhy not \"group chat\"? The prompt specifically rules out dynamic routing: a group chat dynamically decides which agent speaks next using an LLM coordinator, which makes execution non-deterministic and unpredictable.\nWhy not \"human-in-the-loop template\"? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint.\nWhy not \"human-in-the-loop template\"? The question asks for the overall orchestration pattern across the two agents. Low-risk updates must execute automatically without manual intervention, while human review is handled downstream via a branch checkpoint",
         "upvotes": 5,
         "badges": [],
         "selected_answer": null,
@@ -7261,8 +7261,8 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1790028",
-      "score": 54.5,
-      "pattern": "highly_voted",
+      "score": 197.0,
+      "pattern": "loose:label_pair",
       "upvotes": 9
     },
     "skill_area": 2,
@@ -7566,7 +7566,7 @@
         "comment_id": "1801901",
         "author": "8ac3742",
         "date_title": "October 05, 2026 01:34 am",
-        "text": "answer is vector search not semantic rank\n&quot;Which indexing approach should you use?&quot;\nSemantic ranking (Option B) is a query-time re-ranking feature (L2 ranker) applied to results after an initial search executes. It is not an indexing approach at all,its A query-side capability that evaluates the top 50 search results using cross-encoder models to reorder and produce semantic captions/answers.\nVector search (Option A) is the fundamental indexing approach that generates and indexes high-dimensional mathematical representations (embeddings) of text. It captures meaning and conceptual intent rather than exact keywords, ensuring match retrieval when users express questions in different wording than the manuals.",
+        "text": "answer is vector search not semantic rank\n\"Which indexing approach should you use?\"\nSemantic ranking (Option B) is a query-time re-ranking feature (L2 ranker) applied to results after an initial search executes. It is not an indexing approach at all,its A query-side capability that evaluates the top 50 search results using cross-encoder models to reorder and produce semantic captions/answers.\nVector search (Option A) is the fundamental indexing approach that generates and indexes high-dimensional mathematical representations (embeddings) of text. It captures meaning and conceptual intent rather than exact keywords, ensuring match retrieval when users express questions in different wording than the manuals.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: A"
@@ -7903,7 +7903,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer | Field value type: string | Field method: generate | Short discussion: | Use string because the generated JSON field contains a textual description of the color scheme. Use generate because the analyzer needs to create this description automatically for each video segment.",
+    "most_voted_answer": "Field value type: string\nField method: generate",
     "comments": [
       {
         "comment_id": "1801908",
@@ -8004,7 +8004,7 @@
         "comment_id": "1801910",
         "author": "8ac3742",
         "date_title": "October 05, 2026 02:08 am",
-        "text": "In Content Understanding architecture, the invoice and the purchase order are the transaction-specific runtime inputs provided to the multiple-file task payload when calling the analyzer endpoint.\nThe static vendor contract documents represent the persistent reference data configured in the analyzer schema.\nOption C defines the task architecture: &quot;a multiple-file task in pro mode that uses the vendor contract files as reference data.&quot;",
+        "text": "In Content Understanding architecture, the invoice and the purchase order are the transaction-specific runtime inputs provided to the multiple-file task payload when calling the analyzer endpoint.\nThe static vendor contract documents represent the persistent reference data configured in the analyzer schema.\nOption C defines the task architecture: \"a multiple-file task in pro mode that uses the vendor contract files as reference data.\"",
         "upvotes": 1,
         "badges": [
           "Selected Answer: C"
@@ -8157,7 +8157,7 @@
         "comment_id": "1795959",
         "author": "Amelia233",
         "date_title": "September 11, 2026 05:52 am",
-        "text": "Correct answer: A. Set the user message content array to include items that have type: text and type: image_url.\nMultimodal chat models require the user message to use a structured content array. The array should contain separate items for the text and image, such as type: &quot;text&quot; and type: &quot;image_url&quot;.\nA ✅ Correct — enables the model to recognize and process both text and images.\nB ❌ Not necessary when using the image_url content type.\nC ❌ Metadata does not provide image content to the model.\nD ❌ Images should be included in the user content, not the system message.",
+        "text": "Correct answer: A. Set the user message content array to include items that have type: text and type: image_url.\nMultimodal chat models require the user message to use a structured content array. The array should contain separate items for the text and image, such as type: \"text\" and type: \"image_url\".\nA ✅ Correct — enables the model to recognize and process both text and images.\nB ❌ Not necessary when using the image_url content type.\nC ❌ Metadata does not provide image content to the model.\nD ❌ Images should be included in the user content, not the system message.",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -8367,7 +8367,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct selections | Managed identity scope: ✅ Enable a system-assigned managed identity at the project level | Key Vault authorization method: ✅ Assign the Key Vault Secrets User role to the managed identity | Use a project-level managed identity so the agent can access Azure resources without storing credentials. Assign only the Key Vault Secrets User role, following the least-privilege principle.",
+    "most_voted_answer": "Managed identity scope: ✅ Enable a system-assigned managed identity at the project level\nKey Vault authorization method: ✅ Assign the Key Vault Secrets User role to the managed identity",
     "comments": [
       {
         "comment_id": "1795960",
@@ -8401,8 +8401,8 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795960",
-      "score": 101.0,
-      "pattern": "loose:label_pair",
+      "score": 132.0,
+      "pattern": "explicit_pattern",
       "upvotes": 2
     },
     "skill_area": 1,
@@ -8418,7 +8418,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "correct answer | How Azure Content Safety thresholds work: The threshold sets the cutoff level where content is flagged or blocked. | A High severity threshold is the least restrictive setting (it only flags/blocks High-severity harm). | A Low severity threshold is the most restrictive setting (it flags/blocks Low, Medium, and High-severity harm). | Run2 showed that 4% of DB1 contains High-severity content defects. Because the fine-tuning job already failed under the most permissive setting (...",
+    "most_voted_answer": "Changing the content filtering configuration to low severity will resolve the fine-tuning job issue: No\nThe difference between the 12% and 4% content harm defect rate is consistent with the different severity thresholds used in Run1 and Run2: Yes\nThe identical 6% protected material evaluation values across Run1 and Run2 indicate that this metric is unaffected by the change in the severity threshold: Yes",
     "comments": [
       {
         "comment_id": "1801914",
@@ -8462,8 +8462,8 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1801914",
-      "score": 100.5,
+      "comment_id": "1795961",
+      "score": 130.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -8480,7 +8480,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Capture all the nested operations across the entire agent run: Hierarchical spans (Captures parent-child execution flow and nested sub-tasks in open telemetry/tracing). | Record tool invocation arguments and returned results as metadata: Tool call attributes (Attaches tool input arguments and output values as metadata attributes to individual telemetry spans).",
+    "most_voted_answer": "Capture all the nested operations across the entire agent run: Hierarchical spans\nRecord tool invocation arguments and returned results as metadata: Tool call attributes",
     "comments": [
       {
         "comment_id": "1795962",
@@ -8516,9 +8516,9 @@
     "skill_area_label": "Implement generative AI and agentic solutions",
     "_backfill_source": {
       "comment_id": "1795962",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -8531,13 +8531,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "correct answer | Why \"Implement exponential backoff and jitter\" instead of \"Increase tenant-wide quotas\"?Look closely at the constraint in the problem statement:\"The solution must remain within the service and model limits.\" HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiti...",
+    "most_voted_answer": "HTTP 429: Implement exponential backoff and jitter in the retry logic.\nHTTP 400: Split content into smaller files before uploading the files.",
     "comments": [
       {
         "comment_id": "1801916",
         "author": "8ac3742",
         "date_title": "October 05, 2026 02:24 am",
-        "text": "correct answer\nWhy &quot;Implement exponential backoff and jitter&quot; instead of &quot;Increase tenant-wide quotas&quot;?Look closely at the constraint in the problem statement:&quot;The solution must remain within the service and model limits.&quot;   HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiting while staying strictly within existing service and model limits is client-side retry handling using exponential backoff and jitter.   Simply increasing tenant quotas does not build resiliency against bursting and violates the constraint to stay within the existing limits.",
+        "text": "correct answer\nWhy \"Implement exponential backoff and jitter\" instead of \"Increase tenant-wide quotas\"?Look closely at the constraint in the problem statement:\"The solution must remain within the service and model limits.\"   HTTP 429 (Rate Limit Exceeded): In high-throughput or load-testing scenarios, temporary request bursts frequently cross TPM (tokens per minute) or RPM (requests per minute) thresholds. The standard architecture pattern to mitigate rate limiting while staying strictly within existing service and model limits is client-side retry handling using exponential backoff and jitter.   Simply increasing tenant quotas does not build resiliency against bursting and violates the constraint to stay within the existing limits.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -8575,8 +8575,8 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1801916",
-      "score": 100.5,
+      "comment_id": "1795963",
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -8733,7 +8733,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | category: 'AzureKeyVault' | Explanation: To connect an existing Key Vault instance to a Microsoft Foundry project, the connection category must be explicitly defined as 'AzureKeyVault'. | authType: 'AccountManagedIdentity' | Explanation: Microsoft Foundry authenticates to Key Vault resources via Azure Managed Identity ('AccountManagedIdentity') using Azure RBAC roles such as Key Vault Secrets Officer.",
+    "most_voted_answer": "category: 'AzureKeyVault'\nauthType: 'AccountManagedIdentity'",
     "comments": [
       {
         "comment_id": "1795965",
@@ -8767,7 +8767,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795965",
-      "score": 101.0,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
     },
@@ -8784,13 +8784,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "correct answer | Requirement: \"Grounds responses only in company policy documents stored in curated repositories\". The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent. Why not \"Upload the policy documents direct to the a...",
+    "most_voted_answer": "Knowledge grounding: Configure retrieval from approved data sources.\nMemory: Enable agent memory that uses persistent storage.",
     "comments": [
       {
         "comment_id": "1801917",
         "author": "8ac3742",
         "date_title": "October 05, 2026 02:30 am",
-        "text": "correct answer\nRequirement: &quot;Grounds responses only in company policy documents stored in curated repositories&quot;.   The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent.   Why not &quot;Upload the policy documents direct to the agent&quot;: Uploading files directly attaches static copies to the specific agent definition/Assistant tool, which decouples them from the central, curated policy repositories whenever policies get updated.",
+        "text": "correct answer\nRequirement: \"Grounds responses only in company policy documents stored in curated repositories\".   The documents are maintained externally in curated repositories. Connecting to the curated repositories via retrieval from approved data sources ensures the agent searches live, managed enterprise stores (such as Azure AI Search or curated Blob containers) rather than copying static files directly into the agent.   Why not \"Upload the policy documents direct to the agent\": Uploading files directly attaches static copies to the specific agent definition/Assistant tool, which decouples them from the central, curated policy repositories whenever policies get updated.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -8828,8 +8828,8 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1801917",
-      "score": 100.5,
+      "comment_id": "1795966",
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -8916,13 +8916,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence >= 0.75: condition filters and displays only brands with a 75%+ confidence score). | The code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).",
+    "most_voted_answer": "The code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes\nThe code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes",
     "comments": [
       {
         "comment_id": "1795968",
         "author": "Amelia233",
         "date_title": "September 11, 2026 06:02 am",
-        "text": "Correct Answers\nThe code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence &gt;= 0.75: condition filters and displays only brands with a 75%+ confidence score).\nThe code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).",
+        "text": "Correct Answers\nThe code will display the name of each detected brand with a confidence equal to or higher than 75 percent: Yes (The if brand.confidence >= 0.75: condition filters and displays only brands with a 75%+ confidence score).\nThe code will display coordinates for the top-left corner of the rectangle that contains the brand logo of the displayed brands: Yes (In Azure Vision, brand.rectangle.x and brand.rectangle.y represent the top-left corner coordinates of the bounding box).",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -8958,7 +8958,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795968",
-      "score": 100.5,
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -9045,7 +9045,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Open AI and assign-identity are the correct answers.",
+    "most_voted_answer": "--kind: OpenAI\nParameter: --encryption",
     "comments": [
       {
         "comment_id": "1805808",
@@ -9064,7 +9064,7 @@
         "comment_id": "1805786",
         "author": "8ac3742",
         "date_title": "October 27, 2026 03:20 pm",
-        "text": "OpenAI and encryption\nWhy --encryption?The requirement states: &quot;ensure that the resource uses a customer-managed key to protect data.&quot;   In the az cognitiveservices account create command, the parameter used to specify customer-managed key (CMK) settings backed by Azure Key Vault is --encryption.",
+        "text": "OpenAI and encryption\nWhy --encryption?The requirement states: \"ensure that the resource uses a customer-managed key to protect data.\"   In the az cognitiveservices account create command, the parameter used to specify customer-managed key (CMK) settings backed by Azure Key Vault is --encryption.",
         "upvotes": 3,
         "badges": [],
         "selected_answer": null,
@@ -9086,7 +9086,7 @@
         "comment_id": "1796902",
         "author": "Srikantha",
         "date_title": "September 15, 2026 03:20 am",
-        "text": "Why\nOpenAI is required because the resource must generate fictional stores from user prompts using Azure OpenAI.\n--api-properties is the parameter used to specify the encryption key source and Azure Key Vault properties.\n&quot;keySource&quot;: &quot;Microsoft.KeyVault&quot; indicates a customer-managed key (CMK) rather than a Microsoft-managed key.\n✅ Answer: OpenAI + --api-properties",
+        "text": "Why\nOpenAI is required because the resource must generate fictional stores from user prompts using Azure OpenAI.\n--api-properties is the parameter used to specify the encryption key source and Azure Key Vault properties.\n\"keySource\": \"Microsoft.KeyVault\" indicates a customer-managed key (CMK) rather than a Microsoft-managed key.\n✅ Answer: OpenAI + --api-properties",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -9133,10 +9133,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1802984",
-      "score": 100.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 1
+      "comment_id": "curated",
+      "score": 999.0,
+      "pattern": "curated",
+      "upvotes": 0
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution"
@@ -9151,13 +9151,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | request: AnalyzeTextOptions(text=comment) | response: client.analyze_text(request) | Explanations | request: The AnalyzeTextOptions class takes the input string using the text parameter (e.g., AnalyzeTextOptions(text=comment)). It does not take a list or a category object as the primary argument. | response: To perform text moderation using the ContentSafetyClient in the Azure AI Content Safety Python SDK, call the method client.analyze_text(request).",
+    "most_voted_answer": "request: AnalyzeTextOptions(text=comment)\nresponse: client.analyze_text(request)",
     "comments": [
       {
         "comment_id": "1801367",
         "author": "jwlnewsome",
         "date_title": "October 02, 2026 01:17 am",
-        "text": "request: AnalyzeTextOptions(text=comment)\nresponse: client.analyze_text(request)\nhttps://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&amp;pivots=programming-language-python",
+        "text": "request: AnalyzeTextOptions(text=comment)\nresponse: client.analyze_text(request)\nhttps://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text?tabs=visual-studio%2Cwindows&pivots=programming-language-python",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -9207,7 +9207,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795969",
-      "score": 100.5,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -9370,7 +9370,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Put Train the classifier model as number 3. | The correct full sequence is: | 1. Create a project | 2. Upload and tag images | 3. Train the classifier model | Here you’re classifying components (faulty vs non‑faulty), not locating multiple objects in an image, so classifier—not object detection—is the right choice.",
+    "most_voted_answer": "1. Create a project\n2. Upload and tag images\n3. Train the classifier model",
     "comments": [
       {
         "comment_id": "1804638",
@@ -9417,8 +9417,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1795157",
-      "score": 54.5,
-      "pattern": "highly_voted",
+      "score": 195.5,
+      "pattern": "loose:numbered_list",
       "upvotes": 9
     },
     "skill_area": 3,
@@ -9473,7 +9473,7 @@
         "comment_id": "1805802",
         "author": "8ac3742",
         "date_title": "October 27, 2026 03:55 pm",
-        "text": "Examples of AI principals:\n(1)TransparencyCore concept: Displaying a clear notification: &quot;Your uploaded video has been analyzed by an automated review system to tag product mentions&quot;\n(2)InclusivenessCore concept: Integrating Azure AI Immersive Reader, screen reader compatibility, and closed captioning into an educational app so users with visual impairments or dyslexia can learn  equally.\n(3)FairnessCore concept:  Ensuring a resume screening model evaluates candidates based solely on relevant skills rather than favoring one gender due to historical hiring bias.\n(4)Reliability and SafetyCore concept: Rigorously testing an autonomous vehicle's object detection system to ensure it reliably detects pedestrians in fog, rain, or night conditions without unexpected failure.",
+        "text": "Examples of AI principals:\n(1)TransparencyCore concept: Displaying a clear notification: \"Your uploaded video has been analyzed by an automated review system to tag product mentions\"\n(2)InclusivenessCore concept: Integrating Azure AI Immersive Reader, screen reader compatibility, and closed captioning into an educational app so users with visual impairments or dyslexia can learn  equally.\n(3)FairnessCore concept:  Ensuring a resume screening model evaluates candidates based solely on relevant skills rather than favoring one gender due to historical hiring bias.\n(4)Reliability and SafetyCore concept: Rigorously testing an autonomous vehicle's object detection system to ensure it reliably detects pedestrians in fog, rain, or night conditions without unexpected failure.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -9639,7 +9639,7 @@
         "comment_id": "1805601",
         "author": "8ac3742",
         "date_title": "October 26, 2026 09:53 pm",
-        "text": "In Azure certification questions, &quot;API key&quot; and &quot;subscription key&quot; are used interchangeably when referring to the 32-character key found under Keys and Endpoint in the Azure portal.",
+        "text": "In Azure certification questions, \"API key\" and \"subscription key\" are used interchangeably when referring to the 32-character key found under Keys and Endpoint in the Azure portal.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -9683,7 +9683,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The order shown could cause service disruption. To minimize downtime, the correct sequence should be: | 1. Add a new query key | 2. Change the app to use the new query key | 3. Delete the compromised key",
+    "most_voted_answer": "1. Add a new query key\n2. Change the app to use the new query key\n3. Delete the compromised key",
     "comments": [
       {
         "comment_id": "1807027",
@@ -9702,7 +9702,7 @@
         "comment_id": "1805602",
         "author": "8ac3742",
         "date_title": "October 26, 2026 09:57 pm",
-        "text": "Add a new query key   Change the app to use the new key   Delete the compromised key   Why Not &quot;Delete First&quot;?If you delete the compromised key first, your production app immediately loses access and begins throwing 401 Unauthorized errors until you generate and deploy the replacement key. That creates avoidable downtime.",
+        "text": "Add a new query key   Change the app to use the new key   Delete the compromised key   Why Not \"Delete First\"?If you delete the compromised key first, your production app immediately loses access and begins throwing 401 Unauthorized errors until you generate and deploy the replacement key. That creates avoidable downtime.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -9741,8 +9741,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1791320",
-      "score": 58.0,
-      "pattern": "highly_voted",
+      "score": 223.5,
+      "pattern": "loose:numbered_list",
       "upvotes": 16
     },
     "skill_area": 2,
@@ -9758,7 +9758,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | HTTP Method: PUT | kind: \"CognitiveServices\" | Explanations | HTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb. | kind (\"CognitiveServices\"): The multi-service Azure AI services resource type is denoted by the \"CognitiveServices\" kind. Single-service kinds (like \"ComputerVision\" or \"TextAnalytics\") only provide access to individual APIs and...",
+    "most_voted_answer": "HTTP Method: PUT\nkind: \"CognitiveServices\"",
     "comments": [
       {
         "comment_id": "1805609",
@@ -9777,7 +9777,7 @@
         "comment_id": "1795975",
         "author": "Amelia233",
         "date_title": "September 11, 2026 08:37 am",
-        "text": "Correct Answers\nHTTP Method: PUT\nkind: &quot;CognitiveServices&quot;\nExplanations\nHTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb.\nkind (&quot;CognitiveServices&quot;): The multi-service Azure AI services resource type is denoted by the &quot;CognitiveServices&quot; kind. Single-service kinds (like &quot;ComputerVision&quot; or &quot;TextAnalytics&quot;) only provide access to individual APIs and cannot satisfy the requirement for consolidated billing, multi-service key/endpoint access, or future Vision integration.",
+        "text": "Correct Answers\nHTTP Method: PUT\nkind: \"CognitiveServices\"\nExplanations\nHTTP Method (PUT): In Azure Resource Manager (ARM) REST APIs, resource creation or full replacement at a specific URI uses the PUT verb.\nkind (\"CognitiveServices\"): The multi-service Azure AI services resource type is denoted by the \"CognitiveServices\" kind. Single-service kinds (like \"ComputerVision\" or \"TextAnalytics\") only provide access to individual APIs and cannot satisfy the requirement for consolidated billing, multi-service key/endpoint access, or future Vision integration.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -9803,7 +9803,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795975",
-      "score": 100.5,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -9820,7 +9820,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Step-by-Step Analysis | The percentage of false positives: | Precision Formula: | Precision= | True Positives (TP)+False Positives (FP) | True Positives (TP) | ​ | With a Precision of 100.0% (1.0), there are no false positive predictions made by the model (FP=0). | Therefore, the percentage of false positives is 0. | The value for the number of true positives divided by the total number of true positives and false negatives: | Recall Formula: | Recall=...",
+    "most_voted_answer": "Precision Formula: Precision=\nRecall Formula: Recall=",
     "comments": [
       {
         "comment_id": "1799400",
@@ -9932,7 +9932,7 @@
         "comment_id": "1805610",
         "author": "8ac3742",
         "date_title": "October 26, 2026 10:38 pm",
-        "text": "Why the Answer is About &quot;Groups&quot; When the Question Says &quot;Document-Level Filtering&quot;\nIn Azure AI Search, &quot;document-level filtering&quot; (officially called Security Filters or Document-level Security) means:\nWhen a user runs a search query, they should only see the specific documents they have permission to view, and documents they are not authorized to view must never appear in the search results.\nAzure AI Search does not integrate with Microsoft Entra ID permissions at the individual document level automatically. Instead, security trimming is implemented using security groups as document metadata:\nA. Add allowed groups to each index entry\nE. Retrieve the group memberships of the user\nF. Supply the groups as a filter for the search requests",
+        "text": "Why the Answer is About \"Groups\" When the Question Says \"Document-Level Filtering\"\nIn Azure AI Search, \"document-level filtering\" (officially called Security Filters or Document-level Security) means:\nWhen a user runs a search query, they should only see the specific documents they have permission to view, and documents they are not authorized to view must never appear in the search results.\nAzure AI Search does not integrate with Microsoft Entra ID permissions at the individual document level automatically. Instead, security trimming is implemented using security groups as document metadata:\nA. Add allowed groups to each index entry\nE. Retrieve the group memberships of the user\nF. Supply the groups as a filter for the search requests",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -10047,7 +10047,7 @@
         "comment_id": "1799362",
         "author": "Srikantha",
         "date_title": "September 18, 2026 04:56 pm",
-        "text": "A. Document Layout\nMicrosoft Documentation Explanation\nAccording to Microsoft Learn documentation on Azure AI Search multimodal skillsets:\nLocation Metadata &amp; Bounding Polygons: The built-in Document Layout skill uses Azure AI Document Intelligence under the hood to extract text, figures, and embedded images along with spatial location metadata—specifically page numbers (pageNumber) and bounding coordinates (boundingPolygons / locationMetadata) for both text and image elements.\nMulti-Page Table Extraction: The layout extraction capability natively parses complex document structures, retaining tables and tabular data that span across multi-page boundaries as cohesive structured objects rather than disconnected text fragments.",
+        "text": "A. Document Layout\nMicrosoft Documentation Explanation\nAccording to Microsoft Learn documentation on Azure AI Search multimodal skillsets:\nLocation Metadata & Bounding Polygons: The built-in Document Layout skill uses Azure AI Document Intelligence under the hood to extract text, figures, and embedded images along with spatial location metadata—specifically page numbers (pageNumber) and bounding coordinates (boundingPolygons / locationMetadata) for both text and image elements.\nMulti-Page Table Extraction: The layout extraction capability natively parses complex document structures, retaining tables and tabular data that span across multi-page boundaries as cohesive structured objects rather than disconnected text fragments.",
         "upvotes": 4,
         "badges": [
           "Selected Answer: A"
@@ -10103,13 +10103,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: | JSON data: Object projection | Extracted text data: Table projection",
+    "most_voted_answer": "1. Object projection\n2. Object projection",
     "comments": [
       {
         "comment_id": "1805611",
         "author": "8ac3742",
         "date_title": "October 26, 2026 10:53 pm",
-        "text": "json: blob, text: file\nIn Azure AI Search, an AI enrichment pipeline (indexer + skillset) extracts images, text, key phrases, sentiments, and entities from raw files.\nNormally, all that enriched data is stored solely inside the search index to answer search queries.\nHowever, if you also want to save that enriched data outside of the search index—into Azure Storage so you can analyze it with Power BI, feed it into machine learning models, or view it in another app—you use a Knowledge Store.\nThe mechanism that takes the enriched data from the pipeline and shapes it into storage is called a Projection (think of &quot;projecting&quot; or casting the enriched data onto storage).\nJSON data $\\rightarrow$ Object projection:Unstructured or deeply nested JSON documents cannot easily fit into flat database columns without breaking their hierarchy. Object projections save each enriched item as an individual, native JSON document in Azure Blob Storage.\nText extracted from documents (along with metadata like document title, page number, sentiment score, extracted entities) is shaped into rows and columns using Table projections in Azure Table Storage, making the textual records queryable and structured for downstream analysis.",
+        "text": "json: blob, text: file\nIn Azure AI Search, an AI enrichment pipeline (indexer + skillset) extracts images, text, key phrases, sentiments, and entities from raw files.\nNormally, all that enriched data is stored solely inside the search index to answer search queries.\nHowever, if you also want to save that enriched data outside of the search index—into Azure Storage so you can analyze it with Power BI, feed it into machine learning models, or view it in another app—you use a Knowledge Store.\nThe mechanism that takes the enriched data from the pipeline and shapes it into storage is called a Projection (think of \"projecting\" or casting the enriched data onto storage).\nJSON data $\\rightarrow$ Object projection:Unstructured or deeply nested JSON documents cannot easily fit into flat database columns without breaking their hierarchy. Object projections save each enriched item as an individual, native JSON document in Azure Blob Storage.\nText extracted from documents (along with metadata like document title, page number, sentiment score, extracted entities) is shaped into rows and columns using Table projections in Azure Table Storage, making the textual records queryable and structured for downstream analysis.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -10158,10 +10158,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1805346",
-      "score": 101.0,
+      "comment_id": "1791483",
+      "score": 137.0,
       "pattern": "explicit_pattern",
-      "upvotes": 2
+      "upvotes": 6
     },
     "skill_area": 2,
     "skill_area_label": "Implement generative AI and agentic solutions"
@@ -10176,7 +10176,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | Project Types: Classification | Classification Types: Multiclass (Single tag per image) | Domains: General (compact) | Explanations | Project Types: Classification is selected because the goal is to categorize the overall image rather than locate bounding boxes around objects. | Classification Types: Multiclass (Single tag per image) is selected because each image contains either a cat or a dog, so only one label applies per image. | Domains: General (compact) is required be...",
+    "most_voted_answer": "Project Types: Classification\nClassification Types: Multiclass (Single tag per image)\nDomains: General (compact)",
     "comments": [
       {
         "comment_id": "1795988",
@@ -10210,7 +10210,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795988",
-      "score": 100.5,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -10385,7 +10385,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Second one should be \"no\", as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called \"bing_entity_search_api_id\". | Final correct answer: | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python",
+    "most_voted_answer": "1. No\n2. No\n3. Yes",
     "comments": [
       {
         "comment_id": "1810224",
@@ -10426,7 +10426,7 @@
         "comment_id": "1791327",
         "author": "Alvarogc",
         "date_title": "August 23, 2026 10:01 am",
-        "text": "Second one should be &quot;no&quot;, as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called &quot;bing_entity_search_api_id&quot;.\nFinal correct answer:\n1. No\n2. No\n3. Yes\nReference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python",
+        "text": "Second one should be \"no\", as the URL is not always from Bing. In fact, there's another parameter for Bing searchs called \"bing_entity_search_api_id\".\nFinal correct answer:\n1. No\n2. No\n3. Yes\nReference: https://learn.microsoft.com/en-us/python/api/azure-ai-textanalytics/azure.ai.textanalytics.linkedentity?view=azure-python",
         "upvotes": 5,
         "badges": [],
         "selected_answer": null,
@@ -10460,7 +10460,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1791327",
-      "score": 102.5,
+      "score": 134.5,
       "pattern": "explicit_pattern",
       "upvotes": 5
     },
@@ -10477,7 +10477,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | Model evaluation: Use model catalog leaderboards and model cards. | Deployment option: Use a serverless deployment. | Explanations | Model evaluation: Model catalog leaderboards and model cards allow you to evaluate and compare models across benchmarks for quality, cost, latency, and throughput metrics prior to deployment. | Deployment option: Serverless API deployments (Models-as-a-Service) host model weights in Microsoft-managed infrastructure, charging on a pay-as-you-go...",
+    "most_voted_answer": "Model evaluation: Use model catalog leaderboards and model cards.\nDeployment option: Use a serverless deployment.",
     "comments": [
       {
         "comment_id": "1805591",
@@ -10522,7 +10522,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795992",
-      "score": 100.5,
+      "score": 132.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -10609,13 +10609,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation \"LLM\" is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions). | Changing \"What is an LLM?\" to \"What is an LLM in the context of AI models?\" will produce the intended response: Yes (Disambiguating the user prompt d...",
+    "most_voted_answer": "The response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No\nChanging \"What is an LLM?\" to \"What is an LLM in the context of AI models?\" will produce the intended response: Yes",
     "comments": [
       {
         "comment_id": "1795996",
         "author": "Amelia233",
         "date_title": "September 11, 2026 10:37 am",
-        "text": "Correct Answers\nThe response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation &quot;LLM&quot; is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions).\nChanging &quot;What is an LLM?&quot; to &quot;What is an LLM in the context of AI models?&quot; will produce the intended response: Yes (Disambiguating the user prompt directly ensures the model targets the correct domain).",
+        "text": "Correct Answers\nThe response will contain an explanation of large language models (LLMs) that has a high degree of certainty: No (The abbreviation \"LLM\" is ambiguous and can mean Master of Laws in a legal context; without context steering, the model may return legal definition results instead of AI definitions).\nChanging \"What is an LLM?\" to \"What is an LLM in the context of AI models?\" will produce the intended response: Yes (Disambiguating the user prompt directly ensures the model targets the correct domain).",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -10651,7 +10651,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1795996",
-      "score": 100.5,
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -10930,7 +10930,7 @@
         "comment_id": "1804146",
         "author": "AzureGeek79",
         "date_title": "October 19, 2026 12:19 am",
-        "text": "Correct answers: A &amp; C",
+        "text": "Correct answers: A & C",
         "upvotes": 2,
         "badges": [
           "Selected Answer: AC"
@@ -10999,7 +10999,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "extract: vision, sentiment and opinion: language | Press releases are unstructured prose text (articles/announcements). | In Microsoft's official curriculum and exam design, raw text/prose extraction from PDFs and images is handled by the Read API in Azure Vision. | Why not Document Intelligence? Document Intelligence is specifically intended for structured/semi-structured form understanding (such as tables, key-value pairs, invoices, receipts, and tax...",
+    "most_voted_answer": "Extract text: Azure Vision in Foundry Tools\nPerform sentiment analysis: Azure Language in Foundry Tools",
     "comments": [
       {
         "comment_id": "1805596",
@@ -11045,10 +11045,10 @@
     "skill_area": 3,
     "skill_area_label": "Implement computer vision solutions",
     "_backfill_source": {
-      "comment_id": "1805596",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "1799651",
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -11131,7 +11131,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "First one is a No, as you can see in the Microsoft Learn documentation: \" this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query\". | Second one is a No too, as it's not configured, and third one is a trivial Yes per definition. | 1. No | 2. No | 3. Yes | Reference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers",
+    "most_voted_answer": "1. No\n2. No\n3. Yes",
     "comments": [
       {
         "comment_id": "1795145",
@@ -11150,7 +11150,7 @@
         "comment_id": "1791328",
         "author": "Alvarogc",
         "date_title": "August 23, 2026 10:30 am",
-        "text": "First one is a No, as you can see in the Microsoft Learn documentation: &quot; this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query&quot;.\nSecond one is a No too, as it's not configured, and third one is a trivial Yes per definition.\n1. No\n2. No\n3. Yes\nReference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers",
+        "text": "First one is a No, as you can see in the Microsoft Learn documentation: \" this URL verifies if the api-key used to start the container is valid WITHOUT causing an endpoint query\".\nSecond one is a No too, as it's not configured, and third one is a trivial Yes per definition.\n1. No\n2. No\n3. Yes\nReference: https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/how-to/use-containers",
         "upvotes": 4,
         "badges": [],
         "selected_answer": null,
@@ -11195,8 +11195,8 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1791328",
-      "score": 102.0,
-      "pattern": "loose:numbered_list",
+      "score": 130.5,
+      "pattern": "explicit_pattern",
       "upvotes": 4
     },
     "skill_area": 2,
@@ -11326,7 +11326,7 @@
         "comment_id": "1805560",
         "author": "8ac3742",
         "date_title": "October 26, 2026 05:33 pm",
-        "text": "Optimized for Pure Text Extraction at Scale:The requirement specifically asks to &quot;extract text from the images&quot; for one million scanned magazine articles with minimal development effort.   The Read API in Azure Vision is Azure’s dedicated, pre-built asynchronous Optical Character Recognition (OCR) engine optimized for reading high volumes of text-heavy scanned image files (printed and handwritten) without needing complex setup or model definitions.Why not C (Azure Vision in Foundry Tools Image Analysis)?Standard Image Analysis is designed for general computer vision tasks (generating image captions, object tags, detecting faces, color palettes, or detecting short scene text in photographs). It is not designed for bulk, multi-page, dense text reading like scanned articles.",
+        "text": "Optimized for Pure Text Extraction at Scale:The requirement specifically asks to \"extract text from the images\" for one million scanned magazine articles with minimal development effort.   The Read API in Azure Vision is Azure’s dedicated, pre-built asynchronous Optical Character Recognition (OCR) engine optimized for reading high volumes of text-heavy scanned image files (printed and handwritten) without needing complex setup or model definitions.Why not C (Azure Vision in Foundry Tools Image Analysis)?Standard Image Analysis is designed for general computer vision tasks (generating image captions, object tags, detecting faces, color palettes, or detecting short scene text in photographs). It is not designed for bulk, multi-page, dense text reading like scanned articles.",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -11353,7 +11353,7 @@
         "comment_id": "1799561",
         "author": "ABHISHEK",
         "date_title": "September 19, 2026 06:38 pm",
-        "text": "The Read API is Azure's OCR engine for extracting printed and handwritten text from image files. It's a prebuilt, ready-to-call service, so you don't need to train a model or build a custom pipeline, which meets the &quot;minimize development effort&quot; requirement. It's also built to handle large volumes asynchronously, which suits one million images.",
+        "text": "The Read API is Azure's OCR engine for extracting printed and handwritten text from image files. It's a prebuilt, ready-to-call service, so you don't need to train a model or build a custom pipeline, which meets the \"minimize development effort\" requirement. It's also built to handle large volumes asynchronously, which suits one million images.",
         "upvotes": 6,
         "badges": [
           "Selected Answer: B"
@@ -11409,7 +11409,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct sequence: | - Provision an on-premises Kubernetes cluster that has internet connectivity. | The container needs to have internet connectivity for billing/usage purposes | - Pull an image from the Microsoft Container Registry (MCR). | Azure AI Language containers are distributed through MCR, not Docker Hub. | - Run the container and specify an API key and the Endpoint URL of the Azure AI resource. | Language containers require: | ApiKey | Billing (endpoint URI) | Eula=accept | when sta...",
+    "most_voted_answer": "- Provision an on-premises Kubernetes cluster that has internet connectivity.\n- Pull an image from the Microsoft Container Registry (MCR).\n- Run the container and specify an API key and the Endpoint URL of the Azure AI resource.",
     "comments": [
       {
         "comment_id": "1806990",
@@ -11428,7 +11428,7 @@
         "comment_id": "1805561",
         "author": "8ac3742",
         "date_title": "October 26, 2026 05:41 pm",
-        "text": "kubenetes with internet connection -&gt; pull image from MCR -&gt; run container with API key and endpoint URL\nHost environment selectionThe requirement explicitly states that &quot;confidential documents remain on-premises.&quot;Azure Kubernetes Service (AKS) is a cloud-hosted managed service in Azure, so running workloads on AKS would upload/process the data in the cloud, violating the on-premises requirement.Connected Cognitive Services / Azure AI containers require outbound access to Azure for billing and metering verification. A cluster that is entirely isolated from the internet would prevent the container from communicating with the metering endpoint (Billing=...), causing it to fail startup.   Therefore, you must provision an on-premises Kubernetes cluster that has internet connectivity (so billing pings succeed while document data remains local).",
+        "text": "kubenetes with internet connection -> pull image from MCR -> run container with API key and endpoint URL\nHost environment selectionThe requirement explicitly states that \"confidential documents remain on-premises.\"Azure Kubernetes Service (AKS) is a cloud-hosted managed service in Azure, so running workloads on AKS would upload/process the data in the cloud, violating the on-premises requirement.Connected Cognitive Services / Azure AI containers require outbound access to Azure for billing and metering verification. A cluster that is entirely isolated from the internet would prevent the container from communicating with the metering endpoint (Billing=...), causing it to fail startup.   Therefore, you must provision an on-premises Kubernetes cluster that has internet connectivity (so billing pings succeed while document data remains local).",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -11467,12 +11467,12 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1788103",
-      "score": 53.5,
-      "pattern": "highly_voted",
+      "score": 187.0,
+      "pattern": "explicit_pattern",
       "upvotes": 7
     },
-    "skill_area": 4,
-    "skill_area_label": "Implement text analysis solutions"
+    "skill_area": 2,
+    "skill_area_label": "Implement generative AI and agentic solutions"
   },
   {
     "discussion_id": "424405",
@@ -11484,7 +11484,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answers | HTTP Method: POST | visualFeatures: imageType | HTTP Method (POST): The analyze endpoint in Azure Computer Vision requires sending image data (binary or URL) in the payload via a POST request. | visualFeatures (imageType): The ImageType feature specifically analyzes an image to determine whether it is clip art or a line drawing, returning scores for both types in the response.",
+    "most_voted_answer": "HTTP Method: POST\nvisualFeatures: imageType",
     "comments": [
       {
         "comment_id": "1796012",
@@ -11518,7 +11518,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1796012",
-      "score": 102.0,
+      "score": 144.0,
       "pattern": "explicit_pattern",
       "upvotes": 4
     },
@@ -11664,7 +11664,7 @@
         "comment_id": "1799270",
         "author": "Srikantha",
         "date_title": "September 18, 2026 04:02 am",
-        "text": "D. the virtual network settings for ta1\nWhy this is correct:\nTo restrict access to an Azure AI / Language service resource (ta1) so that it only accepts traffic from a specific virtual network (vnet1), you must configure the Networking / Virtual network settings on ta1 itself. This is done by enabling access from &quot;Selected Networks and Private Endpoints&quot; and linking vnet1 (via Service Endpoints or Private Endpoints).",
+        "text": "D. the virtual network settings for ta1\nWhy this is correct:\nTo restrict access to an Azure AI / Language service resource (ta1) so that it only accepts traffic from a specific virtual network (vnet1), you must configure the Networking / Virtual network settings on ta1 itself. This is done by enabling access from \"Selected Networks and Private Endpoints\" and linking vnet1 (via Service Endpoints or Private Endpoints).",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -12269,7 +12269,7 @@
         "comment_id": "1805553",
         "author": "8ac3742",
         "date_title": "October 26, 2026 05:02 pm",
-        "text": "Protected Material Detection: Protects against copyrighted/proprietary intellectual property leaks (e.g., songs, books, public code).\nFor that specific requirement:\n&quot;Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.&quot;\nThis is handled by Personally Identifiable Information (PII) detection / redaction (or Data masking).\nIn Azure AI services and Microsoft Foundry, this is implemented via:\nAzure AI Language — PII Detection &amp; Redaction:\nScans unstructured text for sensitive customer information (names, email addresses, phone numbers, SSNs, credit card numbers, addresses, account IDs).\nMasks or redacts the identified PII (e.g., replacing it with [REDACTED] or *) before the text is indexed or before the response is returned to the user.\nAzure AI Content Safety / Foundry Guardrails — Sensitive Data Protection:\nModern Foundry agent workflows and content safety filters include PII / Sensitive Data evaluation.\nIncoming retrieved text chunks and outgoing agent responses are evaluated against sensitive personal data policies so customer data is blocked or sanitized before reaching the user.\nIn the Azure AI Search Indexing Pipeline (Skillsets):\nContoso can add a PII Detection Cognitive Skill (Microsoft.Skills.Text.PIIDetectionSkill) to the ingestion/enrichment pipeline for storage1.",
+        "text": "Protected Material Detection: Protects against copyrighted/proprietary intellectual property leaks (e.g., songs, books, public code).\nFor that specific requirement:\n\"Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.\"\nThis is handled by Personally Identifiable Information (PII) detection / redaction (or Data masking).\nIn Azure AI services and Microsoft Foundry, this is implemented via:\nAzure AI Language — PII Detection & Redaction:\nScans unstructured text for sensitive customer information (names, email addresses, phone numbers, SSNs, credit card numbers, addresses, account IDs).\nMasks or redacts the identified PII (e.g., replacing it with [REDACTED] or *) before the text is indexed or before the response is returned to the user.\nAzure AI Content Safety / Foundry Guardrails — Sensitive Data Protection:\nModern Foundry agent workflows and content safety filters include PII / Sensitive Data evaluation.\nIncoming retrieved text chunks and outgoing agent responses are evaluated against sensitive personal data policies so customer data is blocked or sanitized before reaching the user.\nIn the Azure AI Search Indexing Pipeline (Skillsets):\nContoso can add a PII Detection Cognitive Skill (Microsoft.Skills.Text.PIIDetectionSkill) to the ingestion/enrichment pipeline for storage1.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -12398,7 +12398,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "AnalyzeTextOption and analyze_text | AnalyzeTextOptions takes the parameters visible directly below it:text=input_text blocklist_names=[blocklist_name] halt_on_blocklist_hit=False client.analyze_text accepts an AnalyzeTextOptions request object and executes the text moderation against the specified blocklist.",
+    "most_voted_answer": "AnalyzeTextOption and analyze_text\nAnalyzeTextOptions takes the parameters visible directly below it:text=input_text   blocklist_names=[blocklist_name]   halt_on_blocklist_hit=False   client.analyze_text accepts an AnalyzeTextOptions request object and executes the text moderation against the specified blocklist.",
     "comments": [
       {
         "comment_id": "1805556",
@@ -12488,7 +12488,7 @@
         "comment_id": "1805557",
         "author": "8ac3742",
         "date_title": "October 26, 2026 05:16 pm",
-        "text": "An embedding model (such as text-embedding-3-small or text-embedding-ada-002) converts text into a mathematical vector—a list of floating-point numbers:$$\\text{&quot;A lightweight running shoe with breathable mesh&quot;} \\longrightarrow [0.0142, -0.0284, 0.0891, \\dots]$$",
+        "text": "An embedding model (such as text-embedding-3-small or text-embedding-ada-002) converts text into a mathematical vector—a list of floating-point numbers:$$\\text{\"A lightweight running shoe with breathable mesh\"} \\longrightarrow [0.0142, -0.0284, 0.0891, \\dots]$$",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -12519,7 +12519,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Project type: Object detection | Domain: General (compact) | Key Reasons | Object detection: The model must identify specific items (verifying that exactly four products are inside each package) and provide the location (bounding box coordinates) of defects to an operator. Image classification can only categorize an entire image as a whole and cannot return spatial locations or count individual items. | General (compact): The factory has intermittent internet connectivity, meaning the model m...",
+    "most_voted_answer": "Project type: Object detection\nDomain: General (compact)",
     "comments": [
       {
         "comment_id": "1799263",
@@ -12553,7 +12553,7 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1799263",
-      "score": 101.0,
+      "score": 128.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
     },
@@ -12640,7 +12640,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1: From the Custom Vision portal, open the project. | 2: Upload sample images of the new products. | 3: Label the sample images. | 4: Retrain the model. | 5: Publish the model.",
+    "most_voted_answer": "1: From the Custom Vision portal, open the project.\n2: Upload sample images of the new products.\n3: Label the sample images.\n4: Retrain the model.\n5: Publish the model.",
     "comments": [
       {
         "comment_id": "1799261",
@@ -12675,8 +12675,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1799261",
-      "score": 56.5,
-      "pattern": "highly_voted",
+      "score": 213.0,
+      "pattern": "loose:numbered_list",
       "upvotes": 13
     },
     "skill_area": 3,
@@ -12731,7 +12731,7 @@
         "comment_id": "1805531",
         "author": "8ac3742",
         "date_title": "October 26, 2026 03:05 pm",
-        "text": "How Reflection Pass Works in Application Code\nIn application logic, a reflection pass is implemented as a two-stage LLM workflow:\nStep 1 (Generate Draft): The agent generates a summary based on the retrieved documents.\nStep 2 (Self-Reflect &amp; Critique): The application sends a second prompt containing both the retrieved documents and the initial draft:\n&quot;Review the summary above against the provided policy documents. Did it omit any key clauses, edge cases, exceptions, or coverage details? List missing items.&quot;\nStep 3 (Revision): If omissions are identified, the agent integrates them into a completed, final response before returning it.",
+        "text": "How Reflection Pass Works in Application Code\nIn application logic, a reflection pass is implemented as a two-stage LLM workflow:\nStep 1 (Generate Draft): The agent generates a summary based on the retrieved documents.\nStep 2 (Self-Reflect & Critique): The application sends a second prompt containing both the retrieved documents and the initial draft:\n\"Review the summary above against the provided policy documents. Did it omit any key clauses, edge cases, exceptions, or coverage details? List missing items.\"\nStep 3 (Revision): If omissions are identified, the agent integrates them into a completed, final response before returning it.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -12762,7 +12762,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answer: A — Add a reflection pass before the responses are returned. | Why (from Microsoft Learn): | • A reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching \"implemented in the logic of the application code.\" | • Respon...",
+    "most_voted_answer": "Provide access to AI1 by using: An API key\nConnect to the deployment by using: A deployment name",
     "comments": [
       {
         "comment_id": "1809387",
@@ -12781,7 +12781,7 @@
         "comment_id": "1802756",
         "author": "AngusSzarpidrut",
         "date_title": "October 10, 2026 03:33 pm",
-        "text": "Correct Answer: A — Add a reflection pass before the responses are returned.\nWhy (from Microsoft Learn):\n•\tA reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching &quot;implemented in the logic of the application code.&quot;\n•\tResponse streaming (B) only changes how the text is delivered to the client (in chunks vs. all at once); it doesn't make the content itself more complete.\n•\tIncreasing presence_penalty (C) discourages the model from repeating the same tokens/topics, which can actually reduce coverage of a topic rather than improve completeness.\n•\tDecreasing max_tokens (D) directly caps how much the model is allowed to write, which would make responses shorter and less complete, the opposite of what's needed here.",
+        "text": "Correct Answer: A — Add a reflection pass before the responses are returned.\nWhy (from Microsoft Learn):\n•\tA reflection pass means having the application ask the model to re-check its own draft answer against the retrieved source material for gaps or missing points before the final response is sent back to the user — this is exactly an application-code-level check that can catch and fix incomplete summaries, matching \"implemented in the logic of the application code.\"\n•\tResponse streaming (B) only changes how the text is delivered to the client (in chunks vs. all at once); it doesn't make the content itself more complete.\n•\tIncreasing presence_penalty (C) discourages the model from repeating the same tokens/topics, which can actually reduce coverage of a topic rather than improve completeness.\n•\tDecreasing max_tokens (D) directly caps how much the model is allowed to write, which would make responses shorter and less complete, the opposite of what's needed here.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -12830,10 +12830,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1802756",
-      "score": 100.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 1
+      "comment_id": "1799679",
+      "score": 193.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 8
     },
     "skill_area": 2,
     "skill_area_label": "Implement generative AI and agentic solutions"
@@ -12848,13 +12848,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "To prevent access from the internet: Create a private endpoint. | To limit access to query specific indexes: Use Azure roles. | Key Reasons | Prevent Public Internet Access: Creating a private endpoint routes traffic over a private IP within your Azure Virtual Network (VNet) using Azure Private Link, blocking direct public internet access to Search1. | Index-Level Granular Control: Azure RBAC data-plane roles (such as Search Index Data Reader) can be assigned to individual app managed identit...",
+    "most_voted_answer": "To prevent access from the internet: Create a private endpoint.\nTo limit access to query specific indexes: Use Azure roles.",
     "comments": [
       {
         "comment_id": "1802757",
         "author": "AngusSzarpidrut",
         "date_title": "October 10, 2026 03:41 pm",
-        "text": "•\tTo prevent access from the internet: create a private endpoint.\n•\tTo limit access to query specific indexes: use Azure roles.\nWhy (from Microsoft Learn):\n•\tAn IP firewall only allows or blocks specific public IP ranges — the service is still technically reachable over the internet, just filtered — while a private endpoint gives Search1 a private IP inside your virtual network and removes public internet exposure entirely, which is what &quot;prevent access from the internet&quot; actually requires.\n•\tFor scoping each app to only specific indexes, Azure roles (Azure RBAC data-plane roles for AI Search) let you assign fine-grained, per-resource permissions to each app's identity, whereas the older key-based authentication uses admin/query keys that grant blanket access across the whole search service with no per-index scoping — so only the RBAC/roles approach can satisfy the &quot;specific indexes&quot; requirement.",
+        "text": "•\tTo prevent access from the internet: create a private endpoint.\n•\tTo limit access to query specific indexes: use Azure roles.\nWhy (from Microsoft Learn):\n•\tAn IP firewall only allows or blocks specific public IP ranges — the service is still technically reachable over the internet, just filtered — while a private endpoint gives Search1 a private IP inside your virtual network and removes public internet exposure entirely, which is what \"prevent access from the internet\" actually requires.\n•\tFor scoping each app to only specific indexes, Azure roles (Azure RBAC data-plane roles for AI Search) let you assign fine-grained, per-resource permissions to each app's identity, whereas the older key-based authentication uses admin/query keys that grant blanket access across the whole search service with no per-index scoping — so only the RBAC/roles approach can satisfy the \"specific indexes\" requirement.",
         "upvotes": 4,
         "badges": [],
         "selected_answer": null,
@@ -12904,7 +12904,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1799259",
-      "score": 101.5,
+      "score": 132.0,
       "pattern": "loose:label_pair",
       "upvotes": 3
     },
@@ -13004,7 +13004,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: Request approval → Export model1 to Host1 → Run the container | Export model1: the custom speech-to-text container takes the model ID (ModelId) in docker run. The model is downloaded on the first run and persisted on the host with a volume mount. | Run the container: docker run requires Eula, Billing and ApiKey; without all three, the container won’t start. | Not needed: disk logging is optional, and model1 is already trained, so no retraining. | Note: per current docs, approval is on...",
+    "most_voted_answer": "Request approval to run the container.\nExport model1 to Host1.\nRun the container.",
     "comments": [
       {
         "comment_id": "1806993",
@@ -13034,7 +13034,7 @@
         "comment_id": "1805534",
         "author": "8ac3742",
         "date_title": "October 26, 2026 03:35 pm",
-        "text": "approval -&gt; export -&gt; run\nStep 1: Submit Approval Request &amp; Gather Azure Credentials\nYou can get the Microsoft intake form for gated Speech services to enable container access for your Azure subscription\nhttps://aka.ms/csgate\nBefore filling the form, Go to the Azure Portal and retrieve your Speech resource credentials\nStep 2: Download Your Custom Model (If using Custom Speech)\nIn Speech Studio, go to Custom Speech &gt; your project &gt; Train Custom Models.\nSelect your trained model and choose Export for Container.\nDownload the resulting .zip / model package and extract it to a directory on your Docker host\nStep 3: Pull and Run the Docker Container",
+        "text": "approval -> export -> run\nStep 1: Submit Approval Request & Gather Azure Credentials\nYou can get the Microsoft intake form for gated Speech services to enable container access for your Azure subscription\nhttps://aka.ms/csgate\nBefore filling the form, Go to the Azure Portal and retrieve your Speech resource credentials\nStep 2: Download Your Custom Model (If using Custom Speech)\nIn Speech Studio, go to Custom Speech > your project > Train Custom Models.\nSelect your trained model and choose Export for Container.\nDownload the resulting .zip / model package and extract it to a directory on your Docker host\nStep 3: Pull and Run the Docker Container",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -13081,10 +13081,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1806778",
-      "score": 100.5,
+      "comment_id": "1799356",
+      "score": 142.0,
       "pattern": "explicit_pattern",
-      "upvotes": 1
+      "upvotes": 6
     },
     "skill_area": 1,
     "skill_area_label": "Plan and manage an Azure AI solution"
@@ -13226,7 +13226,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: Azure Vision → Azure Language | Extract the text: Azure Vision’s OCR (Read) is prebuilt and designed for text in natural scene images, such as road signs. Document Intelligence targets structured documents and forms, and Custom Vision would require training a model. | Identify well-known locations: Azure Language analyzes the extracted text with prebuilt features. Entity linking matches entities to a knowledge base (Wikipedia), which fits “well-known” locations; NER also returns a Loc...",
+    "most_voted_answer": "Azure Vision → Azure Language\nExtract the text: Azure Vision’s OCR (Read) is prebuilt and designed for text in natural scene images, such as road signs. Document Intelligence targets structured documents and forms, and Custom Vision would require training a model.\nIdentify well-known locations: Azure Language analyzes the extracted text with prebuilt features. Entity linking matches entities to a knowledge base (Wikipedia), which fits “well-known” locations; NER also returns a Location category. No training needed.",
     "comments": [
       {
         "comment_id": "1806781",
@@ -13256,7 +13256,7 @@
         "comment_id": "1799256",
         "author": "Srikantha",
         "date_title": "September 18, 2026 03:13 am",
-        "text": "Extract the text: Azure Vision in Foundry Tools\nIdentify well-known locations: Azure Language in Foundry Tools\nKey Reasons\nExtract the text: Azure Vision includes powerful Optical Character Recognition (OCR) capabilities designed to detect and extract text from natural scene images (often called &quot;text in the wild&quot;), which is exactly what is needed for identifying text on road signs in photographs. Azure Document Intelligence is geared more toward structured documents and forms, not scene images.\nIdentify well-known locations: Azure Language provides pre-built Named Entity Recognition (NER) capabilities. By feeding the extracted text into Azure Language, it can automatically identify and categorize entities such as cities, landmarks, and other well-known locations with minimal development effort, eliminating the need to train a custom model.",
+        "text": "Extract the text: Azure Vision in Foundry Tools\nIdentify well-known locations: Azure Language in Foundry Tools\nKey Reasons\nExtract the text: Azure Vision includes powerful Optical Character Recognition (OCR) capabilities designed to detect and extract text from natural scene images (often called \"text in the wild\"), which is exactly what is needed for identifying text on road signs in photographs. Azure Document Intelligence is geared more toward structured documents and forms, not scene images.\nIdentify well-known locations: Azure Language provides pre-built Named Entity Recognition (NER) capabilities. By feeding the extracted text into Azure Language, it can automatically identify and categorize entities such as cities, landmarks, and other well-known locations with minimal development effort, eliminating the need to train a custom model.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -13282,7 +13282,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1806781",
-      "score": 101.0,
+      "score": 140.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
     },
@@ -13299,7 +13299,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "base image and billing org | docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \\ | mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment \\ | Eula=accept \\ | Billing=http://contoso.cognitiveservices.azure.com \\ | ApiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "most_voted_answer": "base image and billing org\ndocker run --rm -it -p 5000:5000 --memory 8g --cpus 1 \\\nmcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment \\\nEula=accept \\\nBilling=http://contoso.cognitiveservices.azure.com \\\nApiKey=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "comments": [
       {
         "comment_id": "1805543",
@@ -13350,13 +13350,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "YES NO NO | **I believe this question contains technical errors that affect the expected answers.** | After reviewing the provided Python code and Microsoft's official documentation on Azure OpenAI Structured Outputs, my answers would be: | **1. YES — `request_a` returns a vectorized response.** | The request uses the `text-embedding-ada-002` model through the `/embeddings` endpoint, which generates a numerical vector representation of the input text. | **2. NO — `request_b` returns a JSON-fo...",
+    "most_voted_answer": "Yes, No, No",
     "comments": [
       {
         "comment_id": "1809838",
         "author": "cayenne06",
         "date_title": "November 15, 2026 11:59 am",
-        "text": "YES NO NO\n**I believe this question contains technical errors that affect the expected answers.**\nAfter reviewing the provided Python code and Microsoft's official documentation on Azure OpenAI Structured Outputs, my answers would be:\n**1. YES — `request_a` returns a vectorized response.**\nThe request uses the `text-embedding-ada-002` model through the `/embeddings` endpoint, which generates a numerical vector representation of the input text.\n**2. NO — `request_b` returns a JSON-formatted response.**\nAlthough the request specifies `response_format` with `type: &quot;json_schema&quot;` and `strict: true`, there are two problems:\n- The JSON schema is missing `&quot;additionalProperties&quot;: false`, which is mandatory for all objects when using strict Structured Outputs.\n- The request body does not include the required `&quot;model&quot;` parameter for the `/chat/completions` endpoint.\nConsequently, the request as written should fail validation instead of returning the expected structured JSON.\n**3. NO — `request_b` always returns a case summary that includes risks.**\nEven after fixing the request, Structured Outputs only enforce the JSON structure, not semantic completeness.\nThe `keyRisks` property is required, but its definition allows an empty array:\n`&quot;keyRisks&quot;: []`\nTherefore, the schema does not guarantee that any risks will actually be included.\n**Conclusion: The technically correct answers should be YES / NO / NO.**\nIf the intended answer to statement 2 is YES, the question should include the required model parameter and `&quot;additionalProperties&quot;: false` in the schema.\nMicrosoft documentation:\nhttps://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs",
+        "text": "YES NO NO\n**I believe this question contains technical errors that affect the expected answers.**\nAfter reviewing the provided Python code and Microsoft's official documentation on Azure OpenAI Structured Outputs, my answers would be:\n**1. YES — `request_a` returns a vectorized response.**\nThe request uses the `text-embedding-ada-002` model through the `/embeddings` endpoint, which generates a numerical vector representation of the input text.\n**2. NO — `request_b` returns a JSON-formatted response.**\nAlthough the request specifies `response_format` with `type: \"json_schema\"` and `strict: true`, there are two problems:\n- The JSON schema is missing `\"additionalProperties\": false`, which is mandatory for all objects when using strict Structured Outputs.\n- The request body does not include the required `\"model\"` parameter for the `/chat/completions` endpoint.\nConsequently, the request as written should fail validation instead of returning the expected structured JSON.\n**3. NO — `request_b` always returns a case summary that includes risks.**\nEven after fixing the request, Structured Outputs only enforce the JSON structure, not semantic completeness.\nThe `keyRisks` property is required, but its definition allows an empty array:\n`\"keyRisks\": []`\nTherefore, the schema does not guarantee that any risks will actually be included.\n**Conclusion: The technically correct answers should be YES / NO / NO.**\nIf the intended answer to statement 2 is YES, the question should include the required model parameter and `\"additionalProperties\": false` in the schema.\nMicrosoft documentation:\nhttps://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -13392,7 +13392,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1809838",
-      "score": 100.5,
+      "score": 122.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },

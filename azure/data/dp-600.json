@@ -485,7 +485,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The right answer is Doamin \\ OneLake Data Hub. | The key wording is the Research Group will use 'Lakehouse Explorer'. This tool will connect to the Onelake Data Hub. | From an admin perspective, you use the Fabric Admin portal to create the Domain Grouping. I think that is the confusion. Hope that helps someone.",
+    "most_voted_answer": "1. \"In Fabric, a domain is a way to logically group together services in the organization\"\n2. You have to use Fabric Admin portal to do the groupings.",
     "comments": [
       {
         "comment_id": "1152830",
@@ -761,10 +761,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1340470",
-      "score": 102.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 4
+      "comment_id": "1163108",
+      "score": 226.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 17
     }
   },
   {
@@ -1806,7 +1806,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Data analysts --> Build Reports on the default dataset | Data Scientist will access the data through a Notebook --> Read all Apache Spark | Data Engineers will read and write to the data store (lakehouse) --> Read all Apache Spark | SQL Analytics Endpoint is read-only mode. You can analyze Delta tables using T-SQL (instead of Spark SQL), save functions, or create views. However, you cannot write data to a Delta table.",
+    "most_voted_answer": "Data Engineers: Read all Apache Spark - because they need to be able to work with Spark for Data curation.\nData Analysts: Build Reports on the default dataset - because they are report builders\nData Scientists: Read SQL Endpoints - They leverage curated data (by engineers) to do predictive analytics.",
     "comments": [
       {
         "comment_id": "1150366",
@@ -2252,10 +2252,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1328325",
-      "score": 102.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 4
+      "comment_id": "1150366",
+      "score": 263.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 91
     }
   },
   {
@@ -2268,7 +2268,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "For the first part, \"AVERAGE('Survey'[Response Value])\" because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations). | For the second part, \"Period\": data is filtered to compute the average in the last 12 months (interval defined in the variable).",
+    "most_voted_answer": "For the first part, \"AVERAGE('Survey'[Response Value])\" because the second option uses a text column as argument, and the third option is not relevant in this context (no need to perform row calculations).\nFor the second part, \"Period\": data is filtered to compute the average in the last 12 months (interval defined in the variable).",
     "comments": [
       {
         "comment_id": "1145472",
@@ -2484,7 +2484,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1153086",
-      "score": 103.0,
+      "score": 130.0,
       "pattern": "explicit_pattern",
       "upvotes": 6
     }
@@ -2499,7 +2499,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "I took the test the last week. This question was included, with a important modification: | They changes the information,¡ of the first option for \"WHEN\": ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'. | | -View | -Case | -WHEN(ListPrice > 50 AND ListPrice <= 1000) THEN 'medium'.",
+    "most_voted_answer": "VIEW: from an existing table.\nCASE: correct syntax before the WHENs.\nWHEN ListPrice BETWEEN 50 AND 1000 THEN 'medium': the other two options miss value 1000; on the other hand, the BETWEEN includes both 50 and 1000.",
     "comments": [
       {
         "comment_id": "1153088",
@@ -3011,10 +3011,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1347581",
-      "score": 106.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 12
+      "comment_id": "1153088",
+      "score": 263.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 77
     }
   },
   {
@@ -4143,7 +4143,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer is RowNumber and X=1 -- No Brainer",
+    "most_voted_answer": "First drop-down box: ROW_NUMBER()\nSecond drop-down box: WHERE X = 1",
     "comments": [
       {
         "comment_id": "1148170",
@@ -4309,10 +4309,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1173966",
-      "score": 158.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 17
+      "comment_id": "1155372",
+      "score": 136.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 5
     }
   },
   {
@@ -4325,7 +4325,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer is No, Yes, Yes | | The code is displaying a summary of the data frame using the visualizations. Point 3 is a technicality and I think to some extent depends on your interpretation of the question. I am going with Yes.",
+    "most_voted_answer": "No → Yes -> Yes.\nLink is here: https://learn.microsoft.com/en-us/power-bi/create-reports/jupyter-quick-report#create-and-render-a-quick-visualize-instance",
     "comments": [
       {
         "comment_id": "1152858",
@@ -4774,10 +4774,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1158931",
-      "score": 160.5,
+      "comment_id": "1208055",
+      "score": 154.0,
       "pattern": "explicit_pattern",
-      "upvotes": 21
+      "upvotes": 8
     }
   },
   {
@@ -6957,7 +6957,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Define, Evaluate and Summarize. Please, update the correct answer.",
+    "most_voted_answer": "1) DEFINE\n2) EVALUATE\n3) SUMMARIZE",
     "comments": [
       {
         "comment_id": "1152640",
@@ -7145,10 +7145,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1184693",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 2
+      "comment_id": "1152640",
+      "score": 259.5,
+      "pattern": "loose:numbered_list",
+      "upvotes": 74
     },
     "drag_drop_items": [],
     "drag_drop_targets": [],
@@ -8280,7 +8280,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "ALTER is DDL not DML so the right answer is EXECUTE SCHEMA.",
+    "most_voted_answer": "ALTER → SCHEMA.\nSCHEMA: schema_name to define a particular schema for tables",
     "comments": [
       {
         "comment_id": "1158836",
@@ -8479,10 +8479,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1163203",
-      "score": 101.5,
+      "comment_id": "1208523",
+      "score": 126.0,
       "pattern": "explicit_pattern",
-      "upvotes": 3
+      "upvotes": 1
     }
   },
   {
@@ -10619,7 +10619,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "the question says : \"You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer.\" | Therefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) ! | The answer is A and A",
+    "most_voted_answer": "the question says : \"You need to create a dimensional data model that will enable the analysis of order items by date, product, and customer.\"\nTherefore, the analysis of order item by date, product and customer doesn't need the company table (it can be omitted) !\nThe answer is A and A",
     "comments": [
       {
         "comment_id": "1161579",
@@ -11025,7 +11025,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1203940",
-      "score": 162.5,
+      "score": 251.0,
       "pattern": "explicit_pattern",
       "upvotes": 25
     }
@@ -11393,7 +11393,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1: Some.blue icone fold and red dont fold | 2 : on power query. all process after the step that dont fold are on power query",
+    "most_voted_answer": "1: Some.blue icone fold and red dont fold\n2 : on power query. all process after the step that dont fold are on power query",
     "comments": [
       {
         "comment_id": "1152330",
@@ -11502,7 +11502,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1152330",
-      "score": 64.0,
+      "score": 60.0,
       "pattern": "highly_voted",
       "upvotes": 28
     }
@@ -13121,7 +13121,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IMHO, fully agree with colleagues below - Y -> Y -> Y",
+    "most_voted_answer": "Yes: When using partitionBy in Spark, the data is organized into a hierarchical directory structure based on the specified partition keys. Therefore, you will see directories like year=YYYY/month=MM/day=DD within the specified output path.\nYes: Parquet files are designed for efficient querying and support parallel processing. Spark can read these partitions in parallel, enabling distributed query execution across multiple nodes.\nNo: While Parquet format supports compression, it is not enabled by default in the code snippet provided. Compression needs to be explicitly specified if required. For example, you could use .option(\"compression\", \"snappy\") to enable Snappy compression.",
     "comments": [
       {
         "comment_id": "1152939",
@@ -13331,10 +13331,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1208632",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 2
+      "comment_id": "1219881",
+      "score": 130.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 3
     }
   },
   {
@@ -13739,7 +13739,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The answer is probably YNY | 1. Those are exactly the columns that are being read. So Yes | 2. Removing the PartitionBy line would not result in any performance changes. So NO | 3. Adding inferSchema as True WILL result in extra time in execution as it will make the engine go over the data twice (one to read data and the other time to read Schema). So YES.",
+    "most_voted_answer": "2. Yes partitioning creates some overhead since Spark needs to create more files\n3. Yes infereSchema forces spark to read the file twice once for schema and once for data",
     "comments": [
       {
         "comment_id": "1170038",
@@ -14012,10 +14012,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1160832",
-      "score": 105.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 11
+      "comment_id": "1170038",
+      "score": 258.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 44
     }
   },
   {
@@ -14265,7 +14265,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IMHO, | Value -> NativeQuery -> EnableFolding is good :) | | Because of here: | Value.NativeQuery(Source, \"SELECT DepartmentID, Name FROM HumanResources.Department WHERE GroupName = 'Research and Development' \", null, [EnableFolding = true]) | | Link: | https://learn.microsoft.com/en-us/power-query/native-query-folding#use-valuenativequery-function",
+    "most_voted_answer": "IMHO,\nValue -> NativeQuery -> EnableFolding is good :)\nBecause of here:\nValue.NativeQuery(Source, \"SELECT DepartmentID, Name FROM HumanResources.Department WHERE GroupName = 'Research and Development'  \", null, [EnableFolding = true])",
     "comments": [
       {
         "comment_id": "1153114",
@@ -14342,7 +14342,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1208656",
-      "score": 101.5,
+      "score": 118.0,
       "pattern": "explicit_pattern",
       "upvotes": 3
     },
@@ -14360,7 +14360,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "VACUUM: to remove old files no longer referenced. | OPTIMIZE: to create fewer files with a larger size. | | Sources: | * https://learn.microsoft.com/en-us/fabric/data-engineering/delta-optimization-and-v-order?tabs=sparksql | * VACUUM: https://docs.delta.io/latest/delta-utility.html#-delta-vacuum | * OPTIMIZE: https://docs.delta.io/latest/optimizations-oss.html",
+    "most_voted_answer": "VACUUM: to remove old files no longer referenced.\nOPTIMIZE: to create fewer files with a larger size.",
     "comments": [
       {
         "comment_id": "1153346",
@@ -14459,8 +14459,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1153346",
-      "score": 62.0,
-      "pattern": "highly_voted",
+      "score": 261.0,
+      "pattern": "loose:label_pair",
       "upvotes": 24
     },
     "drag_drop_items": [],
@@ -14661,7 +14661,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "HTTPS, DFS | https://learn.microsoft.com/en-us/fabric/onelake/create-adls-shortcut",
+    "most_voted_answer": "• Connection (abfss): The abfss (Azure Blob File System Secure) protocol is used for secure connections to Azure Data Lake Storage Gen2. This protocol ensures that the connection is encrypted, providing a secure method to access the storage.",
     "comments": [
       {
         "comment_id": "1165024",
@@ -14838,10 +14838,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1165024",
-      "score": 71.5,
-      "pattern": "highly_voted",
-      "upvotes": 43
+      "comment_id": "1220243",
+      "score": 148.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 8
     }
   },
   {
@@ -14962,7 +14962,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The answer is Automatic and Direct Lake, actually the picture comes from | https://learn.microsoft.com/en-us/power-bi/enterprise/directlake-analyze-qp | In this article you can see there are table1 and view1, performance analyser shows: | • First card is linked to Table1 so direct lake is used | • Second card is linked to View1 so it does direct query | As the model can use direct lake and direct query you can conclude that the fallback behavior is automatic. | For direct lake behavior you ca...",
+    "most_voted_answer": "The answer is Automatic and Direct Lake, actually the picture comes from\nIn this article you can see there are table1 and view1, performance analyser shows: •. First card is linked to Table1 so direct lake is used\n•. Second card is linked to View1 so it does direct query",
     "comments": [
       {
         "comment_id": "1163364",
@@ -15225,7 +15225,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1163364",
-      "score": 167.5,
+      "score": 251.0,
       "pattern": "explicit_pattern",
       "upvotes": 35
     }
@@ -15240,7 +15240,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The correct answers: | 1. withColumn | 2. cast('date') | 3. .filter('fareAmount.......",
+    "most_voted_answer": "1. withColumn\n2. cast('date')\n3. .filter('fareAmount.......",
     "comments": [
       {
         "comment_id": "1160860",
@@ -15371,8 +15371,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1160860",
-      "score": 172.5,
-      "pattern": "explicit_pattern",
+      "score": 259.5,
+      "pattern": "loose:numbered_list",
       "upvotes": 45
     }
   },
@@ -16266,7 +16266,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Where does it say the the Customer Survey Report needs RLS or am I missing something? I see that the report needs Table-level security which is in DirectQuery mode. | IMHO, Service Principle and DirectQuery are the correct answers.",
+    "most_voted_answer": "Real-time data: Direct Lake reads directly from OneLake, ensuring immediate updates.\nRLS support: Paired with SSO, it enforces user-specific security natively.\nPerformance: It outperforms DirectQuery, aligning with Fabric’s optimization.",
     "comments": [
       {
         "comment_id": "1191972",
@@ -16459,10 +16459,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1274303",
-      "score": 102.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 4
+      "comment_id": "1595252",
+      "score": 126.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 2
     }
   },
   {
@@ -16955,7 +16955,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct. | - \"delta\" | - \"Tables/productline1\" | | Requirements: Use managed tables. | | If you use saveAsTable() you don't need to specify the path \"Table/\" | If you you save() you specify the full path | | Ignore my previous comment!",
+    "most_voted_answer": "• The Research division data for Productline1 must be retrieved from Lakehouse1 by using Fabric notebooks.\n• All the Research division data in the lakehouses must be presented as managed tables in Lakehouse explorer.\n- delta\n- Tables/productline1 - because of the root folder in Tables, no subfolder",
     "comments": [
       {
         "comment_id": "1195862",
@@ -17099,10 +17099,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1195862",
-      "score": 66.5,
-      "pattern": "highly_voted",
-      "upvotes": 33
+      "comment_id": "1210357",
+      "score": 122.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
     }
   },
   {
@@ -17398,7 +17398,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Viewer and contributor | | Read using sql endpoint -> Min. Viewer | Read using lakehouse explorer -> Min. Contributor",
+    "most_voted_answer": "Viewer+: Read Lakehouse and Data warehouse data and shortcuts2 with T-SQL through TDS endpoint.\nContributor+: Read Lakehouse data through Lakehouse explorer.",
     "comments": [
       {
         "comment_id": "1192001",
@@ -17476,10 +17476,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1203434",
-      "score": 102.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 5
+      "comment_id": "1210361",
+      "score": 213.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 13
     }
   },
   {
@@ -17492,7 +17492,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IMHO, | | Req: user1 - spark -> **ReadAll**, user 2 - SQL endpoint -> **ReadData**. | | Roles: | ReadData permission on SQL endpoint to access data without SQL policy. | ReadAll permission on the lakehouse to access all data using Apache Spark. | from https://learn.microsoft.com/en-us/fabric/data-engineering/lakehouse-sharing#sharing-and-permissions",
+    "most_voted_answer": "Req: user1 - spark → ReadAll, user 2 - SQL endpoint -> ReadData.\nRoles: ReadData permission on SQL endpoint to access data without SQL policy.",
     "comments": [
       {
         "comment_id": "1189534",
@@ -17579,7 +17579,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1210364",
-      "score": 152.5,
+      "score": 171.0,
       "pattern": "explicit_pattern",
       "upvotes": 5
     }
@@ -17700,7 +17700,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Bronze Layer answer is wrong. the Bronze Layer already has pipeline defined with it so you need an invoke pipeline activity to call them",
+    "most_voted_answer": "Orchestration pipeline: Schedule\nBronze layer: An invoke pipeline activity (see table → PIPELINE is already there)\nSilver: Dataflow activity\nGold: Stored procedure activity",
     "comments": [
       {
         "comment_id": "1204077",
@@ -17852,10 +17852,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1204077",
-      "score": 164.5,
+      "comment_id": "1224553",
+      "score": 227.0,
       "pattern": "explicit_pattern",
-      "upvotes": 29
+      "upvotes": 14
     },
     "drag_drop_items": [],
     "drag_drop_targets": [],
@@ -17871,7 +17871,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IMHO, withColumn -> col -> cast | is good!",
+    "most_voted_answer": "IMHO, withColumn -> col -> cast\nis good!",
     "comments": [
       {
         "comment_id": "1191146",
@@ -17950,7 +17950,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1210370",
-      "score": 101.5,
+      "score": 118.0,
       "pattern": "explicit_pattern",
       "upvotes": 3
     },
@@ -18382,7 +18382,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Append | --> Because of \"Keep all the existing rows\" | | 2. mergeSchema, true | --> Because there will be 2 additional columns, so it's they are not deleted from the new version. If they would have been deleted from the new version, you would have to use \"overwriteSchema, true\". Since that option replaces the existing schema with the schema of the new dataframe. mergeSchema, on the contrary, allows the addition of new columns rather than overwriting the schema.",
+    "most_voted_answer": "1. Append\n2. mergeSchema, true",
     "comments": [
       {
         "comment_id": "1189703",
@@ -18450,8 +18450,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1224562",
-      "score": 102.5,
-      "pattern": "explicit_pattern",
+      "score": 133.0,
+      "pattern": "loose:numbered_list",
       "upvotes": 5
     }
   },
@@ -18465,7 +18465,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "IMHO answer is correct: | https://learn.microsoft.com/de-de/sql/t-sql/language-elements/coalesce-transact-sql?view=sql-server-ver16 | https://learn.microsoft.com/de-de/sql/t-sql/functions/logical-functions-least-transact-sql?view=sql-server-ver16",
+    "most_voted_answer": "IMHO, Coalesce -> Least is winner.\nLeast because of that:\nIf one or more arguments aren't NULL, then NULL arguments are ignored during comparison. If all arguments are NULL, then LEAST returns NULL.",
     "comments": [
       {
         "comment_id": "1198353",
@@ -18568,10 +18568,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1198353",
-      "score": 161.5,
+      "comment_id": "1210383",
+      "score": 114.0,
       "pattern": "explicit_pattern",
-      "upvotes": 23
+      "upvotes": 2
     }
   },
   {
@@ -18802,7 +18802,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Customers -> Type 2 | Products -> Type 1",
+    "most_voted_answer": "Customers → Type 2\nProducts → Type 1",
     "comments": [
       {
         "comment_id": "1195891",
@@ -18878,7 +18878,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1315829",
-      "score": 100.5,
+      "score": 126.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -19761,7 +19761,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "https://learn.microsoft.com/en-us/fabric/data-warehouse/clone-table#limitations | Table clones across warehouses in a workspace are not currently supported. | | ANSWER, AS SELECT",
+    "most_voted_answer": "CREATE TABLE dbo.POSCustomers\nAS\nSELECT DISTINCT customerid, customer, postalcode, category\nFROM lakehouse1.dbo.customer",
     "comments": [
       {
         "comment_id": "1190976",
@@ -19850,10 +19850,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1201871",
-      "score": 56.0,
-      "pattern": "highly_voted",
-      "upvotes": 12
+      "comment_id": "1220437",
+      "score": 91.0,
+      "pattern": "loose:short_bullet_list",
+      "upvotes": 6
     }
   },
   {
@@ -20797,7 +20797,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "I took the test today, and this question was included. The options 'Sort the Duration (ms) column in descending order' was not there. Hence the answer: | -From Performance analyzer, capture a recording. | -Sort the Duration (ms) column in descending order by DAX query time. | -Copy the first query to Dax Studio. | -Enable Query Timings and Server Timings. Run the query. | -View the Server Timings tab.",
+    "most_voted_answer": "1. Start Recording\n2. Sort in descending order\n3. Copy to DAX studio (the problematic query)\n4. Enable query t and server t (to gather additional info)\n5. View Server Timings",
     "comments": [
       {
         "comment_id": "1190138",
@@ -20886,10 +20886,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1230820",
-      "score": 157.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 15
+      "comment_id": "1210407",
+      "score": 128.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 3
     },
     "drag_drop_items": [],
     "drag_drop_targets": [],
@@ -21022,7 +21022,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Don't confuse people, the answer is correct. Calculate + selectedmeasure() is a standard combination when it comes to calculation items. When Calc. Item is applied dax engine replaces selectedmeasure() with measure reference.",
+    "most_voted_answer": "CALCULATE\nSELECTEDMEASURE\nmore info refer to:",
     "comments": [
       {
         "comment_id": "1202387",
@@ -21111,10 +21111,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1199841",
-      "score": 116.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 33
+      "comment_id": "1202387",
+      "score": 60.0,
+      "pattern": "highly_voted",
+      "upvotes": 21
     }
   },
   {
@@ -21423,7 +21423,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer is correct; ref: https://learn.microsoft.com/en-us/fabric/security/service-admin-object-level-security?tabs=table",
+    "most_voted_answer": "Because: To create roles on Power BI Desktop semantic models, use external tools such as Tabular Editor.\nNone: OLS is enforced and the table or column will be hidden from that role\nRead: The table or column will be visible to that role",
     "comments": [
       {
         "comment_id": "1190151",
@@ -21490,10 +21490,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1204737",
-      "score": 153.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 7
+      "comment_id": "1210414",
+      "score": 124.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 2
     },
     "drag_drop_items": [],
     "drag_drop_targets": [],
@@ -22457,7 +22457,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct Answer | GREATEST, COALESCE",
+    "most_voted_answer": "I believe that the 2nd box should be COALESCE, but if you read requirements for TradePrice column, you will realize that actually, COALESCE will not work here. Clearly there's a mistake somewhere.",
     "comments": [
       {
         "comment_id": "1190993",
@@ -22626,8 +22626,8 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1246094",
-      "score": 102.0,
+      "comment_id": "1217636",
+      "score": 122.0,
       "pattern": "explicit_pattern",
       "upvotes": 4
     }
@@ -22731,7 +22731,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Just echecked it. Date trunc returns the first date of the month and datepart just the month number. So given answer is correct.",
+    "most_voted_answer": "DATEFROMPARTS , weekday are the correct answers",
     "comments": [
       {
         "comment_id": "1210429",
@@ -22858,10 +22858,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1205942",
-      "score": 155.0,
+      "comment_id": "1202979",
+      "score": 110.0,
       "pattern": "explicit_pattern",
-      "upvotes": 10
+      "upvotes": 1
     }
   },
   {
@@ -23207,7 +23207,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value). | The correct answers are then: CALCULATE, {_LYSales}",
+    "most_voted_answer": "Be careful, EVALUATE in DAX queries always returns the result of a table expression, then _LYSales is a wrong answer (scalar value).\nThe correct answers are then: CALCULATE, {_LYSales}",
     "comments": [
       {
         "comment_id": "1189675",
@@ -23352,7 +23352,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1232379",
-      "score": 105.5,
+      "score": 150.0,
       "pattern": "explicit_pattern",
       "upvotes": 11
     }
@@ -24615,7 +24615,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "No, No, Yes | The spark reads all columns first before selection , so spark.read , read all columns",
+    "most_voted_answer": "No, No, Yes",
     "comments": [
       {
         "comment_id": "1315977",
@@ -24735,8 +24735,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1315977",
-      "score": 70.5,
-      "pattern": "highly_voted",
+      "score": 250.0,
+      "pattern": "loose:yes_no_comma_list",
       "upvotes": 41
     }
   },
@@ -25043,7 +25043,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "TransactionKey --> Remove the column. | There is no need to keep 160 GB for a surrogate key, it can be removed and SaleDateTime can be moved into the SalesTransaction table that will for sure \"Increase refresh performance when using Import mode.\" and \"Reduce the model size.\" since there is no need for an heavy join like this one. | | SaleDateTime --> Split the column. | Splitting the column would lead for sure to \"Ensure that the datetime value for each sales transaction is available in the m...",
+    "most_voted_answer": "TransactionKey → Remove the column.\nSaleDateTime → Split the column.",
     "comments": [
       {
         "comment_id": "1293783",
@@ -25108,7 +25108,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1316406",
-      "score": 154.5,
+      "score": 203.0,
       "pattern": "explicit_pattern",
       "upvotes": 9
     }
@@ -25720,7 +25720,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer is Dim Dim Dim | CustomerCode: This uniquely identifies a customer and is used to join with the Customer dimension table. It’s a stable business key. | CustomerName: This is an attribute of the Customer dimension and can change over time, making it suitable for Type 2 SCD tracking. | SaleDate: Dates are typically modeled as a Date dimension to support time-based analysis (e.g., trends, seasonality).",
+    "most_voted_answer": "Dim, Dim, Fact",
     "comments": [
       {
         "comment_id": "1348403",
@@ -25831,10 +25831,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1703386",
-      "score": 101.0,
+      "comment_id": "1348403",
+      "score": 231.0,
       "pattern": "explicit_pattern",
-      "upvotes": 2
+      "upvotes": 20
     }
   },
   {
@@ -25931,7 +25931,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Agree. Correct answer should be | yes | no | no",
+    "most_voted_answer": "it should be Yes.No.No\nthe clone will create same table structure as first one",
     "comments": [
       {
         "comment_id": "1313932",
@@ -26062,10 +26062,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1319370",
-      "score": 102.0,
+      "comment_id": "1313932",
+      "score": 247.0,
       "pattern": "explicit_pattern",
-      "upvotes": 4
+      "upvotes": 24
     }
   },
   {
@@ -26922,7 +26922,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Is the correct answer No, No, Yes",
+    "most_voted_answer": "No, No, Yes",
     "comments": [
       {
         "comment_id": "1355253",
@@ -27008,10 +27008,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1355253",
-      "score": 155.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 11
+      "comment_id": "1414241",
+      "score": 194.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 9
     }
   },
   {
@@ -27137,7 +27137,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-manage#set-the-direct-lake-behavior-property | \"DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned.\" | | Answer is Direct Lake",
+    "most_voted_answer": "DirectLakeOnly: All queries use Direct Lake storage mode only. Fall back to DirectQuery mode is disabled. If data can't be loaded into memory, an error is returned.",
     "comments": [
       {
         "comment_id": "1341258",
@@ -27245,10 +27245,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1379915",
-      "score": 153.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 6
+      "comment_id": "1341258",
+      "score": 56.0,
+      "pattern": "highly_voted",
+      "upvotes": 12
     }
   },
   {
@@ -27424,7 +27424,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Users must be explicitly assigned roles within a specific workspace. Being in the same domain does not grant automatic access. | | Answer: N, N, N",
+    "most_voted_answer": "No, Yes, No",
     "comments": [
       {
         "comment_id": "1347577",
@@ -27505,10 +27505,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1349100",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 2
+      "comment_id": "1347577",
+      "score": 174.0,
+      "pattern": "loose:yes_no_comma_list",
+      "upvotes": 6
     }
   },
   {
@@ -27776,7 +27776,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Group by CustID, use All Rows, and calc max version date per cust id | Note that if you Group By CustID and calc max date, you will lose the Customer Name column. | | 2. Expand All Rows detail column | Note that this will re-create the table as it was before, but with an additional column for max date. | | 3. Filter where version date eq max version date | This will effectively remove any duplicate CustID, keeping only the most recent. (If there were two at the same time, it will keep both...",
+    "most_voted_answer": "1. Group by CustID, use All Rows, and calc max version date per cust id\n2. Expand All Rows detail column\n3. Filter where version date eq max version date\n4. Remove max vers date",
     "comments": [
       {
         "comment_id": "1571472",
@@ -27896,8 +27896,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1571472",
-      "score": 54.0,
-      "pattern": "highly_voted",
+      "score": 193.0,
+      "pattern": "loose:numbered_list",
       "upvotes": 8
     },
     "drag_drop_items": [],
@@ -27914,7 +27914,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. \"definition.pbir is in the PBIR-Legacy format.\" | The file uses the .pbir extension, which is associated with Power BI Report files. The JSON structure shows \"version\": \"1.0\", which is consistent with the newer format (not legacy). The legacy format typically uses .pbix or .rdl files. | Answer: No. | \"The semantic model referenced by definition.pbir is located in the Power BI service.\" | The JSON references the semantic model using \"byPath\" with a local path \"../Sales.Dataset\". This indica...",
+    "most_voted_answer": "No, No, Yes",
     "comments": [
       {
         "comment_id": "1347585",
@@ -28042,10 +28042,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1411970",
-      "score": 101.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 3
+      "comment_id": "1347585",
+      "score": 199.5,
+      "pattern": "loose:numbered_list",
+      "upvotes": 10
     }
   },
   {
@@ -28491,7 +28491,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Answer: | A: Import | | https://learn.microsoft.com/en-us/fabric/fundamentals/direct-lake-overview#comparison-to-other-storage-modes | \"Capability Direct Lake Import DirectQuery | Calculated tables No Yes No \" | | Direct Lake has an exception: \"except calculation groups, what-if parameters, and field parameters, which implicitly create calculated tables\" | | B: On | | https://learn.microsoft.com/en-us/power-bi/connect-data/power-bi-query-caching | | \"Organizations with Power BI Premium or Pow...",
+    "most_voted_answer": "Mode: Import\nQuery Caching: On",
     "comments": [
       {
         "comment_id": "1346474",
@@ -28545,10 +28545,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1560392",
-      "score": 100.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 1
+      "comment_id": "1346474",
+      "score": 181.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 5
     }
   },
   {
@@ -28561,7 +28561,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "Yes, Yes, No",
     "comments": [
       {
         "comment_id": "1750869",
@@ -28661,7 +28661,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-600/936847_1.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1347638",
+      "score": 117.0,
+      "pattern": "loose:yes_no_comma_list",
+      "upvotes": 3
+    }
   },
   {
     "discussion_id": "154435",
@@ -28891,7 +28897,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "So what is the difference between the 2 and 3 choices of the first option. If the price does not change, what difference would it make?",
+    "most_voted_answer": "Sum(s.Quantity * s.UnitPrice), Inner\nSo I think the first one is just syntax. Ensure it looks correct. For the type of Joins, they only want it if it is Australia. Inner will only bring over the matches, making it an ideal Join Type. To be fair, I had to look it up, but once I learned that I wanted to share.",
     "comments": [
       {
         "comment_id": "1347643",
@@ -28964,10 +28970,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1365898",
-      "score": 100.5,
+      "comment_id": "1347643",
+      "score": 187.0,
       "pattern": "explicit_pattern",
-      "upvotes": 1
+      "upvotes": 9
     }
   },
   {
@@ -28980,7 +28986,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Employees: Column-level security: | Column-Level-Security (CLS): | https://learn.microsoft.com/en-us/fabric/data-warehouse/column-level-security | \"allowing you to restrict column access to protect sensitive data...\" | | Sales: Row-Level-Security (RLS): | https://learn.microsoft.com/en-us/fabric/data-warehouse/row-level-security | \"control access to rows in a database table. For example, you can ensure that workers access only those data rows that are pertinent to their department.\" (or Sales...",
+    "most_voted_answer": "Employees: Column-level security\nColumn-Level-Security (CLS): \"allowing you to restrict column access to protect sensitive data...\"\nSales: Row-Level-Security (RLS)",
     "comments": [
       {
         "comment_id": "1349104",
@@ -29020,7 +29026,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1349104",
-      "score": 102.0,
+      "score": 132.0,
       "pattern": "loose:label_pair",
       "upvotes": 4
     }
@@ -29734,7 +29740,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "I am thoroughly confused by this question. I had to use ChatGPT 4o. | It says : Yes, No, No. Here is the reasoning: | | 1. DF1 will be deployed to Workspace_TEST. | Reasoning: | Dataflows (including Gen1) are deployed to the next workspace during pipeline runs. | This includes DF1, but its refresh policy will not be automatically applied. | Answer: Yes. | 2. Data from Model1 will be deployed to Workspace_TEST. | Reasoning: | Deployment pipelines do not transfer the data associated with a mode...",
+    "most_voted_answer": "Slot 1: Yes\nSlot 2: No\nSlot 3: No",
     "comments": [
       {
         "comment_id": "1347667",
@@ -29961,7 +29967,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1347667",
-      "score": 160.0,
+      "score": 245.0,
       "pattern": "explicit_pattern",
       "upvotes": 20
     }
@@ -29976,7 +29982,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Select d.IsHoliday, | (sum(t.tripDistance) / count(t.tripID)) as MilesPerTrip | from dbo.Trips t | inner join dbo.DimDate d on t.dateID = d.DateID | group by d.IsHoliday",
+    "most_voted_answer": "Select d.IsHoliday,\n(sum(t.tripDistance) / count(t.tripID)) as MilesPerTrip\nfrom dbo.Trips t\ninner join dbo.DimDate d on t.dateID = d.DateID\ngroup by d.IsHoliday",
     "comments": [
       {
         "comment_id": "1366463",
@@ -30038,7 +30044,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "BEGIN | DISTINCT | | | 🎯 When to Use What? | Scenario Use | Standard stored procedure with single-database operations ✅ AS BEGIN | Multi-database transaction requiring rollback if one step fails ✅ AS BEGIN DISTRIBUTED TRANSACTION | Changing session settings before executing queries ✅ AS SET | | | DISTINCT because: | Given that you need to deduplicate the signindata table, here's the logic behind choosing DISTINCT or GROUP BY: | | If you want to deduplicate based on certain fields (like UserID...",
+    "most_voted_answer": "Standard stored procedure with single-database operations: ✅ AS BEGIN\nMulti-database transaction requiring rollback if one step fails: ✅ AS BEGIN DISTRIBUTED TRANSACTION\nChanging session settings before executing queries: ✅ AS SET",
     "comments": [
       {
         "comment_id": "1387853",
@@ -30069,8 +30075,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1387853",
-      "score": 53.0,
-      "pattern": "highly_voted",
+      "score": 187.0,
+      "pattern": "loose:label_pair",
       "upvotes": 6
     }
   },
@@ -30352,7 +30358,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Inner Join and A.AddressId = CA.AddressId | \"All foreign key values are non-null.\"",
+    "most_voted_answer": "Inner Join and  A.AddressId = CA.AddressId\n\"All foreign key values are non-null.\"",
     "comments": [
       {
         "comment_id": "1365391",
@@ -30741,7 +30747,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Connect Wokspace1 to a Git provider | 2. Sync Workspace1 with the repository. | 3. Configure branch policies in Azure DevOps | | Create a deployment pipeline is for CI/CD automation bout not for versioning, Power BI Pro support Git integration so is not necessary a Fabric capacity.",
+    "most_voted_answer": "1. Connect Wokspace1 to a Git provider\n2. Sync Workspace1 with the repository.\n3. Configure branch policies in Azure DevOps",
     "comments": [
       {
         "comment_id": "1748259",
@@ -30825,7 +30831,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1356171",
-      "score": 101.5,
+      "score": 126.5,
       "pattern": "loose:numbered_list",
       "upvotes": 3
     },
@@ -30843,7 +30849,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "i guess the question and answer options is incomplete , but refer to the below answer from gpt | | To achieve the required actions, you should use the following settings: | | Create a workspace named Enterprise [Test] and assign the workspace to the Test stage: | | Workspace: Enterprise [Test] | Stage: Test | Configure a rule that will modify the value of Date1 when changes are deployed to the Test stage: | | Parameter: Date1 | Value: Set the desired value for the Test stage (e.g., a specific...",
+    "most_voted_answer": "Workspace: Enterprise [Test]\nStage: Test\nParameter: Date1\nValue: Set the desired value for the Test stage",
     "comments": [
       {
         "comment_id": "1362474",
@@ -30883,7 +30889,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1362474",
-      "score": 101.0,
+      "score": 128.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
     }
@@ -30898,7 +30904,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": null,
+    "most_voted_answer": "The first answer should be Role(1) and Division(2) because we can see these columns have been selected on table Retired Roles.\nSecond answer should be Inner join.",
     "comments": [
       {
         "comment_id": "1344304",
@@ -31016,7 +31022,13 @@
         "local_path": "/Users/khangnghiem/exams/azure/assets/exhibits/dp-600/939119_0.png",
         "downloaded": true
       }
-    ]
+    ],
+    "_backfill_source": {
+      "comment_id": "1566291",
+      "score": 110.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
+    }
   },
   {
     "discussion_id": "168927",
@@ -31372,7 +31384,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "It should be contributor ,Member,Member ...because it clearly says to adhere to \"the principle of least privilege\"...Group 2 members should confirgure and maintain workspace setting no where its mentioned about deleting so it should be Memebr and same question asked in power BI certification and answer is member !!",
+    "most_voted_answer": "Group1: Contributor\nGroup2: Admin\nGroup3: Member",
     "comments": [
       {
         "comment_id": "1562442",
@@ -31514,10 +31526,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1622424",
-      "score": 100.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 1
+      "comment_id": "1562442",
+      "score": 199.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 9
     },
     "drag_drop_items": [],
     "drag_drop_targets": [],
@@ -31743,7 +31755,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "TRY_CAST and 7. But who on this green earth knows the date format codes off the top of their head without checking online???",
+    "most_voted_answer": "TRY_CAST and 7.",
     "comments": [
       {
         "comment_id": "1573222",
@@ -32148,7 +32160,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Extend : new columns based on calculations for each row | Project: Works like select clause | Why Not | Summarize: Used for aggregating data | lookup: Similar to Join clause | evaluate: its literally called Plugin Operator",
+    "most_voted_answer": "Extend: new columns based on calculations for each row\nProject: Works like select clause",
     "comments": [
       {
         "comment_id": "1747870",
@@ -32218,7 +32230,7 @@
     ],
     "_backfill_source": {
       "comment_id": "1569526",
-      "score": 101.0,
+      "score": 128.0,
       "pattern": "loose:label_pair",
       "upvotes": 2
     }
@@ -32618,7 +32630,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "answer is correct. the code shows on screen should be dynamic format string. And it should show percentage and whole number. \"# of Customers\" will show whole number without thousand split(#), and others will show whole number with thousand split(#,###), \"Gross Margin %\" will show percentage.",
+    "most_voted_answer": "Calculation group: This is the correct choice. The measure is part of a calculation group that dynamically changes its output based on the context provided by the Metric column.\nPercentages or decimal number: This is the correct choice. The measure can return values formatted as percentages (e.g., %_of_Customers, %_of_Gross_Margin) or as decimal numbers, depending on the context and the underlying measures.",
     "comments": [
       {
         "comment_id": "1411813",
@@ -32691,10 +32703,10 @@
       }
     ],
     "_backfill_source": {
-      "comment_id": "1566316",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
-      "upvotes": 2
+      "comment_id": "1411813",
+      "score": 181.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 5
     }
   },
   {
@@ -32707,7 +32719,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "A pipeline with a copy activity | An eventstream",
+    "most_voted_answer": "A pipeline with a copy activity\nAn eventstream",
     "comments": [
       {
         "comment_id": "1594535",
@@ -32876,7 +32888,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Weatherdata | Sort rows by Datetime so that prev() works correctly: | | sort by Datetime asc | Use prev() to calculate difference from previous row: | | extend Delta_temperature = Temperature - prev(Temperature) | | project Datetime, Lat, Long, Temperature, Delta_temperature",
+    "most_voted_answer": "Sort rows by Datetime so that prev() works correctly: | sort by Datetime asc\nUse prev() to calculate difference from previous row: | extend Delta_temperature = Temperature - prev(Temperature)",
     "comments": [
       {
         "comment_id": "1598739",
@@ -33958,7 +33970,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Customer: Type 2 Products: Type 1 | Same question Q78",
+    "most_voted_answer": null,
     "comments": [
       {
         "comment_id": "1589969",
@@ -33993,12 +34005,6 @@
         "downloaded": true
       }
     ],
-    "_backfill_source": {
-      "comment_id": "1589969",
-      "score": 101.0,
-      "pattern": "loose:label_pair",
-      "upvotes": 2
-    },
     "drag_drop_items": [],
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)"
@@ -34013,7 +34019,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Two places to fill: | | 1. Function for first row in a window | | Options: | | row_cumsum → cumulative sum, not relevant. | | row_rank_dense → dense ranking, but doesn’t directly give first row. | | row_rank_min → gives the first/minimum row within the window ✅ (correct). | | row_window_session → sessionization, not relevant. | | So answer = row_rank_min. | | 2. Condition operator before prev(payment_type) | | The operator defines when a new partition starts. | | == prev(payment_type) → same...",
+    "most_voted_answer": "Slot 1: row_rank_min\nSlot 2: !=",
     "comments": [
       {
         "comment_id": "1598790",
@@ -34065,8 +34071,8 @@
     ],
     "_backfill_source": {
       "comment_id": "1598790",
-      "score": 53.0,
-      "pattern": "highly_voted",
+      "score": 195.0,
+      "pattern": "explicit_pattern",
       "upvotes": 6
     }
   },
