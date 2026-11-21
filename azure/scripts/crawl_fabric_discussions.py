@@ -24,6 +24,7 @@ import argparse
 import asyncio
 from collections import Counter
 from dataclasses import asdict, dataclass, field
+import html as html_lib
 import json
 import logging
 from mimetypes import guess_extension
@@ -352,7 +353,7 @@ def _extract_inline_choices(raw_html: str) -> tuple[str, list[Choice]]:
         # Trim trailing <br>, </br>, and whitespace artifacts.
         seg_html = re.sub(r"(?:\s|</?br\s*/?>)+$", "", seg_html, flags=re.IGNORECASE).strip()
         seg_soup = BeautifulSoup(seg_html, "html.parser")
-        plain = re.sub(r"\s+", " ", seg_soup.get_text(" ", strip=True)).strip()
+        plain = html_lib.unescape(re.sub(r"\s+", " ", seg_soup.get_text(" ", strip=True))).strip()
         text_html = sanitize_exhibit_html(seg_html) if RICH_CHOICE_HTML_RE.search(seg_html) else ""
         choices.append(Choice(letter=letter, text=plain, correct=False, text_html=text_html))
 
@@ -780,7 +781,7 @@ class Crawler:
             for li in choices_container.find_all("li", class_="multi-choice-item"):
                 letter_span = li.find("span", class_="multi-choice-letter")
                 letter = str(letter_span.get("data-choice-letter", "")) if letter_span else ""
-                text = li.get_text(strip=True)
+                text = html_lib.unescape(li.get_text(strip=True))
                 text = re.sub(r"^[A-Z]\.\s*", "", text).strip()
 
                 text_html = ""
@@ -803,7 +804,7 @@ class Crawler:
             stem_html, choices = _extract_inline_choices(full_card_html)
 
         question_text = (
-            BeautifulSoup(stem_html, "html.parser").get_text(separator="\n", strip=True)
+            html_lib.unescape(BeautifulSoup(stem_html, "html.parser").get_text(separator="\n", strip=True))
             if stem_html
             else ""
         )
@@ -902,7 +903,7 @@ class Crawler:
             date_el = c.find("span", class_="comment-date")
             date_title = str(date_el.get("title", "")) if date_el else ""
             content_el = c.find("div", class_="comment-content")
-            text = content_el.get_text(separator="\n", strip=True) if content_el else ""
+            text = html_lib.unescape(content_el.get_text(separator="\n", strip=True)) if content_el else ""
 
             upvote_el = c.find("span", class_="upvote-count")
             upvotes = 0

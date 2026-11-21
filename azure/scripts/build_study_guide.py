@@ -808,6 +808,13 @@ HTML_HEAD = """<!DOCTYPE html>
       color: var(--text);
     }
     .cs-section > summary::-webkit-details-marker { display: none; }
+    .cs-section > summary .section-title {
+      display: inline;
+      margin: 0;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+    }
     .cs-section > summary::before {
       content: "▾";
       display: inline-block;
@@ -1095,15 +1102,58 @@ HTML_HEAD = """<!DOCTYPE html>
     .question.revealed .answer-revealed { display: block; animation: reveal 200ms ease-out; }
     @keyframes reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
     .answer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
+    .answer-grid.answer-grid-single { grid-template-columns: minmax(0, 1fr); }
     .answer-card {
       border: 1px solid color-mix(in srgb, var(--success) 28%, var(--border));
       border-radius: 12px;
-      padding: 0.7rem 0.8rem;
+      padding: 0.75rem 0.9rem;
       background: rgb(var(--surface-rgb) / 0.84);
     }
     .answer-card .label-row { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; margin-bottom: 0.25rem; }
     .answer-card .label { color: var(--success-ink); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
     .answer-card strong { font-size: 1.02rem; }
+    .answer-pairs {
+      margin: 0.45rem 0 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .answer-pair-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.5rem;
+      padding: 0.42rem 0.65rem;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--surface) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--success) 22%, var(--border));
+    }
+    .answer-pair-row dt {
+      font-weight: 700;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .answer-pair-row dt::after { content: ":"; }
+    .answer-pair-row dd {
+      margin: 0;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.97rem;
+    }
+    .answer-list {
+      margin: 0.45rem 0 0;
+      padding-left: 1.3rem;
+      display: grid;
+      gap: 0.32rem;
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+    .answer-prose {
+      margin: 0.4rem 0 0;
+      white-space: pre-line;
+      font-size: 0.96rem;
+      line-height: 1.56;
+      font-weight: 500;
+    }
     .mv-lines { font-size: 0.92rem; line-height: 1.5; }
     .mv-lines div + div { margin-top: 0.25rem; padding-top: 0.25rem; border-top: 1px dashed var(--border); }
     .confidence-badge {
@@ -1646,8 +1696,8 @@ HTML_TAIL = """
             status.className = 'answer-status incorrect';
             status.textContent = 'Self-graded: Flagged for more practice.';
           } else if (mostVoted) {
-            status.className = 'answer-status';
-            status.textContent = `Community answer: ${mostVoted}`;
+            status.className = 'answer-status empty';
+            status.textContent = 'Compare your selections against the community answer below.';
           } else {
             status.className = 'answer-status empty';
             status.textContent = 'HOTSPOT answer not available from ExamTopics.';
@@ -1665,8 +1715,8 @@ HTML_TAIL = """
             status.className = 'answer-status incorrect';
             status.textContent = 'Self-graded: Flagged for more practice.';
           } else if (mostVoted) {
-            status.className = 'answer-status';
-            status.textContent = `Community answer: ${mostVoted}`;
+            status.className = 'answer-status empty';
+            status.textContent = 'Compare your placements against the community answer below.';
           } else {
             status.className = 'answer-status empty';
             status.textContent = 'DRAG DROP answer not available from ExamTopics.';
@@ -2384,7 +2434,7 @@ def render_exhibit(exhibit: dict, idx: int, q_label: str) -> str:
         code = _extract_code_text(exhibit)
         return (
             f'<figure class="exhibit exhibit-code">'
-            f'<pre><code>{html.escape(code)}</code></pre>'
+            f'<pre role="region" aria-label="{html.escape(caption_label, quote=True)} code" tabindex="0"><code>{html.escape(code)}</code></pre>'
             f'<figcaption class="exhibit-caption">{caption_label}</figcaption>'
             f'</figure>'
         )
@@ -3030,11 +3080,33 @@ def _compute_vote_summary(q: dict[str, Any]) -> tuple[bool, str]:
     return is_contested, "\n".join(parts)
 
 
+def _unescape_plain(text: str) -> str:
+    """Decode single- or double-escaped HTML entities in plain text."""
+    if not text:
+        return ""
+    return html.unescape(html.unescape(str(text)))
+
+
+def _sort_comments(comments: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Sort comments with 'Highly Voted' badge first, then descending upvote count."""
+    if not comments:
+        return []
+    indexed = list(enumerate(comments))
+    indexed.sort(
+        key=lambda pair: (
+            -(1 if "Highly Voted" in (pair[1].get("badges") or []) else 0),
+            -int(pair[1].get("upvotes") or 0),
+            pair[0],
+        )
+    )
+    return [c for _, c in indexed]
+
+
 def _render_comment_item(c: dict[str, Any]) -> str:
-    author = html.escape(str(c.get("author") or "Anonymous"))
+    author = html.escape(_unescape_plain(str(c.get("author") or "Anonymous")))
     up = int(c.get("upvotes") or 0)
     badges = " ".join(f'<span class="badge">{html.escape(str(b))}</span>' for b in (c.get("badges") or []))
-    ctext = format_stem_html(html.unescape(str(c.get("text") or "")))
+    ctext = format_stem_html(_unescape_plain(str(c.get("text") or "")))
     return (
         '<div class="comment">'
         f'<div class="comment-meta"><strong>{author}</strong> · {up} upvote{"s" if up != 1 else ""} {badges}</div>'
@@ -3043,15 +3115,73 @@ def _render_comment_item(c: dict[str, Any]) -> str:
     )
 
 
-def _format_most_voted_html(raw_mv: str) -> str:
-    unescaped = html.unescape(raw_mv).strip()
-    if not unescaped:
+_ANSWER_PAIR_RE = re.compile(
+    r"^(?:[-•*]\s+)?(.{2,220}?)\s*(?::(?!//)|-->|==>|->|=>|→|⟶|⇒)\s*(\S.*)$"
+)
+_ANSWER_NUM_RE = re.compile(r"^(?:\d+[.):-]\s+|\(\d+\)\s*)(\S.*)$")
+_ANSWER_BULLET_RE = re.compile(r"^(?:[-•*]\s+)(\S.*)$")
+_KQL_PIPE_RE = re.compile(
+    r"\|\s*(?:where|project|extend|summarize|sort|order|join|take|limit|render|parse|mv-expand)\b",
+    re.IGNORECASE,
+)
+
+
+def render_answer_value_html(raw_answer: str) -> str:
+    """Render an answer value as structured, readable HTML inside ``.answer-card``."""
+    cleaned = _unescape_plain(raw_answer).strip()
+    if not cleaned:
         return "<strong>Not provided</strong>"
-    segments = [seg.strip() for seg in unescaped.split("|") if seg.strip()]
-    if len(segments) <= 1 and len(unescaped) <= 40:
-        return f"<strong>{html.escape(unescaped)}</strong>"
-    items = "".join(f"<div>{_format_inline_code_tokens(html.escape(seg))}</div>" for seg in segments)
-    return f'<div class="mv-lines">{items}</div>'
+    if cleaned in {"Not provided", "Not provided — see discussion below"}:
+        return f"<strong>{html.escape(cleaned)}</strong>"
+
+    if "\n" not in cleaned and " | " in cleaned and not _KQL_PIPE_RE.search(cleaned):
+        lines = [seg.strip() for seg in re.split(r"\s*\|\s*", cleaned) if seg.strip()]
+    else:
+        lines = [ln.strip() for ln in cleaned.splitlines() if ln.strip()]
+
+    if not lines:
+        return "<strong>Not provided</strong>"
+
+    pairs: list[tuple[str, str]] = []
+    for ln in lines:
+        if re.match(r"^\d+\s*:\s+", ln):
+            pairs = []
+            break
+        m_p = _ANSWER_PAIR_RE.match(ln)
+        if not m_p:
+            pairs = []
+            break
+        lhs, rhs = m_p.group(1).strip().rstrip("."), m_p.group(2).strip()
+        if lhs.lower() in {"http", "https"}:
+            pairs = []
+            break
+        pairs.append((lhs, rhs))
+
+    if pairs and (len(pairs) >= 2 or len(lines[0]) <= 150):
+        rows = [
+            f'<div class="answer-pair-row"><dt>{html.escape(k)}</dt><dd>{html.escape(v)}</dd></div>'
+            for k, v in pairs
+        ]
+        return f'<dl class="answer-pairs">{"".join(rows)}</dl>'
+
+    if len(lines) >= 2 and all(_ANSWER_NUM_RE.match(ln) for ln in lines):
+        items = [
+            f"<li>{html.escape(_ANSWER_NUM_RE.match(ln).group(1).strip())}</li>"  # type: ignore[union-attr]
+            for ln in lines
+        ]
+        return f'<ol class="answer-list">{"".join(items)}</ol>'
+
+    if len(lines) >= 2 and all(_ANSWER_BULLET_RE.match(ln) for ln in lines):
+        items = [
+            f"<li>{html.escape(_ANSWER_BULLET_RE.match(ln).group(1).strip())}</li>"  # type: ignore[union-attr]
+            for ln in lines
+        ]
+        return f'<ul class="answer-list">{"".join(items)}</ul>'
+
+    if len(lines) == 1 and len(lines[0]) <= 65:
+        return f"<strong>{html.escape(lines[0])}</strong>"
+
+    return f'<p class="answer-prose">{html.escape(chr(10).join(lines))}</p>'
 
 
 def render_question_html(
@@ -3073,7 +3203,7 @@ def render_question_html(
     is_cs = bool(preamble)
     is_contested, vote_bars_html = _compute_vote_summary(q)
 
-    raw_mv = html.unescape(str(q.get("most_voted_answer") or "")).strip()
+    raw_mv = _unescape_plain(str(q.get("most_voted_answer") or "")).strip()
     most_voted_attr = html.escape(raw_mv, quote=True)
 
     # Compact search haystack (label, ID, skill area, prompt, choices)
@@ -3182,20 +3312,11 @@ def render_question_html(
             parts.append(render_other_widget(q, label_text))
 
     # Answer shell
-    if has_correct_answer:
-        correct_str = ", ".join(sorted(correct))
-        correct_missing_cls = ""
-    elif not choices and raw_mv:
-        correct_str = "See community answer →"
-        correct_missing_cls = ""
-    else:
-        correct_str = "Not provided"
-        correct_missing_cls = " answer-missing"
-
-    mv_missing_cls = "" if raw_mv else " answer-missing"
+    has_most_voted = bool(raw_mv)
+    ordered = _sort_comments(q.get("comments", []) or [])
     backfill_meta = q.get("_backfill_source") or {}
     is_community_note = backfill_meta.get("confidence") == "community_note"
-    note_badge = '<span class="confidence-badge" title="Extracted from low-upvote discussion comment">Community note</span>' if is_community_note else ""
+    note_badge = '<span class="confidence-badge">Community note</span>' if is_community_note else ""
 
     parts.append('<div class="answer-shell">')
     parts.append('<div class="answer-locked">')
@@ -3203,18 +3324,36 @@ def render_question_html(
     parts.append(f'<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for {label_text}">Reveal answer</button>')
     parts.append("</div>")
     parts.append('<div class="answer-revealed">')
-    parts.append('<div class="answer-grid">')
-    parts.append(
-        f'<div class="answer-card{correct_missing_cls}">'
-        '<div class="label-row"><span class="label">Official / Consensus key</span></div>'
-        f"<strong>{html.escape(correct_str)}</strong></div>"
-    )
-    parts.append(
-        f'<div class="answer-card{mv_missing_cls}">'
-        f'<div class="label-row"><span class="label">Most voted / Community</span>{note_badge}</div>'
-        f"{_format_most_voted_html(raw_mv)}</div>"
-    )
-    parts.append("</div>")
+    if choices or has_correct_answer:
+        correct_str = ", ".join(sorted(correct)) if has_correct_answer else "Not provided"
+        correct_missing_cls = "" if has_correct_answer else " answer-missing"
+        mv_missing_cls = "" if has_most_voted else " answer-missing"
+        mv_display = render_answer_value_html(raw_mv) if has_most_voted else "<strong>Not provided</strong>"
+        parts.append('<div class="answer-grid">')
+        parts.append(
+            f'<div class="answer-card{correct_missing_cls}">'
+            '<div class="label-row"><span class="label">Correct answer</span></div>'
+            f"<strong>{html.escape(correct_str)}</strong></div>"
+        )
+        parts.append(
+            f'<div class="answer-card{mv_missing_cls}">'
+            f'<div class="label-row"><span class="label">Most voted</span>{note_badge}</div>'
+            f"{mv_display}</div>"
+        )
+        parts.append("</div>")
+    else:
+        # Non-MCQ (Hotspot / Drag-drop): single full-width community consensus card without a redundant "Not provided" column.
+        mv_missing_cls = "" if has_most_voted else " answer-missing"
+        fallback_msg = "Not provided — see discussion below" if ordered else "Not provided"
+        mv_display = render_answer_value_html(raw_mv) if has_most_voted else f"<strong>{fallback_msg}</strong>"
+        card_label = "Community answer (Most voted)" if has_most_voted else "Community answer"
+        parts.append('<div class="answer-grid answer-grid-single">')
+        parts.append(
+            f'<div class="answer-card{mv_missing_cls}">'
+            f'<div class="label-row"><span class="label">{card_label}</span>{note_badge}</div>'
+            f"{mv_display}</div>"
+        )
+        parts.append("</div>")
 
     if vote_bars_html:
         parts.append(vote_bars_html)
@@ -3228,13 +3367,7 @@ def render_question_html(
             "</div>"
         )
 
-    raw_comments = q.get("comments", []) or []
-    if raw_comments:
-        sorted_comments = sorted(
-            enumerate(raw_comments),
-            key=lambda pair: (-int(pair[1].get("upvotes") or 0), pair[0]),
-        )
-        ordered = [c for _, c in sorted_comments]
+    if ordered:
         top_slice = ordered[:3]
         rest_slice = ordered[3:]
         parts.append('<details class="comments" open>')
@@ -3282,7 +3415,7 @@ def render_question_html(
             open_attr = " open" if should_open else ""
             rel_pill = '<span class="cs-relevant-pill">★ Relevant</span>' if is_rel else ""
             parts.append(f'<details class="cs-section{rel_cls}"{open_attr}>')
-            parts.append(f'<summary><span>{html.escape(sec["title"])}</span>{rel_pill}</summary>')
+            parts.append(f'<summary><span class="section-title">{html.escape(sec["title"])}</span>{rel_pill}</summary>')
             parts.append(f'<div class="cs-section-body">{sec["html"]}</div>')
             parts.append("</details>")
         parts.append("</section>")
@@ -3400,7 +3533,7 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
     lines.append("</details>")
 
     # Search & Filter Toolbar
-    lines.append('<section class="study-toolbar" aria-label="Search and filter questions">')
+    lines.append('<search class="study-toolbar" aria-label="Search and filter questions">')
     lines.append('<div class="search-box">')
     lines.append('<input type="search" id="question-search" placeholder="Search questions, Azure services, IDs… (/)" aria-label="Search questions">')
     lines.append("</div>")
@@ -3421,7 +3554,7 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
         )
     lines.append("</div>")
     lines.append(f'<span id="filter-match-count" class="filter-count" aria-live="polite">{len(questions)} of {len(questions)} shown</span>')
-    lines.append("</section>")
+    lines.append("</search>")
 
     lines.append('<div class="study-layout">')
 
@@ -3787,21 +3920,30 @@ def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
                 lines.append("_This question type is not available as a multiple-choice exercise — use the exhibit to reason about the answer._")
         lines.append("")
         correct_answers = q.get("correct_answers", []) or []
-        if correct_answers:
-            correct = ", ".join(correct_answers)
+        raw_mv = _unescape_plain(str(q.get("most_voted_answer") or "")).strip()
+        if q.get("choices") or correct_answers:
+            correct = ", ".join(correct_answers) if correct_answers else "Not provided by ExamTopics"
+            lines.append(f"**Correct answer:** {correct}")
+        mv_lines = [ln.strip() for ln in raw_mv.splitlines() if ln.strip()] if raw_mv else []
+        if not mv_lines:
+            lines.append("**Most voted:** Not provided")
+        elif len(mv_lines) == 1:
+            lines.append(f"**Most voted:** {mv_lines[0]}")
         else:
-            correct = "Not provided by ExamTopics"
-        most_voted = html.unescape(str(q.get("most_voted_answer") or "")) or "Not provided"
-        lines.append(f"**Correct answer:** {correct}")
-        lines.append(f"**Most voted:** {most_voted}")
+            lines.append("**Most voted:**")
+            for mvl in mv_lines:
+                prefix = "" if re.match(r"^(?:[-*•]|\d+[.)])\s+", mvl) else "- "
+                lines.append(f"{prefix}{mvl}")
         lines.append("")
-        comments = sorted(q.get("comments", []) or [], key=lambda c: -int(c.get("upvotes") or 0))
+        comments = _sort_comments(q.get("comments", []) or [])[:5]
         if comments:
             lines.append("### Top explanations")
-            for c in comments[:5]:
+            for c in comments:
                 badges = ", ".join(c.get("badges", []))
                 badge_str = f" [{badges}]" if badges else ""
-                lines.append(f"- **{c.get('author', 'Anonymous')}** ({c.get('upvotes', 0)} upvotes{badge_str}): {html_to_md(c.get('text', ''))}")
+                c_body = _unescape_plain(html_to_md(c.get("text", ""))).strip()
+                c_body_indented = "\n  ".join(c_body.splitlines()) if c_body else ""
+                lines.append(f"- **{_unescape_plain(str(c.get('author', 'Anonymous')))}** ({c.get('upvotes', 0)} upvotes{badge_str}): {c_body_indented}")
             lines.append("")
 
     return "\n".join(lines)

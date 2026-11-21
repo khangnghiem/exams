@@ -29,6 +29,7 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 
 import build_study_guide as bsg  # noqa: E402
+import backfill_missing_answers as bma  # noqa: E402
 
 AI_103_SKILL_AREAS: dict[int, str] = {
     1: "Plan and manage an Azure AI solution",
@@ -238,11 +239,9 @@ def _extract_community_note(q: dict[str, Any]) -> tuple[str | None, dict[str, An
     if best_comment is None or best_score <= 0:
         return None, None
 
-    cleaned = html.unescape(best_comment.get("text") or "").replace("\r", " ")
-    lines = [" ".join(ln.split()) for ln in cleaned.splitlines() if ln.strip()]
-    formatted = " | ".join(lines)
-    if len(formatted) > 460:
-        formatted = formatted[:457].rstrip() + "..."
+    formatted = bma._format_answer(best_comment.get("text") or "")
+    if not formatted:
+        return None, None
     meta = {
         "comment_id": best_comment.get("comment_id"),
         "upvotes": int(best_comment.get("upvotes") or 0),

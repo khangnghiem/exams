@@ -168,16 +168,16 @@ What should you do?
 
 ### Top explanations
 - **ricopi** (2 upvotes [Selected Answer: C]): Claude:
-I don’t think B is right. The math points to C. B meets the concurrency cap but misses the throughput target.
-B (sequential, 10 workflows):
-Each request runs 3 agents one after another: 3 × 5 s = 15 s per request.
-Only 1 agent runs per workflow at a time, so at most 10 runs at once. That meets the cap.
-Throughput is 10 requests every 15 s = 40 requests/min. That fails the 120/min target by a factor of 3.
-C (ConcurrentBuilder, 10 workflows):
-Each request fans out to 3 agents in parallel, so it takes about 5 s (the 95p time).
-10 workflows × 3 agents = 30 runs at once. That is exactly at the cap.
-Throughput is 10 requests every 5 s = 120 requests/min. That meets the target.
-ConcurrentBuilder’s fan-in aggregator waits for all three participants before it emits anything. You get one combined result per request, which directly fixes the “partial participant messages” problem. The default aggregator collects the participants’ messages, or you can plug in a custom aggregator to shape the payload.
+  I don’t think B is right. The math points to C. B meets the concurrency cap but misses the throughput target.
+  B (sequential, 10 workflows):
+  Each request runs 3 agents one after another: 3 × 5 s = 15 s per request.
+  Only 1 agent runs per workflow at a time, so at most 10 runs at once. That meets the cap.
+  Throughput is 10 requests every 15 s = 40 requests/min. That fails the 120/min target by a factor of 3.
+  C (ConcurrentBuilder, 10 workflows):
+  Each request fans out to 3 agents in parallel, so it takes about 5 s (the 95p time).
+  10 workflows × 3 agents = 30 runs at once. That is exactly at the cap.
+  Throughput is 10 requests every 5 s = 120 requests/min. That meets the target.
+  ConcurrentBuilder’s fan-in aggregator waits for all three participants before it emits anything. You get one combined result per request, which directly fixes the “partial participant messages” problem. The default aggregator collects the participants’ messages, or you can plug in a custom aggregator to shape the payload.
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: C]): The other option do not satisfy  equation
 
 <a id="q1-16"></a>
@@ -199,13 +199,15 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Routine workflows: Microsoft Foundry Agent Service | User portal: Azure App Service | Modernization workflows: Azure Container Apps
+**Most voted:**
+- Routine workflows: Microsoft Foundry Agent Service
+- User portal: Azure App Service
+- Modernization workflows: Azure Container Apps
 
 ### Top explanations
 - **ExamProAzure** (4 upvotes [Most Recent]): Routine workflows: Microsoft Foundry Agent Service
-User portal: Azure App Service
-Modernization workflows: Azure Container Apps
+  User portal: Azure App Service
+  Modernization workflows: Azure Container Apps
 
 <a id="q2-5"></a>
 ## Q2.5 (ID 430586)
@@ -225,17 +227,20 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes | Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement. | Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messag...
+**Most voted:**
+- Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints → Yes
+- Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messages. A workflow spanning five days can therefore be recovered from Cosmos DB even if workers or Redis lose their state.
+- Statement 2: The proposed design supports resuming a workflow by userId and workflowType after a worker restart → Yes
+- Statement 3: The proposed design can hold the active shared team state without serving as the audit record store → Yes
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent]): Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes
-Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement.
-Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messages. A workflow spanning five days can therefore be recovered from Cosmos DB even if workers or Redis lose their state.
-Statement 2: The proposed design supports resuming a workflow by userId and workflowType after a worker restart. → Yes
-The threadId is kept only in worker memory, which is lost on restart. But SessionMetadata is partitioned by userId and stores workflowType and threadId. A restarted worker (or any of the three stateless workers) can query by userId, filter on workflowType, read the stored threadId, and resume the workflow.
-Statement 3: The proposed design can hold the active shared team state without serving as the audit record store. → Yes
-Redis holds the shared team state keyed by workflowId with a two-hour sliding expiration, so it is a cache for active state and is not the audit store. Evicted entries are rebuilt from Cosmos DB, and the audit record lives in the Messages container.
+  Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement.
+  Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messages. A workflow spanning five days can therefore be recovered from Cosmos DB even if workers or Redis lose their state.
+  Statement 2: The proposed design supports resuming a workflow by userId and workflowType after a worker restart. → Yes
+  The threadId is kept only in worker memory, which is lost on restart. But SessionMetadata is partitioned by userId and stores workflowType and threadId. A restarted worker (or any of the three stateless workers) can query by userId, filter on workflowType, read the stored threadId, and resume the workflow.
+  Statement 3: The proposed design can hold the active shared team state without serving as the audit record store. → Yes
+  Redis holds the shared team state keyed by workflowId with a two-hour sliding expiration, so it is a cache for active state and is not the audit store. Evicted entries are rebuilt from Cosmos DB, and the audit record lives in the Messages container.
 
 <a id="q2-12"></a>
 ## Q2.12 (ID 430593)
@@ -260,15 +265,15 @@ Which prompt design should you implement?
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: D]): Add few-shot instruction examples that cover routing decisions and schema-compliant final outputs.
-System-level role instructions: These apply to every conversation and need no code changes, but they only describe domains and boundaries in the abstract. They don’t clarify behavior for representative compound inputs, which is the requirement that separates C from D.
+  System-level role instructions: These apply to every conversation and need no code changes, but they only describe domains and boundaries in the abstract. They don’t clarify behavior for representative compound inputs, which is the requirement that separates C from D.
 - **ricopi** (1 upvotes [Selected Answer: D]): Claude:
-I’d pick D, not C. The highlighted answer looks wrong to me.
-The deciding requirement is “clarify the expected behavior for representative compound inputs.” That describes few-shot examples: concrete input/output pairs that show the model what to do. D covers both problems:
-Routing examples fix the misrouting. Show a compound request like “calculate X and summarize the sources on Y,” then show it being split into a data-analysis task and a literature-review task.
-Schema-compliant output examples fix the inconsistent format, because the model copies what it’s shown much more reliably than what it’s told.
-D also meets the other two requirements:
-Minimize code changes: It’s a prompt change only. You edit the agents’ instructions in Foundry.
-Apply to every future conversation: The examples sit in the agents’ persistent instructions, so they apply to every conversation, not just one request.
+  I’d pick D, not C. The highlighted answer looks wrong to me.
+  The deciding requirement is “clarify the expected behavior for representative compound inputs.” That describes few-shot examples: concrete input/output pairs that show the model what to do. D covers both problems:
+  Routing examples fix the misrouting. Show a compound request like “calculate X and summarize the sources on Y,” then show it being split into a data-analysis task and a literature-review task.
+  Schema-compliant output examples fix the inconsistent format, because the model copies what it’s shown much more reliably than what it’s told.
+  D also meets the other two requirements:
+  Minimize code changes: It’s a prompt change only. You edit the agents’ instructions in Foundry.
+  Apply to every future conversation: The examples sit in the agents’ persistent instructions, so they apply to every conversation, not just one request.
 
 <a id="q2-15"></a>
 ## Q2.15 (ID 430596)
@@ -314,7 +319,7 @@ What should you identify?
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: B]): Answer: B. Agent-to-Agent (A2A)
-A2A is the open protocol for one agent to communicate with another agent that is hosted elsewhere, which is exactly this scenario.
+  A2A is the open protocol for one agent to communicate with another agent that is hosted elsewhere, which is exactly this scenario.
 
 <a id="q2-20"></a>
 ## Q2.20 (ID 430661)
@@ -336,9 +341,9 @@ What should you do first?
 
 ### Top explanations
 - **Nathandong** (1 upvotes [Most Recent, Selected Answer: D]): Before running a full evaluation against updated instructions, the changes must first be saved as a new version within the Azure AI Foundry playground. Saving as a new version persists the updated instructions to the agent's version history without publishing or deploying the agent — meaning the changes remain scoped to the development environment and are only accessible to the team that has access to Agent1 in that project. This directly satisfies the requirement to "ensure that the changes are available only for the development team."
-Saving as a new version is also the necessary prerequisite step before an evaluation can be run against the updated configuration — you cannot run a formal evaluation against unsaved playground edits. Once saved, the new version becomes the target against which a synthetic dataset evaluation can be created and executed.
+  Saving as a new version is also the necessary prerequisite step before an evaluation can be run against the updated configuration — you cannot run a formal evaluation against unsaved playground edits. Once saved, the new version becomes the target against which a synthetic dataset evaluation can be created and executed.
 - **ExamProAzure** (1 upvotes [Selected Answer: D]): Why not publish
-Publishing makes the agent available to other consumers through its own endpoint and identity. That goes beyond the development team and isn’t needed to evaluate.
+  Publishing makes the agent available to other consumers through its own endpoint and identity. That goes beyond the development team and isn’t needed to evaluate.
 
 <a id="q3-2"></a>
 ## Q3.2 (ID 430667)
@@ -399,7 +404,7 @@ You need to resolve the high latency issue for the Patient Intake agent. The sol
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: D]): Incremental inputs with previous_response_id: Each turn sends only the new user input.
-Periodic compaction: Calling the compact endpoint shrinks the accumulated conversation into a condensed form that keeps the important content, so triage details survive while the token count drops
+  Periodic compaction: Calling the compact endpoint shrinks the accumulated conversation into a condensed form that keeps the important content, so triage details survive while the token count drops
 - **ExamProAzure** (1 upvotes [Selected Answer: D]): Manual sliding window dropping the oldest 50 percent: Truncation is blunt and can discard critical early details, such as the first symptoms the patient reported. It doesn’t preserve a compacted version of them.
 
 <a id="q3-10"></a>
@@ -419,13 +424,14 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.
+**Most voted:**
+- Agent responsibility boundaries => Test in-scope responses and out-of-scope refusals
+- Responsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent]): Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.
 - **95624c6f** (1 upvotes): Agent responsibility boundaries => Test in-scope responses and out-of-scope refusals
-Responsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.
+  Responsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.
 
 <a id="q3-13"></a>
 ## Q3.13 (ID 430602)
@@ -447,10 +453,10 @@ Which configuration provides the most reliable results?
 
 ### Top explanations
 - **abhimkumar** (1 upvotes [Most Recent, Selected Answer: D]): Candidate 4 provides the best balance across all three metrics:
-Precision@10 = 0.76: High proportion of the top 10 retrieved results are relevant.
-Recall@10 = 0.79: High proportion of relevant content is successfully retrieved.
-MRR = 0.81: Highest MRR of all configurations, meaning the first relevant result tends to appear very high in the ranking.
-Option D performs consistently well across Precision, Recall, and MRR
+  Precision@10 = 0.76: High proportion of the top 10 retrieved results are relevant.
+  Recall@10 = 0.79: High proportion of relevant content is successfully retrieved.
+  MRR = 0.81: Highest MRR of all configurations, meaning the first relevant result tends to appear very high in the ranking.
+  Option D performs consistently well across Precision, Recall, and MRR
 
 <a id="q3-14"></a>
 ## Q3.14 (ID 430603)
@@ -472,31 +478,32 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only "document retrieval" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...
+**Most voted:**
+- Support agent → Document Retrieval
+- Policy agent → Document Retrieval
 
 ### Top explanations
 - **abhimkumar** (1 upvotes [Most Recent]): Support agent → Document Retrieval
-The key evidence is:
-Expected manual chunk is retrieved at rank 5.
-First four chunks are from unrelated product families.
-When expected chunk is replayed at rank 1, the agent response is correct.
-This isolates the problem to retrieval/ranking, not generation. The correct document exists, but the retrieval system ranks irrelevant chunks above it.
-Policy agent → Document Retrieval:
-Chunks are from the correct policy document, but none include the exception table listed in expected source IDs.
-Agent says the exception cannot be identified.
-Again, the response is actually reasonable given its retrieved context. The real failure occurs before generation: retrieval failed to return an expected piece of information.
-The question also explicitly tells us that the evaluation dataset contains:
-Expected source IDs
-That is a big clue toward Document Retrieval, because Document Retrieval evaluates retrieved documents against ground-truth retrieval results.
+  The key evidence is:
+  Expected manual chunk is retrieved at rank 5.
+  First four chunks are from unrelated product families.
+  When expected chunk is replayed at rank 1, the agent response is correct.
+  This isolates the problem to retrieval/ranking, not generation. The correct document exists, but the retrieval system ranks irrelevant chunks above it.
+  Policy agent → Document Retrieval:
+  Chunks are from the correct policy document, but none include the exception table listed in expected source IDs.
+  Agent says the exception cannot be identified.
+  Again, the response is actually reasonable given its retrieved context. The real failure occurs before generation: retrieval failed to return an expected piece of information.
+  The question also explicitly tells us that the evaluation dataset contains:
+  Expected source IDs
+  That is a big clue toward Document Retrieval, because Document Retrieval evaluates retrieved documents against ground-truth retrieval results.
 - **95624c6f** (1 upvotes): Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant).
-Out of possible answers here, only "document retrieval" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used.
-Evaluator / What it measures
-Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here)
-Coherence: Whether the generated answer is logically consistent and understandable
-Groundedness: Whether claims in the answer are supported by retrieved evidence
-Relevance: Whether the generated response addresses the user's query
-Response Completeness: Whether the final response covers all required aspects of the question
+  Out of possible answers here, only "document retrieval" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used.
+  Evaluator / What it measures
+  Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here)
+  Coherence: Whether the generated answer is logically consistent and understandable
+  Groundedness: Whether claims in the answer are supported by retrieved evidence
+  Relevance: Whether the generated response addresses the user's query
+  Response Completeness: Whether the final response covers all required aspects of the question
 
 <a id="q3-17"></a>
 ## Q3.17 (ID 430606)
@@ -520,15 +527,16 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Reliability alerts → Yes | The configured alerts cover two important reliability signals: | - Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations. | - Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services. | Together, these cover important reliability problems involving agent execution and external dependencies.
+**Most voted:**
+- Reliability alerts → Yes
+- Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services.
 
 ### Top explanations
 - **95624c6f** (1 upvotes [Most Recent]): Reliability alerts → Yes
-The configured alerts cover two important reliability signals:
-- Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations.
-- Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services.
-Together, these cover important reliability problems involving agent execution and external dependencies.
+  The configured alerts cover two important reliability signals:
+  - Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations.
+  - Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services.
+  Together, these cover important reliability problems involving agent execution and external dependencies.
 
 <a id="q4-9"></a>
 ## Q4.9 (ID 430681)
@@ -550,7 +558,7 @@ What should you do?
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: A]): Why not:
-D. Content Safety prioritization, approval of final responses, selected calls proceeding automatically: Final-response approval doesn’t cover prompts or steps, and letting selected calls run automatically skips moderation of tool calls. It also has no governance review element.
+  D. Content Safety prioritization, approval of final responses, selected calls proceeding automatically: Final-response approval doesn’t cover prompts or steps, and letting selected calls run automatically skips moderation of tool calls. It also has no governance review element.
 
 <a id="q4-24"></a>
 ## Q4.24 (ID 430620)
@@ -594,7 +602,7 @@ What should you use?
 
 ### Top explanations
 - **ExamProAzure** (1 upvotes [Most Recent, Selected Answer: B]): Why C Fails:
-C. Tag filter on project: This depends on tagging, which the requirement says to minimize. Tags on the shared account also can’t split its usage among three projects.
+  C. Tag filter on project: This depends on tagging, which the requirement says to minimize. Tags on the shared account also can’t split its usage among three projects.
 
 <a id="q4-32"></a>
 ## Q4.32 (ID 430628)
@@ -617,13 +625,14 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Interactive ticket lookup → Delegated permissions from the signed-in employee | "A ticket search tool that enforces the existing per-employee authorization model." | The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication. | 2. Approved article updates → Managed identity scoped to write production article r...
+**Most voted:**
+- Interactive ticket lookup → Delegated permissions from the signed-in employee
+- Approved article updates → Managed identity scoped to write production article records
 
 ### Top explanations
 - **95624c6f** (1 upvotes [Most Recent]): 1. Interactive ticket lookup → Delegated permissions from the signed-in employee
-"A ticket search tool that enforces the existing per-employee authorization model."
-The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication.
-2. Approved article updates → Managed identity scoped to write production article records
-"A knowledge article tool that writes to a separate production article repository."
-Unlike ticket searches, article updates should use a dedicated workload identity with narrowly scoped permissions.
+  "A ticket search tool that enforces the existing per-employee authorization model."
+  The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication.
+  2. Approved article updates → Managed identity scoped to write production article records
+  "A knowledge article tool that writes to a separate production article repository."
+  Unlike ticket searches, article updates should use a dedicated workload identity with narrowly scoped permissions.

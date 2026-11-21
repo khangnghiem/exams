@@ -171,12 +171,12 @@ Which action should you perform first?
 - **uncledana** (3 upvotes [Selected Answer: B]): https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace?view=azureml-api-2&utm_source=chatgpt.com
 - **TanNguyen1998** (1 upvotes [Selected Answer: B]): Request is: ML asset management standardization
 - **8d6w46bz** (1 upvotes [Most Recent, Selected Answer: B]): using Azure Machine Learning and Microsoft Foundry capabilities.
-You need to standardize how I pass the AI-300 exam by using exam4lead manages machine learning assets.
-Which action should you perform first?
-A. Register assets in the Azure Machine Learning registry.
-B. Create a shared Azure Machine Learning workspace.
-C. Deploy a managed online endpoint.
-D. Create a new Microsoft Foundry project.
+  You need to standardize how I pass the AI-300 exam by using exam4lead manages machine learning assets.
+  Which action should you perform first?
+  A. Register assets in the Azure Machine Learning registry.
+  B. Create a shared Azure Machine Learning workspace.
+  C. Deploy a managed online endpoint.
+  D. Create a new Microsoft Foundry project.
 - **03f65a8** (1 upvotes [Selected Answer: B]): Request is: ML asset management standardization
 
 <a id="q2-2"></a>
@@ -236,8 +236,8 @@ What should you implement?
 
 ### Top explanations
 - **03f65a8** (2 upvotes [Most Recent, Selected Answer: D]): - workload isolation
-- autoscaling
-- managed service
+  - autoscaling
+  - managed service
 
 <a id="q2-3"></a>
 ## Q2.3 (ID 404551)
@@ -255,7 +255,6 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** Answer is correct - low latency requires a real time endpoint, for schedules always use a batch endpoint
 
 ### Top explanations
@@ -279,16 +278,16 @@ Which compute target should you use?
 
 ### Top explanations
 - **Peeking** (2 upvotes [Most Recent, Selected Answer: B]): Azure batch deployments support low priority virtual machines (VMs) to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority virtual machines take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.
-from azure.ai.ml.entities import AmlCompute
-compute_name = "low-pri-cluster"
-compute_cluster = AmlCompute(
-name=compute_name,
-description="Low priority compute cluster",
-min_instances=0,
-max_instances=2,
-tier='LowPriority'
-)
-ml_client.begin_create_or_update(compute_cluster)
+  from azure.ai.ml.entities import AmlCompute
+  compute_name = "low-pri-cluster"
+  compute_cluster = AmlCompute(
+  name=compute_name,
+  description="Low priority compute cluster",
+  min_instances=0,
+  max_instances=2,
+  tier='LowPriority'
+  )
+  ml_client.begin_create_or_update(compute_cluster)
 
 <a id="q2-5"></a>
 ## Q2.5 (ID 404553)
@@ -371,7 +370,7 @@ What should you do first?
 - **cayenne06** (2 upvotes [Selected Answer: D]): This is the first step for fine-tuning
 - **uncledana** (2 upvotes [Selected Answer: D]): D - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning?tabs=oai-sdk&pivots=programming-language-python
 - **Peeking** (1 upvotes [Most Recent, Selected Answer: D]): You should prepare the labelled training and validation dataset first.
-For Microsoft Foundry fine-tuning, the first step is to format your labelled support-ticket examples as JSONL in the chat/completions conversational format, where each example maps the customer feedback or ticket text to the expected classification label.
+  For Microsoft Foundry fine-tuning, the first step is to format your labelled support-ticket examples as JSONL in the chat/completions conversational format, where each example maps the customer feedback or ticket text to the expected classification label.
 - **03f65a8** (1 upvotes [Selected Answer: D]): 1st step is dataset formating
 
 <a id="q2-9"></a>
@@ -408,12 +407,13 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Trigger provisioning on repository changes. Configure a GitHub Actions workflow. | Authenticate securely during workflow execution. Use an Azure service principal.
+**Most voted:**
+- Trigger provisioning on repository changes: Configure a GitHub Actions workflow.
+- Authenticate securely during workflow execution: Use an Azure service principal.
 
 ### Top explanations
 - **naim149** (1 upvotes [Most Recent]): Trigger provisioning on repository changes.	Configure a GitHub Actions workflow.
-Authenticate securely during workflow execution.	Use an Azure service principal.
+  Authenticate securely during workflow execution.	Use an Azure service principal.
 
 <a id="q2-11"></a>
 ## Q2.11 (ID 404559)
@@ -472,17 +472,17 @@ Which asset should you register?
 
 ### Top explanations
 - **rveney** (5 upvotes [Selected Answer: B]): Correct answer: B. Component
-If the team wants a consistent, reusable, and governed way to manage assets created during experimentation, the right asset to register is a component.
+  If the team wants a consistent, reusable, and governed way to manage assets created during experimentation, the right asset to register is a component.
 - **boywonder** (4 upvotes [Selected Answer: A]): In Azure Machine Learning, when a team is experimenting with traditional (e.g., scikit-learn, XGBoost, etc.) models for a classification workflow, the key artifacts produced by experimentation are the trained models themselves. Since the question refers to traditional models for a classification workflow and wants to manage artifacts created during experimentation, the primary artifact to register is the trained model.
-Why not B: Component — Components are reusable pieces of pipeline logic (scripts/steps), not the experimental output (the trained model) itself. Useful for standardizing pipeline steps.
+  Why not B: Component — Components are reusable pieces of pipeline logic (scripts/steps), not the experimental output (the trained model) itself. Useful for standardizing pipeline steps.
 - **03f65a8** (3 upvotes [Selected Answer: A]): Model - the most important reuseable artifact in AML. (and the only artifact in the list :))
 - **stfn_DE** (2 upvotes [Selected Answer: A]): A. Model
-The scenario centers on artifacts produced during experimentation — in a classification workflow with traditional (non-deep-learning) models, that output is the trained model itself. Registering it as a model asset in Azure ML gives you versioning, lineage back to the job that produced it, and the ability to promote it to a registry so other workspaces/projects can consume the same governed artifact.
+  The scenario centers on artifacts produced during experimentation — in a classification workflow with traditional (non-deep-learning) models, that output is the trained model itself. Registering it as a model asset in Azure ML gives you versioning, lineage back to the job that produced it, and the ability to promote it to a registry so other workspaces/projects can consume the same governed artifact.
 - **roijalbaker** (1 upvotes [Most Recent, Selected Answer: B]): From MS Learn: Components allow you to create reusable scripts that can easily be shared across users within the same Azure Machine Learning workspace. You can also use components to build an Azure Machine Learning pipeline. A component has three element:
-Metadata: Includes the component's name, version, etc.
-Interface: Includes the expected input parameters (like a dataset or hyperparameter) and expected output (like metrics and artifacts).
-Command, code and environment: Specifies how to run the code.
-A model is a component, but a data preprocessing step too. You need both assets to replicate ones work in another enviroment.
+  Metadata: Includes the component's name, version, etc.
+  Interface: Includes the expected input parameters (like a dataset or hyperparameter) and expected output (like metrics and artifacts).
+  Command, code and environment: Specifies how to run the code.
+  A model is a component, but a data preprocessing step too. You need both assets to replicate ones work in another enviroment.
 
 <a id="q2-14"></a>
 ## Q2.14 (ID 404562)
@@ -501,24 +501,27 @@ NOTE: Each correct selection is worth one point
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Co-pilot say's | First dropdown: load | Second dropdown: ./sample_data | Gemini says | Dropdown 1: load | Dropdown 2: ./sample_data
+**Most voted:**
+- First dropdown: load
+- Second dropdown: ./sample_data
+- Dropdown 1: load
+- Dropdown 2: ./sample_data
 
 ### Top explanations
 - **Alvarogc** (2 upvotes [Most Recent]): When using the Azure Machine Learning Table type, you create an MLTable file, which is a YAML-based file that defines the data loading blueprint. The folder containing the MLTable file may or may not contain the data files themselves, depending on the configuration used. In either case, the table is loaded by referencing the folder containing the MLTable file. In this example, this is done using mltable.load("./sample_data").
-Microsoft Documentation: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-mltable
+  Microsoft Documentation: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-mltable
 - **0fdb748** (2 upvotes): mltable.load():
-In the Azure Machine Learning Python SDK v2, the load() function is used to read an MLTable artifact from a folder containing an MLTable blueprint file.
-/sample_data/MLTable: The question specifies that you must use the MLTable folder as the materialization blueprint. Therefore, you must pass the exact path to that folder, which contains the configuration file defining how the data files should be loaded.
+  In the Azure Machine Learning Python SDK v2, the load() function is used to read an MLTable artifact from a folder containing an MLTable blueprint file.
+  /sample_data/MLTable: The question specifies that you must use the MLTable folder as the materialization blueprint. Therefore, you must pass the exact path to that folder, which contains the configuration file defining how the data files should be loaded.
 - **rveney** (2 upvotes): Co-pilot say's
-First dropdown: load
-Second dropdown: ./sample_data
-Gemini says
-Dropdown 1: load
-Dropdown 2: ./sample_data
+  First dropdown: load
+  Second dropdown: ./sample_data
+  Gemini says
+  Dropdown 1: load
+  Dropdown 2: ./sample_data
 - **uncledana** (2 upvotes): correct
 - **03f65a8** (1 upvotes): I disagree.
-mltable.load() expects the folder that contains the relevant files, not the MLTable file itself.
+  mltable.load() expects the folder that contains the relevant files, not the MLTable file itself.
 
 <a id="q2-15"></a>
 ## Q2.15 (ID 404563)
@@ -535,18 +538,19 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Path: wasbs | Type: URI_FOLDER
+**Most voted:**
+- Path: wasbs
+- Type: URI_FOLDER
 
 ### Top explanations
 - **rveney** (8 upvotes [Highly Voted]): Path: wasbs
-Type: URI_FOLDER
+  Type: URI_FOLDER
 - **cayenne06** (4 upvotes): I think it's wasbs for blob storage access. Abfss is for Data Lake Gen 2 and azureml for internal storage of azure ml.
 - **Solaimuthu** (1 upvotes [Most Recent]): wasbs  - Windows  Azure Storage blob secure
-URI_FOLDER
+  URI_FOLDER
 - **exam_upskill** (1 upvotes): Path protocol: wasbs
-Asset type: URI_FOLDER
-wasbs is the appropriate choice because the path directly references an Azure Blob Storage container.
+  Asset type: URI_FOLDER
+  wasbs is the appropriate choice because the path directly references an Azure Blob Storage container.
 
 <a id="q2-16"></a>
 ## Q2.16 (ID 404564)
@@ -588,8 +592,8 @@ Does the solution meet the goal?
 ### Top explanations
 - **uncledana** (4 upvotes [Selected Answer: B]): See the typo - should match exactly as the parameter: python script.py --training_data ${{inputs.training_data}}
 - **Z_MU** (2 upvotes [Most Recent, Selected Answer: B]): python script.py --training_data ${{inputs.training_data}} >> Correct
-python script.py --trainingdata ${{inputs.training_data}} >> incorrect
-underscore is missing in --trainingdata
+  python script.py --trainingdata ${{inputs.training_data}} >> incorrect
+  underscore is missing in --trainingdata
 
 <a id="q2-19"></a>
 ## Q2.19 (ID 415889)
@@ -606,17 +610,19 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Statement 1: Yes | Statement 2: No | Statement 3: No
+**Most voted:**
+- Statement 1: Yes
+- Statement 2: No
+- Statement 3: No
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): YNN
-1. Y
-2. N
-3. N
+  1. Y
+  2. N
+  3. N
 - **rveney** (1 upvotes): Statement 1: Yes
-Statement 2: No
-Statement 3: No
+  Statement 2: No
+  Statement 3: No
 
 <a id="q2-20"></a>
 ## Q2.20 (ID 415890)
@@ -633,23 +639,24 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Azure databricks cluster is the correct answer: | All-purpose clusters (for interactive notebooks) and Job clusters (ephemeral clusters for automated pipelines).
+**Most voted:**
+- Interactive experimentation → Azure Machine Learning compute instance
+- Scalable training jobs → Azure Machine Learning compute cluster
 
 ### Top explanations
 - **rveney** (9 upvotes [Highly Voted]): Interactive experimentation → Azure Machine Learning compute instance
-Scalable training jobs → Azure Machine Learning compute cluster
+  Scalable training jobs → Azure Machine Learning compute cluster
 - **pvenkat1967** (1 upvotes [Most Recent]): Azure databricks cluster is the correct answer:
-All-purpose clusters (for interactive notebooks) and Job clusters (ephemeral clusters for automated pipelines).
+  All-purpose clusters (for interactive notebooks) and Job clusters (ephemeral clusters for automated pipelines).
 - **exam_upskill** (1 upvotes): 1. Interactive experimentation: Azure Machine Learning compute instance
-2. Scalable training jobs: Azure Machine Learning compute cluster
-Develop/Experiment → Compute Instance
-Train/Scale → Compute Cluster
+  2. Scalable training jobs: Azure Machine Learning compute cluster
+  Develop/Experiment → Compute Instance
+  Train/Scale → Compute Cluster
 - **exam_upskill** (1 upvotes): Interactive experimentation: Azure Machine Learning compute instance
-Scalable training jobs: Azure Machine Learning compute cluster
+  Scalable training jobs: Azure Machine Learning compute cluster
 - **adelina99** (1 upvotes): I also think that correct answers are:
-Interactive experimentation → Azure Machine Learning compute instance
-Scalable training jobs → Azure Machine Learning compute cluster
+  Interactive experimentation → Azure Machine Learning compute instance
+  Scalable training jobs → Azure Machine Learning compute cluster
 
 <a id="q2-21"></a>
 ## Q2.21 (ID 415891)
@@ -665,24 +672,27 @@ NOTE: More than one order of answer choices is correct. You will receive credit 
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Run ssh-keygen in the Azure Machine Learning terminal. | 2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key. | 3. Add the public key to the GitHub account. | 4. Run git clone from the Azure Machine Learning terminal. | ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone
+**Most voted:**
+1. Run ssh-keygen in the Azure Machine Learning terminal.
+2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.
+3. Add the public key to the GitHub account.
+4. Run git clone from the Azure Machine Learning terminal.
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1. Run ssh-keygen in the Azure Machine Learning terminal.
-2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.
-3. Add the public key to the GitHub account.
-4. Run git clone from the Azure Machine Learning terminal.
-ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone
+  2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.
+  3. Add the public key to the GitHub account.
+  4. Run git clone from the Azure Machine Learning terminal.
+  ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone
 - **exam_upskill** (1 upvotes): 1. Run ssh-keygen in the Azure Machine Learning terminal.
-2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.
-3. Add the public key to the GitHub account.
-4. Run git clone from the Azure Machine Learning terminal.
-ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone
+  2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.
+  3. Add the public key to the GitHub account.
+  4. Run git clone from the Azure Machine Learning terminal.
+  ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone
 - **rveney** (1 upvotes): From the terminal window in the Azure Machine Learning interface, run the ssh-keygen command.
-From the terminal window in the Azure Machine Learning interface, run the cat ~/.ssh/id_rsa.pub command.
-Add a public key to the GitHub account.
-From the terminal window in the Azure Machine Learning interface, run the git clone command.
+  From the terminal window in the Azure Machine Learning interface, run the cat ~/.ssh/id_rsa.pub command.
+  Add a public key to the GitHub account.
+  From the terminal window in the Azure Machine Learning interface, run the git clone command.
 
 <a id="q2-22"></a>
 ## Q2.22 (ID 415892)
@@ -702,11 +712,11 @@ What should you do?
 
 ### Top explanations
 - **Kachien** (3 upvotes [Selected Answer: D]): Correct answer is D.
-For environments, only description and tags can be updated. All other properties are immutable; if you need to change any of those properties you should create a new version of the environment.
-To use the latest version of a Docker image, you must define a new Environment object using the Python Environment class, passing the updated image path to the image parameter.
+  For environments, only description and tags can be updated. All other properties are immutable; if you need to change any of those properties you should create a new version of the environment.
+  To use the latest version of a Docker image, you must define a new Environment object using the Python Environment class, passing the updated image path to the image parameter.
 - **RICHARDALEX007** (3 upvotes [Selected Answer: D]): Environments are immutable and versioned; to adopt a new Docker image you create a new environment version via the
-Environment class (create_or_update registers it as a new version). Changing description (A) or conda_file (B) does not switch
-the base image; 'change the tag' (C) is not how you pin a new image version in SDK v2.
+  Environment class (create_or_update registers it as a new version). Changing description (A) or conda_file (B) does not switch
+  the base image; 'change the tag' (C) is not how you pin a new image version in SDK v2.
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: D]): D. Use the Environment class to create a new version of the environment.
 
 <a id="q2-23"></a>
@@ -726,7 +736,7 @@ Which parameter should you use?
 
 ### Top explanations
 - **RICHARDALEX007** (1 upvotes [Most Recent, Selected Answer: D]): define an environment from a Docker image in SDK v2 you set the Environment 'image' parameter. conda_file (A) adds
-Python deps, build (C) is for a Dockerfile build context, properties (B) is metadata.
+  Python deps, build (C) is for a Dockerfile build context, properties (B) is metadata.
 
 <a id="q2-24"></a>
 ## Q2.24 (ID 415894)
@@ -746,9 +756,9 @@ Which action should you perform first?
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: B]): B. Create a shared hub workspace and project workspaces for each team.
-Multi-team + central governance + isolation → Hub + Projects ✅
+  Multi-team + central governance + isolation → Hub + Projects ✅
 - **exam_upskill** (1 upvotes [Selected Answer: B]): B. Create a shared hub workspace and project workspaces for each team.
-Multi-team + central governance + isolation → Hub + Projects ✅
+  Multi-team + central governance + isolation → Hub + Projects ✅
 
 <a id="q2-25"></a>
 ## Q2.25 (ID 415895)
@@ -768,8 +778,8 @@ Which tool should you use?
 
 ### Top explanations
 - **RICHARDALEX007** (1 upvotes [Most Recent, Selected Answer: B]): Automated, auditable deployments triggered by pull requests with an approval gate are delivered by GitHub Actions (with
-environment protection rules for approvals). Azure Monitor (A) is observability, MLflow (C) is tracking, AML pipelines (D)
-orchestrate ML steps, not PR-gated CI/CD.
+  environment protection rules for approvals). Azure Monitor (A) is observability, MLflow (C) is tracking, AML pipelines (D)
+  orchestrate ML steps, not PR-gated CI/CD.
 
 <a id="q2-26"></a>
 ## Q2.26 (ID 415896)
@@ -809,9 +819,9 @@ Which asset should you define?
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: D]): D. Azure Machine Learning environment
-Same/reproducible Python packages + runtime dependencies → Azure Machine Learning Environment ✅
+  Same/reproducible Python packages + runtime dependencies → Azure Machine Learning Environment ✅
 - **exam_upskill** (1 upvotes [Selected Answer: D]): D. Azure Machine Learning environment
-Same/reproducible Python packages + runtime dependencies → Azure ML Environment ✅
+  Same/reproducible Python packages + runtime dependencies → Azure ML Environment ✅
 
 <a id="q2-28"></a>
 ## Q2.28 (ID 424431)
@@ -827,20 +837,23 @@ Which four commands should you use? To answer, move the appropriate actions from
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** conda create -n "python_env" | conda activate "python_env" | conda install -r "requirements.txt" | ipython kernel install --user --name="python_env" | conda create → conda activate → conda install -r → ipython kernel install
-
-### Top explanations
-- **exam_upskill** (1 upvotes [Most Recent]): conda create -n "python_env"
-conda activate "python_env"
-conda install -r "requirements.txt"
-ipython kernel install --user --name="python_env"
-conda create → conda activate → conda install -r → ipython kernel install
-- **exam_upskill** (1 upvotes): 1. conda create -n "python_env"
+**Most voted:**
+1. conda create -n "python_env"
 2. conda activate "python_env"
 3. conda install -r "requirements.txt"
 4. ipython kernel install --user --name="python_env"
-conda create → conda activate → conda install -r → ipython kernel install
+
+### Top explanations
+- **exam_upskill** (1 upvotes [Most Recent]): conda create -n "python_env"
+  conda activate "python_env"
+  conda install -r "requirements.txt"
+  ipython kernel install --user --name="python_env"
+  conda create → conda activate → conda install -r → ipython kernel install
+- **exam_upskill** (1 upvotes): 1. conda create -n "python_env"
+  2. conda activate "python_env"
+  3. conda install -r "requirements.txt"
+  4. ipython kernel install --user --name="python_env"
+  conda create → conda activate → conda install -r → ipython kernel install
 
 <a id="q2-29"></a>
 ## Q2.29 (ID 424432)
@@ -860,31 +873,31 @@ Which method should you use to achieve this goal?
 
 ### Top explanations
 - **exam_upskill** (2 upvotes [Selected Answer: B]): B. mltable.from_delimited_files() ✅
-Existing MLTable definition → mltable.load()
-Folder/file containing CSV → mltable.from_delimited_files()
+  Existing MLTable definition → mltable.load()
+  Folder/file containing CSV → mltable.from_delimited_files()
 - **guy3hil** (2 upvotes [Selected Answer: A]): Correct answer A = mltable.load()
---------------------------------------------------------------------------
-import mltable
-tbl = mltable.load("path/to/folder_asset")
-df = tbl.to_pandas_dataframe()
---------------------------------------------------------------------------------------
-Why not the other options ??
-B. mltable.from_delimited_files() → Used to create an MLTable definition from raw delimited files, not to load an already registered folder asset.
-C. mltable.from_parquet_files() → Same idea, but for Parquet files. Not applicable here since the asset is CSV.
-D. mltable.from_delta_lake() → Used for Delta Lake sources, not CSV.
+  --------------------------------------------------------------------------
+  import mltable
+  tbl = mltable.load("path/to/folder_asset")
+  df = tbl.to_pandas_dataframe()
+  --------------------------------------------------------------------------------------
+  Why not the other options ??
+  B. mltable.from_delimited_files() → Used to create an MLTable definition from raw delimited files, not to load an already registered folder asset.
+  C. mltable.from_parquet_files() → Same idea, but for Parquet files. Not applicable here since the asset is CSV.
+  D. mltable.from_delta_lake() → Used for Delta Lake sources, not CSV.
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: B]): B. mltable.from_delimited_files()
-The key clues are:
-The data asset is a folder
-It contains a CSV file
-You want to load the CSV data for interactive data wrangling into a Pandas DataFrame
+  The key clues are:
+  The data asset is a folder
+  It contains a CSV file
+  You want to load the CSV data for interactive data wrangling into a Pandas DataFrame
 - **pandaji** (1 upvotes [Selected Answer: A]): Why the other options are incorrect
-B. mltable.from_delimited_files()
-Used to create a new MLTable from CSV or other delimited files.
-Not used when you're accessing an already registered data asset.
-C. mltable.from_parquet_files()
-Used for Parquet files only.
-D. mltable.from_delta_lake()
-Used for Delta Lake datasets.
+  B. mltable.from_delimited_files()
+  Used to create a new MLTable from CSV or other delimited files.
+  Not used when you're accessing an already registered data asset.
+  C. mltable.from_parquet_files()
+  Used for Parquet files only.
+  D. mltable.from_delta_lake()
+  Used for Delta Lake datasets.
 - **PurpleBlue** (1 upvotes [Selected Answer: B]): mltable.from_delimited_files() is specifically designed to create an MLTable object from delimited text files (like CSVs) by pointing it at a path — in this case, your registered folder data asset. Once created, you can call .to_pandas_dataframe() on the resulting MLTable object to materialize it as a Pandas DataFrame for wrangling
 
 <a id="q2-30"></a>
@@ -924,12 +937,13 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Container_name="data1" | 2. Credentials=SaSTokenConfiguration
+**Most voted:**
+1. Container_name="data1"
+2. Credentials=SaSTokenConfiguration
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1. Container_name="data1"
-2. Credentials=SaSTokenConfiguration
+  2. Credentials=SaSTokenConfiguration
 
 <a id="q2-32"></a>
 ## Q2.32 (ID 424435)
@@ -947,12 +961,13 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. load_component | 2. components.create_or_update
+**Most voted:**
+1. load_component
+2. components.create_or_update
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1. load_component
-2. components.create_or_update
+  2. components.create_or_update
 
 <a id="q2-33"></a>
 ## Q2.33 (ID 424436)
@@ -967,15 +982,19 @@ Which four actions should you perform in sequence?
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1 → Create a compute instance | 2 → Open a terminal window | 3 → Generate a Secure Shell (SSH) key pair | 4 → Add a public key to account1 | Public key → GitHub. Private key → stays securely on the machine.
+**Most voted:**
+- 1 → Create a compute instance
+- 2 → Open a terminal window
+- 3 → Generate a Secure Shell (SSH) key pair
+- 4 → Add a public key to account1
+- Public key → GitHub. Private key → stays securely on the machine.
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1 → Create a compute instance
-2 → Open a terminal window
-3 → Generate a Secure Shell (SSH) key pair
-4 → Add a public key to account1
-Public key → GitHub. Private key → stays securely on the machine.
+  2 → Open a terminal window
+  3 → Generate a Secure Shell (SSH) key pair
+  4 → Add a public key to account1
+  Public key → GitHub. Private key → stays securely on the machine.
 
 <a id="q2-34"></a>
 ## Q2.34 (ID 424437)
@@ -997,12 +1016,13 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. pandas | 2. describe
+**Most voted:**
+1. pandas
+2. describe
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1. pandas
-2. describe
+  2. describe
 
 <a id="q3-1"></a>
 ## Q3.1 (ID 404567)
@@ -1079,12 +1099,13 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1 → Enable data drift monitoring | 2 → Configure alerts
+**Most voted:**
+- 1 → Enable data drift monitoring
+- 2 → Configure alerts
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1 → Enable data drift monitoring
-2 → Configure alerts
+  2 → Configure alerts
 - **RICHARDALEX007** (1 upvotes): Input-distribution change detection is data drift monitoring on the deployed model; the threshold-based response is an alert/automated action. This matches the AML production monitoring model.
 
 <a id="q3-3"></a>
@@ -1106,7 +1127,7 @@ Which algorithm should you use?
 ### Top explanations
 - **cb18c4d** (2 upvotes [Selected Answer: D]): Post-processing: Tweaking the prediction thresholds of an already-trained model (e.g., ThresholdOptimizer) to balance outcomes across sensitive groups without retraining the model from scratch.
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: D]): D. fairlearn.postprocessing.ThresholdOptimizer ✅
-No retraining → Post-processing → ThresholdOptimizer.
+  No retraining → Post-processing → ThresholdOptimizer.
 
 <a id="q3-4"></a>
 ## Q3.4 (ID 404602)
@@ -1123,13 +1144,15 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1 → Review deployment logs | 2 → Validate scoring script and model version | 3 → Adjust autoscaling configuration
+**Most voted:**
+- 1 → Review deployment logs
+- 2 → Validate scoring script and model version
+- 3 → Adjust autoscaling configuration
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1 → Review deployment logs
-2 → Validate scoring script and model version
-3 → Adjust autoscaling configuration
+  2 → Validate scoring script and model version
+  3 → Adjust autoscaling configuration
 
 <a id="q3-5"></a>
 ## Q3.5 (ID 404603)
@@ -1152,9 +1175,9 @@ NOTE: Each correct selection is worth one point.
 ### Top explanations
 - **RICHARDALEX007** (2 upvotes [Selected Answer: BCE]): Performance degradation on an online endpoint under load is surfaced by traffic (requests per minute), concurrency (active connections) and request latency. Feature count (A) and dataset size (D) are not endpoint runtime performance metrics.
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: BCE]): B. Requests per minute ✅
-C. Connections active ✅
-E. Request latency ✅
-B + C + E
+  C. Connections active ✅
+  E. Request latency ✅
+  B + C + E
 
 <a id="q3-6"></a>
 ## Q3.6 (ID 404604)
@@ -1171,16 +1194,17 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Automated response → Configure alert rules ✅ | Infrastructure optimization → Enable autoscaling ✅
+**Most voted:**
+- Automated response → Configure alert rules ✅
+- Infrastructure optimization → Enable autoscaling ✅
 
 ### Top explanations
 - **uncledana** (6 upvotes): Configure alert rules
-Enable autoscaling
+  Enable autoscaling
 - **exam_upskill** (1 upvotes [Most Recent]): Automated response → Configure alert rules ✅
-Infrastructure optimization → Enable autoscaling ✅
+  Infrastructure optimization → Enable autoscaling ✅
 - **03f65a8** (1 upvotes): Configure alert rules
-Enable autoscaling
+  Enable autoscaling
 - **cayenne06** (1 upvotes): the right choice is Enable autoscaling, because it automatically adjusts capacity based on traffic/load. Trigger retraining pipeline is for improving model quality after drift or performance degradation, not for optimizing endpoint infrastructure.
 
 <a id="q3-7"></a>
@@ -1199,14 +1223,17 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1 → MLflow tracking URI ✅ | 2 → MLflow metrics logging ✅ | Where should runs go? → Tracking URI | What records performance values? → Metrics logging
+**Most voted:**
+- 1 → MLflow tracking URI ✅
+- 2 → MLflow metrics logging ✅
+- Where should runs go? → Tracking URI
+- What records performance values? → Metrics logging
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent]): 1 → MLflow tracking URI ✅
-2 → MLflow metrics logging ✅
-Where should runs go? → Tracking URI
-What records performance values? → Metrics logging
+  2 → MLflow metrics logging ✅
+  Where should runs go? → Tracking URI
+  What records performance values? → Metrics logging
 - **RICHARDALEX007** (1 upvotes): Centralized run recording uses MLflow experiment tracking; logging metrics that appear in run history uses mlflow.log_metric (autolog also valid). This is the native AML experiment-tracking pattern.
 
 <a id="q3-8"></a>
@@ -1231,10 +1258,10 @@ NOTE: Each correct selection is worth one point.
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: DE]): D. Evaluate feature importance for prediction transparency ✅
-E. Analyze error rates across defined demographic cohorts ✅
+  E. Analyze error rates across defined demographic cohorts ✅
 - **Nilf** (1 upvotes [Selected Answer: AE]): Per Microsoft Learn's official Responsible AI dashboard docs: "Error analysis... identify cohorts (subsets) of data with a higher error rate than the overall benchmark. These discrepancies can occur when the model underperforms for specific demographic groups..."
-This shows Error Analysis inherently compares demographic cohorts (E) against the overall/global benchmark (A) — they're two parts of the same mechanism, not competing options.
-Feature importance (D) belongs to a separate component — "Model Interpretability" — which explains how predictions are made, not where errors concentrate or whether protected groups are disproportionately affected. Microsoft's own docs list "Fairness assessment" and "Error analysis" as distinct from "Model interpretability" for exactly this reason.
+  This shows Error Analysis inherently compares demographic cohorts (E) against the overall/global benchmark (A) — they're two parts of the same mechanism, not competing options.
+  Feature importance (D) belongs to a separate component — "Model Interpretability" — which explains how predictions are made, not where errors concentrate or whether protected groups are disproportionately affected. Microsoft's own docs list "Fairness assessment" and "Error analysis" as distinct from "Model interpretability" for exactly this reason.
 - **RICHARDALEX007** (1 upvotes [Selected Answer: DE]): Responsible AI assessment for protected-group impact uses cohort/error analysis across demographic groups (E) plus model transparency via feature importance (D). Global cohort error (A) hides disparities; latency (B) and schema checks (C) are not Responsible AI metrics.
 
 <a id="q3-9"></a>
@@ -1273,23 +1300,25 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Yes No Yes: | mlflow.set_experiment("classification-experiment") | --> experiment association, not artefact path definition | mlflow.sklearn.log_model(model, "model") | --> "model" is the artefact path.
+**Most voted:**
+1. YES ✅
+2. NO ✅
+3. YES ✅
 
 ### Top explanations
 - **uncledana** (5 upvotes): YNY - makes sense, no experiment name is classification-experiment but artefact name is 'model'
 - **03f65a8** (3 upvotes): Yes No Yes:
-mlflow.set_experiment("classification-experiment")
---> experiment association, not artefact path definition
-mlflow.sklearn.log_model(model, "model")
---> "model" is the artefact path.
+  mlflow.set_experiment("classification-experiment")
+  --> experiment association, not artefact path definition
+  mlflow.sklearn.log_model(model, "model")
+  --> "model" is the artefact path.
 - **exam_upskill** (1 upvotes [Most Recent]): 1. YES ✅
-2. NO ✅
-3. YES ✅
-YES → NO → YES.
+  2. NO ✅
+  3. YES ✅
+  YES → NO → YES.
 - **f5f9d28** (1 upvotes): NNY
-as you have not imported the accuracy metric at all
-log_model is hard coded to model so, it has no reference to classification- experiment
+  as you have not imported the accuracy metric at all
+  log_model is hard coded to model so, it has no reference to classification- experiment
 
 <a id="q3-11"></a>
 ## Q3.11 (ID 404570)
@@ -1311,7 +1340,7 @@ NOTE: Each correct selection is worth one point.
 
 ### Top explanations
 - **exam_upskill** (1 upvotes [Most Recent, Selected Answer: AB]): A. Locate and capture the model artifacts from the outputs of the training run.
-B. Register the model in the Azure Machine Learning workspace.
+  B. Register the model in the Azure Machine Learning workspace.
 - **RICHARDALEX007** (1 upvotes [Selected Answer: AB]): Versioning an MLflow-trained model for reuse requires capturing the run's model artifacts (A) and registering the model in the workspace (B), which creates the versioned entry. Tagging the experiment (C) and exporting to local storage (D) don't version it centrally.
 
 <a id="q3-12"></a>
@@ -1330,31 +1359,34 @@ Which four actions should you perform in sequence? To answer, move the appropria
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Monitor baseline metrics from production traffic | 2. Define performance thresholds for monitored metrics | 3. Configure alerts to notify stakeholders | 4. Enable scheduled or event-based retraining
-
-### Top explanations
-- **uncledana** (13 upvotes [Highly Voted]): 1.	Monitor baseline metrics from production traffic
-2.	Define performance thresholds for monitored metrics
-3.	Configure alerts to notify stakeholders
-4.	Enable scheduled or event-based retraining
-- **03f65a8** (3 upvotes): Define thresholds
-↓
-Monitor production metrics
-↓
-Trigger alerts
-↓
-Automated retraining
-- **exam_upskill** (1 upvotes [Most Recent]): 1. Monitor baseline metrics from production traffic
+**Most voted:**
+1. Monitor baseline metrics from production traffic
 2. Define performance thresholds for monitored metrics
 3. Configure alerts to notify stakeholders
 4. Enable scheduled or event-based retraining
+
+### Top explanations
+- **uncledana** (13 upvotes [Highly Voted]): 1.	Monitor baseline metrics from production traffic
+  2.	Define performance thresholds for monitored metrics
+  3.	Configure alerts to notify stakeholders
+  4.	Enable scheduled or event-based retraining
+- **03f65a8** (3 upvotes): Define thresholds
+  ↓
+  Monitor production metrics
+  ↓
+  Trigger alerts
+  ↓
+  Automated retraining
+- **exam_upskill** (1 upvotes [Most Recent]): 1. Monitor baseline metrics from production traffic
+  2. Define performance thresholds for monitored metrics
+  3. Configure alerts to notify stakeholders
+  4. Enable scheduled or event-based retraining
 - **DAgoGi** (1 upvotes): Settings:
-1. Define thresholds
-2. Trigger alerts
-3. Automated retraining
-Execution:
-4. Monitor production metrics
+  1. Define thresholds
+  2. Trigger alerts
+  3. Automated retraining
+  Execution:
+  4. Monitor production metrics
 
 <a id="q3-13"></a>
 ## Q3.13 (ID 404572)
@@ -1412,15 +1444,18 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. YES ✅ | 2. NO ✅ | 3. NO ✅ | 4. YES ✅ | YES → NO → NO → YES.
-
-### Top explanations
-- **exam_upskill** (1 upvotes [Most Recent]): 1. YES ✅
+**Most voted:**
+1. YES ✅
 2. NO ✅
 3. NO ✅
 4. YES ✅
-YES → NO → NO → YES.
+
+### Top explanations
+- **exam_upskill** (1 upvotes [Most Recent]): 1. YES ✅
+  2. NO ✅
+  3. NO ✅
+  4. YES ✅
+  YES → NO → NO → YES.
 
 <a id="q3-17"></a>
 ## Q3.17 (ID 415898)
@@ -1557,7 +1592,6 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** To mitigate disparities across each Ethnicity category, a Fairlearn reductions technique (Grid search) with a fairness constraint (demographic parity) is used.
 
 ### Top explanations
@@ -1602,21 +1636,21 @@ NOTE: Each correct selection is worth one point.
 
 ### Top explanations
 - **boywonder** (2 upvotes [Selected Answer: BCD]): B. Stop the current kernel – Stops the notebook kernel, clearing the current session state. When restarted, the notebook begins with a fresh kernel.
-C. Reset the compute – Restarts the compute instance, terminating all running processes and clearing the notebook environment.
-D. Change the current kernel – Switching to a different kernel starts a new kernel session, effectively resetting the notebook state.
+  C. Reset the compute – Restarts the compute instance, terminating all running processes and clearing the notebook environment.
+  D. Change the current kernel – Switching to a different kernel starts a new kernel session, effectively resetting the notebook state.
 - **Alvarogc** (1 upvotes [Most Recent, Selected Answer: CDE]): Stopping the kernel and Navigate to another workspace section don't change the notebook state or the values of any variables in the notebook, so answer should be:
-C. Reset the compute.
-D. Change the current kernel.
-E. Change the compute.
-Reference: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks
+  C. Reset the compute.
+  D. Change the current kernel.
+  E. Change the compute.
+  Reference: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks
 - **Kachien** (1 upvotes [Selected Answer: CDE]): These actions reset the notebook state and resets all variables in the notebook.
-Action	Result
-Change the kernel	Notebook uses new kernel
-Switch compute	Notebook automatically uses the new compute.
-Reset compute	Starts again when you try to run a cell
-Stop compute	No cells will run
-Open notebook in Jupyter or JupyterLab	Notebook opened in a new tab.
-https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2
+  Action	Result
+  Change the kernel	Notebook uses new kernel
+  Switch compute	Notebook automatically uses the new compute.
+  Reset compute	Starts again when you try to run a cell
+  Stop compute	No cells will run
+  Open notebook in Jupyter or JupyterLab	Notebook opened in a new tab.
+  https://learn.microsoft.com/en-us/azure/machine-learning/how-to-run-jupyter-notebooks?view=azureml-api-2
 - **RICHARDALEX007** (1 upvotes [Selected Answer: ABD]): navigating away and back, stopping the kernel, or changing the kernel each reset the in-memory state
 
 <a id="q3-24"></a>
@@ -1655,7 +1689,6 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** Predictable, consistent global performance uses Global Provisioned (provisioned throughput); variable, cost-efficient workloads use Global Standard (pay-as-you-go).
 
 ### Top explanations
@@ -1694,16 +1727,18 @@ Which three actions should you perform in sequence? To answer, move the appropri
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct sequence: | 1. Deploy a new model version. | 2, Create an AI gateway route version. | 3. Validate the behavior of the new version. | The model is first deployed without changing existing production routing. A separate route version then provides a controlled configuration for testing. Validate it before promoting it to production. | Do not immediately shift 100% of traffic or change the existing production route before validation.
+**Most voted:**
+1. Deploy a new model version.
+2. Create an AI gateway route version.
+3. Validate the behavior of the new version.
 
 ### Top explanations
 - **0fdb748** (2 upvotes [Most Recent]): Correct sequence:
-1. Deploy a new model version.
-2, Create an AI gateway route version.
-3. Validate the behavior of the new version.
-The model is first deployed without changing existing production routing. A separate route version then provides a controlled configuration for testing. Validate it before promoting it to production.
-Do not immediately shift 100% of traffic or change the existing production route before validation.
+  1. Deploy a new model version.
+  2, Create an AI gateway route version.
+  3. Validate the behavior of the new version.
+  The model is first deployed without changing existing production routing. A separate route version then provides a controlled configuration for testing. Validate it before promoting it to production.
+  Do not immediately shift 100% of traffic or change the existing production route before validation.
 - **RICHARDALEX007** (1 upvotes): Safe promotion without disrupting production deploys the new version, sends partial traffic (canary), validates, then promotes fully. Matches the controlled rollout pattern.
 
 <a id="q3-28"></a>
@@ -1722,13 +1757,15 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Detect when the system is slow at returning output → Latency | Identify when the system cannot sustain expected request volume → Throughput | Measure the duration of handling a request → Response time
+**Most voted:**
+- Detect when the system is slow at returning output → Latency
+- Identify when the system cannot sustain expected request volume → Throughput
+- Measure the duration of handling a request → Response time
 
 ### Top explanations
 - **rveney** (4 upvotes [Most Recent]): Detect when the system is slow at returning output → Latency
-Identify when the system cannot sustain expected request volume → Throughput
-Measure the duration of handling a request → Response time
+  Identify when the system cannot sustain expected request volume → Throughput
+  Measure the duration of handling a request → Response time
 
 <a id="q3-29"></a>
 ## Q3.29 (ID 415910)
@@ -1745,13 +1782,15 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Input feature distributions differ from training data → Analyze dataset drift metrics. | Model accuracy drops without code changes → Review prediction and ground truth trends. | Endpoint latency increases under load → Investigate scaling and infrastructure metrics
+**Most voted:**
+- Input feature distributions differ from training data → Analyze dataset drift metrics.
+- Model accuracy drops without code changes → Review prediction and ground truth trends.
+- Endpoint latency increases under load → Investigate scaling and infrastructure metrics
 
 ### Top explanations
 - **rveney** (5 upvotes [Most Recent]): Input feature distributions differ from training data → Analyze dataset drift metrics.
-Model accuracy drops without code changes → Review prediction and ground truth trends.
-Endpoint latency increases under load → Investigate scaling and infrastructure metrics
+  Model accuracy drops without code changes → Review prediction and ground truth trends.
+  Endpoint latency increases under load → Investigate scaling and infrastructure metrics
 
 <a id="q3-31"></a>
 ## Q3.31 (ID 415912)
@@ -1768,7 +1807,6 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** Terminating runs when the primary metric is >=25% worse than the best run is exactly the Bandit policy governed by slack_factor (a run within (1/(1+slack)) of the best survives).
 
 ### Top explanations
@@ -1809,7 +1847,6 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** An AML real-time entry/scoring script uses init() to load the model on startup and run(data) to score each request
 
 ### Top explanations
@@ -1856,19 +1893,21 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Define how features are retrieved at inference → Feature retrieval specification | Ensure feature consistency between training and inference → Feature retrieval specification | Enable automated feature lookup in production → Feature set materialization
+**Most voted:**
+- Define how features are retrieved at inference → Feature retrieval specification
+- Ensure feature consistency between training and inference → Feature retrieval specification
+- Enable automated feature lookup in production → Feature set materialization
 
 ### Top explanations
 - **rveney** (3 upvotes): Define how features are retrieved at inference → Feature retrieval specification
-Ensure feature consistency between training and inference → Feature retrieval specification
-Enable automated feature lookup in production → Feature set materialization
+  Ensure feature consistency between training and inference → Feature retrieval specification
+  Enable automated feature lookup in production → Feature set materialization
 - **boywonder** (1 upvotes [Most Recent]): Define how features are retrieved at inference. → Feature retrieval specification
-Ensure feature consistency between training and inference. → Feature set specification
-Enable automated feature lookup in production. → Feature retrieval specification
-Why not the others?
-Feature set asset: Represents the registered feature set itself, but it doesn't define retrieval logic or ensure inference behavior.
-Feature set materialization: Controls how offline features are materialized to storage for training; it is not used for online feature retrieval during inference.
+  Ensure feature consistency between training and inference. → Feature set specification
+  Enable automated feature lookup in production. → Feature retrieval specification
+  Why not the others?
+  Feature set asset: Represents the registered feature set itself, but it doesn't define retrieval logic or ensure inference behavior.
+  Feature set materialization: Controls how offline features are materialized to storage for training; it is not used for online feature retrieval during inference.
 
 <a id="q3-41"></a>
 ## Q3.41 (ID 420695)
@@ -1885,19 +1924,20 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** The correct answers are: | Import module: azure.ai.ml.entities | Asset type: AssetTypes.URI_FOLDER | Why? | azure.ai.ml.entities provides the AssetTypes class used to specify the type of input data. | AssetTypes.URI_FOLDER is appropriate because image-classification training data typically consists of a folder containing multiple labeled images, organized by class. | P.S. | The guys at ExamTopics are real infamous, though—they make you pay for exam quizzes but don't even include the correct a...
+**Most voted:**
+- Import module: azure.ai.ml.entities
+- Asset type: AssetTypes.URI_FOLDER
 
 ### Top explanations
 - **DAgoGi** (1 upvotes [Most Recent]): The correct answers are:
-Import module: azure.ai.ml.entities
-Asset type: AssetTypes.URI_FOLDER
-Why?
-azure.ai.ml.entities provides the AssetTypes class used to specify the type of input data.
-AssetTypes.URI_FOLDER is appropriate because image-classification training data typically consists of a folder containing multiple labeled images, organized by class.
-P.S.
-The guys at ExamTopics are real infamous, though—they make you pay for exam quizzes but don't even include the correct answers! Not to mention the explanations!
-Li mortacci vostra!
+  Import module: azure.ai.ml.entities
+  Asset type: AssetTypes.URI_FOLDER
+  Why?
+  azure.ai.ml.entities provides the AssetTypes class used to specify the type of input data.
+  AssetTypes.URI_FOLDER is appropriate because image-classification training data typically consists of a folder containing multiple labeled images, organized by class.
+  P.S.
+  The guys at ExamTopics are real infamous, though—they make you pay for exam quizzes but don't even include the correct answers! Not to mention the explanations!
+  Li mortacci vostra!
 
 <a id="q3-46"></a>
 ## Q3.46 (ID 420700)
@@ -1920,15 +1960,15 @@ NOTE: Each correct selection is worth one point.
 
 ### Top explanations
 - **DAgoGi** (1 upvotes [Most Recent, Selected Answer: AD]): The correct answers are A. Counterfactuals and D. Explanation.
-Why?
-A. Counterfactuals — Helps determine what changes to input features would lead to a desirable model outcome. For example, what changes would make a loan application approved.
-D. Explanation — Identifies the features that have the greatest influence on the model's predictions, including their relative importance.
-Why not the others?
-B. Error analysis: Helps identify patterns in prediction errors and understand where the model performs poorly.
-C. Causal: Helps investigate causal relationships and the effects of interventions, rather than directly providing the two requested capabilities.
-P.S.
-The guys at ExamTopic are absolute infamous, though—they make you pay for exam quizzes but don't even include the correct answers! Not to mention the explanations!
-Li mortacci vostra!
+  Why?
+  A. Counterfactuals — Helps determine what changes to input features would lead to a desirable model outcome. For example, what changes would make a loan application approved.
+  D. Explanation — Identifies the features that have the greatest influence on the model's predictions, including their relative importance.
+  Why not the others?
+  B. Error analysis: Helps identify patterns in prediction errors and understand where the model performs poorly.
+  C. Causal: Helps investigate causal relationships and the effects of interventions, rather than directly providing the two requested capabilities.
+  P.S.
+  The guys at ExamTopic are absolute infamous, though—they make you pay for exam quizzes but don't even include the correct answers! Not to mention the explanations!
+  Li mortacci vostra!
 
 <a id="q3-67"></a>
 ## Q3.67 (ID 424452)
@@ -1945,15 +1985,18 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** According to GPT 5.6: | 1. Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED. | 2. The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution. | 3. The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED. | 4. All metrics and their values are returned for the returned experiment runs: N...
+**Most voted:**
+- Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED.
+- The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution.
+- The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED.
+- All metrics and their values are returned for the returned experiment runs: No. The query returns run information, including logged metrics, but does not necessarily return every metric value recorded throughout training.
 
 ### Top explanations
 - **DAgoGi** (1 upvotes [Most Recent]): According to GPT 5.6:
-1. Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED.
-2. The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution.
-3. The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED.
-4. All metrics and their values are returned for the returned experiment runs: No. The query returns run information, including logged metrics, but does not necessarily return every metric value recorded throughout training.
+  1. Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED.
+  2. The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution.
+  3. The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED.
+  4. All metrics and their values are returned for the returned experiment runs: No. The query returns run information, including logged metrics, but does not necessarily return every metric value recorded throughout training.
 
 <a id="q4-1"></a>
 ## Q4.1 (ID 404575)
@@ -1969,17 +2012,20 @@ Which four actions should you perform in sequence? To answer, move the appropria
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Define, Register, Reference, Create
+**Most voted:**
+- Store dependency versions in a configuration file
+- Define the required dependencies in an environment specification
+- Register the environment in the Azure Machine Learning workspace
+- Reference the environment in training jobs and pipelines
 
 ### Top explanations
 - **uncledana** (10 upvotes [Highly Voted]): Define, Register, Reference, Create
 - **03f65a8** (5 upvotes [Most Recent]): Define, Register, Reference, Create - that's the correct order
 - **rveney** (3 upvotes): ✅ Final Drag-and-Drop Answer (Top → Bottom)
-Store dependency versions in a configuration file
-Define the required dependencies in an environment specification
-Register the environment in the Azure Machine Learning workspace
-Reference the environment in training jobs and pipelines
+  Store dependency versions in a configuration file
+  Define the required dependencies in an environment specification
+  Register the environment in the Azure Machine Learning workspace
+  Reference the environment in training jobs and pipelines
 
 <a id="q4-3"></a>
 ## Q4.3 (ID 404577)
@@ -2002,7 +2048,7 @@ NOTE: Each correct selection is worth one point.
 ### Top explanations
 - **uncledana** (4 upvotes [Selected Answer: AD]): A - put the resource in a VNET is needed for security, D - allow access only via private endpoints for other services whilst disabling public access
 - **03f65a8** (1 upvotes [Most Recent, Selected Answer: AD]): D, as the requirement is that:
-"no PUBLIC access" NOT "no access at all" :)
+  "no PUBLIC access" NOT "no access at all" :)
 
 <a id="q4-5"></a>
 ## Q4.5 (ID 404579)
@@ -2021,12 +2067,11 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1 - global standard, 2 - standard | https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types
+**Most voted:** 1 - global standard, 2 - standard
 
 ### Top explanations
 - **uncledana** (6 upvotes [Most Recent]): 1 - global standard, 2 - standard
-https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types
+  https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types
 
 <a id="q4-7"></a>
 ## Q4.7 (ID 404607)
@@ -2105,12 +2150,12 @@ Does the solution meet the goal?
 
 ### Top explanations
 - **rveney** (2 upvotes [Selected Answer: A]): Correct Answer: A. Yes
-Explanation
-Creating prompt variants and comparing their outputs in the Evaluation experience of Microsoft Foundry does meet the stated goal:
-The Evaluation experience allows you to run prompt flows and capture inputs, outputs, token usage, and latency for each run.
-You can compare multiple prompt variants side by side, which supports manual evaluation.
-Results are tracked per run, enabling consistent comparison across variants over time.
-This approach is specifically designed for manual prompt evaluation and benchmarking, making it the correct solution for the scenario described.
+  Explanation
+  Creating prompt variants and comparing their outputs in the Evaluation experience of Microsoft Foundry does meet the stated goal:
+  The Evaluation experience allows you to run prompt flows and capture inputs, outputs, token usage, and latency for each run.
+  You can compare multiple prompt variants side by side, which supports manual evaluation.
+  Results are tracked per run, enabling consistent comparison across variants over time.
+  This approach is specifically designed for manual prompt evaluation and benchmarking, making it the correct solution for the scenario described.
 - **RICHARDALEX007** (1 upvotes [Most Recent, Selected Answer: A]): Creating prompt variants and comparing them in the Evaluation experience captures inputs/outputs and quality metrics for manual comparison, so it largely meets the goal. The stem also wants token usage and latencies, which are most fully captured via tracing (Q12).
 
 <a id="q4-12"></a>
@@ -2152,25 +2197,25 @@ Does the solution meet the goal?
 
 ### Top explanations
 - **rveney** (3 upvotes [Selected Answer: B]): Correct answer: B. No
-Explanation
-Turning on Tracing for a prompt flow and executing test runs only partially meets the requirements:
-✅ Tracing does capture:
-Inputs
-Outputs
-Token usage
-Latency
+  Explanation
+  Turning on Tracing for a prompt flow and executing test runs only partially meets the requirements:
+  ✅ Tracing does capture:
+  Inputs
+  Outputs
+  Token usage
+  Latency
 - **Alvarogc** (1 upvotes [Most Recent, Selected Answer: A]): The question is about capturing the inputs, outputs, token usage, and latencies for each flow run for the evaluation, and it's exactly what Tracing does.
 - **overdoze** (1 upvotes [Selected Answer: A]): Enabling Tracing in Microsoft Foundry automatically captures the required inputs, outputs, token usage, and latencies for each prompt flow run to support comprehensive evaluation.
 - **cf04eaa** (1 upvotes [Selected Answer: B]): Traicing just capture Inputs , Outputs, Token usage, Latency and not compare
 - **03f65a8** (1 upvotes [Selected Answer: A]): I think this could reasonably be interpreted as **Yes**.
-The requirement focuses on capturing:
-* inputs
-* outputs
-* token usage
-* latency
-Tracing in Microsoft Foundry prompt flow provides exactly this runtime telemetry for each flow run.
-While the Evaluation experience is better suited for side-by-side prompt comparison and manual review workflows, the proposed solution still satisfies the stated requirement of capturing evaluation data for prompt runs.
-The question does not explicitly require the Evaluation experience itself, only the ability to capture run data for evaluation.
+  The requirement focuses on capturing:
+  * inputs
+  * outputs
+  * token usage
+  * latency
+  Tracing in Microsoft Foundry prompt flow provides exactly this runtime telemetry for each flow run.
+  While the Evaluation experience is better suited for side-by-side prompt comparison and manual review workflows, the proposed solution still satisfies the stated requirement of capturing evaluation data for prompt runs.
+  The question does not explicitly require the Evaluation experience itself, only the ability to capture run data for evaluation.
 
 <a id="q4-14"></a>
 ## Q4.14 (ID 416072)
@@ -2229,7 +2274,6 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** In prompt flow, prompt/LLM variants are configured on the LLM tool, and calling a custom external API with minimal effort uses the Python tool.
 
 ### Top explanations
@@ -2250,32 +2294,35 @@ Which four actions should you perform in sequence? To answer, move the appropria
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** According to GPT5.6: | The correct sequence is: | 1-Create a data asset. | 2-Create a vector index. | 3-Create a Foundry Search resource. | 4-Create a flow. | Why? | Create a data asset: Register the local text files as a data source in Microsoft Foundry. | Create a vector index: Index the file content so it can be retrieved based on semantic similarity. | Create a Foundry Search resource: Provide the search capability needed to retrieve relevant inform...
+**Most voted:**
+- 1-Create a data asset.
+- 2-Create a vector index.
+- 3-Create a Foundry Search resource.
+- 4-Create a flow.
 
 ### Top explanations
 - **rveney** (2 upvotes): Create an Azure AI Search resource
-Create a data asset
-Create a vector index
-Create a flow
+  Create a data asset
+  Create a vector index
+  Create a flow
 - **DAgoGi** (1 upvotes [Most Recent]): According to GPT5.6:
-The correct sequence is:
-1-Create a data asset.
-2-Create a vector index.
-3-Create a Foundry Search resource.
-4-Create a flow.
-Why?
-Create a data asset: Register the local text files as a data source in Microsoft Foundry.
-Create a vector index: Index the file content so it can be retrieved based on semantic similarity.
-Create a Foundry Search resource: Provide the search capability needed to retrieve relevant information from the indexed documents.
-Create a flow: Orchestrate retrieval and the connected Azure OpenAI model to generate responses based on the file content.
-Do not select Create a connection; the Azure OpenAI model is already connected.
+  The correct sequence is:
+  1-Create a data asset.
+  2-Create a vector index.
+  3-Create a Foundry Search resource.
+  4-Create a flow.
+  Why?
+  Create a data asset: Register the local text files as a data source in Microsoft Foundry.
+  Create a vector index: Index the file content so it can be retrieved based on semantic similarity.
+  Create a Foundry Search resource: Provide the search capability needed to retrieve relevant information from the indexed documents.
+  Create a flow: Orchestrate retrieval and the connected Azure OpenAI model to generate responses based on the file content.
+  Do not select Create a connection; the Azure OpenAI model is already connected.
 - **wwowow** (1 upvotes): Per Fable 5:
-Create a data asset (upload the local files)
-Create a Foundry Search resource (hosts the index)
-Create a vector index (chunk and embed into Search)
-Create a flow (query the index, generate responses)
-Unused: Create a connection, already done per the scenario.
+  Create a data asset (upload the local files)
+  Create a Foundry Search resource (hosts the index)
+  Create a vector index (chunk and embed into Search)
+  Create a flow (query the index, generate responses)
+  Unused: Create a connection, already done per the scenario.
 
 <a id="q4-19"></a>
 ## Q4.19 (ID 416077)
@@ -2291,21 +2338,23 @@ Which three actions should you perform in sequence? To answer, move the appropri
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, "Developer deployments are designed for model candidate evaluation and not for production use". Correct answer then should be: | 1. Create a Developer Tier deployment | 2. Evaluate and validate the model | 3. Create a Global Standard deployment | Reference: https://learn.microsoft.com/en-us/azu...
-
-### Top explanations
-- **Alvarogc** (2 upvotes [Most Recent]): As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, "Developer deployments are designed for model candidate evaluation and not for production use". Correct answer then should be:
+**Most voted:**
 1. Create a Developer Tier deployment
 2. Evaluate and validate the model
 3. Create a Global Standard deployment
-Reference: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-deploy
+
+### Top explanations
+- **Alvarogc** (2 upvotes [Most Recent]): As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, "Developer deployments are designed for model candidate evaluation and not for production use". Correct answer then should be:
+  1. Create a Developer Tier deployment
+  2. Evaluate and validate the model
+  3. Create a Global Standard deployment
+  Reference: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-deploy
 - **RICHARDALEX007** (1 upvotes): Register the fine-tuned model version
-Evaluate and validate the model
-Create a Global Standard deployment
+  Evaluate and validate the model
+  Create a Global Standard deployment
 - **rveney** (1 upvotes): Evaluate and validate the model
-Register the fine-tuned model version
-Create a Global Standard deployment
+  Register the fine-tuned model version
+  Create a Global Standard deployment
 
 <a id="q4-20"></a>
 ## Q4.20 (ID 420707)
@@ -2322,14 +2371,15 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Correct answer: | 1. Azure CLI commands | 2. Bicep templates | Reference: https://learn.microsoft.com/es-es/azure/machine-learning/how-to-setup-mlops-azureml
+**Most voted:**
+1. Azure CLI commands
+2. Bicep templates
 
 ### Top explanations
 - **Alvarogc** (2 upvotes [Most Recent]): Correct answer:
-1. Azure CLI commands
-2. Bicep templates
-Reference: https://learn.microsoft.com/es-es/azure/machine-learning/how-to-setup-mlops-azureml
+  1. Azure CLI commands
+  2. Bicep templates
+  Reference: https://learn.microsoft.com/es-es/azure/machine-learning/how-to-setup-mlops-azureml
 
 <a id="q4-22"></a>
 ## Q4.22 (ID 420709)
@@ -2345,17 +2395,18 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Data asset type: mltable | URL scheme: wasbs | Why: An MLTable can define multiple file paths, including images stored across different storage locations. The wasbs:// scheme addresses Azure Blob Storage securely. | uri_file represents a single file. | uri_folder normally references one folder location. | abfss:// is used for Azure Data Lake Storage Gen2. | azureml:// references a location through an Azure Machine Learning datastore rather than directly...
+**Most voted:**
+- Data asset type: mltable
+- URL scheme: wasbs
 
 ### Top explanations
 - **0fdb748** (1 upvotes [Most Recent]): Data asset type: mltable
-URL scheme: wasbs
-Why: An MLTable can define multiple file paths, including images stored across different storage locations. The wasbs:// scheme addresses Azure Blob Storage securely.
-uri_file represents a single file.
-uri_folder normally references one folder location.
-abfss:// is used for Azure Data Lake Storage Gen2.
-azureml:// references a location through an Azure Machine Learning datastore rather than directly addressing Blob Storage.
+  URL scheme: wasbs
+  Why: An MLTable can define multiple file paths, including images stored across different storage locations. The wasbs:// scheme addresses Azure Blob Storage securely.
+  uri_file represents a single file.
+  uri_folder normally references one folder location.
+  abfss:// is used for Azure Data Lake Storage Gen2.
+  azureml:// references a location through an Azure Machine Learning datastore rather than directly addressing Blob Storage.
 
 <a id="q4-25"></a>
 ## Q4.25 (ID 420712)
@@ -2372,14 +2423,15 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** GPT-4o | Global Batch | Global Batch handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at 50% less cost than Global Standard. With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online wor...
+**Most voted:**
+- GPT-4o
+- Global Batch
 
 ### Top explanations
 - **Nilf** (1 upvotes [Most Recent]): GPT-4o
-Global Batch
-Global Batch handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at 50% less cost than Global Standard. With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.
-https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types
+  Global Batch
+  Global Batch handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at 50% less cost than Global Standard. With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.
+  https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types
 
 <a id="q5-2"></a>
 ## Q5.2 (ID 404615)
@@ -2394,21 +2446,23 @@ Which three actions should you perform in sequence? To answer, move the appropri
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Observability lifecycle: | Deploy endpoint | ↓ | Enable telemetry/logging | ↓ | Configure monitoring metrics
+**Most voted:**
+- Set up the model endpoint in Foundry
+- Enable logging
+- Configure monitoring metrics
 
 ### Top explanations
 - **rveney** (5 upvotes): Final Answer (in order)
-Set up the model endpoint in Foundry
-Enable logging
-Configure monitoring metrics
+  Set up the model endpoint in Foundry
+  Enable logging
+  Configure monitoring metrics
 - **cayenne06** (4 upvotes): I think the correct order is Set up the model endpoint, Enable logging, Configure monitoring metrics. Metrics depend on logs, so logging must be enabled first
 - **03f65a8** (2 upvotes [Most Recent]): Observability lifecycle:
-Deploy endpoint
-↓
-Enable telemetry/logging
-↓
-Configure monitoring metrics
+  Deploy endpoint
+  ↓
+  Enable telemetry/logging
+  ↓
+  Configure monitoring metrics
 
 <a id="q5-3"></a>
 ## Q5.3 (ID 404616)
@@ -2464,14 +2518,15 @@ NOTE: Each correct selection is worth one point.
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Diagnistic logs, Evaluation workflow | Diagnostic logs are used because they provide detailed, real-time information about runtime behavior and errors (such as timeouts), whereas observability metrics only offer aggregated data and are less suitable for troubleshooting specific issue
+**Most voted:**
+- Runtime monitoring: Observability metrics
+- Release validation: Evaluation workflow
 
 ### Top explanations
 - **cayenne06** (2 upvotes): Diagnistic logs, Evaluation workflow
-Diagnostic logs are used because they provide detailed, real-time information about runtime behavior and errors (such as timeouts), whereas observability metrics only offer aggregated data and are less suitable for troubleshooting specific issue
+  Diagnostic logs are used because they provide detailed, real-time information about runtime behavior and errors (such as timeouts), whereas observability metrics only offer aggregated data and are less suitable for troubleshooting specific issue
 - **rveney** (1 upvotes [Most Recent]): Runtime monitoring: Observability metrics
-Release validation: Evaluation workflow
+  Release validation: Evaluation workflow
 
 <a id="q5-6"></a>
 ## Q5.6 (ID 404619)
@@ -2526,13 +2581,15 @@ Which three actions should you perform in sequence? To answer, move the appropri
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Install the Foundry SDK project client locally. | Configure safety evaluators. | Submit an evaluation to the Microsoft Foundry project in the cloud
+**Most voted:**
+- Install the Foundry SDK project client locally.
+- Configure safety evaluators.
+- Submit an evaluation to the Microsoft Foundry project in the cloud
 
 ### Top explanations
 - **rveney** (5 upvotes [Most Recent]): Install the Foundry SDK project client locally.
-Configure safety evaluators.
-Submit an evaluation to the Microsoft Foundry project in the cloud
+  Configure safety evaluators.
+  Submit an evaluation to the Microsoft Foundry project in the cloud
 
 <a id="q5-16"></a>
 ## Q5.16 (ID 420719)
@@ -2553,7 +2610,7 @@ Which method should you use?
 ### Top explanations
 - **Alvarogc** (2 upvotes [Most Recent, Selected Answer: A]): Question is a little bit tricky. The answer should be MlflowClient.log_batch() as log_batch() is part of MlflowClient; anyway, the way to log multiple metrics is by using log_batch(), which is more efficient than using log_metric() several times.
 - **Kachien** (2 upvotes [Selected Answer: A]): A list of numerical values should be logged as a batch of metrics. Azure Machine Learning documentation shows creating a list of Metric objects and submitting them with MlflowClient.log_batch().
-mlflow.log_metric() logs a single numerical metric value per call.
+  mlflow.log_metric() logs a single numerical metric value per call.
 
 <a id="q6-1"></a>
 ## Q6.1 (ID 404621)
@@ -2595,21 +2652,22 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Track prompt changes across teams | ✅ Git repository | Git provides version control, change history, and contributor traceability—ideal for collaborative prompt iteration. | 2. Apply prompt updates without redeployment | ✅ Agent’s latest published version reference | Applications can reference the agent’s latest published version, allowing prompt updates to take effect immediately without redeploying consuming apps.
+**Most voted:**
+- Track prompt changes across teams: ✅ Git repository
+- Apply prompt updates without redeployment: ✅ Agent's latest published version reference
 
 ### Top explanations
 - **cayenne06** (3 upvotes): I think its's Git and Agent’s latest published version reference
 - **03f65a8** (2 upvotes [Most Recent]): | Requirement                                | Configuration                                |
-| ------------------------------------------ | -------------------------------------------- |
-| Track prompt changes across teams.         | ✅ Git repository                             |
-| Apply prompt updates without redeployment. | ✅ Agent's latest published version reference |
+  | ------------------------------------------ | -------------------------------------------- |
+  | Track prompt changes across teams.         | ✅ Git repository                             |
+  | Apply prompt updates without redeployment. | ✅ Agent's latest published version reference |
 - **rveney** (2 upvotes): 1. Track prompt changes across teams
-✅ Git repository
-Git provides version control, change history, and contributor traceability—ideal for collaborative prompt iteration.
-2. Apply prompt updates without redeployment
-✅ Agent’s latest published version reference
-Applications can reference the agent’s latest published version, allowing prompt updates to take effect immediately without redeploying consuming apps.
+  ✅ Git repository
+  Git provides version control, change history, and contributor traceability—ideal for collaborative prompt iteration.
+  2. Apply prompt updates without redeployment
+  ✅ Agent’s latest published version reference
+  Applications can reference the agent’s latest published version, allowing prompt updates to take effect immediately without redeploying consuming apps.
 
 <a id="q6-3"></a>
 ## Q6.3 (ID 404623)
@@ -2629,20 +2687,19 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** The requirement is low latency => should be Managed real-time (online) endpoint instead of serverless endpoint
 
 ### Top explanations
 - **cayenne06** (3 upvotes): I think it's GTP4.1 mini, servless endpoint and Foundry Chat playground
 - **upliftinghut** (1 upvotes [Most Recent]): The requirement is low latency => should be Managed real-time (online) endpoint instead of serverless endpoint
 - **03f65a8** (1 upvotes): | Requirement                   | Válasz                                  |
-| ----------------------------- | --------------------------------------- |
-| **Select a model.**           | ✅ **GPT-4.1-Mini**                      |
-| **Select a deployment type.** | ✅ **Serverless endpoint**               |
-| **Test the model.**           | ✅ **Microsoft Foundry Chat playground** |
+  | ----------------------------- | --------------------------------------- |
+  | **Select a model.**           | ✅ **GPT-4.1-Mini**                      |
+  | **Select a deployment type.** | ✅ **Serverless endpoint**               |
+  | **Test the model.**           | ✅ **Microsoft Foundry Chat playground** |
 - **rveney** (1 upvotes): GPT-4.1-Mini
-Serverless endpoint
-Microsoft Foundry Chat playground
+  Serverless endpoint
+  Microsoft Foundry Chat playground
 
 <a id="q6-4"></a>
 ## Q6.4 (ID 404624)
@@ -2662,14 +2719,15 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication. | 2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision. | 3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd rai...
+**Most voted:**
+1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication.
+2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.
 
 ### Top explanations
 - **wwowow** (1 upvotes [Most Recent]): 1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication.
-2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.
-3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd raise it or fix chunking, not lower it.
-4. No — Keyword-only search discards semantic matching by definition, so it can't "preserve semantic relevance." Classic too-good-to-be-true phrasing.
+  2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.
+  3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd raise it or fix chunking, not lower it.
+  4. No — Keyword-only search discards semantic matching by definition, so it can't "preserve semantic relevance." Classic too-good-to-be-true phrasing.
 
 <a id="q6-5"></a>
 ## Q6.5 (ID 404625)
@@ -2687,14 +2745,17 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** 1. No | 2. Yes | 3. Yes | 4. Yes
-
-### Top explanations
-- **rveney** (2 upvotes [Most Recent]): 1. No
+**Most voted:**
+1. No
 2. Yes
 3. Yes
 4. Yes
+
+### Top explanations
+- **rveney** (2 upvotes [Most Recent]): 1. No
+  2. Yes
+  3. Yes
+  4. Yes
 
 <a id="q6-7"></a>
 ## Q6.7 (ID 404627)
@@ -2769,14 +2830,15 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** Domain specialization → Supervised fine-tuning | The case study hands you the clue: "use the existing evaluation datasets that are based on real data with input-output pairs." Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the "align with ranked preferences" requirement, but that's not what this row asks. Reinforcement fine-tuning nee...
+**Most voted:**
+- Domain specialization → Supervised fine-tuning
+- Poor response accuracy of a RAG-based solution → Apply prompt engineering
 
 ### Top explanations
 - **wwowow** (2 upvotes [Most Recent]): Domain specialization → Supervised fine-tuning
-The case study hands you the clue: "use the existing evaluation datasets that are based on real data with input-output pairs." Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the "align with ranked preferences" requirement, but that's not what this row asks. Reinforcement fine-tuning needs a reward signal, not plain input-output pairs.
-Poor response accuracy of a RAG-based solution → Apply prompt engineering
-Two signals point here. The question asks which strategy to apply first, and the technical requirements explicitly say "apply advanced fine-tuning techniques only when prompt engineering is insufficient." Temperature and max_tokens tweaks don't address accuracy: temperature changes randomness and max_tokens just changes response length.
+  The case study hands you the clue: "use the existing evaluation datasets that are based on real data with input-output pairs." Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the "align with ranked preferences" requirement, but that's not what this row asks. Reinforcement fine-tuning needs a reward signal, not plain input-output pairs.
+  Poor response accuracy of a RAG-based solution → Apply prompt engineering
+  Two signals point here. The question asks which strategy to apply first, and the technical requirements explicitly say "apply advanced fine-tuning techniques only when prompt engineering is insufficient." Temperature and max_tokens tweaks don't address accuracy: temperature changes randomness and max_tokens just changes response length.
 
 <a id="q6-9"></a>
 ## Q6.9 (ID 416082)
@@ -2854,7 +2916,6 @@ NOTE: Each correct selection is worth one point.
 
 _HOTSPOT — the original ExamTopics question expects you to mark areas on the exhibit above; the correct hotspot coordinates are not published._
 
-**Correct answer:** Not provided by ExamTopics
 **Most voted:** Low utilization means the model isn't getting enough context, so increase chunk size; high utilization with low completeness means retrieved chunks are present but not the right ones, so verify/improve retrieval relevance.
 
 ### Top explanations
@@ -2878,13 +2939,13 @@ What should you adjust?
 
 ### Top explanations
 - **Alvarogc** (3 upvotes [Most Recent, Selected Answer: A]): Corrrect answer is:
-A. Chunk size and overlap.
-The question says that the retrieved document are often irrelevant or incomplete; if the embedding strategy was a poor one (D), then answers shouldn't be relevant but incomplete, and temperature (B) nor token limits (C) has nothing to do on this question.
+  A. Chunk size and overlap.
+  The question says that the retrieved document are often irrelevant or incomplete; if the embedding strategy was a poor one (D), then answers shouldn't be relevant but incomplete, and temperature (B) nor token limits (C) has nothing to do on this question.
 - **49bce06** (2 upvotes [Selected Answer: D]): Determines how text is converted into vectors
-Directly impacts:
-Semantic similarity
-Relevance of retrieved results
-Poor embeddings → irrelevant matches even if chunking is correct
+  Directly impacts:
+  Semantic similarity
+  Relevance of retrieved results
+  Poor embeddings → irrelevant matches even if chunking is correct
 
 <a id="q6-12"></a>
 ## Q6.12 (ID 416085)
@@ -2919,25 +2980,28 @@ Which four actions should you perform in sequence? To answer, move the appropria
 
 _DRAG DROP — the original ExamTopics question expects you to drag and drop items; the correct targets are not published._
 
-**Correct answer:** Not provided by ExamTopics
-**Most voted:** - Collect retrieval logs (gather the data on what the system actually retrieved) | - Run RAG evaluators (score retrieval quality: groundedness, relevance, and so on, that's the assessment) | - Adjust chunking strategy (act on the findings, since chunking drives retrieval quality) | - Re-index documents (a new chunking strategy only takes effect after re-indexing) | Unused: Regenerate the prompt template and modify model temperature, both tweak the generation side, not retrieval quality, which...
+**Most voted:**
+- Collect retrieval logs
+- Run RAG evaluators
+- Adjust chunking strategy
+- Re-index documents
 
 ### Top explanations
 - **wwowow** (4 upvotes): - Collect retrieval logs (gather the data on what the system actually retrieved)
-- Run RAG evaluators (score retrieval quality: groundedness, relevance, and so on, that's the assessment)
-- Adjust chunking strategy (act on the findings, since chunking drives retrieval quality)
-- Re-index documents (a new chunking strategy only takes effect after re-indexing)
-Unused: Regenerate the prompt template and modify model temperature, both tweak the generation side, not retrieval quality, which is what the requirement targets.
-Logic: measure first (logs → evaluators), then improve (chunking → re-index).
+  - Run RAG evaluators (score retrieval quality: groundedness, relevance, and so on, that's the assessment)
+  - Adjust chunking strategy (act on the findings, since chunking drives retrieval quality)
+  - Re-index documents (a new chunking strategy only takes effect after re-indexing)
+  Unused: Regenerate the prompt template and modify model temperature, both tweak the generation side, not retrieval quality, which is what the requirement targets.
+  Logic: measure first (logs → evaluators), then improve (chunking → re-index).
 - **DAgoGi** (1 upvotes [Most Recent]): According to GPT 5.6:
-Step Action Why
-1 Collect retrieval logs Gather evidence about retrieved documents and identify retrieval issues.
-2 Run RAG evaluators Measure retrieval quality and assess whether the retrieved context is relevant and accurate.
-3 Adjust chunking strategy Improve document segmentation based on the evaluation results.
-4 Re-index documents Rebuild the index so the updated chunking strategy takes effect.
-Why not the other options?
-Regenerate the prompt template: Changes generation instructions rather than directly improving retrieval quality.
-Modify model temperature: Affects response randomness, not document retrieval quality.
+  Step Action Why
+  1 Collect retrieval logs Gather evidence about retrieved documents and identify retrieval issues.
+  2 Run RAG evaluators Measure retrieval quality and assess whether the retrieved context is relevant and accurate.
+  3 Adjust chunking strategy Improve document segmentation based on the evaluation results.
+  4 Re-index documents Rebuild the index so the updated chunking strategy takes effect.
+  Why not the other options?
+  Regenerate the prompt template: Changes generation instructions rather than directly improving retrieval quality.
+  Modify model temperature: Affects response randomness, not document retrieval quality.
 
 <a id="q6-20"></a>
 ## Q6.20 (ID 420724)
@@ -2959,11 +3023,11 @@ Does the solution meet the goal?
 
 ### Top explanations
 - **DAgoGi** (1 upvotes [Most Recent, Selected Answer: B]): According to GPT 5.6 the correct answer: B. No.
-Reviewing user feedback comments is subjective and does not provide a measurable evaluation of RAG answer quality.
-To determine whether the change improves answer quality, use measurable evaluation metrics such as:
-Groundedness: Are the answers supported by the retrieved documents?
-Relevance: Does the answer address the user's question?
-Retrieval quality: Are the retrieved documents relevant to the query?
-These metrics allow you to compare performance before and after the proposed change.
+  Reviewing user feedback comments is subjective and does not provide a measurable evaluation of RAG answer quality.
+  To determine whether the change improves answer quality, use measurable evaluation metrics such as:
+  Groundedness: Are the answers supported by the retrieved documents?
+  Relevance: Does the answer address the user's question?
+  Retrieval quality: Are the retrieved documents relevant to the query?
+  These metrics allow you to compare performance before and after the proposed change.
 - **Kachien** (1 upvotes [Selected Answer: B]): Reviewing user feedback comments is subjective and unstructured. It does not provide a standardized, measurable comparison of whether the proposed change reduces unsupported information.
-The symptom described is a groundedness problem.
+  The symptom described is a groundedness problem.

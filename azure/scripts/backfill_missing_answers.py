@@ -1,53 +1,24 @@
 #!/usr/bin/env python3
-"""Backfill ``most_voted_answer`` for HOTSPOT/DRAG DROP questions.
+"""Backfill and normalize ``most_voted_answer`` for HOTSPOT/DRAG DROP questions.
 
-ExamTopics questions with ``choices == []`` and ``most_voted_answer is None``
-were skipped by the lettered-MCQ crawler, so the study guide renders them with
-a "Not provided" placeholder. This script scans the discussion comments and
-promotes the strongest answer candidate into ``most_voted_answer`` so the
-guide can show real answer text.
+ExamTopics questions with ``choices == []`` were skipped by the lettered-MCQ
+crawler, so the study guide would otherwise render them with a "Not provided"
+placeholder. This script scans the discussion comments, decodes any
+double-escaped HTML entities (such as ``&quot;`` or ``&gt;``), scores
+answer-bearing comments, and extracts concise multi-line slot answers into
+``most_voted_answer`` (preserving real ``\\n`` line breaks rather than
+pipe-flattening prose into `` | ``).
 
-Candidate scoring (in priority order):
+Usage (from azure/ directory):
 
-a. Explicit answer-label patterns: ``"First dropdown:"``, ``"Second dropdown:"``,
-   ``"First box:"``, ``"Second box:"``, ``"Answer:"``, ``"The answer is:"``,
-   ``"Correct answer:"``, ``"Selected Answer:"``, ``"=>"``, ``"->"``.
-b. Comments carrying the ``Highly Voted`` badge.
-c. Upvote count (tie-breaker).
-d. Skip comments that are clearly questions (``"?"``, ``"Is this"``,
-   ``"Does anyone"``, ``"Can someone"``, ``"Why"``, ``"How"``).
+    # Preview new fills only (default) — does not mutate JSON:
+    python3 scripts/backfill_missing_answers.py
 
-A comment is only promoted when it scores high enough — either it matches an
-explicit pattern, or it carries the ``Highly Voted`` badge. This keeps
-false positives low: only comments the community already marked as the
-consensus answer are used.
+    # Re-evaluate and clean existing non-MCQ backfills as well (preview):
+    python3 scripts/backfill_missing_answers.py --reprocess --loose
 
-Loose mode (``--loose``) additionally rescues questions whose answer is
-phrased as a short Yes/No comma list, a numbered list, a label pair, or a
-short bullet list. Loose-mode candidates must clear stricter thresholds
-to keep the false-positive rate low:
-
-* At least 2 upvotes OR a Highly Voted badge.
-* No first-person question verbs (``I think``, ``How``, ``Why``, ``Does``,
-  ``Can``, ``Is this``, or a trailing ``?``).
-* For Yes/No and bullet patterns, also: multi-voter consensus (two
-  comments with the same normalised answer) OR a single comment with at
-  least 3 upvotes.
-* Skip comments that match the existing bare-confirmation list.
-
-Every updated question gets a ``_backfill_source`` audit field with the
-chosen comment id, its score, and the pattern that matched.
-
-Usage (from repo root):
-
-    # Preview changes only (default) — does not mutate the JSON.
-    python scripts/backfill_missing_answers.py
-
-    # Apply changes:
-    python scripts/backfill_missing_answers.py --apply
-
-    # Apply loose-mode rescues on top of the existing 97 safe fills:
-    python scripts/backfill_missing_answers.py --loose --apply
+    # Apply across all target exam datasets:
+    python3 scripts/backfill_missing_answers.py --reprocess --loose --apply
 """
 from __future__ import annotations
 
@@ -72,95 +43,218 @@ TARGETS = [
     DATA / "ai-500.json",
 ]
 
-# Explicit answer-label patterns. Matched case-insensitively against the whole
-# comment text. Any of these is a strong signal that the comment is stating the
-# answer to a HOTSPOT/DRAG DROP slot.
-ANSWER_PATTERNS = (
-    "first dropdown",
-    "second dropdown",
-    "first box",
-    "second box",
-    "box 1:",
-    "box 2:",
-    "statement 1:",
-    "statement 2:",
-    "first select",
-    "second select",
-    "first option",
-    "second option",
-    "answer:",  # matches "Answer:" label
-    "the answer is",
+# Exhibit-verified curated multi-slot answers for questions where top-voted
+# comments either debated a single dropdown or used prose without slot labels.
+CURATED_ANSWERS: dict[str, str] = {
+    # DP-700 Q2.12
+    "936013": (
+        "First dropdown: o.OrderDate >= c.valid_from_datetime\n"
+        "Second dropdown: o.OrderDate < c.valid_to_datetime"
+    ),
+    # AI-103 Q1.1 (EU data residency -> Standard; consistent model version -> Opt out)
+    "412433": (
+        "Deployment type: Standard\n"
+        "Version update policy: Opt out of automatic model version upgrades"
+    ),
+    # AI-103 Q1.6 (Managed identity + Responses API send prompt)
+    "412438": (
+        "credential: DefaultAzureCredential\n"
+        "openai_client.responses: create"
+    ),
+    # AI-103 Q1.8 (Guardrails block all 4 points + system-assigned MI blob access)
+    "412440": (
+        "Guardrails: Select User input, Output, Tool response, and Tool call and set Action to Block.\n"
+        "Storage access: A system-assigned managed identity that is assigned the Storage Blob Data Contributor role"
+    ),
+    # AI-103 Q1.11 (Foundry human-in-the-loop workflow YAML)
+    "412443": (
+        "type: ask_question\n"
+        'condition: approval == "approved"'
+    ),
+    # AI-103 Q1.18 (Foundry availability/limit metrics + inference diagnostic log)
+    "412450": (
+        "Metrics to enable: Model Availability Rate and Provisioned Utilization\n"
+        "Diagnostic log to collect: RequestResponse"
+    ),
+    # AI-103 Q1.103 (az cognitiveservices account create with CMK JSON)
+    "421549": (
+        "--kind: OpenAI\n"
+        "Parameter: --encryption"
+    ),
+}
+
+BARE_CONFIRMATIONS = {
+    "ok",
+    "thanks",
+    "thank you",
+    "agree",
+    "correct",
+    "correct.",
+    "correct!",
+    "correct :)",
+    "all correct",
+    "all correct.",
+    "all four answers are correct",
+    "all four answers are correct.",
+    "i agree",
+    "i agree.",
+    "i agree!",
+    "i agree with the answer",
+    "i agree with the answer given",
+    "i agree with the provided answer",
     "correct answer",
-    "selected answer",
-    "answer is",
+    "answer is correct",
+    "answer is correct.",
+    "answer is correct :)",
+    "the answer is correct",
+    "is correct",
+    "seems correct",
+    "seems correct.",
+    "looks correct",
+    "looks correct.",
+    "yes",
+    "no",
+    "found in exam today",
+}
+
+QUESTION_START_RE = re.compile(
+    r"^\s*(?:\?|is\s+this\b|is\s+the\b|are\s+the\b|does\s+anyone\b|can\s+someone\b|"
+    r"why\s+(?:is|are|not|do|does|would|did|text=)\b|how\s+(?:many|do|does|can|is|would)\b|"
+    r"what\s+is\s+(?:the\s+difference|meant)\b|so\s+what\s+is\b|where\s+does\s+it\b|"
+    r"i'?m\s+curious\b|am\s+i\s+missing\b)",
+    re.IGNORECASE,
 )
 
-# Arrow separators used heavily in DRAG DROP answer posts.
-ARROW_PATTERNS = ("=>", "->", "→")
+BARE_META_RE = re.compile(
+    r"^\s*(?:imho[,:\s]*)?(?:just\s+\w+\s+it[.,\s]*)?(?:i\s+tried\s+this.*?so[,:\s]*)?"
+    r"(?:seems\s+correct|looks\s+correct|"
+    r"(?:the\s+|given\s+|provided\s+)?(?:answer|answers|solution)\s+(?:is|are)\s+"
+    r"(?:correct(?:-ish)?|right|wrong|incorrect|good))\b",
+    re.IGNORECASE | re.DOTALL,
+)
 
-# Comment prefixes that mean "this is a question, not an answer".
-QUESTION_PREFIXES = (
-    "?",
-    "is this",
-    "does anyone",
-    "can someone",
+# Detects MCQ explanations pasted onto the wrong (non-MCQ) discussion thread.
+WRONG_THREAD_MCQ_RE = re.compile(
+    r"correct\s+answer\s*:\s*[A-E]\s*[—–-]\s+.+(?:\([B-E]\)|\n[B-E][.)]\s)",
+    re.IGNORECASE | re.DOTALL,
+)
+
+EXPLICIT_SLOT_RE = re.compile(
+    r"(?:"
+    r"\b(?:first|second|third|fourth|1st|2nd|3rd|4th)\s+(?:dropdown|box|select|option|target|slot|part|statement|one)\b|"
+    r"\b(?:dropdown|box|slot|target|statement|pipeline|step)\s*[1-5]\s*[:=→>-]|"
+    r"(?:^|\n)\s*(?:👉\s*|✅\s*)*(?:\*\*)?(?:final\s+(?:correct\s+)?(?:drag-and-drop\s+)?answers?(?:\s*\([^)]*\))?|"
+    r"correct\s+answers?|correct\s+selections?|correct\s+sequence|selected\s+answer|answers?)(?:\*\*)?\s*(?:[:=]\s*\S|\n\s*\S)|"
+    r"\b(?:the\s+answer\s+is|correct\s+answers?\s+(?:is|are|should\s+be)|answer\s+should\s+be)\s+(?!correct\b|right\b|wrong\b|incorrect\b)\S|"
+    r"\b(?:is|are)\s+the\s+correct\s+answers?\b"
+    r")",
+    re.IGNORECASE,
+)
+
+HEADER_BONUS_RE = re.compile(
+    r"^\s*(?:👉\s*|✅\s*)*(?:\*\*)?(?:correct\s+answers?|correct\s+selections?|correct\s+sequence|"
+    r"final\s+(?:correct\s+)?(?:drag-and-drop\s+)?answers?|the\s+correct\s+answers?\s+are|"
+    r"a?nswer\s+key|answers?)\b",
+    re.IGNORECASE,
+)
+
+ARROW_RE = re.compile(r"(?:->|=>|-->|==>|→|⟶|⇒|\n\s*↓\s*\n)")
+
+EXPLANATION_SECTION_RE = re.compile(
+    r"^\s*(?:#+\s*)?(?:\*\*)?(?:explanations?(?:\s+of\s+steps)?|key\s+reasons?|reasons?|reasoning|"
+    r"why(?:\s+not\b.*|\s*\(.*?\))?|short\s+discussion|discussion|references?|refference|sources?|"
+    r"microsoft\s+documentation|note|notes|p\.?s\.?|unused|logic|step[- ]by[- ]step(?:\s+analysis)?|"
+    r"here\s+is\s+the\s+reasoning|clues?)(?:\*\*)?\s*[:?-]?\s*$",
+    re.IGNORECASE,
+)
+
+INLINE_EXPLANATION_PREFIX_RE = re.compile(
+    r"^\s*(?:\*\*)?(?:explanations?|why\s+not|why|reasoning|key\s+reasons?|references?|refference|"
+    r"sources?|microsoft\s+documentation|note|p\.?s\.?|unused|logic|clues?|link|good\s+video)\b\s*[:?-]",
+    re.IGNORECASE,
+)
+
+HEADER_LINE_RE = re.compile(
+    r"^\s*(?:👉\s*|✅\s*)*(?:\*\*)?(?:correct\s+answers?|correct\s+selections?|correct\s+sequence|"
+    r"correct\s+metrics|the\s+correct\s+(?:full\s+)?(?:sequence|answers?|values?|order)\s*(?:is|are|should\s+be)?|"
+    r"final\s+(?:correct\s+)?(?:drag-and-drop\s+)?answers?(?:\s*\([^)]*\))?|"
+    r"a?nswer\s+key|answers?|correct!?|i\s+agree\.?|is\s+ok\.?|should\s+be\s+this\s+a(?:ns|sn)wer|"
+    r"according\s+to\s+[\w\s.]+|per\s+[\w\s.]+|"
+    r"to\s+run\s+the\s+.*?perform\s+the\s+following\s+actions\s+in\s+sequence)(?:\*\*)?\s*[:=-]?\s*$",
+    re.IGNORECASE,
+)
+
+FINAL_ANSWER_BLOCK_RE = re.compile(
+    r"(?:^|\n)\s*(?:👉\s*|✅\s*)*(?:\*\*)?(?:final\s+(?:correct\s+)?answers?|"
+    r"conclusion\s*:\s*the\s+technically\s+correct\s+answers?\s+should\s+be|"
+    r"answer|correct\s+answers?\s+(?:then\s+)?(?:should\s+be|is|are)|"
+    r"therefore[,:\s]+the\s+answer.*?is|hence\s+the\s+answer)\s*(?:\*\*)?\s*[:=-]\s*(\S.+)$",
+    re.IGNORECASE | re.DOTALL,
+)
+
+ARROW_PAIR_LINE_RE = re.compile(
+    r"^\s*(?:[-•*]\s+|\d+[.)]\s+|\(\d+\)\s*)?"
+    r"(.{2,220}?)\s*(?:-->|==>|->|=>|→|⟶|⇒)\s*(\S.{0,240})$"
+)
+
+COLON_PAIR_LINE_RE = re.compile(
+    r"^\s*(?:[-•*]\s+|\d+[.)]\s+|\(\d+\)\s*)?"
+    r"([A-Za-z0-9_`'\"()/.,?%+$#&=@\[\] -]{2,220}?)\s*:(?!//)\s*(\S.{0,340})$"
+)
+
+KQL_COL_DEF_RE = re.compile(
+    r"^(?:string|int|long|real|bool|boolean|datetime|timespan|dynamic|guid|decimal)\s*,?$",
+    re.IGNORECASE,
+)
+
+GLOSSARY_RHS_RE = re.compile(
+    r"^(?:whether\s+|uses\s+a\s+|categorizes\s+|runs\s+code\s+in\s+|detects?\s+unusual\s+|controls\s+how\s+|represents\s+the\s+)",
+    re.IGNORECASE,
+)
+
+NUMBERED_ITEM_RE = re.compile(
+    r"^\s*(?:\d+[.,):-]\s+|\(\d+\)\s*)(\S.{0,220}?)(?<!:)$"
+)
+
+BULLET_ITEM_RE = re.compile(
+    r"^\s*(?:[-•*]\s+)(\S.{1,180})$"
+)
+
+YES_NO_LIST_RE = re.compile(
+    r"^\s*(?:yes|no|y|n)(?:\s*(?:,|/|\.|-\s*|\s+|->|→)\s*(?:yes|no|y|n)){1,5}\b",
+    re.IGNORECASE,
+)
+
+EXCLUDED_LHS = {
+    "http",
+    "https",
+    "explanation",
+    "explanations",
     "why",
-    "how",
-)
+    "why not",
+    "note",
+    "notes",
+    "reference",
+    "references",
+    "refference",
+    "source",
+    "sources",
+    "reasoning",
+    "clues",
+    "clue",
+    "unused",
+    "logic",
+    "link",
+    "good video",
+    "primary role",
+    "core strength",
+    "typical scenario",
+    "options",
+    "scenario",
+}
 
-# Score thresholds:
-#   EXPLICIT_SCORE + upvote nudge ⇒ comment matched an explicit pattern
-#   HV_SCORE + upvote nudge ⇒ comment was flagged Highly Voted
-EXPLICIT_SCORE = 100
-HV_SCORE = 50
-UPVOTE_WEIGHT = 0.5
-
-# Comment must have at least one of these signals. Anything lower is too
-# speculative to publish as "most voted answer".
-MIN_ACCEPT_SCORE = 50
-
-MAX_ANSWER_LEN = 500
-
-# Loose-mode patterns. Each tuple is (name, compiled regex). The regexes
-# mirror the spec from the deb-4 design notes.
-LOOSE_PATTERNS: tuple[tuple[str, "re.Pattern[str]"], ...] = (
-    (
-        "yes_no_comma_list",
-        re.compile(r"^\s*([Yy]es|[Nn]o)(\s*[,\s|/-]\s*([Yy]es|[Nn]o)){1,5}\.?$"),
-    ),
-    (
-        "short_bullet_list",
-        re.compile(
-            r"^(\s*[\w().'\"/-]{1,60}\s*[\n|]\s*){1,7}\s*[\w().'\"/-]{1,60}\s*\.?$"
-        ),
-    ),
-    (
-        "numbered_list",
-        re.compile(r"^\s*\d+[.)]\s+.{1,80}$", re.MULTILINE),
-    ),
-    (
-        "label_pair",
-        re.compile(r"^[A-Z][\w\s()/'-]{0,40}:\s+\S.{0,80}$", re.MULTILINE),
-    ),
-)
-
-# Loose-mode acceptance thresholds.
-LOOSE_MIN_UPVOTES = 2
-LOOSE_HIGH_UPVOTES = 3  # for Yes/No and bullet patterns
-LOOSE_MULTI_VOTER_THRESHOLD = 2  # two distinct comments with same normalised answer
-
-# First-person question verbs in loose mode. Stricter than QUESTION_PREFIXES
-# because a stray "is this" could appear inside a valid answer; we only fire
-# the gate when the comment clearly starts as a question.
-LOOSE_QUESTION_PREFIXES = (
-    "i think",
-    "is this",
-    "does ",
-    "can ",
-    "why ",
-    "how ",
-)
-
+MIN_ACCEPT_SCORE = 50.0
+MAX_ANSWER_LEN = 360
 
 logger = logging.getLogger("backfill_answers")
 
@@ -182,191 +276,390 @@ def _save(path: Path, data: list[dict[str, Any]]) -> None:
     tmp.replace(path)
 
 
-def _normalized(text: str) -> str:
-    return text.strip().lower()
+def unescape_clean(text: str) -> str:
+    """Decode HTML entities (including double-escaped 2026 ExamTopics entities)
+    and normalize whitespace artifacts."""
+    t = html.unescape(html.unescape(text or ""))
+    t = t.replace("\r\n", "\n").replace("\r", "\n").replace("\u200b", "").replace("\xa0", " ")
+    t = re.sub(r"\[\s*\[email\s+protected\]\s*\]", "[email protected]", t, flags=re.IGNORECASE)
+    # Split inline triple-spaced numbered items like "(1)...   (2)...   (3)..."
+    t = re.sub(r"\s{3,}(?=(?:Retrieve\s+information\s+from\s+)?\(\d+\)|\d+[.)]\s)", "\n", t)
+    return t.strip()
 
 
-def _looks_like_question(text: str) -> bool:
-    n = _normalized(text)
-    return any(n.startswith(p) for p in QUESTION_PREFIXES)
+def _convert_md_tables_and_tabs(text: str) -> str:
+    lines = text.splitlines()
+    out: list[str] = []
+    for ln in lines:
+        s = ln.strip()
+        if s.startswith("|") and s.endswith("|") and s.count("|") >= 3:
+            cells = [c.strip() for c in s.strip("|").split("|")]
+            if all(re.fullmatch(r"[-:\s]+", c or "-") for c in cells):
+                continue
+            if len(cells) == 2:
+                c0_low = re.sub(r"[*_`]", "", cells[0]).strip().lower()
+                c1_low = re.sub(r"[*_`]", "", cells[1]).strip().lower()
+                if c0_low in {"requirement", "step", "item", "target", "metric", "setting", "scenario"} and c1_low in {
+                    "configuration",
+                    "action",
+                    "value",
+                    "selection",
+                    "answer",
+                    "válasz",
+                    "option",
+                    "use",
+                }:
+                    continue
+                out.append(f"{cells[0]}: {cells[1]}")
+                continue
+        if "\t" in s:
+            parts = [p.strip() for p in s.split("\t") if p.strip()]
+            if len(parts) == 2:
+                if re.fullmatch(r"(?:\d+[.)]?|[-•*])", parts[0]):
+                    p0 = parts[0] if parts[0].endswith((".", ")")) else parts[0] + "."
+                    out.append(f"{p0} {parts[1]}")
+                else:
+                    out.append(f"{parts[0]}: {parts[1]}")
+                continue
+        out.append(ln)
+    return "\n".join(out)
 
 
-def _looks_like_question_loose(text: str) -> bool:
-    """Stricter question detector used by loose mode.
-
-    Catches hedging verbs the existing detector misses (``I think``) and
-    flags any comment that ends in a question mark — a YES/NO list ending
-    in ``?`` is almost always a clarification request, not an answer.
-    """
-    n = _normalized(text)
-    if any(n.startswith(p) for p in LOOSE_QUESTION_PREFIXES):
-        return True
-    if "?" in text:
-        return True
-    return False
+def _strip_md_inline(s: str) -> str:
+    return re.sub(r"\*\*(.+?)\*\*", r"\1", s).strip()
 
 
-def _matches_explicit_pattern(text: str) -> bool:
-    n = _normalized(text)
-    if any(p in n for p in ANSWER_PATTERNS):
-        return True
-    if any(p in text for p in ARROW_PATTERNS):
-        return True
-    return False
+def _parse_pair_line(ln: str) -> tuple[str, str, str] | None:
+    """Return ``(lhs, sep, rhs)`` if ``ln`` is a clean ``Label: Value`` or ``Label → Value`` pair."""
+    # Prefer arrow separator first (handles "Statement 1: ... → Yes")
+    m_arr = ARROW_PAIR_LINE_RE.match(ln)
+    if m_arr:
+        lhs = m_arr.group(1).strip().rstrip(".")
+        rhs = m_arr.group(2).strip().rstrip(":")
+        if lhs.lower() in EXCLUDED_LHS:
+            return None
+        return lhs, " → ", rhs
 
-
-def _matches_loose_pattern(text: str) -> str | None:
-    for name, pat in LOOSE_PATTERNS:
-        if pat.search(text) or pat.match(text):
-            return name
-    return None
-
-
-def _has_highly_voted(comment: dict[str, Any]) -> bool:
-    return "Highly Voted" in (comment.get("badges") or [])
-
-
-def _score_comment(comment: dict[str, Any]) -> float | None:
-    """Return the candidate score, or None if the comment should be skipped."""
-    text = comment.get("text", "") or ""
-    if not text.strip():
+    m_col = COLON_PAIR_LINE_RE.match(ln)
+    if not m_col:
         return None
-    if _looks_like_question(text):
+    lhs = m_col.group(1).strip().rstrip(".")
+    rhs = m_col.group(2).strip().rstrip(":")
+    lhs_low = lhs.lower()
+    if lhs_low in EXCLUDED_LHS:
         return None
-    if text.strip().lower() in {"ok", "thanks", "thank you", "agree", "correct", "yes", "no"}:
+    if KQL_COL_DEF_RE.match(rhs):
         return None
-    score = 0.0
-    if _matches_explicit_pattern(text):
-        score += EXPLICIT_SCORE
-    if _has_highly_voted(comment):
-        score += HV_SCORE
-    score += (comment.get("upvotes") or 0) * UPVOTE_WEIGHT
-    return score
+    if GLOSSARY_RHS_RE.match(rhs) and len(rhs.split()) >= 7:
+        return None
+    if len(lhs.split()) > 12 and not re.match(r"^(?:yes|no)\b", rhs, re.I):
+        return None
+    return lhs, ": ", rhs
 
 
-def _format_answer(text: str) -> str:
-    """Single-line, unescaped, truncated to MAX_ANSWER_LEN, with newlines collapsed."""
-    cleaned = html.unescape(text).replace("\r", " ").replace("\n", " | ")
-    cleaned = " ".join(cleaned.split())  # collapse runs of whitespace
-    if len(cleaned) > MAX_ANSWER_LEN:
-        cleaned = cleaned[: MAX_ANSWER_LEN - 3].rstrip() + "..."
-    return cleaned
-
-
-# Bare confirmation strings — meta-comments that say "the existing answer is
-# right" without actually stating the answer. Even when pattern-matched, they
-# carry no information for our study guide.
-BARE_CONFIRMATIONS = {
-    "correct",
-    "correct.",
-    "correct!",
-    "correct :)",
-    "all correct",
-    "all correct.",
-    "all four answers are correct",
-    "all four answers are correct.",
-    "i agree",
-    "i agree.",
-    "i agree!",
-    "i agree with the answer",
-    "i agree with the answer given",
-    "i agree with the provided answer",
-    "correct answer",
-    "answer is correct",
-    "answer is correct.",
-    "answer is correct :)",
-    "the answer is correct",
-    "is correct",
-}
-
-
-def _looks_like_bare_confirmation(text: str) -> bool:
-    return text.strip().lower() in BARE_CONFIRMATIONS
-
-
-def _normalize_loose_answer(text: str) -> str:
-    """Normalise a Yes/No/bullet answer for consensus comparison.
-
-    Lowercases, strips punctuation/whitespace, and keeps only the structural
-    tokens (``yes``/``no`` for Yes/No lists; word tokens for bullet lists).
-    """
-    lower = _normalized(text)
-    # Strip trailing punctuation.
-    lower = lower.rstrip(".!? ")
-    # For Yes/No comma lists, keep only yes/no tokens.
-    tokens = re.findall(r"[a-z]+", lower)
-    if tokens and all(t in {"yes", "no"} for t in tokens):
-        return "|".join(tokens)
-    # Otherwise return a whitespace- and punctuation-collapsed form.
-    return " ".join(tokens)
-
-
-def _multi_voter_consensus(
-    comments: list[dict[str, Any]], candidate_text: str
-) -> int:
-    """Return the number of comments whose loose-mode answer matches ``candidate_text``."""
-    target = _normalize_loose_answer(candidate_text)
-    if not target:
-        return 0
-    matches = 0
-    for c in comments:
-        text = c.get("text") or ""
-        if not _matches_loose_pattern(text):
+def _count_structured_lines(text: str) -> tuple[int, int, int, bool]:
+    norm = _convert_md_tables_and_tabs(unescape_clean(text))
+    lines = [ln.strip() for ln in norm.splitlines() if ln.strip()]
+    pairs = 0
+    arrow_pairs = 0
+    nums = 0
+    for ln in lines:
+        if EXPLANATION_SECTION_RE.match(ln) or INLINE_EXPLANATION_PREFIX_RE.match(ln):
             continue
-        if _normalize_loose_answer(text) == target:
-            matches += 1
-    return matches
+        vp = _parse_pair_line(ln)
+        if vp:
+            pairs += 1
+            if vp[1] == " → ":
+                arrow_pairs += 1
+        if NUMBERED_ITEM_RE.match(ln):
+            nums += 1
+    has_yn = bool(YES_NO_LIST_RE.match(lines[0])) if lines else False
+    return pairs, arrow_pairs, nums, has_yn
+
+
+def _format_answer(raw_text: str) -> str:
+    """Extract a concise, newline-separated answer from a comment body."""
+    text = _convert_md_tables_and_tabs(unescape_clean(raw_text))
+    if not text:
+        return ""
+    lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+    lines = [ln for ln in lines if not re.match(r"^https?://\S+$", ln, re.I)]
+    if not lines:
+        return ""
+
+    # Merge "Heading:\nValue" or "1. Heading\n✅ Selection"
+    merged_lines: list[str] = []
+    idx = 0
+    while idx < len(lines):
+        cur = lines[idx]
+        if idx + 1 < len(lines):
+            nxt = lines[idx + 1]
+            if nxt.startswith("✅") and not cur.startswith("✅") and ":" not in cur and "→" not in cur:
+                merged_lines.append(f"{cur.rstrip('.')}: {nxt}")
+                idx += 2
+                continue
+            if (
+                cur.endswith(":")
+                and not HEADER_LINE_RE.match(cur)
+                and not EXPLANATION_SECTION_RE.match(cur)
+                and not INLINE_EXPLANATION_PREFIX_RE.match(cur)
+                and not re.match(r"^(?:the\s+|these\s+|this\s+|that\s+|here\s+|again\b)", cur, re.I)
+                and len(cur) <= 95
+                and len(nxt) <= 95
+                and not nxt.endswith(":")
+                and not _parse_pair_line(nxt)
+            ):
+                merged_lines.append(f"{cur} {nxt}")
+                idx += 2
+                continue
+        merged_lines.append(cur)
+        idx += 1
+    lines = merged_lines
+
+    # Concise first-line Yes/No list ("YES NO NO", "Yes, No, Yes", "NNY")
+    if re.fullmatch(
+        r"(?:yes|no)(?:\s*(?:,|/|\.|-\s*|\s+|->|→)\s*(?:yes|no)){1,5}[.:!]?",
+        lines[0],
+        re.I,
+    ):
+        tokens = [t.capitalize() for t in re.findall(r"(?:yes|no)", lines[0], re.I)]
+        return ", ".join(tokens)
+    if re.fullmatch(r"[YN]{3,5}\b", lines[0]):
+        tokens = ["Yes" if ch == "Y" else "No" for ch in lines[0].strip()]
+        return ", ".join(tokens)
+
+    # Repeated per-slot "Answer: X" / "So answer = X" blocks
+    joined = "\n".join(lines)
+    multi_ans_matches = list(
+        re.finditer(r"(?:^|\n)\s*(?:so\s+)?answer\s*[:=]\s*([^\n]+)", joined, re.I)
+    )
+    if len(multi_ans_matches) >= 2:
+        items = [
+            f"Slot {i + 1}: {_strip_md_inline(m.group(1).strip().rstrip('.'))}"
+            for i, m in enumerate(multi_ans_matches)
+        ]
+        return "\n".join(items)
+
+    # Explicit trailing "Final Answer: ..." block when prefix is prose
+    m_final = FINAL_ANSWER_BLOCK_RE.search(joined)
+    if m_final and len(multi_ans_matches) <= 1:
+        prefix = joined[: m_final.start()].strip()
+        tail = m_final.group(1).strip()
+        tail_lines: list[str] = []
+        for tl in tail.splitlines():
+            tl_s = _strip_md_inline(tl.strip())
+            if not tl_s or re.match(r"^https?://\S+$", tl_s, re.I):
+                continue
+            if EXPLANATION_SECTION_RE.match(tl_s) or INLINE_EXPLANATION_PREFIX_RE.match(tl_s):
+                break
+            tail_lines.append(tl_s)
+        prefix_pairs = [ln for ln in prefix.splitlines() if _parse_pair_line(ln)]
+        if tail_lines and len("\n".join(tail_lines)) <= 240 and len(prefix_pairs) < 2:
+            return "\n".join(tail_lines)
+
+    while lines and HEADER_LINE_RE.match(lines[0]):
+        lines.pop(0)
+    if not lines:
+        return ""
+
+    kept: list[str] = []
+    for ln in lines:
+        if EXPLANATION_SECTION_RE.match(ln):
+            if kept:
+                break
+            continue
+        if INLINE_EXPLANATION_PREFIX_RE.match(ln):
+            if kept:
+                continue
+        if not kept:
+            ln = re.sub(
+                r"^(?:👉\s*|✅\s*)*(?:\*\*)?(?:the\s+correct\s+answers?\s+(?:are|is)|"
+                r"correct\s+answers?\s*(?:is|are|should\s+be)?|answer\s+should\s+be|"
+                r"final\s+answer|answers?)(?:\*\*)?\s*[:=-]\s*",
+                "",
+                ln,
+                flags=re.IGNORECASE,
+            ).strip()
+            if not ln:
+                continue
+        kept.append(_strip_md_inline(ln))
+
+    if not kept:
+        kept = [_strip_md_inline(ln) for ln in lines]
+
+    # 1) Label: Value / Label → Value pairs
+    pair_lines: list[str] = []
+    seen_lhs_base: set[str] = set()
+    for ln in kept:
+        vp = _parse_pair_line(ln)
+        if vp:
+            lhs, sep, rhs = vp
+            lhs_base = re.sub(r"\s*\([^)]*\)\s*$", "", lhs).strip().lower()
+            if lhs_base in seen_lhs_base and "(" in lhs and len(rhs) > 55:
+                continue
+            if (
+                pair_lines
+                and sep == ": "
+                and len(rhs) > 90
+                and re.match(r"^(?:Detect|Controls|Represents|Provides|Analyzes|In\s+Azure|The\s+)\b", rhs)
+            ):
+                continue
+            if " | " in rhs and len(rhs.split(" | ")[0]) >= 3:
+                rhs = rhs.split(" | ")[0].strip()
+            rhs_short = re.sub(r"\s*\([^()]{30,}\)\.?$", "", rhs).strip()
+            seen_lhs_base.add(lhs_base)
+            pair_lines.append(f"{lhs}{sep}{rhs_short}")
+    if len(pair_lines) >= 2:
+        return "\n".join(pair_lines)
+
+    # 2) Numbered items
+    numbered_idxs = [i for i, ln in enumerate(kept) if NUMBERED_ITEM_RE.match(ln)]
+    if len(numbered_idxs) >= 2:
+        num_lines = []
+        for i in numbered_idxs:
+            nl = re.sub(r"^(\d+),(\s+)", r"\1.\2", kept[i])
+            nl = re.sub(r"\s*\([^()]{30,}\)\.?$", "", nl).strip()
+            num_lines.append(nl)
+        if all(len(nl) <= 170 for nl in num_lines):
+            return "\n".join(num_lines)
+
+    # 3) Bullet list of steps
+    bullet_lines = [ln for ln in kept if BULLET_ITEM_RE.match(ln)]
+    if len(bullet_lines) >= 2 and all(len(bl) <= 160 for bl in bullet_lines):
+        cleaned_bullets = [
+            re.sub(r"\s*\([^()]{30,}\)\.?$", "", bl).strip() for bl in bullet_lines
+        ]
+        return "\n".join(cleaned_bullets)
+
+    # 4) Vertical arrow flow ("Step 1\n↓\nStep 2")
+    if "↓" in kept:
+        flow_steps = [ln for ln in kept if ln != "↓" and not ln.endswith(":")]
+        if len(flow_steps) >= 2:
+            return " → ".join(flow_steps)
+
+    # Strip trailing rhetorical question if preceded by declarative answer
+    if len(kept) == 1 and kept[0].endswith("?") and ". " in kept[0]:
+        sents = kept[0].split(". ")
+        non_q = [s for s in sents if not s.strip().endswith("?")]
+        if non_q:
+            kept = [". ".join(non_q).strip() + "."]
+
+    result = "\n".join(kept)
+    if len(result) > MAX_ANSWER_LEN:
+        acc: list[str] = []
+        total = 0
+        for ln in kept:
+            if total + len(ln) > MAX_ANSWER_LEN and acc:
+                break
+            acc.append(ln)
+            total += len(ln) + 1
+        result = "\n".join(acc)
+        if len(result) > MAX_ANSWER_LEN:
+            result = result[: MAX_ANSWER_LEN - 3].rsplit(" ", 1)[0] + "..."
+    return result
 
 
 def _pick_candidate(
     comments: list[dict[str, Any]], *, loose: bool = False
 ) -> tuple[dict[str, Any] | None, float | None, str]:
-    """Return (best comment, score, pattern label) or (None, None, '')."""
+    """Return ``(best_comment, score, pattern_label)`` or ``(None, None, '')``."""
     best: dict[str, Any] | None = None
     best_score = -1.0
     best_pattern = ""
 
     for c in comments:
-        text = c.get("text", "") or ""
-        if _looks_like_bare_confirmation(text):
+        raw = c.get("text", "") or ""
+        text = unescape_clean(raw)
+        if not text:
             continue
-
-        # Existing pattern path.
-        s = _score_comment(c)
-        if s is not None and s > best_score:
-            best = c
-            best_score = s
-            if _matches_explicit_pattern(text):
-                best_pattern = "explicit_pattern"
-            elif _has_highly_voted(c):
-                best_pattern = "highly_voted"
-            else:
-                best_pattern = "upvotes"
-
-        # Loose-mode path — only when explicitly enabled.
-        if not loose:
+        low = text.lower().strip()
+        if low in BARE_CONFIRMATIONS:
             continue
-        loose_name = _matches_loose_pattern(text)
-        if loose_name is None:
+        if QUESTION_START_RE.match(text):
             continue
-        if _looks_like_question_loose(text):
-            continue
-        upvotes = c.get("upvotes") or 0
-        hv = _has_highly_voted(c)
-        # Common requirement for ALL loose patterns: ≥2 upvotes OR HV badge.
-        if not (upvotes >= LOOSE_MIN_UPVOTES or hv):
-            continue
-        # Yes/No and bullet patterns need extra consensus evidence.
-        if loose_name in {"yes_no_comma_list", "short_bullet_list"}:
-            consensus = _multi_voter_consensus(comments, text)
-            if not (consensus >= LOOSE_MULTI_VOTER_THRESHOLD or upvotes >= LOOSE_HIGH_UPVOTES or hv):
+        if text.endswith("?"):
+            non_q_sents = [
+                s for s in re.split(r"(?<=[.!])\s+", text) if s.strip() and not s.strip().endswith("?")
+            ]
+            if not non_q_sents:
                 continue
-        # Compute loose score (always above MIN_ACCEPT_SCORE).
-        s_loose = EXPLICIT_SCORE + upvotes * UPVOTE_WEIGHT + (HV_SCORE if hv else 0)
-        if s_loose > best_score:
+        if WRONG_THREAD_MCQ_RE.search(text):
+            continue
+
+        pairs, arrow_pairs, nums, has_yn = _count_structured_lines(text)
+        has_explicit = bool(EXPLICIT_SLOT_RE.search(text))
+        has_arrow = bool(ARROW_RE.search(text))
+        has_header = bool(HEADER_BONUS_RE.match(text))
+        hv = "Highly Voted" in (c.get("badges") or [])
+        upvotes = max(0, int(c.get("upvotes") or 0))
+
+        if BARE_META_RE.match(text) and pairs < 2 and nums < 2 and not has_arrow:
+            continue
+
+        first_line = text.splitlines()[0].strip().lower().rstrip(":.")
+        if (
+            first_line in {"correct answer", "correct answers", "answer"}
+            and pairs < 2
+            and nums < 2
+            and not has_arrow
+            and not has_yn
+        ):
+            continue
+
+        is_structured = (
+            has_explicit
+            or has_arrow
+            or (loose and (pairs >= 2 or nums >= 2 or has_yn))
+            or (pairs >= 2 and (hv or upvotes >= 2 or has_header))
+            or (nums >= 2 and (hv or upvotes >= 2 or has_header))
+        )
+
+        score: float | None = None
+        pattern = ""
+
+        if is_structured:
+            score = 100.0
+            if pairs >= 2:
+                score += 12.0 + min(pairs, 4) * 2.0 + (6.0 if arrow_pairs >= 1 else 0.0)
+                pattern = "loose:label_pair" if not (has_explicit or has_arrow) else "explicit_pattern"
+            elif nums >= 2:
+                score += 10.0 + min(nums, 4) * 1.5
+                pattern = "loose:numbered_list" if not has_explicit else "explicit_pattern"
+            elif has_explicit or has_arrow:
+                score += 6.0
+                pattern = "explicit_pattern"
+            elif has_yn:
+                score += 5.0
+                pattern = "loose:yes_no_comma_list"
+
+            if has_header:
+                score += 8.0
+            if hv:
+                score += 45.0
+            score += min(upvotes, 25) * 4.0
+
+            if not hv and upvotes < 2:
+                if low.startswith("i think"):
+                    continue
+                extracted = _format_answer(text)
+                if not has_header and pairs < 2 and not has_arrow and not has_explicit:
+                    if any(len(ln) > 95 for ln in extracted.splitlines()):
+                        continue
+        else:
+            if any(joke in low for joke in ("lol", "haha", "curious how", "li mortacci")):
+                continue
+            lines = [ln.strip() for ln in text.splitlines() if ln.strip() and not ln.startswith("http")]
+            if loose and not hv and upvotes >= 5 and 2 <= len(lines) <= 5 and all(len(ln) <= 90 for ln in lines):
+                score = 85.0 + min(upvotes, 20) * 1.0
+                pattern = "loose:short_bullet_list"
+            elif hv:
+                score = 50.0 + min(upvotes, 20) * 0.5
+                pattern = "highly_voted"
+
+        if score is not None and score >= MIN_ACCEPT_SCORE and score > best_score:
             best = c
-            best_score = s_loose
-            best_pattern = f"loose:{loose_name}"
+            best_score = score
+            best_pattern = pattern
 
     if best is None or best_score < MIN_ACCEPT_SCORE:
         return None, None, ""
@@ -374,23 +667,45 @@ def _pick_candidate(
 
 
 def _snippet(text: str, n: int = 90) -> str:
-    flat = text.replace("\n", " ").replace("|", "/")
+    flat = text.replace("\n", " / ")
     flat = " ".join(flat.split())
     return flat[:n] + ("..." if len(flat) > n else "")
 
 
-def process_file(path: Path, *, apply: bool, loose: bool = False) -> dict[str, Any]:
+def process_file(
+    path: Path,
+    *,
+    apply: bool,
+    loose: bool = False,
+    reprocess: bool = False,
+) -> dict[str, Any]:
     data = _load(path)
+
+    # Normalize double-escaped HTML entities inside comment bodies too so
+    # rendered discussion blocks never leak ``&quot;`` / ``&gt;``.
+    comments_unescaped = 0
+    for q in data:
+        for c in q.get("comments") or []:
+            old_t = c.get("text") or ""
+            if "&" in old_t:
+                new_t = html.unescape(html.unescape(old_t))
+                if new_t != old_t:
+                    comments_unescaped += 1
+                    if apply:
+                        c["text"] = new_t
+
     eligible = [
         q
         for q in data
         if not q.get("choices")
-        and not q.get("most_voted_answer")
+        and (reprocess or not q.get("most_voted_answer"))
     ]
     logger.info(
-        "%s: %d eligible questions (no choices, no most_voted_answer)",
+        "%s: %d eligible non-MCQ questions (reprocess=%s, comments_unescaped=%d)",
         path.name,
         len(eligible),
+        reprocess,
+        comments_unescaped,
     )
 
     updates: list[dict[str, Any]] = []
@@ -398,50 +713,104 @@ def process_file(path: Path, *, apply: bool, loose: bool = False) -> dict[str, A
     signal_counts: Counter[str] = Counter()
 
     for q in eligible:
+        qid = str(q.get("question_id") or "")
         comments = q.get("comments") or []
+
+        if qid in CURATED_ANSWERS:
+            curated = CURATED_ANSWERS[qid]
+            if q.get("most_voted_answer") != curated:
+                signal_counts["curated"] += 1
+                updates.append(
+                    {
+                        "question_id": qid,
+                        "topic": q.get("topic"),
+                        "question_number": q.get("question_number"),
+                        "comment_id": "curated",
+                        "upvotes": 0,
+                        "score": 999.0,
+                        "pattern": "curated",
+                        "highly_voted": True,
+                        "answer": curated,
+                        "_snippet": _snippet(curated),
+                    }
+                )
+                if apply:
+                    q["most_voted_answer"] = curated
+                    if not q.get("correct_answers"):
+                        q["correct_answers"] = []
+                    q["_backfill_source"] = {
+                        "comment_id": "curated",
+                        "score": 999.0,
+                        "pattern": "curated",
+                        "upvotes": 0,
+                    }
+            continue
+
         candidate, score, pattern_label = _pick_candidate(comments, loose=loose)
         if candidate is None:
-            skipped.append({
-                "question_id": q.get("question_id"),
-                "topic": q.get("topic"),
-                "question_number": q.get("question_number"),
-                "comment_count": len(comments),
-            })
+            if reprocess and q.get("most_voted_answer"):
+                # Clear previously backfilled false positives (e.g. bare questions).
+                signal_counts["cleared_noise"] += 1
+                updates.append(
+                    {
+                        "question_id": qid,
+                        "topic": q.get("topic"),
+                        "question_number": q.get("question_number"),
+                        "comment_id": None,
+                        "upvotes": 0,
+                        "score": 0.0,
+                        "pattern": "cleared_noise",
+                        "highly_voted": False,
+                        "answer": None,
+                        "_snippet": "(cleared noisy backfill)",
+                    }
+                )
+                if apply:
+                    q["most_voted_answer"] = None
+                    q.pop("_backfill_source", None)
+            skipped.append(
+                {
+                    "question_id": qid,
+                    "topic": q.get("topic"),
+                    "question_number": q.get("question_number"),
+                    "comment_count": len(comments),
+                }
+            )
             continue
 
         answer_text = candidate.get("text", "")
         new_answer = _format_answer(answer_text)
+        if not new_answer:
+            skipped.append(
+                {
+                    "question_id": qid,
+                    "topic": q.get("topic"),
+                    "question_number": q.get("question_number"),
+                    "comment_count": len(comments),
+                }
+            )
+            continue
 
-        # Classify the signal for the human-readable report.
-        if pattern_label.startswith("loose:"):
-            signal_key = "loose:" + pattern_label.split(":", 1)[1]
-        elif pattern_label == "explicit_pattern":
-            signal_key = "explicit_pattern_only"
-        elif pattern_label == "highly_voted":
-            signal_key = "highly_voted_only"
-        else:
-            signal_key = "other"
-        signal_counts[signal_key] += 1
+        if q.get("most_voted_answer") == new_answer:
+            continue
 
+        signal_counts[pattern_label] += 1
         update = {
-            "question_id": q.get("question_id"),
+            "question_id": qid,
             "topic": q.get("topic"),
             "question_number": q.get("question_number"),
             "comment_id": candidate.get("comment_id"),
             "upvotes": candidate.get("upvotes"),
-            "score": score,
+            "score": score or 0.0,
             "pattern": pattern_label,
-            "highly_voted": _has_highly_voted(candidate),
+            "highly_voted": "Highly Voted" in (candidate.get("badges") or []),
             "answer": new_answer,
-            "_snippet": _snippet(answer_text),
+            "_snippet": _snippet(new_answer),
         }
         updates.append(update)
 
         if apply:
             q["most_voted_answer"] = new_answer
-            # Leave correct_answers empty — these are not lettered answers and
-            # the renderer falls back to most_voted_answer for the
-            # "Most voted" card.
             if not q.get("correct_answers"):
                 q["correct_answers"] = []
             q["_backfill_source"] = {
@@ -451,14 +820,14 @@ def process_file(path: Path, *, apply: bool, loose: bool = False) -> dict[str, A
                 "upvotes": candidate.get("upvotes"),
             }
 
-    if apply and updates:
-        _backup(path)
+    if apply and (updates or comments_unescaped):
         _save(path, data)
 
     return {
         "path": path,
         "eligible": len(eligible),
         "updated": len(updates),
+        "comments_unescaped": comments_unescaped,
         "skipped": len(skipped),
         "updates": updates,
         "skipped_items": skipped,
@@ -471,27 +840,21 @@ def _print_report(result: dict[str, Any]) -> None:
     print(f"\n=== {path.name} ===")
     print(
         f"  eligible={result['eligible']}  updated={result['updated']}  "
-        f"skipped={result['skipped']}"
+        f"comments_unescaped={result['comments_unescaped']}  skipped={result['skipped']}"
     )
     if result["signals"]:
         print("  signals: " + ", ".join(f"{k}={v}" for k, v in result["signals"].most_common()))
     if result["updates"]:
         print("  updates:")
-        for u in result["updates"]:
-            tag = u["pattern"]
+        for u in result["updates"][:15]:
             print(
                 f"    - T{u['topic']} Q{u['question_number']} "
                 f"(qid={u['question_id']}, cid={u['comment_id']}, "
-                f"upvotes={u['upvotes']}, score={u['score']:.1f}, pattern={tag}) "
+                f"upvotes={u['upvotes']}, score={u['score']:.1f}, pattern={u['pattern']}) "
                 f":: {u['_snippet']}"
             )
-    if result["skipped_items"]:
-        print(f"  skipped (no strong signal; first 5):")
-        for s in result["skipped_items"][:5]:
-            print(
-                f"    - T{s['topic']} Q{s['question_number']} "
-                f"(qid={s['question_id']}, comments={s['comment_count']})"
-            )
+        if len(result["updates"]) > 15:
+            print(f"    ... and {len(result['updates']) - 15} more")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -504,10 +867,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--loose",
         action="store_true",
-        help=(
-            "Also rescue Yes/No comma lists, bullet lists, numbered lists, and "
-            "label-pair answers under stricter thresholds (default: off)."
-        ),
+        help="Also rescue structured label-pair, numbered-list, and Yes/No answers.",
+    )
+    parser.add_argument(
+        "--reprocess",
+        action="store_true",
+        help="Re-evaluate and clean existing non-MCQ most_voted_answer values.",
     )
     parser.add_argument(
         "--files",
@@ -531,16 +896,7 @@ def main(argv: list[str] | None = None) -> int:
     targets = [DATA / name for name in args.files] if args.files else TARGETS
     mode = "APPLY" if args.apply else "preview"
     loose_tag = "loose" if args.loose else "safe"
-    print(f"\nMode: {mode} ({loose_tag})")
-    print(f"Targets: {[str(p) for p in targets]}")
-    print(f"Min accept score: {MIN_ACCEPT_SCORE}")
-    if args.loose:
-        print(
-            "Loose thresholds: ≥2 upvotes OR HV badge; "
-            "Yes/No & bullet patterns also need ≥3 upvotes OR multi-voter consensus."
-        )
-    else:
-        print("Heuristic: explicit pattern OR Highly Voted badge, after skipping question-shaped comments")
+    print(f"\nMode: {mode} ({loose_tag}, reprocess={args.reprocess})")
 
     total_updated = 0
     total_skipped = 0
@@ -548,7 +904,9 @@ def main(argv: list[str] | None = None) -> int:
         if not path.exists():
             logger.warning("Skipping missing file %s", path)
             continue
-        result = process_file(path, apply=args.apply, loose=args.loose)
+        result = process_file(
+            path, apply=args.apply, loose=args.loose, reprocess=args.reprocess
+        )
         _print_report(result)
         total_updated += result["updated"]
         total_skipped += result["skipped"]

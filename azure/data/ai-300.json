@@ -88,7 +88,7 @@
         "comment_id": "1746378",
         "author": "uncledana",
         "date_title": "April 11, 2026 08:16 pm",
-        "text": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace?view=azureml-api-2&amp;utm_source=chatgpt.com",
+        "text": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace?view=azureml-api-2&utm_source=chatgpt.com",
         "upvotes": 3,
         "badges": [
           "Selected Answer: B"
@@ -224,14 +224,14 @@
     "drag_drop_items": [],
     "drag_drop_targets": [],
     "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1746380",
-      "score": 101.5,
-      "pattern": "explicit_pattern",
-      "upvotes": 3
-    },
-    "skill_area": 2,
-    "skill_area_label": "Design and implement an MLOps infrastructure"
+      "upvotes": 3,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
   },
   {
     "discussion_id": "404552",
@@ -282,7 +282,7 @@
         "comment_id": "1765708",
         "author": "Peeking",
         "date_title": "June 08, 2026 01:39 pm",
-        "text": "Azure batch deployments support low priority virtual machines (VMs) to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority virtual machines take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.\nfrom azure.ai.ml.entities import AmlCompute\ncompute_name = &quot;low-pri-cluster&quot;\ncompute_cluster = AmlCompute(\nname=compute_name,\ndescription=&quot;Low priority compute cluster&quot;,\nmin_instances=0,\nmax_instances=2,\ntier='LowPriority'\n)\nml_client.begin_create_or_update(compute_cluster)",
+        "text": "Azure batch deployments support low priority virtual machines (VMs) to reduce the cost of batch inference workloads. Low priority VMs enable a large amount of compute power to be used for a low cost. Low priority virtual machines take advantage of surplus capacity in Azure. When you specify low priority VMs in your pools, Azure can use this surplus, when available.\nfrom azure.ai.ml.entities import AmlCompute\ncompute_name = \"low-pri-cluster\"\ncompute_cluster = AmlCompute(\nname=compute_name,\ndescription=\"Low priority compute cluster\",\nmin_instances=0,\nmax_instances=2,\ntier='LowPriority'\n)\nml_client.begin_create_or_update(compute_cluster)",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -641,7 +641,7 @@
         "comment_id": "1750392",
         "author": "uncledana",
         "date_title": "April 24, 2026 07:53 am",
-        "text": "D - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning?tabs=oai-sdk&amp;pivots=programming-language-python",
+        "text": "D - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning?tabs=oai-sdk&pivots=programming-language-python",
         "upvotes": 2,
         "badges": [
           "Selected Answer: D"
@@ -741,7 +741,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Trigger provisioning on repository changes. Configure a GitHub Actions workflow. | Authenticate securely during workflow execution. Use an Azure service principal.",
+    "most_voted_answer": "Trigger provisioning on repository changes: Configure a GitHub Actions workflow.\nAuthenticate securely during workflow execution: Use an Azure service principal.",
     "comments": [
       {
         "comment_id": "1768975",
@@ -777,9 +777,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1768975",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -1059,13 +1059,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Co-pilot say's | First dropdown: load | Second dropdown: ./sample_data | Gemini says | Dropdown 1: load | Dropdown 2: ./sample_data",
+    "most_voted_answer": "First dropdown: load\nSecond dropdown: ./sample_data\nDropdown 1: load\nDropdown 2: ./sample_data",
     "comments": [
       {
         "comment_id": "1786035",
         "author": "Alvarogc",
         "date_title": "August 12, 2026 10:07 am",
-        "text": "When using the Azure Machine Learning Table type, you create an MLTable file, which is a YAML-based file that defines the data loading blueprint. The folder containing the MLTable file may or may not contain the data files themselves, depending on the configuration used. In either case, the table is loaded by referencing the folder containing the MLTable file. In this example, this is done using mltable.load(&quot;./sample_data&quot;).\nMicrosoft Documentation: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-mltable",
+        "text": "When using the Azure Machine Learning Table type, you create an MLTable file, which is a YAML-based file that defines the data loading blueprint. The folder containing the MLTable file may or may not contain the data files themselves, depending on the configuration used. In either case, the table is loaded by referencing the folder containing the MLTable file. In this example, this is done using mltable.load(\"./sample_data\").\nMicrosoft Documentation: https://learn.microsoft.com/en-us/azure/machine-learning/how-to-mltable",
         "upvotes": 2,
         "badges": [
           "Most Recent"
@@ -1145,7 +1145,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1770601",
-      "score": 101.0,
+      "score": 128.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
     },
@@ -1162,7 +1162,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Path: wasbs | Type: URI_FOLDER",
+    "most_voted_answer": "Path: wasbs\nType: URI_FOLDER",
     "comments": [
       {
         "comment_id": "1809936",
@@ -1231,8 +1231,8 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1752922",
-      "score": 54.0,
-      "pattern": "highly_voted",
+      "score": 193.0,
+      "pattern": "loose:label_pair",
       "upvotes": 8
     },
     "skill_area": 2,
@@ -1333,7 +1333,7 @@
         "comment_id": "1771053",
         "author": "Z_MU",
         "date_title": "June 24, 2026 03:33 pm",
-        "text": "python script.py --training_data ${{inputs.training_data}} &gt;&gt; Correct\npython script.py --trainingdata ${{inputs.training_data}} &gt;&gt; incorrect\nunderscore is missing in --trainingdata",
+        "text": "python script.py --training_data ${{inputs.training_data}} >> Correct\npython script.py --trainingdata ${{inputs.training_data}} >> incorrect\nunderscore is missing in --trainingdata",
         "upvotes": 2,
         "badges": [
           "Most Recent",
@@ -1377,7 +1377,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Statement 1: Yes | Statement 2: No | Statement 3: No",
+    "most_voted_answer": "Statement 1: Yes\nStatement 2: No\nStatement 3: No",
     "comments": [
       {
         "comment_id": "1805482",
@@ -1432,9 +1432,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1770603",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 122.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -1447,7 +1447,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Azure databricks cluster is the correct answer: | All-purpose clusters (for interactive notebooks) and Job clusters (ephemeral clusters for automated pipelines).",
+    "most_voted_answer": "Interactive experimentation → Azure Machine Learning compute instance\nScalable training jobs → Azure Machine Learning compute cluster",
     "comments": [
       {
         "comment_id": "1809348",
@@ -1526,10 +1526,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1809348",
-      "score": 100.5,
+      "comment_id": "1770604",
+      "score": 203.0,
       "pattern": "explicit_pattern",
-      "upvotes": 1
+      "upvotes": 9
     },
     "skill_area": 2,
     "skill_area_label": "Design and implement an MLOps infrastructure"
@@ -1544,7 +1544,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Run ssh-keygen in the Azure Machine Learning terminal. | 2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key. | 3. Add the public key to the GitHub account. | 4. Run git clone from the Azure Machine Learning terminal. | ssh-keygen → cat ~/.ssh/id_rsa.pub → Add public key to GitHub → git clone",
+    "most_voted_answer": "1. Run ssh-keygen in the Azure Machine Learning terminal.\n2. Run cat ~/.ssh/id_rsa.pub to display/copy the public SSH key.\n3. Add the public key to the GitHub account.\n4. Run git clone from the Azure Machine Learning terminal.",
     "comments": [
       {
         "comment_id": "1805704",
@@ -1602,9 +1602,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1805704",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 120.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -2102,13 +2102,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "conda create -n \"python_env\" | conda activate \"python_env\" | conda install -r \"requirements.txt\" | ipython kernel install --user --name=\"python_env\" | conda create → conda activate → conda install -r → ipython kernel install",
+    "most_voted_answer": "1. conda create -n \"python_env\"\n2. conda activate \"python_env\"\n3. conda install -r \"requirements.txt\"\n4. ipython kernel install --user --name=\"python_env\"",
     "comments": [
       {
         "comment_id": "1805699",
         "author": "exam_upskill",
         "date_title": "October 27, 2026 06:21 am",
-        "text": "conda create -n &quot;python_env&quot;\nconda activate &quot;python_env&quot;\nconda install -r &quot;requirements.txt&quot;\nipython kernel install --user --name=&quot;python_env&quot;\nconda create → conda activate → conda install -r → ipython kernel install",
+        "text": "conda create -n \"python_env\"\nconda activate \"python_env\"\nconda install -r \"requirements.txt\"\nipython kernel install --user --name=\"python_env\"\nconda create → conda activate → conda install -r → ipython kernel install",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -2121,7 +2121,7 @@
         "comment_id": "1805497",
         "author": "exam_upskill",
         "date_title": "October 26, 2026 12:51 pm",
-        "text": "1. conda create -n &quot;python_env&quot;\n2. conda activate &quot;python_env&quot;\n3. conda install -r &quot;requirements.txt&quot;\n4. ipython kernel install --user --name=&quot;python_env&quot;\nconda create → conda activate → conda install -r → ipython kernel install",
+        "text": "1. conda create -n \"python_env\"\n2. conda activate \"python_env\"\n3. conda install -r \"requirements.txt\"\n4. ipython kernel install --user --name=\"python_env\"\nconda create → conda activate → conda install -r → ipython kernel install",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -2148,10 +2148,10 @@
     "skill_area": 2,
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
-      "comment_id": "1805699",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "1805497",
+      "score": 120.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -2248,7 +2248,7 @@
         "comment_id": "1794493",
         "author": "guy3hil",
         "date_title": "September 03, 2026 08:31 pm",
-        "text": "Correct answer A = mltable.load()\n--------------------------------------------------------------------------\nimport mltable\ntbl = mltable.load(&quot;path/to/folder_asset&quot;)\ndf = tbl.to_pandas_dataframe()\n--------------------------------------------------------------------------------------\nWhy not the other options ??\nB. mltable.from_delimited_files() → Used to create an MLTable definition from raw delimited files, not to load an already registered folder asset.\nC. mltable.from_parquet_files() → Same idea, but for Parquet files. Not applicable here since the asset is CSV.\nD. mltable.from_delta_lake() → Used for Delta Lake sources, not CSV.",
+        "text": "Correct answer A = mltable.load()\n--------------------------------------------------------------------------\nimport mltable\ntbl = mltable.load(\"path/to/folder_asset\")\ndf = tbl.to_pandas_dataframe()\n--------------------------------------------------------------------------------------\nWhy not the other options ??\nB. mltable.from_delimited_files() → Used to create an MLTable definition from raw delimited files, not to load an already registered folder asset.\nC. mltable.from_parquet_files() → Same idea, but for Parquet files. Not applicable here since the asset is CSV.\nD. mltable.from_delta_lake() → Used for Delta Lake sources, not CSV.",
         "upvotes": 2,
         "badges": [
           "Selected Answer: A"
@@ -2387,13 +2387,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Container_name=\"data1\" | 2. Credentials=SaSTokenConfiguration",
+    "most_voted_answer": "1. Container_name=\"data1\"\n2. Credentials=SaSTokenConfiguration",
     "comments": [
       {
         "comment_id": "1805707",
         "author": "exam_upskill",
         "date_title": "October 27, 2026 06:42 am",
-        "text": "1. Container_name=&quot;data1&quot;\n2. Credentials=SaSTokenConfiguration",
+        "text": "1. Container_name=\"data1\"\n2. Credentials=SaSTokenConfiguration",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -2423,9 +2423,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1805707",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 117.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -2438,7 +2438,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. load_component | 2. components.create_or_update",
+    "most_voted_answer": "1. load_component\n2. components.create_or_update",
     "comments": [
       {
         "comment_id": "1805708",
@@ -2474,9 +2474,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1805708",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 117.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -2489,7 +2489,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1 → Create a compute instance | 2 → Open a terminal window | 3 → Generate a Secure Shell (SSH) key pair | 4 → Add a public key to account1 | Public key → GitHub. Private key → stays securely on the machine.",
+    "most_voted_answer": "1 → Create a compute instance\n2 → Open a terminal window\n3 → Generate a Secure Shell (SSH) key pair\n4 → Add a public key to account1\nPublic key → GitHub. Private key → stays securely on the machine.",
     "comments": [
       {
         "comment_id": "1805709",
@@ -2525,9 +2525,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1805709",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 130.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -2540,7 +2540,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. pandas | 2. describe",
+    "most_voted_answer": "1. pandas\n2. describe",
     "comments": [
       {
         "comment_id": "1805710",
@@ -2576,9 +2576,9 @@
     "skill_area_label": "Design and implement an MLOps infrastructure",
     "_backfill_source": {
       "comment_id": "1805710",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 117.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -2663,7 +2663,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1 → Enable data drift monitoring | 2 → Configure alerts",
+    "most_voted_answer": "1 → Enable data drift monitoring\n2 → Configure alerts",
     "comments": [
       {
         "comment_id": "1805711",
@@ -2710,9 +2710,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1805711",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -2808,7 +2808,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1 → Review deployment logs | 2 → Validate scoring script and model version | 3 → Adjust autoscaling configuration",
+    "most_voted_answer": "1 → Review deployment logs\n2 → Validate scoring script and model version\n3 → Adjust autoscaling configuration",
     "comments": [
       {
         "comment_id": "1805713",
@@ -2844,9 +2844,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1805713",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 128.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -2950,7 +2950,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Automated response → Configure alert rules ✅ | Infrastructure optimization → Enable autoscaling ✅",
+    "most_voted_answer": "Automated response → Configure alert rules ✅\nInfrastructure optimization → Enable autoscaling ✅",
     "comments": [
       {
         "comment_id": "1805715",
@@ -3019,9 +3019,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1805715",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -3034,7 +3034,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1 → MLflow tracking URI ✅ | 2 → MLflow metrics logging ✅ | Where should runs go? → Tracking URI | What records performance values? → Metrics logging",
+    "most_voted_answer": "1 → MLflow tracking URI ✅\n2 → MLflow metrics logging ✅\nWhere should runs go? → Tracking URI\nWhat records performance values? → Metrics logging",
     "comments": [
       {
         "comment_id": "1805730",
@@ -3081,9 +3081,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1805730",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 130.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -3161,7 +3161,7 @@
         "comment_id": "1786114",
         "author": "Nilf",
         "date_title": "August 12, 2026 01:11 pm",
-        "text": "Per Microsoft Learn's official Responsible AI dashboard docs: &quot;Error analysis... identify cohorts (subsets) of data with a higher error rate than the overall benchmark. These discrepancies can occur when the model underperforms for specific demographic groups...&quot;\nThis shows Error Analysis inherently compares demographic cohorts (E) against the overall/global benchmark (A) — they're two parts of the same mechanism, not competing options.\nFeature importance (D) belongs to a separate component — &quot;Model Interpretability&quot; — which explains how predictions are made, not where errors concentrate or whether protected groups are disproportionately affected. Microsoft's own docs list &quot;Fairness assessment&quot; and &quot;Error analysis&quot; as distinct from &quot;Model interpretability&quot; for exactly this reason.",
+        "text": "Per Microsoft Learn's official Responsible AI dashboard docs: \"Error analysis... identify cohorts (subsets) of data with a higher error rate than the overall benchmark. These discrepancies can occur when the model underperforms for specific demographic groups...\"\nThis shows Error Analysis inherently compares demographic cohorts (E) against the overall/global benchmark (A) — they're two parts of the same mechanism, not competing options.\nFeature importance (D) belongs to a separate component — \"Model Interpretability\" — which explains how predictions are made, not where errors concentrate or whether protected groups are disproportionately affected. Microsoft's own docs list \"Fairness assessment\" and \"Error analysis\" as distinct from \"Model interpretability\" for exactly this reason.",
         "upvotes": 1,
         "badges": [
           "Selected Answer: AE"
@@ -3287,7 +3287,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Yes No Yes: | mlflow.set_experiment(\"classification-experiment\") | --> experiment association, not artefact path definition | mlflow.sklearn.log_model(model, \"model\") | --> \"model\" is the artefact path.",
+    "most_voted_answer": "1. YES ✅\n2. NO ✅\n3. YES ✅",
     "comments": [
       {
         "comment_id": "1805733",
@@ -3317,7 +3317,7 @@
         "comment_id": "1758780",
         "author": "03f65a8",
         "date_title": "May 21, 2026 03:14 pm",
-        "text": "Yes No Yes:\nmlflow.set_experiment(&quot;classification-experiment&quot;)\n--&gt; experiment association, not artefact path definition\nmlflow.sklearn.log_model(model, &quot;model&quot;)\n--&gt; &quot;model&quot; is the artefact path.",
+        "text": "Yes No Yes:\nmlflow.set_experiment(\"classification-experiment\")\n--> experiment association, not artefact path definition\nmlflow.sklearn.log_model(model, \"model\")\n--> \"model\" is the artefact path.",
         "upvotes": 3,
         "badges": [],
         "selected_answer": null,
@@ -3361,10 +3361,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1758780",
-      "score": 101.5,
-      "pattern": "loose:label_pair",
-      "upvotes": 3
+      "comment_id": "1805733",
+      "score": 118.5,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     },
     "skill_area": 3,
     "skill_area_label": "Implement machine learning model lifecycle and operations"
@@ -3463,7 +3463,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Monitor baseline metrics from production traffic | 2. Define performance thresholds for monitored metrics | 3. Configure alerts to notify stakeholders | 4. Enable scheduled or event-based retraining",
+    "most_voted_answer": "1. Monitor baseline metrics from production traffic\n2. Define performance thresholds for monitored metrics\n3. Configure alerts to notify stakeholders\n4. Enable scheduled or event-based retraining",
     "comments": [
       {
         "comment_id": "1805737",
@@ -3532,8 +3532,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1748617",
-      "score": 56.5,
-      "pattern": "highly_voted",
+      "score": 213.0,
+      "pattern": "loose:numbered_list",
       "upvotes": 13
     },
     "skill_area": 3,
@@ -3715,7 +3715,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. YES ✅ | 2. NO ✅ | 3. NO ✅ | 4. YES ✅ | YES → NO → NO → YES.",
+    "most_voted_answer": "1. YES ✅\n2. NO ✅\n3. NO ✅\n4. YES ✅",
     "comments": [
       {
         "comment_id": "1805742",
@@ -3759,9 +3759,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1805742",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 120.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 1
     }
   },
   {
@@ -4472,7 +4472,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct sequence: | 1. Deploy a new model version. | 2, Create an AI gateway route version. | 3. Validate the behavior of the new version. | The model is first deployed without changing existing production routing. A separate route version then provides a controlled configuration for testing. Validate it before promoting it to production. | Do not immediately shift 100% of traffic or change the existing production route before validation.",
+    "most_voted_answer": "1. Deploy a new model version.\n2. Create an AI gateway route version.\n3. Validate the behavior of the new version.",
     "comments": [
       {
         "comment_id": "1783221",
@@ -4517,8 +4517,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1783221",
-      "score": 101.0,
-      "pattern": "loose:numbered_list",
+      "score": 130.5,
+      "pattern": "explicit_pattern",
       "upvotes": 2
     },
     "skill_area": 3,
@@ -4534,7 +4534,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Detect when the system is slow at returning output → Latency | Identify when the system cannot sustain expected request volume → Throughput | Measure the duration of handling a request → Response time",
+    "most_voted_answer": "Detect when the system is slow at returning output → Latency\nIdentify when the system cannot sustain expected request volume → Throughput\nMeasure the duration of handling a request → Response time",
     "comments": [
       {
         "comment_id": "1770616",
@@ -4570,9 +4570,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1770616",
-      "upvotes": 4,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "score": 140.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
     }
   },
   {
@@ -4585,7 +4585,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Input feature distributions differ from training data → Analyze dataset drift metrics. | Model accuracy drops without code changes → Review prediction and ground truth trends. | Endpoint latency increases under load → Investigate scaling and infrastructure metrics",
+    "most_voted_answer": "Input feature distributions differ from training data → Analyze dataset drift metrics.\nModel accuracy drops without code changes → Review prediction and ground truth trends.\nEndpoint latency increases under load → Investigate scaling and infrastructure metrics",
     "comments": [
       {
         "comment_id": "1770618",
@@ -4621,9 +4621,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1770618",
-      "upvotes": 5,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "score": 144.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
     }
   },
   {
@@ -4642,7 +4642,7 @@
         "comment_id": "1770141",
         "author": "RICHARDALEX007",
         "date_title": "June 21, 2026 08:11 pm",
-        "text": "Terminating runs when the primary metric is &gt;=25% worse than the best run is exactly the Bandit policy governed by slack_factor (a run within (1/(1+slack)) of the best survives).",
+        "text": "Terminating runs when the primary metric is >=25% worse than the best run is exactly the Bandit policy governed by slack_factor (a run within (1/(1+slack)) of the best survives).",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -4886,7 +4886,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Define how features are retrieved at inference → Feature retrieval specification | Ensure feature consistency between training and inference → Feature retrieval specification | Enable automated feature lookup in production → Feature set materialization",
+    "most_voted_answer": "Define how features are retrieved at inference → Feature retrieval specification\nEnsure feature consistency between training and inference → Feature retrieval specification\nEnable automated feature lookup in production → Feature set materialization",
     "comments": [
       {
         "comment_id": "1772816",
@@ -4933,9 +4933,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1770621",
-      "upvotes": 3,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "score": 136.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
     }
   },
   {
@@ -4948,7 +4948,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "The correct answers are: | Import module: azure.ai.ml.entities | Asset type: AssetTypes.URI_FOLDER | Why? | azure.ai.ml.entities provides the AssetTypes class used to specify the type of input data. | AssetTypes.URI_FOLDER is appropriate because image-classification training data typically consists of a folder containing multiple labeled images, organized by class. | P.S. | The guys at ExamTopics are real infamous, though—they make you pay for exam quizzes but don't even include the correct a...",
+    "most_voted_answer": "Import module: azure.ai.ml.entities\nAsset type: AssetTypes.URI_FOLDER",
     "comments": [
       {
         "comment_id": "1802719",
@@ -4982,8 +4982,8 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1802719",
-      "score": 100.5,
-      "pattern": "explicit_pattern",
+      "score": 128.0,
+      "pattern": "loose:label_pair",
       "upvotes": 1
     },
     "skill_area": 3,
@@ -5070,7 +5070,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "According to GPT 5.6: | 1. Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED. | 2. The runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution. | 3. The jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED. | 4. All metrics and their values are returned for the returned experiment runs: N...",
+    "most_voted_answer": "Aborted runs are returned: No. Aborted runs have the status KILLED, not FAILED.\nThe runs returned have been completed with errors: Yes. The FAILED status indicates that a run failed during execution.\nThe jobs returned have been canceled or killed by the user or system: No. Canceled or terminated runs have the status KILLED, not FAILED.\nAll metrics and their values are returned for the returned experiment runs: No. The query returns run information, including logged metrics, but does not necessarily return every metric value recorded throughout training.",
     "comments": [
       {
         "comment_id": "1803126",
@@ -5114,9 +5114,9 @@
     "skill_area_label": "Implement machine learning model lifecycle and operations",
     "_backfill_source": {
       "comment_id": "1803126",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 124.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -5129,7 +5129,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Define, Register, Reference, Create",
+    "most_voted_answer": "Store dependency versions in a configuration file\nDefine the required dependencies in an environment specification\nRegister the environment in the Azure Machine Learning workspace\nReference the environment in training jobs and pipelines",
     "comments": [
       {
         "comment_id": "1758790",
@@ -5186,10 +5186,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1748618",
-      "score": 55.0,
-      "pattern": "highly_voted",
-      "upvotes": 10
+      "comment_id": "1752677",
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
     },
     "skill_area": 4,
     "skill_area_label": "Design and implement a GenAIOps infrastructure"
@@ -5250,7 +5250,7 @@
         "comment_id": "1758793",
         "author": "03f65a8",
         "date_title": "May 21, 2026 04:15 pm",
-        "text": "D, as the requirement is that:\n&quot;no PUBLIC access&quot; NOT &quot;no access at all&quot; :)",
+        "text": "D, as the requirement is that:\n\"no PUBLIC access\" NOT \"no access at all\" :)",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -5294,7 +5294,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1 - global standard, 2 - standard | https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types",
+    "most_voted_answer": "1 - global standard, 2 - standard",
     "comments": [
       {
         "comment_id": "1748620",
@@ -5986,7 +5986,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "According to GPT5.6: | The correct sequence is: | 1-Create a data asset. | 2-Create a vector index. | 3-Create a Foundry Search resource. | 4-Create a flow. | Why? | Create a data asset: Register the local text files as a data source in Microsoft Foundry. | Create a vector index: Index the file content so it can be retrieved based on semantic similarity. | Create a Foundry Search resource: Provide the search capability needed to retrieve relevant inform...",
+    "most_voted_answer": "1-Create a data asset.\n2-Create a vector index.\n3-Create a Foundry Search resource.\n4-Create a flow.",
     "comments": [
       {
         "comment_id": "1803125",
@@ -6044,9 +6044,9 @@
     "skill_area_label": "Design and implement a GenAIOps infrastructure",
     "_backfill_source": {
       "comment_id": "1803125",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 124.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -6059,13 +6059,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, \"Developer deployments are designed for model candidate evaluation and not for production use\". Correct answer then should be: | 1. Create a Developer Tier deployment | 2. Evaluate and validate the model | 3. Create a Global Standard deployment | Reference: https://learn.microsoft.com/en-us/azu...",
+    "most_voted_answer": "1. Create a Developer Tier deployment\n2. Evaluate and validate the model\n3. Create a Global Standard deployment",
     "comments": [
       {
         "comment_id": "1786267",
         "author": "Alvarogc",
         "date_title": "August 13, 2026 01:00 pm",
-        "text": "As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, &quot;Developer deployments are designed for model candidate evaluation and not for production use&quot;. Correct answer then should be:\n1. Create a Developer Tier deployment\n2. Evaluate and validate the model\n3. Create a Global Standard deployment\nReference: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-deploy",
+        "text": "As it's said, the fine-tuned model already appears as a new model variant in the development environment, so there's no sense on registering. Thus, as you can read in Microsoft Documentation, \"Developer deployments are designed for model candidate evaluation and not for production use\". Correct answer then should be:\n1. Create a Developer Tier deployment\n2. Evaluate and validate the model\n3. Create a Global Standard deployment\nReference: https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning-deploy",
         "upvotes": 2,
         "badges": [
           "Most Recent"
@@ -6115,8 +6115,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1786267",
-      "score": 101.0,
-      "pattern": "explicit_pattern",
+      "score": 122.5,
+      "pattern": "loose:numbered_list",
       "upvotes": 2
     },
     "skill_area": 4,
@@ -6132,7 +6132,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Correct answer: | 1. Azure CLI commands | 2. Bicep templates | Reference: https://learn.microsoft.com/es-es/azure/machine-learning/how-to-setup-mlops-azureml",
+    "most_voted_answer": "1. Azure CLI commands\n2. Bicep templates",
     "comments": [
       {
         "comment_id": "1786268",
@@ -6166,7 +6166,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1786268",
-      "score": 101.0,
+      "score": 129.0,
       "pattern": "explicit_pattern",
       "upvotes": 2
     },
@@ -6183,7 +6183,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Data asset type: mltable | URL scheme: wasbs | Why: An MLTable can define multiple file paths, including images stored across different storage locations. The wasbs:// scheme addresses Azure Blob Storage securely. | uri_file represents a single file. | uri_folder normally references one folder location. | abfss:// is used for Azure Data Lake Storage Gen2. | azureml:// references a location through an Azure Machine Learning datastore rather than directly...",
+    "most_voted_answer": "Data asset type: mltable\nURL scheme: wasbs",
     "comments": [
       {
         "comment_id": "1783222",
@@ -6219,9 +6219,9 @@
     "skill_area_label": "Design and implement a GenAIOps infrastructure",
     "_backfill_source": {
       "comment_id": "1783222",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -6234,7 +6234,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "GPT-4o | Global Batch | Global Batch handles large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at 50% less cost than Global Standard. With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online wor...",
+    "most_voted_answer": "GPT-4o\nGlobal Batch",
     "comments": [
       {
         "comment_id": "1789358",
@@ -6285,7 +6285,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Observability lifecycle: | Deploy endpoint | ↓ | Enable telemetry/logging | ↓ | Configure monitoring metrics",
+    "most_voted_answer": "Set up the model endpoint in Foundry\nEnable logging\nConfigure monitoring metrics",
     "comments": [
       {
         "comment_id": "1758953",
@@ -6340,10 +6340,10 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1758953",
-      "score": 101.0,
-      "pattern": "loose:label_pair",
-      "upvotes": 2
+      "comment_id": "1752711",
+      "score": 134.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 5
     },
     "skill_area": 5,
     "skill_area_label": "Implement generative AI quality assurance and observability"
@@ -6498,7 +6498,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Diagnistic logs, Evaluation workflow | Diagnostic logs are used because they provide detailed, real-time information about runtime behavior and errors (such as timeouts), whereas observability metrics only offer aggregated data and are less suitable for troubleshooting specific issue",
+    "most_voted_answer": "Runtime monitoring: Observability metrics\nRelease validation: Evaluation workflow",
     "comments": [
       {
         "comment_id": "1752923",
@@ -6544,10 +6544,10 @@
     "skill_area": 5,
     "skill_area_label": "Implement generative AI quality assurance and observability",
     "_backfill_source": {
-      "comment_id": "1752043",
-      "upvotes": 2,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "1752923",
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
     }
   },
   {
@@ -6700,7 +6700,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Install the Foundry SDK project client locally. | Configure safety evaluators. | Submit an evaluation to the Microsoft Foundry project in the cloud",
+    "most_voted_answer": "Install the Foundry SDK project client locally.\nConfigure safety evaluators.\nSubmit an evaluation to the Microsoft Foundry project in the cloud",
     "comments": [
       {
         "comment_id": "1770627",
@@ -6736,9 +6736,9 @@
     "skill_area_label": "Implement generative AI quality assurance and observability",
     "_backfill_source": {
       "comment_id": "1770627",
-      "upvotes": 5,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "score": 90.0,
+      "pattern": "loose:short_bullet_list",
+      "upvotes": 5
     }
   },
   {
@@ -6925,7 +6925,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Track prompt changes across teams | ✅ Git repository | Git provides version control, change history, and contributor traceability—ideal for collaborative prompt iteration. | 2. Apply prompt updates without redeployment | ✅ Agent’s latest published version reference | Applications can reference the agent’s latest published version, allowing prompt updates to take effect immediately without redeploying consuming apps.",
+    "most_voted_answer": "Track prompt changes across teams: ✅ Git repository\nApply prompt updates without redeployment: ✅ Agent's latest published version reference",
     "comments": [
       {
         "comment_id": "1758958",
@@ -6980,9 +6980,9 @@
     "drag_drop_targets": [],
     "drag_drop_error": null,
     "_backfill_source": {
-      "comment_id": "1752910",
-      "score": 101.0,
-      "pattern": "loose:numbered_list",
+      "comment_id": "1758958",
+      "score": 124.0,
+      "pattern": "loose:label_pair",
       "upvotes": 2
     },
     "skill_area": 6,
@@ -7004,7 +7004,7 @@
         "comment_id": "1790311",
         "author": "upliftinghut",
         "date_title": "August 21, 2026 07:07 pm",
-        "text": "The requirement is low latency =&gt; should be Managed real-time (online) endpoint instead of serverless endpoint",
+        "text": "The requirement is low latency => should be Managed real-time (online) endpoint instead of serverless endpoint",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -7082,13 +7082,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication. | 2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision. | 3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd rai...",
+    "most_voted_answer": "1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication.\n2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.",
     "comments": [
       {
         "comment_id": "1777295",
         "author": "wwowow",
         "date_title": "July 17, 2026 08:14 pm",
-        "text": "1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication.\n2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.\n3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd raise it or fix chunking, not lower it.\n4. No — Keyword-only search discards semantic matching by definition, so it can't &quot;preserve semantic relevance.&quot; Classic too-good-to-be-true phrasing.",
+        "text": "1. Yes — Config 1 has 400 overlap on 1,200 chunk size (a third overlap), so with top k = 8 you retrieve multiple overlapping chunks from the same document. That's the duplication.\n2. Yes — Config 2's 0.90 threshold filters aggressively, and relevant chunks scoring just below get excluded. Stricter filtering trading recall for precision.\n3. No — Backwards. Lowering the threshold lets in more loosely related chunks, which increases dilution. You'd raise it or fix chunking, not lower it.\n4. No — Keyword-only search discards semantic matching by definition, so it can't \"preserve semantic relevance.\" Classic too-good-to-be-true phrasing.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -7141,7 +7141,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. No | 2. Yes | 3. Yes | 4. Yes",
+    "most_voted_answer": "1. No\n2. Yes\n3. Yes\n4. Yes",
     "comments": [
       {
         "comment_id": "1752914",
@@ -7183,7 +7183,7 @@
     "drag_drop_error": null,
     "_backfill_source": {
       "comment_id": "1752914",
-      "score": 101.0,
+      "score": 124.0,
       "pattern": "loose:numbered_list",
       "upvotes": 2
     },
@@ -7271,13 +7271,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Domain specialization → Supervised fine-tuning | The case study hands you the clue: \"use the existing evaluation datasets that are based on real data with input-output pairs.\" Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the \"align with ranked preferences\" requirement, but that's not what this row asks. Reinforcement fine-tuning nee...",
+    "most_voted_answer": "Domain specialization → Supervised fine-tuning\nPoor response accuracy of a RAG-based solution → Apply prompt engineering",
     "comments": [
       {
         "comment_id": "1777296",
         "author": "wwowow",
         "date_title": "July 17, 2026 08:32 pm",
-        "text": "Domain specialization → Supervised fine-tuning\nThe case study hands you the clue: &quot;use the existing evaluation datasets that are based on real data with input-output pairs.&quot; Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the &quot;align with ranked preferences&quot; requirement, but that's not what this row asks. Reinforcement fine-tuning needs a reward signal, not plain input-output pairs.\nPoor response accuracy of a RAG-based solution → Apply prompt engineering\nTwo signals point here. The question asks which strategy to apply first, and the technical requirements explicitly say &quot;apply advanced fine-tuning techniques only when prompt engineering is insufficient.&quot; Temperature and max_tokens tweaks don't address accuracy: temperature changes randomness and max_tokens just changes response length.",
+        "text": "Domain specialization → Supervised fine-tuning\nThe case study hands you the clue: \"use the existing evaluation datasets that are based on real data with input-output pairs.\" Input-output pairs are exactly what SFT trains on, and SFT is the standard method for teaching a model domain-specific knowledge and style. DPO would be the answer for the \"align with ranked preferences\" requirement, but that's not what this row asks. Reinforcement fine-tuning needs a reward signal, not plain input-output pairs.\nPoor response accuracy of a RAG-based solution → Apply prompt engineering\nTwo signals point here. The question asks which strategy to apply first, and the technical requirements explicitly say \"apply advanced fine-tuning techniques only when prompt engineering is insufficient.\" Temperature and max_tokens tweaks don't address accuracy: temperature changes randomness and max_tokens just changes response length.",
         "upvotes": 2,
         "badges": [
           "Most Recent"
@@ -7309,9 +7309,9 @@
     "case_study_title": "Fabrikam Inc",
     "_backfill_source": {
       "comment_id": "1777296",
-      "upvotes": 2,
-      "confidence": "consensus",
-      "pattern": "ai_community_enrichment"
+      "score": 130.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
     }
   },
   {
@@ -7605,7 +7605,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "- Collect retrieval logs (gather the data on what the system actually retrieved) | - Run RAG evaluators (score retrieval quality: groundedness, relevance, and so on, that's the assessment) | - Adjust chunking strategy (act on the findings, since chunking drives retrieval quality) | - Re-index documents (a new chunking strategy only takes effect after re-indexing) | Unused: Regenerate the prompt template and modify model temperature, both tweak the generation side, not retrieval quality, which...",
+    "most_voted_answer": "- Collect retrieval logs\n- Run RAG evaluators\n- Adjust chunking strategy\n- Re-index documents",
     "comments": [
       {
         "comment_id": "1802890",
@@ -7650,8 +7650,8 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1777297",
-      "score": 102.0,
-      "pattern": "loose:label_pair",
+      "score": 122.0,
+      "pattern": "explicit_pattern",
       "upvotes": 4
     },
     "skill_area": 6,

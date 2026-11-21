@@ -236,7 +236,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Routine workflows: Microsoft Foundry Agent Service | User portal: Azure App Service | Modernization workflows: Azure Container Apps",
+    "most_voted_answer": "Routine workflows: Microsoft Foundry Agent Service\nUser portal: Azure App Service\nModernization workflows: Azure Container Apps",
     "comments": [
       {
         "comment_id": "1805129",
@@ -270,7 +270,7 @@
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
       "comment_id": "1805129",
-      "score": 102.0,
+      "score": 134.0,
       "pattern": "loose:label_pair",
       "upvotes": 4
     },
@@ -287,7 +287,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints. → Yes | Seven-year audit: The Messages container in Cosmos DB for NoSQL stores serialized messages with TTL disabled, so nothing expires. Cosmos DB is queryable, which meets the “queryable audit record” requirement. | Five-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messag...",
+    "most_voted_answer": "Statement 1: The proposed design satisfies the five-day recovery and seven-year audit constraints → Yes\nFive-day recovery: SessionMetadata durably stores workflowType, status, threadId, and expiresAt, and the Messages container holds the messages. A workflow spanning five days can therefore be recovered from Cosmos DB even if workers or Redis lose their state.\nStatement 2: The proposed design supports resuming a workflow by userId and workflowType after a worker restart → Yes\nStatement 3: The proposed design can hold the active shared team state without serving as the audit record store → Yes",
     "comments": [
       {
         "comment_id": "1808459",
@@ -323,9 +323,9 @@
     "skill_area_label": "Develop multi-agent solutions in Azure",
     "_backfill_source": {
       "comment_id": "1808459",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 130.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -600,7 +600,7 @@
         "comment_id": "1809201",
         "author": "Nathandong",
         "date_title": "November 12, 2026 02:30 am",
-        "text": "Before running a full evaluation against updated instructions, the changes must first be saved as a new version within the Azure AI Foundry playground. Saving as a new version persists the updated instructions to the agent's version history without publishing or deploying the agent — meaning the changes remain scoped to the development environment and are only accessible to the team that has access to Agent1 in that project. This directly satisfies the requirement to &quot;ensure that the changes are available only for the development team.&quot;\nSaving as a new version is also the necessary prerequisite step before an evaluation can be run against the updated configuration — you cannot run a formal evaluation against unsaved playground edits. Once saved, the new version becomes the target against which a synthetic dataset evaluation can be created and executed.",
+        "text": "Before running a full evaluation against updated instructions, the changes must first be saved as a new version within the Azure AI Foundry playground. Saving as a new version persists the updated instructions to the agent's version history without publishing or deploying the agent — meaning the changes remain scoped to the development environment and are only accessible to the team that has access to Agent1 in that project. This directly satisfies the requirement to \"ensure that the changes are available only for the development team.\"\nSaving as a new version is also the necessary prerequisite step before an evaluation can be run against the updated configuration — you cannot run a formal evaluation against unsaved playground edits. Once saved, the new version becomes the target against which a synthetic dataset evaluation can be created and executed.",
         "upvotes": 1,
         "badges": [
           "Most Recent",
@@ -729,7 +729,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Agent responsibility boundaries. The failure is a subagent handling work outside its assignment. Testing with in-scope requests (which should be answered) and out-of-scope requests (which should be refused or redirected) shows whether the boundary still holds after a prompt change.",
+    "most_voted_answer": "Agent responsibility boundaries => Test in-scope responses and out-of-scope refusals\nResponsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.",
     "comments": [
       {
         "comment_id": "1807002",
@@ -748,7 +748,7 @@
         "comment_id": "1802646",
         "author": "95624c6f",
         "date_title": "October 09, 2026 02:21 pm",
-        "text": "Agent responsibility boundaries =&gt; Test in-scope responses and out-of-scope refusals\nResponsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.",
+        "text": "Agent responsibility boundaries => Test in-scope responses and out-of-scope refusals\nResponsibility boundaries concern what an agent is allowed to do, not how it formats its output. Testing in-scope responses and out-of-scope refusals checks whether the agent accepts tasks within its responsibilities and refuses tasks outside them.",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -775,10 +775,10 @@
     "skill_area": 3,
     "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions",
     "_backfill_source": {
-      "comment_id": "1807002",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "comment_id": "1802646",
+      "score": 110.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -870,7 +870,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant). | Out of possible answers here, only \"document retrieval\" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used. | Evaluator / What it measures | Document Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here) | Coherence:...",
+    "most_voted_answer": "Support agent → Document Retrieval\nPolicy agent → Document Retrieval",
     "comments": [
       {
         "comment_id": "1806733",
@@ -889,7 +889,7 @@
         "comment_id": "1802650",
         "author": "95624c6f",
         "date_title": "October 09, 2026 02:40 pm",
-        "text": "Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant).\nOut of possible answers here, only &quot;document retrieval&quot; has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used.\nEvaluator / What it measures\nDocument Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here)\nCoherence: Whether the generated answer is logically consistent and understandable\nGroundedness: Whether claims in the answer are supported by retrieved evidence\nRelevance: Whether the generated response addresses the user's query\nResponse Completeness: Whether the final response covers all required aspects of the question",
+        "text": "Groundedness is not an issue in either of these cases (agent retrieves information as expected, but the information is incomplete or irrelevant).\nOut of possible answers here, only \"document retrieval\" has anything to do with the issue at hand. The rest refer to the generative response itself, not the knowledge used.\nEvaluator / What it measures\nDocument Retrieval: Whether the correct documents/chunks are retrieved and ranked appropriately (makes most sense here)\nCoherence: Whether the generated answer is logically consistent and understandable\nGroundedness: Whether claims in the answer are supported by retrieved evidence\nRelevance: Whether the generated response addresses the user's query\nResponse Completeness: Whether the final response covers all required aspects of the question",
         "upvotes": 1,
         "badges": [],
         "selected_answer": null,
@@ -922,8 +922,8 @@
     "drag_drop_targets": [],
     "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
     "_backfill_source": {
-      "comment_id": "1802650",
-      "score": 100.5,
+      "comment_id": "1806733",
+      "score": 126.0,
       "pattern": "explicit_pattern",
       "upvotes": 1
     },
@@ -940,7 +940,7 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "Reliability alerts → Yes | The configured alerts cover two important reliability signals: | - Latency anomaly alerts: Detect unusual slowdowns in agent execution or dependent operations. | - Tool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services. | Together, these cover important reliability problems involving agent execution and external dependencies.",
+    "most_voted_answer": "Reliability alerts → Yes\nTool invocation failure alerts: Detect errors when agents invoke MCP tools or dependent services.",
     "comments": [
       {
         "comment_id": "1802662",
@@ -976,9 +976,9 @@
     "skill_area_label": "Evaluate, optimize, and monitor multi-agent solutions",
     "_backfill_source": {
       "comment_id": "1802662",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   },
   {
@@ -1201,13 +1201,13 @@
     "choices": [],
     "correct_answers": [],
     "voted_answers_tally": [],
-    "most_voted_answer": "1. Interactive ticket lookup → Delegated permissions from the signed-in employee | \"A ticket search tool that enforces the existing per-employee authorization model.\" | The agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication. | 2. Approved article updates → Managed identity scoped to write production article r...",
+    "most_voted_answer": "Interactive ticket lookup → Delegated permissions from the signed-in employee\nApproved article updates → Managed identity scoped to write production article records",
     "comments": [
       {
         "comment_id": "1802758",
         "author": "95624c6f",
         "date_title": "October 10, 2026 04:32 pm",
-        "text": "1. Interactive ticket lookup → Delegated permissions from the signed-in employee\n&quot;A ticket search tool that enforces the existing per-employee authorization model.&quot;\nThe agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication.\n2. Approved article updates → Managed identity scoped to write production article records\n&quot;A knowledge article tool that writes to a separate production article repository.&quot;\nUnlike ticket searches, article updates should use a dedicated workload identity with narrowly scoped permissions.",
+        "text": "1. Interactive ticket lookup → Delegated permissions from the signed-in employee\n\"A ticket search tool that enforces the existing per-employee authorization model.\"\nThe agent must access tickets on behalf of the currently signed-in employee, preserving that employee's permissions. This is typically achieved through Microsoft Entra On-Behalf-Of (OBO) authentication.\n2. Approved article updates → Managed identity scoped to write production article records\n\"A knowledge article tool that writes to a separate production article repository.\"\nUnlike ticket searches, article updates should use a dedicated workload identity with narrowly scoped permissions.",
         "upvotes": 1,
         "badges": [
           "Most Recent"
@@ -1237,9 +1237,9 @@
     "skill_area_label": "Secure, govern, and deploy multi-agent solutions",
     "_backfill_source": {
       "comment_id": "1802758",
-      "upvotes": 1,
-      "confidence": "community_note",
-      "pattern": "ai_community_enrichment"
+      "score": 126.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
     }
   }
 ]
