@@ -127,13 +127,12 @@ python3 scripts/crawl_fabric_discussions.py \
   --stop-after-empty-pages 65
 ```
 
-Backfill community-voted answers for HOTSPOT and DRAG DROP questions from discussion comments:
+Backfill and clean structured community-voted answers for HOTSPOT and DRAG DROP questions from discussion comments:
 
 ```bash
-python3 scripts/backfill_missing_answers.py --files ai-103.json ai-300.json ai-500.json --apply
-python3 scripts/backfill_missing_answers.py --files ai-103.json ai-300.json ai-500.json --loose --apply
+python3 scripts/backfill_missing_answers.py --reprocess --loose --apply
 python3 scripts/enrich_ai_exams.py --apply
-python3 scripts/sync_jsonl.py --files ai-103.json ai-300.json ai-500.json
+python3 scripts/sync_jsonl.py
 ```
 
 ## Running tests
