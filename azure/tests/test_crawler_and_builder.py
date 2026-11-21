@@ -647,8 +647,9 @@ class StudyAppV2Tests(unittest.TestCase):
         ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))[:12]
         html_doc = builder_mod.build_html("ai-103", ai103)
 
-        # 100% offline: no Google Fonts or remote scripts/stylesheets
+        # 100% offline: no Google Fonts or remote scripts/stylesheets, and no ResizeObserver header feedback loop
         self.assertNotIn("fonts.googleapis.com", html_doc)
+        self.assertNotIn("min-block-size: var(--header-height)", html_doc)
 
         # Every id="..." in the generated HTML must be unique
         ids = re.findall(r'\bid="([^"]+)"', html_doc)

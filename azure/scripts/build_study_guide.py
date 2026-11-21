@@ -335,7 +335,7 @@ HTML_HEAD = """<!DOCTYPE html>
     }
     .header-inner {
       max-inline-size: calc(var(--content-width) + var(--rail-width) + 3.5rem);
-      min-block-size: var(--header-height);
+      min-block-size: 3.75rem;
       margin: 0 auto;
       padding: 0.45rem 1.15rem;
       display: flex;
@@ -1512,8 +1512,15 @@ HTML_TAIL = """
     const STORAGE_PREFIX = 'examguide-v2-$exam';
     const appHeader = document.querySelector('header.app-header');
     if (appHeader && 'ResizeObserver' in window) {
+      let lastHeaderHeight = 0;
       new ResizeObserver(() => {
-        document.documentElement.style.setProperty('--header-height', `${appHeader.offsetHeight}px`);
+        const nextHeight = appHeader.offsetHeight;
+        if (nextHeight > 0 && nextHeight !== lastHeaderHeight) {
+          lastHeaderHeight = nextHeight;
+          requestAnimationFrame(() => {
+            document.documentElement.style.setProperty('--header-height', `${nextHeight}px`);
+          });
+        }
       }).observe(appHeader);
     }
     const STORAGE_KEY = `${STORAGE_PREFIX}-reviewed`;
