@@ -12,6 +12,7 @@ sys.path.insert(0, str(SCRIPTS_DIR))
 
 import crawl_fabric_discussions as crawler_mod  # noqa: E402
 import build_study_guide as builder_mod  # noqa: E402
+import backfill_missing_answers as backfill_mod  # noqa: E402
 import sync_jsonl  # noqa: E402
 
 
@@ -362,6 +363,51 @@ class StudyGuideBuilderTests(unittest.TestCase):
         self.assertIn("data-most-voted=\"Path: wasbs | Type: URI_FOLDER\"", html_doc)
         # Verify JS branch checks mostVoted for hotspot too
         self.assertRegex(html_doc, r"q\.dataset\.qtype === 'hotspot'[\s\S]{0,450}mostVoted")
+        # Ensure hotspot reveal status does not duplicate the full answer string verbatim
+        self.assertNotIn("Community answer: ${mostVoted}", html_doc)
+
+    def test_hotspot_rendering_unescapes_entities_dedupes_badges_and_sorts_comments(self) -> None:
+        q = {
+            "exam": "ai-103",
+            "topic": 1,
+            "question_number": 1,
+            "question_id": "412433",
+            "question_text": "HOTSPOT\nCase Study\nOverview\nContoso uses Foundry.\nYou need to configure the model deployment.\nWhat should you configure?",
+            "question_type": "hotspot",
+            "exhibits": [{"kind": "code", "code": "client.deployments.create()", "language": "python"}],
+            "choices": [],
+            "correct_answers": [],
+            "most_voted_answer": "Deployment type: Standard\nVersion update policy: &quot;Opt out&quot;",
+            "comments": [
+                {"comment_id": "1", "author": "recent_user", "upvotes": 1, "badges": ["Most Recent"], "text": "Standard"},
+                {"comment_id": "2", "author": "top_voter", "upvotes": 11, "badges": ["Highly Voted"], "text": "&quot;remain in EU&quot; -> Standard"},
+            ],
+        }
+        rendered = builder_mod.render_question_html(q)
+        # No double-escaped HTML entities
+        self.assertNotIn("&amp;quot;", rendered)
+        # Structured <dl class="answer-pairs"> card without .answer-missing or redundant Correct answer column
+        self.assertIn('class="answer-grid answer-grid-single"', rendered)
+        self.assertIn('<dl class="answer-pairs">', rendered)
+        self.assertIn("<dt>Deployment type</dt><dd>Standard</dd>", rendered)
+        self.assertNotIn("answer-missing", rendered)
+        self.assertNotIn(">Correct answer<", rendered)
+        self.assertNotIn(">Official / Consensus key<", rendered)
+        # Scrollable code exhibit has tabindex="0" and region role
+        self.assertIn('role="region"', rendered)
+        self.assertIn('tabindex="0"', rendered)
+        # Badges deduplicated ("Hotspot" appears once, not twice)
+        self.assertEqual(rendered.count('<span class="q-badge">Hotspot</span>'), 1)
+        self.assertEqual(rendered.count('<span class="q-badge">Case study</span>'), 1)
+        # Highly Voted 11-upvote comment sorted ahead of 1-upvote Most Recent comment
+        self.assertLess(rendered.index("top_voter"), rendered.index("recent_user"))
+        # Standalone 2026 case-study heading styled
+        self.assertIn('<span class="section-title">Overview</span>', rendered)
+
+        md = builder_mod.build_markdown("ai-103", [q])
+        self.assertNotIn("&quot;", md)
+        self.assertIn("- Deployment type: Standard", md)
+        self.assertLess(md.index("top_voter"), md.index("recent_user"))
 
 
 class ReadabilityEngineTests(unittest.TestCase):
@@ -609,7 +655,8 @@ class StudyAppV2Tests(unittest.TestCase):
         dupes = {x for x in ids if ids.count(x) > 1}
         self.assertEqual(dupes, set(), f"Duplicate HTML IDs found: {dupes}")
 
-        # Search, filter chips, bookmark, skill-area map toggle, portable storage, and fixed 'a' hotkey
+        # Search landmark (<search>), filter chips, bookmark, skill-area map toggle, portable storage, and fixed 'a' hotkey
+        self.assertIn('<search class="study-toolbar"', html_doc)
         self.assertIn('id="question-search"', html_doc)
         for flt in ("unreviewed", "incorrect", "bookmarked", "casestudy", "contested"):
             self.assertIn(f'data-filter="{flt}"', html_doc)
@@ -632,6 +679,82 @@ class StudyAppV2Tests(unittest.TestCase):
         self.assertNotIn("fonts.googleapis.com", hub_html)
         for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700"):
             self.assertIn(f"{slug}-examtopics-study-guide.html", hub_html)
+
+
+class BackfillMissingAnswersTests(unittest.TestCase):
+    def test_crawler_unescapes_double_encoded_comment_entities(self) -> None:
+        html_doc = """
+        <html><body>
+        <div class="question-body" data-id="412433">
+          <p class="card-text">HOTSPOT<br/>Configure deployment.</p>
+        </div>
+        <div class="comment-container" data-comment-id="1">
+          <h5 class="comment-username">profitchannel</h5>
+          <div class="comment-content">&amp;quot;the data must remain in the EU&amp;quot; &amp;gt; Standard</div>
+          <span class="upvote-count">11 times</span>
+        </div>
+        </body></html>
+        """
+        with tempfile.TemporaryDirectory() as tmp:
+            c = crawler_mod.Crawler(output_dir=Path(tmp), exams={"ai-103"})
+            meta = {"id": "412433", "exam": "ai-103", "topic": 1, "qnum": 1, "path": "/q1/"}
+            q = c._parse_discussion_html(html_doc, "https://www.examtopics.com/q1/", meta)
+            self.assertEqual(q.comments[0].text, '"the data must remain in the EU" > Standard')
+
+    def test_backfill_rejects_wrong_thread_mcq_questions_and_bare_confirmations(self) -> None:
+        comments = [
+            {
+                "comment_id": "10",
+                "text": "So what is the difference between the 2 choices of the first option?",
+                "upvotes": 4,
+                "badges": [],
+            },
+            {
+                "comment_id": "11",
+                "text": "Answer is correct; ref: https://learn.microsoft.com/en-us/azure/",
+                "upvotes": 5,
+                "badges": [],
+            },
+            {
+                "comment_id": "12",
+                "text": (
+                    "Correct Answer: A — Add a reflection pass before the responses are returned.\n"
+                    "• Response streaming (B) only changes delivery.\n"
+                    "• Increasing presence_penalty (C) discourages repetition."
+                ),
+                "upvotes": 1,
+                "badges": [],
+            },
+            {
+                "comment_id": "13",
+                "text": (
+                    "Provide access to AI1 by using: An API key\n"
+                    "Connect to the deployment by using: A deployment name"
+                ),
+                "upvotes": 8,
+                "badges": ["Highly Voted"],
+            },
+        ]
+        cand, score, _ = backfill_mod._pick_candidate(comments, loose=True)
+        self.assertIsNotNone(cand)
+        self.assertEqual(cand["comment_id"], "13")  # type: ignore[index]
+        self.assertGreater(score or 0, 150)
+
+    def test_format_answer_extracts_concise_lines_without_pipe_flattening(self) -> None:
+        raw = (
+            "Correct Answers\n"
+            "HTTP Method: PUT\n"
+            "kind: &quot;CognitiveServices&quot;\n"
+            "Explanations\n"
+            "HTTP Method (PUT): In Azure Resource Manager REST APIs, creation uses PUT.\n"
+            "P.S.\n"
+            "Extra commentary that should not appear in the summary card."
+        )
+        formatted = backfill_mod._format_answer(raw)
+        self.assertEqual(formatted, 'HTTP Method: PUT\nkind: "CognitiveServices"')
+        self.assertNotIn(" | ", formatted)
+        self.assertNotIn("&quot;", formatted)
+        self.assertNotIn("Extra commentary", formatted)
 
 
 if __name__ == "__main__":
