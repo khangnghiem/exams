@@ -70,15 +70,70 @@ def _extract_code_text(exhibit: dict[str, Any]) -> str:
     return html.unescape(text).strip()
 
 
+# Ordered certification tiers shown on the Study Hub (Expert -> Associate -> GitHub -> Beginner).
+CERTIFICATION_TIERS: tuple[dict[str, str], ...] = (
+    {
+        "id": "expert",
+        "title": "Expert Level Certifications",
+        "subtitle": "Advanced multi-agent architecture, enterprise AI transformation, and agentic DevOps.",
+    },
+    {
+        "id": "associate",
+        "title": "Intermediate & Associate — Azure, Fabric & Microsoft AI",
+        "subtitle": "Role-based Azure AI, MLOps, Microsoft Fabric, Databricks, SQL AI, Copilot Studio, and Cloud/AI Security.",
+    },
+    {
+        "id": "github",
+        "title": "GitHub Certifications",
+        "subtitle": "GitHub Copilot, Agentic AI Developer, Actions CI/CD, Advanced Security, Administration, and Foundations.",
+    },
+    {
+        "id": "beginner",
+        "title": "Beginner & Fundamentals Level",
+        "subtitle": "Foundational Azure AI, Azure Data, and Microsoft 365 Copilot & Agent administration.",
+    },
+)
+
+# Canonical ordered exam catalog across all 4 tiers.
+EXAM_CATALOG: tuple[dict[str, str], ...] = (
+    # Tier 1: Expert Level (top)
+    {"slug": "ai-500", "tier": "expert", "badge": "Expert · Multi-Agent AI", "title": "Designing and Implementing Multi-Agent AI Solutions"},
+    {"slug": "ab-100", "tier": "expert", "badge": "Expert · Agentic Architect", "title": "Agentic AI Business Solutions Architect"},
+    {"slug": "az-401", "tier": "expert", "badge": "Expert · Agentic DevOps", "title": "Designing and Implementing Microsoft Agentic DevOps Solutions"},
+    # Tier 2: Associate / Intermediate — Azure, Fabric & Microsoft AI
+    {"slug": "ai-103", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Apps and Agents on Azure"},
+    {"slug": "ai-200", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Cloud Solutions on Azure"},
+    {"slug": "ai-300", "tier": "associate", "badge": "2026 Azure AI", "title": "Operationalizing Machine Learning and Generative AI Solutions"},
+    {"slug": "dp-600", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Analytics Solutions Using Microsoft Fabric"},
+    {"slug": "dp-700", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Data Engineering Solutions Using Microsoft Fabric"},
+    {"slug": "dp-750", "tier": "associate", "badge": "Azure Databricks", "title": "Implementing Data Engineering Solutions Using Azure Databricks"},
+    {"slug": "dp-800", "tier": "associate", "badge": "2026 SQL & Fabric AI", "title": "Developing AI-Enabled Database Solutions"},
+    {"slug": "ab-620", "tier": "associate", "badge": "Copilot Studio AI", "title": "Designing and Building Integrated AI Solutions in Copilot Studio"},
+    {"slug": "ab-410", "tier": "associate", "badge": "Intelligent Apps AI", "title": "Building Intelligent Applications"},
+    {"slug": "ab-400", "tier": "associate", "badge": "Power Platform AI", "title": "Extending Microsoft Power Platform Solutions with Code and AI"},
+    {"slug": "ab-210", "tier": "associate", "badge": "Dynamics 365 AI", "title": "Accelerating Sales Pipelines with AI in Dynamics 365"},
+    {"slug": "ab-250", "tier": "associate", "badge": "Contact Center AI", "title": "Transforming Contact Center Experiences with AI in Dynamics 365"},
+    {"slug": "ab-650", "tier": "associate", "badge": "M365 & AI Admin", "title": "Administering Microsoft 365 and AI Services"},
+    {"slug": "ab-730", "tier": "associate", "badge": "Business AI", "title": "AI Business Professional"},
+    {"slug": "ab-731", "tier": "associate", "badge": "Business AI", "title": "AI Transformation Leader"},
+    {"slug": "sc-500", "tier": "associate", "badge": "Cloud & AI Security", "title": "Implementing End-to-End Security Controls for Cloud and AI Workloads"},
+    # Tier 3: GitHub Certifications (under Azure/Microsoft certs)
+    {"slug": "gh-300", "tier": "github", "badge": "GitHub Copilot", "title": "GitHub Copilot"},
+    {"slug": "gh-600", "tier": "github", "badge": "GitHub Agentic AI", "title": "Developing in Agentic AI Systems"},
+    {"slug": "gh-200", "tier": "github", "badge": "GitHub Actions", "title": "GitHub Actions"},
+    {"slug": "gh-500", "tier": "github", "badge": "GitHub Security", "title": "GitHub Advanced Security"},
+    {"slug": "gh-100", "tier": "github", "badge": "GitHub Enterprise", "title": "GitHub Enterprise Administrator"},
+    {"slug": "gh-900", "tier": "github", "badge": "GitHub Foundations", "title": "GitHub Foundations"},
+    # Tier 4: Beginner / Fundamentals Level (bottom)
+    {"slug": "ai-901", "tier": "beginner", "badge": "Beginner · Azure AI", "title": "Microsoft Azure AI Fundamentals"},
+    {"slug": "dp-900", "tier": "beginner", "badge": "Beginner · Azure Data", "title": "Microsoft Azure Data Fundamentals"},
+    {"slug": "ab-900", "tier": "beginner", "badge": "Beginner · Copilot & Agents", "title": "Microsoft 365 Copilot and Agent Administration Fundamentals"},
+)
+
+EXAM_META_BY_SLUG: dict[str, dict[str, str]] = {item["slug"]: item for item in EXAM_CATALOG}
+
 # Official Microsoft certification exam names keyed by lowercase exam slug.
-EXAM_TITLES: dict[str, str] = {
-    "dp-600": "Implementing Analytics Solutions Using Microsoft Fabric",
-    "dp-700": "Implementing Data Engineering Solutions Using Microsoft Fabric",
-    "dp-800": "Developing AI-Enabled Database Solutions",
-    "ai-103": "Developing AI Apps and Agents on Azure",
-    "ai-300": "Operationalizing Machine Learning and Generative AI Solutions",
-    "ai-500": "Designing and Implementing Multi-Agent AI Solutions",
-}
+EXAM_TITLES: dict[str, str] = {item["slug"]: item["title"] for item in EXAM_CATALOG}
 
 
 def format_study_guide_title(exam: str) -> str:
@@ -90,38 +145,41 @@ def format_study_guide_title(exam: str) -> str:
     return f"{code} Study Guide"
 
 
-# Map each exam's numeric topic tags to Microsoft official skill area names.
-# Update these if the source data's topic ordering changes.
-TOPIC_LABELS: dict[str, dict[int, str]] = {
-    # DP-600 classified into Microsoft's official skill areas.
-    "dp-600": {
-        1: "Maintain a data analytics solution",
-        2: "Prepare data",
-        3: "Implement and manage semantic models",
+# Official Microsoft Learn skill areas per exam.
+SKILL_AREA_LABELS: dict[str, dict[int, str]] = {
+    # Expert
+    "ai-500": {
+        1: "Architect multi-agent solutions",
+        2: "Develop multi-agent solutions in Azure",
+        3: "Evaluate, optimize, and monitor multi-agent solutions",
+        4: "Secure, govern, and deploy multi-agent solutions",
     },
-    # DP-700 source data has three topic tags that align with Microsoft's official skill areas.
-    "dp-700": {
-        1: "Implement and manage an analytics solution",
-        2: "Ingest and transform data",
-        3: "Monitor and optimize an analytics solution",
+    "ab-100": {
+        1: "Plan AI-powered business solutions",
+        2: "Design AI-powered business solutions",
+        3: "Deploy AI-powered business solutions",
     },
-    # DP-800: Developing AI-Enabled Database Solutions
-    "dp-800": {
-        1: "Design and develop database solutions",
-        2: "Secure, optimize, and deploy database solutions",
-        3: "Implement AI capabilities in database solutions",
-        4: "Case Studies & End-to-End Scenarios",
-        5: "Case Studies & End-to-End Scenarios",
+    "az-401": {
+        1: "Design and implement processes and communications",
+        2: "Design and implement a source control strategy",
+        3: "Design and implement build and release pipelines",
+        4: "Design and implement a security and compliance plan",
+        5: "Implement an instrumentation strategy",
     },
-    # AI-103: Developing AI Apps and Agents on Azure
+    # Associate — Azure & Fabric
     "ai-103": {
-        1: "Exam A — Developing AI Apps and Agents on Azure",
+        1: "Plan and manage an Azure AI solution",
         2: "Implement generative AI and agentic solutions",
         3: "Implement computer vision solutions",
         4: "Implement text analysis solutions",
         5: "Implement information extraction solutions",
     },
-    # AI-300: Operationalizing Machine Learning and Generative AI Solutions
+    "ai-200": {
+        1: "Develop containerized solutions on Azure",
+        2: "Develop AI solutions by using Azure data management services",
+        3: "Connect to and consume Azure services",
+        4: "Secure, monitor, and troubleshoot Azure solutions",
+    },
     "ai-300": {
         1: "Case Studies & End-to-End Scenarios",
         2: "Design and implement an MLOps infrastructure",
@@ -130,34 +188,163 @@ TOPIC_LABELS: dict[str, dict[int, str]] = {
         5: "Implement generative AI quality assurance and observability",
         6: "Optimize generative AI systems and model performance",
     },
-    # AI-500: Designing and Implementing Multi-Agent AI Solutions
-    "ai-500": {
-        1: "Architect multi-agent solutions",
-        2: "Develop multi-agent solutions in Azure",
-        3: "Evaluate, optimize, and monitor multi-agent solutions",
-        4: "Secure, govern, and deploy multi-agent solutions",
+    "dp-600": {
+        1: "Maintain a data analytics solution",
+        2: "Prepare data",
+        3: "Implement and manage semantic models",
     },
-}
-
-
-SKILL_AREA_LABELS: dict[str, dict[int, str]] = {
-    "dp-600": TOPIC_LABELS["dp-600"],
-    "dp-700": TOPIC_LABELS["dp-700"],
+    "dp-700": {
+        1: "Implement and manage an analytics solution",
+        2: "Ingest and transform data",
+        3: "Monitor and optimize an analytics solution",
+    },
+    "dp-750": {
+        1: "Set up and configure an Azure Databricks environment",
+        2: "Secure and govern Unity Catalog objects",
+        3: "Prepare and process data",
+        4: "Deploy and maintain data pipelines and workloads",
+    },
     "dp-800": {
         1: "Design and develop database solutions",
         2: "Secure, optimize, and deploy database solutions",
         3: "Implement AI capabilities in database solutions",
     },
-    "ai-103": {
-        1: "Plan and manage an Azure AI solution",
-        2: "Implement generative AI and agentic solutions",
-        3: "Implement computer vision solutions",
-        4: "Implement text analysis solutions",
-        5: "Implement information extraction solutions",
+    # Associate — Copilot Studio, Business AI & Cloud/AI Security
+    "ab-620": {
+        1: "Plan and configure agent solutions",
+        2: "Integrate and extend agents in Copilot Studio",
+        3: "Test and manage agents",
     },
-    "ai-300": TOPIC_LABELS["ai-300"],
-    "ai-500": TOPIC_LABELS["ai-500"],
+    "ab-410": {
+        1: "Create a foundation for intelligent applications",
+        2: "Create intelligent applications",
+        3: "Build business application logic and automation",
+    },
+    "ab-400": {
+        1: "Build Microsoft Power Platform solutions",
+        2: "Extend the user experience",
+        3: "Extend Microsoft Power Platform",
+        4: "Develop integrations",
+    },
+    "ab-210": {
+        1: "Configure Dynamics 365 Sales core features for AI",
+        2: "Optimize AI-driven sales",
+        3: "Qualify and prioritize leads by using AI",
+        4: "Develop deals by using intelligent opportunity research",
+        5: "Extend and enhance Sales",
+    },
+    "ab-250": {
+        1: "Deploy Dynamics 365 Contact Center",
+        2: "Implement channels",
+        3: "Configure agents and AI capabilities",
+        4: "Configure work distribution",
+        5: "Configure the Dynamics 365 Contact Center representative experience",
+        6: "Manage analytics for the Dynamics 365 Contact Center",
+    },
+    "ab-650": {
+        1: "Configure and manage Microsoft 365 tenants and workloads",
+        2: "Govern and secure Microsoft 365 tenants and workloads",
+        3: "Manage and secure AI services in Microsoft 365",
+    },
+    "ab-730": {
+        1: "Understand generative AI fundamentals",
+        2: "Manage prompts and chats by using Microsoft 365 Copilot",
+        3: "Manage business content and collaboration by using Microsoft 365 Copilot",
+        4: "Drive business outcomes by using agents",
+    },
+    "ab-731": {
+        1: "Identify the business value of generative AI solutions",
+        2: "Identify benefits, capabilities, and opportunities for Microsoft AI apps and services",
+        3: "Identify an implementation and adoption strategy for Microsoft AI apps and services",
+    },
+    "sc-500": {
+        1: "Manage identity, access, and governance",
+        2: "Secure storage, databases, and networking",
+        3: "Secure compute",
+        4: "Manage and monitor security posture",
+    },
+    # GitHub Certifications
+    "gh-300": {
+        1: "Use GitHub Copilot responsibly",
+        2: "Use GitHub Copilot plans and features",
+        3: "Understand how GitHub Copilot works and handles data",
+        4: "Apply prompt crafting and prompt engineering",
+        5: "Improve developer AI use cases",
+        6: "Perform testing with GitHub Copilot",
+        7: "Configure privacy fundamentals and context exclusions",
+    },
+    "gh-600": {
+        1: "Case Studies & End-to-End Scenarios",
+        2: "Prepare agent architecture and SDLC processes",
+        3: "Implement tool use and environment interaction",
+        4: "Manage memory, state, and execution",
+        5: "Perform evaluation, error analysis, and tuning",
+        6: "Orchestrate multi-agent coordination",
+        7: "Implement guardrails and accountability",
+    },
+    "gh-200": {
+        1: "Author and manage workflows",
+        2: "Consume and troubleshoot workflows",
+        3: "Author and maintain actions",
+        4: "Manage GitHub Actions for the enterprise",
+        5: "Secure and optimize automation",
+    },
+    "gh-500": {
+        1: "Describe GitHub Security suites, features, and ecosystem",
+        2: "Configure and use Secret Protection",
+        3: "Configure and use supply chain security",
+        4: "Configure and use Code Security",
+        5: "Security operations: best practices, prioritization, and remediation",
+        6: "GitHub Security suites administration",
+    },
+    "gh-100": {
+        1: "Manage GitHub identities and access",
+        2: "Administer GitHub Enterprise environment",
+        3: "Implement secure software development and compliance",
+        4: "Manage GitHub Actions",
+        5: "Monitor and optimize GitHub usage",
+    },
+    "gh-900": {
+        1: "Understand Git and GitHub basics",
+        2: "Work with GitHub repositories",
+        3: "Collaborate using GitHub",
+        4: "Apply modern development practices",
+        5: "Manage projects with GitHub",
+        6: "Understand privacy, security, and administration",
+        7: "Explore the GitHub community",
+    },
+    # Beginner / Fundamentals
+    "ai-901": {
+        1: "Identify AI concepts and capabilities",
+        2: "Implement AI solutions by using Microsoft Foundry",
+    },
+    "dp-900": {
+        1: "Describe core data concepts",
+        2: "Identify considerations for relational data on Azure",
+        3: "Describe considerations for working with non-relational data on Azure",
+        4: "Describe an analytics workload on Azure",
+    },
+    "ab-900": {
+        1: "Identify the core features and objects of Microsoft 365 services",
+        2: "Understand data protection and governance tasks for Microsoft 365 and Copilot",
+        3: "Perform basic administrative tasks for Copilot and agents",
+    },
 }
+
+# Map each exam's numeric ExamTopics topic tags to display labels.
+TOPIC_LABELS: dict[str, dict[int, str]] = {
+    slug: {
+        **skills,
+        max(skills) + 1: "Case Studies & End-to-End Scenarios",
+        max(skills) + 2: "Case Studies & End-to-End Scenarios",
+    }
+    for slug, skills in SKILL_AREA_LABELS.items()
+}
+TOPIC_LABELS["ai-103"][1] = "Exam A — Developing AI Apps and Agents on Azure"
+TOPIC_LABELS["ai-901"][1] = "Exam A — Microsoft Azure AI Fundamentals"
+TOPIC_LABELS["ab-410"][1] = "Exam A — Building Intelligent Applications"
+TOPIC_LABELS["sc-500"][1] = "Exam A — Implementing End-to-End Security Controls for Cloud and AI Workloads"
+TOPIC_LABELS["dp-900"][1] = "Exam A — Microsoft Azure Data Fundamentals"
 
 
 # ---------------------------------------------------------------------------
@@ -382,9 +569,21 @@ HTML_HEAD = """<!DOCTYPE html>
       background: var(--surface);
       color: var(--text);
       box-shadow: var(--shadow);
-      min-inline-size: 260px;
+      min-inline-size: 270px;
+      max-inline-size: min(92dvw, 29rem);
+      max-block-size: min(78dvh, 36rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
-    #exam-switcher-menu:is(:popover-open, .\\:popover-open) { display: grid; gap: 0.25rem; }
+    #exam-switcher-menu:is(:popover-open, .\\:popover-open) { display: grid; gap: 0.22rem; }
+    .switcher-tier-heading {
+      margin: 0.45rem 0.55rem 0.15rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
     #exam-switcher-menu a {
       display: flex;
       justify-content: space-between;
@@ -1852,7 +2051,7 @@ HTML_TAIL = """
       const countEl = document.getElementById('filter-match-count');
       if (countEl) countEl.textContent = `${visibleIds.length} of ${ids.length} shown`;
       const emptyEl = document.getElementById('filter-empty-state');
-      if (emptyEl) emptyEl.hidden = visibleIds.length > 0;
+      if (emptyEl) emptyEl.hidden = ids.length === 0 || visibleIds.length > 0;
 
       if (visibleIds.length === 0) {
         questions.forEach(q => q.classList.remove('active', 'current'));
@@ -2165,6 +2364,8 @@ HTML_TAIL = """
       if (!opts.replaceOnly) history.pushState(null, '', `#${activeId}`);
     }
     function syncNavButtons() {
+      const navFloating = document.querySelector('.nav-floating');
+      if (navFloating) navFloating.hidden = ids.length === 0;
       const activeId = ids[currentIndex];
       const visIdx = visibleIds.indexOf(activeId);
       const atStart = visibleIds.length <= 1 || visIdx <= 0;
@@ -3452,13 +3653,20 @@ def render_question_html(
 def _render_exam_switcher_popover(current_exam: str) -> str:
     links = ['<nav id="exam-switcher-menu" popover aria-label="Switch certification study guide">']
     links.append('<a href="index.html"><strong>All Exams Hub</strong><span>Overview</span></a>')
-    for slug, exam_title in EXAM_TITLES.items():
-        cur = ' aria-current="page"' if slug == current_exam.lower() else ""
-        links.append(
-            f'<a href="{slug}-examtopics-study-guide.html"{cur}>'
-            f'<strong>{html.escape(slug.upper())}</strong>'
-            f'<span>{html.escape(exam_title)}</span></a>'
-        )
+    for tier in CERTIFICATION_TIERS:
+        t_items = [item for item in EXAM_CATALOG if item["tier"] == tier["id"]]
+        if not t_items:
+            continue
+        links.append(f'<div class="switcher-tier-heading">{html.escape(tier["title"])}</div>')
+        for item in t_items:
+            slug = item["slug"]
+            exam_title = item["title"]
+            cur = ' aria-current="page"' if slug == current_exam.lower() else ""
+            links.append(
+                f'<a href="{slug}-examtopics-study-guide.html"{cur}>'
+                f'<strong>{html.escape(slug.upper())}</strong>'
+                f'<span>{html.escape(exam_title)}</span></a>'
+            )
     links.append("</nav>")
     return "\n".join(links)
 
@@ -3638,6 +3846,13 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
     lines.append("</nav>")
 
     lines.append('<div id="questions" class="question-stack">')
+    if not questions:
+        lines.append(
+            '<div class="filter-empty">'
+            f"<p><strong>No public ExamTopics discussion threads are published yet for {html.escape(exam_slug.upper())}.</strong></p>"
+            f'<p>Review the official Microsoft Learn objectives in <code>references/microsoft/{html.escape(exam_slug)}-study-guide.md</code> or re-run the unified crawler later to populate new threads automatically.</p>'
+            "</div>"
+        )
     lines.append(
         '<div id="filter-empty-state" class="filter-empty" hidden>'
         "<p><strong>No questions match the current search or filter.</strong></p>"
@@ -3655,41 +3870,94 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
 
 
 def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
-    """Build the standalone offline cross-exam study hub (``guides/index.html``)."""
-    cards_html: list[str] = []
-    for item in exams_summary:
-        slug = str(item["exam"]).lower()
-        code = slug.upper()
-        exam_name = EXAM_TITLES.get(slug, f"{code} Certification")
-        q_count = int(item.get("count", 0))
-        t_count = int(item.get("topics", 0))
-        if slug.startswith("ai-"):
-            badge = "2026 Azure AI"
-        elif slug == "dp-800":
-            badge = "2026 SQL &amp; Fabric AI"
+    """Build the standalone offline cross-exam study hub (``guides/index.html``)
+    grouped into 4 certification tiers: Expert -> Associate -> GitHub -> Beginner.
+    """
+    by_slug: dict[str, dict[str, Any]] = {
+        str(item["exam"]).lower(): item for item in exams_summary
+    }
+    catalog_order = [c["slug"] for c in EXAM_CATALOG]
+    ordered_slugs = [s for s in catalog_order if s in by_slug] + [
+        s for s in by_slug if s not in catalog_order
+    ]
+
+    tier_buckets: dict[str, list[dict[str, Any]]] = {t["id"]: [] for t in CERTIFICATION_TIERS}
+    for slug in ordered_slugs:
+        meta = EXAM_META_BY_SLUG.get(slug)
+        if meta:
+            tier_id = meta["tier"]
+        elif slug.startswith("gh-"):
+            tier_id = "github"
+        elif slug.endswith("-900") or slug == "ai-901":
+            tier_id = "beginner"
         else:
-            badge = "Microsoft Fabric"
-        cards_html.append(
-            f'<a class="hub-card-link" href="{html.escape(slug)}-examtopics-study-guide.html">'
-            f'<article class="hub-card" data-exam-card="{html.escape(slug)}" data-total="{q_count}">'
-            f'<header class="hub-card-top"><span class="hub-badge">{badge}</span><span class="hub-code">{html.escape(code)}</span></header>'
-            f'<h2>{html.escape(exam_name)}</h2>'
-            f'<p class="hub-meta">{q_count} questions · {t_count} skill areas</p>'
-            f'<div class="hub-progress">'
-            f'<div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div>'
-            f'<div class="hub-stats" data-stats>0 / {q_count} reviewed (0%)</div>'
-            f'</div>'
-            f'</article>'
-            f'</a>'
+            tier_id = "associate"
+        tier_buckets.setdefault(tier_id, []).append(by_slug[slug])
+
+    tier_jump_pills: list[str] = []
+    sections_html: list[str] = []
+
+    for tier in CERTIFICATION_TIERS:
+        t_id = tier["id"]
+        items = tier_buckets.get(t_id) or []
+        if not items:
+            continue
+        tier_jump_pills.append(
+            f'<a class="tier-pill" href="#tier-{html.escape(t_id)}">{html.escape(tier["title"])} ({len(items)})</a>'
+        )
+        cards_html: list[str] = []
+        for item in items:
+            slug = str(item["exam"]).lower()
+            code = slug.upper()
+            exam_name = EXAM_TITLES.get(slug, f"{code} Certification")
+            q_count = int(item.get("count", 0))
+            t_count = int(item.get("topics", 0)) or len(SKILL_AREA_LABELS.get(slug, {}))
+            meta = EXAM_META_BY_SLUG.get(slug)
+            raw_badge = meta["badge"] if meta else ("GitHub" if slug.startswith("gh-") else "Microsoft")
+            badge_html = html.escape(raw_badge)
+            meta_line = (
+                f"{q_count} questions · {t_count} skill areas"
+                if q_count > 0
+                else f"0 public threads yet · {t_count} official skill areas"
+            )
+            stats_line = (
+                f"0 / {q_count} reviewed (0%)"
+                if q_count > 0
+                else "Awaiting ExamTopics discussions"
+            )
+            search_blob = html.escape(f"{code} {exam_name} {raw_badge} {tier['title']}".lower())
+            cards_html.append(
+                f'<a class="hub-card-link" href="{html.escape(slug)}-examtopics-study-guide.html" data-hub-search="{search_blob}">'
+                f'<article class="hub-card" data-exam-card="{html.escape(slug)}" data-total="{q_count}">'
+                f'<header class="hub-card-top"><span class="hub-badge">{badge_html}</span><span class="hub-code">{html.escape(code)}</span></header>'
+                f'<h3>{html.escape(exam_name)}</h3>'
+                f'<p class="hub-meta">{html.escape(meta_line)}</p>'
+                f'<div class="hub-progress">'
+                f'<div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div>'
+                f'<div class="hub-stats" data-stats>{html.escape(stats_line)}</div>'
+                f'</div>'
+                f'</article>'
+                f'</a>'
+            )
+
+        sections_html.append(
+            f'<section id="tier-{html.escape(t_id)}" class="tier-section" aria-labelledby="tier-heading-{html.escape(t_id)}">'
+            f'<header class="tier-header">'
+            f'<h2 id="tier-heading-{html.escape(t_id)}">{html.escape(tier["title"])}</h2>'
+            f'<p class="tier-desc">{html.escape(tier["subtitle"])}</p>'
+            f'</header>'
+            f'<div class="grid">{"".join(cards_html)}</div>'
+            f'</section>'
         )
 
     guide_count = len(exams_summary)
+    total_questions = sum(int(x.get("count", 0)) for x in exams_summary)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure AI &amp; Microsoft Fabric Certification Study Hub</title>
+  <title>Microsoft Azure AI, Fabric &amp; GitHub Certification Study Hub</title>
   <style>
     :root {{
       color-scheme: light;
@@ -3722,6 +3990,7 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
     }}
     * {{ box-sizing: border-box; }}
+    html {{ scroll-behavior: smooth; }}
     body {{
       margin: 0;
       min-height: 100vh;
@@ -3730,12 +3999,14 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       line-height: 1.6;
       background: var(--bg);
       color: var(--text);
-      padding: 2rem 1.25rem 4rem;
+      padding: 2rem 1.25rem 4.5rem;
     }}
-    .wrap {{ max-inline-size: 1080px; margin: 0 auto; }}
-    .top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }}
+    .wrap {{ max-inline-size: 1120px; margin: 0 auto; }}
+    .top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }}
+    h1, h2, h3 {{ text-wrap: balance; }}
+    .sub, .tier-desc {{ text-wrap: pretty; }}
     h1 {{ margin: 0.35rem 0 0; font-family: var(--font-display); font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.12; }}
-    .sub {{ margin: 0.5rem 0 0; color: var(--text-secondary); max-inline-size: 64ch; }}
+    .sub {{ margin: 0.5rem 0 0; color: var(--text-secondary); max-inline-size: 68ch; }}
     .theme-btn {{
       min-block-size: 2.35rem;
       padding: 0.45rem 0.9rem;
@@ -3746,13 +4017,55 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       cursor: pointer;
       font-weight: 700;
     }}
-    .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }}
+    .hub-toolbar {{
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }}
+    .hub-toolbar input[type="search"] {{
+      flex: 1 1 240px;
+      min-block-size: 2.35rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.92rem;
+    }}
+    .tier-pills {{ display: flex; flex-wrap: wrap; gap: 0.4rem; }}
+    .tier-pill {{
+      display: inline-flex;
+      align-items: center;
+      padding: 0.32rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }}
+    .tier-pill:hover {{ border-color: var(--accent); color: var(--accent-ink); }}
+    .tier-section {{ margin-bottom: 2.4rem; scroll-margin-top: 1.25rem; }}
+    .tier-header {{ margin-bottom: 0.95rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }}
+    .tier-header h2 {{ margin: 0; font-family: var(--font-display); font-size: clamp(1.25rem, 1.08rem + 0.75vw, 1.65rem); line-height: 1.2; }}
+    .tier-desc {{ margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.92rem; }}
+    .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }}
     .hub-card-link {{
       display: flex;
       text-decoration: none;
       color: inherit;
       border-radius: 20px;
     }}
+    .hub-card-link[hidden] {{ display: none; }}
     .hub-card {{
       display: flex;
       flex-direction: column;
@@ -3766,15 +4079,16 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
     }}
     .hub-card-link:hover .hub-card,
     .hub-card-link:focus-visible .hub-card {{ transform: translateY(-2px); border-color: var(--accent); }}
-    .hub-card-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; }}
+    .hub-card-top {{ display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; }}
     .hub-badge {{ padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }}
     .hub-code {{ font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }}
-    .hub-card h2 {{ margin: 0 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }}
+    .hub-card h3 {{ margin: 0 0 0.4rem; font-size: 1.12rem; line-height: 1.3; }}
     .hub-meta {{ margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }}
     .hub-progress {{ margin-top: auto; }}
     .hub-bar {{ block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }}
     .hub-bar-fill {{ block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }}
     .hub-stats {{ margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }}
+    #tier-expert .hub-badge {{ background: color-mix(in srgb, var(--accent-soft) 68%, #fde68a 32%); }}
   </style>
 </head>
 <body>
@@ -3782,14 +4096,16 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
     <header class="top">
       <div>
         <span class="hub-badge">Offline Study Workstation</span>
-        <h1>Microsoft Azure AI &amp; Fabric Study Hub</h1>
-        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all {guide_count} certification guides.</p>
+        <h1>Microsoft Azure AI, Fabric &amp; GitHub Study Hub</h1>
+        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all {guide_count} certification guides ({total_questions} crawled discussion questions).</p>
       </div>
       <button type="button" id="hub-theme" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
     </header>
-    <section class="grid" aria-label="Available certification study guides">
-      {"".join(cards_html)}
-    </section>
+    <search class="hub-toolbar" aria-label="Filter certification study guides">
+      <input type="search" id="hub-search" placeholder="Filter exams by code, title, or track (e.g. AI-500, Copilot, Databricks, GH-300)…" aria-label="Filter certification study guides">
+      <div class="tier-pills">{"".join(tier_jump_pills)}</div>
+    </search>
+    {"".join(sections_html)}
   </main>
   <script>
     const themeBtn = document.getElementById('hub-theme');
@@ -3810,7 +4126,8 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
 
     document.querySelectorAll('[data-exam-card]').forEach(card => {{
       const slug = card.dataset.examCard;
-      const total = Number(card.dataset.total) || 1;
+      const total = Number(card.dataset.total) || 0;
+      if (total <= 0) return;
       let rev = [];
       let bm = [];
       try {{ rev = JSON.parse(localStorage.getItem(`examguide-v2-${{slug}}-reviewed`) || '[]'); }} catch (e) {{}}
@@ -3821,6 +4138,23 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       if (fill) fill.style.inlineSize = `${{pct}}%`;
       if (stats) stats.textContent = `${{rev.length}} / ${{total}} reviewed (${{pct}}%)${{bm.length ? ' · ★ ' + bm.length : ''}}`;
     }});
+
+    const hubSearch = document.getElementById('hub-search');
+    if (hubSearch) {{
+      hubSearch.addEventListener('input', () => {{
+        const q = hubSearch.value.trim().toLowerCase();
+        document.querySelectorAll('.tier-section').forEach(sec => {{
+          let visibleInTier = 0;
+          sec.querySelectorAll('.hub-card-link').forEach(link => {{
+            const hay = link.dataset.hubSearch || '';
+            const match = !q || hay.includes(q);
+            link.hidden = !match;
+            if (match) visibleInTier++;
+          }});
+          sec.hidden = visibleInTier === 0;
+        }});
+      }});
+    }}
   </script>
 </body>
 </html>
@@ -4027,14 +4361,27 @@ def main() -> None:
             print(f"Wrote Markdown: {md_out}")
 
     if args.format in ("html", "both"):
-        # Include any sibling data/*.json exams so index.html stays complete even on partial rebuilds
+        # Include all catalog exams (including 0-thread upcoming exams like AZ-401)
         data_dir = PROJECT_ROOT / "data"
-        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700", "dp-800"):
-            if slug not in hub_entries and (data_dir / f"{slug}.json").exists():
-                qs = json.loads((data_dir / f"{slug}.json").read_text(encoding="utf-8"))
-                domains = len({int(q.get("skill_area") or q.get("topic") or 0) for q in qs}) if qs else 0
-                hub_entries[slug] = {"exam": slug, "count": len(qs), "topics": domains}
-        ordered_order = ["ai-103", "ai-300", "ai-500", "dp-600", "dp-700", "dp-800"]
+        ordered_order = [item["slug"] for item in EXAM_CATALOG]
+        for slug in ordered_order:
+            if slug not in hub_entries:
+                if (data_dir / f"{slug}.json").exists():
+                    qs = json.loads((data_dir / f"{slug}.json").read_text(encoding="utf-8"))
+                    domains = len({int(q.get("skill_area") or q.get("topic") or 0) for q in qs}) if qs else 0
+                    hub_entries[slug] = {"exam": slug, "count": len(qs), "topics": domains}
+                else:
+                    # Generate empty-state study guide so every catalog link resolves offline
+                    empty_html = args.out_dir / f"{slug}-examtopics-study-guide.html"
+                    empty_html.write_text(build_html(slug, []), encoding="utf-8")
+                    if args.format == "both":
+                        empty_md = args.out_dir / f"{slug}-examtopics-study-guide.md"
+                        empty_md.write_text(build_markdown(slug, []), encoding="utf-8")
+                    hub_entries[slug] = {
+                        "exam": slug,
+                        "count": 0,
+                        "topics": len(SKILL_AREA_LABELS.get(slug, {})),
+                    }
         ordered_hub = [hub_entries[s] for s in ordered_order if s in hub_entries] + [
             v for k, v in hub_entries.items() if k not in ordered_order
         ]

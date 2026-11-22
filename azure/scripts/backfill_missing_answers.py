@@ -36,12 +36,15 @@ from typing import Any
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data"
 TARGETS = [
-    DATA / "dp-600.json",
-    DATA / "dp-700.json",
-    DATA / "dp-800.json",
-    DATA / "ai-103.json",
-    DATA / "ai-300.json",
-    DATA / "ai-500.json",
+    DATA / f"{slug}.json"
+    for slug in (
+        "ai-500", "ab-100", "az-401",
+        "ai-103", "ai-200", "ai-300",
+        "dp-600", "dp-700", "dp-750", "dp-800",
+        "ab-620", "ab-410", "ab-400", "ab-210", "ab-250", "ab-650", "ab-730", "ab-731", "sc-500",
+        "gh-300", "gh-600", "gh-200", "gh-500", "gh-100", "gh-900",
+        "ai-901", "dp-900", "ab-900",
+    )
 ]
 
 # Exhibit-verified curated multi-slot answers for questions where top-voted

@@ -1,0 +1,1916 @@
+[
+  {
+    "discussion_id": "328094",
+    "exam": "gh-500",
+    "topic": 1,
+    "question_number": 1,
+    "question_id": "328094",
+    "question_text": "A secret scanning alert should be closed as “used in tests” when a secret is:",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "in a test file.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "solely used for tests.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "in the readme.md file.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "not a secret in the production environment.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1719284",
+        "author": "K5000ism",
+        "date_title": "March 05, 2026 04:56 pm",
+        "text": "Used in tests",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/328094-exam-gh-500-topic-1-question-1-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  A secret scanning alert should be closed as “used in tests” when a secret is:",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Describe GitHub Security suites, features, and ecosystem"
+  },
+  {
+    "discussion_id": "313256",
+    "exam": "gh-500",
+    "topic": 1,
+    "question_number": 2,
+    "question_id": "313256",
+    "question_text": "What happens when you enable secret scanning on a private repository?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Repository administrators can view Dependabot alerts.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Dependency review, secret scanning, and code scanning are enabled.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Your team is subscribed to security alerts.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "GitHub performs a read-only analysis on the repository.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1618586",
+        "author": "tdkc",
+        "date_title": "October 20, 2025 08:53 am",
+        "text": "A is Incorrect. Enabling secret scanning does not automatically enable Dependabot alerts (a separate feature for vulnerable dependencies). When you enable secret scanning on a private repository (which requires GitHub Advanced Security), several actions occur, one of them is an Immediate Historical Scan: GitHub immediately initiates a scan of the entire Git history across all branches in the repository for known secret patterns.\nAnswer should be D. GitHub performs a read-only analysis on the repository.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/313256-exam-gh-500-topic-1-question-2-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What happens when you enable secret scanning on a private repository?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Describe GitHub Security suites, features, and ecosystem"
+  },
+  {
+    "discussion_id": "315491",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 1,
+    "question_id": "315491",
+    "question_text": "What is the first step you should take to fix an alert in secret scanning?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Remove the secret in a commit to the main branch.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Archive the repository.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Update your dependencies.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Revoke the alert if the secret is still valid.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1622433",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 03:29 am",
+        "text": "A. Remove the secret in a commit to the main branch.\nWe first need to ensure the secret is no longer in the main branch.\nD is incorrect because we need to revoke the secret NOT revoke the alert",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315491-exam-gh-500-topic-2-question-1-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What is the first step you should take to fix an alert in secret scanning?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "311865",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 7,
+    "question_id": "311865",
+    "question_text": "Which patterns are secret scanning validity checks available to?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "high entropy strings",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "custom patterns",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "push protection patterns",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "partner patterns",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1711623",
+        "author": "dd6adc9",
+        "date_title": "February 04, 2026 12:06 pm",
+        "text": "Secret scanning validity checks are only available for partner patterns (secrets from supported service providers that GitHub has integrations with).\nWhy the others don’t apply:\nHigh entropy strings → generic detection, no validity checks\nCustom patterns → user-defined, no validity checks\nPush protection patterns → a protection feature, not a pattern type that gets validity checks",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1605645",
+        "author": "neophantom",
+        "date_title": "September 02, 2025 08:50 pm",
+        "text": "D should be correct answer",
+        "upvotes": 3,
+        "badges": [
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/311865-exam-gh-500-topic-2-question-7-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Which patterns are secret scanning validity checks available to?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "315147",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 8,
+    "question_id": "315147",
+    "question_text": "What role is required to change a repository’s code scanning severity threshold that fails a pull request status check?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Maintain",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Write",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Admin",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Triage",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1778014",
+        "author": "adelbar",
+        "date_title": "July 21, 2026 12:23 pm",
+        "text": "Changing the code scanning severity threshold modifies repository security rules. \"Write\" access can manage alerts, but \"Admin\" access is required to change the threshold.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1767943",
+        "author": "0547a52",
+        "date_title": "June 16, 2026 03:25 am",
+        "text": "Changing the code scanning severity threshold (which determines when a pull request fails) is a repository-level configuration. Only users with Admin permissions can modify these settings.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315147-exam-gh-500-topic-2-question-8-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What role is required to change a repository’s code scanning severity threshold that fails a pull request status check?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "314631",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 11,
+    "question_id": "314631",
+    "question_text": "Which of the following features helps to prioritize secret scanning alerts that present an immediate risk?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "non-provider patterns",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "push protection",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "secret validation",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "custom pattern dry runs",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1623638",
+        "author": "0a9a335",
+        "date_title": "November 06, 2025 01:17 pm",
+        "text": "Secret validation helps prioritize secret scanning alerts by checking whether a detected secret is still active (i.e., valid and in use). This allows teams to focus on alerts that present an immediate risk, as only active secrets can be exploited.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1618580",
+        "author": "tdkc",
+        "date_title": "October 20, 2025 08:39 am",
+        "text": "C Secret Validation. Validity checks help you prioritize alerts by automatically indicating if a detected secret is still active or inactive (invalidated) by communicating with the issuing service provider (for supported partner patterns). The reason validity checks are the correct feature to help prioritize existing secret scanning alerts (those already exposed in the history or present in the codebase) over push protection is based purely on their intended function.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/314631-exam-gh-500-topic-2-question-11-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Which of the following features helps to prioritize secret scanning alerts that present an immediate risk?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "314630",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 13,
+    "question_id": "314630",
+    "question_text": "Which of the following statements most accurately describes push protection for secret scanning custom patterns?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Push protection is enabled by default for new custom patterns.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Push protection must be enabled for all, or none, of a repository’s custom patterns.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Push protection is not available for custom patterns.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Push protection is an opt-in experience for each custom pattern.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1618579",
+        "author": "tdkc",
+        "date_title": "October 20, 2025 08:36 am",
+        "text": "It cannot be B because it says ..., or none, ...\nThe most accurate is D. To enable push protection for secret scanning custom patterns in GitHub Advanced Security (GHAS), you must first ensure that generic secret scanning and push protection are generally enabled for the repository, organization, or enterprise. Once the base features are enabled, push protection is an opt-in experience for each custom pattern.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/314630-exam-gh-500-topic-2-question-13-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Which of the following statements most accurately describes push protection for secret scanning custom patterns?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "315148",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 20,
+    "question_id": "315148",
+    "question_text": "By default, where will secret scanning look in a repository in order to execute its job? Each correct answer presents part of the solution. (Choose three.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "all files in the repository",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "dependencies",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "selected files in the repository",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "full commit history",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "all branches",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "D",
+      "E"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "ADE",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "ADE",
+    "comments": [
+      {
+        "comment_id": "1622475",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 09:23 am",
+        "text": "A. all files in the repository\nD. full commit history\nE. all branches\nBy default it will look at all files. You can specify which files or directories secret scanning should ignore (i.e., not scan) by creating a .github/secret_scanning.yml file in your repository with a paths-ignore setting. But its not the default way",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: ADE"
+        ],
+        "selected_answer": "ADE",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315148-exam-gh-500-topic-2-question-20-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  By default, where will secret scanning look in a repository in order to execute its job? Each correct answer presents part of the solution. (Choose three.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "315149",
+    "exam": "gh-500",
+    "topic": 2,
+    "question_number": 23,
+    "question_id": "315149",
+    "question_text": "Which of the following pre-defined roles is required to manage code scanning alerts in a repository?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Maintain",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "View",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Read",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Triage",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1711204",
+        "author": "dd6adc9",
+        "date_title": "February 02, 2026 02:29 pm",
+        "text": "While it might seem like \"Triage\" would be enough (since it sounds like a role for managing issues), GitHub’s permission structure for security features is a bit more specific.Permission BreakdownHere is how the roles differ regarding code scanning:\nRead / View Can see that alerts exist, but generally cannot dismiss or change their status.\nTriage: Can manage issues and pull requests, but does not have the elevated permissions required to manage security alerts.\nMaintain: Can manage most aspects of a repository, including managing code scanning alerts (dismissing, reopening, etc.).\nAdmin: Has full control, including the ability to enable/disable code scanning and manage alerts.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315149-exam-gh-500-topic-2-question-23-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Which of the following pre-defined roles is required to manage code scanning alerts in a repository?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Configure and use Secret Protection"
+  },
+  {
+    "discussion_id": "315922",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 7,
+    "question_id": "315922",
+    "question_text": "If default code security settings have not been changed at the repository, organization, or enterprise level, which repositories receive Dependabot alerts?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "private repositories",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "none",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "repositories owned by an organization",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "repositories owned by an enterprise account",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1623895",
+        "author": "0a9a335",
+        "date_title": "November 07, 2025 08:29 am",
+        "text": "By default, if no changes have been made to the code security settings, Dependabot alerts are enabled for repositories owned by an organization. Private repositories and enterprise accounts do not receive Dependabot alerts by default unless explicitly configured.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315922-exam-gh-500-topic-3-question-7-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  If default code security settings have not been changed at the repository, organization, or enterprise level, which repositories receive Dependabot alerts?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "315160",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 11,
+    "question_id": "315160",
+    "question_text": "Where can you find a deleted line of code that contained a secret value?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Issues",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Dependency graph",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Commits",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Insights",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1620693",
+        "author": "ivantsanev",
+        "date_title": "October 26, 2025 07:58 pm",
+        "text": "I this should be C. Finding files changes can be easily seen in Commits tab.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315160-exam-gh-500-topic-3-question-11-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Where can you find a deleted line of code that contained a secret value?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "316017",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 14,
+    "question_id": "316017",
+    "question_text": "Assuming that notification and alert recipients are not customized, what does GitHub do when it identifies a vulnerable dependency in a repository where Dependabot alerts are enabled? (Each answer presents part of the solution. Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "It generates a Dependabot alert and displays it on the Security tab for the repository.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "It consults with a security service and conducts a thorough vulnerability review.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "It generates Dependabot alerts by default for all private repositories.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "It notifies the repository administrators about the new alert.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "AD",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "AD",
+    "comments": [
+      {
+        "comment_id": "1624032",
+        "author": "0a9a335",
+        "date_title": "November 07, 2025 09:06 pm",
+        "text": "When GitHub identifies a vulnerable dependency in a repository where Dependabot alerts are enabled, it:\nGenerates a Dependabot alert and displays it on the Security tab of the repository.\nSends a notification to repository administrators about the new alert.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/316017-exam-gh-500-topic-3-question-14-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  Assuming that notification and alert recipients are not customized, what does GitHub do when it identifies a vulnerable dependency in a repository where Dependabot alerts are enabled? (Each answer presents part of the solution. Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "346656",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 15,
+    "question_id": "346656",
+    "question_text": "Which of the following workflow events would trigger a dependency review? (Each answer presents a complete solution. Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "commit",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "trigger",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "workflow_dispatch",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "pull_request",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "CD",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "CD",
+    "comments": [
+      {
+        "comment_id": "1768307",
+        "author": "0547a52",
+        "date_title": "June 16, 2026 05:10 pm",
+        "text": "D. pull_request\nDependency review is primarily designed to run during pull requests to analyze dependency changes before merging. [docs.github.com]\nThe dependency-review action is typically configured with on: [pull_request] and runs whenever a PR is opened, updated, or reopened.\nC. workflow_dispatch\nThis is a manual trigger event in GitHub Actions, allowing you to run workflows (including dependency review) on demand.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: CD"
+        ],
+        "selected_answer": "CD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/346656-exam-gh-500-topic-3-question-15-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  Which of the following workflow events would trigger a dependency review? (Each answer presents a complete solution. Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "346667",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 18,
+    "question_id": "346667",
+    "question_text": "How many alerts are created when two instances of the same secret value are in the same repository?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "4",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "2",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "3",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "1",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1768922",
+        "author": "0547a52",
+        "date_title": "June 18, 2026 01:03 pm",
+        "text": "GitHub secret scanning de‑duplicates alerts for the same secret value. If the same secret appears multiple times, it does not create multiple alerts for each occurrence. Instead:\nA single alert is generated for that secret value.\nEven if it appears multiple times (e.g., repeated in files), it’s treated as one exposure to simplify triage.\nSupporting detail: GitHub documentation states that if the same secret appears multiple times (e.g., within a file), only one alert is created. [docs.github.com]\nSo with two instances of the same secret value in the same repository → 1 alert",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1701026",
+        "author": "guhancse",
+        "date_title": "December 22, 2025 10:56 am",
+        "text": "It should be Option B. 2 alerts.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/346667-exam-gh-500-topic-3-question-18-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  How many alerts are created when two instances of the same secret value are in the same repository?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "314130",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 24,
+    "question_id": "314130",
+    "question_text": "You are a maintainer of a repository and Dependabot notifies you of a vulnerability. Where could the vulnerability have been disclosed? (Each answer presents part of the solution. Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "in the National Vulnerability Database",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "in the dependency graph",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "in security advisories reported on GitHub",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "in manifest and lock files",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1681739",
+        "author": "fe6c881",
+        "date_title": "December 05, 2025 10:07 pm",
+        "text": "C.Dが正解。\nNVD などは GitHub Advisory Database の情報源として利用されますが、Dependabot が「どのリポジトリに影響するか」を判断する場ではない。",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1624152",
+        "author": "0a9a335",
+        "date_title": "November 08, 2025 09:57 am",
+        "text": "Dependabot alerts are generated based on vulnerability data from sources such as:\nThe National Vulnerability Database (NVD), which is a public repository of security vulnerabilities.\nGitHub Security Advisories, which include both public and private advisories reported directly on GitHub.\nThe dependency graph, manifest, and lock files are used to detect dependencies and their versions, but they are not where vulnerabilities are disclosed. They are used by Dependabot to check for known vulnerabilities.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/314130-exam-gh-500-topic-3-question-24-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You are a maintainer of a repository and Dependabot notifies you of a vulnerability. Where could the vulnerability have been disclosed? (Each answer presents part of the solution. Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "316028",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 27,
+    "question_id": "316028",
+    "question_text": "What classification is used to categorize Dependabot alerts? Each correct answer presents part of the solution. (Choose three.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "GitHub Security Advisory ID (GHSA)",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Static Application Security Testing (SAST)",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Common Vulnerabilities and Exposures (CVE)",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Common Weakness Enumeration (CWE)",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "Exploit Prediction Scoring System (EPSS)",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "C",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "ACD",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "ACD",
+    "comments": [
+      {
+        "comment_id": "1624153",
+        "author": "0a9a335",
+        "date_title": "November 08, 2025 10:00 am",
+        "text": "GitHub Security Advisory ID (GHSA): Unique identifiers for security advisories reported on GitHub.\nCommon Vulnerabilities and Exposures (CVE): Standard identifiers for publicly known security vulnerabilities.\nCommon Weakness Enumeration (CWE): A community-developed list of common software weakness types, often referenced in vulnerability descriptions.\nB. Static Application Security Testing (SAST) and E. Exploit Prediction Scoring System (EPSS) are not used to classify Dependabot alerts directly. SAST is a method for finding vulnerabilities, and EPSS is a scoring system for predicting exploit likelihood, but neither is a classification for Dependabot alerts.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: ACD"
+        ],
+        "selected_answer": "ACD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/316028-exam-gh-500-topic-3-question-27-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  What classification is used to categorize Dependabot alerts? Each correct answer presents part of the solution. (Choose three.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "315183",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 28,
+    "question_id": "315183",
+    "question_text": "Assuming that default security and analysis settings have not been changed at the repository, organization, or enterprise level, which scenario would generate a dependency graph for the repository?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "when a public repository has a new dependency added to its manifest file",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "when a private repository is forked to be used as a dependent",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "when a private repository has a new dependency added to its manifest file",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "when a public repository is forked to be used as a dependent",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1624154",
+        "author": "0a9a335",
+        "date_title": "November 08, 2025 10:05 am",
+        "text": "none of the scenarios would automatically generate a dependency graph for a private repository unless GHAS is enabled.\nHowever, public repositories do have the dependency graph enabled by default, so the correct answer under default settings (without GHAS) is A",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1622441",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 04:31 am",
+        "text": "private repositories do not have it enabled by default.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315183-exam-gh-500-topic-3-question-28-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Assuming that default security and analysis settings have not been changed at the repository, organization, or enterprise level, which scenario would generate a dependency graph for the repository?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "315493",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 29,
+    "question_id": "315493",
+    "question_text": "What scenario demonstrates the use of Dependabot security updates?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "An alert is created for a vulnerable dependency.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "An alert is created for a secret that’s been exposed in the codebase.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "A pull request is opened that fixes a vulnerable dependency.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "A pull request is opened that updates a dependency to the most recent version.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1622442",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 04:33 am",
+        "text": "https://learn.microsoft.com/en-us/training/modules/configure-dependabot-security-updates-on-github-repo/4-dependabot-security-updates\nDependabot security updates are automated pull requests that help you update dependencies with known vulnerabilities.\nDependabot version updates are automated pull requests that keep your dependencies updated, even when they don’t have any vulnerabilities.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315493-exam-gh-500-topic-3-question-29-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What scenario demonstrates the use of Dependabot security updates?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "315212",
+    "exam": "gh-500",
+    "topic": 3,
+    "question_number": 33,
+    "question_id": "315212",
+    "question_text": "What is the minimum role needed in order to view the secret scanning alerts list within the Security tab of a repository?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Read",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Write",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "repository owner",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Admin",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 2,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1768934",
+        "author": "0547a52",
+        "date_title": "June 18, 2026 01:28 pm",
+        "text": "D. Admin\nFor GitHub Secret Scanning Alerts (especially in private/internal repositories), visibility is restricted to:\nRepository Admins\nOrganization owners\nSecurity managers\nRepository owners (personal repos)",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1622443",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 04:40 am",
+        "text": "Write:\nhttps://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization#access-requirements-for-security-features\nView and dismiss secret scanning alerts in a repository - Write is needed a minimum",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1620999",
+        "author": "ivantsanev",
+        "date_title": "October 27, 2025 09:37 pm",
+        "text": "The minimum role needed to view the secret scanning alerts list within the Security tab of a repository is the Admin role. While a repository owner inherently has this access, \"Admin\" is the specific role permission level required.",
+        "upvotes": 3,
+        "badges": [
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315212-exam-gh-500-topic-3-question-33-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What is the minimum role needed in order to view the secret scanning alerts list within the Security tab of a repository?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Configure and use supply chain security"
+  },
+  {
+    "discussion_id": "346629",
+    "exam": "gh-500",
+    "topic": 4,
+    "question_number": 6,
+    "question_id": "346629",
+    "question_text": "How would you build your code within the CodeQL analysis workflow? Each answer presents a complete solution. (Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Upload compiled binaries.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Use CodeQL’s autobuild action.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Use jobs.analyze.runs-on.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Use CodeQL’s init action.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "Ignore paths.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "F",
+        "text": "Implement custom build steps.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B",
+      "F"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "BF",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "BF",
+    "comments": [
+      {
+        "comment_id": "1768936",
+        "author": "0547a52",
+        "date_title": "June 18, 2026 01:43 pm",
+        "text": "In a CodeQL analysis workflow, there are two supported ways to build your code:\nB. Use CodeQL’s autobuild action ✅\nCodeQL provides an autobuild step that automatically detects and builds your project.\nThis is the simplest and recommended option when your project uses a common build system.\nF. Implement custom build steps ✅\nIf autobuild doesn’t work (e.g., complex or custom build process),\nYou can define your own manual build steps in the workflow.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: BF"
+        ],
+        "selected_answer": "BF",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/346629-exam-gh-500-topic-4-question-6-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  How would you build your code within the CodeQL analysis workflow? Each answer presents a complete solution. (Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Configure and use Code Security"
+  },
+  {
+    "discussion_id": "315494",
+    "exam": "gh-500",
+    "topic": 4,
+    "question_number": 10,
+    "question_id": "315494",
+    "question_text": "When secret scanning detects a set of credentials on a public repository, what does GitHub do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "It sends a notification to repository members.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "It displays a public alert in the Security tab of the repository.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "It notifies the service provider who issued the secret.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "It scans the contents of the commits for additional secrets.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1768938",
+        "author": "0547a52",
+        "date_title": "June 18, 2026 01:53 pm",
+        "text": "Copilot said: Correct answer: C. It notifies the service provider who issued the secret.\n✅ Explanation\nWhen secret scanning detects credentials in a public repository, GitHub performs a partner alert action:\nGitHub notifies the service provider (issuer of the secret) so they can take immediate action (e.g., revoke the credential). [docs.github.com]\nThese are called partner alerts, and they are sent directly to the provider, not shown publicly in the repo. [docs.github.com]",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315494-exam-gh-500-topic-4-question-10-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  When secret scanning detects a set of credentials on a public repository, what does GitHub do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Configure and use Code Security"
+  },
+  {
+    "discussion_id": "315213",
+    "exam": "gh-500",
+    "topic": 4,
+    "question_number": 11,
+    "question_id": "315213",
+    "question_text": "As a developer with write access, you navigate to a code scanning alert in your repository. When will GitHub close this alert?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "after you triage the pull request containing the alert",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "after you fix the code by committing within the pull request",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "when you use data-flow analysis to find potential security issues in code",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "after you find the code and click the alert within the pull request",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1768940",
+        "author": "0547a52",
+        "date_title": "June 18, 2026 01:56 pm",
+        "text": "Correct answer: B. after you fix the code by committing within the pull request\n✅ Explanation\nGitHub closes a code scanning (CodeQL) alert when the underlying issue is actually fixed in the codebase:\nWhen you fix the vulnerable code and commit the change (usually via a pull request),\nA new code scan runs, and\nIf the issue is no longer detected, the alert is automatically resolved (closed).\nThis aligns with how GitHub handles alerts: they remain open until the vulnerability or issue is removed from the code during analysis. [docs.github.com]",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1624180",
+        "author": "0a9a335",
+        "date_title": "November 08, 2025 12:09 pm",
+        "text": "The vulnerable code is fixed (e.g., the security issue is resolved) and the fix is committed to the repository.\nThe fix is merged into the default branch (or the branch where the alert was originally detected).",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315213-exam-gh-500-topic-4-question-11-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  As a developer with write access, you navigate to a code scanning alert in your repository. When will GitHub close this alert?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Configure and use Code Security"
+  },
+  {
+    "discussion_id": "315496",
+    "exam": "gh-500",
+    "topic": 4,
+    "question_number": 32,
+    "question_id": "315496",
+    "question_text": "What is a benefit of using a custom CodeQL configuration file?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "It allows you to schedule the scan.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "It allows configuration options for multiple repositories in a single place.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "It disables packs from running the default query suite.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "It specifies a token that has access to the private repository.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1622460",
+        "author": "ziggy1117",
+        "date_title": "November 03, 2025 07:57 am",
+        "text": "A custom configuration file is an alternative way to specify additional packs and queries to run. You can also use the file to disable the default queries and to specify which directories to scan during analysis.\nhttps://learn.microsoft.com/en-us/training/modules/code-scanning-with-github-codeql/8-customize-your-scanning-workflow-with-codeql-2",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315496-exam-gh-500-topic-4-question-32-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  What is a benefit of using a custom CodeQL configuration file?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Configure and use Code Security"
+  },
+  {
+    "discussion_id": "314580",
+    "exam": "gh-500",
+    "topic": 5,
+    "question_number": 1,
+    "question_id": "314580",
+    "question_text": "Which of the following tasks can be performed by a security team as a proactive measure to help address secret scanning alerts? Each answer presents a complete solution. (Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Enable system for cross-domain identity management (SCIM) provisioning for the enterprise.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Document alternatives to storing secrets in the source code.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Dismiss alerts that are older than 90 days.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Configure a webhook to monitor for secret scanning alert events.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1618526",
+        "author": "tdkc",
+        "date_title": "October 20, 2025 07:59 am",
+        "text": "Choose 2 = B & D\nB. Document alternatives to storing secrets in the source code.\nD. Configure a webhook to monitor for secret scanning alert events.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/314580-exam-gh-500-topic-5-question-1-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  Which of the following tasks can be performed by a security team as a proactive measure to help address secret scanning alerts? Each answer presents a complete solution. (Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Security operations: best practices, prioritization, and remediation"
+  },
+  {
+    "discussion_id": "315214",
+    "exam": "gh-500",
+    "topic": 5,
+    "question_number": 3,
+    "question_id": "315214",
+    "question_text": "Which of the following formats are used to describe a Dependabot alert? Each answer presents a complete solution. (Choose two.)",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Vulnerability Exploitability eXchange (VEX)",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Common Vulnerabilities and Exposures (CVE)",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Common Weakness Enumeration (CWE)",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Exploit Prediction Scoring System (EPSS)",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B",
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "BC",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "BC",
+    "comments": [
+      {
+        "comment_id": "1621003",
+        "author": "ivantsanev",
+        "date_title": "October 27, 2025 09:47 pm",
+        "text": "ependabot alerts are generated based on entries in the GitHub Advisory Database, and these entries use established security classifications to describe the vulnerability.\nB. Common Vulnerabilities and Exposures (CVE): Each Dependabot alert is linked to a security advisory that typically has a CVE ID. CVE is a public list of all known cybersecurity vulnerabilities, providing a standardized identifier for the issue.\nC. Common Weakness Enumeration (CWE): The advisory details for a Dependabot alert often map the vulnerability to a specific type of software flaw or weakness, which is identified by a CWE ID.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: BC"
+        ],
+        "selected_answer": "BC",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315214-exam-gh-500-topic-5-question-3-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  Which of the following formats are used to describe a Dependabot alert? Each answer presents a complete solution. (Choose two.)",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 5,
+    "skill_area_label": "Security operations: best practices, prioritization, and remediation"
+  }
+]

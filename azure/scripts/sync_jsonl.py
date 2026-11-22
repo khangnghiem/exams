@@ -24,12 +24,15 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_DATA_FILES: list[str] = [
-    "dp-600.json",
-    "dp-700.json",
-    "dp-800.json",
-    "ai-103.json",
-    "ai-300.json",
-    "ai-500.json",
+    f"{slug}.json"
+    for slug in (
+        "ai-500", "ab-100", "az-401",
+        "ai-103", "ai-200", "ai-300",
+        "dp-600", "dp-700", "dp-750", "dp-800",
+        "ab-620", "ab-410", "ab-400", "ab-210", "ab-250", "ab-650", "ab-730", "ab-731", "sc-500",
+        "gh-300", "gh-600", "gh-200", "gh-500", "gh-100", "gh-900",
+        "ai-901", "dp-900", "ab-900",
+    )
 ]
 
 
