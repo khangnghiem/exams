@@ -61,25 +61,32 @@
       font-weight: 700;
     }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+    .hub-card-link {
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 20px;
+    }
     .hub-card {
       display: flex;
       flex-direction: column;
+      inline-size: 100%;
       padding: 1.25rem;
       border-radius: 20px;
       border: 1px solid var(--border);
       background: var(--surface);
       box-shadow: var(--shadow);
-      text-decoration: none;
-      color: inherit;
       transition: transform 150ms ease, border-color 150ms ease;
     }
-    .hub-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .hub-card-link:hover .hub-card,
+    .hub-card-link:focus-visible .hub-card { transform: translateY(-2px); border-color: var(--accent); }
     .hub-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; }
     .hub-badge { padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }
     .hub-code { font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }
     .hub-card h2 { margin: 0 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }
     .hub-meta { margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }
-    .hub-bar { margin-top: auto; block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+    .hub-progress { margin-top: auto; }
+    .hub-bar { block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
     .hub-bar-fill { block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }
     .hub-stats { margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }
   </style>
@@ -90,12 +97,12 @@
       <div>
         <span class="hub-badge">Offline Study Workstation</span>
         <h1>Microsoft Azure AI &amp; Fabric Study Hub</h1>
-        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all five certification guides.</p>
+        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all 6 certification guides.</p>
       </div>
       <button type="button" id="hub-theme" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
     </header>
     <section class="grid" aria-label="Available certification study guides">
-      <a class="hub-card" href="ai-103-examtopics-study-guide.html" data-exam-card="ai-103" data-total="161"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-103</span></div><h2>Developing AI Apps and Agents on Azure</h2><p class="hub-meta">161 questions · 5 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 161 reviewed (0%)</div></a><a class="hub-card" href="ai-300-examtopics-study-guide.html" data-exam-card="ai-300" data-total="107"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-300</span></div><h2>Operationalizing Machine Learning and Generative AI Solutions</h2><p class="hub-meta">107 questions · 5 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 107 reviewed (0%)</div></a><a class="hub-card" href="ai-500-examtopics-study-guide.html" data-exam-card="ai-500" data-total="18"><div class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-500</span></div><h2>Designing and Implementing Multi-Agent AI Solutions</h2><p class="hub-meta">18 questions · 4 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 18 reviewed (0%)</div></a><a class="hub-card" href="dp-600-examtopics-study-guide.html" data-exam-card="dp-600" data-total="199"><div class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-600</span></div><h2>Implementing Analytics Solutions Using Microsoft Fabric</h2><p class="hub-meta">199 questions · 3 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 199 reviewed (0%)</div></a><a class="hub-card" href="dp-700-examtopics-study-guide.html" data-exam-card="dp-700" data-total="139"><div class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-700</span></div><h2>Implementing Data Engineering Solutions Using Microsoft Fabric</h2><p class="hub-meta">139 questions · 3 skill areas</p><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 139 reviewed (0%)</div></a>
+      <a class="hub-card-link" href="ai-103-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-103" data-total="161"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-103</span></header><h2>Developing AI Apps and Agents on Azure</h2><p class="hub-meta">161 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 161 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-300-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-300" data-total="107"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-300</span></header><h2>Operationalizing Machine Learning and Generative AI Solutions</h2><p class="hub-meta">107 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 107 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-500-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-500" data-total="18"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-500</span></header><h2>Designing and Implementing Multi-Agent AI Solutions</h2><p class="hub-meta">18 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 18 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-600-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-600" data-total="199"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-600</span></header><h2>Implementing Analytics Solutions Using Microsoft Fabric</h2><p class="hub-meta">199 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 199 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-700-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-700" data-total="139"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-700</span></header><h2>Implementing Data Engineering Solutions Using Microsoft Fabric</h2><p class="hub-meta">139 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 139 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-800-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-800" data-total="48"><header class="hub-card-top"><span class="hub-badge">2026 SQL &amp; Fabric AI</span><span class="hub-code">DP-800</span></header><h2>Developing AI-Enabled Database Solutions</h2><p class="hub-meta">48 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 48 reviewed (0%)</div></div></article></a>
     </section>
   </main>
   <script>

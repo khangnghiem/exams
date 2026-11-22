@@ -26,6 +26,7 @@ from typing import Any
 DEFAULT_DATA_FILES: list[str] = [
     "dp-600.json",
     "dp-700.json",
+    "dp-800.json",
     "ai-103.json",
     "ai-300.json",
     "ai-500.json",

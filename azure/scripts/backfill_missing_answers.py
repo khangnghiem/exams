@@ -38,6 +38,7 @@ DATA = REPO / "data"
 TARGETS = [
     DATA / "dp-600.json",
     DATA / "dp-700.json",
+    DATA / "dp-800.json",
     DATA / "ai-103.json",
     DATA / "ai-300.json",
     DATA / "ai-500.json",
@@ -80,6 +81,91 @@ CURATED_ANSWERS: dict[str, str] = {
     "421549": (
         "--kind: OpenAI\n"
         "Parameter: --encryption"
+    ),
+    # DP-800 Q1.1 (Contoso FeedbackJson full-text + fuzzy similarity query)
+    "404372": (
+        "SELECT: JSON_VALUE(f.FeedbackJson, '$.text') AS FeedbackText\n"
+        "WHERE: CONTAINS(FeedbackJson, @Keyword)\n"
+        "ORDER BY: SimilarityScore"
+    ),
+    # DP-800 Q1.13 (SQL Server 2025 phone number regex extraction, stripping & check)
+    "403596": (
+        "RawNumber: REGEXP_SUBSTR(\n"
+        "DigitsOnly: REGEXP_REPLACE( REGEXP_SUBSTR(\n"
+        "WHEN ... = 1: REGEXP_LIKE("
+    ),
+    # DP-800 Q1.15 (Persisted JSON computed column + covering index)
+    "403598": (
+        "ADD severity: AS JSON_VALUE([log], '$.severity') PERSISTED\n"
+        "ON WebSite.Logs(severity): INCLUDE (LogId, LogDateTime, [log])"
+    ),
+    # DP-800 Q1.16 (Fabrikam correlated subquery for active patients)
+    "419635": (
+        "FROM dbo.Patients AS p: WHERE EXISTS\n"
+        "FROM dbo.Procedures AS pr: WHERE p.PatientId = pr.PatientId"
+    ),
+    # DP-800 Q2.1 (Contoso telemetry partitioning & JSON index statements)
+    "403599": (
+        "The code meets the database performance requirements for partitioning: No\n"
+        "The code meets the database performance requirements for JSON property querying: Yes\n"
+        "Queries that filter on $.location.heading will use the JI_VehicleTelemetry_Location index: No"
+    ),
+    # DP-800 Q2.2 (Contoso Dynamic Data Masking + RLS statements)
+    "403600": (
+        "The schema meets the security requirements for PII data: Yes\n"
+        "Administrators of the Azure SQL server can see all the rows in dbo.CustomerProfiles when they use an application: No\n"
+        "The masking rules will apply even when row-level security (RLS) filters out rows: No"
+    ),
+    # DP-800 Q2.3 (Contoso MaintenanceEvents AFTER UPDATE trigger)
+    "403601": (
+        "INNER JOIN inserted i ON: m.MaintenanceId = i.MaintenanceId\n"
+        "WHERE: m.LastModifiedUtc <> i.LastModifiedUtc"
+    ),
+    # DP-800 Q2.10 (GitHub CLI feature branch sync & PR creation)
+    "403608": (
+        "Step 1: git fetch origin\n"
+        "Step 2: git merge origin/main\n"
+        "Step 3: gh pr create"
+    ),
+    # DP-800 Q2.12 (SQL Database Project CI/CD build, deploy & unit test pipeline)
+    "403610": (
+        "Unit tests run automatically whenever changes are pushed to main: Yes\n"
+        "Schema validation occurs during the Build step: Yes\n"
+        "Schema validation occurs during the Deploy step: Yes"
+    ),
+    # DP-800 Q2.20 (Fabric SQL inline TVF & scalar UDF EXEC schema resolution)
+    "403618": (
+        "You can use GETDATE() in dbo.ufn_GetTaxMultiplier to produce nondeterministic results: Yes\n"
+        "Rewriting Sales.mstvf_OrderStatus() as an inline table TVF will reduce the number of inconsistent execution plans: Yes\n"
+        "Replacing ufn_GetTaxMultiplier with dbo.ufn_GetTaxMultiplier in the EXEC function statement will resolve the error: Yes"
+    ),
+    # DP-800 Q2.32 (Fabrikam inline TVF with window running total)
+    "419647": (
+        "CREATE: FUNCTION\n"
+        "OVER (first clause): PARTITION BY t.CustomerId\n"
+        "OVER (second clause): ORDER BY t.TransactionDate, t.TransactionId"
+    ),
+    # DP-800 Q2.34 (Fabrikam GitHub Actions PR validation for SDK-style SQL project)
+    "419650": (
+        "on: pull_request\n"
+        "run: dotnet: build Database.sqlproj -c Release"
+    ),
+    # DP-800 Q2.40 (Azure SQL firewall for Azure services + Container Apps DAB ingress)
+    "419638": (
+        "Start IP address and end IP address of the Azure SQL firewall rule: 0.0.0.0 to 0.0.0.0.\n"
+        "Container Apps ingress: Set ingress to external and target port 5000."
+    ),
+    # DP-800 Q2.45 (Blocking explicit transaction, RCSI reads & dm_tran_locks)
+    "419674": (
+        "The blocking is caused by an uncommitted explicit transaction in the blocking session that is holding locks: Yes\n"
+        "While an UPDATE operation on Sales.Orders is occurring, SELECT statements will be blocked: No\n"
+        "Joining sys.dm_tran_locks to sys.dm_exec_requests will show which session holds locks involved in the blocking chain: No"
+    ),
+    # DP-800 Q3.12 (SQL Server 2025 VECTOR(1536) float32 & embedding column selection)
+    "403640": (
+        "Generating an embedding by concatenating product_name, category, and description will support the customer requirements: Yes\n"
+        "Including price in the text used to generate embeddings is required: No\n"
+        "The underlying base type of the embeddings will be float(32): Yes"
     ),
 }
 
@@ -221,7 +307,7 @@ BULLET_ITEM_RE = re.compile(
 )
 
 YES_NO_LIST_RE = re.compile(
-    r"^\s*(?:yes|no|y|n)(?:\s*(?:,|/|\.|-\s*|\s+|->|→)\s*(?:yes|no|y|n)){1,5}\b",
+    r"^\s*(?:yes|no|y|n)(?:\s*(?:,|/|\.|[-–—]\s*|\s+|->|→)\s*(?:yes|no|y|n)){1,5}\b",
     re.IGNORECASE,
 )
 
@@ -416,9 +502,9 @@ def _format_answer(raw_text: str) -> str:
         idx += 1
     lines = merged_lines
 
-    # Concise first-line Yes/No list ("YES NO NO", "Yes, No, Yes", "NNY")
+    # Concise first-line Yes/No list ("YES NO NO", "Yes, No, Yes", "Yes — No — Yes", "NNY")
     if re.fullmatch(
-        r"(?:yes|no)(?:\s*(?:,|/|\.|-\s*|\s+|->|→)\s*(?:yes|no)){1,5}[.:!]?",
+        r"(?:yes|no)(?:\s*(?:,|/|\.|[-–—]\s*|\s+|->|→)\s*(?:yes|no)){1,5}[.:!]?",
         lines[0],
         re.I,
     ):

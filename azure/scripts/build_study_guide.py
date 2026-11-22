@@ -74,6 +74,7 @@ def _extract_code_text(exhibit: dict[str, Any]) -> str:
 EXAM_TITLES: dict[str, str] = {
     "dp-600": "Implementing Analytics Solutions Using Microsoft Fabric",
     "dp-700": "Implementing Data Engineering Solutions Using Microsoft Fabric",
+    "dp-800": "Developing AI-Enabled Database Solutions",
     "ai-103": "Developing AI Apps and Agents on Azure",
     "ai-300": "Operationalizing Machine Learning and Generative AI Solutions",
     "ai-500": "Designing and Implementing Multi-Agent AI Solutions",
@@ -103,6 +104,14 @@ TOPIC_LABELS: dict[str, dict[int, str]] = {
         1: "Implement and manage an analytics solution",
         2: "Ingest and transform data",
         3: "Monitor and optimize an analytics solution",
+    },
+    # DP-800: Developing AI-Enabled Database Solutions
+    "dp-800": {
+        1: "Design and develop database solutions",
+        2: "Secure, optimize, and deploy database solutions",
+        3: "Implement AI capabilities in database solutions",
+        4: "Case Studies & End-to-End Scenarios",
+        5: "Case Studies & End-to-End Scenarios",
     },
     # AI-103: Developing AI Apps and Agents on Azure
     "ai-103": {
@@ -134,6 +143,11 @@ TOPIC_LABELS: dict[str, dict[int, str]] = {
 SKILL_AREA_LABELS: dict[str, dict[int, str]] = {
     "dp-600": TOPIC_LABELS["dp-600"],
     "dp-700": TOPIC_LABELS["dp-700"],
+    "dp-800": {
+        1: "Design and develop database solutions",
+        2: "Secure, optimize, and deploy database solutions",
+        3: "Implement AI capabilities in database solutions",
+    },
     "ai-103": {
         1: "Plan and manage an Azure AI solution",
         2: "Implement generative AI and agentic solutions",
@@ -2607,8 +2621,10 @@ CASE_STUDY_TOP_HEADING_RE = re.compile(
     r"Problem\s+Statements?|"
     r"Issues\s+and\s+Constraints|"
     r"Planned\s+Changes|"
+    r"AI\s+Search,\s*Embeddings,\s*and\s*Vector\s+Indexing|"
     r"Requirements(?:\.\s+[^:\n]{1,50})?|"
-    r"(?:Technical|Security(?:\s+and\s+Compliance)?|Safety|Business|Performance|"
+    r"(?:Technical|Security(?:\s+and\s+Compliance)?|Safety|Business|"
+    r"(?:Database\s+)?Performance(?:\s+and)?|Development|"
     r"Data\s+Analytics|Data\s+Preparation|Semantic\s+Model|Report|General)\s+Requirements?"
     r")(?:\s*-\s*)?$",
     re.IGNORECASE,
@@ -2617,8 +2633,9 @@ CASE_STUDY_TOP_HEADING_RE = re.compile(
 CASE_STUDY_SUBHEADING_RE = re.compile(
     r"^(?:"
     r"Company\s+Information|"
-    r"(?:Identity|Generative|Data|Fabric|Foundry)\s+Environment|"
+    r"(?:Azure|Identity|Generative|Data|Fabric|Foundry)\s+Environment|"
     r"Microsoft\s+Foundry|"
+    r"DAB|"
     r"Project[1-9]|"
     r"Claim\s+(?:Project|Approval)|"
     r"A\s+(?:custom|default)\s+semantic\s+model|"
@@ -3047,7 +3064,7 @@ def _infer_case_study_meta(q: dict[str, Any], preamble: str) -> tuple[str | None
         return str(cs_id), str(cs_title)
     exam = (q.get("exam") or "exam").lower()
     m = re.search(
-        r"\b(Contoso,\s*Ltd\.?|Fabrikam\s+Inc\.?|Litware,\s*Inc\.?|Tailspin\s+Toys|Northwind\s+Traders|Wide\s+World\s+Importers|Adatum\s+Corporation|Relecloud)\b",
+        r"\b(Contoso(?:,\s*Ltd\.?)?|Fabrikam(?:\s+Inc\.?)?|Litware(?:,\s*Inc\.?)?|Tailspin\s+Toys|Northwind\s+Traders|Wide\s+World\s+Importers|Adatum(?:\s+Corporation)?|Relecloud)\b",
         preamble,
     )
     if m:
@@ -3586,7 +3603,8 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
         total_cs = sum(len(v) for v in cs_groups.values())
         lines.append(f"<summary>Case Studies ({total_cs})</summary>")
         for cs_id, cs_list in cs_groups.items():
-            _, cs_title = _infer_case_study_meta(cs_list[0], "case")
+            cs_pre = split_question_text(cs_list[0].get("question_text", ""))[1] or "case"
+            _, cs_title = _infer_case_study_meta(cs_list[0], cs_pre)
             lines.append('<details class="toc-chunk" open>')
             lines.append(f'<summary>{html.escape(cs_title or cs_id)} ({len(cs_list)})</summary>')
             lines.extend(_render_toc_chunks(cs_list, chunk_size=50))
@@ -3645,18 +3663,27 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
         exam_name = EXAM_TITLES.get(slug, f"{code} Certification")
         q_count = int(item.get("count", 0))
         t_count = int(item.get("topics", 0))
-        badge = "2026 Azure AI" if slug.startswith("ai-") else "Microsoft Fabric"
+        if slug.startswith("ai-"):
+            badge = "2026 Azure AI"
+        elif slug == "dp-800":
+            badge = "2026 SQL &amp; Fabric AI"
+        else:
+            badge = "Microsoft Fabric"
         cards_html.append(
-            f'<a class="hub-card" href="{html.escape(slug)}-examtopics-study-guide.html" '
-            f'data-exam-card="{html.escape(slug)}" data-total="{q_count}">'
-            f'<div class="hub-card-top"><span class="hub-badge">{badge}</span><span class="hub-code">{html.escape(code)}</span></div>'
+            f'<a class="hub-card-link" href="{html.escape(slug)}-examtopics-study-guide.html">'
+            f'<article class="hub-card" data-exam-card="{html.escape(slug)}" data-total="{q_count}">'
+            f'<header class="hub-card-top"><span class="hub-badge">{badge}</span><span class="hub-code">{html.escape(code)}</span></header>'
             f'<h2>{html.escape(exam_name)}</h2>'
             f'<p class="hub-meta">{q_count} questions · {t_count} skill areas</p>'
+            f'<div class="hub-progress">'
             f'<div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div>'
             f'<div class="hub-stats" data-stats>0 / {q_count} reviewed (0%)</div>'
+            f'</div>'
+            f'</article>'
             f'</a>'
         )
 
+    guide_count = len(exams_summary)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3720,25 +3747,32 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       font-weight: 700;
     }}
     .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }}
+    .hub-card-link {{
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 20px;
+    }}
     .hub-card {{
       display: flex;
       flex-direction: column;
+      inline-size: 100%;
       padding: 1.25rem;
       border-radius: 20px;
       border: 1px solid var(--border);
       background: var(--surface);
       box-shadow: var(--shadow);
-      text-decoration: none;
-      color: inherit;
       transition: transform 150ms ease, border-color 150ms ease;
     }}
-    .hub-card:hover {{ transform: translateY(-2px); border-color: var(--accent); }}
+    .hub-card-link:hover .hub-card,
+    .hub-card-link:focus-visible .hub-card {{ transform: translateY(-2px); border-color: var(--accent); }}
     .hub-card-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; }}
     .hub-badge {{ padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }}
     .hub-code {{ font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }}
     .hub-card h2 {{ margin: 0 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }}
     .hub-meta {{ margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }}
-    .hub-bar {{ margin-top: auto; block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }}
+    .hub-progress {{ margin-top: auto; }}
+    .hub-bar {{ block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }}
     .hub-bar-fill {{ block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }}
     .hub-stats {{ margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }}
   </style>
@@ -3749,7 +3783,7 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       <div>
         <span class="hub-badge">Offline Study Workstation</span>
         <h1>Microsoft Azure AI &amp; Fabric Study Hub</h1>
-        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all five certification guides.</p>
+        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all {guide_count} certification guides.</p>
       </div>
       <button type="button" id="hub-theme" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
     </header>
@@ -3995,12 +4029,12 @@ def main() -> None:
     if args.format in ("html", "both"):
         # Include any sibling data/*.json exams so index.html stays complete even on partial rebuilds
         data_dir = PROJECT_ROOT / "data"
-        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700"):
+        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700", "dp-800"):
             if slug not in hub_entries and (data_dir / f"{slug}.json").exists():
                 qs = json.loads((data_dir / f"{slug}.json").read_text(encoding="utf-8"))
                 domains = len({int(q.get("skill_area") or q.get("topic") or 0) for q in qs}) if qs else 0
                 hub_entries[slug] = {"exam": slug, "count": len(qs), "topics": domains}
-        ordered_order = ["ai-103", "ai-300", "ai-500", "dp-600", "dp-700"]
+        ordered_order = ["ai-103", "ai-300", "ai-500", "dp-600", "dp-700", "dp-800"]
         ordered_hub = [hub_entries[s] for s in ordered_order if s in hub_entries] + [
             v for k, v in hub_entries.items() if k not in ordered_order
         ]

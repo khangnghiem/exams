@@ -265,6 +265,7 @@ class StudyGuideBuilderTests(unittest.TestCase):
         expected = {
             "dp-600": "DP-600 Implementing Analytics Solutions Using Microsoft Fabric Study Guide",
             "dp-700": "DP-700 Implementing Data Engineering Solutions Using Microsoft Fabric Study Guide",
+            "dp-800": "DP-800 Developing AI-Enabled Database Solutions Study Guide",
             "ai-103": "AI-103 Developing AI Apps and Agents on Azure Study Guide",
             "ai-300": "AI-300 Operationalizing Machine Learning and Generative AI Solutions Study Guide",
             "ai-500": "AI-500 Designing and Implementing Multi-Agent AI Solutions Study Guide",
@@ -485,7 +486,7 @@ class AIExamEnrichmentTests(unittest.TestCase):
     def test_ai_exams_enriched_skill_areas_entities_and_non_mcq_backfill(self) -> None:
         import enrich_ai_exams  # type: ignore
 
-        for exam in ("ai-103", "ai-300", "ai-500"):
+        for exam in ("ai-103", "ai-300", "ai-500", "dp-800"):
             data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
             jsonl_lines = [
                 json.loads(line)
@@ -501,11 +502,15 @@ class AIExamEnrichmentTests(unittest.TestCase):
                 self.assertNotIn("&quot;", mv, f"Unescaped &quot; in {exam} Q{q['topic']}.{q['question_number']}")
                 self.assertNotIn("&gt;", mv, f"Unescaped &gt; in {exam} Q{q['topic']}.{q['question_number']}")
 
-        # All 5 official Microsoft Learn AI-103 skill areas must be populated
+        # All 5 official Microsoft Learn AI-103 skill areas and all 3 DP-800 skill areas must be populated
         ai103 = json.loads((REPO_AZURE / "data" / "ai-103.json").read_text(encoding="utf-8"))
-        distinct_skills = {q["skill_area"] for q in ai103}
-        self.assertEqual(distinct_skills, {1, 2, 3, 4, 5})
+        self.assertEqual({q["skill_area"] for q in ai103}, {1, 2, 3, 4, 5})
         self.assertEqual(len(enrich_ai_exams.AI_103_SKILL_AREAS), 5)
+
+        dp800 = json.loads((REPO_AZURE / "data" / "dp-800.json").read_text(encoding="utf-8"))
+        self.assertEqual({q["skill_area"] for q in dp800}, {1, 2, 3})
+        self.assertEqual(sum(1 for q in dp800 if not q.get("choices") and not q.get("most_voted_answer")), 0)
+        self.assertEqual(sum(1 for q in dp800 if q.get("choices") and not q.get("correct_answers")), 0)
 
         # Missing non-MCQ answers across AI-103/300/500 reduced from 55 to <= 1 (meta-chatter rejected)
         missing_total = 0
@@ -675,11 +680,100 @@ class StudyAppV2Tests(unittest.TestCase):
                 {"exam": "ai-500", "count": 18, "topics": 4},
                 {"exam": "dp-600", "count": 199, "topics": 3},
                 {"exam": "dp-700", "count": 139, "topics": 3},
+                {"exam": "dp-800", "count": 42, "topics": 3},
             ]
         )
         self.assertNotIn("fonts.googleapis.com", hub_html)
-        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700"):
+        self.assertIn("<article class=\"hub-card\"", hub_html)
+        self.assertIn("2026 SQL &amp; Fabric AI", hub_html)
+        self.assertIn("across all 6 certification guides", hub_html)
+        for slug in ("ai-103", "ai-300", "ai-500", "dp-600", "dp-700", "dp-800"):
             self.assertIn(f"{slug}-examtopics-study-guide.html", hub_html)
+
+
+class DP800SupportTests(unittest.TestCase):
+    def test_dp_800_registered_across_crawler_sync_backfill_and_builder(self) -> None:
+        self.assertIn("dp-800", crawler_mod.DEFAULT_EXAMS)
+        self.assertIn("dp-800.json", sync_jsonl.DEFAULT_DATA_FILES)
+        self.assertTrue(any(p.name == "dp-800.json" for p in backfill_mod.TARGETS))
+        self.assertIn("dp-800", builder_mod.EXAM_TITLES)
+        self.assertIn("dp-800", builder_mod.TOPIC_LABELS)
+        self.assertIn("dp-800", builder_mod.SKILL_AREA_LABELS)
+        html_doc = builder_mod.build_html("dp-800", [])
+        self.assertIn('href="dp-800-examtopics-study-guide.html" aria-current="page"', html_doc)
+
+    def test_dp_800_skill_area_classification_and_enrichment(self) -> None:
+        import enrich_ai_exams  # type: ignore
+
+        self.assertEqual(len(enrich_ai_exams.DP_800_SKILL_AREAS), 3)
+        q_sql = {
+            "exam": "dp-800",
+            "topic": 4,
+            "question_number": 1,
+            "question_id": "800001",
+            "question_text": "You need to write a T-SQL query using JSON_OBJECTAGG and REGEXP_LIKE.",
+            "choices": [],
+            "most_voted_answer": "JSON_OBJECTAGG &amp;gt; REGEXP_LIKE",
+            "comments": [],
+        }
+        q_sec = {
+            "exam": "dp-800",
+            "topic": 4,
+            "question_number": 2,
+            "question_id": "800002",
+            "question_text": "You need to configure Row-Level Security (RLS), Query Store, and Data API builder (DAB) in a SQL Database Project.",
+            "choices": [],
+            "most_voted_answer": None,
+            "comments": [
+                {
+                    "comment_id": "91",
+                    "text": "Box 1: CREATE SECURITY POLICY\nBox 2: Data API builder",
+                    "upvotes": 3,
+                    "badges": ["Highly Voted"],
+                }
+            ],
+        }
+        q_ai = {
+            "exam": "dp-800",
+            "topic": 4,
+            "question_number": 3,
+            "question_id": "800003",
+            "question_text": "You need to implement RAG and hybrid vector search using VECTOR_DISTANCE, VECTOR_SEARCH, and sp_invoke_external_rest_endpoint.",
+            "choices": [],
+            "most_voted_answer": "VECTOR_SEARCH",
+            "comments": [],
+        }
+        stats = enrich_ai_exams.enrich_exam_records("dp-800", [q_sql, q_sec, q_ai])
+        self.assertEqual(q_sql["skill_area"], 1)
+        self.assertEqual(q_sec["skill_area"], 2)
+        self.assertEqual(q_ai["skill_area"], 3)
+        self.assertEqual(q_sql["most_voted_answer"], "JSON_OBJECTAGG > REGEXP_LIKE")
+        self.assertIn("CREATE SECURITY POLICY", q_sec["most_voted_answer"])
+        self.assertGreaterEqual(stats.get("backfilled_non_mcq", 0), 1)
+
+    def test_dp_800_case_study_headings_company_grouping_and_emdash_yes_no(self) -> None:
+        import enrich_ai_exams  # type: ignore
+
+        dp800 = json.loads((REPO_AZURE / "data" / "dp-800.json").read_text(encoding="utf-8"))
+        q11 = next(q for q in dp800 if q["question_id"] == "404372")
+        q116 = next(q for q in dp800 if q["question_id"] == "419635")
+        self.assertEqual(enrich_ai_exams.detect_case_study_group(q11), ("dp-800-contoso", "Contoso"))
+        self.assertEqual(enrich_ai_exams.detect_case_study_group(q116), ("dp-800-fabrikam", "Fabrikam"))
+
+        _, pre, prompt = builder_mod.split_question_text(q11["question_text"])
+        sections = builder_mod.parse_case_study_sections(pre, prompt=prompt)
+        titles = [s["title"] for s in sections]
+        self.assertIn("Database Performance and Requirements", titles)
+        self.assertIn("AI Search, Embeddings, and Vector Indexing", titles)
+        self.assertIn("Development Requirements", titles)
+        rel_titles = [s["title"] for s in sections if s["relevant"]]
+        self.assertIn("Development Requirements", rel_titles)
+
+        self.assertEqual(
+            backfill_mod._format_answer("Yes — No — Yes\nSemantic attributes belong in the embedding text."),
+            "Yes, No, Yes",
+        )
+        self.assertIsNotNone(enrich_ai_exams.META_CHATTER_RE.search("The answer of examtopics is correct"))
 
 
 class BackfillMissingAnswersTests(unittest.TestCase):

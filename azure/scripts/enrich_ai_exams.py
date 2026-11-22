@@ -54,9 +54,16 @@ AI_500_SKILL_AREAS: dict[int, str] = {
     4: "Secure, govern, and deploy multi-agent solutions",
 }
 
+DP_800_SKILL_AREAS: dict[int, str] = {
+    1: "Design and develop database solutions",
+    2: "Secure, optimize, and deploy database solutions",
+    3: "Implement AI capabilities in database solutions",
+}
+
 META_CHATTER_RE = re.compile(
     r"(?:\bfound\s+in\s+exam\b|\bin\s+exam\s+today\b|\bhow\s+many\s+questions\b|"
-    r"\bpassed\s+the\s+exam\b|\banyone\s+know\b|\bplease\s+share\b)",
+    r"\bpassed\s+the\s+exam\b|\banyone\s+know\b|\bplease\s+share\b|"
+    r"\banswer\s+of\s+examtopics\s+is\s+(?:correct|right|wrong)\b)",
     re.IGNORECASE,
 )
 
@@ -162,6 +169,73 @@ def classify_ai_103_skill_area(q: dict[str, Any]) -> tuple[int, str]:
     return best_area, AI_103_SKILL_AREAS[best_area]
 
 
+def classify_dp_800_skill_area(q: dict[str, Any]) -> tuple[int, str]:
+    """Deterministically map a DP-800 question to one of Microsoft's 3 official
+    DP-800 skill areas when ExamTopics places it in a flat or case-study topic.
+    """
+    _, preamble, prompt = bsg.split_question_text(q.get("question_text", ""))
+    choices_txt = " ".join(
+        (c.get("text") or "") + " " + re.sub(r"<[^>]+>", " ", c.get("text_html") or "")
+        for c in (q.get("choices") or [])
+    )
+    mv_txt = str(q.get("most_voted_answer") or "")
+    comments_txt = " ".join((c.get("text") or "") for c in (q.get("comments") or [])[:2])
+    primary = f"{prompt} {choices_txt} {mv_txt}".lower()
+    secondary = comments_txt.lower()
+    if not preamble:
+        primary = f"{q.get('question_text', '')} {choices_txt} {mv_txt}".lower()
+
+    scores: dict[int, float] = {1: 0.0, 2: 0.0, 3: 0.0}
+
+    def _add(area: int, patterns: list[tuple[str, float]]) -> None:
+        for pat, weight in patterns:
+            if re.search(pat, primary, flags=re.IGNORECASE):
+                scores[area] += weight
+            elif re.search(pat, secondary, flags=re.IGNORECASE):
+                scores[area] += weight * 0.35
+
+    # Area 3: Implement AI capabilities in database solutions
+    _add(
+        3,
+        [
+            (r"\b(?:vector_distance|vector_search|vector_normalize|vectorproperty|ai_generate_embeddings|ai_generate_chunks)\b", 8.0),
+            (r"\b(?:external\s+model|create\s+external\s+model|alter\s+external\s+model|sp_invoke_external_rest_endpoint)\b", 7.5),
+            (r"\b(?:embedding|embeddings|vector\s+index|vector\s+data\s+type|\bvector\s*\(\s*\d+\s*\)|diskann|\bann\b|\benn\b)\b", 6.5),
+            (r"\b(?:hybrid\s+search|reciprocal\s+rank\s+fusion|\brrf\b|full-text\s+search|semantic\s+search|retrieval-augmented|\brag\b|chunking)\b", 6.0),
+        ],
+    )
+
+    # Area 2: Secure, optimize, and deploy database solutions
+    _add(
+        2,
+        [
+            (r"\b(?:always\s+encrypted|dynamic\s+data\s+masking|masked\s+with|row-level\s+security|\brls\b|security\s+policy|ledger\s+digest|auditing)\b", 7.0),
+            (r"\b(?:managed\s+identity|passwordless|database\s+scoped\s+credential|grant\s+|deny\s+|revoke\s+|least\s+privilege)\b", 5.5),
+            (r"\b(?:query\s+store|execution\s+plan|deadlock|blocking|isolation\s+level|read\s+committed|snapshot\s+isolation|\bdmv\b|sys\.dm_)\b", 6.5),
+            (r"\b(?:sql\s+database\s+project|dacpac|sqlproj|sqlpackage|schema\s+drift|ci/cd|github\s+actions)\b", 6.5),
+            (r"\b(?:data\s+api\s+builder|\bdab\b|dab-config|graphql|change\s+event\s+streaming|\bces\b|change\s+data\s+capture|\bcdc\b|change\s+tracking|sql\s+trigger\s+binding|application\s+insights|log\s+analytics)\b", 6.5),
+        ],
+    )
+
+    # Area 1: Design and develop database solutions
+    _add(
+        1,
+        [
+            (r"\b(?:json_object|json_array|json_arrayagg|json_objectagg|json_contains|openjson|json_value|json_query|json_path_exists|json\s+index)\b", 7.0),
+            (r"\b(?:regexp_like|regexp_replace|regexp_substr|regexp_instr|regexp_count|regexp_matches|regexp_split_to_table)\b", 7.0),
+            (r"\b(?:edit_distance|edit_distance_similarity|jaro_winkler|soundex)\b", 7.0),
+            (r"\b(?:columnstore|temporal\s+table|system_versioning|in-memory\s+oltp|memory_optimized|graph\s+table|\bmatch\s*\(|create\s+sequence|partition\s+function|partition\s+scheme)\b", 6.5),
+            (r"\b(?:window\s+function|over\s*\(|row_number|rank\s*\(|dense_rank|lag\s*\(|lead\s*\(|common\s+table\s+expression|\bcte\b|stored\s+procedure|table-valued\s+function|scalar\s+function|try\s*\.\.\.\s*catch|begin\s+try|xact_abort)\b", 5.5),
+            (r"\b(?:github\s+copilot|copilot\s+in\s+fabric|instruction\s+file|\.instructions\.md|copilot-instructions|mcp\s+server)\b", 6.0),
+        ],
+    )
+
+    best_area = max(scores, key=lambda k: (scores[k], k == 1))
+    if scores[best_area] == 0.0:
+        best_area = 1
+    return best_area, DP_800_SKILL_AREAS[best_area]
+
+
 def detect_case_study_group(q: dict[str, Any]) -> tuple[str | None, str | None]:
     """Return ``(case_study_id, case_study_title)`` if ``q`` is a case study."""
     _, preamble, _ = bsg.split_question_text(q.get("question_text", ""))
@@ -169,7 +243,7 @@ def detect_case_study_group(q: dict[str, Any]) -> tuple[str | None, str | None]:
         return None, None
     exam = (q.get("exam") or "").lower()
     m = re.search(
-        r"\b(Contoso,\s*Ltd\.?|Fabrikam\s+Inc\.?|Litware,\s*Inc\.?|Tailspin\s+Toys|Northwind\s+Traders|Wide\s+World\s+Importers|Adatum\s+Corporation|Relecloud)\b",
+        r"\b(Contoso(?:,\s*Ltd\.?)?|Fabrikam(?:\s+Inc\.?)?|Litware(?:,\s*Inc\.?)?|Tailspin\s+Toys|Northwind\s+Traders|Wide\s+World\s+Importers|Adatum(?:\s+Corporation)?|Relecloud)\b",
         preamble,
     )
     if m:
@@ -253,11 +327,15 @@ def _extract_community_note(q: dict[str, Any]) -> tuple[str | None, dict[str, An
 
 def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, int]:
     stats = Counter()
+    dp800_distinct_topics = (
+        {int(q.get("topic") or 0) for q in records} if exam == "dp-800" else set()
+    )
+    dp800_has_multi_domain_topics = bool(dp800_distinct_topics & {2, 3})
     for q in records:
         # 1. Unescape HTML entities in existing most_voted_answer
         mv = q.get("most_voted_answer")
         if isinstance(mv, str) and ("&" in mv):
-            unescaped = html.unescape(mv)
+            unescaped = bma.unescape_clean(mv)
             if unescaped != mv:
                 q["most_voted_answer"] = unescaped
                 stats["unescaped_answers"] += 1
@@ -273,6 +351,12 @@ def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, i
             t = int(q.get("topic") or 1)
             area_id = t if t in AI_500_SKILL_AREAS else 1
             area_label = AI_500_SKILL_AREAS[area_id]
+        elif exam == "dp-800":
+            t = int(q.get("topic") or 0)
+            if dp800_has_multi_domain_topics and t in DP_800_SKILL_AREAS:
+                area_id, area_label = t, DP_800_SKILL_AREAS[t]
+            else:
+                area_id, area_label = classify_dp_800_skill_area(q)
         else:
             continue
 
@@ -302,11 +386,19 @@ def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, i
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--apply", action="store_true", help="Write enriched records back to data/ai-*.json")
+    parser.add_argument("--apply", action="store_true", help="Write enriched records back to data/*.json")
+    parser.add_argument(
+        "--exams",
+        nargs="+",
+        default=["ai-103", "ai-300", "ai-500", "dp-800"],
+        help="Exam slugs to enrich (default: ai-103 ai-300 ai-500 dp-800)",
+    )
     args = parser.parse_args()
 
-    for exam in ("ai-103", "ai-300", "ai-500"):
+    for exam in [e.lower() for e in args.exams]:
         path = DATA_DIR / f"{exam}.json"
+        if not path.exists():
+            continue
         records = json.loads(path.read_text(encoding="utf-8"))
         stats = enrich_exam_records(exam, records)
         print(f"{exam.upper()}: {stats}")
