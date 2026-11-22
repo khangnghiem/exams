@@ -2,6 +2,8 @@
 
 _107 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AI-300 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/operationalizing-machine-learning-and-generative-ai-solutions/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q2.1](#q2-1)

@@ -2,6 +2,8 @@
 
 _28 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AI-200 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-cloud-developer-associate/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.5](#q1-5)

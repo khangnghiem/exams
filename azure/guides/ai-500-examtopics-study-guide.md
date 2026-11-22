@@ -2,6 +2,8 @@
 
 _18 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AI-500 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/multi-agent-ai-solutions-expert/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.1](#q1-1)

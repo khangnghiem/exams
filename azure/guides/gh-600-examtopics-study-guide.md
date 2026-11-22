@@ -2,6 +2,8 @@
 
 _61 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for GH-600 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-developer/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q2.1](#q2-1)

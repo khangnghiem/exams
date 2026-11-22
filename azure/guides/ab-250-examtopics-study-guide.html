@@ -205,6 +205,19 @@
       font-size: 0.82rem;
       margin-top: 0.1rem;
     }
+    .header-reg-link {
+      color: var(--accent-ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .header-reg-link:hover {
+      text-decoration: underline;
+    }
+    .header-reg-link:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
     .controls { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
     .controls button, .controls .btn { min-block-size: 2.2rem; padding-inline: 0.72rem; font-size: 0.82rem; }
 
@@ -1328,7 +1341,7 @@
           <button type="button" class="secondary" popovertarget="exam-switcher-menu" aria-label="Switch study guide">Exams ▾</button>
           <h1>AB-250 Transforming Contact Center Experiences with AI in Dynamics 365 Study Guide</h1>
         </div>
-        <div class="stats">10 questions · 3 skill areas · <span id="progress-text">0 reviewed</span></div>
+        <div class="stats">10 questions · 3 skill areas · <span id="progress-text">0 reviewed</span> · <a class="header-reg-link" href="https://learn.microsoft.com/en-us/credentials/certifications/d365-contact-center-ai-engineer-associate/?practice-assessment-type=certification" target="_blank" rel="noopener noreferrer">Register for AB-250 on Microsoft Learn <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="controls" aria-label="Study controls">
         <button id="resume-unreviewed" class="secondary" type="button" title="Jump to first unreviewed question">Resume</button>

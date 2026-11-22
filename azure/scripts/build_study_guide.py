@@ -95,45 +95,54 @@ CERTIFICATION_TIERS: tuple[dict[str, str], ...] = (
 )
 
 # Canonical ordered exam catalog across all 4 tiers.
+_MS_LEARN_CERT_BASE = "https://learn.microsoft.com/en-us/credentials/certifications"
+_MS_LEARN_CERT_QUERY = "/?practice-assessment-type=certification"
+
 EXAM_CATALOG: tuple[dict[str, str], ...] = (
     # Tier 1: Expert Level (top)
-    {"slug": "ai-500", "tier": "expert", "badge": "Expert · Multi-Agent AI", "title": "Designing and Implementing Multi-Agent AI Solutions"},
-    {"slug": "ab-100", "tier": "expert", "badge": "Expert · Agentic Architect", "title": "Agentic AI Business Solutions Architect"},
-    {"slug": "az-401", "tier": "expert", "badge": "Expert · Agentic DevOps", "title": "Designing and Implementing Microsoft Agentic DevOps Solutions"},
+    {"slug": "ai-500", "tier": "expert", "badge": "Expert · Multi-Agent AI", "title": "Designing and Implementing Multi-Agent AI Solutions", "cert_slug": "multi-agent-ai-solutions-expert"},
+    {"slug": "ab-100", "tier": "expert", "badge": "Expert · Agentic Architect", "title": "Agentic AI Business Solutions Architect", "cert_slug": "agentic-ai-business-solutions-architect"},
+    {"slug": "az-401", "tier": "expert", "badge": "Expert · Agentic DevOps", "title": "Designing and Implementing Microsoft Agentic DevOps Solutions", "cert_slug": "agentic-devops-engineer-expert"},
     # Tier 2: Associate / Intermediate — Azure, Fabric & Microsoft AI
-    {"slug": "ai-103", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Apps and Agents on Azure"},
-    {"slug": "ai-200", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Cloud Solutions on Azure"},
-    {"slug": "ai-300", "tier": "associate", "badge": "2026 Azure AI", "title": "Operationalizing Machine Learning and Generative AI Solutions"},
-    {"slug": "dp-600", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Analytics Solutions Using Microsoft Fabric"},
-    {"slug": "dp-700", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Data Engineering Solutions Using Microsoft Fabric"},
-    {"slug": "dp-750", "tier": "associate", "badge": "Azure Databricks", "title": "Implementing Data Engineering Solutions Using Azure Databricks"},
-    {"slug": "dp-800", "tier": "associate", "badge": "2026 SQL & Fabric AI", "title": "Developing AI-Enabled Database Solutions"},
-    {"slug": "ab-620", "tier": "associate", "badge": "Copilot Studio AI", "title": "Designing and Building Integrated AI Solutions in Copilot Studio"},
-    {"slug": "ab-410", "tier": "associate", "badge": "Intelligent Apps AI", "title": "Building Intelligent Applications"},
-    {"slug": "ab-400", "tier": "associate", "badge": "Power Platform AI", "title": "Extending Microsoft Power Platform Solutions with Code and AI"},
-    {"slug": "ab-210", "tier": "associate", "badge": "Dynamics 365 AI", "title": "Accelerating Sales Pipelines with AI in Dynamics 365"},
-    {"slug": "ab-250", "tier": "associate", "badge": "Contact Center AI", "title": "Transforming Contact Center Experiences with AI in Dynamics 365"},
-    {"slug": "ab-650", "tier": "associate", "badge": "M365 & AI Admin", "title": "Administering Microsoft 365 and AI Services"},
-    {"slug": "ab-730", "tier": "associate", "badge": "Business AI", "title": "AI Business Professional"},
-    {"slug": "ab-731", "tier": "associate", "badge": "Business AI", "title": "AI Transformation Leader"},
-    {"slug": "sc-500", "tier": "associate", "badge": "Cloud & AI Security", "title": "Implementing End-to-End Security Controls for Cloud and AI Workloads"},
+    {"slug": "ai-103", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Apps and Agents on Azure", "cert_slug": "azure-ai-apps-and-agents-developer-associate"},
+    {"slug": "ai-200", "tier": "associate", "badge": "2026 Azure AI", "title": "Developing AI Cloud Solutions on Azure", "cert_slug": "azure-ai-cloud-developer-associate"},
+    {"slug": "ai-300", "tier": "associate", "badge": "2026 Azure AI", "title": "Operationalizing Machine Learning and Generative AI Solutions", "cert_slug": "operationalizing-machine-learning-and-generative-ai-solutions"},
+    {"slug": "dp-600", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Analytics Solutions Using Microsoft Fabric", "cert_slug": "fabric-analytics-engineer-associate"},
+    {"slug": "dp-700", "tier": "associate", "badge": "Microsoft Fabric", "title": "Implementing Data Engineering Solutions Using Microsoft Fabric", "cert_slug": "fabric-data-engineer-associate"},
+    {"slug": "dp-750", "tier": "associate", "badge": "Azure Databricks", "title": "Implementing Data Engineering Solutions Using Azure Databricks", "cert_slug": "implementing-data-engineering-solutions-using-azure-databricks"},
+    {"slug": "dp-800", "tier": "associate", "badge": "2026 SQL & Fabric AI", "title": "Developing AI-Enabled Database Solutions", "cert_slug": "developing-ai-enabled-database-solutions"},
+    {"slug": "ab-620", "tier": "associate", "badge": "Copilot Studio AI", "title": "Designing and Building Integrated AI Solutions in Copilot Studio", "cert_slug": "ai-agent-builder-associate"},
+    {"slug": "ab-410", "tier": "associate", "badge": "Intelligent Apps AI", "title": "Building Intelligent Applications", "cert_slug": "intelligent-applications-builder-associate"},
+    {"slug": "ab-400", "tier": "associate", "badge": "Power Platform AI", "title": "Extending Microsoft Power Platform Solutions with Code and AI", "cert_slug": "power-platform-developer-associate"},
+    {"slug": "ab-210", "tier": "associate", "badge": "Dynamics 365 AI", "title": "Accelerating Sales Pipelines with AI in Dynamics 365", "cert_slug": "d365-sales-ai-consultant-associate"},
+    {"slug": "ab-250", "tier": "associate", "badge": "Contact Center AI", "title": "Transforming Contact Center Experiences with AI in Dynamics 365", "cert_slug": "d365-contact-center-ai-engineer-associate"},
+    {"slug": "ab-650", "tier": "associate", "badge": "M365 & AI Admin", "title": "Administering Microsoft 365 and AI Services", "cert_slug": "ai-services-administrator-associate"},
+    {"slug": "ab-730", "tier": "associate", "badge": "Business AI", "title": "AI Business Professional", "cert_slug": "ai-business-professional"},
+    {"slug": "ab-731", "tier": "associate", "badge": "Business AI", "title": "AI Transformation Leader", "cert_slug": "ai-transformation-leader"},
+    {"slug": "sc-500", "tier": "associate", "badge": "Cloud & AI Security", "title": "Implementing End-to-End Security Controls for Cloud and AI Workloads", "cert_slug": "cloud-and-ai-security-engineer-associate"},
     # Tier 3: GitHub Certifications (under Azure/Microsoft certs)
-    {"slug": "gh-300", "tier": "github", "badge": "GitHub Copilot", "title": "GitHub Copilot"},
-    {"slug": "gh-600", "tier": "github", "badge": "GitHub Agentic AI", "title": "Developing in Agentic AI Systems"},
-    {"slug": "gh-200", "tier": "github", "badge": "GitHub Actions", "title": "GitHub Actions"},
-    {"slug": "gh-500", "tier": "github", "badge": "GitHub Security", "title": "GitHub Advanced Security"},
-    {"slug": "gh-100", "tier": "github", "badge": "GitHub Enterprise", "title": "GitHub Enterprise Administrator"},
-    {"slug": "gh-900", "tier": "github", "badge": "GitHub Foundations", "title": "GitHub Foundations"},
+    {"slug": "gh-300", "tier": "github", "badge": "GitHub Copilot", "title": "GitHub Copilot", "cert_slug": "github-copilot"},
+    {"slug": "gh-600", "tier": "github", "badge": "GitHub Agentic AI", "title": "Developing in Agentic AI Systems", "cert_slug": "agentic-ai-developer"},
+    {"slug": "gh-200", "tier": "github", "badge": "GitHub Actions", "title": "GitHub Actions", "cert_slug": "github-actions"},
+    {"slug": "gh-500", "tier": "github", "badge": "GitHub Security", "title": "GitHub Advanced Security", "cert_slug": "github-advanced-security"},
+    {"slug": "gh-100", "tier": "github", "badge": "GitHub Enterprise", "title": "GitHub Enterprise Administrator", "cert_slug": "github-administration"},
+    {"slug": "gh-900", "tier": "github", "badge": "GitHub Foundations", "title": "GitHub Foundations", "cert_slug": "github-foundations"},
     # Tier 4: Beginner / Fundamentals Level (bottom)
-    {"slug": "ai-901", "tier": "beginner", "badge": "Beginner · Azure AI", "title": "Microsoft Azure AI Fundamentals"},
-    {"slug": "dp-900", "tier": "beginner", "badge": "Beginner · Azure Data", "title": "Microsoft Azure Data Fundamentals"},
-    {"slug": "ab-900", "tier": "beginner", "badge": "Beginner · Copilot & Agents", "title": "Microsoft 365 Copilot and Agent Administration Fundamentals"},
+    {"slug": "ai-901", "tier": "beginner", "badge": "Beginner · Azure AI", "title": "Microsoft Azure AI Fundamentals", "cert_slug": "azure-ai-fundamentals"},
+    {"slug": "dp-900", "tier": "beginner", "badge": "Beginner · Azure Data", "title": "Microsoft Azure Data Fundamentals", "cert_slug": "azure-data-fundamentals"},
+    {"slug": "ab-900", "tier": "beginner", "badge": "Beginner · Copilot & Agents", "title": "Microsoft 365 Copilot and Agent Administration Fundamentals", "cert_slug": "copilot-and-agent-administration-fundamentals"},
 )
 
 EXAM_META_BY_SLUG: dict[str, dict[str, str]] = {item["slug"]: item for item in EXAM_CATALOG}
 
 # Official Microsoft certification exam names keyed by lowercase exam slug.
 EXAM_TITLES: dict[str, str] = {item["slug"]: item["title"] for item in EXAM_CATALOG}
+
+# Official Microsoft Learn certification & registration URLs keyed by lowercase exam slug.
+EXAM_REGISTRATION_URLS: dict[str, str] = {
+    item["slug"]: f"{_MS_LEARN_CERT_BASE}/{item['cert_slug']}{_MS_LEARN_CERT_QUERY}"
+    for item in EXAM_CATALOG
+}
 
 
 def format_study_guide_title(exam: str) -> str:
@@ -557,6 +566,19 @@ HTML_HEAD = """<!DOCTYPE html>
       color: var(--text-secondary);
       font-size: 0.82rem;
       margin-top: 0.1rem;
+    }
+    .header-reg-link {
+      color: var(--accent-ink);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .header-reg-link:hover {
+      text-decoration: underline;
+    }
+    .header-reg-link:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
     .controls { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
     .controls button, .controls .btn { min-block-size: 2.2rem; padding-inline: 0.72rem; font-size: 0.82rem; }
@@ -1681,7 +1703,7 @@ HTML_HEAD = """<!DOCTYPE html>
           <button type="button" class="secondary" popovertarget="exam-switcher-menu" aria-label="Switch study guide">Exams ▾</button>
           <h1>$title</h1>
         </div>
-        <div class="stats">$stats · <span id="progress-text">0 reviewed</span></div>
+        <div class="stats">$stats · <span id="progress-text">0 reviewed</span>$reg_link</div>
       </div>
       <div class="controls" aria-label="Study controls">
         <button id="resume-unreviewed" class="secondary" type="button" title="Jump to first unreviewed question">Resume</button>
@@ -3726,10 +3748,18 @@ def build_html(exam: str, questions: list[dict[str, Any]]) -> str:
         else 0
     )
     stats = f"{len(questions)} questions · {domain_count} skill areas"
+    reg_url = EXAM_REGISTRATION_URLS.get(exam_slug, "")
+    reg_link_html = (
+        f' · <a class="header-reg-link" href="{html.escape(reg_url)}" target="_blank" rel="noopener noreferrer">'
+        f'Register for {html.escape(exam_slug.upper())} on Microsoft Learn <span aria-hidden="true">↗</span></a>'
+        if reg_url
+        else ""
+    )
 
     head = (
         HTML_HEAD.replace("$title", html.escape(title))
         .replace("$stats", html.escape(stats))
+        .replace("$reg_link", reg_link_html)
         .replace("$exam_switcher", _render_exam_switcher_popover(exam_slug))
         .replace("$exam", html.escape(exam_slug))
     )
@@ -3926,18 +3956,29 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
                 else "Awaiting ExamTopics discussions"
             )
             search_blob = html.escape(f"{code} {exam_name} {raw_badge} {tier['title']}".lower())
+            reg_url = EXAM_REGISTRATION_URLS.get(slug, "")
+            reg_footer = (
+                f'<footer class="hub-card-footer">'
+                f'<a class="hub-reg-link" href="{html.escape(reg_url)}" target="_blank" rel="noopener noreferrer">'
+                f'Register for {html.escape(code)} on Microsoft Learn <span aria-hidden="true">↗</span>'
+                f'</a>'
+                f'</footer>'
+                if reg_url
+                else ""
+            )
             cards_html.append(
-                f'<a class="hub-card-link" href="{html.escape(slug)}-examtopics-study-guide.html" data-hub-search="{search_blob}">'
-                f'<article class="hub-card" data-exam-card="{html.escape(slug)}" data-total="{q_count}">'
+                f'<article class="hub-card" data-exam-card="{html.escape(slug)}" data-total="{q_count}" data-hub-search="{search_blob}">'
                 f'<header class="hub-card-top"><span class="hub-badge">{badge_html}</span><span class="hub-code">{html.escape(code)}</span></header>'
-                f'<h3>{html.escape(exam_name)}</h3>'
+                f'<h3><a class="hub-card-link" href="{html.escape(slug)}-examtopics-study-guide.html">{html.escape(exam_name)}</a></h3>'
+                f'<div class="hub-content">'
                 f'<p class="hub-meta">{html.escape(meta_line)}</p>'
                 f'<div class="hub-progress">'
                 f'<div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div>'
                 f'<div class="hub-stats" data-stats>{html.escape(stats_line)}</div>'
                 f'</div>'
+                f'</div>'
+                f'{reg_footer}'
                 f'</article>'
-                f'</a>'
             )
 
         sections_html.append(
@@ -4059,13 +4100,6 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
     .tier-header h2 {{ margin: 0; font-family: var(--font-display); font-size: clamp(1.25rem, 1.08rem + 0.75vw, 1.65rem); line-height: 1.2; }}
     .tier-desc {{ margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.92rem; }}
     .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }}
-    .hub-card-link {{
-      display: flex;
-      text-decoration: none;
-      color: inherit;
-      border-radius: 20px;
-    }}
-    .hub-card-link[hidden] {{ display: none; }}
     .hub-card {{
       display: flex;
       flex-direction: column;
@@ -4077,17 +4111,78 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
       box-shadow: var(--shadow);
       transition: transform 150ms ease, border-color 150ms ease;
     }}
-    .hub-card-link:hover .hub-card,
-    .hub-card-link:focus-visible .hub-card {{ transform: translateY(-2px); border-color: var(--accent); }}
+    .hub-card[hidden] {{ display: none; }}
+    .hub-card:has(a.hub-card-link) {{ position: relative; }}
+    .hub-card a.hub-card-link {{
+      color: inherit;
+      text-decoration: none;
+    }}
+    .hub-card a.hub-card-link::after {{
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }}
+    .hub-card a.hub-card-link:focus-visible {{ outline: none; }}
+    .hub-card:has(a.hub-card-link:hover) {{
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }}
+    .hub-card:has(a.hub-card-link:focus-visible) {{
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }}
+    .hub-card:has(a.hub-card-link) a:not(.hub-card-link),
+    .hub-card:has(a.hub-card-link) button {{
+      position: relative;
+      z-index: 1;
+    }}
     .hub-card-top {{ display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; }}
     .hub-badge {{ padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }}
     .hub-code {{ font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }}
     .hub-card h3 {{ margin: 0 0 0.4rem; font-size: 1.12rem; line-height: 1.3; }}
+    .hub-content {{ display: flex; flex-direction: column; flex: 1; }}
     .hub-meta {{ margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }}
     .hub-progress {{ margin-top: auto; }}
     .hub-bar {{ block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }}
     .hub-bar-fill {{ block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }}
     .hub-stats {{ margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }}
+    .hub-card-footer {{
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+    }}
+    .hub-reg-link {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      min-block-size: 1.75rem;
+      padding: 0.24rem 0.62rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--accent-ink);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 140ms ease, background-color 140ms ease;
+    }}
+    @media (pointer: coarse) {{
+      .hub-reg-link {{
+        min-block-size: 2.75rem;
+        padding: 0.45rem 0.8rem;
+      }}
+    }}
+    .hub-reg-link:hover {{
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }}
+    .hub-reg-link:focus-visible {{
+      outline: 3px solid var(--accent);
+      outline-offset: 2px;
+    }}
     #tier-expert .hub-badge {{ background: color-mix(in srgb, var(--accent-soft) 68%, #fde68a 32%); }}
   </style>
 </head>
@@ -4145,10 +4240,10 @@ def build_index_html(exams_summary: list[dict[str, Any]]) -> str:
         const q = hubSearch.value.trim().toLowerCase();
         document.querySelectorAll('.tier-section').forEach(sec => {{
           let visibleInTier = 0;
-          sec.querySelectorAll('.hub-card-link').forEach(link => {{
-            const hay = link.dataset.hubSearch || '';
+          sec.querySelectorAll('.hub-card').forEach(card => {{
+            const hay = card.dataset.hubSearch || '';
             const match = !q || hay.includes(q);
-            link.hidden = !match;
+            card.hidden = !match;
             if (match) visibleInTier++;
           }});
           sec.hidden = visibleInTier === 0;
@@ -4217,15 +4312,24 @@ def _choice_to_md(choice: dict[str, Any]) -> str:
 
 def build_markdown(exam: str, questions: list[dict[str, Any]]) -> str:
     questions = sorted(questions, key=lambda q: (q.get("topic", 0), q.get("question_number", 0)))
+    exam_slug = exam.strip().lower()
     title = format_study_guide_title(exam)
+    reg_url = EXAM_REGISTRATION_URLS.get(exam_slug, "")
     lines = [
         f"# {title}",
         "",
         f"_{len(questions)} questions generated from ExamTopics discussions._",
+    ]
+    if reg_url:
+        lines.extend([
+            "",
+            f"**Official Exam & Registration:** [Register for {exam_slug.upper()} on Microsoft Learn]({reg_url})",
+        ])
+    lines.extend([
         "",
         "## Table of contents",
         "",
-    ]
+    ])
     for q in questions:
         topic = q.get("topic", 0)
         num = q.get("question_number", 0)

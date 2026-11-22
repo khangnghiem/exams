@@ -2,6 +2,8 @@
 
 _139 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for DP-700 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/fabric-data-engineer-associate/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.1](#q1-1)
