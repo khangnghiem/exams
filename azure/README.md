@@ -6,6 +6,7 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 |---|---|---:|
 | **DP-600** | Implementing Analytics Solutions Using Microsoft Fabric | 199 |
 | **DP-700** | Implementing Data Engineering Solutions Using Microsoft Fabric | 139 |
+| **DP-800** | Developing AI-Enabled Database Solutions | 48 |
 | **AI-103** | Developing AI Apps and Agents on Azure | 161 |
 | **AI-300** | Operationalizing Machine Learning and Generative AI Solutions | 107 |
 | **AI-500** | Designing and Implementing Multi-Agent AI Solutions | 18 |
@@ -20,24 +21,28 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 │       ├── ai-300/
 │       ├── ai-500/
 │       ├── dp-600/
-│       └── dp-700/
+│       ├── dp-700/
+│       └── dp-800/
 ├── data/                    # Crawled datasets (.json + auto-synced .jsonl)
 │   ├── ai-103.{json,jsonl}
 │   ├── ai-300.{json,jsonl}
 │   ├── ai-500.{json,jsonl}
 │   ├── dp-600.{json,jsonl}
-│   └── dp-700.{json,jsonl}
+│   ├── dp-700.{json,jsonl}
+│   └── dp-800.{json,jsonl}
 ├── docs/
 │   └── specs/               # Feature & architecture specifications
 │       ├── F-01-ai-103-300-500-study-guides.md
-│       └── F-02-question-readability-and-html-app-v2.md
+│       ├── F-02-question-readability-and-html-app-v2.md
+│       └── F-03-dp-800-study-guide.md
 ├── guides/                  # Student-facing offline HTML & Markdown study guides
-│   ├── index.html           # Cross-exam study hub with live progress across all 5 exams
+│   ├── index.html           # Cross-exam study hub with live progress across all 6 exams
 │   ├── ai-103-examtopics-study-guide.{html,md}
 │   ├── ai-300-examtopics-study-guide.{html,md}
 │   ├── ai-500-examtopics-study-guide.{html,md}
 │   ├── dp-600-examtopics-study-guide.{html,md}
-│   └── dp-700-examtopics-study-guide.{html,md}
+│   ├── dp-700-examtopics-study-guide.{html,md}
+│   └── dp-800-examtopics-study-guide.{html,md}
 ├── references/              # Official Microsoft Learn study guides & posters
 │   └── microsoft/
 │       ├── ai-103-study-guide.md
@@ -45,6 +50,7 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 │       ├── ai-500-study-guide.md
 │       ├── dp-600-study-guide.md
 │       ├── dp-700-study-guide.md
+│       ├── dp-800-study-guide.md
 │       ├── certification-poster.pdf
 │       └── choose-your-microsoft-credential.pdf
 ├── scripts/                 # Python crawler, enrichment, backfill, sync & guide builder tooling
@@ -60,7 +66,8 @@ Crawled Microsoft Data & AI certification exam discussion questions from [examto
 │   └── compare_with_original.py
 ├── state/                   # Crawler checkpoint / resume state
 │   ├── state.json
-│   └── ai-exams-state.json
+│   ├── ai-exams-state.json
+│   └── dp-800-state.json
 └── tests/                   # Unit test suite
     └── test_crawler_and_builder.py
 ```
@@ -71,6 +78,7 @@ Open the unified Exam Hub or any individual guide directly in your browser (from
 
 ```bash
 open guides/index.html
+open guides/dp-800-examtopics-study-guide.html
 open guides/ai-103-examtopics-study-guide.html
 open guides/ai-300-examtopics-study-guide.html
 open guides/ai-500-examtopics-study-guide.html
@@ -101,13 +109,13 @@ python3 -m http.server 8000
 
 ## Regenerating guides
 
-Enrich AI exam metadata & community notes (`ai-103`, `ai-300`, `ai-500`), sync JSONL, and rebuild all HTML guides, Markdown guides, and `guides/index.html`:
+Enrich exam metadata & community notes (`ai-103`, `ai-300`, `ai-500`, `dp-800`), sync JSONL, and rebuild all HTML guides, Markdown guides, and `guides/index.html`:
 
 ```bash
 python3 scripts/enrich_ai_exams.py --apply
-python3 scripts/sync_jsonl.py --files ai-103.json ai-300.json ai-500.json
+python3 scripts/sync_jsonl.py
 python3 scripts/build_study_guide.py \
-  data/dp-600.json data/dp-700.json \
+  data/dp-600.json data/dp-700.json data/dp-800.json \
   data/ai-103.json data/ai-300.json data/ai-500.json \
   --out-dir guides --format both
 ```
@@ -121,10 +129,10 @@ Crawl or refresh specific exam slugs (supports checkpoint resume via `--state-fi
 ```bash
 python3 scripts/crawl_fabric_discussions.py \
   --output-dir data \
-  --exams ai-103 ai-300 ai-500 \
-  --state-file state/ai-exams-state.json \
-  --max-list-pages 260 \
-  --stop-after-empty-pages 65
+  --exams dp-800 \
+  --state-file state/dp-800-state.json \
+  --max-list-pages 320 \
+  --stop-after-empty-pages 80
 ```
 
 Backfill and clean structured community-voted answers for HOTSPOT and DRAG DROP questions from discussion comments:

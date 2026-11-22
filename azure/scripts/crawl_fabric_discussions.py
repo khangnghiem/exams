@@ -54,7 +54,7 @@ DISCUSSION_RE = re.compile(
     re.IGNORECASE,
 )
 
-DEFAULT_EXAMS = ("dp-600", "dp-700", "ai-103", "ai-300", "ai-500")
+DEFAULT_EXAMS = ("dp-600", "dp-700", "dp-800", "ai-103", "ai-300", "ai-500")
 TARGET_EXAMS = {"dp-600", "dp-700"}
 
 # Static placeholder data-id emitted by ExamTopics on 2026 discussion pages.
