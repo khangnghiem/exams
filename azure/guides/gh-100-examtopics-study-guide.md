@@ -2,6 +2,8 @@
 
 _1 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for GH-100 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/github-administration/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q3.4](#q3-4)

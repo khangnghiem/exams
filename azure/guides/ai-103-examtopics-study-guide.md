@@ -2,6 +2,8 @@
 
 _161 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AI-103 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.1](#q1-1)

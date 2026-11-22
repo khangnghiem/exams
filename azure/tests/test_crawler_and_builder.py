@@ -898,6 +898,72 @@ class UnifiedPortfolioAndStateTests(unittest.TestCase):
         self.assertIn("<search", hub_html)
         self.assertIn("text-wrap: balance", hub_html)
 
+    def test_hub_and_guides_render_non_nested_official_registration_links(self) -> None:
+        from html.parser import HTMLParser
+
+        all_slugs = [item["slug"] for item in builder_mod.EXAM_CATALOG]
+        self.assertEqual(len(all_slugs), 28)
+        for slug in all_slugs:
+            reg_url = builder_mod.EXAM_REGISTRATION_URLS.get(slug, "")
+            self.assertTrue(
+                reg_url.startswith("https://learn.microsoft.com/en-us/credentials/certifications/"),
+                f"Missing or invalid registration URL for {slug}: {reg_url}",
+            )
+            self.assertTrue(
+                reg_url.endswith("/?practice-assessment-type=certification"),
+                f"Expected ?practice-assessment-type=certification on {slug}: {reg_url}",
+            )
+
+        self.assertEqual(
+            builder_mod.EXAM_REGISTRATION_URLS["ai-103"],
+            "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/?practice-assessment-type=certification",
+        )
+
+        hub_html = builder_mod.build_index_html(
+            [{"exam": s, "count": 10, "topics": 3} for s in all_slugs]
+        )
+
+        # Verify zero nested <a> elements and zero <a ...><article> wrappers
+        class AnchorNestingAudit(HTMLParser):
+            def __init__(self) -> None:
+                super().__init__()
+                self.anchor_depth = 0
+                self.nested_anchors = 0
+                self.articles_inside_anchor = 0
+
+            def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+                if tag == "a":
+                    if self.anchor_depth > 0:
+                        self.nested_anchors += 1
+                    self.anchor_depth += 1
+                elif tag == "article" and self.anchor_depth > 0:
+                    self.articles_inside_anchor += 1
+
+            def handle_endtag(self, tag: str) -> None:
+                if tag == "a" and self.anchor_depth > 0:
+                    self.anchor_depth -= 1
+
+        audit = AnchorNestingAudit()
+        audit.feed(hub_html)
+        self.assertEqual(audit.nested_anchors, 0)
+        self.assertEqual(audit.articles_inside_anchor, 0)
+
+        # Every card must have a stretched primary heading link and an independent footer registration link
+        for slug in all_slugs:
+            code = slug.upper()
+            reg_url = builder_mod.EXAM_REGISTRATION_URLS[slug]
+            self.assertIn(reg_url, hub_html)
+            self.assertIn(f"Register for {code} on Microsoft Learn", hub_html)
+
+        self.assertIn("a.hub-card-link::after", hub_html)
+        self.assertIn("a:not(.hub-card-link)", hub_html)
+
+        # Individual HTML and Markdown study guides must also surface the official registration link
+        guide_html = builder_mod.build_html("ai-103", [])
+        guide_md = builder_mod.build_markdown("ai-103", [])
+        self.assertIn(builder_mod.EXAM_REGISTRATION_URLS["ai-103"], guide_html)
+        self.assertIn(builder_mod.EXAM_REGISTRATION_URLS["ai-103"], guide_md)
+
 
 class BackfillMissingAnswersTests(unittest.TestCase):
     def test_crawler_unescapes_double_encoded_comment_entities(self) -> None:

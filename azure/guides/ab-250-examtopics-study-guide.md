@@ -2,6 +2,8 @@
 
 _10 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AB-250 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/d365-contact-center-ai-engineer-associate/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.1](#q1-1)

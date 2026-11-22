@@ -2,6 +2,8 @@
 
 _124 questions generated from ExamTopics discussions._
 
+**Official Exam & Registration:** [Register for AB-100 on Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-business-solutions-architect/?practice-assessment-type=certification)
+
 ## Table of contents
 
 - [Q1.1](#q1-1)
