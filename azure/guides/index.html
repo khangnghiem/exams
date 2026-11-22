@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azure AI &amp; Microsoft Fabric Certification Study Hub</title>
+  <title>Microsoft Azure AI, Fabric &amp; GitHub Certification Study Hub</title>
   <style>
     :root {
       color-scheme: light;
@@ -36,6 +36,7 @@
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.42);
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -44,12 +45,14 @@
       line-height: 1.6;
       background: var(--bg);
       color: var(--text);
-      padding: 2rem 1.25rem 4rem;
+      padding: 2rem 1.25rem 4.5rem;
     }
-    .wrap { max-inline-size: 1080px; margin: 0 auto; }
-    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.75rem; }
+    .wrap { max-inline-size: 1120px; margin: 0 auto; }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+    h1, h2, h3 { text-wrap: balance; }
+    .sub, .tier-desc { text-wrap: pretty; }
     h1 { margin: 0.35rem 0 0; font-family: var(--font-display); font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.12; }
-    .sub { margin: 0.5rem 0 0; color: var(--text-secondary); max-inline-size: 64ch; }
+    .sub { margin: 0.5rem 0 0; color: var(--text-secondary); max-inline-size: 68ch; }
     .theme-btn {
       min-block-size: 2.35rem;
       padding: 0.45rem 0.9rem;
@@ -60,13 +63,55 @@
       cursor: pointer;
       font-weight: 700;
     }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1rem; }
+    .hub-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .hub-toolbar input[type="search"] {
+      flex: 1 1 240px;
+      min-block-size: 2.35rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.92rem;
+    }
+    .tier-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tier-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.32rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .tier-pill:hover { border-color: var(--accent); color: var(--accent-ink); }
+    .tier-section { margin-bottom: 2.4rem; scroll-margin-top: 1.25rem; }
+    .tier-header { margin-bottom: 0.95rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .tier-header h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.25rem, 1.08rem + 0.75vw, 1.65rem); line-height: 1.2; }
+    .tier-desc { margin: 0.25rem 0 0; color: var(--text-secondary); font-size: 0.92rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
     .hub-card-link {
       display: flex;
       text-decoration: none;
       color: inherit;
       border-radius: 20px;
     }
+    .hub-card-link[hidden] { display: none; }
     .hub-card {
       display: flex;
       flex-direction: column;
@@ -80,15 +125,16 @@
     }
     .hub-card-link:hover .hub-card,
     .hub-card-link:focus-visible .hub-card { transform: translateY(-2px); border-color: var(--accent); }
-    .hub-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem; }
+    .hub-card-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; }
     .hub-badge { padding: 0.16rem 0.55rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); font-size: 0.74rem; font-weight: 800; }
     .hub-code { font-weight: 900; font-size: 0.95rem; color: var(--accent-ink); }
-    .hub-card h2 { margin: 0 0 0.4rem; font-size: 1.15rem; line-height: 1.3; }
+    .hub-card h3 { margin: 0 0 0.4rem; font-size: 1.12rem; line-height: 1.3; }
     .hub-meta { margin: 0 0 1rem; color: var(--text-secondary); font-size: 0.88rem; }
     .hub-progress { margin-top: auto; }
     .hub-bar { block-size: 0.5rem; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
     .hub-bar-fill { block-size: 100%; inline-size: 0%; background: linear-gradient(90deg, var(--accent), var(--success)); }
     .hub-stats { margin-top: 0.45rem; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); }
+    #tier-expert .hub-badge { background: color-mix(in srgb, var(--accent-soft) 68%, #fde68a 32%); }
   </style>
 </head>
 <body>
@@ -96,14 +142,16 @@
     <header class="top">
       <div>
         <span class="hub-badge">Offline Study Workstation</span>
-        <h1>Microsoft Azure AI &amp; Fabric Study Hub</h1>
-        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all 6 certification guides.</p>
+        <h1>Microsoft Azure AI, Fabric &amp; GitHub Study Hub</h1>
+        <p class="sub">Structured case studies, smart question typography, community vote splits, and persistent offline progress across all 28 certification guides (2243 crawled discussion questions).</p>
       </div>
       <button type="button" id="hub-theme" class="theme-btn" aria-label="Toggle dark mode">🌙</button>
     </header>
-    <section class="grid" aria-label="Available certification study guides">
-      <a class="hub-card-link" href="ai-103-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-103" data-total="161"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-103</span></header><h2>Developing AI Apps and Agents on Azure</h2><p class="hub-meta">161 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 161 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-300-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-300" data-total="107"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-300</span></header><h2>Operationalizing Machine Learning and Generative AI Solutions</h2><p class="hub-meta">107 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 107 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-500-examtopics-study-guide.html"><article class="hub-card" data-exam-card="ai-500" data-total="18"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-500</span></header><h2>Designing and Implementing Multi-Agent AI Solutions</h2><p class="hub-meta">18 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 18 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-600-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-600" data-total="199"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-600</span></header><h2>Implementing Analytics Solutions Using Microsoft Fabric</h2><p class="hub-meta">199 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 199 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-700-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-700" data-total="139"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-700</span></header><h2>Implementing Data Engineering Solutions Using Microsoft Fabric</h2><p class="hub-meta">139 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 139 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-800-examtopics-study-guide.html"><article class="hub-card" data-exam-card="dp-800" data-total="48"><header class="hub-card-top"><span class="hub-badge">2026 SQL &amp; Fabric AI</span><span class="hub-code">DP-800</span></header><h2>Developing AI-Enabled Database Solutions</h2><p class="hub-meta">48 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 48 reviewed (0%)</div></div></article></a>
-    </section>
+    <search class="hub-toolbar" aria-label="Filter certification study guides">
+      <input type="search" id="hub-search" placeholder="Filter exams by code, title, or track (e.g. AI-500, Copilot, Databricks, GH-300)…" aria-label="Filter certification study guides">
+      <div class="tier-pills"><a class="tier-pill" href="#tier-expert">Expert Level Certifications (3)</a><a class="tier-pill" href="#tier-associate">Intermediate &amp; Associate — Azure, Fabric &amp; Microsoft AI (16)</a><a class="tier-pill" href="#tier-github">GitHub Certifications (6)</a><a class="tier-pill" href="#tier-beginner">Beginner &amp; Fundamentals Level (3)</a></div>
+    </search>
+    <section id="tier-expert" class="tier-section" aria-labelledby="tier-heading-expert"><header class="tier-header"><h2 id="tier-heading-expert">Expert Level Certifications</h2><p class="tier-desc">Advanced multi-agent architecture, enterprise AI transformation, and agentic DevOps.</p></header><div class="grid"><a class="hub-card-link" href="ai-500-examtopics-study-guide.html" data-hub-search="ai-500 designing and implementing multi-agent ai solutions expert · multi-agent ai expert level certifications"><article class="hub-card" data-exam-card="ai-500" data-total="18"><header class="hub-card-top"><span class="hub-badge">Expert · Multi-Agent AI</span><span class="hub-code">AI-500</span></header><h3>Designing and Implementing Multi-Agent AI Solutions</h3><p class="hub-meta">18 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 18 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-100-examtopics-study-guide.html" data-hub-search="ab-100 agentic ai business solutions architect expert · agentic architect expert level certifications"><article class="hub-card" data-exam-card="ab-100" data-total="124"><header class="hub-card-top"><span class="hub-badge">Expert · Agentic Architect</span><span class="hub-code">AB-100</span></header><h3>Agentic AI Business Solutions Architect</h3><p class="hub-meta">124 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 124 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="az-401-examtopics-study-guide.html" data-hub-search="az-401 designing and implementing microsoft agentic devops solutions expert · agentic devops expert level certifications"><article class="hub-card" data-exam-card="az-401" data-total="0"><header class="hub-card-top"><span class="hub-badge">Expert · Agentic DevOps</span><span class="hub-code">AZ-401</span></header><h3>Designing and Implementing Microsoft Agentic DevOps Solutions</h3><p class="hub-meta">0 public threads yet · 5 official skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>Awaiting ExamTopics discussions</div></div></article></a></div></section><section id="tier-associate" class="tier-section" aria-labelledby="tier-heading-associate"><header class="tier-header"><h2 id="tier-heading-associate">Intermediate &amp; Associate — Azure, Fabric &amp; Microsoft AI</h2><p class="tier-desc">Role-based Azure AI, MLOps, Microsoft Fabric, Databricks, SQL AI, Copilot Studio, and Cloud/AI Security.</p></header><div class="grid"><a class="hub-card-link" href="ai-103-examtopics-study-guide.html" data-hub-search="ai-103 developing ai apps and agents on azure 2026 azure ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ai-103" data-total="161"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-103</span></header><h3>Developing AI Apps and Agents on Azure</h3><p class="hub-meta">161 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 161 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-200-examtopics-study-guide.html" data-hub-search="ai-200 developing ai cloud solutions on azure 2026 azure ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ai-200" data-total="28"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-200</span></header><h3>Developing AI Cloud Solutions on Azure</h3><p class="hub-meta">28 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 28 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ai-300-examtopics-study-guide.html" data-hub-search="ai-300 operationalizing machine learning and generative ai solutions 2026 azure ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ai-300" data-total="107"><header class="hub-card-top"><span class="hub-badge">2026 Azure AI</span><span class="hub-code">AI-300</span></header><h3>Operationalizing Machine Learning and Generative AI Solutions</h3><p class="hub-meta">107 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 107 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-600-examtopics-study-guide.html" data-hub-search="dp-600 implementing analytics solutions using microsoft fabric microsoft fabric intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="dp-600" data-total="199"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-600</span></header><h3>Implementing Analytics Solutions Using Microsoft Fabric</h3><p class="hub-meta">199 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 199 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-700-examtopics-study-guide.html" data-hub-search="dp-700 implementing data engineering solutions using microsoft fabric microsoft fabric intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="dp-700" data-total="139"><header class="hub-card-top"><span class="hub-badge">Microsoft Fabric</span><span class="hub-code">DP-700</span></header><h3>Implementing Data Engineering Solutions Using Microsoft Fabric</h3><p class="hub-meta">139 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 139 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-750-examtopics-study-guide.html" data-hub-search="dp-750 implementing data engineering solutions using azure databricks azure databricks intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="dp-750" data-total="39"><header class="hub-card-top"><span class="hub-badge">Azure Databricks</span><span class="hub-code">DP-750</span></header><h3>Implementing Data Engineering Solutions Using Azure Databricks</h3><p class="hub-meta">39 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 39 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-800-examtopics-study-guide.html" data-hub-search="dp-800 developing ai-enabled database solutions 2026 sql &amp; fabric ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="dp-800" data-total="48"><header class="hub-card-top"><span class="hub-badge">2026 SQL &amp; Fabric AI</span><span class="hub-code">DP-800</span></header><h3>Developing AI-Enabled Database Solutions</h3><p class="hub-meta">48 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 48 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-620-examtopics-study-guide.html" data-hub-search="ab-620 designing and building integrated ai solutions in copilot studio copilot studio ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-620" data-total="55"><header class="hub-card-top"><span class="hub-badge">Copilot Studio AI</span><span class="hub-code">AB-620</span></header><h3>Designing and Building Integrated AI Solutions in Copilot Studio</h3><p class="hub-meta">55 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 55 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-410-examtopics-study-guide.html" data-hub-search="ab-410 building intelligent applications intelligent apps ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-410" data-total="156"><header class="hub-card-top"><span class="hub-badge">Intelligent Apps AI</span><span class="hub-code">AB-410</span></header><h3>Building Intelligent Applications</h3><p class="hub-meta">156 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 156 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-400-examtopics-study-guide.html" data-hub-search="ab-400 extending microsoft power platform solutions with code and ai power platform ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-400" data-total="0"><header class="hub-card-top"><span class="hub-badge">Power Platform AI</span><span class="hub-code">AB-400</span></header><h3>Extending Microsoft Power Platform Solutions with Code and AI</h3><p class="hub-meta">0 public threads yet · 4 official skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>Awaiting ExamTopics discussions</div></div></article></a><a class="hub-card-link" href="ab-210-examtopics-study-guide.html" data-hub-search="ab-210 accelerating sales pipelines with ai in dynamics 365 dynamics 365 ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-210" data-total="35"><header class="hub-card-top"><span class="hub-badge">Dynamics 365 AI</span><span class="hub-code">AB-210</span></header><h3>Accelerating Sales Pipelines with AI in Dynamics 365</h3><p class="hub-meta">35 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 35 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-250-examtopics-study-guide.html" data-hub-search="ab-250 transforming contact center experiences with ai in dynamics 365 contact center ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-250" data-total="10"><header class="hub-card-top"><span class="hub-badge">Contact Center AI</span><span class="hub-code">AB-250</span></header><h3>Transforming Contact Center Experiences with AI in Dynamics 365</h3><p class="hub-meta">10 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 10 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-650-examtopics-study-guide.html" data-hub-search="ab-650 administering microsoft 365 and ai services m365 &amp; ai admin intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-650" data-total="60"><header class="hub-card-top"><span class="hub-badge">M365 &amp; AI Admin</span><span class="hub-code">AB-650</span></header><h3>Administering Microsoft 365 and AI Services</h3><p class="hub-meta">60 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 60 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-730-examtopics-study-guide.html" data-hub-search="ab-730 ai business professional business ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-730" data-total="89"><header class="hub-card-top"><span class="hub-badge">Business AI</span><span class="hub-code">AB-730</span></header><h3>AI Business Professional</h3><p class="hub-meta">89 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 89 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-731-examtopics-study-guide.html" data-hub-search="ab-731 ai transformation leader business ai intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="ab-731" data-total="100"><header class="hub-card-top"><span class="hub-badge">Business AI</span><span class="hub-code">AB-731</span></header><h3>AI Transformation Leader</h3><p class="hub-meta">100 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 100 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="sc-500-examtopics-study-guide.html" data-hub-search="sc-500 implementing end-to-end security controls for cloud and ai workloads cloud &amp; ai security intermediate &amp; associate — azure, fabric &amp; microsoft ai"><article class="hub-card" data-exam-card="sc-500" data-total="149"><header class="hub-card-top"><span class="hub-badge">Cloud &amp; AI Security</span><span class="hub-code">SC-500</span></header><h3>Implementing End-to-End Security Controls for Cloud and AI Workloads</h3><p class="hub-meta">149 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 149 reviewed (0%)</div></div></article></a></div></section><section id="tier-github" class="tier-section" aria-labelledby="tier-heading-github"><header class="tier-header"><h2 id="tier-heading-github">GitHub Certifications</h2><p class="tier-desc">GitHub Copilot, Agentic AI Developer, Actions CI/CD, Advanced Security, Administration, and Foundations.</p></header><div class="grid"><a class="hub-card-link" href="gh-300-examtopics-study-guide.html" data-hub-search="gh-300 github copilot github copilot github certifications"><article class="hub-card" data-exam-card="gh-300" data-total="103"><header class="hub-card-top"><span class="hub-badge">GitHub Copilot</span><span class="hub-code">GH-300</span></header><h3>GitHub Copilot</h3><p class="hub-meta">103 questions · 7 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 103 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="gh-600-examtopics-study-guide.html" data-hub-search="gh-600 developing in agentic ai systems github agentic ai github certifications"><article class="hub-card" data-exam-card="gh-600" data-total="61"><header class="hub-card-top"><span class="hub-badge">GitHub Agentic AI</span><span class="hub-code">GH-600</span></header><h3>Developing in Agentic AI Systems</h3><p class="hub-meta">61 questions · 6 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 61 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="gh-200-examtopics-study-guide.html" data-hub-search="gh-200 github actions github actions github certifications"><article class="hub-card" data-exam-card="gh-200" data-total="92"><header class="hub-card-top"><span class="hub-badge">GitHub Actions</span><span class="hub-code">GH-200</span></header><h3>GitHub Actions</h3><p class="hub-meta">92 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 92 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="gh-500-examtopics-study-guide.html" data-hub-search="gh-500 github advanced security github security github certifications"><article class="hub-card" data-exam-card="gh-500" data-total="25"><header class="hub-card-top"><span class="hub-badge">GitHub Security</span><span class="hub-code">GH-500</span></header><h3>GitHub Advanced Security</h3><p class="hub-meta">25 questions · 5 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 25 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="gh-100-examtopics-study-guide.html" data-hub-search="gh-100 github enterprise administrator github enterprise github certifications"><article class="hub-card" data-exam-card="gh-100" data-total="1"><header class="hub-card-top"><span class="hub-badge">GitHub Enterprise</span><span class="hub-code">GH-100</span></header><h3>GitHub Enterprise Administrator</h3><p class="hub-meta">1 questions · 1 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 1 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="gh-900-examtopics-study-guide.html" data-hub-search="gh-900 github foundations github foundations github certifications"><article class="hub-card" data-exam-card="gh-900" data-total="19"><header class="hub-card-top"><span class="hub-badge">GitHub Foundations</span><span class="hub-code">GH-900</span></header><h3>GitHub Foundations</h3><p class="hub-meta">19 questions · 6 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 19 reviewed (0%)</div></div></article></a></div></section><section id="tier-beginner" class="tier-section" aria-labelledby="tier-heading-beginner"><header class="tier-header"><h2 id="tier-heading-beginner">Beginner &amp; Fundamentals Level</h2><p class="tier-desc">Foundational Azure AI, Azure Data, and Microsoft 365 Copilot &amp; Agent administration.</p></header><div class="grid"><a class="hub-card-link" href="ai-901-examtopics-study-guide.html" data-hub-search="ai-901 microsoft azure ai fundamentals beginner · azure ai beginner &amp; fundamentals level"><article class="hub-card" data-exam-card="ai-901" data-total="50"><header class="hub-card-top"><span class="hub-badge">Beginner · Azure AI</span><span class="hub-code">AI-901</span></header><h3>Microsoft Azure AI Fundamentals</h3><p class="hub-meta">50 questions · 2 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 50 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="dp-900-examtopics-study-guide.html" data-hub-search="dp-900 microsoft azure data fundamentals beginner · azure data beginner &amp; fundamentals level"><article class="hub-card" data-exam-card="dp-900" data-total="288"><header class="hub-card-top"><span class="hub-badge">Beginner · Azure Data</span><span class="hub-code">DP-900</span></header><h3>Microsoft Azure Data Fundamentals</h3><p class="hub-meta">288 questions · 4 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 288 reviewed (0%)</div></div></article></a><a class="hub-card-link" href="ab-900-examtopics-study-guide.html" data-hub-search="ab-900 microsoft 365 copilot and agent administration fundamentals beginner · copilot &amp; agents beginner &amp; fundamentals level"><article class="hub-card" data-exam-card="ab-900" data-total="87"><header class="hub-card-top"><span class="hub-badge">Beginner · Copilot &amp; Agents</span><span class="hub-code">AB-900</span></header><h3>Microsoft 365 Copilot and Agent Administration Fundamentals</h3><p class="hub-meta">87 questions · 3 skill areas</p><div class="hub-progress"><div class="hub-bar"><div class="hub-bar-fill" data-fill></div></div><div class="hub-stats" data-stats>0 / 87 reviewed (0%)</div></div></article></a></div></section>
   </main>
   <script>
     const themeBtn = document.getElementById('hub-theme');
@@ -124,7 +172,8 @@
 
     document.querySelectorAll('[data-exam-card]').forEach(card => {
       const slug = card.dataset.examCard;
-      const total = Number(card.dataset.total) || 1;
+      const total = Number(card.dataset.total) || 0;
+      if (total <= 0) return;
       let rev = [];
       let bm = [];
       try { rev = JSON.parse(localStorage.getItem(`examguide-v2-${slug}-reviewed`) || '[]'); } catch (e) {}
@@ -135,6 +184,23 @@
       if (fill) fill.style.inlineSize = `${pct}%`;
       if (stats) stats.textContent = `${rev.length} / ${total} reviewed (${pct}%)${bm.length ? ' · ★ ' + bm.length : ''}`;
     });
+
+    const hubSearch = document.getElementById('hub-search');
+    if (hubSearch) {
+      hubSearch.addEventListener('input', () => {
+        const q = hubSearch.value.trim().toLowerCase();
+        document.querySelectorAll('.tier-section').forEach(sec => {
+          let visibleInTier = 0;
+          sec.querySelectorAll('.hub-card-link').forEach(link => {
+            const hay = link.dataset.hubSearch || '';
+            const match = !q || hay.includes(q);
+            link.hidden = !match;
+            if (match) visibleInTier++;
+          });
+          sec.hidden = visibleInTier === 0;
+        });
+      });
+    }
   </script>
 </body>
 </html>

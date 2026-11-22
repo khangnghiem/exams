@@ -1,0 +1,3021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AB-250 Transforming Contact Center Experiences with AI in Dynamics 365 Study Guide</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      --bg: #f4efe7;
+      --bg-rgb: 244 239 231;
+      --surface: #fffdf8;
+      --surface-rgb: 255 253 248;
+      --surface-2: #f8f1e5;
+      --text: #211f1b;
+      --text-secondary: #625a50;
+      --muted: #877d70;
+      --accent: #175cd3;
+      --accent-ink: #0f3f92;
+      --accent-soft: #dbeafe;
+      --accent-contrast: #fff;
+      --success: #147a46;
+      --success-bg: #dcfce7;
+      --success-ink: #145236;
+      --success-contrast: #fff;
+      --warning: #b45309;
+      --warning-bg: #fef3c7;
+      --warning-ink: #78350f;
+      --danger: #b42318;
+      --danger-bg: #fee2e2;
+      --danger-ink: #7f1d1d;
+      --border: #e0d4c3;
+      --border-strong: #c8b89f;
+      --shadow: 0 18px 55px rgba(52, 38, 20, 0.11), 0 2px 8px rgba(52, 38, 20, 0.06);
+      --shadow-soft: 0 10px 30px rgba(52, 38, 20, 0.08);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --content-width: 1120px;
+      --rail-width: 286px;
+      --header-height: 3.85rem;
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #10141f;
+      --bg-rgb: 16 20 31;
+      --surface: #171d2b;
+      --surface-rgb: 23 29 43;
+      --surface-2: #20283a;
+      --text: #f5efe7;
+      --text-secondary: #b7ad9d;
+      --muted: #8c8479;
+      --accent: #8ab4ff;
+      --accent-ink: #d7e6ff;
+      --accent-soft: #19345f;
+      --accent-contrast: #10141f;
+      --success: #62d393;
+      --success-bg: #173c2a;
+      --success-ink: #bbf7d0;
+      --success-contrast: #10141f;
+      --warning: #fbbf24;
+      --warning-bg: #3a2a0d;
+      --warning-ink: #fde68a;
+      --danger: #ff8a80;
+      --danger-bg: #3f1c1c;
+      --danger-ink: #fecaca;
+      --border: #333b4d;
+      --border-strong: #4a556f;
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.42), 0 2px 10px rgba(0, 0, 0, 0.25);
+      --shadow-soft: 0 12px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-height) + 1rem);
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1.0625rem;
+      line-height: 1.62;
+      text-align: start;
+      overflow-wrap: break-word;
+      background:
+        radial-gradient(circle at top left, rgb(23 92 211 / 0.14), transparent 34rem),
+        radial-gradient(circle at top right, rgb(180 83 9 / 0.1), transparent 32rem),
+        linear-gradient(180deg, rgb(var(--bg-rgb)) 0%, var(--bg) 48%, color-mix(in srgb, var(--bg) 90%, #000 10%) 100%);
+    }
+    a { color: inherit; }
+    img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--border); }
+    pre { background: var(--surface-2); padding: 0.9rem 1rem; border-radius: 12px; overflow-x: auto; border: 1px solid var(--border); }
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.88em;
+      padding: 0.1rem 0.36rem;
+      border-radius: 6px;
+      background: color-mix(in srgb, var(--surface-2) 86%, var(--accent-soft) 14%);
+      border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+    }
+    pre code { padding: 0; border: 0; background: transparent; font-size: 0.9em; }
+
+    button, .btn {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      min-block-size: 2.35rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      background: var(--accent);
+      color: var(--accent-contrast);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 0.86rem;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: transform 150ms ease, background 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease;
+    }
+    button:hover, .btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgb(23 92 211 / 0.16); }
+    button:active, .btn:active { transform: translateY(0); }
+    button.secondary, .btn.secondary {
+      background: rgb(var(--surface-rgb) / 0.78);
+      color: var(--text);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+    button.ghost, .btn.ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: transparent;
+      box-shadow: none;
+    }
+    button.active, .btn.active {
+      background: var(--success);
+      color: var(--success-contrast);
+      border-color: var(--success);
+    }
+    button.bookmarked {
+      background: var(--warning-bg);
+      color: var(--warning-ink);
+      border-color: color-mix(in srgb, var(--warning) 45%, var(--border));
+    }
+    button:focus-visible, a:focus-visible, summary:focus-visible, input:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--accent) 72%, white 28%);
+      outline-offset: 2px;
+    }
+
+    #progress-bar {
+      position: fixed;
+      inset: 0 auto auto 0;
+      block-size: 4px;
+      inline-size: 0%;
+      z-index: 200;
+      background: linear-gradient(90deg, var(--accent), #22c55e);
+      transition: inline-size 200ms ease, width 200ms ease;
+    }
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: 0.75rem;
+      z-index: 300;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    header.app-header {
+      position: sticky;
+      top: 0;
+      z-index: 120;
+      border-bottom: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+      background: rgb(var(--surface-rgb) / 0.88);
+      backdrop-filter: blur(16px) saturate(140%);
+    }
+    .header-inner {
+      max-inline-size: calc(var(--content-width) + var(--rail-width) + 3.5rem);
+      min-block-size: 3.75rem;
+      margin: 0 auto;
+      padding: 0.45rem 1.15rem;
+      display: flex;
+      gap: 0.85rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand { min-inline-size: 0; flex: 1; }
+    .brand-row { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; }
+    .brand h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.02rem, 0.9rem + 0.55vw, 1.4rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .brand .stats {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-top: 0.1rem;
+    }
+    .controls { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; justify-content: flex-end; }
+    .controls button, .controls .btn { min-block-size: 2.2rem; padding-inline: 0.72rem; font-size: 0.82rem; }
+
+    #exam-switcher-menu {
+      margin: 0.4rem auto auto 1rem;
+      padding: 0.55rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      min-inline-size: 270px;
+      max-inline-size: min(92dvw, 29rem);
+      max-block-size: min(78dvh, 36rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    #exam-switcher-menu:is(:popover-open, .\:popover-open) { display: grid; gap: 0.22rem; }
+    .switcher-tier-heading {
+      margin: 0.45rem 0.55rem 0.15rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    #exam-switcher-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0.7rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+    #exam-switcher-menu a:hover, #exam-switcher-menu a[aria-current="page"] {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+    }
+
+    main {
+      position: relative;
+      max-inline-size: calc(var(--content-width) + var(--rail-width) + 3.5rem);
+      margin: 0 auto;
+      padding: 1rem 1.15rem 6rem;
+    }
+
+    /* Compact collapsible overview strip (content-first noise reduction) */
+    .overview-banner {
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgb(var(--surface-rgb) / 0.86);
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 0.9rem;
+      padding: 0.65rem 1rem;
+    }
+    .overview-banner > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .overview-banner > summary::-webkit-details-marker { display: none; }
+    .overview-summary-left { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    .overview-summary-left::before {
+      content: "▸";
+      display: inline-block;
+      color: var(--accent-ink);
+      font-weight: 900;
+      transition: rotate 160ms ease;
+    }
+    .overview-banner[open] > summary .overview-summary-left::before { rotate: 90deg; }
+    .overview-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+    .overview-metrics {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+    .metric {
+      flex: 1 1 110px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.55rem 0.75rem;
+      background: rgb(var(--surface-rgb) / 0.65);
+    }
+    .metric strong { display: block; font-size: 1.15rem; line-height: 1.1; }
+    .metric span { color: var(--text-secondary); font-size: 0.78rem; }
+    .kbd-bar {
+      margin-top: 0.6rem;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    kbd {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 0.08rem 0.36rem;
+      border-radius: 5px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-2);
+    }
+
+    /* Search & Filter Toolbar */
+    .study-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgb(var(--surface-rgb) / 0.86);
+      box-shadow: var(--shadow-soft);
+    }
+    .search-box {
+      position: relative;
+      flex: 1 1 220px;
+      min-inline-size: 190px;
+    }
+    .search-box input {
+      inline-size: 100%;
+      min-block-size: 2.25rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.88rem;
+    }
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+    .filter-chip {
+      min-block-size: 2rem;
+      padding: 0.28rem 0.68rem;
+      font-size: 0.79rem;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+    .filter-chip[aria-pressed="true"] {
+      background: var(--accent);
+      color: var(--accent-contrast);
+      border-color: var(--accent);
+    }
+    .filter-count {
+      margin-inline-start: auto;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .filter-empty {
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      background: rgb(var(--surface-rgb) / 0.8);
+    }
+
+    .study-layout {
+      display: grid;
+      grid-template-columns: var(--rail-width) minmax(0, 1fr);
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .study-map {
+      position: sticky;
+      top: calc(var(--header-height) + 0.75rem);
+      scroll-margin-top: calc(var(--header-height) + 0.75rem);
+      max-block-size: calc(100vh - var(--header-height) - 1.5rem);
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem;
+      background: rgb(var(--surface-rgb) / 0.88);
+      box-shadow: var(--shadow-soft);
+    }
+    .nav-sidebar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.7rem;
+      padding: 0.3rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgb(var(--surface-rgb) / 0.72);
+    }
+    .nav-sidebar button { min-inline-size: 2.5rem; min-block-size: 2.15rem; padding: 0 0.7rem; }
+    .nav-sidebar .nav-status { text-align: center; color: var(--text-secondary); font-size: 0.82rem; font-weight: 800; }
+    .nav-sidebar button:disabled, .nav-floating button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .map-mode-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem;
+      padding: 0.24rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      margin-bottom: 0.65rem;
+    }
+    .map-mode-btn {
+      min-block-size: 1.85rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.76rem;
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: transparent;
+      box-shadow: none;
+    }
+    .map-mode-btn[aria-pressed="true"] {
+      background: var(--surface);
+      color: var(--accent-ink);
+      border-color: var(--border);
+    }
+
+    .study-map h2 { margin: 0 0 0.2rem; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+    .map-note { margin: 0 0 0.65rem; color: var(--muted); font-size: 0.78rem; }
+
+    .toc-topic { border-top: 1px solid var(--border); padding-top: 0.55rem; margin-top: 0.55rem; }
+    .toc-topic:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+    .toc-topic > summary, .toc-chunk > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45ch;
+      font-weight: 700;
+      font-size: 0.84rem;
+      color: var(--text);
+      text-align: start;
+    }
+    .toc-topic > summary::-webkit-details-marker, .toc-chunk > summary::-webkit-details-marker { display: none; }
+    .toc-topic > summary::before, .toc-chunk > summary::before {
+      content: "▸";
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: rotate 150ms ease;
+    }
+    .toc-topic[open] > summary::before, .toc-chunk[open] > summary::before { rotate: 90deg; }
+    .toc-chunk { margin-top: 0.45rem; padding-inline-start: 0.35rem; }
+    .toc-chunk > summary { color: var(--text-secondary); font-size: 0.79rem; font-weight: 600; }
+
+    .toc-links {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.34rem;
+      list-style: none;
+      margin: 0.45rem 0 0;
+      padding: 0;
+    }
+    .toc-links a {
+      display: grid;
+      place-items: center;
+      min-block-size: 2rem;
+      padding: 0.15rem 0.25rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: rgb(var(--surface-rgb) / 0.55);
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+    .toc-links a:hover, .toc-links a.current {
+      color: var(--accent-ink);
+      border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+      background: var(--accent-soft);
+    }
+    .toc-links a.reviewed {
+      color: var(--success-ink);
+      background: var(--success-bg);
+      border-color: color-mix(in srgb, var(--success) 42%, var(--border));
+    }
+    .toc-links a.bookmarked {
+      box-shadow: inset 0 -3px 0 var(--warning);
+    }
+    .toc-links a.filtered-out { opacity: 0.25; }
+    .toc-links a.current.reviewed {
+      color: var(--accent-ink);
+      background: linear-gradient(135deg, var(--accent-soft), var(--success-bg));
+      border-color: var(--accent);
+    }
+
+    /* Question Card */
+    .question {
+      position: relative;
+      scroll-margin-top: calc(var(--header-height) + 0.85rem);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgb(var(--surface-rgb) / 0.98), rgb(var(--surface-rgb) / 0.92));
+      box-shadow: var(--shadow);
+      padding: clamp(1rem, 0.8rem + 1.2vw, 1.5rem);
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .question.active { display: block; animation: fadeIn 180ms ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    .question.current { border-color: color-mix(in srgb, var(--accent) 48%, var(--border)); }
+    .question.reviewed { border-inline-start: 6px solid var(--success); }
+
+    .q-header {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.85rem;
+    }
+    .q-title { display: flex; gap: 0.45rem; align-items: center; flex-wrap: wrap; }
+    .q-num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .q-id, .q-badge {
+      display: inline-flex;
+      align-items: center;
+      min-block-size: 1.6rem;
+      padding: 0.16rem 0.52rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .q-badge { color: var(--warning-ink); background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .q-badge.skill-badge { color: var(--accent-ink); background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 28%, var(--border)); }
+    .q-badge.contested-badge { color: var(--danger-ink); background: var(--danger-bg); border-color: color-mix(in srgb, var(--danger) 35%, var(--border)); }
+    .q-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
+    .q-actions button { min-block-size: 2.15rem; padding-inline: 0.72rem; }
+
+    /* Case Study Sibling Jumper & 2-Column Split-Pane Inspector */
+    .cs-jumper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--accent-soft) 42%, var(--surface-2) 58%);
+      border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
+      font-size: 0.82rem;
+    }
+    .cs-jumper-title { font-weight: 800; color: var(--accent-ink); }
+    .cs-jumper-links { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .cs-jumper-links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+    }
+    .cs-jumper-links a[aria-current="true"] {
+      background: var(--accent);
+      color: var(--accent-contrast);
+      border-color: var(--accent);
+    }
+
+    .q-case-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    @media (min-width: 1160px) {
+      .q-case-grid {
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+      }
+      .q-case-grid .case-study-panel {
+        position: sticky;
+        top: calc(var(--header-height) + 0.85rem);
+        max-block-size: calc(100vh - var(--header-height) - 1.7rem);
+        overflow-y: auto;
+      }
+    }
+
+    .case-study-panel {
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 0.75rem;
+      background: color-mix(in srgb, var(--surface-2) 72%, var(--surface) 28%);
+    }
+    .cs-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cs-panel-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+    }
+    .cs-toggle-all {
+      min-block-size: 1.8rem;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    /* Native <details> Case Study Accordion (modern-web-guidance: accordion) */
+    .cs-section {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgb(var(--surface-rgb) / 0.86);
+      margin-top: 0.45rem;
+    }
+    .cs-section:first-of-type { margin-top: 0; }
+    .cs-section.relevant {
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+      background: color-mix(in srgb, var(--accent-soft) 24%, var(--surface) 76%);
+    }
+    .cs-section > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5ch;
+      padding: 0.55rem 0.75rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .cs-section > summary::-webkit-details-marker { display: none; }
+    .cs-section > summary .section-title {
+      display: inline;
+      margin: 0;
+      font-size: inherit;
+      font-weight: inherit;
+      color: inherit;
+    }
+    .cs-section > summary::before {
+      content: "▾";
+      display: inline-block;
+      flex-shrink: 0;
+      color: var(--accent-ink);
+      rotate: -90deg;
+    }
+    .cs-section > summary:dir(rtl)::before { rotate: 90deg; }
+    .cs-section[open] > summary::before { rotate: 0deg; }
+    .cs-relevant-pill {
+      margin-inline-start: auto;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .cs-section::details-content {
+      interpolate-size: allow-keywords;
+      overflow: clip;
+      contain: layout;
+    }
+    .cs-section:not([open])::details-content { block-size: 0; }
+    @media (prefers-reduced-motion: no-preference) {
+      .cs-section > summary::before { transition: rotate 0.18s ease; }
+      .cs-section::details-content {
+        transition: block-size 0.24s ease-in-out, content-visibility 0.24s ease-in-out, display 0.24s ease-in-out;
+        transition-behavior: allow-discrete;
+      }
+    }
+    .cs-section-body {
+      padding: 0.15rem 0.8rem 0.75rem;
+      font-size: 0.93rem;
+      line-height: 1.58;
+      color: var(--text);
+      max-inline-size: 70ch;
+    }
+    .cs-section-body p, .q-prompt p, .comment-body { text-wrap: pretty; }
+    .cs-section-body p { margin: 0.45rem 0; }
+    .cs-subheading {
+      margin: 0.7rem 0 0.25rem;
+      font-weight: 800;
+      font-size: 0.84rem;
+      color: var(--accent-ink);
+    }
+
+    /* Prompt & Smart Stem Typography */
+    .prompt-card {
+      position: relative;
+      border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border));
+      border-radius: 18px;
+      padding: clamp(0.95rem, 0.8rem + 0.8vw, 1.3rem);
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 52%, var(--surface) 48%), rgb(var(--surface-rgb) / 0.9));
+    }
+    .prompt-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.45rem;
+      color: var(--accent-ink);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .q-prompt {
+      max-inline-size: 72ch;
+      font-size: 1rem;
+      line-height: 1.62;
+      font-weight: 400;
+      color: var(--text);
+    }
+    .q-prompt p { margin: 0.55rem 0; }
+    .q-prompt p:first-child { margin-top: 0; }
+    .q-prompt p:last-child { margin-bottom: 0; }
+    .q-prompt .prompt-lead {
+      font-size: clamp(1.05rem, 0.96rem + 0.32vw, 1.2rem);
+      line-height: 1.52;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.75rem;
+    }
+    .q-prompt .prompt-lead:first-child { margin-top: 0; }
+    .stem-list {
+      margin: 0.45rem 0 0.7rem;
+      padding-inline-start: 1.35rem;
+      max-inline-size: 70ch;
+    }
+    .stem-list li { margin-bottom: 0.32rem; line-height: 1.55; }
+    .proposed-solution {
+      margin: 0.7rem 0;
+      padding: 0.65rem 0.85rem;
+      border-radius: 12px;
+      border-inline-start: 4px solid var(--accent);
+      background: rgb(var(--surface-rgb) / 0.9);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .proposed-solution .solution-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent-ink);
+      margin-bottom: 0.2rem;
+    }
+    .proposed-solution p { margin: 0; font-weight: 600; }
+    .exam-instruction-note {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-top: 0.55rem !important;
+    }
+    .section-title {
+      display: block;
+      margin: 0.85rem 0 0.2rem;
+      color: var(--accent-ink);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    /* Choices */
+    .choices {
+      list-style: none;
+      padding: 0;
+      margin: 0.95rem 0 0;
+      display: grid;
+      gap: 0.58rem;
+    }
+    .choices li {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgb(var(--surface-rgb) / 0.8);
+      transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+      overflow: hidden;
+    }
+    .choices li:hover { transform: translateX(2px); border-color: var(--border-strong); }
+    .choices input { position: absolute; opacity: 0; inline-size: 1px; block-size: 1px; }
+    .choices label {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      padding: 0.78rem 0.95rem;
+      cursor: pointer;
+    }
+    .choices .letter {
+      display: inline-grid;
+      place-items: center;
+      min-inline-size: 1.95rem;
+      min-block-size: 1.95rem;
+      border-radius: 50%;
+      background: var(--surface-2);
+      color: var(--accent-ink);
+      border: 1px solid var(--border);
+      font-weight: 800;
+      line-height: 1;
+    }
+    .choices input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: -3px; border-radius: 14px; }
+    .choices input:checked + label { background: color-mix(in srgb, var(--accent-soft) 55%, transparent); border-color: var(--accent); }
+    .choices input:checked + label .letter { color: var(--accent-soft); background: var(--accent-ink); border-color: var(--accent-ink); }
+
+    .question.revealed .choices label { padding-inline-end: 8.5rem; }
+    .choice-option {
+      display: inline-block;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+    .question.revealed .choices li.correct {
+      background: color-mix(in srgb, var(--success-bg) 88%, var(--surface) 12%);
+      border-color: var(--success);
+    }
+    .question.revealed .choices li.correct .letter { color: var(--success-bg); background: var(--success-ink); border-color: var(--success-ink); }
+    .question.revealed .choices li.incorrect {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--danger-bg) 92%, var(--surface) 8%), color-mix(in srgb, var(--danger-bg) 76%, transparent));
+      border-color: var(--danger);
+      box-shadow: inset 4px 0 0 var(--danger);
+    }
+    .question.revealed .choices li.incorrect .letter { color: var(--danger-bg); background: var(--danger-ink); border-color: var(--danger-ink); }
+    .question.revealed .choices li.incorrect label > span:last-child {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: color-mix(in srgb, var(--danger) 70%, transparent);
+    }
+    .question.revealed .choices li.correct.missed {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--success-bg) 82%, var(--surface) 18%), color-mix(in srgb, var(--warning-bg) 28%, var(--success-bg) 72%));
+      border-color: var(--success);
+      box-shadow: inset 4px 0 0 var(--success);
+    }
+    .question.revealed .choices li.correct.missed .letter { color: var(--success-bg); background: var(--success-ink); border-color: var(--success-ink); }
+    .question.revealed .choices li::after {
+      position: absolute;
+      top: 50%;
+      right: 0.8rem;
+      transform: translateY(-50%);
+      padding: 0.24rem 0.54rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+    .question.revealed .choices li.incorrect::after {
+      content: "✕ Your answer";
+      color: var(--danger-ink);
+      background: color-mix(in srgb, var(--danger-bg) 84%, var(--surface) 16%);
+      border: 1px solid color-mix(in srgb, var(--danger) 55%, var(--border));
+    }
+    .question.revealed .choices li.correct:not(.missed)::after {
+      content: "✓ Correct";
+      color: var(--success-ink);
+      background: color-mix(in srgb, var(--success-bg) 84%, var(--surface) 16%);
+      border: 1px solid color-mix(in srgb, var(--success) 55%, var(--border));
+    }
+    .question.revealed .choices li.correct.missed::after {
+      content: "✓ Correct answer";
+      color: var(--success-ink);
+      background: color-mix(in srgb, var(--success-bg) 84%, var(--surface) 16%);
+      border: 1px solid color-mix(in srgb, var(--success) 55%, var(--border));
+    }
+
+    .answer-status {
+      margin-top: 0.7rem;
+      padding: 0.6rem 0.85rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      min-block-size: 2.35rem;
+    }
+    .answer-status.empty { color: var(--muted); font-weight: 500; }
+    .answer-status.correct, .answer-status.incorrect, .answer-status.partial {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid transparent;
+    }
+    .answer-status.correct::before, .answer-status.incorrect::before, .answer-status.partial::before {
+      display: inline-grid;
+      place-items: center;
+      min-inline-size: 1.6rem;
+      min-block-size: 1.6rem;
+      border-radius: 50%;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .answer-status.correct { color: var(--success-ink); background: var(--success-bg); border-color: var(--success); }
+    .answer-status.correct::before { content: "✓"; color: var(--success-bg); background: var(--success-ink); }
+    .answer-status.incorrect { color: var(--danger-ink); background: var(--danger-bg); border-color: var(--danger); }
+    .answer-status.incorrect::before { content: "✕"; color: var(--danger-bg); background: var(--danger-ink); }
+    .answer-status.partial { color: var(--warning-ink); background: var(--warning-bg); border-color: var(--warning); }
+    .answer-status.partial::before { content: "◐"; color: var(--warning-bg); background: var(--warning-ink); }
+
+    /* Answer Shell, Vote Distribution, Self-Grade & Comments */
+    .answer-shell { margin-top: 0.95rem; }
+    .answer-locked {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: 16px;
+      padding: 0.75rem 0.9rem;
+      background: color-mix(in srgb, var(--surface-2) 62%, transparent);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .answer-locked strong { color: var(--text); }
+    .answer-revealed {
+      display: none;
+      border: 1px solid color-mix(in srgb, var(--success) 36%, var(--border));
+      border-radius: 16px;
+      padding: 0.95rem;
+      background: color-mix(in srgb, var(--success-bg) 72%, var(--surface) 28%);
+      color: var(--text);
+    }
+    .question.revealed .answer-locked { display: none; }
+    .question.revealed .answer-revealed { display: block; animation: reveal 200ms ease-out; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .answer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.65rem; }
+    .answer-grid.answer-grid-single { grid-template-columns: minmax(0, 1fr); }
+    .answer-card {
+      border: 1px solid color-mix(in srgb, var(--success) 28%, var(--border));
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      background: rgb(var(--surface-rgb) / 0.84);
+    }
+    .answer-card .label-row { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; margin-bottom: 0.25rem; }
+    .answer-card .label { color: var(--success-ink); font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .answer-card strong { font-size: 1.02rem; }
+    .answer-pairs {
+      margin: 0.45rem 0 0;
+      display: grid;
+      gap: 0.4rem;
+    }
+    .answer-pair-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.3rem 0.5rem;
+      padding: 0.42rem 0.65rem;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--surface) 78%, transparent);
+      border: 1px solid color-mix(in srgb, var(--success) 22%, var(--border));
+    }
+    .answer-pair-row dt {
+      font-weight: 700;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+    }
+    .answer-pair-row dt::after { content: ":"; }
+    .answer-pair-row dd {
+      margin: 0;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.97rem;
+    }
+    .answer-list {
+      margin: 0.45rem 0 0;
+      padding-left: 1.3rem;
+      display: grid;
+      gap: 0.32rem;
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+    .answer-prose {
+      margin: 0.4rem 0 0;
+      white-space: pre-line;
+      font-size: 0.96rem;
+      line-height: 1.56;
+      font-weight: 500;
+    }
+    .mv-lines { font-size: 0.92rem; line-height: 1.5; }
+    .mv-lines div + div { margin-top: 0.25rem; padding-top: 0.25rem; border-top: 1px dashed var(--border); }
+    .confidence-badge {
+      padding: 0.08rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      background: var(--warning-bg);
+      color: var(--warning-ink);
+      border: 1px solid color-mix(in srgb, var(--warning) 35%, var(--border));
+    }
+    .answer-card.answer-missing { background: var(--warning-bg); border-color: color-mix(in srgb, var(--warning) 30%, var(--border)); }
+    .answer-card.answer-missing .label { color: var(--warning-ink); }
+
+    .vote-bars {
+      margin-top: 0.7rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 12px;
+      background: rgb(var(--surface-rgb) / 0.82);
+      border: 1px solid var(--border);
+    }
+    .vote-bars-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+    .vote-bar-row {
+      display: grid;
+      grid-template-columns: minmax(2.5rem, auto) 1fr auto;
+      gap: 0.55rem;
+      align-items: center;
+      font-size: 0.82rem;
+      margin-top: 0.28rem;
+    }
+    .vote-bar-track {
+      block-size: 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .vote-bar-fill {
+      block-size: 100%;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .self-grade-controls {
+      margin-top: 0.75rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 12px;
+      background: rgb(var(--surface-rgb) / 0.84);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .self-grade-prompt { font-size: 0.84rem; font-weight: 700; color: var(--text-secondary); margin-inline-end: auto; }
+    .btn-self-grade[aria-pressed="true"][data-self-grade="correct"] {
+      background: var(--success);
+      color: var(--success-contrast);
+      border-color: var(--success);
+    }
+    .btn-self-grade[aria-pressed="true"][data-self-grade="incorrect"] {
+      background: var(--danger);
+      color: #fff;
+      border-color: var(--danger);
+    }
+
+    .comments { margin-top: 0.8rem; border-top: 1px solid color-mix(in srgb, var(--success) 24%, var(--border)); padding-top: 0.75rem; }
+    .comments > summary, .comments-more > summary {
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .comments-more { margin-top: 0.5rem; padding-top: 0.45rem; border-top: 1px dashed var(--border); }
+    .comment { padding: 0.65rem 0; border-top: 1px solid color-mix(in srgb, var(--success) 18%, var(--border)); }
+    .comment:first-of-type { border-top: 0; }
+    .comment-meta { color: var(--text-secondary); font-size: 0.82rem; margin-bottom: 0.22rem; }
+    .comment .badge {
+      display: inline-block;
+      margin-inline-start: 0.35rem;
+      padding: 0.1rem 0.42rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+    .answer-tools {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .thread-link {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-ink);
+      text-decoration: underline;
+    }
+
+    /* Exhibits & Zoom Trigger */
+    .exhibits { margin-top: 0.9rem; display: grid; gap: 0.85rem; }
+    .exhibit { margin: 0; border: 1px solid var(--border); border-radius: 16px; padding: 0.7rem; background: rgb(var(--surface-rgb) / 0.75); }
+    .exhibit-zoom-btn {
+      display: block;
+      inline-size: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      cursor: zoom-in;
+      box-shadow: none;
+    }
+    .exhibit-zoom-btn:hover { transform: none; box-shadow: 0 0 0 2px var(--accent); }
+    .exhibit img { display: block; margin: 0 auto; max-inline-size: 100%; height: auto; border-radius: 10px; border: 1px solid var(--border); }
+    .exhibit figcaption { margin-top: 0.45rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem; font-weight: 700; }
+    .exhibit pre { margin: 0; }
+    .exhibit table { border-collapse: collapse; inline-size: 100%; font-size: 0.9rem; }
+    .exhibit table th, .exhibit table td { border: 1px solid var(--border); padding: 0.4rem 0.6rem; }
+    .exhibit-missing { padding: 0.9rem; text-align: center; background: var(--warning-bg); color: var(--warning-ink); }
+    .exhibit-missing-title { font-weight: 800; margin-bottom: 0.3rem; }
+    .exhibit-missing a { color: var(--accent-ink); text-decoration: underline; }
+
+    /* Native Modal <dialog> (modern-web-guidance: dialog & light-dismiss-a-dialog) */
+    dialog.app-dialog {
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      max-inline-size: min(94vw, 520px);
+    }
+    dialog.lightbox-dialog {
+      max-inline-size: min(96vw, 1280px);
+      max-block-size: 92vh;
+      padding: 0.9rem;
+    }
+    dialog.lightbox-dialog[open] {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 0.65rem;
+    }
+    dialog:modal {
+      overscroll-behavior: contain;
+    }
+    dialog::backdrop {
+      overflow: hidden;
+      overscroll-behavior: contain;
+      background: rgba(8, 12, 22, 0.72);
+      backdrop-filter: blur(3px);
+    }
+    .dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .dialog-header h2 { margin: 0; font-size: 1rem; }
+    .lightbox-stage { overflow: auto; display: grid; place-items: center; }
+    .lightbox-stage img { max-inline-size: 100%; max-block-size: 80vh; width: auto; height: auto; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; }
+
+    /* Drag-drop & other widgets */
+    .dragdrop-widget, .other-widget {
+      margin-top: 0.9rem;
+      padding: 0.9rem;
+      border: 1px dashed var(--border-strong);
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--surface-2) 60%, transparent);
+    }
+    .widget-note { color: var(--text-secondary); font-size: 0.88rem; margin: 0 0 0.65rem; }
+    .dragdrop-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 0.9rem; margin-top: 0.65rem; }
+    .dragdrop-column { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgb(var(--surface-rgb) / 0.68); }
+    .dragdrop-column-title { margin: 0 0 0.5rem; font-size: 0.76rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); font-weight: 800; }
+    .dragdrop-chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; min-block-size: 2.6rem; }
+    .dragdrop-targets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+    .dragdrop-chip {
+      cursor: grab;
+      user-select: none;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      background: rgb(var(--surface-rgb) / 0.88);
+      border: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 0.84rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .dragdrop-chip.selected { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
+    .dragdrop-chip.placed { opacity: 0.55; cursor: default; background: var(--surface-2); color: var(--text-secondary); border-style: dashed; }
+    .dragdrop-target {
+      position: relative;
+      padding: 0.55rem 2.1rem 0.55rem 0.8rem;
+      border-radius: 10px;
+      border: 1px dashed var(--border-strong);
+      background: rgb(var(--surface-rgb) / 0.85);
+      color: var(--text-secondary);
+      min-block-size: 2.3rem;
+      font-size: 0.88rem;
+    }
+    .dragdrop-target.drop-hover { border-color: var(--accent); background: var(--accent-soft); }
+    .dragdrop-target.filled { color: var(--text); border-style: solid; background: rgb(var(--surface-rgb)); font-weight: 700; }
+    .dragdrop-target .dragdrop-clear {
+      position: absolute;
+      top: 50%;
+      right: 0.45rem;
+      transform: translateY(-50%);
+      min-inline-size: 1.55rem;
+      min-block-size: 1.55rem;
+      padding: 0;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      display: none;
+    }
+    .dragdrop-target.filled .dragdrop-clear { display: inline-flex; }
+
+    .nav-floating {
+      position: fixed;
+      left: 50%;
+      bottom: max(0.85rem, env(safe-area-inset-bottom));
+      z-index: 110;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+      padding: 0.4rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgb(var(--surface-rgb) / 0.9);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+    .nav-floating button { min-inline-size: 2.8rem; min-block-size: 2.65rem; padding: 0 0.95rem; }
+    .nav-floating .nav-status { min-inline-size: 92px; text-align: center; color: var(--text-secondary); font-size: 0.84rem; font-weight: 800; }
+
+    .mobile-only { display: none !important; }
+    .desktop-only { display: inline-flex !important; }
+
+    @media (max-width: 1060px) {
+      .study-layout { grid-template-columns: 1fr; }
+      .study-map { position: relative; top: auto; max-block-size: none; }
+      .study-map.collapsed { display: none; }
+      .toc-links { grid-template-columns: repeat(auto-fill, minmax(58px, 1fr)); }
+      .mobile-only { display: inline-flex !important; }
+      .desktop-only { display: none !important; }
+      .nav-floating { display: flex; }
+    }
+    @media (min-width: 1061px) {
+      .nav-floating { display: none !important; }
+    }
+    @media (max-width: 720px) {
+      .header-inner { flex-direction: column; align-items: stretch; gap: 0.45rem; }
+      .controls { justify-content: flex-start; }
+      main { padding: 0.85rem 0.7rem 6rem; }
+      .q-header { flex-direction: column; }
+      .q-actions { inline-size: 100%; justify-content: stretch; }
+      .q-actions button { flex: 1; }
+      .answer-grid, .dragdrop-board { grid-template-columns: 1fr; }
+      .answer-locked { align-items: stretch; flex-direction: column; }
+      .nav-floating { left: 0.75rem; right: 0.75rem; transform: none; justify-content: space-between; }
+      .nav-floating button { flex: 1; }
+    }
+    @media (max-width: 560px) {
+      .question.revealed .choices label { padding-inline-end: 0.95rem; padding-bottom: 2.25rem; }
+      .question.revealed .choices li::after { top: auto; right: auto; bottom: 0.55rem; left: 3.4rem; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .question.shake-incorrect .answer-status.incorrect { animation: answerShake 340ms ease-out; }
+      @keyframes answerShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(4px); }
+        75% { transform: translateX(-2px); }
+      }
+    }
+    @media print {
+      header, .study-map, .controls, .study-toolbar, .nav-floating, #progress-bar, .skip-link, .answer-locked, .answer-tools { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; padding-bottom: 0; }
+      .overview-banner { display: none; }
+      main { padding: 0; max-inline-size: none; }
+      .study-layout, .q-case-grid { display: block; }
+      .question { display: block !important; box-shadow: none; border: 1px solid #bbb; page-break-inside: avoid; }
+      .answer-revealed { display: block !important; }
+    }
+  </style>
+</head>
+<body data-exam="ab-250">
+  <a class="skip-link btn" href="#main-content">Skip to questions</a>
+  <div id="progress-bar" role="progressbar" aria-label="Study progress"></div>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-row">
+          <button type="button" class="secondary" popovertarget="exam-switcher-menu" aria-label="Switch study guide">Exams ▾</button>
+          <h1>AB-250 Transforming Contact Center Experiences with AI in Dynamics 365 Study Guide</h1>
+        </div>
+        <div class="stats">10 questions · 3 skill areas · <span id="progress-text">0 reviewed</span></div>
+      </div>
+      <div class="controls" aria-label="Study controls">
+        <button id="resume-unreviewed" class="secondary" type="button" title="Jump to first unreviewed question">Resume</button>
+        <button id="show-all-answers" class="secondary" type="button" title="Show or hide all answers">Show answers</button>
+        <button id="reset-progress-btn" class="ghost" type="button" title="Reset progress for this exam">Reset</button>
+        <button id="theme-toggle" class="secondary" type="button" title="Toggle dark mode">🌙</button>
+        <button id="toggle-map" class="ghost mobile-only" type="button" title="Toggle question map">Map</button>
+      </div>
+    </div>
+  </header>
+  <nav id="exam-switcher-menu" popover aria-label="Switch certification study guide">
+<a href="index.html"><strong>All Exams Hub</strong><span>Overview</span></a>
+<div class="switcher-tier-heading">Expert Level Certifications</div>
+<a href="ai-500-examtopics-study-guide.html"><strong>AI-500</strong><span>Designing and Implementing Multi-Agent AI Solutions</span></a>
+<a href="ab-100-examtopics-study-guide.html"><strong>AB-100</strong><span>Agentic AI Business Solutions Architect</span></a>
+<a href="az-401-examtopics-study-guide.html"><strong>AZ-401</strong><span>Designing and Implementing Microsoft Agentic DevOps Solutions</span></a>
+<div class="switcher-tier-heading">Intermediate &amp; Associate — Azure, Fabric &amp; Microsoft AI</div>
+<a href="ai-103-examtopics-study-guide.html"><strong>AI-103</strong><span>Developing AI Apps and Agents on Azure</span></a>
+<a href="ai-200-examtopics-study-guide.html"><strong>AI-200</strong><span>Developing AI Cloud Solutions on Azure</span></a>
+<a href="ai-300-examtopics-study-guide.html"><strong>AI-300</strong><span>Operationalizing Machine Learning and Generative AI Solutions</span></a>
+<a href="dp-600-examtopics-study-guide.html"><strong>DP-600</strong><span>Implementing Analytics Solutions Using Microsoft Fabric</span></a>
+<a href="dp-700-examtopics-study-guide.html"><strong>DP-700</strong><span>Implementing Data Engineering Solutions Using Microsoft Fabric</span></a>
+<a href="dp-750-examtopics-study-guide.html"><strong>DP-750</strong><span>Implementing Data Engineering Solutions Using Azure Databricks</span></a>
+<a href="dp-800-examtopics-study-guide.html"><strong>DP-800</strong><span>Developing AI-Enabled Database Solutions</span></a>
+<a href="ab-620-examtopics-study-guide.html"><strong>AB-620</strong><span>Designing and Building Integrated AI Solutions in Copilot Studio</span></a>
+<a href="ab-410-examtopics-study-guide.html"><strong>AB-410</strong><span>Building Intelligent Applications</span></a>
+<a href="ab-400-examtopics-study-guide.html"><strong>AB-400</strong><span>Extending Microsoft Power Platform Solutions with Code and AI</span></a>
+<a href="ab-210-examtopics-study-guide.html"><strong>AB-210</strong><span>Accelerating Sales Pipelines with AI in Dynamics 365</span></a>
+<a href="ab-250-examtopics-study-guide.html" aria-current="page"><strong>AB-250</strong><span>Transforming Contact Center Experiences with AI in Dynamics 365</span></a>
+<a href="ab-650-examtopics-study-guide.html"><strong>AB-650</strong><span>Administering Microsoft 365 and AI Services</span></a>
+<a href="ab-730-examtopics-study-guide.html"><strong>AB-730</strong><span>AI Business Professional</span></a>
+<a href="ab-731-examtopics-study-guide.html"><strong>AB-731</strong><span>AI Transformation Leader</span></a>
+<a href="sc-500-examtopics-study-guide.html"><strong>SC-500</strong><span>Implementing End-to-End Security Controls for Cloud and AI Workloads</span></a>
+<div class="switcher-tier-heading">GitHub Certifications</div>
+<a href="gh-300-examtopics-study-guide.html"><strong>GH-300</strong><span>GitHub Copilot</span></a>
+<a href="gh-600-examtopics-study-guide.html"><strong>GH-600</strong><span>Developing in Agentic AI Systems</span></a>
+<a href="gh-200-examtopics-study-guide.html"><strong>GH-200</strong><span>GitHub Actions</span></a>
+<a href="gh-500-examtopics-study-guide.html"><strong>GH-500</strong><span>GitHub Advanced Security</span></a>
+<a href="gh-100-examtopics-study-guide.html"><strong>GH-100</strong><span>GitHub Enterprise Administrator</span></a>
+<a href="gh-900-examtopics-study-guide.html"><strong>GH-900</strong><span>GitHub Foundations</span></a>
+<div class="switcher-tier-heading">Beginner &amp; Fundamentals Level</div>
+<a href="ai-901-examtopics-study-guide.html"><strong>AI-901</strong><span>Microsoft Azure AI Fundamentals</span></a>
+<a href="dp-900-examtopics-study-guide.html"><strong>DP-900</strong><span>Microsoft Azure Data Fundamentals</span></a>
+<a href="ab-900-examtopics-study-guide.html"><strong>AB-900</strong><span>Microsoft 365 Copilot and Agent Administration Fundamentals</span></a>
+</nav>
+  <main id="main-content">
+
+<details class="overview-banner">
+<summary>
+<span class="overview-summary-left">
+<strong>Study Progress &amp; Shortcuts</strong>
+<span class="overview-pill"><span id="hero-pct">0%</span> reviewed</span>
+</span>
+<span>10 questions · 2 case studies</span>
+</summary>
+<div class="overview-metrics">
+<div class="metric"><strong>10</strong><span>Total</span></div>
+<div class="metric"><strong>3</strong><span>Skill areas</span></div>
+<div class="metric"><strong id="hero-attempted">0</strong><span>Attempted</span></div>
+<div class="metric"><strong id="hero-correct">0</strong><span>Correct</span></div>
+<div class="metric"><strong id="hero-reviewed">0</strong><span>Reviewed</span></div>
+<div class="metric"><strong id="hero-remaining">0</strong><span>Remaining</span></div>
+</div>
+<div class="kbd-bar"><span><kbd>←</kbd> <kbd>→</kbd> Navigate</span><span><kbd>1</kbd>–<kbd>9</kbd> Pick choice</span><span><kbd>A</kbd> Reveal / hide answer</span><span><kbd>R</kbd> Mark reviewed</span><span><kbd>B</kbd> Save bookmark</span><span><kbd>/</kbd> Search</span></div>
+</details>
+<search class="study-toolbar" aria-label="Search and filter questions">
+<div class="search-box">
+<input type="search" id="question-search" placeholder="Search questions, Azure services, IDs… (/)" aria-label="Search questions">
+</div>
+<div class="filter-chips" role="group" aria-label="Filter questions">
+<button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All</button>
+<button type="button" class="filter-chip" data-filter="unreviewed" aria-pressed="false">Unreviewed</button>
+<button type="button" class="filter-chip" data-filter="incorrect" aria-pressed="false">Needs work</button>
+<button type="button" class="filter-chip" data-filter="bookmarked" aria-pressed="false">★ Saved</button>
+<button type="button" class="filter-chip" data-filter="casestudy" aria-pressed="false">Case Studies</button>
+<button type="button" class="filter-chip" data-filter="nonmcq" aria-pressed="false">Hotspot / Drag-Drop</button>
+<button type="button" class="filter-chip" data-filter="contested" aria-pressed="false">⚠️ Contested</button>
+</div>
+<span id="filter-match-count" class="filter-count" aria-live="polite">10 of 10 shown</span>
+</search>
+<div class="study-layout">
+<nav id="study-map" class="study-map" aria-label="Question map">
+<div class="nav-sidebar desktop-only" role="group" aria-label="Step controls">
+<button class="secondary nav-prev-btn" type="button" title="Previous question (←)" aria-label="Previous question">←</button>
+<div class="nav-status" aria-live="polite">Q 1</div>
+<button class="secondary nav-next-btn" type="button" title="Next question (→)" aria-label="Next question">→</button>
+</div>
+<h2>Question map</h2><p class="map-note">Green = reviewed · Gold bar = saved.</p>
+<details class="toc-topic">
+<summary>Case Studies (3)</summary>
+<details class="toc-chunk" open>
+<summary>Fabrikam (2)</summary>
+<ul class="toc-links">
+<li><a href="#q-ab-250-t1-n11-429736">Q1.11</a></li>
+<li><a href="#q-ab-250-t1-n12-429737">Q1.12</a></li>
+</ul>
+</details>
+<details class="toc-chunk" open>
+<summary>Case Study (1)</summary>
+<ul class="toc-links">
+<li><a href="#q-ab-250-t1-n15-429740">Q1.15</a></li>
+</ul>
+</details>
+</details>
+<div id="toc-by-number">
+<details class="toc-topic" open>
+<summary>Deploy Dynamics 365 Contact Center (6)</summary>
+<ul class="toc-links">
+<li><a href="#q-ab-250-t1-n1-429726">Q1.1</a></li>
+<li><a href="#q-ab-250-t1-n2-429729">Q1.2</a></li>
+<li><a href="#q-ab-250-t1-n7-429730">Q1.7</a></li>
+<li><a href="#q-ab-250-t1-n11-429736">Q1.11</a></li>
+<li><a href="#q-ab-250-t1-n12-429737">Q1.12</a></li>
+<li><a href="#q-ab-250-t1-n15-429740">Q1.15</a></li>
+</ul>
+</details>
+<details class="toc-topic" open>
+<summary>Implement channels (3)</summary>
+<ul class="toc-links">
+<li><a href="#q-ab-250-t2-n3-429743">Q2.3</a></li>
+<li><a href="#q-ab-250-t2-n10-429795">Q2.10</a></li>
+<li><a href="#q-ab-250-t2-n16-429801">Q2.16</a></li>
+</ul>
+</details>
+<details class="toc-topic" open>
+<summary>Configure the Dynamics 365 Contact Center representative experience (1)</summary>
+<ul class="toc-links">
+<li><a href="#q-ab-250-t5-n15-429775">Q5.15</a></li>
+</ul>
+</details>
+</div>
+</nav>
+<div id="questions" class="question-stack">
+<div id="filter-empty-state" class="filter-empty" hidden><p><strong>No questions match the current search or filter.</strong></p><button type="button" id="clear-filters-btn" class="secondary">Show all questions</button></div>
+<article class="question active" id="q-ab-250-t1-n1-429726" data-topic="1" data-num="1" data-label="Q1.1" data-qtype="drag_drop" data-contested="false" data-most-voted="TELEGRAM: DRMIKE100 TO BUY ADDERALL IR AND XR  IN USA WITHOUT SCRIPT" data-search="Q1.1 429726 Deploy Dynamics 365 Contact Center A company uses security roles to ensure that its customer service representatives (CSRs) have access only to the features and data required to perform their duties. However, default roles currently grant excessive permissions to CSRs. The company requires that access be limited as follows: Reduce permissions to just the features and data that are required for each CSR role. Allow non-administrators to assign roles to CSRs without full system access. You need to configure the minimal security access for each requirement. Which action should you perform first for each requirement? To answer, move the appropriate actions to the correct requirements. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content. NOTE: Each correct selection is worth one point.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.1</span>
+<span class="q-id">ID 429726</span>
+<span class="q-badge">Drag drop</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.1" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.1 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company uses security roles to ensure that its customer service representatives (CSRs) have access only to the features and data required to perform their duties.</p>
+<p>However, default roles currently grant excessive permissions to CSRs.</p>
+<p>The company requires that access be limited as follows:</p>
+<p>Reduce permissions to just the features and data that are required for each CSR role.</p>
+<p>Allow non-administrators to assign roles to CSRs without full system access.</p>
+<p class="prompt-lead">You need to configure the minimal security access for each requirement.</p>
+<p class="prompt-lead">Which action should you perform first for each requirement?</p>
+<p class="exam-instruction-note">To answer, move the appropriate actions to the correct requirements. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.</p>
+<p class="exam-instruction-note">NOTE: Each correct selection is worth one point.</p></div>
+</section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><button type="button" class="exhibit-zoom-btn" data-zoom-src="../assets/exhibits/ab-250/429726_0.png" data-zoom-caption="Q1.1 · Exhibit 1" aria-label="Zoom Exhibit 1"><img src="../assets/exhibits/ab-250/429726_0.png" alt="" loading="lazy"></button><figcaption class="exhibit-caption">Exhibit 1 · <span>Click image to zoom</span></figcaption></figure>
+</div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.1">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid answer-grid-single">
+<div class="answer-card"><div class="label-row"><span class="label">Community answer (Most voted)</span><span class="confidence-badge">Community note</span></div><dl class="answer-pairs"><div class="answer-pair-row"><dt>TELEGRAM</dt><dd>DRMIKE100 TO BUY ADDERALL IR AND XR  IN USA WITHOUT SCRIPT</dd></div></dl></div>
+</div>
+<div class="self-grade-controls" role="group" aria-label="Self-grade your answer"><span class="self-grade-prompt">Self-check your answer:</span><button type="button" class="secondary btn-self-grade" data-self-grade="correct" aria-pressed="false">Got it right ✓</button><button type="button" class="secondary btn-self-grade" data-self-grade="incorrect" aria-pressed="false">Needs work ✕</button></div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>denzelscot7</strong> · 1 upvote <span class="badge">Most Recent</span></div><div class="comment-body"><p>TELEGRAM: DRMIKE100 TO BUY ADDERALL IR AND XR  IN USA WITHOUT SCRIPT</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429726-exam-ab-250-topic-1-question-1-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question" id="q-ab-250-t1-n2-429729" data-topic="1" data-num="2" data-label="Q1.2" data-qtype="single" data-contested="false" data-most-voted="A" data-search="Q1.2 429729 Deploy Dynamics 365 Contact Center A company plans to deploy a new customized voice channel from development to test. The voice channel customizations include skills-based routing and a Copilot Studio voice agent. The deployment package must: Include only the components needed for the release. Support controlled import into downstream environments. You need to prepare to release the voice channel and all supported parts. What should you do? Export a managed solution and deploy with configuration data by using the release pipeline. Copy components and data directly between environments. Export an unmanaged solution and update configurations directly after import. Move configuration data only and recreate components manually.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.2</span>
+<span class="q-id">ID 429729</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.2" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.2 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company plans to deploy a new customized voice channel from development to test. The voice channel customizations include skills-based routing and a Copilot Studio voice agent.</p>
+<p>The deployment package must:</p>
+<p>Include only the components needed for the release.</p>
+<p>Support controlled import into downstream environments.</p>
+<p class="prompt-lead">You need to prepare to release the voice channel and all supported parts.</p>
+<p class="prompt-lead">What should you do?</p></div>
+</section>
+<ol class="choices" type="A" data-multiple="false">
+<li class="correct" data-letter="A">
+<input type="radio" name="choice-q-ab-250-t1-n2-429729" value="A" id="choice-q-ab-250-t1-n2-429729-A">
+<label for="choice-q-ab-250-t1-n2-429729-A"><span class="letter">A</span><span>Export a managed solution and deploy with configuration data by using the release pipeline.</span></label>
+</li>
+<li class="" data-letter="B">
+<input type="radio" name="choice-q-ab-250-t1-n2-429729" value="B" id="choice-q-ab-250-t1-n2-429729-B">
+<label for="choice-q-ab-250-t1-n2-429729-B"><span class="letter">B</span><span>Copy components and data directly between environments.</span></label>
+</li>
+<li class="" data-letter="C">
+<input type="radio" name="choice-q-ab-250-t1-n2-429729" value="C" id="choice-q-ab-250-t1-n2-429729-C">
+<label for="choice-q-ab-250-t1-n2-429729-C"><span class="letter">C</span><span>Export an unmanaged solution and update configurations directly after import.</span></label>
+</li>
+<li class="" data-letter="D">
+<input type="radio" name="choice-q-ab-250-t1-n2-429729" value="D" id="choice-q-ab-250-t1-n2-429729-D">
+<label for="choice-q-ab-250-t1-n2-429729-D"><span class="letter">D</span><span>Move configuration data only and recreate components manually.</span></label>
+</li>
+</ol>
+<div class="answer-status" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.2">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid">
+<div class="answer-card"><div class="label-row"><span class="label">Correct answer</span></div><strong>A</strong></div>
+<div class="answer-card"><div class="label-row"><span class="label">Most voted</span></div><strong>A</strong></div>
+</div>
+<div class="vote-bars">
+<div class="vote-bars-title"><span>Community vote distribution</span><span>1 vote</span></div>
+<div class="vote-bar-row"><strong>A</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:100%"></div></div><span>100% (1)</span></div>
+</div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>RominaT</strong> · 2 upvotes <span class="badge">Most Recent</span> <span class="badge">Selected Answer: A</span></div><div class="comment-body"><p>A is suggested solution.</p>
+<p>B. Not an ALM best practice and doesn&#x27;t provide controlled deployment. ❌</p>
+<p>C. Unmanaged solutions are typically used in development, not for controlled downstream releases. ❌</p>
+<p>D. Manual recreation is error-prone and doesn&#x27;t meet the requirement to package and deploy all necessary components. ❌</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429729-exam-ab-250-topic-1-question-2-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question" id="q-ab-250-t1-n7-429730" data-topic="1" data-num="7" data-label="Q1.7" data-qtype="single" data-contested="false" data-most-voted="D" data-search="Q1.7 429730 Deploy Dynamics 365 Contact Center A company synchronizes users from Microsoft Entra ID to the Dynamics 365 Contact Center environment. Some users who have Microsoft Entra IDs cannot access Contact Center features. You need to enable access for the users with the right permissions needed for Contact Center. What should you do? Assign a security role to the user’s team and restrict access using field-level security. Assign a security role directly to the user. Assign multiple security roles to ensure coverage of required privileges. Add the user to a team that has a security role assigned.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.7</span>
+<span class="q-id">ID 429730</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.7" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.7 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company synchronizes users from Microsoft Entra ID to the Dynamics 365 Contact Center environment.</p>
+<p>Some users who have Microsoft Entra IDs cannot access Contact Center features.</p>
+<p class="prompt-lead">You need to enable access for the users with the right permissions needed for Contact Center.</p>
+<p class="prompt-lead">What should you do?</p></div>
+</section>
+<ol class="choices" type="A" data-multiple="false">
+<li class="" data-letter="A">
+<input type="radio" name="choice-q-ab-250-t1-n7-429730" value="A" id="choice-q-ab-250-t1-n7-429730-A">
+<label for="choice-q-ab-250-t1-n7-429730-A"><span class="letter">A</span><span>Assign a security role to the user’s team and restrict access using field-level security.</span></label>
+</li>
+<li class="" data-letter="B">
+<input type="radio" name="choice-q-ab-250-t1-n7-429730" value="B" id="choice-q-ab-250-t1-n7-429730-B">
+<label for="choice-q-ab-250-t1-n7-429730-B"><span class="letter">B</span><span>Assign a security role directly to the user.</span></label>
+</li>
+<li class="" data-letter="C">
+<input type="radio" name="choice-q-ab-250-t1-n7-429730" value="C" id="choice-q-ab-250-t1-n7-429730-C">
+<label for="choice-q-ab-250-t1-n7-429730-C"><span class="letter">C</span><span>Assign multiple security roles to ensure coverage of required privileges.</span></label>
+</li>
+<li class="correct" data-letter="D">
+<input type="radio" name="choice-q-ab-250-t1-n7-429730" value="D" id="choice-q-ab-250-t1-n7-429730-D">
+<label for="choice-q-ab-250-t1-n7-429730-D"><span class="letter">D</span><span>Add the user to a team that has a security role assigned.</span></label>
+</li>
+</ol>
+<div class="answer-status" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.7">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid">
+<div class="answer-card"><div class="label-row"><span class="label">Correct answer</span></div><strong>D</strong></div>
+<div class="answer-card"><div class="label-row"><span class="label">Most voted</span></div><strong>D</strong></div>
+</div>
+<div class="vote-bars">
+<div class="vote-bars-title"><span>Community vote distribution</span><span>1 vote</span></div>
+<div class="vote-bar-row"><strong>D</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:100%"></div></div><span>100% (1)</span></div>
+</div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>andrewL</strong> · 1 upvote <span class="badge">Most Recent</span> <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>As the new feature is GA. https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/service/dynamics365-contact-center/manage-users-through-entra-security-groups</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429730-exam-ab-250-topic-1-question-7-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question is-case-study" id="q-ab-250-t1-n11-429736" data-topic="1" data-num="11" data-label="Q1.11" data-qtype="case_study" data-contested="false" data-most-voted="D" data-search="Q1.11 429736 Deploy Dynamics 365 Contact Center You need to resolve inconsistent access across user personas. What should you do? Create Dataverse security roles aligned to defined personas Configure access teams with automatic assignment rules Apply field-level security to persona-specific tables Assign customer service representatives to queues based on persona">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.11</span>
+<span class="q-id">ID 429736</span>
+<span class="q-badge">Case study</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.11" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.11 as reviewed">Mark reviewed</button>
+</div></div>
+<div class="cs-jumper" role="navigation" aria-label="Case study questions">
+<span class="cs-jumper-title">Case Study: Fabrikam (1 of 2)</span>
+<div class="cs-jumper-links">
+<a href="#q-ab-250-t1-n11-429736" aria-current="true">Q1.11</a>
+<a href="#q-ab-250-t1-n12-429737">Q1.12</a>
+</div></div>
+<div class="q-case-grid">
+<div class="q-primary-col">
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p class="prompt-lead">You need to resolve inconsistent access across user personas.</p>
+<p class="prompt-lead">What should you do?</p></div>
+</section>
+<ol class="choices" type="A" data-multiple="false">
+<li class="" data-letter="A">
+<input type="radio" name="choice-q-ab-250-t1-n11-429736" value="A" id="choice-q-ab-250-t1-n11-429736-A">
+<label for="choice-q-ab-250-t1-n11-429736-A"><span class="letter">A</span><span>Create Dataverse security roles aligned to defined personas</span></label>
+</li>
+<li class="" data-letter="B">
+<input type="radio" name="choice-q-ab-250-t1-n11-429736" value="B" id="choice-q-ab-250-t1-n11-429736-B">
+<label for="choice-q-ab-250-t1-n11-429736-B"><span class="letter">B</span><span>Configure access teams with automatic assignment rules</span></label>
+</li>
+<li class="" data-letter="C">
+<input type="radio" name="choice-q-ab-250-t1-n11-429736" value="C" id="choice-q-ab-250-t1-n11-429736-C">
+<label for="choice-q-ab-250-t1-n11-429736-C"><span class="letter">C</span><span>Apply field-level security to persona-specific tables</span></label>
+</li>
+<li class="correct" data-letter="D">
+<input type="radio" name="choice-q-ab-250-t1-n11-429736" value="D" id="choice-q-ab-250-t1-n11-429736-D">
+<label for="choice-q-ab-250-t1-n11-429736-D"><span class="letter">D</span><span>Assign customer service representatives to queues based on persona</span></label>
+</li>
+</ol>
+<div class="answer-status" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.11">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid">
+<div class="answer-card"><div class="label-row"><span class="label">Correct answer</span></div><strong>D</strong></div>
+<div class="answer-card"><div class="label-row"><span class="label">Most voted</span></div><strong>D</strong></div>
+</div>
+<div class="vote-bars">
+<div class="vote-bars-title"><span>Community vote distribution</span><span>2 votes</span></div>
+<div class="vote-bar-row"><strong>D</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:50%"></div></div><span>50% (1)</span></div>
+<div class="vote-bar-row"><strong>A</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:50%"></div></div><span>50% (1)</span></div>
+</div>
+<details class="comments" open>
+<summary>Top explanations from discussion (2)</summary>
+<div class="comment"><div class="comment-meta"><strong>ola sou novo aqui</strong> · 1 upvote <span class="badge">Most Recent</span> <span class="badge">Selected Answer: D</span></div><div class="comment-body"><p>why is not D?</p></div></div>
+<div class="comment"><div class="comment-meta"><strong>Nessaner</strong> · 1 upvote <span class="badge">Selected Answer: A</span></div><div class="comment-body"><p>Security roles are the standard mechanism for defining permissions to job responsibilities</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429736-exam-ab-250-topic-1-question-11-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</div>
+<section class="case-study-panel" aria-label="Case study reference">
+<div class="cs-toolbar">
+<span class="cs-panel-label">Case Study · Fabrikam</span>
+<button type="button" class="secondary cs-toggle-all" aria-expanded="false">Expand all</button>
+</div>
+<details class="cs-section" open>
+<summary><span class="section-title">Overview</span></summary>
+<div class="cs-section-body"><p>To start the case study.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Background</span></summary>
+<div class="cs-section-body"><p>Fabrikam, Inc. is a mid-sized global company that provides outsourced customer support services for retail and telecommunications clients. The company operates multiple regional contact centers. Fabrikam, Inc. is transitioning to a unified cloud-based platform by implementing Microsoft Dynamics 365 Contact Center.</p>
+<p>The goal is to improve customer satisfaction, reduce average handling time, and increase workforce productivity while enabling AI-assisted customer interactions.</p>
+<p>Fabrikam, Inc. has an established Microsoft ecosystem, including Microsoft Azure and Microsoft Power Platform. The company requires that all implementations follow best practices for scalability, maintainability, and governance, while aligning with internal governance and security standards.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Current environment</span></summary>
+<div class="cs-section-body"><p>Contact Center infrastructure</p>
+<ul class="stem-list"><li>Fabrikam, Inc. currently uses an outdated on-premises telephony system that does NOT integrate with modern CRM systems.</li><li>The company is migrating to Dynamics 365 Contact Center to support voice-based interactions.</li><li>Azure resources are centrally managed by the IT team.</li><li>Azure Application Insights is provisioned but not yet connected to any contact center workload.</li><li>Microsoft Entra ID is used for identity and access management.</li></ul>
+<p>Application lifecycle management (ALM)</p>
+<ul class="stem-list"><li>The company maintains separate development, test, and production environments in Microsoft Dataverse.</li><li>Solutions are deployed as managed or unmanaged depending on the environment.</li><li>Configuration data must be moved between environments without manual recreation.</li><li>The IT team requires repeatable and governed deployment processes.</li></ul>
+<p>Users and roles</p>
+<ul class="stem-list"><li>Customer service representatives (CSRs) handle inbound customer calls.</li><li>Supervisors monitor performance and manage workforce scheduling.</li><li>Administrators configure and maintain the system.</li><li>Roles are defined for CSRs, supervisors, and administrators, but permissions are not consistently enforced.</li><li>Access must be restricted based on user responsibilities to enforce least privilege.</li></ul></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Business requirements</span></summary>
+<div class="cs-section-body"><p>Voice channel</p>
+<ul class="stem-list"><li>Customers must be able to contact customer support through an inbound voice channel.</li><li>Incoming calls must be routed to available CSRs based on predefined criteria.</li><li>Customer input must be collected through an automated interaction before routing.</li><li>Some inquiries must be resolved without involving a human representative.</li><li>When escalation is required, CSRs must receive relevant information collected earlier in the interaction.</li></ul>
+<p>Workforce management (WFM)</p>
+<ul class="stem-list"><li>Supervisors must define shifts and assign schedules for CSRs.</li><li>CSRs must receive interactions during their scheduled shifts only.</li><li>Some shifts must allow for times that do NOT accept phone calls.</li><li>WFM capabilities must be enabled within the contact center solution.</li></ul>
+<p>AI and automation</p>
+<ul class="stem-list"><li>The solution must support AI-driven capabilities to handle frequently asked customer questions.</li><li>The system must support generative AI for natural, conversational interactions.</li><li>When an issue cannot be resolved automatically, escalation paths must be defined.</li></ul>
+<p>Routing and work assignment</p>
+<ul class="stem-list"><li>Customer interactions must be managed through a structured process to ensure consistent handling.</li><li>Information collected during the voice agent interactions must be available to CSRs.</li><li>CSRs must be assigned to handle interactions based on their expertise.</li></ul>
+<p>Analytics and monitoring</p>
+<ul class="stem-list"><li>The company must monitor conversation performance and identify and troubleshoot issues affecting customer experience.</li><li>The solution must provide detailed diagnostic information to support troubleshooting across the interaction lifecycle.</li><li>Supervisors must be able to analyze interaction quality and identify trends and bottlenecks.</li></ul></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Technical requirements</span></summary>
+<div class="cs-section-body"><p>Voice channel configuration</p>
+<ul class="stem-list"><li>Dynamics 365 Contact Center must be used to support voice-based customer interactions.</li><li>The solution must support inbound calling through configured phone numbers.</li><li>Voice interactions must be routed in a way that follows best practices for scalability and consistent performance.</li></ul>
+<p>IVR and voice agents</p>
+<ul class="stem-list"><li>IVR flows must support both naturally spoken input and keypad input.</li><li>Voice agents must be configured by using Copilot Studio.• AI agents must be able to retrieve customer data from backend systems when needed.</li></ul>
+<p>Security and access</p>
+<ul class="stem-list"><li>Access must be restricted based on user responsibilities and follow the principle of least privilege.</li><li>CSRs must access records relevant to only the interactions they handle.</li><li>Supervisors must have visibility into CSR performance and schedules.</li><li>Administrators must have full access to configure and manage the solution.</li></ul>
+<p>ALM and deployment</p>
+<ul class="stem-list"><li>Production deployments must use managed solutions.</li><li>Configuration data must be moved between environments by using supported tools and without manual recreation.</li><li>Deployment processes should be automated to ensure consistency and reliability.</li></ul>
+<p>Issues</p>
+<ul class="stem-list"><li>The current system lacks integration between voice interactions and CRM systems.• CSRs receive calls outside of their scheduled shifts.• Fabrikam, Inc. has no consistent process for deploying configurations across environments.• AI capabilities are underused, resulting in increased interaction volumes.• Some customers interact from a noisy environment, which makes it difficult for CSRs and agents to serve them efficiently.• Supervisors lack visibility into detailed conversation diagnostics.• Access permissions are not consistently aligned with user responsibilities, causing access inconsistencies.</li></ul></div>
+</details>
+</section>
+</div>
+</article>
+<article class="question is-case-study" id="q-ab-250-t1-n12-429737" data-topic="1" data-num="12" data-label="Q1.12" data-qtype="drag_drop" data-contested="false" data-most-voted="Question doesn&#x27;t mention data, only configuration.
+The correct actions are: create a solution, export managed, and import to destination." data-search="Q1.12 429737 Deploy Dynamics 365 Contact Center You need to deploy configuration changes across environments based on the technical requirements. Which three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.12</span>
+<span class="q-id">ID 429737</span>
+<span class="q-badge">Drag drop</span>
+<span class="q-badge">Case study</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.12" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.12 as reviewed">Mark reviewed</button>
+</div></div>
+<div class="cs-jumper" role="navigation" aria-label="Case study questions">
+<span class="cs-jumper-title">Case Study: Fabrikam (2 of 2)</span>
+<div class="cs-jumper-links">
+<a href="#q-ab-250-t1-n11-429736">Q1.11</a>
+<a href="#q-ab-250-t1-n12-429737" aria-current="true">Q1.12</a>
+</div></div>
+<div class="q-case-grid">
+<div class="q-primary-col">
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p class="prompt-lead">You need to deploy configuration changes across environments based on the technical requirements.</p>
+<p class="prompt-lead">Which three actions should you perform in sequence?</p>
+<p class="exam-instruction-note">To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.</p></div>
+</section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><button type="button" class="exhibit-zoom-btn" data-zoom-src="../assets/exhibits/ab-250/429737_0.png" data-zoom-caption="Q1.12 · Exhibit 1" aria-label="Zoom Exhibit 1"><img src="../assets/exhibits/ab-250/429737_0.png" alt="" loading="lazy"></button><figcaption class="exhibit-caption">Exhibit 1 · <span>Click image to zoom</span></figcaption></figure>
+</div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.12">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid answer-grid-single">
+<div class="answer-card"><div class="label-row"><span class="label">Community answer (Most voted)</span><span class="confidence-badge">Community note</span></div><p class="answer-prose">Question doesn&#x27;t mention data, only configuration.
+The correct actions are: create a solution, export managed, and import to destination.</p></div>
+</div>
+<div class="self-grade-controls" role="group" aria-label="Self-grade your answer"><span class="self-grade-prompt">Self-check your answer:</span><button type="button" class="secondary btn-self-grade" data-self-grade="correct" aria-pressed="false">Got it right ✓</button><button type="button" class="secondary btn-self-grade" data-self-grade="incorrect" aria-pressed="false">Needs work ✕</button></div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>lastcert</strong> · 1 upvote <span class="badge">Most Recent</span></div><div class="comment-body"><p>Question doesn&#x27;t mention data, only configuration.</p>
+<p>The correct actions are: create a solution, export managed, and import to destination.</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429737-exam-ab-250-topic-1-question-12-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</div>
+<section class="case-study-panel" aria-label="Case study reference">
+<div class="cs-toolbar">
+<span class="cs-panel-label">Case Study · Fabrikam</span>
+<button type="button" class="secondary cs-toggle-all" aria-expanded="false">Expand all</button>
+</div>
+<details class="cs-section">
+<summary><span class="section-title">Overview</span></summary>
+<div class="cs-section-body"><p>To start the case study.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Background</span></summary>
+<div class="cs-section-body"><p>Fabrikam, Inc. is a mid-sized global company that provides outsourced customer support services for retail and telecommunications clients. The company operates multiple regional contact centers. Fabrikam, Inc. is transitioning to a unified cloud-based platform by implementing Microsoft Dynamics 365 Contact Center.</p>
+<p>The goal is to improve customer satisfaction, reduce average handling time, and increase workforce productivity while enabling AI-assisted customer interactions.</p>
+<p>Fabrikam, Inc. has an established Microsoft ecosystem, including Microsoft Azure and Microsoft Power Platform. The company requires that all implementations follow best practices for scalability, maintainability, and governance, while aligning with internal governance and security standards.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Current environment</span></summary>
+<div class="cs-section-body"><p>Contact Center infrastructure</p>
+<ul class="stem-list"><li>Fabrikam, Inc. currently uses an outdated on-premises telephony system that does NOT integrate with modern CRM systems.</li><li>The company is migrating to Dynamics 365 Contact Center to support voice-based interactions.</li><li>Azure resources are centrally managed by the IT team.</li><li>Azure Application Insights is provisioned but not yet connected to any contact center workload.</li><li>Microsoft Entra ID is used for identity and access management.</li></ul>
+<p>Application lifecycle management (ALM)</p>
+<ul class="stem-list"><li>The company maintains separate development, test, and production environments in Microsoft Dataverse.</li><li>Solutions are deployed as managed or unmanaged depending on the environment.</li><li>Configuration data must be moved between environments without manual recreation.</li><li>The IT team requires repeatable and governed deployment processes.</li></ul>
+<p>Users and roles</p>
+<ul class="stem-list"><li>Customer service representatives (CSRs) handle inbound customer calls.</li><li>Supervisors monitor performance and manage workforce scheduling.</li><li>Administrators configure and maintain the system.</li><li>Roles are defined for CSRs, supervisors, and administrators, but permissions are not consistently enforced.</li><li>Access must be restricted based on user responsibilities to enforce least privilege.</li></ul></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Business requirements</span></summary>
+<div class="cs-section-body"><p>Voice channel</p>
+<ul class="stem-list"><li>Customers must be able to contact customer support through an inbound voice channel.</li><li>Incoming calls must be routed to available CSRs based on predefined criteria.</li><li>Customer input must be collected through an automated interaction before routing.</li><li>Some inquiries must be resolved without involving a human representative.</li><li>When escalation is required, CSRs must receive relevant information collected earlier in the interaction.</li></ul>
+<p>Workforce management (WFM)</p>
+<ul class="stem-list"><li>Supervisors must define shifts and assign schedules for CSRs.</li><li>CSRs must receive interactions during their scheduled shifts only.</li><li>Some shifts must allow for times that do NOT accept phone calls.</li><li>WFM capabilities must be enabled within the contact center solution.</li></ul>
+<p>AI and automation</p>
+<ul class="stem-list"><li>The solution must support AI-driven capabilities to handle frequently asked customer questions.</li><li>The system must support generative AI for natural, conversational interactions.</li><li>When an issue cannot be resolved automatically, escalation paths must be defined.</li></ul>
+<p>Routing and work assignment</p>
+<ul class="stem-list"><li>Customer interactions must be managed through a structured process to ensure consistent handling.</li><li>Information collected during the voice agent interactions must be available to CSRs.</li><li>CSRs must be assigned to handle interactions based on their expertise.</li></ul>
+<p>Analytics and monitoring</p>
+<ul class="stem-list"><li>The company must monitor conversation performance and identify and troubleshoot issues affecting customer experience.</li><li>The solution must provide detailed diagnostic information to support troubleshooting across the interaction lifecycle.</li><li>Supervisors must be able to analyze interaction quality and identify trends and bottlenecks.</li></ul></div>
+</details>
+<details class="cs-section relevant" open>
+<summary><span class="section-title">Technical requirements</span><span class="cs-relevant-pill">★ Relevant</span></summary>
+<div class="cs-section-body"><p>Voice channel configuration</p>
+<ul class="stem-list"><li>Dynamics 365 Contact Center must be used to support voice-based customer interactions.</li><li>The solution must support inbound calling through configured phone numbers.</li><li>Voice interactions must be routed in a way that follows best practices for scalability and consistent performance.</li></ul>
+<p>IVR and voice agents</p>
+<ul class="stem-list"><li>IVR flows must support both naturally spoken input and keypad input.</li><li>Voice agents must be configured by using Copilot Studio.• AI agents must be able to retrieve customer data from backend systems when needed.</li></ul>
+<p>Security and access</p>
+<ul class="stem-list"><li>Access must be restricted based on user responsibilities and follow the principle of least privilege.</li><li>CSRs must access records relevant to only the interactions they handle.</li><li>Supervisors must have visibility into CSR performance and schedules.</li><li>Administrators must have full access to configure and manage the solution.</li></ul>
+<p>ALM and deployment</p>
+<ul class="stem-list"><li>Production deployments must use managed solutions.</li><li>Configuration data must be moved between environments by using supported tools and without manual recreation.</li><li>Deployment processes should be automated to ensure consistency and reliability.</li></ul>
+<p>Issues</p>
+<ul class="stem-list"><li>The current system lacks integration between voice interactions and CRM systems.• CSRs receive calls outside of their scheduled shifts.• Fabrikam, Inc. has no consistent process for deploying configurations across environments.• AI capabilities are underused, resulting in increased interaction volumes.• Some customers interact from a noisy environment, which makes it difficult for CSRs and agents to serve them efficiently.• Supervisors lack visibility into detailed conversation diagnostics.• Access permissions are not consistently aligned with user responsibilities, causing access inconsistencies.</li></ul></div>
+</details>
+</section>
+</div>
+</article>
+<article class="question is-case-study" id="q-ab-250-t1-n15-429740" data-topic="1" data-num="15" data-label="Q1.15" data-qtype="drag_drop" data-contested="false" data-most-voted="First option is incorrect, the correct is &quot;Enable sensitive data redaction&quot;. Why ?" data-search="Q1.15 429740 Deploy Dynamics 365 Contact Center You need to configure the Dynamics 365 Contact Center solution based on the data protection and compliance requirements. Which configurations should you apply? To answer, move the appropriate configurations to the correct contexts. You may use each configuration once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content. NOTE: Each correct selection is worth one point.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q1.15</span>
+<span class="q-id">ID 429740</span>
+<span class="q-badge">Drag drop</span>
+<span class="q-badge">Case study</span>
+<span class="q-badge skill-badge">Deploy Dynamics 365 Contact Center</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q1.15" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q1.15 as reviewed">Mark reviewed</button>
+</div></div>
+<div class="q-case-grid">
+<div class="q-primary-col">
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p class="prompt-lead">You need to configure the Dynamics 365 Contact Center solution based on the data protection and compliance requirements.</p>
+<p class="prompt-lead">Which configurations should you apply?</p>
+<p class="exam-instruction-note">To answer, move the appropriate configurations to the correct contexts. You may use each configuration once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.</p>
+<p class="exam-instruction-note">NOTE: Each correct selection is worth one point.</p></div>
+</section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><button type="button" class="exhibit-zoom-btn" data-zoom-src="../assets/exhibits/ab-250/429740_0.png" data-zoom-caption="Q1.15 · Exhibit 1" aria-label="Zoom Exhibit 1"><img src="../assets/exhibits/ab-250/429740_0.png" alt="" loading="lazy"></button><figcaption class="exhibit-caption">Exhibit 1 · <span>Click image to zoom</span></figcaption></figure>
+</div>
+<div class="dragdrop-widget dragdrop-widget-display"><p class="widget-note">DRAG DROP — use the exhibit above to reason about the correct order/assignment. Interactive drag-and-drop grading is not available for this question. (drag-drop UI is rendered as a single image (see exhibit))</p><div class="answer-status" aria-live="polite"></div></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q1.15">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid answer-grid-single">
+<div class="answer-card"><div class="label-row"><span class="label">Community answer (Most voted)</span></div><p class="answer-prose">First option is incorrect, the correct is &quot;Enable sensitive data redaction&quot;. Why ?</p></div>
+</div>
+<div class="self-grade-controls" role="group" aria-label="Self-grade your answer"><span class="self-grade-prompt">Self-check your answer:</span><button type="button" class="secondary btn-self-grade" data-self-grade="correct" aria-pressed="false">Got it right ✓</button><button type="button" class="secondary btn-self-grade" data-self-grade="incorrect" aria-pressed="false">Needs work ✕</button></div>
+<details class="comments" open>
+<summary>Top explanations from discussion (2)</summary>
+<div class="comment"><div class="comment-meta"><strong>Yazan</strong> · 2 upvotes </div><div class="comment-body"><p>First option is incorrect, the correct is &quot;Enable sensitive data redaction&quot;. Why ?</p>
+<p>Sensitive data redaction in Dynamics 365 Customer Service detects and redacts configured sensitive information, including payment-card data, from conversation transcripts and AI-generated content. Microsoft Purview retention policies and retention labels support classifying content and retaining it for the organization’s required lifecycle period.</p></div></div>
+<div class="comment"><div class="comment-meta"><strong>Yazan</strong> · 2 upvotes <span class="badge">Most Recent</span></div><div class="comment-body"><p>Correction for my above comment, the given answers are correct , my mistake sorry :</p>
+<p>Reference :-</p>
+<p>https://learn.microsoft.com/en-us/dynamics365/customer-service/administer/data-masking-settings</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429740-exam-ab-250-topic-1-question-15-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</div>
+<section class="case-study-panel" aria-label="Case study reference">
+<div class="cs-toolbar">
+<span class="cs-panel-label">Case Study · Case Study</span>
+<button type="button" class="secondary cs-toggle-all" aria-expanded="false">Expand all</button>
+</div>
+<details class="cs-section" open>
+<summary><span class="section-title">Overview</span></summary>
+<div class="cs-section-body"><p>To start the case study.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Background</span></summary>
+<div class="cs-section-body"><p>VanArsdel, Ltd. is a global company that provides outsourced customer support services for enterprise clients across multiple industries, including retail, healthcare, and financial services.</p>
+<p>VanArsdel, Ltd. is implementing Microsoft Dynamics 365 Contact Center to modernize its contact center operations. The company aims to provide a unified omnichannel experience for customers and improve customer service representative (CSR) productivity through AI-driven tools and automation.</p>
+<p>The implementation will support voice, chat, and digital messaging channels. The initial rollout focuses on voice capabilities and AI-assisted CSR experiences. The solution must be scalable and configurable using out-of-the-box functionality where possible.</p>
+<p>The company employs approximately 500 CSRs, 50 supervisors, and a small team of system administrators responsible for configuration and maintenance. Some back-office CSRs are available for consultations with frontline CSRs.</p>
+<p>VanArsdel, Ltd. currently operates multiple outdated CCaaS platforms across its divisions. The company is concerned about CSR adoption and therefore plans to adopt a phased approach. The company plans to use its existing CCaaS solution with Copilot Service workspace to enable adoption of the agent desktop while the voice channel and associated capabilities are developed.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Current environment</span></summary>
+<div class="cs-section-body"><p>Contact Center channels</p>
+<p>VanArsdel, Ltd. currently uses an outdated telephony system integrated with a third-party CRM. The system lacks support for modern APIs and does not provide advanced analytics or AI capabilities.</p>
+<p>The company plans to replace the outdated system with Dynamics 365 Contact Center and Microsoft Teams Phone functionality.</p>
+<p>Outbound communication capabilities are limited in the current system to SMS only and must be enhanced to support proactive engagement campaigns. A third-party tool is used to manage current campaigns.</p>
+<p>CSR experience</p>
+<p>CSRs currently rely on multiple disconnected systems to manage customer interactions. This results in inefficiencies and increased handling times.</p>
+<p>The new solution must provide a unified interface with embedded productivity tools, including:</p>
+<p>AI-powered suggestions during live interactions.</p>
+<p>Suggested responses based on the CSR’s interaction with the agent desktop and the conversation context.</p>
+<p>Real-time transcription and sentiment analysis.</p>
+<p>Integration with company-owned knowledge bases.</p>
+<p>CSRs must be able to interact with customers through voice and digital channels within a single workspace. The sales director requires CSRs to be able to collect orders from their third-party order management tool from the Productivity panel. CSRs must be prevented from accessing payment information.</p>
+<p>Data protection and compliance</p>
+<p>VanArsdel, Ltd. handles sensitive customer data, including personally identifiable information (PII) and payment details.</p>
+<p>The company must comply with strict data protection regulations, including:</p>
+<p>Masking sensitive data during live interactions.</p>
+<p>Preventing National Identity and payment card information from being stored in transcripts and AI generated summaries.</p>
+<p>Ensuring secure handling of customer information across all channels.</p>
+<p>The current system does NOT provide adequate data masking capabilities.</p>
+<p>Integration requirements</p>
+<p>The company uses several internal systems, including:</p>
+<p>A customer account management system.</p>
+<p>A billing platform.</p>
+<p>A knowledge management system.</p>
+<p>These systems must be integrated with Dynamics 365 Contact Center to provide CSRs with relevant information during interactions.</p>
+<p>The company also has a third-party marketing platform. However, the company currently does NOT plan to integrate the platform and instead is evaluating Customer Insights - Journeys.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Business requirements</span></summary>
+<div class="cs-section-body"><p>Voice channel implementation</p>
+<p>VanArsdel, Ltd. must implement a voice channel that meets the following requirements:</p>
+<ul class="stem-list"><li>Support inbound and outbound voice calls by using Microsoft Teams Phone.</li><li>Enhance call controls by using SDK APIs.</li><li>Allow supervisors to monitor and manage live calls.</li><li>Provide real-time insights into call performance.</li><li>The solution must support scalability to handle peak call volumes during seasonal demand.</li><li>Proactive engagement</li><li>The company must implement proactive outbound engagement capabilities, including:</li><li>Proactive Dialer to adjust call pacing based on CSR availability and answer rates.</li></ul>
+<p>Trigger-based engagement based on customer actions.</p>
+<p>Integration with customer data to personalize outreach.</p>
+<p>Outbound campaigns must be configurable without requiring custom code.</p>
+<p>Agent assist and AI capabilities</p>
+<p>VanArsdel, Ltd. must enhance CSR productivity by implementing AI-powered assistance features, including:</p>
+<p>Suggested responses during customer interactions.</p>
+<p>Automated knowledge article recommendations.</p>
+<p>Real-time transcription and summarization.</p>
+<p>Real-time assistance sent to the CSR in the send message box during chat conversations.</p>
+<p>The company also plans to extend Copilot capabilities by integrating custom plugins, tools, and connectors.</p>
+<p>Additionally, a bot must be implemented to support CSRs by providing interactable contextual guidance during interactions.</p>
+<p>Voice agent configuration</p>
+<p>The company must configure voice agents to support natural and efficient customer interactions.</p>
+<p>The solution must include:</p>
+<p>Real-time speech recognition.</p>
+<p>Accurate transcription of customer conversations.</p>
+<p>Configurable voice settings to optimize performance.</p>
+<p>Voice agents must follow best practices to ensure high-quality interactions and minimize errors.</p></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Technical requirements</span></summary>
+<div class="cs-section-body"><p>Channel Integration Framework</p>
+<p>VanArsdel, Ltd. requires a phased approach to deploying the voice channel. The company plans to use its existing CCaaS solution with Copilot Service workspace to enable adoption of the agent desktop while the voice channel and associated capabilities are developed. The company requires the Channel Integration Framework to be built to:</p>
+<p>Click-to-act functionality for outbound communication.</p>
+<p>Integration with third-party applications.</p>
+<p>A consistent user experience for CSRs.</p>
+<p>Sensitive data masking</p>
+<p>The solution must include sensitive data masking capabilities that:</p>
+<p>Automatically detect and mask sensitive information during interactions.</p>
+<p>Prevent exposure of sensitive data in logs and transcripts.</p>
+<p>Allow administrators to configure masking rules.</p>
+<p>Omnichannel JavaScript API</p>
+<p>Custom extensions must be developed by using the Omnichannel JavaScript API to:</p>
+<p>Provide enhanced automation during a conversation.</p>
+<p>Display conversation dynamically based on the defined business process.</p>
+<p>Provide contextual information during customer interactions.</p>
+<p>These extensions must be maintainable and align with best practices.</p>
+<p>Supervisor experience</p>
+<p>Supervisors must have access to advanced analytics and monitoring tools, including:</p>
+<p>Real-time dashboards for intraday CSR performance.</p>
+<p>Historical insights into call volumes and trends.</p>
+<p>Tools to manage and optimize CSR workloads.</p>
+<p>The supervisor app must be used to provide actionable insights that improve operational efficiency.</p>
+<p>Issues</p>
+<p>VanArsdel, Ltd. has identified the following issues in the current environment:</p>
+<ul class="stem-list"><li>CSRs experience delays due to switching between multiple systems.</li><li>Sensitive customer data is exposed during interactions.</li><li>Outbound engagement capabilities are limited and not automated.</li><li>Supervisors lack visibility into real-time performance metrics.</li><li>Voice interactions lack transcription and AI-assisted features.</li></ul></div>
+</details>
+<details class="cs-section">
+<summary><span class="section-title">Problem statement</span></summary>
+<div class="cs-section-body"><p>VanArsdel, Ltd. must implement a modern contact center solution by using Dynamics 365 Contact Center to:</p>
+<p>Improve CSR productivity through AI and automation.</p>
+<p>Ensure compliance with data protection regulations.</p>
+<p>Enhance customer engagement through proactive outreach.</p>
+<p>Provide a unified and efficient CSR experience.</p>
+<p>Enable supervisors to monitor and optimize operations effectively.</p>
+<p>The solution must be scalable, secure, and aligned with best practices for configuring channels, AI capabilities, and integrations.</p></div>
+</details>
+</section>
+</div>
+</article>
+<article class="question" id="q-ab-250-t2-n3-429743" data-topic="2" data-num="3" data-label="Q2.3" data-qtype="multiple" data-contested="false" data-most-voted="AD" data-search="Q2.3 429743 Implement channels A company uses Dynamics 365 live chat on its website. The digital team wants the chat experience to use the existing brand kit and style guide of the company and support a more tailored web experience. The company requires a solution that enables it to control the chat experience through customization. You need to expand chat behavior beyond default capabilities. What are two possible ways to achieve this goal? Each correct answer presents a complete solution. NOTE: Each correct selection is worth one point. Modify functionality by using the live chat SDK. Use the Omnichannel JavaScript API. Configure workstream context variables. Modify chat widget configuration settings.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q2.3</span>
+<span class="q-id">ID 429743</span>
+<span class="q-badge skill-badge">Implement channels</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q2.3" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q2.3 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company uses Dynamics 365 live chat on its website.</p>
+<p>The digital team wants the chat experience to use the existing brand kit and style guide of the company and support a more tailored web experience.</p>
+<p>The company requires a solution that enables it to control the chat experience through customization.</p>
+<p class="prompt-lead">You need to expand chat behavior beyond default capabilities.</p>
+<p class="prompt-lead">What are two possible ways to achieve this goal? Each correct answer presents a complete solution.</p>
+<p class="exam-instruction-note">NOTE: Each correct selection is worth one point.</p></div>
+</section>
+<ol class="choices" type="A" data-multiple="true">
+<li class="correct" data-letter="A">
+<input type="checkbox" name="choice-q-ab-250-t2-n3-429743" value="A" id="choice-q-ab-250-t2-n3-429743-A">
+<label for="choice-q-ab-250-t2-n3-429743-A"><span class="letter">A</span><span>Modify functionality by using the live chat SDK.</span></label>
+</li>
+<li class="" data-letter="B">
+<input type="checkbox" name="choice-q-ab-250-t2-n3-429743" value="B" id="choice-q-ab-250-t2-n3-429743-B">
+<label for="choice-q-ab-250-t2-n3-429743-B"><span class="letter">B</span><span>Use the Omnichannel JavaScript API.</span></label>
+</li>
+<li class="" data-letter="C">
+<input type="checkbox" name="choice-q-ab-250-t2-n3-429743" value="C" id="choice-q-ab-250-t2-n3-429743-C">
+<label for="choice-q-ab-250-t2-n3-429743-C"><span class="letter">C</span><span>Configure workstream context variables.</span></label>
+</li>
+<li class="correct" data-letter="D">
+<input type="checkbox" name="choice-q-ab-250-t2-n3-429743" value="D" id="choice-q-ab-250-t2-n3-429743-D">
+<label for="choice-q-ab-250-t2-n3-429743-D"><span class="letter">D</span><span>Modify chat widget configuration settings.</span></label>
+</li>
+</ol>
+<div class="answer-status" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q2.3">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid">
+<div class="answer-card"><div class="label-row"><span class="label">Correct answer</span></div><strong>A, D</strong></div>
+<div class="answer-card"><div class="label-row"><span class="label">Most voted</span></div><strong>AD</strong></div>
+</div>
+<div class="vote-bars">
+<div class="vote-bars-title"><span>Community vote distribution</span><span>1 vote</span></div>
+<div class="vote-bar-row"><strong>AD</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:100%"></div></div><span>100% (1)</span></div>
+</div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>RominaT</strong> · 1 upvote <span class="badge">Most Recent</span> <span class="badge">Selected Answer: AD</span></div><div class="comment-body"><p>I think it&#x27;s not B because Omnichannel JavaScript API is primarily used for agent-side and conversation operations</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429743-exam-ab-250-topic-2-question-3-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question" id="q-ab-250-t2-n10-429795" data-topic="2" data-num="10" data-label="Q2.10" data-qtype="hotspot" data-contested="false" data-most-voted="Configure auto-close after inactivity in the workstream." data-search="Q2.10 429795 Implement channels A company uses persistent chat and messaging channels in a contact center. The company requires tighter conversation lifecycle control to keep queues clean and customer service representative workloads current. The company has the following requirements: • Conversations that remain in a waiting status without customer engagement must automatically close after a defined period. • Chat conversations that move to wrap-up must automatically close after a business-defined custom time limit. You need to configure the channels to meet the requirements. Which action should you perform for each requirement? To answer, select the appropriate options in the answer area. NOTE: Each correct selection is worth one point.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q2.10</span>
+<span class="q-id">ID 429795</span>
+<span class="q-badge">Hotspot</span>
+<span class="q-badge skill-badge">Implement channels</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q2.10" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q2.10 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company uses persistent chat and messaging channels in a contact center.</p>
+<p>The company requires tighter conversation lifecycle control to keep queues clean and customer service representative workloads current.</p>
+<p>The company has the following requirements:</p>
+<ul class="stem-list"><li>Conversations that remain in a waiting status without customer engagement must automatically close after a defined period.</li><li>Chat conversations that move to wrap-up must automatically close after a business-defined custom time limit.</li></ul>
+<p class="prompt-lead">You need to configure the channels to meet the requirements.</p>
+<p class="prompt-lead">Which action should you perform for each requirement?</p>
+<p class="exam-instruction-note">To answer, select the appropriate options in the answer area.</p>
+<p class="exam-instruction-note">NOTE: Each correct selection is worth one point.</p></div>
+</section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><button type="button" class="exhibit-zoom-btn" data-zoom-src="../assets/exhibits/ab-250/429795_0.png" data-zoom-caption="Q2.10 · Exhibit 1" aria-label="Zoom Exhibit 1"><img src="../assets/exhibits/ab-250/429795_0.png" alt="" loading="lazy"></button><figcaption class="exhibit-caption">Exhibit 1 · <span>Click image to zoom</span></figcaption></figure>
+</div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q2.10">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid answer-grid-single">
+<div class="answer-card"><div class="label-row"><span class="label">Community answer (Most voted)</span></div><strong>Configure auto-close after inactivity in the workstream.</strong></div>
+</div>
+<div class="self-grade-controls" role="group" aria-label="Self-grade your answer"><span class="self-grade-prompt">Self-check your answer:</span><button type="button" class="secondary btn-self-grade" data-self-grade="correct" aria-pressed="false">Got it right ✓</button><button type="button" class="secondary btn-self-grade" data-self-grade="incorrect" aria-pressed="false">Needs work ✕</button></div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>Dim1973</strong> · 1 upvote <span class="badge">Most Recent</span></div><div class="comment-body"><p>Correct answer: Configure auto-close after inactivity in the workstream.</p>
+<p>Explanation:</p>
+<p>In Dynamics 365 Contact Center, the Auto-close after inactivity setting allows conversations to close automatically when customers do not respond within a specified period.</p>
+<p>This setting is configured at the workstream level and helps prevent inactive conversations from remaining in queues unnecessarily.</p>
+<p>Correct answer: Configure channel state by using the web API.</p>
+<p>Explanation:</p>
+<p>The wrap-up state is used when a customer service representative (CSR) has finished interacting with a customer but is still completing post-conversation activities.</p>
+<p>To customize the automatic closure duration for conversations in the wrap-up state, administrators can modify the channel state configuration through the Dataverse Web API.</p>
+<p>This provides more control over how long conversations remain in wrap-up before automatically closing.</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429795-exam-ab-250-topic-2-question-10-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question" id="q-ab-250-t2-n16-429801" data-topic="2" data-num="16" data-label="Q2.16" data-qtype="hotspot" data-contested="false" data-most-voted="First one should be Add pre-chat survey question, context variable created automatically." data-search="Q2.16 429801 Implement channels Customer service representatives (CSRs) at a company use a chat channel in Dynamics 365 Customer Service. The company wants to improve how incoming chats are handled as follows: • Email addresses must be captured for customer verification before engaging the customer. • The reason for the contact must be captured before the chat starts and must be used for routing. You need to configure the chat channel to meet the requirements. Which action should you perform for each requirement? To answer, select the appropriate options in the answer area. NOTE: Each correct selection is worth one point.">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q2.16</span>
+<span class="q-id">ID 429801</span>
+<span class="q-badge">Hotspot</span>
+<span class="q-badge skill-badge">Implement channels</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q2.16" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q2.16 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>Customer service representatives (CSRs) at a company use a chat channel in Dynamics 365 Customer Service.</p>
+<p>The company wants to improve how incoming chats are handled as follows:</p>
+<ul class="stem-list"><li>Email addresses must be captured for customer verification before engaging the customer.</li><li>The reason for the contact must be captured before the chat starts and must be used for routing.</li></ul>
+<p class="prompt-lead">You need to configure the chat channel to meet the requirements.</p>
+<p class="prompt-lead">Which action should you perform for each requirement?</p>
+<p class="exam-instruction-note">To answer, select the appropriate options in the answer area.</p>
+<p class="exam-instruction-note">NOTE: Each correct selection is worth one point.</p></div>
+</section>
+<div class="exhibits">
+<figure class="exhibit exhibit-image"><button type="button" class="exhibit-zoom-btn" data-zoom-src="../assets/exhibits/ab-250/429801_0.png" data-zoom-caption="Q2.16 · Exhibit 1" aria-label="Zoom Exhibit 1"><img src="../assets/exhibits/ab-250/429801_0.png" alt="" loading="lazy"></button><figcaption class="exhibit-caption">Exhibit 1 · <span>Click image to zoom</span></figcaption></figure>
+</div>
+<div class="answer-status answer-status-hotspot" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q2.16">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid answer-grid-single">
+<div class="answer-card"><div class="label-row"><span class="label">Community answer (Most voted)</span></div><p class="answer-prose">First one should be Add pre-chat survey question, context variable created automatically.</p></div>
+</div>
+<div class="self-grade-controls" role="group" aria-label="Self-grade your answer"><span class="self-grade-prompt">Self-check your answer:</span><button type="button" class="secondary btn-self-grade" data-self-grade="correct" aria-pressed="false">Got it right ✓</button><button type="button" class="secondary btn-self-grade" data-self-grade="incorrect" aria-pressed="false">Needs work ✕</button></div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>lastcert</strong> · 1 upvote <span class="badge">Most Recent</span></div><div class="comment-body"><p>First one should be Add pre-chat survey question, context variable created automatically.</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429801-exam-ab-250-topic-2-question-16-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+<article class="question" id="q-ab-250-t5-n15-429775" data-topic="5" data-num="15" data-label="Q5.15" data-qtype="single" data-contested="false" data-most-voted="B" data-search="Q5.15 429775 Configure the Dynamics 365 Contact Center representative experience A company uses Dynamics 365 Contact Center to handle incoming interactions. Customer service representatives (CSRs) report that when a new work item arrives, they cannot determine the type or context of the request until after accepting it. CSRs must be able to determine key details about work items before accepting them to decide how to handle the interactions. You need to configure how work items appear to CSRs. What should you do? Configure how work items are prioritized in queues Define the title and message shown for incoming conversations Define rules for assigning work items to CSRs Configure how sessions are arranged in the workspace">
+<div class="q-header">
+<div class="q-title">
+<span class="q-num">Q5.15</span>
+<span class="q-id">ID 429775</span>
+<span class="q-badge skill-badge">Configure the Dynamics 365 Contact Center representative experience</span>
+</div>
+<div class="q-actions">
+<button class="secondary btn-bookmark" type="button" aria-label="Bookmark Q5.15" aria-pressed="false">☆ Save</button>
+<button class="secondary btn-review" type="button" aria-label="Mark Q5.15 as reviewed">Mark reviewed</button>
+</div></div>
+<section class="prompt-card" aria-label="Question prompt">
+<div class="prompt-label">Exam task</div>
+<div class="q-prompt"><p>A company uses Dynamics 365 Contact Center to handle incoming interactions.</p>
+<p>Customer service representatives (CSRs) report that when a new work item arrives, they cannot determine the type or context of the request until after accepting it.</p>
+<p>CSRs must be able to determine key details about work items before accepting them to decide how to handle the interactions.</p>
+<p class="prompt-lead">You need to configure how work items appear to CSRs.</p>
+<p class="prompt-lead">What should you do?</p></div>
+</section>
+<ol class="choices" type="A" data-multiple="false">
+<li class="" data-letter="A">
+<input type="radio" name="choice-q-ab-250-t5-n15-429775" value="A" id="choice-q-ab-250-t5-n15-429775-A">
+<label for="choice-q-ab-250-t5-n15-429775-A"><span class="letter">A</span><span>Configure how work items are prioritized in queues</span></label>
+</li>
+<li class="correct" data-letter="B">
+<input type="radio" name="choice-q-ab-250-t5-n15-429775" value="B" id="choice-q-ab-250-t5-n15-429775-B">
+<label for="choice-q-ab-250-t5-n15-429775-B"><span class="letter">B</span><span>Define the title and message shown for incoming conversations</span></label>
+</li>
+<li class="" data-letter="C">
+<input type="radio" name="choice-q-ab-250-t5-n15-429775" value="C" id="choice-q-ab-250-t5-n15-429775-C">
+<label for="choice-q-ab-250-t5-n15-429775-C"><span class="letter">C</span><span>Define rules for assigning work items to CSRs</span></label>
+</li>
+<li class="" data-letter="D">
+<input type="radio" name="choice-q-ab-250-t5-n15-429775" value="D" id="choice-q-ab-250-t5-n15-429775-D">
+<label for="choice-q-ab-250-t5-n15-429775-D"><span class="letter">D</span><span>Configure how sessions are arranged in the workspace</span></label>
+</li>
+</ol>
+<div class="answer-status" aria-live="polite"></div>
+<div class="answer-shell">
+<div class="answer-locked">
+<div><strong>Answer hidden</strong><br><span>Commit to your reasoning first, then reveal (or press <kbd>A</kbd>).</span></div>
+<button class="btn-toggle-answer" type="button" aria-label="Reveal answer for Q5.15">Reveal answer</button>
+</div>
+<div class="answer-revealed">
+<div class="answer-grid">
+<div class="answer-card"><div class="label-row"><span class="label">Correct answer</span></div><strong>B</strong></div>
+<div class="answer-card"><div class="label-row"><span class="label">Most voted</span></div><strong>B</strong></div>
+</div>
+<div class="vote-bars">
+<div class="vote-bars-title"><span>Community vote distribution</span><span>1 vote</span></div>
+<div class="vote-bar-row"><strong>B</strong><div class="vote-bar-track"><div class="vote-bar-fill" style="inline-size:100%"></div></div><span>100% (1)</span></div>
+</div>
+<details class="comments" open>
+<summary>Top explanations from discussion (1)</summary>
+<div class="comment"><div class="comment-meta"><strong>lastcert</strong> · 1 upvote <span class="badge">Most Recent</span> <span class="badge">Selected Answer: B</span></div><div class="comment-body"><p>The others have nothing to do with showing information.</p></div></div>
+</details>
+<div class="answer-tools"><a class="thread-link" href="https://www.examtopics.com/discussions/microsoft/view/429775-exam-ab-250-topic-5-question-15-discussion/" target="_blank" rel="noopener">Original ExamTopics discussion ↗</a><button class="secondary btn-toggle-answer" type="button">Hide answer</button></div>
+</div></div>
+</article>
+</div></div>
+
+  </main>
+  <dialog id="exhibit-lightbox" class="app-dialog lightbox-dialog" closedby="any" aria-labelledby="lightbox-title">
+    <div class="dialog-header">
+      <h2 id="lightbox-title">Exhibit preview</h2>
+      <form method="dialog"><button type="submit" class="secondary" autofocus>Close</button></form>
+    </div>
+    <div class="lightbox-stage">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+  </dialog>
+  <dialog id="reset-dialog" class="app-dialog" closedby="any" aria-labelledby="reset-dialog-title">
+    <h2 id="reset-dialog-title">Reset study progress?</h2>
+    <p>This clears saved answers, bookmarks, self-grades, and reviewed status for this exam only.</p>
+    <form method="dialog" class="dialog-actions">
+      <button type="submit" value="cancel" class="secondary" autofocus>Cancel</button>
+      <button type="submit" value="reset" id="confirm-reset-btn">Reset progress</button>
+    </form>
+  </dialog>
+  <div class="nav-floating" aria-label="Question navigation">
+    <button class="secondary nav-prev-btn" type="button" title="Previous question (←)" aria-label="Previous question">←</button>
+    <div class="nav-status" aria-live="polite">Q 1</div>
+    <button class="secondary nav-next-btn" type="button" title="Next question (→)" aria-label="Next question">→</button>
+  </div>
+  <script>
+    const EXAM_SLUG = document.body.dataset.exam || 'ab-250';
+    const STORAGE_PREFIX = 'examguide-v2-ab-250';
+    const appHeader = document.querySelector('header.app-header');
+    if (appHeader && 'ResizeObserver' in window) {
+      let lastHeaderHeight = 0;
+      new ResizeObserver(() => {
+        const nextHeight = appHeader.offsetHeight;
+        if (nextHeight > 0 && nextHeight !== lastHeaderHeight) {
+          lastHeaderHeight = nextHeight;
+          requestAnimationFrame(() => {
+            document.documentElement.style.setProperty('--header-height', `${nextHeight}px`);
+          });
+        }
+      }).observe(appHeader);
+    }
+    const STORAGE_KEY = `${STORAGE_PREFIX}-reviewed`;
+    const SELECTIONS_KEY = `${STORAGE_PREFIX}-selections`;
+    const BOOKMARKS_KEY = `${STORAGE_PREFIX}-bookmarks`;
+    const SELFGRADE_KEY = `${STORAGE_PREFIX}-selfgrade`;
+    const DRAGDROP_KEY = `${STORAGE_PREFIX}-dragdrop`;
+
+    // One-time migration from legacy location.pathname keys so existing progress carries over
+    function migrateLegacyStorage(v2Key, legacySuffix) {
+      if (localStorage.getItem(v2Key) !== null) return;
+      const legacyVal = localStorage.getItem(location.pathname + legacySuffix);
+      if (legacyVal !== null) localStorage.setItem(v2Key, legacyVal);
+    }
+    migrateLegacyStorage(STORAGE_KEY, '-reviewed');
+    migrateLegacyStorage(SELECTIONS_KEY, '-selections');
+    migrateLegacyStorage(DRAGDROP_KEY, '-dragdrop');
+
+    // Light-dismiss fallback for browsers without native HTMLDialogElement.prototype.closedBy
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      const outsideDialog = (e, dialog) => {
+        const r = dialog.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      for (const dialog of document.querySelectorAll('dialog[closedby="any"]')) {
+        let pressedOutside = false;
+        dialog.addEventListener('pointerdown', (e) => { pressedOutside = outsideDialog(e, dialog); });
+        dialog.addEventListener('pointerup', (e) => { if (pressedOutside && outsideDialog(e, dialog)) dialog.close(); });
+      }
+    }
+
+    const questions = Array.from(document.querySelectorAll('.question'));
+    const ids = questions.map(q => q.id);
+    let visibleIds = [...ids];
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const heroPct = document.getElementById('hero-pct');
+    const heroAttempted = document.getElementById('hero-attempted');
+    const heroCorrect = document.getElementById('hero-correct');
+    const heroReviewed = document.getElementById('hero-reviewed');
+    const heroRemaining = document.getElementById('hero-remaining');
+    const navStatuses = document.querySelectorAll('.nav-status');
+    progressBar.setAttribute('aria-valuemin', '0');
+    progressBar.setAttribute('aria-valuemax', String(ids.length));
+
+    const themeBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('examguide-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', savedTheme || (prefersDark ? 'dark' : 'light'));
+    function syncThemeButton() {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeBtn.textContent = dark ? '☀️' : '🌙';
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    themeBtn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('examguide-theme', next);
+      syncThemeButton();
+    });
+    syncThemeButton();
+
+    let selections = {};
+    let reviewed = new Set();
+    let bookmarks = new Set();
+    let selfGrades = {};
+    let dragdropSelections = {};
+    try { selections = JSON.parse(localStorage.getItem(SELECTIONS_KEY) || '{}'); } catch (e) { selections = {}; }
+    try { reviewed = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')); } catch (e) { reviewed = new Set(); }
+    try { bookmarks = new Set(JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]')); } catch (e) { bookmarks = new Set(); }
+    try { selfGrades = JSON.parse(localStorage.getItem(SELFGRADE_KEY) || '{}'); } catch (e) { selfGrades = {}; }
+    try { dragdropSelections = JSON.parse(localStorage.getItem(DRAGDROP_KEY) || '{}'); } catch (e) { dragdropSelections = {}; }
+
+    function saveSelections() { localStorage.setItem(SELECTIONS_KEY, JSON.stringify(selections)); updateProgress(); }
+    function saveReviewed() { localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(reviewed))); updateProgress(); }
+    function saveBookmarks() { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(Array.from(bookmarks))); updateProgress(); }
+    function saveSelfGrades() { localStorage.setItem(SELFGRADE_KEY, JSON.stringify(selfGrades)); updateProgress(); }
+    function saveDragdrop() { localStorage.setItem(DRAGDROP_KEY, JSON.stringify(dragdropSelections)); }
+
+    function getSelected(q) { return new Set(selections[q.id] || []); }
+    function setSelected(q, letters) {
+      if (letters.size === 0) delete selections[q.id];
+      else selections[q.id] = Array.from(letters);
+      saveSelections();
+    }
+    function getCorrect(q) {
+      return new Set(Array.from(q.querySelectorAll('.choices li.correct')).map(li => li.dataset.letter).filter(Boolean));
+    }
+    function isQuestionAttempted(q) {
+      if (!q) return false;
+      if (q.querySelector('.choices')) return Boolean(selections[q.id] && selections[q.id].length > 0);
+      return Boolean(selfGrades[q.id]);
+    }
+    function isCorrect(q) {
+      if (!q) return false;
+      if (!q.querySelector('.choices')) return selfGrades[q.id] === 'correct';
+      const selected = getSelected(q);
+      const correct = getCorrect(q);
+      if (correct.size === 0) return false;
+      return selected.size > 0 && selected.size === correct.size && [...selected].every(x => correct.has(x));
+    }
+    function isNeedsWork(q) {
+      if (!q) return false;
+      if (!q.querySelector('.choices')) return selfGrades[q.id] === 'incorrect';
+      return isQuestionAttempted(q) && !isCorrect(q);
+    }
+
+    const showAllBtn = document.getElementById('show-all-answers');
+    function syncAnswerButtons() {
+      document.querySelectorAll('.btn-toggle-answer').forEach(btn => {
+        const q = btn.closest('.question');
+        const revealed = q.classList.contains('revealed');
+        btn.textContent = revealed ? 'Hide answer' : 'Reveal answer';
+        btn.setAttribute('aria-pressed', String(revealed));
+      });
+      const allRevealed = questions.length > 0 && questions.every(q => q.classList.contains('revealed'));
+      showAllBtn.textContent = allRevealed ? 'Hide answers' : 'Show answers';
+      showAllBtn.setAttribute('aria-pressed', String(allRevealed));
+    }
+    function toggleQuestionReveal(q) {
+      if (!q) return;
+      const wasHidden = !q.classList.contains('revealed');
+      q.classList.toggle('revealed');
+      updateAnswerFeedback(q);
+      if (wasHidden && q.dataset.result === 'incorrect') {
+        q.classList.remove('shake-incorrect');
+        void q.offsetWidth;
+        q.classList.add('shake-incorrect');
+        setTimeout(() => q.classList.remove('shake-incorrect'), 420);
+      }
+      syncAnswerButtons();
+    }
+    function setAllRevealed(revealed) {
+      questions.forEach(q => {
+        q.classList.toggle('revealed', revealed);
+        updateAnswerFeedback(q);
+      });
+      syncAnswerButtons();
+    }
+    showAllBtn.addEventListener('click', () => {
+      const anyHidden = questions.some(q => !q.classList.contains('revealed'));
+      if (anyHidden && !confirm('Reveal answers for every question?')) return;
+      setAllRevealed(anyHidden);
+    });
+    document.querySelectorAll('.btn-toggle-answer').forEach(btn => {
+      btn.addEventListener('click', () => toggleQuestionReveal(btn.closest('.question')));
+    });
+
+    function updateAnswerFeedback(q) {
+      const revealed = q.classList.contains('revealed');
+      const selected = getSelected(q);
+      const correct = getCorrect(q);
+      const hasChoices = !!q.querySelector('.choices');
+      q.querySelectorAll('.choices li').forEach(li => {
+        const letter = li.dataset.letter;
+        li.classList.remove('incorrect', 'missed');
+        if (revealed) {
+          if (selected.has(letter) && !correct.has(letter)) li.classList.add('incorrect');
+          if (!selected.has(letter) && correct.has(letter)) li.classList.add('missed');
+        }
+      });
+      q.querySelectorAll('.btn-self-grade').forEach(btn => {
+        btn.setAttribute('aria-pressed', String(selfGrades[q.id] === btn.dataset.selfGrade));
+      });
+      const status = q.querySelector('.answer-status');
+      if (!status) return;
+      delete q.dataset.result;
+      if (!hasChoices) {
+        const sg = selfGrades[q.id];
+        if (q.dataset.qtype === 'hotspot') {
+          const mostVoted = q.dataset.mostVoted || '';
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Review the exhibits above and reason about which options to select.';
+          } else if (sg === 'correct') {
+            status.className = 'answer-status correct';
+            status.textContent = 'Self-graded: Got it right!';
+          } else if (sg === 'incorrect') {
+            q.dataset.result = 'incorrect';
+            status.className = 'answer-status incorrect';
+            status.textContent = 'Self-graded: Flagged for more practice.';
+          } else if (mostVoted) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Compare your selections against the community answer below.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'HOTSPOT answer not available from ExamTopics.';
+          }
+        } else if (q.querySelector('.dragdrop-widget')) {
+          const mostVoted = q.dataset.mostVoted || '';
+          if (!revealed) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Reason about the placements above, then reveal to compare against the community answer.';
+          } else if (sg === 'correct') {
+            status.className = 'answer-status correct';
+            status.textContent = 'Self-graded: Got it right!';
+          } else if (sg === 'incorrect') {
+            q.dataset.result = 'incorrect';
+            status.className = 'answer-status incorrect';
+            status.textContent = 'Self-graded: Flagged for more practice.';
+          } else if (mostVoted) {
+            status.className = 'answer-status empty';
+            status.textContent = 'Compare your placements against the community answer below.';
+          } else {
+            status.className = 'answer-status empty';
+            status.textContent = 'DRAG DROP answer not available from ExamTopics.';
+          }
+        } else {
+          status.className = 'answer-status empty';
+          status.textContent = revealed ? 'Answer not provided by ExamTopics for this question type.' : 'This question type is not interactive.';
+        }
+        return;
+      }
+      if (!revealed) {
+        if (selected.size === 0) { status.className = 'answer-status empty'; status.textContent = 'Select your answer (or press 1–9), then reveal (A).'; }
+        else { status.className = 'answer-status'; status.textContent = `${selected.size} selected. Ready to reveal (A).`; }
+        return;
+      }
+      const missed = [...correct].filter(x => !selected.has(x));
+      const wrong = [...selected].filter(x => !correct.has(x));
+      if (correct.size === 0) {
+        status.className = 'answer-status empty';
+        status.textContent = 'Answer not provided by ExamTopics.';
+        return;
+      }
+      if (selected.size === 0) {
+        q.dataset.result = 'incorrect';
+        status.className = 'answer-status incorrect';
+        status.textContent = `No answer selected. Correct: ${[...correct].sort().join(', ')}`;
+      } else if (isCorrect(q)) {
+        q.dataset.result = 'correct';
+        status.className = 'answer-status correct';
+        status.textContent = 'Correct!';
+      } else {
+        const choiceList = q.querySelector('.choices');
+        const isMulti = choiceList && choiceList.dataset.multiple === 'true';
+        if (isMulti && wrong.length === 0 && missed.length > 0 && selected.size > 0) {
+          status.className = 'answer-status partial';
+          status.textContent = `Partially correct — ${selected.size} of ${correct.size} correct. Missing: ${[...missed].sort().join(', ')}`;
+        } else {
+          q.dataset.result = 'incorrect';
+          status.className = 'answer-status incorrect';
+          status.textContent = `Incorrect. You chose ${[...selected].sort().join(', ')}; correct: ${[...correct].sort().join(', ')}`;
+        }
+      }
+    }
+
+    questions.forEach(q => {
+      q.querySelectorAll('.btn-self-grade').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.dataset.selfGrade;
+          if (selfGrades[q.id] === val) delete selfGrades[q.id];
+          else selfGrades[q.id] = val;
+          saveSelfGrades();
+          updateAnswerFeedback(q);
+        });
+      });
+      const choiceList = q.querySelector('.choices');
+      if (!choiceList) {
+        updateAnswerFeedback(q);
+        return;
+      }
+      const saved = getSelected(q);
+      choiceList.querySelectorAll('input').forEach(input => {
+        if (saved.has(input.value)) input.checked = true;
+        input.addEventListener('change', () => {
+          if (q.classList.contains('revealed')) return;
+          const selected = new Set();
+          choiceList.querySelectorAll('input:checked').forEach(inp => selected.add(inp.value));
+          setSelected(q, selected);
+          updateAnswerFeedback(q);
+        });
+      });
+      updateAnswerFeedback(q);
+    });
+
+    function updateReviewButton(btn, id) {
+      const isReviewed = reviewed.has(id);
+      btn.setAttribute('aria-pressed', String(isReviewed));
+      btn.textContent = isReviewed ? 'Reviewed ✓' : 'Mark reviewed';
+      btn.classList.toggle('active', isReviewed);
+    }
+    function updateBookmarkButton(btn, id) {
+      const isBm = bookmarks.has(id);
+      btn.setAttribute('aria-pressed', String(isBm));
+      btn.textContent = isBm ? '★ Saved' : '☆ Save';
+      btn.classList.toggle('bookmarked', isBm);
+    }
+
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function matchesFilter(q) {
+      if (activeFilter === 'unreviewed' && reviewed.has(q.id)) return false;
+      if (activeFilter === 'incorrect' && !isNeedsWork(q)) return false;
+      if (activeFilter === 'bookmarked' && !bookmarks.has(q.id)) return false;
+      if (activeFilter === 'casestudy' && !q.classList.contains('is-case-study')) return false;
+      if (activeFilter === 'nonmcq' && q.querySelector('.choices')) return false;
+      if (activeFilter === 'contested' && q.dataset.contested !== 'true') return false;
+      if (searchQuery) {
+        const hay = (q.dataset.search || q.textContent || '').toLowerCase();
+        if (!hay.includes(searchQuery)) return false;
+      }
+      return true;
+    }
+
+    function applyFilters(opts = {}) {
+      visibleIds = questions.filter(matchesFilter).map(q => q.id);
+      const visibleSet = new Set(visibleIds);
+      document.querySelectorAll('.toc-links a').forEach(a => {
+        const href = a.getAttribute('href') || '';
+        const id = href.startsWith('#') ? href.slice(1) : '';
+        a.classList.toggle('filtered-out', Boolean(id) && !visibleSet.has(id));
+      });
+      const countEl = document.getElementById('filter-match-count');
+      if (countEl) countEl.textContent = `${visibleIds.length} of ${ids.length} shown`;
+      const emptyEl = document.getElementById('filter-empty-state');
+      if (emptyEl) emptyEl.hidden = ids.length === 0 || visibleIds.length > 0;
+
+      if (visibleIds.length === 0) {
+        questions.forEach(q => q.classList.remove('active', 'current'));
+        syncNavButtons();
+        return;
+      }
+      const curId = ids[currentIndex];
+      if (!visibleSet.has(curId)) {
+        const nextIdx = ids.indexOf(visibleIds[0]);
+        if (nextIdx >= 0) syncCurrent(nextIdx, { replaceOnly: true, noScroll: opts.noScroll });
+      } else {
+        syncNavButtons();
+      }
+    }
+
+    function updateProgress() {
+      const total = ids.length || 1;
+      const attempted = questions.filter(isQuestionAttempted).length;
+      const correctCount = questions.filter(q => isQuestionAttempted(q) && isCorrect(q)).length;
+      const pct = Math.round((reviewed.size / total) * 100);
+      progressBar.style.width = pct + '%';
+      progressBar.style.inlineSize = pct + '%';
+      progressBar.setAttribute('aria-valuenow', String(reviewed.size));
+      progressText.textContent = `${reviewed.size}/${ids.length} reviewed · ${attempted} attempted · ${correctCount} correct`;
+      if (heroPct) heroPct.textContent = `${pct}%`;
+      if (heroAttempted) heroAttempted.textContent = String(attempted);
+      if (heroCorrect) heroCorrect.textContent = String(correctCount);
+      if (heroReviewed) heroReviewed.textContent = String(reviewed.size);
+      if (heroRemaining) heroRemaining.textContent = String(Math.max(ids.length - reviewed.size, 0));
+      ids.forEach(id => {
+        const q = document.getElementById(id);
+        const isRev = reviewed.has(id);
+        const isBm = bookmarks.has(id);
+        if (q) q.classList.toggle('reviewed', isRev);
+        document.querySelectorAll(`.toc-links a[href="#${id}"]`).forEach(link => {
+          link.classList.toggle('reviewed', isRev);
+          link.classList.toggle('bookmarked', isBm);
+        });
+      });
+      document.querySelectorAll('.btn-review').forEach(btn => updateReviewButton(btn, btn.closest('.question').id));
+      document.querySelectorAll('.btn-bookmark').forEach(btn => updateBookmarkButton(btn, btn.closest('.question').id));
+      applyFilters({ noScroll: true });
+    }
+
+    document.querySelectorAll('.btn-review').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.closest('.question').id;
+        reviewed.has(id) ? reviewed.delete(id) : reviewed.add(id);
+        saveReviewed();
+      });
+    });
+    document.querySelectorAll('.btn-bookmark').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.closest('.question').id;
+        bookmarks.has(id) ? bookmarks.delete(id) : bookmarks.add(id);
+        saveBookmarks();
+      });
+    });
+
+    /* Search & filter controls */
+    const searchInput = document.getElementById('question-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        applyFilters({ noScroll: true });
+      });
+    }
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        activeFilter = chip.dataset.filter || 'all';
+        document.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+        applyFilters();
+      });
+    });
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
+    if (clearFiltersBtn) {
+      clearFiltersBtn.addEventListener('click', () => {
+        activeFilter = 'all';
+        searchQuery = '';
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.filter === 'all')));
+        applyFilters();
+      });
+    }
+
+    /* Sidebar map mode switcher (By Skill Area vs By Question #) */
+    document.querySelectorAll('.map-mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.mapMode;
+        document.querySelectorAll('.map-mode-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        const bySkill = document.getElementById('toc-by-skill');
+        const byNum = document.getElementById('toc-by-number');
+        if (bySkill && byNum) {
+          bySkill.hidden = mode !== 'skill';
+          byNum.hidden = mode !== 'number';
+        }
+      });
+    });
+
+    /* Case study Expand all / Collapse all */
+    document.querySelectorAll('.cs-toggle-all').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const panel = btn.closest('.case-study-panel');
+        if (!panel) return;
+        const expand = btn.getAttribute('aria-expanded') !== 'true';
+        panel.querySelectorAll('details.cs-section').forEach(d => { d.open = expand; });
+        btn.setAttribute('aria-expanded', String(expand));
+        btn.textContent = expand ? 'Collapse all' : 'Expand all';
+      });
+    });
+    document.addEventListener('toggle', (ev) => {
+      if (!(ev.target instanceof HTMLDetailsElement) || !ev.target.classList.contains('cs-section')) return;
+      const panel = ev.target.closest('.case-study-panel');
+      if (!panel) return;
+      const btn = panel.querySelector('.cs-toggle-all');
+      if (!btn) return;
+      const allOpen = Array.from(panel.querySelectorAll('details.cs-section')).every(d => d.open);
+      btn.setAttribute('aria-expanded', String(allOpen));
+      btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    }, { capture: true });
+
+    /* Exhibit Zoom Lightbox & Reset Progress Dialog */
+    const lightbox = document.getElementById('exhibit-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    document.querySelectorAll('.exhibit-zoom-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = btn.dataset.zoomSrc || '';
+        lightboxImg.alt = btn.dataset.zoomCaption || 'Exhibit';
+        if (lightboxTitle) lightboxTitle.textContent = btn.dataset.zoomCaption || 'Exhibit preview';
+        lightbox.showModal();
+      });
+    });
+
+    const resetDialog = document.getElementById('reset-dialog');
+    const resetBtn = document.getElementById('reset-progress-btn');
+    if (resetBtn && resetDialog) {
+      resetBtn.addEventListener('click', () => {
+        resetDialog.returnValue = '';
+        resetDialog.showModal();
+      });
+      resetDialog.addEventListener('close', () => {
+        if (resetDialog.returnValue === 'reset') {
+          selections = {};
+          reviewed = new Set();
+          bookmarks = new Set();
+          selfGrades = {};
+          dragdropSelections = {};
+          [STORAGE_KEY, SELECTIONS_KEY, BOOKMARKS_KEY, SELFGRADE_KEY, DRAGDROP_KEY].forEach(k => localStorage.removeItem(k));
+          questions.forEach(q => {
+            q.classList.remove('revealed');
+            q.querySelectorAll('.choices input').forEach(inp => { inp.checked = false; });
+            updateAnswerFeedback(q);
+          });
+          syncAnswerButtons();
+          updateProgress();
+        }
+        resetDialog.returnValue = '';
+      });
+    }
+
+    /* ----- Drag-drop interactivity ----- */
+    function attachDragdropWidget(q) {
+      const widget = q.querySelector('.dragdrop-widget');
+      if (!widget || !widget.classList.contains('dragdrop-widget-interactive')) return;
+      const chipsContainer = widget.querySelector('.dragdrop-source .dragdrop-chips');
+      const targetsContainer = widget.querySelector('.dragdrop-targets');
+      const chips = chipsContainer ? Array.from(chipsContainer.querySelectorAll('.dragdrop-chip')) : [];
+      const targets = targetsContainer ? Array.from(targetsContainer.querySelectorAll('.dragdrop-target')) : [];
+      if (!chips.length || !targets.length) return;
+
+      const saved = dragdropSelections[q.id] || {};
+      let activeChip = null;
+      function persist() { dragdropSelections[q.id] = saved; saveDragdrop(); }
+      function placedChipIdx(targetIdx) {
+        return Object.prototype.hasOwnProperty.call(saved, String(targetIdx)) ? saved[String(targetIdx)] : undefined;
+      }
+      function placeChip(targetIdx, chipIdx) {
+        if (placedChipIdx(targetIdx) === chipIdx) return;
+        for (const [tIdx, cIdx] of Object.entries(saved)) {
+          if (Number(cIdx) === Number(chipIdx)) delete saved[tIdx];
+        }
+        saved[String(targetIdx)] = Number(chipIdx);
+        render();
+        persist();
+      }
+      function clearTarget(targetIdx) {
+        if (placedChipIdx(targetIdx) === undefined) return;
+        delete saved[String(targetIdx)];
+        render();
+        persist();
+      }
+      function clearAll() {
+        for (const k of Object.keys(saved)) delete saved[k];
+        render();
+        persist();
+      }
+      function render() {
+        chips.forEach(chip => chip.classList.remove('placed', 'selected', 'dragging'));
+        const placedChipIdxs = new Set(Object.values(saved).map(Number));
+        chips.forEach(chip => {
+          if (placedChipIdxs.has(Number(chip.dataset.value))) chip.classList.add('placed');
+        });
+        targets.forEach(target => {
+          const tIdx = Number(target.dataset.target);
+          const labelEl = target.querySelector('.dragdrop-target-label');
+          const chipIdx = placedChipIdx(tIdx);
+          if (chipIdx !== undefined) {
+            const chip = chips.find(c => Number(c.dataset.value) === Number(chipIdx));
+            if (chip) {
+              labelEl.textContent = chip.dataset.label || chip.textContent.trim();
+              target.classList.add('filled');
+            }
+          } else {
+            labelEl.textContent = target.dataset.placeholder || '';
+            target.classList.remove('filled');
+          }
+        });
+      }
+      render();
+      chips.forEach(chip => {
+        const chipIdx = Number(chip.dataset.value);
+        chip.addEventListener('click', () => {
+          if (q.classList.contains('revealed')) return;
+          if (chip.classList.contains('placed')) {
+            for (const [tIdx, cIdx] of Object.entries(saved)) {
+              if (Number(cIdx) === chipIdx) delete saved[tIdx];
+            }
+            render(); persist(); return;
+          }
+          if (activeChip === chip) { activeChip = null; chip.classList.remove('selected'); }
+          else { chips.forEach(c => c.classList.remove('selected')); activeChip = chip; chip.classList.add('selected'); }
+        });
+        chip.addEventListener('dragstart', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.dataTransfer.setData('text/plain', String(chipIdx));
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        chip.addEventListener('keydown', (e) => {
+          if (q.classList.contains('revealed')) return;
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); chip.click(); }
+        });
+      });
+      targets.forEach(target => {
+        const tIdx = Number(target.dataset.target);
+        target.addEventListener('click', (ev) => {
+          if (q.classList.contains('revealed') || ev.target.closest('.dragdrop-clear')) return;
+          if (activeChip) {
+            placeChip(tIdx, Number(activeChip.dataset.value));
+            activeChip.classList.remove('selected');
+            activeChip = null;
+          } else if (placedChipIdx(tIdx) !== undefined) clearTarget(tIdx);
+        });
+        target.addEventListener('dragover', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          target.classList.add('drop-hover');
+        });
+        target.addEventListener('dragleave', () => target.classList.remove('drop-hover'));
+        target.addEventListener('drop', (e) => {
+          if (q.classList.contains('revealed')) return;
+          e.preventDefault();
+          target.classList.remove('drop-hover');
+          const chipIdx = Number(e.dataTransfer.getData('text/plain'));
+          if (Number.isFinite(chipIdx)) placeChip(tIdx, chipIdx);
+        });
+        const clearBtn = target.querySelector('.dragdrop-clear');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (!q.classList.contains('revealed')) clearTarget(Number(clearBtn.dataset.target));
+          });
+        }
+      });
+      let resetDdBtn = widget.querySelector('.dragdrop-reset');
+      if (!resetDdBtn) {
+        resetDdBtn = document.createElement('button');
+        resetDdBtn.type = 'button';
+        resetDdBtn.className = 'secondary dragdrop-reset';
+        resetDdBtn.textContent = 'Reset placements';
+        widget.appendChild(resetDdBtn);
+      }
+      resetDdBtn.addEventListener('click', () => { if (!q.classList.contains('revealed')) clearAll(); });
+    }
+    questions.forEach(attachDragdropWidget);
+
+    let currentIndex = 0;
+    function syncCurrent(index, opts = {}) {
+      if (!ids.length) return;
+      currentIndex = Math.max(0, Math.min(index, ids.length - 1));
+      const activeId = ids[currentIndex];
+      questions.forEach((q, i) => {
+        const isActive = i === currentIndex;
+        q.classList.toggle('active', isActive);
+        q.classList.toggle('current', isActive);
+      });
+      document.querySelectorAll('.toc-links a.current').forEach(a => a.classList.remove('current'));
+      document.querySelectorAll(`.toc-links a[href="#${activeId}"]`).forEach(link => {
+        link.classList.add('current');
+        const parentChunk = link.closest('details.toc-chunk');
+        if (parentChunk) parentChunk.open = true;
+        if (!opts.noScroll && link.offsetParent !== null) link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+      const q = questions[currentIndex];
+      const visPos = visibleIds.indexOf(activeId);
+      const posStr = visPos >= 0 ? `${visPos + 1}/${visibleIds.length}` : `${currentIndex + 1}/${ids.length}`;
+      navStatuses.forEach(el => { if (el && q) el.textContent = `${q.dataset.label || 'Q'} · ${posStr}`; });
+      syncNavButtons();
+      if (!opts.replaceOnly) history.pushState(null, '', `#${activeId}`);
+    }
+    function syncNavButtons() {
+      const navFloating = document.querySelector('.nav-floating');
+      if (navFloating) navFloating.hidden = ids.length === 0;
+      const activeId = ids[currentIndex];
+      const visIdx = visibleIds.indexOf(activeId);
+      const atStart = visibleIds.length <= 1 || visIdx <= 0;
+      const atEnd = visibleIds.length <= 1 || visIdx < 0 || visIdx >= visibleIds.length - 1;
+      document.querySelectorAll('.nav-prev-btn').forEach(btn => {
+        btn.disabled = atStart;
+        btn.setAttribute('aria-disabled', String(atStart));
+      });
+      document.querySelectorAll('.nav-next-btn').forEach(btn => {
+        btn.disabled = atEnd;
+        btn.setAttribute('aria-disabled', String(atEnd));
+      });
+    }
+    function goToQuestion(index) {
+      if (!ids.length) return;
+      index = Math.max(0, Math.min(index, ids.length - 1));
+      syncCurrent(index);
+      questions[currentIndex]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function stepVisible(delta) {
+      if (!visibleIds.length) return;
+      const curVis = visibleIds.indexOf(ids[currentIndex]);
+      const nextVis = Math.max(0, Math.min((curVis >= 0 ? curVis : 0) + delta, visibleIds.length - 1));
+      const targetIdx = ids.indexOf(visibleIds[nextVis]);
+      if (targetIdx >= 0) goToQuestion(targetIdx);
+    }
+
+    document.querySelectorAll('.nav-prev-btn').forEach(btn => btn.addEventListener('click', () => stepVisible(-1)));
+    document.querySelectorAll('.nav-next-btn').forEach(btn => btn.addEventListener('click', () => stepVisible(1)));
+    document.getElementById('resume-unreviewed').addEventListener('click', () => {
+      const pool = visibleIds.length ? visibleIds : ids;
+      const firstUnreviewed = pool.find(id => !reviewed.has(id));
+      goToQuestion(firstUnreviewed ? ids.indexOf(firstUnreviewed) : ids.indexOf(pool[0]));
+    });
+
+    const studyMap = document.getElementById('study-map');
+    const toggleMapBtn = document.getElementById('toggle-map');
+    function setMapCollapsed(collapsed, opts = {}) {
+      if (!studyMap) return;
+      studyMap.classList.toggle('collapsed', collapsed);
+      if (toggleMapBtn) {
+        toggleMapBtn.textContent = collapsed ? 'Map' : 'Hide map';
+        toggleMapBtn.setAttribute('aria-pressed', String(!collapsed));
+        toggleMapBtn.setAttribute('aria-expanded', String(!collapsed));
+        toggleMapBtn.setAttribute('aria-controls', 'study-map');
+      }
+      if (!collapsed && opts.scroll) studyMap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (toggleMapBtn) {
+      toggleMapBtn.addEventListener('click', () => setMapCollapsed(!studyMap.classList.contains('collapsed'), { scroll: true }));
+    }
+
+    document.querySelectorAll('.toc-links a, .cs-jumper-links a').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const idx = ids.indexOf(href.slice(1));
+        if (idx >= 0) {
+          if (!visibleIds.includes(ids[idx])) {
+            activeFilter = 'all';
+            searchQuery = '';
+            if (searchInput) searchInput.value = '';
+            document.querySelectorAll('.filter-chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset.filter === 'all')));
+            applyFilters({ noScroll: true });
+          }
+          goToQuestion(idx);
+          if (window.innerWidth <= 1060) setMapCollapsed(true);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (document.querySelector('dialog[open]')) return;
+      if (e.key === '/' && !e.target.matches('input, textarea')) {
+        e.preventDefault();
+        searchInput?.focus();
+        searchInput?.select();
+        return;
+      }
+      if (e.target.matches('input, textarea, select, button, summary')) return;
+      if (e.key === 'ArrowLeft') { e.preventDefault(); stepVisible(-1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); stepVisible(1); }
+      else if (e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        toggleQuestionReveal(questions[currentIndex]);
+      } else if (e.key.toLowerCase() === 'r') {
+        const id = ids[currentIndex];
+        if (!id) return;
+        reviewed.has(id) ? reviewed.delete(id) : reviewed.add(id);
+        saveReviewed();
+      } else if (e.key.toLowerCase() === 'b') {
+        const id = ids[currentIndex];
+        if (!id) return;
+        bookmarks.has(id) ? bookmarks.delete(id) : bookmarks.add(id);
+        saveBookmarks();
+      } else if (/^[1-9]$/.test(e.key)) {
+        const q = questions[currentIndex];
+        if (!q || q.classList.contains('revealed')) return;
+        const inputs = Array.from(q.querySelectorAll('.choices input'));
+        const target = inputs[Number(e.key) - 1];
+        if (target) {
+          target.checked = target.type === 'checkbox' ? !target.checked : true;
+          target.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      }
+    });
+
+    window.addEventListener('popstate', () => {
+      const id = location.hash ? location.hash.slice(1) : ids[0];
+      const idx = ids.indexOf(id);
+      if (idx >= 0) syncCurrent(idx, { replaceOnly: true, noScroll: true });
+    });
+
+    updateProgress();
+    syncAnswerButtons();
+    if (window.innerWidth <= 1060) setMapCollapsed(true);
+    const startId = location.hash ? location.hash.slice(1) : ids[0];
+    syncCurrent(Math.max(0, ids.indexOf(startId)), { replaceOnly: true, noScroll: true });
+  </script>
+</body>
+</html>

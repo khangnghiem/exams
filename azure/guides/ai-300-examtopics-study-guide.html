@@ -216,9 +216,21 @@
       background: var(--surface);
       color: var(--text);
       box-shadow: var(--shadow);
-      min-inline-size: 260px;
+      min-inline-size: 270px;
+      max-inline-size: min(92dvw, 29rem);
+      max-block-size: min(78dvh, 36rem);
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
-    #exam-switcher-menu:is(:popover-open, .\:popover-open) { display: grid; gap: 0.25rem; }
+    #exam-switcher-menu:is(:popover-open, .\:popover-open) { display: grid; gap: 0.22rem; }
+    .switcher-tier-heading {
+      margin: 0.45rem 0.55rem 0.15rem;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
     #exam-switcher-menu a {
       display: flex;
       justify-content: space-between;
@@ -1329,12 +1341,38 @@
   </header>
   <nav id="exam-switcher-menu" popover aria-label="Switch certification study guide">
 <a href="index.html"><strong>All Exams Hub</strong><span>Overview</span></a>
+<div class="switcher-tier-heading">Expert Level Certifications</div>
+<a href="ai-500-examtopics-study-guide.html"><strong>AI-500</strong><span>Designing and Implementing Multi-Agent AI Solutions</span></a>
+<a href="ab-100-examtopics-study-guide.html"><strong>AB-100</strong><span>Agentic AI Business Solutions Architect</span></a>
+<a href="az-401-examtopics-study-guide.html"><strong>AZ-401</strong><span>Designing and Implementing Microsoft Agentic DevOps Solutions</span></a>
+<div class="switcher-tier-heading">Intermediate &amp; Associate — Azure, Fabric &amp; Microsoft AI</div>
+<a href="ai-103-examtopics-study-guide.html"><strong>AI-103</strong><span>Developing AI Apps and Agents on Azure</span></a>
+<a href="ai-200-examtopics-study-guide.html"><strong>AI-200</strong><span>Developing AI Cloud Solutions on Azure</span></a>
+<a href="ai-300-examtopics-study-guide.html" aria-current="page"><strong>AI-300</strong><span>Operationalizing Machine Learning and Generative AI Solutions</span></a>
 <a href="dp-600-examtopics-study-guide.html"><strong>DP-600</strong><span>Implementing Analytics Solutions Using Microsoft Fabric</span></a>
 <a href="dp-700-examtopics-study-guide.html"><strong>DP-700</strong><span>Implementing Data Engineering Solutions Using Microsoft Fabric</span></a>
+<a href="dp-750-examtopics-study-guide.html"><strong>DP-750</strong><span>Implementing Data Engineering Solutions Using Azure Databricks</span></a>
 <a href="dp-800-examtopics-study-guide.html"><strong>DP-800</strong><span>Developing AI-Enabled Database Solutions</span></a>
-<a href="ai-103-examtopics-study-guide.html"><strong>AI-103</strong><span>Developing AI Apps and Agents on Azure</span></a>
-<a href="ai-300-examtopics-study-guide.html" aria-current="page"><strong>AI-300</strong><span>Operationalizing Machine Learning and Generative AI Solutions</span></a>
-<a href="ai-500-examtopics-study-guide.html"><strong>AI-500</strong><span>Designing and Implementing Multi-Agent AI Solutions</span></a>
+<a href="ab-620-examtopics-study-guide.html"><strong>AB-620</strong><span>Designing and Building Integrated AI Solutions in Copilot Studio</span></a>
+<a href="ab-410-examtopics-study-guide.html"><strong>AB-410</strong><span>Building Intelligent Applications</span></a>
+<a href="ab-400-examtopics-study-guide.html"><strong>AB-400</strong><span>Extending Microsoft Power Platform Solutions with Code and AI</span></a>
+<a href="ab-210-examtopics-study-guide.html"><strong>AB-210</strong><span>Accelerating Sales Pipelines with AI in Dynamics 365</span></a>
+<a href="ab-250-examtopics-study-guide.html"><strong>AB-250</strong><span>Transforming Contact Center Experiences with AI in Dynamics 365</span></a>
+<a href="ab-650-examtopics-study-guide.html"><strong>AB-650</strong><span>Administering Microsoft 365 and AI Services</span></a>
+<a href="ab-730-examtopics-study-guide.html"><strong>AB-730</strong><span>AI Business Professional</span></a>
+<a href="ab-731-examtopics-study-guide.html"><strong>AB-731</strong><span>AI Transformation Leader</span></a>
+<a href="sc-500-examtopics-study-guide.html"><strong>SC-500</strong><span>Implementing End-to-End Security Controls for Cloud and AI Workloads</span></a>
+<div class="switcher-tier-heading">GitHub Certifications</div>
+<a href="gh-300-examtopics-study-guide.html"><strong>GH-300</strong><span>GitHub Copilot</span></a>
+<a href="gh-600-examtopics-study-guide.html"><strong>GH-600</strong><span>Developing in Agentic AI Systems</span></a>
+<a href="gh-200-examtopics-study-guide.html"><strong>GH-200</strong><span>GitHub Actions</span></a>
+<a href="gh-500-examtopics-study-guide.html"><strong>GH-500</strong><span>GitHub Advanced Security</span></a>
+<a href="gh-100-examtopics-study-guide.html"><strong>GH-100</strong><span>GitHub Enterprise Administrator</span></a>
+<a href="gh-900-examtopics-study-guide.html"><strong>GH-900</strong><span>GitHub Foundations</span></a>
+<div class="switcher-tier-heading">Beginner &amp; Fundamentals Level</div>
+<a href="ai-901-examtopics-study-guide.html"><strong>AI-901</strong><span>Microsoft Azure AI Fundamentals</span></a>
+<a href="dp-900-examtopics-study-guide.html"><strong>DP-900</strong><span>Microsoft Azure Data Fundamentals</span></a>
+<a href="ab-900-examtopics-study-guide.html"><strong>AB-900</strong><span>Microsoft 365 Copilot and Agent Administration Fundamentals</span></a>
 </nav>
   <main id="main-content">
 
@@ -8220,7 +8258,7 @@ Poor response accuracy of a RAG-based solution → Apply prompt engineering" dat
       const countEl = document.getElementById('filter-match-count');
       if (countEl) countEl.textContent = `${visibleIds.length} of ${ids.length} shown`;
       const emptyEl = document.getElementById('filter-empty-state');
-      if (emptyEl) emptyEl.hidden = visibleIds.length > 0;
+      if (emptyEl) emptyEl.hidden = ids.length === 0 || visibleIds.length > 0;
 
       if (visibleIds.length === 0) {
         questions.forEach(q => q.classList.remove('active', 'current'));
@@ -8533,6 +8571,8 @@ Poor response accuracy of a RAG-based solution → Apply prompt engineering" dat
       if (!opts.replaceOnly) history.pushState(null, '', `#${activeId}`);
     }
     function syncNavButtons() {
+      const navFloating = document.querySelector('.nav-floating');
+      if (navFloating) navFloating.hidden = ids.length === 0;
       const activeId = ids[currentIndex];
       const visIdx = visibleIds.indexOf(activeId);
       const atStart = visibleIds.length <= 1 || visIdx <= 0;

@@ -54,7 +54,40 @@ DISCUSSION_RE = re.compile(
     re.IGNORECASE,
 )
 
-DEFAULT_EXAMS = ("dp-600", "dp-700", "dp-800", "ai-103", "ai-300", "ai-500")
+DEFAULT_EXAMS = (
+    # Expert
+    "ai-500",
+    "ab-100",
+    "az-401",
+    # Associate / Intermediate — Azure, Fabric & Microsoft AI
+    "ai-103",
+    "ai-200",
+    "ai-300",
+    "dp-600",
+    "dp-700",
+    "dp-750",
+    "dp-800",
+    "ab-620",
+    "ab-410",
+    "ab-400",
+    "ab-210",
+    "ab-250",
+    "ab-650",
+    "ab-730",
+    "ab-731",
+    "sc-500",
+    # GitHub
+    "gh-300",
+    "gh-600",
+    "gh-200",
+    "gh-500",
+    "gh-100",
+    "gh-900",
+    # Beginner / Fundamentals
+    "ai-901",
+    "dp-900",
+    "ab-900",
+)
 TARGET_EXAMS = {"dp-600", "dp-700"}
 
 # Static placeholder data-id emitted by ExamTopics on 2026 discussion pages.
@@ -586,6 +619,10 @@ def _infer_mcq_letters_from_comments(
             r"(?i:(?:the\s+answer\s+is|correct\s+answer\s+is|selected\s+answer\s+is|answer\s+is))\s+([A-Z](?:\s*(?i:,|and|&|/)\s*[A-Z])*)(?![A-Za-z])"
         ),
         re.compile(
+            r"^\s*(?i:option)\s+([A-Z])\b",
+            re.MULTILINE,
+        ),
+        re.compile(
             r"^\s*([A-Z](?:\s*(?i:,|and|&)\s*[A-Z])*)(?![A-Za-z])\s+(?i:(?:is|are)\s+(?:the\s+)?correct)\b",
             re.MULTILINE,
         ),
@@ -652,6 +689,71 @@ def _normalize_stem_key(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).strip()[:240]
 
 
+def merge_state_files(source_paths: list[Path], dest_path: Path) -> dict[str, Any]:
+    """Losslessly merge multiple crawler state JSON files into ``dest_path``.
+
+    Converts legacy global ``list_pages_completed`` arrays into per-exam
+    ``list_pages_completed_by_exam`` entries for exams present in each source
+    file's ``urls_collected`` so adding new exam slugs never skips un-scanned
+    list pages while preserving 100% of previously processed URLs.
+    """
+    urls_collected: dict[str, dict[str, dict[str, Any]]] = {}
+    urls_processed: set[str] = set()
+    pages_by_exam: dict[str, set[int]] = {}
+    all_pages_union: set[int] = set()
+    errors: dict[str, str] = {}
+    total_list_pages: int | None = None
+
+    for src in source_paths:
+        if not src.exists():
+            continue
+        raw = json.loads(src.read_text(encoding="utf-8"))
+        src_pages = {int(p) for p in raw.get("list_pages_completed", [])}
+        all_pages_union |= src_pages
+        if raw.get("total_list_pages"):
+            total_list_pages = max(total_list_pages or 0, int(raw["total_list_pages"]))
+
+        raw_by_exam = raw.get("list_pages_completed_by_exam") or {}
+        for ex, ex_pages in raw_by_exam.items():
+            pages_by_exam.setdefault(ex.lower(), set()).update(int(p) for p in ex_pages)
+
+        for ex, items in (raw.get("urls_collected") or {}).items():
+            ex_low = ex.lower()
+            bucket = urls_collected.setdefault(ex_low, {})
+            for item in items:
+                bucket[item["path"]] = item
+            if src_pages and ex_low not in raw_by_exam:
+                pages_by_exam.setdefault(ex_low, set()).update(src_pages)
+
+        urls_processed.update(raw.get("urls_processed") or [])
+        for err_url, err_msg in (raw.get("errors") or {}).items():
+            errors[err_url] = err_msg
+
+    # Drop stale errors for URLs that subsequently succeeded
+    for done_path in urls_processed:
+        errors.pop(f"{BASE_URL}{done_path}", None)
+        errors.pop(done_path, None)
+
+    merged: dict[str, Any] = {
+        "list_pages_completed": sorted(all_pages_union),
+        "list_pages_completed_by_exam": {
+            ex: sorted(ps) for ex, ps in sorted(pages_by_exam.items())
+        },
+        "urls_collected": {
+            ex: sorted(bucket.values(), key=lambda x: (x["topic"], x["qnum"], int(x["id"])))
+            for ex, bucket in sorted(urls_collected.items())
+        },
+        "urls_processed": sorted(urls_processed),
+        "errors": errors,
+    }
+    if total_list_pages is not None:
+        merged["total_list_pages"] = total_list_pages
+
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
+    dest_path.write_text(json.dumps(merged, indent=2), encoding="utf-8")
+    return merged
+
+
 class Crawler:
     def __init__(
         self,
@@ -664,6 +766,7 @@ class Crawler:
         state_path: Path | None = None,
         start_page: int = 1,
         stop_after_empty_pages: int | None = None,
+        rescan_list_pages: bool = False,
     ) -> None:
         self.output_dir = output_dir
         self.max_concurrent = max_concurrent
@@ -674,6 +777,7 @@ class Crawler:
         self.state_path = state_path or (output_dir / "state.json")
         self.start_page = max(1, start_page)
         self.stop_after_empty_pages = stop_after_empty_pages
+        self.rescan_list_pages = rescan_list_pages
         self.state: dict[str, Any] = self._load_state()
         self.client: httpx.AsyncClient | None = None
         self.sem = asyncio.Semaphore(max_concurrent)
@@ -682,13 +786,24 @@ class Crawler:
         if self.state_path.exists():
             try:
                 data = json.loads(self.state_path.read_text(encoding="utf-8"))
-                data["list_pages_completed"] = set(data.get("list_pages_completed", []))
+                legacy_pages = {int(p) for p in data.get("list_pages_completed", [])}
+                data["list_pages_completed"] = legacy_pages
+                raw_by_exam = data.get("list_pages_completed_by_exam")
+                by_exam: dict[str, set[int]] = {}
+                if isinstance(raw_by_exam, dict):
+                    for ex, ps in raw_by_exam.items():
+                        by_exam[ex.lower()] = {int(p) for p in ps}
+                else:
+                    for ex in (data.get("urls_collected") or {}).keys():
+                        by_exam[ex.lower()] = set(legacy_pages)
+                data["list_pages_completed_by_exam"] = by_exam
                 data["urls_processed"] = set(data.get("urls_processed", []))
                 return data
             except Exception as e:
                 logger.warning("Could not load state file %s: %s", self.state_path, e)
         return {
             "list_pages_completed": set(),
+            "list_pages_completed_by_exam": {},
             "urls_collected": {},
             "urls_processed": set(),
             "errors": {},
@@ -696,15 +811,24 @@ class Crawler:
 
     def _save_state(self) -> None:
         self.state_path.parent.mkdir(parents=True, exist_ok=True)
-        serializable = {
-            "list_pages_completed": sorted(self.state["list_pages_completed"]),
+        by_exam = self.state.get("list_pages_completed_by_exam") or {}
+        union_pages = set(self.state.get("list_pages_completed") or set())
+        for ps in by_exam.values():
+            union_pages |= ps
+        serializable: dict[str, Any] = {
+            "list_pages_completed": sorted(union_pages),
+            "list_pages_completed_by_exam": {
+                ex: sorted(ps) for ex, ps in sorted(by_exam.items())
+            },
             "urls_collected": {
-                exam: sorted(urls, key=lambda x: (x["topic"], x["qnum"], x["id"]))
-                for exam, urls in self.state["urls_collected"].items()
+                exam: sorted(urls, key=lambda x: (x["topic"], x["qnum"], int(x["id"])))
+                for exam, urls in sorted(self.state["urls_collected"].items())
             },
             "urls_processed": sorted(self.state["urls_processed"]),
             "errors": self.state["errors"],
         }
+        if self.state.get("total_list_pages"):
+            serializable["total_list_pages"] = self.state["total_list_pages"]
         self.state_path.write_text(json.dumps(serializable, indent=2), encoding="utf-8")
 
     async def _sleep_jitter(self) -> None:
@@ -1078,7 +1202,11 @@ class Crawler:
         logger.info("Phase 1: Discovering discussion URLs for %s...", sorted(self.exams))
         last_page: int | None = self.state.get("total_list_pages")
         page = self.start_page
-        empty_streak = 0
+        by_exam: dict[str, set[int]] = self.state.setdefault("list_pages_completed_by_exam", {})
+        for ex in self.exams:
+            by_exam.setdefault(ex, set())
+        active_exams: set[str] = set(self.exams)
+        empty_streaks: dict[str, int] = {ex: 0 for ex in self.exams}
         # Use single-page stepping for tiny test thresholds so streak counts are exact;
         # use bounded concurrent batches for real crawls while respecting self.sem.
         step_size = (
@@ -1088,7 +1216,7 @@ class Crawler:
         )
 
         stop_discovery = False
-        while not stop_discovery:
+        while not stop_discovery and active_exams:
             batch_pages: list[int] = []
             while len(batch_pages) < step_size:
                 if max_pages is not None and page > max_pages:
@@ -1099,7 +1227,9 @@ class Crawler:
                 if last_page is not None and page > last_page:
                     stop_discovery = True
                     break
-                if page in self.state["list_pages_completed"]:
+                if not self.rescan_list_pages and all(
+                    page in by_exam.get(ex, set()) for ex in active_exams
+                ):
                     page += 1
                     continue
                 batch_pages.append(page)
@@ -1109,9 +1239,10 @@ class Crawler:
                 break
 
             logger.info(
-                "Crawling discussion list page(s) %s%s",
+                "Crawling discussion list page(s) %s%s (active exams: %d)",
                 batch_pages[0] if len(batch_pages) == 1 else f"{batch_pages[0]}..{batch_pages[-1]}",
                 f"/{last_page}" if last_page else "",
+                len(active_exams),
             )
             outcomes = await asyncio.gather(
                 *[self._crawl_list_page(p) for p in batch_pages],
@@ -1139,10 +1270,7 @@ class Crawler:
                     self.state["total_list_pages"] = last_page
                     logger.info("Detected total discussion list pages: %d", last_page)
 
-                any_target_hit = False
                 for exam, urls in found.items():
-                    if urls:
-                        any_target_hit = True
                     existing = {u["path"] for u in self.state["urls_collected"].get(exam, [])}
                     new_urls = [u for u in urls if u["path"] not in existing]
                     if new_urls:
@@ -1150,23 +1278,28 @@ class Crawler:
                         logger.info("Page %d: found %d new %s URLs", p, len(new_urls), exam.upper())
 
                 self.state["list_pages_completed"].add(p)
+                for ex in list(active_exams):
+                    by_exam.setdefault(ex, set()).add(p)
+                    if found.get(ex):
+                        empty_streaks[ex] = 0
+                    else:
+                        empty_streaks[ex] += 1
+                        if (
+                            self.stop_after_empty_pages is not None
+                            and empty_streaks[ex] >= self.stop_after_empty_pages
+                        ):
+                            active_exams.remove(ex)
+                            logger.info(
+                                "Retired %s after %d consecutive empty pages at page %d (%d active left).",
+                                ex.upper(),
+                                empty_streaks[ex],
+                                p,
+                                len(active_exams),
+                            )
 
-                if any_target_hit:
-                    empty_streak = 0
-                else:
-                    empty_streak += 1
-                    if (
-                        self.stop_after_empty_pages is not None
-                        and empty_streak >= self.stop_after_empty_pages
-                    ):
-                        logger.info(
-                            "Reached %d consecutive list pages with no %s discussions at page %d; stopping discovery.",
-                            empty_streak,
-                            "/".join(sorted(self.exams)),
-                            p,
-                        )
-                        stop_discovery = True
-                        break
+                if not active_exams:
+                    stop_discovery = True
+                    break
 
             self._save_state()
 
@@ -1239,10 +1372,22 @@ class Crawler:
 
         tasks: list[tuple[str, dict[str, Any]]] = []
         for exam in sorted(self.exams):
+            # Group by (topic, qnum) and cap at the 2 most recent discussion_ids per slot
+            # so multi-year exams (e.g. DP-900) don't fetch superseded 2020 duplicates.
+            by_slot_metas: dict[tuple[int, int], list[dict[str, Any]]] = {}
             for meta in self.state["urls_collected"].get(exam, []):
-                if meta["path"] in self.state["urls_processed"]:
-                    continue
-                tasks.append((exam, meta))
+                slot = (int(meta.get("topic", 0)), int(meta.get("qnum", 0)))
+                by_slot_metas.setdefault(slot, []).append(meta)
+            for slot in sorted(by_slot_metas):
+                slot_metas = sorted(
+                    by_slot_metas[slot],
+                    key=lambda m: int(m.get("id") or 0),
+                    reverse=True,
+                )[:2]
+                for meta in slot_metas:
+                    if meta["path"] in self.state["urls_processed"]:
+                        continue
+                    tasks.append((exam, meta))
 
         if not tasks:
             logger.info("No new discussions to crawl.")
@@ -1251,7 +1396,8 @@ class Crawler:
         logger.info("Discussions to crawl: %d", len(tasks))
 
         view_enrichment: dict[str, dict[str, dict[str, Any]]] = {}
-        for exam in sorted(self.exams):
+        exams_with_tasks = sorted({ex for ex, _ in tasks})
+        for exam in exams_with_tasks:
             view_enrichment[exam] = await self._fetch_exam_view_enrichment(exam)
 
         batch_size = 20
@@ -1284,6 +1430,8 @@ class Crawler:
 
                 results[exam].append(q.to_dict())
                 self.state["urls_processed"].add(meta["path"])
+                self.state["errors"].pop(f"{BASE_URL}{meta['path']}", None)
+                self.state["errors"].pop(meta["path"], None)
 
             self._save_state()
             logger.info(
@@ -1408,6 +1556,18 @@ def main() -> None:
         default=None,
         help="Stop list discovery after N consecutive pages without target-exam links",
     )
+    parser.add_argument(
+        "--rescan-list-pages",
+        action="store_true",
+        help="Re-scan list pages even if marked completed in state (useful for refreshing page 1..N)",
+    )
+    parser.add_argument(
+        "--merge-state-files",
+        type=Path,
+        nargs="+",
+        default=None,
+        help="Merge the given state JSON files into --state-file and exit",
+    )
     parser.add_argument("--max-retries", type=int, default=4, help="Max retries per request")
     parser.add_argument("--reset", action="store_true", help="Delete target state/output files and restart")
     args = parser.parse_args()
@@ -1415,6 +1575,17 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     exams = [e.lower() for e in args.exams]
     state_path = args.state_file or (args.output_dir / "state.json")
+
+    if args.merge_state_files:
+        merged = merge_state_files(list(args.merge_state_files), state_path)
+        logger.info(
+            "Merged %d state files into %s (%d processed URLs across %d exams).",
+            len(args.merge_state_files),
+            state_path,
+            len(merged["urls_processed"]),
+            len(merged["urls_collected"]),
+        )
+        return
 
     if args.reset:
         targets = [state_path]
@@ -1435,6 +1606,7 @@ def main() -> None:
         state_path=state_path,
         start_page=args.start_page,
         stop_after_empty_pages=args.stop_after_empty_pages,
+        rescan_list_pages=args.rescan_list_pages,
     )
     try:
         asyncio.run(crawler.run(max_list_pages=args.max_list_pages))

@@ -1,0 +1,1904 @@
+[
+  {
+    "discussion_id": "421075",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 5,
+    "question_id": "421075",
+    "question_text": "DRAG DROP\nYou are developing several microservices to run on Azure Container Apps.\nThe microservices must allow HTTPS access by using a custom domain.\nYou need to configure the custom domain in Azure Container Apps.\nIn which order should you perform the actions? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "1. Enable ingress.\n2. Add the custom domain name.\n3. Add DNS records to the domain provider.\n4. Validate the custom domain name.\n5. Bind the certificate.",
+    "comments": [
+      {
+        "comment_id": "1803580",
+        "author": "MuhammadSaqib",
+        "date_title": "October 14, 2026 10:44 pm",
+        "text": "1. Enable ingress.\nWhy: The container app must be publicly accessible via HTTP/HTTPS ingress before you can map any custom domain or certificate to it.\n2. Add the custom domain name.\nWhy: When you initiate adding a custom domain in the Azure portal or CLI, Azure generates the unique verification codes and targets needed for your DNS host.\n3. Add DNS records to the domain provider.\nWhy: You must create the required CNAME and TXT domain-verification records within your external registrar's DNS management zone using the details provided by Azure.\n4. Validate the custom domain name.\nWhy: Azure probes the public DNS network to confirm that the domain records match your container app environment and verify ownership.\n5. Bind the certificate.\nWhy: Once ownership validation succeeds, the custom domain can securely bind to an SSL/TLS certificate to enable HTTPS traffic.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1795530",
+        "author": "insanewriters",
+        "date_title": "September 08, 2026 11:06 pm",
+        "text": "Enable ingress\nYou must expose the app publicly before any domain or certificate can be bound.\nAdd the custom domain name\nOnce ingress is enabled, you register the domain with the Container App.\nAdd DNS records to the domain provider\nAzure gives you the required CNAME or TXT records; you must add them at your DNS host.\nValidate the custom domain name\nAzure verifies the DNS records you added.\nBind the certificate\nAfter validation succeeds, you can attach the TLS/SSL certificate.",
+        "upvotes": 5,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1789952",
+        "author": "bashrin",
+        "date_title": "August 20, 2026 07:50 am",
+        "text": "Correct Order\nAdd the custom domain name.\nValidate the custom domain name.\nAdd DNS records to the domain provider.\nBind the certificate.\nEnable ingress.\nWhy This Order Matters\nYou can't validate a domain you haven't added yet\nYou can't add DNS records before knowing what validation is required\nYou can't bind a certificate to an unvalidated domain\nEnabling ingress should be the last step after all security and routing configurations are complete",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1783265",
+        "author": "nmatnoh",
+        "date_title": "August 06, 2026 08:57 am",
+        "text": "1. Enable ingress\n2. Add the custom domain name\n3. Validate the custom domain name\n4. Bind the certificate\n5. Add DNS records to the domain provider",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1782817",
+        "author": "130nk3r5",
+        "date_title": "August 02, 2026 09:53 am",
+        "text": "1 Enable ingress\n2 Add the custom domain name\n3 Add DNS records to the domain provider\n4 Validate the custom domain name\n5 Bind the certificate\nhttps://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates?utm_source=chatgpt.com&tabs=general&pivots=azure-portal#add-a-custom-domain-and-certificate",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421075-exam-ai-200-topic-1-question-5-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nYou are developing several microservices to run on Azure Container Apps.<br/>\nThe microservices must allow HTTPS access by using a custom domain.<br/>\nYou need to configure the custom domain in Azure Container Apps.<br/>\nIn which order should you perform the actions? To answer, move all actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image1.png\" title=\"image1\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421075_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image1.png",
+        "local_path": "assets/exhibits/ai-200/421075_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1803580",
+      "score": 128.0,
+      "pattern": "loose:numbered_list",
+      "upvotes": 3
+    },
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure"
+  },
+  {
+    "discussion_id": "426630",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 6,
+    "question_id": "426630",
+    "question_text": "You plan to deploy an Azure Container app.\nYou need to configure the container app to support session affinity.\nWhich ingress type and revision mode should you assign to the container app?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "TCP ingress type and single revision mode",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "TCP ingress type and multiple revision mode",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "HTTP ingress type and multiple revision mode",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "HTTP ingress type and single revision mode",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1803581",
+        "author": "MuhammadSaqib",
+        "date_title": "October 14, 2026 10:50 pm",
+        "text": "1. HTTP Ingress Type Session affinity (sticky sessions) is based on client-to-replica consistency using HTTP cookies. HTTP ingress is not supported because TCP routing is done at a lower layer in the network stack (Layer 4) and does not interact with HTTP application layer components like cookies.\n2. Single Revision Mode: Container app supports only the session affinity mechanism built into the platform when the container app is in single revision mode.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426630-exam-ai-200-topic-1-question-6-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You plan to deploy an Azure Container app.<br>\n<br/>\nYou need to configure the container app to support session affinity.<br/>\n<br/>\nWhich ingress type and revision mode should you assign to the container app?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure"
+  },
+  {
+    "discussion_id": "426618",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 13,
+    "question_id": "426618",
+    "question_text": "You have container source code stored in a Git repository.\nThe container registry must automatically build and store a new container image whenever a developer commits code to the Git repository.\nYou must minimize the use of an external build infrastructure.\nYou need to configure Azure Container Registry (ACR) to manage the build process natively and automatically.\nWhich two ACR components should you use? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Webhook",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Quick task",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Artifact Cache rule",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Source-triggered task",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "AD",
+        "vote_count": 3,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "BD",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "AD",
+    "comments": [
+      {
+        "comment_id": "1808544",
+        "author": "beeboobeep",
+        "date_title": "November 09, 2026 04:23 pm",
+        "text": "while B would keep it form using external sources. A is automated and B relies on manual interaction from the AZ console.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1803730",
+        "author": "Vincenzo_03",
+        "date_title": "October 15, 2026 08:09 pm",
+        "text": "Source-triggered task (D): This is the core component within Azure Container Registry (ACR) Tasks that monitors your Git repository for commits.\nWebhook (A): When you configure a source-triggered task, ACR natively establishes a deployment webhook inside your public or private Git repository (such as GitHub or Azure DevOps).",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1803387",
+        "author": "TestAzure26",
+        "date_title": "October 14, 2026 08:21 am",
+        "text": "Source-triggered task (D): This is the core component within Azure Container Registry (ACR) Tasks that monitors your Git repository for commits.\nWebhook (A): When you configure a source-triggered task, ACR natively establishes a deployment webhook inside your public or private Git repository (such as GitHub or Azure DevOps).",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1793610",
+        "author": "divya1986",
+        "date_title": "August 30, 2026 03:24 am",
+        "text": "Manage the build process natively in ACR → Quick task\nA Quick Task lets ACR perform a container image build without requiring external build infrastructure.\nAutomatically build when code is committed to Git → Source-triggered task\nA source-triggered task automatically starts an ACR build when source code changes in the configured Git repository.",
+        "upvotes": 4,
+        "badges": [
+          "Selected Answer: BD"
+        ],
+        "selected_answer": "BD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802473",
+        "author": "joc_lefranc",
+        "date_title": "October 08, 2026 11:54 am",
+        "text": "Sorry, but a Quick task is only a one-shot deal, it would not be repeated, you will need to execute one after each push.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426618-exam-ai-200-topic-1-question-13-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You have container source code stored in a Git repository.<br>\n<br/>\nThe container registry must automatically build and store a new container image whenever a developer commits code to the Git repository.<br/>\n<br/>\nYou must minimize the use of an external build infrastructure.<br/>\n<br/>\nYou need to configure Azure Container Registry (ACR) to manage the build process natively and automatically.<br/>\n<br/>\nWhich two ACR components should you use? Each correct answer presents part of the solution.<br/>\n<br/>\nNOTE: Each correct selection is worth one point.",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure"
+  },
+  {
+    "discussion_id": "426605",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 15,
+    "question_id": "426605",
+    "question_text": "DRAG DROP\nYou are deploying an AI service to ACA.\nThe service must retrieve secrets securely from Key Vault by using managed identity.\nYou need to configure secure access.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Assign managed identity → ACA gets an Azure identity.\nGrant Key Vault Secrets User role → that identity is authorized to read secrets.\nRetrieve the secret using the SDK → the application can now authenticate through the managed identity and access Key Vault.",
+    "comments": [
+      {
+        "comment_id": "1808743",
+        "author": "kabeer_",
+        "date_title": "November 10, 2026 11:45 am",
+        "text": "Correct options must be\n1) Assign system-assigned managed identity\n2) Grant Key /vault Secrets User role to the managed Identity\n3) Retrieve the secret using the SDK",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802476",
+        "author": "joc_lefranc",
+        "date_title": "October 08, 2026 12:02 pm",
+        "text": "How can you retrieve the secrets if the identity has not beed assigned yet? Duh",
+        "upvotes": 6,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1791601",
+        "author": "bashrin",
+        "date_title": "August 24, 2026 04:12 pm",
+        "text": "Assign managed identity → ACA gets an Azure identity.\nGrant Key Vault Secrets User role → that identity is authorized to read secrets.\nRetrieve the secret using the SDK → the application can now authenticate through the managed identity and access Key Vault.",
+        "upvotes": 25,
+        "badges": [
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1789949",
+        "author": "Yhohanes",
+        "date_title": "August 20, 2026 07:31 am",
+        "text": "1. Assign system-assigned managed identity\n2. Grant Key /vault Secrets User role to the managed Identity\n3. Retrieve the secret using the SDK",
+        "upvotes": 5,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1789872",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 04:37 pm",
+        "text": "Assign a system-assigned managed identity.\nGrant the Key Vault Secrets User role to the managed identity.\nRetrieve the secret by using the SDK.",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426605-exam-ai-200-topic-1-question-15-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nYou are deploying an AI service to ACA.<br/>\n<br/>\r\nThe service must retrieve secrets securely from Key Vault by using managed identity.<br/>\n<br/>\r\nYou need to configure secure access.<br/>\n<br/>\r\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image82.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/426605_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image82.png",
+        "local_path": "assets/exhibits/ai-200/426605_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1791601",
+      "score": 269.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 25
+    },
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure"
+  },
+  {
+    "discussion_id": "427727",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 19,
+    "question_id": "427727",
+    "question_text": "DRAG DROP\nYou are designing a solution that will use two Azure Functions apps: App1 and App2. App1 is Windows-based and will be deployed as code. App2 is Linux-based and will be deployed as a container image. Estimates show that the duration of the request processing for both apps will range from 1 to 10 minutes.\nYou plan to implement App1 and App2 by using the hosting plan to satisfy the following requirements:\n•\tRequest processing can complete within the estimated time range.\n•\tThe autoscaling behavior is event-driven.\n•\tThe upper scaling limit is maximized.\nYou need to create the hosting plan for the implementation.\nWhich hosting plan should you create? To answer, move the appropriate hosting plans to the correct apps. You may use each hosting plan once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "App1 Consumption plan – since App1 is deployed as code (not a container), the Consumption plan is supported. The Consumption plan has native event-driven autoscaling, and the maximum function execution duration can be configured up to 10 minutes, which exactly covers the given range (1–10 min). Additionally, the Consumption plan has a higher upper limit...",
+    "comments": [
+      {
+        "comment_id": "1803816",
+        "author": "Ja13",
+        "date_title": "October 16, 2026 04:12 pm",
+        "text": "CORRECT ANSWERS\nApp1 - Consumption Plan\nApp2 - Premium Plan",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1798341",
+        "author": "Iva10",
+        "date_title": "September 16, 2026 08:28 am",
+        "text": "App1 Consumption plan – since App1 is deployed as code (not a container), the Consumption plan is supported. The Consumption plan has native event-driven autoscaling, and the maximum function execution duration can be configured up to 10 minutes, which exactly covers the given range (1–10 min). Additionally, the Consumption plan has a higher upper limit on the number of instances (up to 200 on Windows) compared to the Premium plan, which satisfies the requirement that \"the upper scaling limit is maximized.\"",
+        "upvotes": 4,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/427727-exam-ai-200-topic-1-question-19-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nYou are designing a solution that will use two Azure Functions apps: App1 and App2. App1 is Windows-based and will be deployed as code. App2 is Linux-based and will be deployed as a container image. Estimates show that the duration of the request processing for both apps will range from 1 to 10 minutes.<br/>\n<br/>\r\nYou plan to implement App1 and App2 by using the hosting plan to satisfy the following requirements:<br/>\n<br/>\r\n•\tRequest processing can complete within the estimated time range.<br/>\r\n•\tThe autoscaling behavior is event-driven.<br/>\r\n•\tThe upper scaling limit is maximized.<br/>\n<br/>\r\nYou need to create the hosting plan for the implementation.<br/>\n<br/>\r\nWhich hosting plan should you create? To answer, move the appropriate hosting plans to the correct apps. You may use each hosting plan once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image142.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/427727_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image142.png",
+        "local_path": "assets/exhibits/ai-200/427727_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure",
+    "_backfill_source": {
+      "comment_id": "1798341",
+      "upvotes": 4,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "432830",
+    "exam": "ai-200",
+    "topic": 1,
+    "question_number": 23,
+    "question_id": "432830",
+    "question_text": "DRAG DROP\nYou create an Azure subscription. You then create an Azure resource group.\nYou plan to create a containerized task that will run as an Azure Container App in regular intervals.\nYou need to automate the process of creating the task in the resource group by using Azure CLI commands.\nWhich three commands should you arrange in sequence to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Correct order: A- az provider register\nB- az containerapp env create\nC- az container job create",
+    "comments": [
+      {
+        "comment_id": "1804993",
+        "author": "TrxppBoii",
+        "date_title": "October 23, 2026 02:26 pm",
+        "text": "az provider register --namespace Microsoft.App\naz containerapp env create\naz containerapp job create",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1803020",
+        "author": "danyal456",
+        "date_title": "October 12, 2026 08:06 am",
+        "text": "az provider register\naz containerapp env create\naz containerapp job create",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802902",
+        "author": "Ja13",
+        "date_title": "October 11, 2026 04:11 pm",
+        "text": "Correct order:\nA- az provider register\nB- az containerapp env create\nC- az container job create",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/432830-exam-ai-200-topic-1-question-23-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nYou create an Azure subscription. You then create an Azure resource group.<br/>\n<br/>\r\nYou plan to create a containerized task that will run as an Azure Container App in regular intervals.<br/>\n<br/>\r\nYou need to automate the process of creating the task in the resource group by using Azure CLI commands.<br/>\n<br/>\r\nWhich three commands should you arrange in sequence to develop the solution? To answer, move the appropriate commands from the list of commands to the answer area and arrange them in the correct order.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image158.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/432830_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image158.png",
+        "local_path": "assets/exhibits/ai-200/432830_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 1,
+    "skill_area_label": "Develop containerized solutions on Azure",
+    "_backfill_source": {
+      "comment_id": "1802902",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "421076",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 1,
+    "question_id": "421076",
+    "question_text": "DRAG DROP\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.\nBackground\nFabrikam Inc. is a global retail analytics company that provides AI-driven demand forecasting and product recommendation services to online retailers. The company is modernizing its solution to run entirely on Microsoft Azure.\nThe platform ingests transaction data, generates embeddings for semantic retrieval, performs vector similarity search, and returns product recommendations through containerized microservices. Developers use Python and Azure SDKs. Operations teams manage container orchestration, scaling, monitoring, and security.\nThe solution must meet strict performance, scalability, and security requirements.\nCurrent environment\nApplication architecture\nThe Recommendation engine is a customer-facing HTTP API running as a containerized Python application. The engine is deployed to Azure Container Apps (ACA).\nEmbeddings are stored in Azure Database for PostgreSQL by using pgvector.\nSemantic retrieval uses metadata filtering combined with vector similarity search.\nAzure Managed Redis is used as a caching layer.\nFront-end and API workloads are deployed to Azure Container Apps (ACA).\nBatch model retraining workloads run in Azure Kubernetes Service (AKS).\nContainer and CI/CD\nContainer images are stored in Azure Container Registry (ACR).\nCI/CD uses ACR Tasks to build images on commit.\nACA environments support revision management.\nAKS workloads are deployed by using Kubernetes manifest files stored in Git.\nMonitoring\nLogs are collected in Azure Monitor.\nTeams inspect container logs and Kubernetes events when troubleshooting.\nDevelopers write KQL queries to analyze latency spikes.\nBusiness requirements\nCustomer experience: Maintain a seamless, low-latency recommendation experience for end-users, even during unpredictable seasonal traffic spikes.\nOperational cost efficiency: Minimize compute expenditures by deallocating resources during periods of inactivity and by preventing runaway scaling costs.\nData integrity and freshness: Ensure that product recommendations always reflect the most current catalog metadata and pricing to prevent customer dissatisfaction.\nSecurity and compliance: Adhere to a Zero Trust security model by eliminating long-lived credentials and centralizing the management of all sensitive secrets.\nGlobal scalability: Support the rapid ingestion of millions of new product embeddings daily without degrading query performance for existing retailers.\nTechnical requirements\nPerformance: Semantic search latency must remain under 200 milliseconds at peak load.\nDatabase optimization: Use pgvector for embeddings and implement metadata filtering to reduce compute overhead. Configure compute and memory appropriately for vector workloads to ensure high-dimensional index residency in RAM and efficient mathematical throughput. Vector similarity calculations must be performed only against products that satisfy mandatory metadata constraints.\nDatabase performance: Database connections must support high concurrency with minimal latency through the implementation of connection optimization.\nData load strategy: To ensure maximum ingestion throughput, secondary indexes must be applied only after bulk loading of embeddings is complete.\nCaching: Redis cache entries must expire automatically after 10 minutes. Implement a reactive mechanism to invalidate cache entries upon metadata updates.\nIdentity: Use managed identities for all service-to-service and service-to-database authentication. Plain-text credentials in configuration files are strictly prohibited.\nSecret management: All secrets must be stored centrally. Secrets must be rotated automatically by using a centralized lifecycle policy.\nScaling: Use Kubernetes event-driven autoscaling (KEDA) for event-driven scaling. The Recommendation API must scale based on HTTP traffic, while batch jobs must scale based on queue length and support scale-to-zero.\nCI/CD: All images must be stored in Azure Container Registry. Use ACR Tasks to automate image builds triggered by source code commits.\nMonitoring: Use KQL to analyze performance telemetry and troubleshoot microservice connectivity failures. Inspect logs and events when troubleshooting AKS and ACA.\nYou need to implement the semantic retrieval workflow for the recommendation engine to meet the technical and performance requirements of Fabrikam Inc.\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "The requirements explicitly state that secondary indexes must be created only after the bulk load is complete.\nCorrect order: Define the table schema.\nLoad embeddings and metadata.\nCreate the HNSW index.\nRun the filtered similarity search.",
+    "comments": [
+      {
+        "comment_id": "1780758",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 12:13 pm",
+        "text": "The requirements explicitly state that secondary indexes must be created only after the bulk load is complete.\nCorrect order:\nDefine the table schema.\nLoad embeddings and metadata.\nCreate the HNSW index.\nRun the filtered similarity search.",
+        "upvotes": 7,
+        "badges": [
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1800288",
+        "author": "Vandalism",
+        "date_title": "September 25, 2026 07:14 pm",
+        "text": "I believe secondary indexes are reserved for metadata filtering. While primary index would be vector operations indexes just like HNSW is.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421076-exam-ai-200-topic-2-question-1-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.<br/>\nBackground<br/>\nFabrikam Inc. is a global retail analytics company that provides AI-driven demand forecasting and product recommendation services to online retailers. The company is modernizing its solution to run entirely on Microsoft Azure.<br/>\nThe platform ingests transaction data, generates embeddings for semantic retrieval, performs vector similarity search, and returns product recommendations through containerized microservices. Developers use Python and Azure SDKs. Operations teams manage container orchestration, scaling, monitoring, and security.<br/>\nThe solution must meet strict performance, scalability, and security requirements.<br/>\nCurrent environment<br/>\nApplication architecture<br/>\nThe Recommendation engine is a customer-facing HTTP API running as a containerized Python application. The engine is deployed to Azure Container Apps (ACA).<br/>\nEmbeddings are stored in Azure Database for PostgreSQL by using pgvector.<br/>\nSemantic retrieval uses metadata filtering combined with vector similarity search.<br/>\nAzure Managed Redis is used as a caching layer.<br/>\nFront-end and API workloads are deployed to Azure Container Apps (ACA).<br/>\nBatch model retraining workloads run in Azure Kubernetes Service (AKS).<br/>\nContainer and CI/CD<br/>\nContainer images are stored in Azure Container Registry (ACR).<br/>\nCI/CD uses ACR Tasks to build images on commit.<br/>\nACA environments support revision management.<br/>\nAKS workloads are deployed by using Kubernetes manifest files stored in Git.<br/>\nMonitoring<br/>\nLogs are collected in Azure Monitor.<br/>\nTeams inspect container logs and Kubernetes events when troubleshooting.<br/>\nDevelopers write KQL queries to analyze latency spikes.<br/>\nBusiness requirements<br/>\nCustomer experience: Maintain a seamless, low-latency recommendation experience for end-users, even during unpredictable seasonal traffic spikes.<br/>\nOperational cost efficiency: Minimize compute expenditures by deallocating resources during periods of inactivity and by preventing runaway scaling costs.<br/>\nData integrity and freshness: Ensure that product recommendations always reflect the most current catalog metadata and pricing to prevent customer dissatisfaction.<br/>\nSecurity and compliance: Adhere to a Zero Trust security model by eliminating long-lived credentials and centralizing the management of all sensitive secrets.<br/>\nGlobal scalability: Support the rapid ingestion of millions of new product embeddings daily without degrading query performance for existing retailers.<br/>\nTechnical requirements<br/>\nPerformance: Semantic search latency must remain under 200 milliseconds at peak load.<br/>\nDatabase optimization: Use pgvector for embeddings and implement metadata filtering to reduce compute overhead. Configure compute and memory appropriately for vector workloads to ensure high-dimensional index residency in RAM and efficient mathematical throughput. Vector similarity calculations must be performed only against products that satisfy mandatory metadata constraints.<br/>\nDatabase performance: Database connections must support high concurrency with minimal latency through the implementation of connection optimization.<br/>\nData load strategy: To ensure maximum ingestion throughput, secondary indexes must be applied only after bulk loading of embeddings is complete.<br/>\nCaching: Redis cache entries must expire automatically after 10 minutes. Implement a reactive mechanism to invalidate cache entries upon metadata updates.<br/>\nIdentity: Use managed identities for all service-to-service and service-to-database authentication. Plain-text credentials in configuration files are strictly prohibited.<br/>\nSecret management: All secrets must be stored centrally. Secrets must be rotated automatically by using a centralized lifecycle policy.<br/>\nScaling: Use Kubernetes event-driven autoscaling (KEDA) for event-driven scaling. The Recommendation API must scale based on HTTP traffic, while batch jobs must scale based on queue length and support scale-to-zero.<br/>\nCI/CD: All images must be stored in Azure Container Registry. Use ACR Tasks to automate image builds triggered by source code commits.<br/>\nMonitoring: Use KQL to analyze performance telemetry and troubleshoot microservice connectivity failures. Inspect logs and events when troubleshooting AKS and ACA.<br/>\nYou need to implement the semantic retrieval workflow for the recommendation engine to meet the technical and performance requirements of Fabrikam Inc.<br/>\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image3.png\" title=\"image3\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421076_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image3.png",
+        "local_path": "assets/exhibits/ai-200/421076_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1780758",
+      "score": 53.5,
+      "pattern": "highly_voted",
+      "upvotes": 7
+    },
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services",
+    "case_study_id": "ai-200-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
+  },
+  {
+    "discussion_id": "426647",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 20,
+    "question_id": "426647",
+    "question_text": "HOTSPOT\nYou have a web service that is used to pay for food deliveries. The web service uses Azure Cosmos DB as the data store.\nYou plan to add a new feature that allows users to set a tip amount. The new feature requires that a property named tip on the document in Azure Cosmos DB must be present and contain a numeric value.\nThere are many existing websites and mobile apps that use the web service that will not be updated to set the tip property for some time.\nHow should you complete the trigger?\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "getContext().getRequest();: Retrieves the current operation request object in Azure Cosmos DB, which allows you to inspect and modify the document being created or updated.if (!(\"tip\" in i)) {: Uses native JavaScript to check if the \"tip\" property does not exist inside the document object (i). If missing, it executes the code to initialize it to...",
+    "comments": [
+      {
+        "comment_id": "1803102",
+        "author": "Ja13",
+        "date_title": "October 12, 2026 04:36 pm",
+        "text": "CORRECT ANSWERS:\nA)   get.Context().getRequest();\nB)   if (!(\"tip\" in i)) {\nC)   r.setBody(i);",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1795430",
+        "author": "MrTeacher",
+        "date_title": "September 08, 2026 05:32 am",
+        "text": "getContext().getRequest();: Retrieves the current operation request object in Azure Cosmos DB, which allows you to inspect and modify the document being created or updated.if (!(\"tip\" in i)) {: Uses native JavaScript to check if the \"tip\" property does not exist inside the document object (i). If missing, it executes the code to initialize it to 0.r.setBody(i);: Overwrites the original request body with the modified document. Without this line, the changes made to the variable i are discarded and never saved to the database.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426647-exam-ai-200-topic-2-question-20-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\n<br/>\r\nYou have a web service that is used to pay for food deliveries. The web service uses Azure Cosmos DB as the data store.<br/>\n<br/>\r\nYou plan to add a new feature that allows users to set a tip amount. The new feature requires that a property named tip on the document in Azure Cosmos DB must be present and contain a numeric value.<br/>\n<br/>\r\nThere are many existing websites and mobile apps that use the web service that will not be updated to set the tip property for some time.<br/>\n<br/>\r\nHow should you complete the trigger?<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image88.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/426647_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image88.png",
+        "local_path": "assets/exhibits/ai-200/426647_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services",
+    "_backfill_source": {
+      "comment_id": "1795430",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "426606",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 21,
+    "question_id": "426606",
+    "question_text": "DRAG DROP\nYou are developing a Python application that reads data from Azure Cosmos DB for NoSQL by using the azure-cosmos SDK.\nYou need to connect to an existing account and run a SQL query against an existing container.\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Initialize CosmosClient.\nInitialize DatabaseProxy.\nObtain the container reference.\nRun the query.",
+    "comments": [
+      {
+        "comment_id": "1789881",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 05:04 pm",
+        "text": "Initialize CosmosClient.\nInitialize DatabaseProxy.\nObtain the container reference.\nRun the query.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426606-exam-ai-200-topic-2-question-21-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nYou are developing a Python application that reads data from Azure Cosmos DB for NoSQL by using the azure-cosmos SDK.<br/>\n<br/>\r\nYou need to connect to an existing account and run a SQL query against an existing container.<br/>\n<br/>\r\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image90.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/426606_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image90.png",
+        "local_path": "assets/exhibits/ai-200/426606_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services",
+    "_backfill_source": {
+      "comment_id": "1789881",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "426607",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 26,
+    "question_id": "426607",
+    "question_text": "You develop an AI application that stores telemetry documents in Azure Cosmos DB for NoSQL.\nEach document contains 30 properties. Queries filter only on deviceId and timestamp.\nWrite operations consume more RUs than expected.\nYou need to reduce RU consumption for write operations while maintaining query performance.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Exclude unused properties from indexing.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Configure selective indexing on queried properties.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Migrate to a different partition key.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Enable strong consistency for all requests.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1802400",
+        "author": "sanitest",
+        "date_title": "October 07, 2026 07:52 pm",
+        "text": "Because your queries only filter on deviceId and timestamp, there is no benefit in indexing all 30 properties. Azure Cosmos DB's default policy indexes every property, which increases the RU cost of every write because the indexes must be updated for each indexed field.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426607-exam-ai-200-topic-2-question-26-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You develop an AI application that stores telemetry documents in Azure Cosmos DB for NoSQL.<br>\n<br/>\nEach document contains 30 properties. Queries filter only on deviceId and timestamp.<br/>\n<br/>\nWrite operations consume more RUs than expected.<br/>\n<br/>\nYou need to reduce RU consumption for write operations while maintaining query performance.<br/>\n<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services"
+  },
+  {
+    "discussion_id": "426636",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 27,
+    "question_id": "426636",
+    "question_text": "DRAG DROP\nA recommendation system stores 3 million embeddings in Azure Database for PostgreSQL.\nDuring peak hours, P95 similarity-query latency increases, and the cache hit ratio drops significantly.\nYou suspect that the vector index working set no longer fits in memory, resulting in more disk reads.\nYou need to scale server resources and validate the outcome.\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "CORRECT ORDER\nA) Before peak hours,run a fixed workload to capture baseline P95 latency and capture EXPLAIN ANALYZE for the vector query.\nB) Review memory pressure and cache hit ratio during peak hours and compare them to the baseline.\nC) Scale to a tier with more memory per vCore.\nD) Re-run the same benchmark and compare P95 and P99 latency.",
+    "comments": [
+      {
+        "comment_id": "1803124",
+        "author": "Ja13",
+        "date_title": "October 12, 2026 05:27 pm",
+        "text": "CORRECT ORDER\nA) Before peak hours,run a fixed workload to capture baseline P95 latency and capture EXPLAIN ANALYZE for the vector query.\nB) Review memory pressure and cache hit ratio during peak hours and compare them to the baseline.\nC) Scale to a tier with more memory per vCore.\nD) Re-run the same benchmark and compare P95 and P99 latency.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1795432",
+        "author": "MrTeacher",
+        "date_title": "September 08, 2026 05:52 am",
+        "text": "Before peak hours,run a fixed workload to capture baseline P95 latency and capture EXPLAIN ANALYZE for the vector query.\nReview memory pressure and cache hit ratio during peak hours and compare them to the baseline.\nScale to a tier with more memory per vCore.Re-run the same benchmark and compare P95 and P99 latency.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426636-exam-ai-200-topic-2-question-27-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nA recommendation system stores 3 million embeddings in Azure Database for PostgreSQL.<br/>\n<br/>\r\nDuring peak hours, P95 similarity-query latency increases, and the cache hit ratio drops significantly.<br/>\n<br/>\r\nYou suspect that the vector index working set no longer fits in memory, resulting in more disk reads.<br/>\n<br/>\r\nYou need to scale server resources and validate the outcome.<br/>\n<br/>\r\nWhich four actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image100.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/426636_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image100.png",
+        "local_path": "assets/exhibits/ai-200/426636_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services",
+    "_backfill_source": {
+      "comment_id": "1803124",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "432368",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 38,
+    "question_id": "432368",
+    "question_text": "You are developing a solution that will use a multi-partitioned Azure Cosmos DB database. You plan to use the latest Azure Cosmos DB SDK for development.\nThe solution must meet the following requirements:\n•\tSend insert and update operations to an Azure Blob storage account.\n•\tProcess changes to all partitions immediately.\n•\tAllow parallelization of change processing.\nYou need to process the Azure Cosmos DB operations.\nWhat are two possible ways to achieve this goal? Each correct answer presents a complete solution.\nNOTE: Each correct selection is worth one point.",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Create an Azure Function to use a trigger for Azure Cosmos DB. Configure the trigger to connect to the container.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Create an Azure App Service API and implement the change feed estimator of the SDK. Scale the API by using multiple Azure App Service instances.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Create a background job in an Azure Kubernetes Service and implement the change feed feature of the SDK.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Create an Azure Function that uses a FeedIterator object that processes the change feed by using the pull model on the container. Use a FeedRange object to parallelize the processing of the change feed across multiple functions.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "AD",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "AD",
+    "comments": [
+      {
+        "comment_id": "1803272",
+        "author": "Ja13",
+        "date_title": "October 13, 2026 03:27 pm",
+        "text": "CORRECT ANSWERS\nA and D\nOption\tModel\tHow it meets \"all partitions + parallel + immediately\"\nA. Functions trigger\tPush\tIt uses the change feed processor behind the scenes and \"automatically parallelizes change processing across your container's partitions.\" It runs on every change\nD. FeedIterator + FeedRange\tPull\tYou get \"one FeedRange per physical partition\" and give each one to a different function to run in parallel",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/432368-exam-ai-200-topic-2-question-38-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You are developing a solution that will use a multi-partitioned Azure Cosmos DB database. You plan to use the latest Azure Cosmos DB SDK for development.<br>\n<br/>\nThe solution must meet the following requirements:<br/>\n<br/>\n•\tSend insert and update operations to an Azure Blob storage account.<br/>\n•\tProcess changes to all partitions immediately.<br/>\n•\tAllow parallelization of change processing.<br/>\n<br/>\nYou need to process the Azure Cosmos DB operations.<br/>\n<br/>\nWhat are two possible ways to achieve this goal? Each correct answer presents a complete solution.<br/>\n<br/>\nNOTE: Each correct selection is worth one point.",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services"
+  },
+  {
+    "discussion_id": "431947",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 39,
+    "question_id": "431947",
+    "question_text": "HOTSPOT\nA company has an Azure Cosmos DB for NoSQL account. The account is configured for session consistency. Data is written to a single Azure region and data can be read from three Azure regions.\nAn application that will access the Azure Cosmos DB for NoSQL container data using an SDK has the following requirements:\n•\tReads from the application must return the most recent committed version of an item from any Azure region.\n•\tThe container items should not automatically be deleted.\nYou need to implement the changes to the Azure Cosmos DB for NoSQL account.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "CORRET ANSWERS: A -Reads must return the most recent committed version of an item. ------\n-------- Change the default consistency level on the account.\nB - Items should not automatically be deleted -------------------\n----------Change the Time to Live (TTL) property on items to -1.",
+    "comments": [
+      {
+        "comment_id": "1803275",
+        "author": "Ja13",
+        "date_title": "October 13, 2026 03:47 pm",
+        "text": "CORRET ANSWERS:\nA -Reads must return the most recent committed version of an item. ------\n-------- Change the default consistency level on the account.\nB - Items should not automatically be deleted -------------------\n----------Change the Time to Live (TTL) property on items to -1.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/431947-exam-ai-200-topic-2-question-39-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\n<br/>\r\nA company has an Azure Cosmos DB for NoSQL account. The account is configured for session consistency. Data is written to a single Azure region and data can be read from three Azure regions.<br/>\n<br/>\r\nAn application that will access the Azure Cosmos DB for NoSQL container data using an SDK has the following requirements:<br/>\n<br/>\r\n•\tReads from the application must return the most recent committed version of an item from any Azure region.<br/>\r\n•\tThe container items should not automatically be deleted.<br/>\n<br/>\r\nYou need to implement the changes to the Azure Cosmos DB for NoSQL account.<br/>\n<br/>\r\nWhat should you do? To answer, select the appropriate options in the answer area.<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image164.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/431947_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image164.png",
+        "local_path": "assets/exhibits/ai-200/431947_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services",
+    "_backfill_source": {
+      "comment_id": "1803275",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "432682",
+    "exam": "ai-200",
+    "topic": 2,
+    "question_number": 40,
+    "question_id": "432682",
+    "question_text": "You manage an Azure Cosmos DB for a NoSQL API account named account1. The account contains a database named db1, which contains a container named container1. You configure account1 with a session consistency level.\nYou plan to develop an application named App1 that will access container1. Individual instances of App1 must perform reads and writes. App1 must allow multiple nodes to participate in the same session.\nYou need to configure an object to share the session token between the nodes.\nWhich object should you use?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Document response",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Connection policy",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Feed options",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Request options",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1803277",
+        "author": "Ja13",
+        "date_title": "October 13, 2026 03:54 pm",
+        "text": "CORRECT ANSWER\nD)\nWith session consistency, each client instance keeps its own session token. If App1 runs on several nodes behind a load balancer, your next request can land on a different node that doesn't have your token. To share the session:\n1. Node 1 writes and gets the token from the response (response.SessionToken, header x-ms-session-token).\n2. The token goes to the user, for example in a cookie.\n3. Node 2passes it in the request options: options.SessionToken = token. Now it reads your own writes",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/432682-exam-ai-200-topic-2-question-40-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You manage an Azure Cosmos DB for a NoSQL API account named account1. The account contains a database named db1, which contains a container named container1. You configure account1 with a session consistency level.<br>\n<br/>\nYou plan to develop an application named App1 that will access container1. Individual instances of App1 must perform reads and writes. App1 must allow multiple nodes to participate in the same session.<br/>\n<br/>\nYou need to configure an object to share the session token between the nodes.<br/>\n<br/>\nWhich object should you use?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Develop AI solutions by using Azure data management services"
+  },
+  {
+    "discussion_id": "421095",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 2,
+    "question_id": "421095",
+    "question_text": "HOTSPOT\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.\nBackground\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.\nPlanned Application Architecture\nMicroservices are containerized by using Docker.\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.\nMonitoring\nTelemetry generated by Azure resources is sent to Azure Monitor.\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.\nBusiness Requirements\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.\nBackend API services must scale automatically during business hours.\nCold start delay of backend APIs must be minimized.\nSecrets must be stored outside of container images.\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.\nDevelopment efforts must be minimized.\nTechnical Requirements\nContainer images must be built automatically and validated before code updates are merged into the main branch.\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.\nDependency of image builds on local developer machines must be eliminated.\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.\nAzure Cosmos DB for NoSQL RU consumption must be minimized.\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.\nThe partner-facing containerized webhook service must run on Azure App Service.\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.\nAzure App Service must supply secrets at runtime without relying on external services.\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.\nKnown Issues\nRU consumption spikes during vector similarity queries.\nYou need to configure image build automation based on the technical requirements.\nWhich settings should you configure? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Requirement: Container images must be built automatically and validated before code updates are merged into the main branch.\nRequirement: Image build automation must run inside Azure Container Registry, eliminating dependency on local developer machines and *external build services*.",
+    "comments": [
+      {
+        "comment_id": "1789883",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 05:26 pm",
+        "text": "Trigger for container images build: Base image update\nImplementation of image builds: ACR Task",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780870",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 03:26 pm",
+        "text": "Commit:\nRequirement: Container images must be built automatically and validated before code updates are merged into the main branch.\nACR Task:\nRequirement: Image build automation must run inside Azure Container Registry, eliminating dependency on local developer machines and *external build services*.",
+        "upvotes": 4,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421095-exam-ai-200-topic-3-question-2-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.<br/>\nBackground<br/>\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.<br/>\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.<br/>\nPlanned Application Architecture<br/>\nMicroservices are containerized by using Docker.<br/>\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.<br/>\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).<br/>\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.<br/>\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.<br/>\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.<br/>\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.<br/>\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).<br/>\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.<br/>\nMonitoring<br/>\nTelemetry generated by Azure resources is sent to Azure Monitor.<br/>\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.<br/>\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.<br/>\nBusiness Requirements<br/>\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.<br/>\nBackend API services must scale automatically during business hours.<br/>\nCold start delay of backend APIs must be minimized.<br/>\nSecrets must be stored outside of container images.<br/>\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.<br/>\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.<br/>\nDevelopment efforts must be minimized.<br/>\nTechnical Requirements<br/>\nContainer images must be built automatically and validated before code updates are merged into the main branch.<br/>\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.<br/>\nDependency of image builds on local developer machines must be eliminated.<br/>\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.<br/>\nAzure Cosmos DB for NoSQL RU consumption must be minimized.<br/>\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.<br/>\nThe partner-facing containerized webhook service must run on Azure App Service.<br/>\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.<br/>\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.<br/>\nAzure App Service must supply secrets at runtime without relying on external services.<br/>\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.<br/>\nKnown Issues<br/>\nRU consumption spikes during vector similarity queries.<br/>\nYou need to configure image build automation based on the technical requirements.<br/>\nWhich settings should you configure? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image23.png\" title=\"image23\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421095_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image23.png",
+        "local_path": "assets/exhibits/ai-200/421095_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1780870",
+      "score": 132.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 4
+    },
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services",
+    "case_study_id": "ai-200-case-study-3",
+    "case_study_title": "Case Study"
+  },
+  {
+    "discussion_id": "421104",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 11,
+    "question_id": "421104",
+    "question_text": "HOTSPOT\nYou configure an Event Grid event subscription that routes AI file-upload events to an Azure Function endpoint.\nEvents must be delivered only in the following conditions:\nThe event path starts with /uploads/ai/.\nThe payload property data.fileType is \"pdf.\"\nYou must store undelivered events for later investigation and reprocessing if the subscriber endpoint cannot accept an event after multiple retries.\nYou need to configure the filtering and reliability settings.\nWhich configurations should you use? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Path prefix condition: Subject filter\nPayload property condition: Advanced filter\nUndelivered events: Dead-letter destination",
+    "comments": [
+      {
+        "comment_id": "1789885",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 05:30 pm",
+        "text": "Path prefix condition: Subject filter\nPayload property condition: Advanced filter\nUndelivered events: Dead-letter destination",
+        "upvotes": 7,
+        "badges": [
+          "Most Recent",
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780878",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 04:46 pm",
+        "text": "Path prefix condition: Subject filter\nThe requirement checks whether the event subject starts with /uploads/ai/. The Subject begins with option is designed specifically for prefix matching.",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421104-exam-ai-200-topic-3-question-11-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou configure an Event Grid event subscription that routes AI file-upload events to an Azure Function endpoint.<br/>\nEvents must be delivered only in the following conditions:<br/>\nThe event path starts with /uploads/ai/.<br/>\nThe payload property data.fileType is \"pdf.\"<br/>\nYou must store undelivered events for later investigation and reprocessing if the subscriber endpoint cannot accept an event after multiple retries.<br/>\nYou need to configure the filtering and reliability settings.<br/>\nWhich configurations should you use? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image25.png\" title=\"image25\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421104_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image25.png",
+        "local_path": "assets/exhibits/ai-200/421104_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1789885",
+      "score": 191.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 7
+    },
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services"
+  },
+  {
+    "discussion_id": "421105",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 12,
+    "question_id": "421105",
+    "question_text": "HOTSPOT\nYou are creating an app that uses Event Grid to connect with other services. Your app's event data will be sent to a serverless function that checks compliance. This function is maintained by your company.\nYou write a new event subscription at the scope of your resource. The event must be invalidated after a specific period of time.\nYou need to configure Event Grid.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "SAS tokens\nValidationCode handshake\n1-Use SAS tokens because they support an expiration time, allowing publishing access to become invalid automatically after the specified period.",
+    "comments": [
+      {
+        "comment_id": "1780879",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 04:51 pm",
+        "text": "SAS tokens\nValidationCode handshake\n1-Use SAS tokens because they support an expiration time, allowing publishing access to become invalid automatically after the specified period.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421105-exam-ai-200-topic-3-question-12-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou are creating an app that uses Event Grid to connect with other services. Your app's event data will be sent to a serverless function that checks compliance. This function is maintained by your company.<br/>\nYou write a new event subscription at the scope of your resource. The event must be invalidated after a specific period of time.<br/>\nYou need to configure Event Grid.<br/>\nWhat should you do? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image27.png\" title=\"image27\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421105_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image27.png",
+        "local_path": "assets/exhibits/ai-200/421105_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services",
+    "_backfill_source": {
+      "comment_id": "1780879",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "426608",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 18,
+    "question_id": "426608",
+    "question_text": "You are designing an Azure Function app that processes large image uploads submitted by users through an HTTP endpoint.\nThe solution must:\n•\tPrevent client timeouts by decoupling image processing from the initial upload request.\n•\tSupport automatic retry behavior for failed processing attempts.\n•\tScale the background processing independently of the rate of incoming HTTP uploads.\nYou need to design a scalable and reliable asynchronous processing solution.\nWhich two actions should you implement? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Implement a queue-triggered function for image processing.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Configure retry policies on a storage queue.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Process the image inside the HTTP-triggered function.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Persist upload metadata to Azure Storage.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "AD",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "AD",
+    "comments": [
+      {
+        "comment_id": "1793630",
+        "author": "owais62",
+        "date_title": "August 30, 2026 11:37 am",
+        "text": "A. Implement a queue-triggered function for image processing.\nD. Persist upload metadata to Azure Storage.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1789887",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 05:37 pm",
+        "text": "A. Implement a queue-triggered function for image processing.\nD. Persist upload metadata to Azure Storage.",
+        "upvotes": 4,
+        "badges": [
+          "Selected Answer: AD"
+        ],
+        "selected_answer": "AD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426608-exam-ai-200-topic-3-question-18-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You are designing an Azure Function app that processes large image uploads submitted by users through an HTTP endpoint.<br>\n<br/>\nThe solution must:<br/>\n<br/>\n•\tPrevent client timeouts by decoupling image processing from the initial upload request.<br/>\n•\tSupport automatic retry behavior for failed processing attempts.<br/>\n•\tScale the background processing independently of the rate of incoming HTTP uploads.<br/>\n<br/>\nYou need to design a scalable and reliable asynchronous processing solution.<br/>\n<br/>\nWhich two actions should you implement? Each correct answer presents part of the solution.<br/>\n<br/>\nNOTE: Each correct selection is worth one point.",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services"
+  },
+  {
+    "discussion_id": "427730",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 34,
+    "question_id": "427730",
+    "question_text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.\nYou are implementing an application by using Azure Event Grid to push near-real-time information to customers.\nYou have the following requirements:\n•\tYou must send events to thousands of customers that include hundreds of various event types.\n•\tThe events must be filtered by event type before processing.\n•\tAuthentication and authorization must be handled by using Microsoft Entra ID.\n•\tThe events must be published to a single endpoint.\nYou need to implement Azure Event Grid.\nSolution: Publish events to a partner topic. Create an event subscription for each customer.\nDoes the solution meet the goal?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "No",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1798531",
+        "author": "insanewriters",
+        "date_title": "September 16, 2026 11:33 pm",
+        "text": "No\nThis solution doesn't meet the goal because a partner topic is the wrong kind of resource for this scenario:\nPartner topics are for consuming events, not publishing them. A partner topic is how a customer receives events from a third-party SaaS provider (a \"partner\") that has registered with Event Grid. Your application can't publish its own events to a partner topic the way it would to a custom topic or domain.\nIt doesn't scale to thousands of customers with isolated access. One topic with a subscription per customer gives you no per-customer authorization boundary. Every customer's subscription would sit on the same resource.",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/427730-exam-ai-200-topic-3-question-34-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.<br>\n<br/>\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.<br/>\n<br/>\nYou are implementing an application by using Azure Event Grid to push near-real-time information to customers.<br/>\n<br/>\nYou have the following requirements:<br/>\n<br/>\n•\tYou must send events to thousands of customers that include hundreds of various event types.<br/>\n•\tThe events must be filtered by event type before processing.<br/>\n•\tAuthentication and authorization must be handled by using Microsoft Entra ID.<br/>\n•\tThe events must be published to a single endpoint.<br/>\n<br/>\nYou need to implement Azure Event Grid.<br/>\n<br/>\nSolution: Publish events to a partner topic. Create an event subscription for each customer.<br/>\n<br/>\nDoes the solution meet the goal?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services"
+  },
+  {
+    "discussion_id": "432547",
+    "exam": "ai-200",
+    "topic": 3,
+    "question_number": 44,
+    "question_id": "432547",
+    "question_text": "DRAG DROP\nYou develop software solutions for a mobile delivery service. You are developing a mobile app that users can use to order from a restaurant in their area. The app uses the following workflow:\n1. A driver selects the restaurants for which they will deliver orders.\n2. Orders are sent to all available drivers in an area.\n3. Only orders for the selected restaurants will appear for the driver.\n4. The first driver to accept an order removes it from the list of available orders.\nYou need to implement an Azure Service Bus solution.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "1. Create a single Service Bus Namespace.\n2. Create a single Service Bus topic.\n3. Create a Service Bus subscription for each restaurant for which a driver can receive orders.",
+    "comments": [
+      {
+        "comment_id": "1803314",
+        "author": "Ja13",
+        "date_title": "October 13, 2026 09:07 pm",
+        "text": "CORRECT ANSWERS:\n1. Create a single Service Bus Namespace.\n2. Create a single Service Bus topic.\n3. Create a Service Bus subscription for each restaurant for which a driver can receive orders.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/432547-exam-ai-200-topic-3-question-44-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nYou develop software solutions for a mobile delivery service. You are developing a mobile app that users can use to order from a restaurant in their area. The app uses the following workflow:<br/>\n<br/>\r\n1. A driver selects the restaurants for which they will deliver orders.<br/>\r\n2. Orders are sent to all available drivers in an area.<br/>\r\n3. Only orders for the selected restaurants will appear for the driver.<br/>\r\n4. The first driver to accept an order removes it from the list of available orders.<br/>\n<br/>\r\nYou need to implement an Azure Service Bus solution.<br/>\n<br/>\r\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image183.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/432547_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image183.png",
+        "local_path": "assets/exhibits/ai-200/432547_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1803314",
+      "score": 126.5,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
+    },
+    "skill_area": 3,
+    "skill_area_label": "Connect to and consume Azure services"
+  },
+  {
+    "discussion_id": "421111",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 3,
+    "question_id": "421111",
+    "question_text": "DRAG DROP\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.\nBackground\nFabrikam Inc. is a global retail analytics company that provides AI-driven demand forecasting and product recommendation services to online retailers. The company is modernizing its solution to run entirely on Microsoft Azure.\nThe platform ingests transaction data, generates embeddings for semantic retrieval, performs vector similarity search, and returns product recommendations through containerized microservices. Developers use Python and Azure SDKs. Operations teams manage container orchestration, scaling, monitoring, and security.\nThe solution must meet strict performance, scalability, and security requirements.\nCurrent environment\nApplication architecture\nThe Recommendation engine is a customer-facing HTTP API running as a containerized Python application. The engine is deployed to Azure Container Apps (ACA).\nEmbeddings are stored in Azure Database for PostgreSQL by using pgvector.\nSemantic retrieval uses metadata filtering combined with vector similarity search.\nAzure Managed Redis is used as a caching layer.\nFront-end and API workloads are deployed to Azure Container Apps (ACA).\nBatch model retraining workloads run in Azure Kubernetes Service (AKS).\nContainer and CI/CD\nContainer images are stored in Azure Container Registry (ACR).\nCI/CD uses ACR Tasks to build images on commit.\nACA environments support revision management.\nAKS workloads are deployed by using Kubernetes manifest files stored in Git.\nMonitoring\nLogs are collected in Azure Monitor.\nTeams inspect container logs and Kubernetes events when troubleshooting.\nDevelopers write KQL queries to analyze latency spikes.\nBusiness requirements\nCustomer experience: Maintain a seamless, low-latency recommendation experience for end-users, even during unpredictable seasonal traffic spikes.\nOperational cost efficiency: Minimize compute expenditures by deallocating resources during periods of inactivity and by preventing runaway scaling costs.\nData integrity and freshness: Ensure that product recommendations always reflect the most current catalog metadata and pricing to prevent customer dissatisfaction.\nSecurity and compliance: Adhere to a Zero Trust security model by eliminating long-lived credentials and centralizing the management of all sensitive secrets.\nGlobal scalability: Support the rapid ingestion of millions of new product embeddings daily without degrading query performance for existing retailers.\nTechnical requirements\nPerformance: Semantic search latency must remain under 200 milliseconds at peak load.\nDatabase optimization: Use pgvector for embeddings and implement metadata filtering to reduce compute overhead. Configure compute and memory appropriately for vector workloads to ensure high-dimensional index residency in RAM and efficient mathematical throughput. Vector similarity calculations must be performed only against products that satisfy mandatory metadata constraints.\nDatabase performance: Database connections must support high concurrency with minimal latency through the implementation of connection optimization.\nData load strategy: To ensure maximum ingestion throughput, secondary indexes must be applied only after bulk loading of embeddings is complete.\nCaching: Redis cache entries must expire automatically after 10 minutes. Implement a reactive mechanism to invalidate cache entries upon metadata updates.\nIdentity: Use managed identities for all service-to-service and service-to-database authentication. Plain-text credentials in configuration files are strictly prohibited.\nSecret management: All secrets must be stored centrally. Secrets must be rotated automatically by using a centralized lifecycle policy.\nScaling: Use Kubernetes event-driven autoscaling (KEDA) for event-driven scaling. The Recommendation API must scale based on HTTP traffic, while batch jobs must scale based on queue length and support scale-to-zero.\nCI/CD: All images must be stored in Azure Container Registry. Use ACR Tasks to automate image builds triggered by source code commits.\nMonitoring: Use KQL to analyze performance telemetry and troubleshoot microservice connectivity failures. Inspect logs and events when troubleshooting AKS and ACA.\nYou need to troubleshoot connectivity failures between microservices running in AKS.\nWhich troubleshooting actions should you perform? To answer, move the appropriate action to the correct troubleshooting scenario. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Service fails to communicate with another service: =Inspect Kubernetes service endpoints.\nPod restarts repeatedly: = Inspect container logs.\nReadiness probe failures are observed =: Inspect Kubernetes events.",
+    "comments": [
+      {
+        "comment_id": "1789891",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 05:55 pm",
+        "text": "Service fails to communicate with another service.: Inspect Kubernetes service endpoints.\nPod restarts repeatedly. : Inspect container logs.\nReadiness probe failures are observed.: Inspect Pod descriptions",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1784326",
+        "author": "Roman_Rabodzey",
+        "date_title": "August 09, 2026 11:06 am",
+        "text": "Service fails to communicate with another service\n→ Inspect Kubernetes service endpoints\nPod restarts repeatedly\n→ Inspect container logs\nReadiness probe failures are observed\n→ Inspect Pod descriptions\n'kubectl describe pods' shows pod events as well as the liveness/readiness configuration, which helps more in troubleshooting, while 'kubectl get events' shows only events",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780873",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 03:42 pm",
+        "text": "Service fails to communicate with another service\n→ Inspect Kubernetes service endpoints\nPod restarts repeatedly\n→ Inspect container logs\nReadiness probe failures are observed\n→ Inspect Kubernetes events",
+        "upvotes": 4,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780637",
+        "author": "jamony",
+        "date_title": "July 23, 2026 06:01 pm",
+        "text": "Service fails to communicate with another service\t=Inspect Kubernetes service endpoints.\nPod restarts repeatedly\t= Inspect container logs.\nReadiness probe failures are observed =\tInspect Kubernetes events.\nService endpoints confirm whether the target service has valid backend pods. Microsoft identifies checking endpoints as the first step when a Kubernetes service is inaccessible.\nFor repeated restarts or CrashLoopBackOff, container logs are usually the most direct way to identify the application or startup error.",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421111-exam-ai-200-topic-4-question-3-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.<br/>\nBackground<br/>\nFabrikam Inc. is a global retail analytics company that provides AI-driven demand forecasting and product recommendation services to online retailers. The company is modernizing its solution to run entirely on Microsoft Azure.<br/>\nThe platform ingests transaction data, generates embeddings for semantic retrieval, performs vector similarity search, and returns product recommendations through containerized microservices. Developers use Python and Azure SDKs. Operations teams manage container orchestration, scaling, monitoring, and security.<br/>\nThe solution must meet strict performance, scalability, and security requirements.<br/>\nCurrent environment<br/>\nApplication architecture<br/>\nThe Recommendation engine is a customer-facing HTTP API running as a containerized Python application. The engine is deployed to Azure Container Apps (ACA).<br/>\nEmbeddings are stored in Azure Database for PostgreSQL by using pgvector.<br/>\nSemantic retrieval uses metadata filtering combined with vector similarity search.<br/>\nAzure Managed Redis is used as a caching layer.<br/>\nFront-end and API workloads are deployed to Azure Container Apps (ACA).<br/>\nBatch model retraining workloads run in Azure Kubernetes Service (AKS).<br/>\nContainer and CI/CD<br/>\nContainer images are stored in Azure Container Registry (ACR).<br/>\nCI/CD uses ACR Tasks to build images on commit.<br/>\nACA environments support revision management.<br/>\nAKS workloads are deployed by using Kubernetes manifest files stored in Git.<br/>\nMonitoring<br/>\nLogs are collected in Azure Monitor.<br/>\nTeams inspect container logs and Kubernetes events when troubleshooting.<br/>\nDevelopers write KQL queries to analyze latency spikes.<br/>\nBusiness requirements<br/>\nCustomer experience: Maintain a seamless, low-latency recommendation experience for end-users, even during unpredictable seasonal traffic spikes.<br/>\nOperational cost efficiency: Minimize compute expenditures by deallocating resources during periods of inactivity and by preventing runaway scaling costs.<br/>\nData integrity and freshness: Ensure that product recommendations always reflect the most current catalog metadata and pricing to prevent customer dissatisfaction.<br/>\nSecurity and compliance: Adhere to a Zero Trust security model by eliminating long-lived credentials and centralizing the management of all sensitive secrets.<br/>\nGlobal scalability: Support the rapid ingestion of millions of new product embeddings daily without degrading query performance for existing retailers.<br/>\nTechnical requirements<br/>\nPerformance: Semantic search latency must remain under 200 milliseconds at peak load.<br/>\nDatabase optimization: Use pgvector for embeddings and implement metadata filtering to reduce compute overhead. Configure compute and memory appropriately for vector workloads to ensure high-dimensional index residency in RAM and efficient mathematical throughput. Vector similarity calculations must be performed only against products that satisfy mandatory metadata constraints.<br/>\nDatabase performance: Database connections must support high concurrency with minimal latency through the implementation of connection optimization.<br/>\nData load strategy: To ensure maximum ingestion throughput, secondary indexes must be applied only after bulk loading of embeddings is complete.<br/>\nCaching: Redis cache entries must expire automatically after 10 minutes. Implement a reactive mechanism to invalidate cache entries upon metadata updates.<br/>\nIdentity: Use managed identities for all service-to-service and service-to-database authentication. Plain-text credentials in configuration files are strictly prohibited.<br/>\nSecret management: All secrets must be stored centrally. Secrets must be rotated automatically by using a centralized lifecycle policy.<br/>\nScaling: Use Kubernetes event-driven autoscaling (KEDA) for event-driven scaling. The Recommendation API must scale based on HTTP traffic, while batch jobs must scale based on queue length and support scale-to-zero.<br/>\nCI/CD: All images must be stored in Azure Container Registry. Use ACR Tasks to automate image builds triggered by source code commits.<br/>\nMonitoring: Use KQL to analyze performance telemetry and troubleshoot microservice connectivity failures. Inspect logs and events when troubleshooting AKS and ACA.<br/>\nYou need to troubleshoot connectivity failures between microservices running in AKS.<br/>\nWhich troubleshooting actions should you perform? To answer, move the appropriate action to the correct troubleshooting scenario. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image38.png\" title=\"image38\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421111_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image38.png",
+        "local_path": "assets/exhibits/ai-200/421111_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1780637",
+      "score": 130.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 3
+    },
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions",
+    "case_study_id": "ai-200-fabrikam-inc",
+    "case_study_title": "Fabrikam Inc"
+  },
+  {
+    "discussion_id": "421112",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 4,
+    "question_id": "421112",
+    "question_text": "DRAG DROP\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.\nBackground\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.\nPlanned Application Architecture\nMicroservices are containerized by using Docker.\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.\nMonitoring\nTelemetry generated by Azure resources is sent to Azure Monitor.\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.\nBusiness Requirements\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.\nBackend API services must scale automatically during business hours.\nCold start delay of backend APIs must be minimized.\nSecrets must be stored outside of container images.\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.\nDevelopment efforts must be minimized.\nTechnical Requirements\nContainer images must be built automatically and validated before code updates are merged into the main branch.\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.\nDependency of image builds on local developer machines must be eliminated.\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.\nAzure Cosmos DB for NoSQL RU consumption must be minimized.\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.\nThe partner-facing containerized webhook service must run on Azure App Service.\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.\nAzure App Service must supply secrets at runtime without relying on external services.\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.\nKnown Issues\nRU consumption spikes during vector similarity queries.\nYou need to implement trace correlation according to the business requirements.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.\nNOTE: More than one order of answer choices is correct. You will receive credit for any of the correct orders you select.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "- All tracing must be implemented by using OpenTelemetry SDK instrumentation.\n- Development efforts must be minimized.",
+    "comments": [
+      {
+        "comment_id": "1780874",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 03:50 pm",
+        "text": "Requirements:\n- Developers must be able to correlate telemetry across Azure Functions hosts and apps.\n- All tracing must be implemented by using OpenTelemetry SDK instrumentation.\n- Development efforts must be minimized.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421112-exam-ai-200-topic-4-question-4-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.<br/>\nBackground<br/>\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.<br/>\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.<br/>\nPlanned Application Architecture<br/>\nMicroservices are containerized by using Docker.<br/>\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.<br/>\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).<br/>\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.<br/>\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.<br/>\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.<br/>\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.<br/>\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).<br/>\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.<br/>\nMonitoring<br/>\nTelemetry generated by Azure resources is sent to Azure Monitor.<br/>\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.<br/>\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.<br/>\nBusiness Requirements<br/>\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.<br/>\nBackend API services must scale automatically during business hours.<br/>\nCold start delay of backend APIs must be minimized.<br/>\nSecrets must be stored outside of container images.<br/>\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.<br/>\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.<br/>\nDevelopment efforts must be minimized.<br/>\nTechnical Requirements<br/>\nContainer images must be built automatically and validated before code updates are merged into the main branch.<br/>\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.<br/>\nDependency of image builds on local developer machines must be eliminated.<br/>\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.<br/>\nAzure Cosmos DB for NoSQL RU consumption must be minimized.<br/>\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.<br/>\nThe partner-facing containerized webhook service must run on Azure App Service.<br/>\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.<br/>\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.<br/>\nAzure App Service must supply secrets at runtime without relying on external services.<br/>\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.<br/>\nKnown Issues<br/>\nRU consumption spikes during vector similarity queries.<br/>\nYou need to implement trace correlation according to the business requirements.<br/>\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\nNOTE: More than one order of answer choices is correct. You will receive credit for any of the correct orders you select.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image40.png\" title=\"image40\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421112_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image40.png",
+        "local_path": "assets/exhibits/ai-200/421112_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions",
+    "case_study_id": "ai-200-case-study-4",
+    "case_study_title": "Case Study",
+    "_backfill_source": {
+      "comment_id": "1780874",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "421113",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 5,
+    "question_id": "421113",
+    "question_text": "DRAG DROP\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.\nBackground\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.\nPlanned Application Architecture\nMicroservices are containerized by using Docker.\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.\nMonitoring\nTelemetry generated by Azure resources is sent to Azure Monitor.\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.\nBusiness Requirements\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.\nBackend API services must scale automatically during business hours.\nCold start delay of backend APIs must be minimized.\nSecrets must be stored outside of container images.\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.\nDevelopment efforts must be minimized.\nTechnical Requirements\nContainer images must be built automatically and validated before code updates are merged into the main branch.\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.\nDependency of image builds on local developer machines must be eliminated.\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.\nAzure Cosmos DB for NoSQL RU consumption must be minimized.\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.\nThe partner-facing containerized webhook service must run on Azure App Service.\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.\nAzure App Service must supply secrets at runtime without relying on external services.\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.\nKnown Issues\nRU consumption spikes during vector similarity queries.\nYou need to configure event-driven scaling for the backend API services to meet the technical requirements.\nWhich settings should you use for each element? To answer, move the appropriate settings to the correct elements. You may use each setting once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "the 2nd one should be queueLength, While messageCount is commonly used across other KEDA scalers (like RabbitMQ or Azure Storage Queues), the Azure Service Bus scaler specifically maps the target message count threshold to queueLength.",
+    "comments": [
+      {
+        "comment_id": "1803506",
+        "author": "Ja13",
+        "date_title": "October 14, 2026 04:57 pm",
+        "text": "CORRECT ANSWERS:\nA) Scaler                      -    Azure Service Bus\nB) Trigger metadata    -    messageCount\nC) min-replicas             -    1",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1785986",
+        "author": "Codia",
+        "date_title": "August 11, 2026 11:36 pm",
+        "text": "the 2nd one should be queueLength, While messageCount is commonly used across other KEDA scalers (like RabbitMQ or Azure Storage Queues), the Azure Service Bus scaler specifically maps the target message count threshold to queueLength.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780875",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 04:00 pm",
+        "text": "Requirements:\n- Event-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.\n- Cold start delay of backend APIs must be minimized.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1780876",
+        "author": "Mattt",
+        "date_title": "July 24, 2026 04:04 pm",
+        "text": "min-replicas: 1\n{Cold start delay of backend APIs must be minimized}\nmin-replicas should be set to 1 to keep at least one API replica running and minimize cold-start latency. Setting it to 0 allows the app to scale to zero, which can introduce a delay when the next message arrives.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421113-exam-ai-200-topic-4-question-5-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the \"Next\" button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the \"Question\" button to return to the question.<br/>\nBackground<br/>\nProseware Inc. develops AI-powered knowledge management solutions for enterprise customers. The company is modernizing its platform to support semantic search, intelligent document retrieval, and real-time partner integrations.<br/>\nThe engineering team uses Python and Azure SDKs. The architecture is being redesigned to support containerized microservices, vector search workloads, and serverless backend processing.<br/>\nPlanned Application Architecture<br/>\nMicroservices are containerized by using Docker.<br/>\nCode for containerized microservices and Azure Function apps is developed locally but stored in a GitHub repository.<br/>\nCustom images for containerized microservices are stored in Azure Container Registry (ACR).<br/>\nBase images are stored in Docker Hub. Custom images must be rebuilt automatically whenever their base images are updated.<br/>\nAzure Cosmos DB for NoSQL stores documents, metadata, and vector embeddings.<br/>\nAzure Functions generate vector embeddings of Azure Cosmos DB for NoSQL-hosted documents and send messages to Service Bus to trigger search index updates.<br/>\nAzure Container Apps (ACA) apps host backend API services that provide semantic search across Azure Cosmos DB for NoSQL documents. API services process Service Bus messages and update search indexes.<br/>\nAzure Kubernetes Service (AKS) processes batch vector embedding regeneration for existing Azure Cosmos DB for NoSQL documents (whenever the embedding model is changed).<br/>\nAn extranet-facing containerized webhook allows business partners to submit documents to be processed by internal AI workflows for semantic search and retrieval.<br/>\nMonitoring<br/>\nTelemetry generated by Azure resources is sent to Azure Monitor.<br/>\nA Log Analytics workspace is used to collect ACA apps logs, AKS container logs, and Azure Functions apps logs.<br/>\nMonitoring of Azure Functions is currently implemented by using Azure Application Insights SDK instrumentation.<br/>\nBusiness Requirements<br/>\nEmbeddings for new or updated Azure Cosmos DB for NoSQL-hosted documents must be automatically generated.<br/>\nBackend API services must scale automatically during business hours.<br/>\nCold start delay of backend APIs must be minimized.<br/>\nSecrets must be stored outside of container images.<br/>\nDevelopers must be able to correlate telemetry across Azure Functions hosts and apps.<br/>\nAll tracing must be implemented by using OpenTelemetry SDK instrumentation.<br/>\nDevelopment efforts must be minimized.<br/>\nTechnical Requirements<br/>\nContainer images must be built automatically and validated before code updates are merged into the main branch.<br/>\nImage build automation must run inside the Azure Container Registry, eliminating dependency on local developer machines and external build services.<br/>\nDependency of image builds on local developer machines must be eliminated.<br/>\nEvent-driven scaling in ACA must occur based on the number of pending messages in the Azure Service Bus queue.<br/>\nAzure Cosmos DB for NoSQL RU consumption must be minimized.<br/>\nVector similarity search must use embeddings stored in Azure Cosmos DB for NoSQL.<br/>\nThe partner-facing containerized webhook service must run on Azure App Service.<br/>\nSecrets must NOT be stored in container images, source control, or application configuration directly. They must be accessed securely at runtime.<br/>\nAll secrets must be stored centrally in Azure Key Vault and accessed at runtime through a managed identity.<br/>\nAzure App Service must supply secrets at runtime without relying on external services.<br/>\nResources and workloads must be deployed by using Bicep templates through an automated, version-controlled pipeline. Local and command-line deployments must be eliminated to ensure repeatable, auditable deployments.<br/>\nKnown Issues<br/>\nRU consumption spikes during vector similarity queries.<br/>\nYou need to configure event-driven scaling for the backend API services to meet the technical requirements.<br/>\nWhich settings should you use for each element? To answer, move the appropriate settings to the correct elements. You may use each setting once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image42.png\" title=\"image42\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421113_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image42.png",
+        "local_path": "assets/exhibits/ai-200/421113_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1785986",
+      "score": 114.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    },
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions",
+    "case_study_id": "ai-200-case-study-4",
+    "case_study_title": "Case Study"
+  },
+  {
+    "discussion_id": "421122",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 14,
+    "question_id": "421122",
+    "question_text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.\nYou are preparing a production deployment for an Azure Function app. The app will run across multiple environments.\nThe solution must support environment-specific configuration and prevent secrets from being stored in source control.\nYou need to develop the solution.\nSolution: Store connection strings in the Function app application settings configured in the Azure Portal.\nDoes the solution meet the goal?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "No",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1800233",
+        "author": "tanvralam",
+        "date_title": "September 25, 2026 09:05 am",
+        "text": "Azure Function App Application Settings support:\n- Environment-specific configuration: Each environment (Dev, Test, Prod) can have different connection strings.\n- Secret protection: Connection strings are stored in Azure rather than source control.\n- Runtime access: Azure Functions can retrieve settings through environment variables.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421122-exam-ai-200-topic-4-question-14-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.<br>\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.<br/>\nYou are preparing a production deployment for an Azure Function app. The app will run across multiple environments.<br/>\nThe solution must support environment-specific configuration and prevent secrets from being stored in source control.<br/>\nYou need to develop the solution.<br/>\nSolution: Store connection strings in the Function app application settings configured in the Azure Portal.<br/>\nDoes the solution meet the goal?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions"
+  },
+  {
+    "discussion_id": "421136",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 28,
+    "question_id": "421136",
+    "question_text": "DRAG DROP\nA Python API running in ACA must send distributed traces to Azure Monitor.\nThe API creates spans. However, no traces appear in Azure Monitor.\nYou need to configure the OpenTelemetry SDK pipeline to export traces to Azure Monitor.\nWhat should you do? To answer, move the appropriate actions to the correct requirements. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Register a global tracer provider → Initialize the application’s TracerProvider.\nExport traces to Azure Monitor → Create the Azure Monitor trace exporter.\nConnect the exporter to the provider → Configure a span processor with the exporter.\nGenerate spans → Call tracer.start_as_current_span().",
+    "comments": [
+      {
+        "comment_id": "1789892",
+        "author": "LSCPY",
+        "date_title": "August 19, 2026 06:05 pm",
+        "text": "Register a global tracer provider.: Initialize the application's TracerProvider for tracing.\nExport traces to Azure Monitor. : Create the Azure Monitor component that sends trace data.\nConnect the exporter to the provider. : Configure a span processor to send spans to the exporter.\nGenerate spans in the application code.: Call tracer.start_as_current_span().",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1781241",
+        "author": "Mattt",
+        "date_title": "July 27, 2026 01:42 pm",
+        "text": "The provided answer is incorrect because it mismatches the OpenTelemetry components with their responsibilities.\nThe correct mapping is:\nRegister a global tracer provider → Initialize the application’s TracerProvider.\nExport traces to Azure Monitor → Create the Azure Monitor trace exporter.\nConnect the exporter to the provider → Configure a span processor with the exporter.\nGenerate spans → Call tracer.start_as_current_span().",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/421136-exam-ai-200-topic-4-question-28-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nA Python API running in ACA must send distributed traces to Azure Monitor.<br/>\nThe API creates spans. However, no traces appear in Azure Monitor.<br/>\nYou need to configure the OpenTelemetry SDK pipeline to export traces to Azure Monitor.<br/>\nWhat should you do? To answer, move the appropriate actions to the correct requirements. You may use each action once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/ai-200/image68.png\" title=\"image68\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/421136_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image68.png",
+        "local_path": "assets/exhibits/ai-200/421136_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1781241",
+      "score": 138.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    },
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions"
+  },
+  {
+    "discussion_id": "426659",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 45,
+    "question_id": "426659",
+    "question_text": "Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.\nYou plan to deploy a container to an Azure App Service API app named api1. You host the source code for api1 in a GitHub repository. The container uses the API key at runtime to connect to a backend service.\nThe container must be able to retrieve the API key at runtime without exposing it in the source repository or Git commit history.\nYou need to ensure that the API key remains outside of Git commit history and is available to the container at runtime.\nSolution: Store the API key as an App Service application setting configured through the Azure Portal.\nDoes the solution meet the goal?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "No",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1799046",
+        "author": "insanewriters",
+        "date_title": "September 17, 2026 11:32 pm",
+        "text": "It's preferrable to use KV, but this is a valid approach.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/426659-exam-ai-200-topic-4-question-45-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Note: This question is part of a series of questions that present the same scenario. Each question in the series contains a unique solution that might meet the stated goals. Some question sets might have more than one correct solution, while others might not have a correct solution.<br>\n<br/>\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these questions will not appear on the review screen.<br/>\n<br/>\nYou plan to deploy a container to an Azure App Service API app named api1. You host the source code for api1 in a GitHub repository. The container uses the API key at runtime to connect to a backend service.<br/>\n<br/>\nThe container must be able to retrieve the API key at runtime without exposing it in the source repository or Git commit history.<br/>\n<br/>\nYou need to ensure that the API key remains outside of Git commit history and is available to the container at runtime.<br/>\n<br/>\nSolution: Store the API key as an App Service application setting configured through the Azure Portal.<br/>\n<br/>\nDoes the solution meet the goal?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions"
+  },
+  {
+    "discussion_id": "431985",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 52,
+    "question_id": "431985",
+    "question_text": "HOTSPOT\nYou are a developer building a web site using a web app. The web site stores configuration data in Azure App Configuration.\nAccess to Azure App Configuration has been configured to use the identity of the web app for authentication. Security requirements specify that no other authentication systems must be used.\nYou import all required libraries.\nYou need to load configuration data from Azure App Configuration.\nHow should you complete the code? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Box: Choice\nA) credential =: ManagedIdentityCredential\nB) client =: AddAzureAppConfiguration",
+    "comments": [
+      {
+        "comment_id": "1803568",
+        "author": "Ja13",
+        "date_title": "October 14, 2026 09:14 pm",
+        "text": "CORRECT ANSWERS:\nBox\tChoice\nA) credential =\tManagedIdentityCredential\nB) client =\tAddAzureAppConfiguration\nWhy\n* Box 1: the question gives two clues: \"the identity of the web app\" and \"no other authentication systems must be used.\" That means onlyManagedIdentityCredential. Any chain could authenticate some other way.\n* Box 2: it's the only option that loads configuration. The other three are credentials, not clients.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/431985-exam-ai-200-topic-4-question-52-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\n<br/>\r\nYou are a developer building a web site using a web app. The web site stores configuration data in Azure App Configuration.<br/>\n<br/>\r\nAccess to Azure App Configuration has been configured to use the identity of the web app for authentication. Security requirements specify that no other authentication systems must be used.<br/>\n<br/>\r\nYou import all required libraries.<br/>\n<br/>\r\nYou need to load configuration data from Azure App Configuration.<br/>\n<br/>\r\nHow should you complete the code? To answer, select the appropriate options in the answer area.<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image189.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/431985_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image189.png",
+        "local_path": "assets/exhibits/ai-200/431985_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1803568",
+      "score": 132.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
+    },
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions"
+  },
+  {
+    "discussion_id": "431889",
+    "exam": "ai-200",
+    "topic": 4,
+    "question_number": 59,
+    "question_id": "431889",
+    "question_text": "DRAG DROP\nA company has an Azure subscription named Sub1. Sub1 contains an App Configuration store named AppConfig1.\nYou plan to implement an App Service web app named App1, which will be accessed by users in your organization. App1 will have a dev, test, and prod instance. Each web app instance will connect to a different back-end API endpoint. For each web app instance, you plan to assign a different layout of webpages to different groups of users based on their department.\nThe implementation must ensure that:\n•\tAPI endpoint details are stored in the JSON format and encrypted with a custom key.\n•\tUser assignments of layout pages can be changed without any web app code modifications.\nYou need to configure AppConfig1 to support your implementation.\nWhat should you create in AppConfig1? To answer, move the appropriate object types to the correct configurations. You may use each object type once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "A) API endpoint details: Key-value\nB) Webpage layout assignment: Variant feature flag",
+    "comments": [
+      {
+        "comment_id": "1803588",
+        "author": "Ja13",
+        "date_title": "October 14, 2026 11:45 pm",
+        "text": "CORRECT ANSWERS\nA) API endpoint details\tKey-value\nB) Webpage layout assignment\tVariant feature flag\nWhy\n* Box 1, Key-value:\n• \"JSON format\": a key-value can have content type application/json.\n• \"Encrypted with a custom key\": you turn on a customer-managed key for the whole store. Microsoft says it encrypts \"the values found in key-value pairs.\"\n• So a normal key-value covers both requirements.\n* Box 2, Variant feature flag: the clue is \"different layouts for different groups.\" A variant flag has \"multiple variants... assigned to specific users, groups, or percentile buckets.\"\n• Each layout is a variant, and each department is a group.\n• You change who gets which layout in the portal, with no code changes.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/431889-exam-ai-200-topic-4-question-59-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\n<br/>\r\nA company has an Azure subscription named Sub1. Sub1 contains an App Configuration store named AppConfig1.<br/>\n<br/>\r\nYou plan to implement an App Service web app named App1, which will be accessed by users in your organization. App1 will have a dev, test, and prod instance. Each web app instance will connect to a different back-end API endpoint. For each web app instance, you plan to assign a different layout of webpages to different groups of users based on their department.<br/>\n<br/>\r\nThe implementation must ensure that:<br/>\n<br/>\r\n•\tAPI endpoint details are stored in the JSON format and encrypted with a custom key.<br/>\r\n•\tUser assignments of layout pages can be changed without any web app code modifications.<br/>\n<br/>\r\nYou need to configure AppConfig1 to support your implementation.<br/>\n<br/>\r\nWhat should you create in AppConfig1? To answer, move the appropriate object types to the correct configurations. You may use each object type once, more than once, or not at all. You may need to move the split bar between panes or scroll to view content.<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/ai-200/image191.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/ai-200/431889_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/ai-200/image191.png",
+        "local_path": "assets/exhibits/ai-200/431889_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1803588",
+      "score": 132.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 1
+    },
+    "skill_area": 4,
+    "skill_area_label": "Secure, monitor, and troubleshoot Azure solutions"
+  }
+]

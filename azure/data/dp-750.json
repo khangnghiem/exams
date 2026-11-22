@@ -1,0 +1,2719 @@
+[
+  {
+    "discussion_id": "416906",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 1,
+    "question_id": "416906",
+    "question_text": "This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.\nOverview\nCompany Information\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.\nExisting Environment\nAzure Environment\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.\nWorkspace1 contains all-purpose clusters for both development and production workloads.\nThe company's Azure environment contains:\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data\nData Environment\nContoso ingests the following operational and business data:\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.\nProblem Statements\nThe company’s existing analytics environment has several issues:\nIngestion\nTelemetry pipelines fall behind during peak loads.\nTelemetry ingestion fails when schema drift occurs.\nStreaming pipelines reprocess events after a pipeline restarts.\nCompute\nProduction and development workloads run on the same all-purpose clusters.\nProduction and development workloads do NOT support autoscaling or workload isolation.\nGovernance\nThe ERP data is duplicated across systems and development teams.\nNaming conventions are inconsistent across development teams, regions, and products.\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.\nPipeline operations\nPipelines lack resiliency, alerting, and centralized scheduling.\nRequirements\nPlanned Changes\nContoso plans to implement the following changes:\nImplement scalable data pipeline orchestration.\nCreate a managed analytics catalog in Unity Catalog.\nImplement a consistent approach to creating curated datasets.\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.\nGrant data engineers access to the ERP tables by using minimal development effort.\nAdopt a compute strategy that isolates production workloads and supports autoscaling.\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.\nTechnical Requirements\nContoso identifies the following environment and compute requirements:\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.\nProvide fast and consistent performance for business intelligence (BI) workloads.\nPrevent development activity from affecting production pipelines.\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.\nContoso identifies the following data ingestion and processing requirements:\nAuto-scale ingestion pipelines to handle bursty workloads.\nHandle schema drift for the maintenance and telemetry data.\nIngest file-based telemetry data by using minimal operational effort.\nStore all the ingested data in a format that supports incremental processing.\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.\nContoso identifies the following data modeling and optimization requirements:\nBuild curated tables that standardize business logic.\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.\nContoso identifies the following pipeline deployment and operation requirements:\nOrchestrate multi-step ingestion and transformation workflows.\nDefine a clear execution order and dependencies.\nAutomatically retry failed steps and notify operators.\nSchedule ingestion and transformation workloads consistently.\nGovernance Requirements\nContoso identifies the following governance requirements:\nCentralize the metadata catalog.\nProvide isolated development areas that follow standard naming conventions.\nEstablish a consistent structure for organizing raw, cleansed, and curated data.\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.\nBusiness Requirements\nContoso identifies the following business requirements:\nImprove ingestion reliability and reduce operational effort.\nStandardize data definitions across development teams.\nYou need to configure compute for the ingestion of telemetry data. The solution must meet the data ingestion and processing requirements.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Move the ingestion pipelines to shared compute.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Enable Photon acceleration for a job compute cluster.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Increase an all-purpose cluster to a larger fixed node type.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Disable autoscaling for a job compute cluster.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1802188",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:07 pm",
+        "text": "If a Databricks question asks how to improve ingestion/transformation performance with minimal changes, Photon is often the expected answer",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/416906-exam-dp-750-topic-1-question-1-discussion/",
+    "question_type": "case_study",
+    "raw_html": "\r\n                  This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.<br/>\nOverview<br/>\nCompany Information<br/>\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.<br/>\nExisting Environment<br/>\nAzure Environment<br/>\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.<br/>\nWorkspace1 contains all-purpose clusters for both development and production workloads.<br/>\nThe company's Azure environment contains:<br/>\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub<br/>\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data<br/>\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data<br/>\nData Environment<br/>\nContoso ingests the following operational and business data:<br/>\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.<br/>\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.<br/>\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.<br/>\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.<br/>\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.<br/>\nProblem Statements<br/>\nThe company’s existing analytics environment has several issues:<br/>\nIngestion<br/>\nTelemetry pipelines fall behind during peak loads.<br/>\nTelemetry ingestion fails when schema drift occurs.<br/>\nStreaming pipelines reprocess events after a pipeline restarts.<br/>\nCompute<br/>\nProduction and development workloads run on the same all-purpose clusters.<br/>\nProduction and development workloads do NOT support autoscaling or workload isolation.<br/>\nGovernance<br/>\nThe ERP data is duplicated across systems and development teams.<br/>\nNaming conventions are inconsistent across development teams, regions, and products.<br/>\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.<br/>\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.<br/>\nPipeline operations<br/>\nPipelines lack resiliency, alerting, and centralized scheduling.<br/>\nRequirements<br/>\nPlanned Changes<br/>\nContoso plans to implement the following changes:<br/>\nImplement scalable data pipeline orchestration.<br/>\nCreate a managed analytics catalog in Unity Catalog.<br/>\nImplement a consistent approach to creating curated datasets.<br/>\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.<br/>\nGrant data engineers access to the ERP tables by using minimal development effort.<br/>\nAdopt a compute strategy that isolates production workloads and supports autoscaling.<br/>\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.<br/>\nTechnical Requirements<br/>\nContoso identifies the following environment and compute requirements:<br/>\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.<br/>\nProvide fast and consistent performance for business intelligence (BI) workloads.<br/>\nPrevent development activity from affecting production pipelines.<br/>\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.<br/>\nContoso identifies the following data ingestion and processing requirements:<br/>\nAuto-scale ingestion pipelines to handle bursty workloads.<br/>\nHandle schema drift for the maintenance and telemetry data.<br/>\nIngest file-based telemetry data by using minimal operational effort.<br/>\nStore all the ingested data in a format that supports incremental processing.<br/>\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.<br/>\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.<br/>\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.<br/>\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.<br/>\nContoso identifies the following data modeling and optimization requirements:<br/>\nBuild curated tables that standardize business logic.<br/>\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.<br/>\nContoso identifies the following pipeline deployment and operation requirements:<br/>\nOrchestrate multi-step ingestion and transformation workflows.<br/>\nDefine a clear execution order and dependencies.<br/>\nAutomatically retry failed steps and notify operators.<br/>\nSchedule ingestion and transformation workloads consistently.<br/>\nGovernance Requirements<br/>\nContoso identifies the following governance requirements:<br/>\nCentralize the metadata catalog.<br/>\nProvide isolated development areas that follow standard naming conventions.<br/>\nEstablish a consistent structure for organizing raw, cleansed, and curated data.<br/>\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.<br/>\nBusiness Requirements<br/>\nContoso identifies the following business requirements:<br/>\nImprove ingestion reliability and reduce operational effort.<br/>\nStandardize data definitions across development teams.<br/>\nYou need to configure compute for the ingestion of telemetry data. The solution must meet the data ingestion and processing requirements.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment",
+    "case_study_id": "dp-750-contoso",
+    "case_study_title": "Contoso"
+  },
+  {
+    "discussion_id": "416909",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 2,
+    "question_id": "416909",
+    "question_text": "You have an Azure Databricks workspace.\nYou are creating a Lakeflow Spark Declarative Pipelines (SDP) pipeline that scales automatically.\nYou need to configure compute for the pipeline. The solution must minimize operational costs and effort.\nWhat should you use?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "the existing SQL warehouse",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "an all-purpose cluster that uses autoscaling",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "a job cluster that uses autoscaling",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "a single-node, all-purpose cluster",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1771070",
+        "author": "JackJung",
+        "date_title": "June 24, 2026 04:27 pm",
+        "text": "Delta Live Tables pipelines utilize cost-efficient, automated job clusters with built-in enhanced autoscaling to handle production pipeline workloads dynamically at the lowest possible cost.",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/416909-exam-dp-750-topic-1-question-2-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace.<br>\nYou are creating a Lakeflow Spark Declarative Pipelines (SDP) pipeline that scales automatically.<br/>\nYou need to configure compute for the pipeline. The solution must minimize operational costs and effort.<br/>\nWhat should you use?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "416907",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 3,
+    "question_id": "416907",
+    "question_text": "DRAG DROP\nYou have an Azure Databricks workspace that contains an all-purpose compute cluster named Cluster1. Cluser1 is used for interactive development.\nYou need to configure Cluster1 to meet the following requirements:\nAutomatically add and remove worker nodes based on workload demand.\nAutomatically shut down when the cluster has been idle for a specific period.\nWhat should you configure for each requirement? To answer, drag the appropriate options to the correct requirements. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Autoscaling / Auto Termination",
+    "comments": [
+      {
+        "comment_id": "1771051",
+        "author": "JackJung",
+        "date_title": "June 24, 2026 03:28 pm",
+        "text": "Correct answer\nAutoscaling / Auto Termination",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/416907-exam-dp-750-topic-1-question-3-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nYou have an Azure Databricks workspace that contains an all-purpose compute cluster named Cluster1. Cluser1 is used for interactive development.<br/>\nYou need to configure Cluster1 to meet the following requirements:<br/>\nAutomatically add and remove worker nodes based on workload demand.<br/>\nAutomatically shut down when the cluster has been idle for a specific period.<br/>\nWhat should you configure for each requirement? To answer, drag the appropriate options to the correct requirements. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image1.png\" title=\"image1\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/416907_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image1.png",
+        "local_path": "assets/exhibits/dp-750/416907_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment",
+    "_backfill_source": {
+      "comment_id": "1771051",
+      "upvotes": 3,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "416908",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 4,
+    "question_id": "416908",
+    "question_text": "You have an Azure Databricks workspace that is attached to a Unity Catalog metastore named metastore1, metastore1 contains a catalog named catalog1.\nYou need to create a new schema named schema2 that meets the following requirements:\nIs contained in catalog1\nUses abfss://\n[email protected]\n/data as the managed location\nWhich SQL statement should you execute?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "CREATE SCHEMA catalog1.schema2 LOCATION ‘abfss:// [email protected] /data’;",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "CREATE SCHEMA catalog1.schema2 MANAGED LOCATION ‘abfss:// [email protected] /data’;",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "CREATE CATALOG schema2 MANAGED LOCATION ‘abfss:// [email protected] /data’;",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "CREATE SCHEMA catalog1.schema2 WITH DBPROPERTIES (LOCATION-’abfss:// [email protected] /data’);",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1771069",
+        "author": "JackJung",
+        "date_title": "June 24, 2026 04:24 pm",
+        "text": "The reference URL is https://learn.microsoft.com/en-us/azure/databricks/sql/language-manual/sql-ref-syntax-ddl-create-schema",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/416908-exam-dp-750-topic-1-question-4-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that is attached to a Unity Catalog metastore named metastore1, metastore1 contains a catalog named catalog1.<br>\nYou need to create a new schema named schema2 that meets the following requirements:<br/>\nIs contained in catalog1<br/>\nUses abfss://<a class=\"__cf_email__\" data-cfemail=\"bfdcd0d1cbded6d1dacdffcccbd0cdded8dadedcdcd0cad1cb91dbd9cc91dcd0cdda91c8d6d1dbd0c8cc91d1dacb\" href=\"/cdn-cgi/l/email-protection\">[email protected]</a>/data as the managed location<br/>\nWhich SQL statement should you execute?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417034",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 5,
+    "question_id": "417034",
+    "question_text": "You have an Azure Databricks workspace named Workspace1.\nYou create a compute cluster named Cluster1 that will be used to ingest data.\nYou need to install the required libraries on Cluster1. The solution must use Unity Catalog for access control.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Install the libraries by using pip3.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Create a custom dependency management script and run the script from a Databricks notebook.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Upload the libraries to Workspace1 and install the libraries on Cluster1.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Install the libraries on Cluster1 and manually restart the cluster.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1802189",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:13 pm",
+        "text": "When using Unity Catalog, Databricks recommends managing libraries as workspace files/volumes and installing them on the cluster rather than using ad hoc pip install commands on cluster nodes. This provides governed, reusable library management compatible with Unity Catalog access control.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1773786",
+        "author": "BJHardick",
+        "date_title": "July 09, 2026 04:51 pm",
+        "text": "By uploading the library to the workspace (or a UC-governed location) and installing it on the cluster, library access can be governed and managed consistently with Unity Catalog controls.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417034-exam-dp-750-topic-1-question-5-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace named Workspace1.<br>\nYou create a compute cluster named Cluster1 that will be used to ingest data.<br/>\nYou need to install the required libraries on Cluster1. The solution must use Unity Catalog for access control.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417035",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 6,
+    "question_id": "417035",
+    "question_text": "DRAG DROP\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named finance, finance contains two schemas named default and procurement.\nYou need to create a table named assets in the procurement schema, assets must contain the following columns:\nasset_id\nasset_type\nasset_name\nHow should you complete the SQL statement? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Provided answer is correct: USE CATALOG finance, USE SCHEM procurement, CREATE TABLE assets",
+    "comments": [
+      {
+        "comment_id": "1802190",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:14 pm",
+        "text": "Provided answer is correct: USE CATALOG finance, USE SCHEM procurement, CREATE TABLE assets",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417035-exam-dp-750-topic-1-question-6-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named finance, finance contains two schemas named default and procurement.<br/>\nYou need to create a table named assets in the procurement schema, assets must contain the following columns:<br/>\nasset_id<br/>\nasset_type<br/>\nasset_name<br/>\nHow should you complete the SQL statement? To answer, drag the appropriate values to the correct targets. Each value may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image3.png\" title=\"image3\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417035_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image3.png",
+        "local_path": "assets/exhibits/dp-750/417035_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment",
+    "_backfill_source": {
+      "comment_id": "1802190",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "417036",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 7,
+    "question_id": "417036",
+    "question_text": "You have an Azure Databricks workspace that contains an all-purpose cluster named Cluster1.\nYou need to configure Cluster1 to meet the following requirements:\nScale up automatically when workloads increase\nScale down automatically when workloads decrease\nMinimize costs\nWhich two actions should you perform? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Disable Photon acceleration.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Enable autoscaling for Cluster1.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Apply a compute policy that enables users to manage the cluster settings.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Specify a fixed number of workers.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "Configure Cluster1 to terminate after 30 minutes of inactivity.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B",
+      "E"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "BE",
+        "vote_count": 1,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "AB",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "BE",
+    "comments": [
+      {
+        "comment_id": "1802191",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:17 pm",
+        "text": "A (Disable Photon) is a distraction:\nIt may reduce DBU cost in some cases.\nBut it can also increase runtime, potentially increasing total cost.\nOnly B (Autoscaling) directly satisfies the scaling requirements, and E (Auto termination) directly reduces idle costs.\nSo, the correct answer is B + E",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: BE"
+        ],
+        "selected_answer": "BE",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1800756",
+        "author": "mtc9",
+        "date_title": "September 28, 2026 05:44 pm",
+        "text": "I would pick disable photon for cost minimizing requirement, but autotermination also meets it.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: AB"
+        ],
+        "selected_answer": "AB",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417036-exam-dp-750-topic-1-question-7-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that contains an all-purpose cluster named Cluster1.<br>\nYou need to configure Cluster1 to meet the following requirements:<br/>\nScale up automatically when workloads increase<br/>\nScale down automatically when workloads decrease<br/>\nMinimize costs<br/>\nWhich two actions should you perform? Each correct answer presents part of the solution.<br/>\nNOTE: Each correct selection is worth one point.",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417037",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 8,
+    "question_id": "417037",
+    "question_text": "You have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou have an Apache Spark Structured Streaming job that writes data to a Delta table.\nAfter the cluster restarts, the streaming job reprocesses previously ingested data.\nYou need to prevent the streaming job from reprocessing the data after the cluster restarts.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Configure a checkpoint location for the streaming query.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Increase the trigger interval of the streaming query.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Enable change data feed (CDF) for the target table.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Configure a watermark for the streaming query.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1773791",
+        "author": "BJHardick",
+        "date_title": "July 09, 2026 04:54 pm",
+        "text": "Correct. A\nA checkpoint stores the streaming query progress (offsets/state). After a restart, Spark resumes from the last processed point instead of reprocessing old data.\nWhy others are not:\nB. Increase trigger interval — Only changes how often data is processed; it does not track progress.\nC. Enable CDF — Tracks table changes; it does not prevent streaming source reprocessing.\nD. Configure a watermark — Handles late data and state cleanup; it does not provide restart recovery.",
+        "upvotes": 7,
+        "badges": [
+          "Most Recent",
+          "Highly Voted",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417037-exam-dp-750-topic-1-question-8-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that is enabled for Unity Catalog.<br>\nYou have an Apache Spark Structured Streaming job that writes data to a Delta table.<br/>\nAfter the cluster restarts, the streaming job reprocesses previously ingested data.<br/>\nYou need to prevent the streaming job from reprocessing the data after the cluster restarts.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417038",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 9,
+    "question_id": "417038",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1.\nTable1 is written by batch jobs every hour and is queried frequently by filtering two columns named CustomerId and EventDate.\nYou expect Table1 to grow significantly over time.\nThe rows in Table1 are frequently updated and deleted to support compliance requests.\nYou need to keep query performance consistent as Table1 grows. The solution must minimize update and deletion effort.\nWhat should you include in the solution? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "-Optimize query performance: Liquid clustering\n-Optimize updates and deletions: Enable deletion vectors",
+    "comments": [
+      {
+        "comment_id": "1802192",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:21 pm",
+        "text": "-Optimize query performance: Liquid clustering\n-Optimize updates and deletions: Enable deletion vectors\nLiquid clustering is the modern Databricks recommendation for large, growing Delta tables. It maintains data layout automatically and avoids the maintenance overhead of partitioning and repeated Z-Ordering. It works well when queries frequently filter on columns such as CustomerId and EventDate.\nDeletion vectors allow UPDATE, DELETE, and MERGE operations without rewriting entire data files, significantly reducing effort and improving performance for frequent modifications.\nWhy not the others?\nPartitioning can lead to skew and requires more maintenance as the table grows.\nZ-Ordering requires periodic OPTIMIZE ZORDER BY.\nDisable deletion vectors does the opposite of what's needed.\nVACUUM after every batch load is unnecessary and doesn't optimize updates/deletes.\nAnswer: Liquid clustering + Enable deletion vectors.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417038-exam-dp-750-topic-1-question-9-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1.<br/>\nTable1 is written by batch jobs every hour and is queried frequently by filtering two columns named CustomerId and EventDate.<br/>\nYou expect Table1 to grow significantly over time.<br/>\nThe rows in Table1 are frequently updated and deleted to support compliance requests.<br/>\nYou need to keep query performance consistent as Table1 grows. The solution must minimize update and deletion effort.<br/>\nWhat should you include in the solution? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image5.png\" title=\"image5\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417038_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image5.png",
+        "local_path": "assets/exhibits/dp-750/417038_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1802192",
+      "score": 130.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    },
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417039",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 10,
+    "question_id": "417039",
+    "question_text": "You have an Azure Databricks workspace that contains a cluster named Cluster1.\nPerformance monitoring shows that Cluster1 is consistently overprovisioned for its batch workload:\nCPU utilization remains below 20 percent, including peak processing periods.\nThe workload is highly predictable and does not spike.\nThe current node type already meets the workload requirements.\nYou need to reduce compute costs without increasing job duration.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Enable Photon acceleration.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Configure Cluster1 to use a larger node type.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Decrease the autotermination timeout of Cluster1.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Disable autoscaling and reduce the number of worker nodes.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1802193",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:23 pm",
+        "text": "D. Disable autoscaling and reduce the number of worker nodes\nThe cluster is consistently overprovisioned.\nCPU utilization stays below 20% even at peak.\nThe workload is predictable and does not spike.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417039-exam-dp-750-topic-1-question-10-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that contains a cluster named Cluster1.<br>\nPerformance monitoring shows that Cluster1 is consistently overprovisioned for its batch workload:<br/>\nCPU utilization remains below 20 percent, including peak processing periods.<br/>\nThe workload is highly predictable and does not spike.<br/>\nThe current node type already meets the workload requirements.<br/>\nYou need to reduce compute costs without increasing job duration.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417040",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 11,
+    "question_id": "417040",
+    "question_text": "You have an Azure Databricks workspace.\nYou are creating a Lakeflow Spark Declarative Pipelines (SDP) pipeline that scales automatically.\nYou need to configure compute for the pipeline. The solution must minimize operational costs and administrative effort.\nWhat should you use?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "serverless compute",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "a single-node, all-purpose cluster",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "an all-purpose cluster that uses autoscaling",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "an existing SQL warehouse",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "a job cluster that uses autoscaling",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 2,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "E",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1807004",
+        "author": "Raja419",
+        "date_title": "November 03, 2026 05:59 am",
+        "text": "For Lakeflow SDP pipelines, remember:\n- Serverless compute = Minimum management + automatic scaling.\n- Classic compute = More control over infrastructure, but more administration.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802194",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:27 pm",
+        "text": "Lakeflow Spark Declarative Pipelines (formerly DLT) can run on serverless compute.\nIf serverless is not used, Databricks provisions and manages pipeline compute for you (effectively job-like compute), rather than using an all-purpose cluster.\nThe key phrase in the question is:\n\"scales automatically\" + \"minimize operational costs and administrative effort\"\nThat strongly points to:\nA. Serverless compute\nbecause:\nautomatic scaling\nno cluster management\nDatabricks manages the infrastructure",
+        "upvotes": 3,
+        "badges": [
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1800760",
+        "author": "mtc9",
+        "date_title": "September 28, 2026 06:10 pm",
+        "text": "Serverless indeed eliminates administrative effort, but it's for ad-hoc operations. Constantly running (lakeflow is usually for streaming), would no way reduce costs, I would use a job cluster for that.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: E"
+        ],
+        "selected_answer": "E",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417040-exam-dp-750-topic-1-question-11-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace.<br>\nYou are creating a Lakeflow Spark Declarative Pipelines (SDP) pipeline that scales automatically.<br/>\nYou need to configure compute for the pipeline. The solution must minimize operational costs and administrative effort.<br/>\nWhat should you use?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417041",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 12,
+    "question_id": "417041",
+    "question_text": "You have an Azure Databricks solution that was developed by multiple engineers and deployed to development, test, and production environments.\nYou need to implement an application lifecycle management (ALM) process that meets the following requirements:\nDeploys and provides source control for Databricks notebooks, workflows, and jobs in a consistent and repeatable way\nParameterizes the target deployment environment\nWhat should you include in the solution?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "the export and import of Databricks workspaces",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Databricks resources managed by using the Databricks Terraform provider",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Git folders and manual promotion",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Declarative Automation Bundles in Git",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1802195",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:28 pm",
+        "text": "D. Declarative Automation Bundles in Git (Databricks Asset Bundles)\nProvides source control in Git.\nSupports consistent, repeatable deployments across dev/test/prod.\nSupports environment parameterization through target configurations.\nDeploys notebooks, jobs, workflows, pipelines, and other Databricks resources as code.",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417041-exam-dp-750-topic-1-question-12-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks solution that was developed by multiple engineers and deployed to development, test, and production environments.<br>\nYou need to implement an application lifecycle management (ALM) process that meets the following requirements:<br/>\nDeploys and provides source control for Databricks notebooks, workflows, and jobs in a consistent and repeatable way<br/>\nParameterizes the target deployment environment<br/>\nWhat should you include in the solution?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417042",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 13,
+    "question_id": "417042",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that contains a cluster named Cluster1.\nCluster1 has the following characteristics:\nConfigured as a single node cluster\nUses a general purpose virtual machine node type\nThe cluster runtime environment has the following configurations:\nUses Databricks Runtime for Machine Learning (Databricks Runtime ML)\nIncludes common machine learning libraries\nSupports Python workloads\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "GPU acceleration → No\nDistribute workloads across multiple nodes → No\nRun Python ML workloads → Yes",
+    "comments": [
+      {
+        "comment_id": "1802197",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:30 pm",
+        "text": "GPU acceleration → No\nThe cluster uses a general-purpose VM node type, not a GPU-enabled VM.\nDistribute workloads across multiple nodes → No\nIt's configured as a single-node cluster, so there are no worker nodes available for distributed training.\nRun Python ML workloads → Yes\nIt uses Databricks Runtime ML, which includes common ML libraries and supports Python workloads.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417042-exam-dp-750-topic-1-question-13-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that contains a cluster named Cluster1.<br/>\nCluster1 has the following characteristics:<br/>\nConfigured as a single node cluster<br/>\nUses a general purpose virtual machine node type<br/>\nThe cluster runtime environment has the following configurations:<br/>\nUses Databricks Runtime for Machine Learning (Databricks Runtime ML)<br/>\nIncludes common machine learning libraries<br/>\nSupports Python workloads<br/>\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image7.png\" title=\"image7\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417042_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image7.png",
+        "local_path": "assets/exhibits/dp-750/417042_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1802197",
+      "score": 132.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    },
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "417043",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 14,
+    "question_id": "417043",
+    "question_text": "You have an Azure Databricks workspace that contains the objects shown in the following table.\nUsers often use the following words to refer to a sale: transaction, event, order, and invoice.\nYou need to create a knowledge store. The solution must ensure that when the users use any of the words in Space1, Genie queries the Sales1 table. Any other Genie spaces must remain unaffected.\nTo which object should you add the instructions?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Sales1",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Schema1",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Space1",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Catalog1",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "Notebook1",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1802198",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:32 pm",
+        "text": "The question is about creating a knowledge store and custom instructions/synonyms for Genie so that terms like transaction, event, order, and invoice are interpreted as sales and cause queries to use Sales1.\nThese instructions are configured at the AI/BI Genie space level, not on the table, schema, catalog, or notebook.\nThe requirement that other Genie spaces remain unaffected is the key clue. Adding the instructions to Space1 scopes the behavior only to that Genie space.\nAnswer: C. Space1",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417043-exam-dp-750-topic-1-question-14-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that contains the objects shown in the following table.<br>\n<img src=\"https://img.examtopics.com/dp-750/image9.png\" title=\"image9\"/><br/>\nUsers often use the following words to refer to a sale: transaction, event, order, and invoice.<br/>\nYou need to create a knowledge store. The solution must ensure that when the users use any of the words in Space1, Genie queries the Sales1 table. Any other Genie spaces must remain unaffected.<br/>\nTo which object should you add the instructions?",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417043_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image9.png",
+        "local_path": "assets/exhibits/dp-750/417043_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "428267",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 15,
+    "question_id": "428267",
+    "question_text": "You manage Declarative Automation Bundles by using the Databricks CLI.\nYou run the following command in a terminal window.\ndatabricks bundle init\nWhat occurs when you run the command?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "The bundle configuration is validated.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "A new Declarative Automation Bundles project structure is created.",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Bundle-defined resources are deployed to the Databricks workspace.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Jobs or pipelines defined in the bundle are run.",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1807005",
+        "author": "Raja419",
+        "date_title": "November 03, 2026 06:18 am",
+        "text": "bundle init ->\tInitialize project\nbundle validate\t-> Validate configuration\nbundle deploy -> Deploy resources\nbundle run\t-> Run a resource",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/428267-exam-dp-750-topic-1-question-15-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You manage Declarative Automation Bundles by using the Databricks CLI.<br>\n<br/>\nYou run the following command in a terminal window.<br/>\n<br/>\ndatabricks bundle init<br/>\n<br/>\nWhat occurs when you run the command?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment"
+  },
+  {
+    "discussion_id": "428108",
+    "exam": "dp-750",
+    "topic": 1,
+    "question_number": 16,
+    "question_id": "428108",
+    "question_text": "HOTSPOT\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.\nOverview\nCompany Information\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.\nExisting Environment\nAzure Environment\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.\nWorkspace1 contains all-purpose clusters for both development and production workloads.\nThe company's Azure environment contains:\n•\tIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub\n•\tA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data\n•\tAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data\nData Environment\nContoso ingests the following operational and business data:\n•\tTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.\n•\tMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.\n•\tOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.\n•\tExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.\n•\tERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.\nProblem Statements\nThe company’s existing analytics environment has several issues:\nIngestion\n•\tTelemetry pipelines fall behind during peak loads.\n•\tTelemetry ingestion fails when schema drift occurs.\n•\tStreaming pipelines reprocess events after a pipeline restarts.\nCompute\n•\tProduction and development workloads run on the same all-purpose clusters.\n•\tProduction and development workloads do NOT support autoscaling or workload isolation.\nGovernance\n•\tThe ERP data is duplicated across systems and development teams.\n•\tNaming conventions are inconsistent across development teams, regions, and products.\n•\tOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.\n•\tOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.\nPipeline operations\n•\tPipelines lack resiliency, alerting, and centralized scheduling.\nRequirements\nPlanned Changes\nContoso plans to implement the following changes:\n•\tImplement scalable data pipeline orchestration.\n•\tCreate a managed analytics catalog in Unity Catalog.\n•\tImplement a consistent approach to creating curated datasets.\n•\tEstablish a centralized governance model across ingestion, cleansed, and curated layers.\n•\tGrant data engineers access to the ERP tables by using minimal development effort.\n•\tAdopt a compute strategy that isolates production workloads and supports autoscaling.\n•\tAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.\nTechnical Requirements\nContoso identifies the following environment and compute requirements:\n•\tEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.\n•\tProvide fast and consistent performance for business intelligence (BI) workloads.\n•\tPrevent development activity from affecting production pipelines.\n•\tProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.\nContoso identifies the following data ingestion and processing requirements:\n•\tAuto-scale ingestion pipelines to handle bursty workloads.\n•\tHandle schema drift for the maintenance and telemetry data.\n•\tIngest file-based telemetry data by using minimal operational effort.\n•\tStore all the ingested data in a format that supports incremental processing.\n•\tSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.\n•\tSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.\n•\tBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.\n•\tEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.\nContoso identifies the following data modeling and optimization requirements:\n•\tBuild curated tables that standardize business logic.\n•\tOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.\nContoso identifies the following pipeline deployment and operation requirements:\n•\tOrchestrate multi-step ingestion and transformation workflows.\n•\tDefine a clear execution order and dependencies.\n•\tAutomatically retry failed steps and notify operators.\n•\tSchedule ingestion and transformation workloads consistently.\nGovernance Requirements\nContoso identifies the following governance requirements:\n•\tCentralize the metadata catalog.\n•\tProvide isolated development areas that follow standard naming conventions.\n•\tEstablish a consistent structure for organizing raw, cleansed, and curated data.\n•\tProvide a read-only mechanism to reference the ERP data through a foreign catalog.\nBusiness Requirements\nContoso identifies the following business requirements:\n•\tImprove ingestion reliability and reduce operational effort.\n•\tStandardize data definitions across development teams.\nYou need to recommend a compute type for the production ingestion workloads and BI workloads. The solution must meet the environment and compute requirements.\nWhat should you recommend for each type of workload? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Production ingestion: Jobs compute with autoscaling\nBI workloads: SQL warehouses",
+    "comments": [
+      {
+        "comment_id": "1807006",
+        "author": "Raja419",
+        "date_title": "November 03, 2026 06:20 am",
+        "text": "1. Production ingestion: Jobs compute with autoscaling\n- Runs scheduled, non-interactive workloads.\n- Supports automatic scaling during telemetry spikes.\n- Isolates production workloads from development activities.\n- Avoids using shared all-purpose clusters.\n- Integrates with job orchestration and retry mechanisms.\n2. BI workloads: SQL warehouses\n- Designed for SQL queries and BI workloads.\n- Provides fast and consistent query performance.\n- Serverless SQL warehouses reduce infrastructure administration.\n- Supports BI integrations such as Power BI.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/428108-exam-dp-750-topic-1-question-16-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\n<br/>\r\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\n<br/>\r\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\n<br/>\r\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\n<br/>\r\nTo start the case study<br/>\r\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.<br/>\n<br/>\r\nOverview<br/>\n<br/>\r\nCompany Information<br/>\n<br/>\r\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.<br/>\n<br/>\r\nExisting Environment<br/>\n<br/>\r\nAzure Environment<br/>\n<br/>\r\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.<br/>\n<br/>\r\nWorkspace1 contains all-purpose clusters for both development and production workloads.<br/>\n<br/>\r\nThe company's Azure environment contains:<br/>\n<br/>\r\n•\tIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub<br/>\r\n•\tA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data<br/>\r\n•\tAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data<br/>\n<br/>\r\nData Environment<br/>\n<br/>\r\nContoso ingests the following operational and business data:<br/>\n<br/>\r\n•\tTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.<br/>\r\n•\tMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.<br/>\r\n•\tOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.<br/>\r\n•\tExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.<br/>\r\n•\tERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.<br/>\n<br/>\r\nProblem Statements<br/>\n<br/>\r\nThe company’s existing analytics environment has several issues:<br/>\n<br/>\r\nIngestion<br/>\r\n•\tTelemetry pipelines fall behind during peak loads.<br/>\r\n•\tTelemetry ingestion fails when schema drift occurs.<br/>\r\n•\tStreaming pipelines reprocess events after a pipeline restarts.<br/>\n<br/>\r\nCompute<br/>\r\n•\tProduction and development workloads run on the same all-purpose clusters.<br/>\r\n•\tProduction and development workloads do NOT support autoscaling or workload isolation.<br/>\n<br/>\r\nGovernance<br/>\r\n•\tThe ERP data is duplicated across systems and development teams.<br/>\r\n•\tNaming conventions are inconsistent across development teams, regions, and products.<br/>\r\n•\tOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.<br/>\r\n•\tOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.<br/>\n<br/>\r\nPipeline operations<br/>\r\n•\tPipelines lack resiliency, alerting, and centralized scheduling.<br/>\n<br/>\r\nRequirements<br/>\n<br/>\r\nPlanned Changes<br/>\n<br/>\r\nContoso plans to implement the following changes:<br/>\n<br/>\r\n•\tImplement scalable data pipeline orchestration.<br/>\r\n•\tCreate a managed analytics catalog in Unity Catalog.<br/>\r\n•\tImplement a consistent approach to creating curated datasets.<br/>\r\n•\tEstablish a centralized governance model across ingestion, cleansed, and curated layers.<br/>\r\n•\tGrant data engineers access to the ERP tables by using minimal development effort.<br/>\r\n•\tAdopt a compute strategy that isolates production workloads and supports autoscaling.<br/>\r\n•\tAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.<br/>\n<br/>\r\nTechnical Requirements<br/>\n<br/>\r\nContoso identifies the following environment and compute requirements:<br/>\r\n•\tEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.<br/>\r\n•\tProvide fast and consistent performance for business intelligence (BI) workloads.<br/>\r\n•\tPrevent development activity from affecting production pipelines.<br/>\r\n•\tProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.<br/>\n<br/>\r\nContoso identifies the following data ingestion and processing requirements:<br/>\r\n•\tAuto-scale ingestion pipelines to handle bursty workloads.<br/>\r\n•\tHandle schema drift for the maintenance and telemetry data.<br/>\r\n•\tIngest file-based telemetry data by using minimal operational effort.<br/>\r\n•\tStore all the ingested data in a format that supports incremental processing.<br/>\r\n•\tSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.<br/>\r\n•\tSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.<br/>\r\n•\tBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.<br/>\r\n•\tEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.<br/>\n<br/>\r\nContoso identifies the following data modeling and optimization requirements:<br/>\r\n•\tBuild curated tables that standardize business logic.<br/>\r\n•\tOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.<br/>\n<br/>\r\nContoso identifies the following pipeline deployment and operation requirements:<br/>\r\n•\tOrchestrate multi-step ingestion and transformation workflows.<br/>\r\n•\tDefine a clear execution order and dependencies.<br/>\r\n•\tAutomatically retry failed steps and notify operators.<br/>\r\n•\tSchedule ingestion and transformation workloads consistently.<br/>\n<br/>\r\nGovernance Requirements<br/>\n<br/>\r\nContoso identifies the following governance requirements:<br/>\n<br/>\r\n•\tCentralize the metadata catalog.<br/>\r\n•\tProvide isolated development areas that follow standard naming conventions.<br/>\r\n•\tEstablish a consistent structure for organizing raw, cleansed, and curated data.<br/>\r\n•\tProvide a read-only mechanism to reference the ERP data through a foreign catalog.<br/>\n<br/>\r\nBusiness Requirements<br/>\n<br/>\r\nContoso identifies the following business requirements:<br/>\n<br/>\r\n•\tImprove ingestion reliability and reduce operational effort.<br/>\r\n•\tStandardize data definitions across development teams.<br/>\n<br/>\n<br/>\r\nYou need to recommend a compute type for the production ingestion workloads and BI workloads. The solution must meet the environment and compute requirements.<br/>\n<br/>\r\nWhat should you recommend for each type of workload? To answer, select the appropriate options in the answer area.<br/>\n<br/>\r\nNOTE: Each correct selection is worth one point.<br/>\n<br/>\n<img src=\"https://img.examtopics.com/dp-750/image66.png\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/428108_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image66.png",
+        "local_path": "assets/exhibits/dp-750/428108_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1807006",
+      "score": 120.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 1
+    },
+    "skill_area": 1,
+    "skill_area_label": "Set up and configure an Azure Databricks environment",
+    "case_study_id": "dp-750-contoso",
+    "case_study_title": "Contoso"
+  },
+  {
+    "discussion_id": "417044",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 1,
+    "question_id": "417044",
+    "question_text": "This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.\nOverview\nCompany Information\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.\nExisting Environment\nAzure Environment\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.\nWorkspace1 contains all-purpose clusters for both development and production workloads.\nThe company's Azure environment contains:\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data\nData Environment\nContoso ingests the following operational and business data:\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.\nProblem Statements\nThe company’s existing analytics environment has several issues:\nIngestion\nTelemetry pipelines fall behind during peak loads.\nTelemetry ingestion fails when schema drift occurs.\nStreaming pipelines reprocess events after a pipeline restarts.\nCompute\nProduction and development workloads run on the same all-purpose clusters.\nProduction and development workloads do NOT support autoscaling or workload isolation.\nGovernance\nThe ERP data is duplicated across systems and development teams.\nNaming conventions are inconsistent across development teams, regions, and products.\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.\nPipeline operations\nPipelines lack resiliency, alerting, and centralized scheduling.\nRequirements\nPlanned Changes\nContoso plans to implement the following changes:\nImplement scalable data pipeline orchestration.\nCreate a managed analytics catalog in Unity Catalog.\nImplement a consistent approach to creating curated datasets.\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.\nGrant data engineers access to the ERP tables by using minimal development effort.\nAdopt a compute strategy that isolates production workloads and supports autoscaling.\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.\nTechnical Requirements\nContoso identifies the following environment and compute requirements:\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.\nProvide fast and consistent performance for business intelligence (BI) workloads.\nPrevent development activity from affecting production pipelines.\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.\nContoso identifies the following data ingestion and processing requirements:\nAuto-scale ingestion pipelines to handle bursty workloads.\nHandle schema drift for the maintenance and telemetry data.\nIngest file-based telemetry data by using minimal operational effort.\nStore all the ingested data in a format that supports incremental processing.\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.\nContoso identifies the following data modeling and optimization requirements:\nBuild curated tables that standardize business logic.\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.\nContoso identifies the following pipeline deployment and operation requirements:\nOrchestrate multi-step ingestion and transformation workflows.\nDefine a clear execution order and dependencies.\nAutomatically retry failed steps and notify operators.\nSchedule ingestion and transformation workloads consistently.\nGovernance Requirements\nContoso identifies the following governance requirements:\nCentralize the metadata catalog.\nProvide isolated development areas that follow standard naming conventions.\nEstablish a consistent structure for organizing raw, cleansed, and curated data.\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.\nBusiness Requirements\nContoso identifies the following business requirements:\nImprove ingestion reliability and reduce operational effort.\nStandardize data definitions across development teams.\nYou need to organize Unity Catalog. The solution must meet the governance requirements.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Use a single shared schema for all the development teams and rely on table-level permissions for isolation.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Enable the development teams to create objects directly in the default catalog and schema.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Create a separate catalog for each development team and enable each team to choose its own schema names.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Create a shared development catalog, enforce a standardized naming convention, and assign each development team its own schema.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1809083",
+        "author": "pietjapie",
+        "date_title": "November 11, 2026 05:11 pm",
+        "text": "D is the only option that meets all the governance requirements. A shared development catalog with a schema per team gives each team an isolated area while keeping metadata centralized, and enforcing a naming convention satisfies the standardization requirement. A and B provide no real isolation, and C lets each team choose its own schema names, which breaks the naming-convention requirement.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417044-exam-dp-750-topic-2-question-1-discussion/",
+    "question_type": "case_study",
+    "raw_html": "\r\n                  This is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.<br/>\nOverview<br/>\nCompany Information<br/>\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.<br/>\nExisting Environment<br/>\nAzure Environment<br/>\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.<br/>\nWorkspace1 contains all-purpose clusters for both development and production workloads.<br/>\nThe company's Azure environment contains:<br/>\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub<br/>\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data<br/>\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data<br/>\nData Environment<br/>\nContoso ingests the following operational and business data:<br/>\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.<br/>\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.<br/>\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.<br/>\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.<br/>\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.<br/>\nProblem Statements<br/>\nThe company’s existing analytics environment has several issues:<br/>\nIngestion<br/>\nTelemetry pipelines fall behind during peak loads.<br/>\nTelemetry ingestion fails when schema drift occurs.<br/>\nStreaming pipelines reprocess events after a pipeline restarts.<br/>\nCompute<br/>\nProduction and development workloads run on the same all-purpose clusters.<br/>\nProduction and development workloads do NOT support autoscaling or workload isolation.<br/>\nGovernance<br/>\nThe ERP data is duplicated across systems and development teams.<br/>\nNaming conventions are inconsistent across development teams, regions, and products.<br/>\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.<br/>\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.<br/>\nPipeline operations<br/>\nPipelines lack resiliency, alerting, and centralized scheduling.<br/>\nRequirements<br/>\nPlanned Changes<br/>\nContoso plans to implement the following changes:<br/>\nImplement scalable data pipeline orchestration.<br/>\nCreate a managed analytics catalog in Unity Catalog.<br/>\nImplement a consistent approach to creating curated datasets.<br/>\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.<br/>\nGrant data engineers access to the ERP tables by using minimal development effort.<br/>\nAdopt a compute strategy that isolates production workloads and supports autoscaling.<br/>\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.<br/>\nTechnical Requirements<br/>\nContoso identifies the following environment and compute requirements:<br/>\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.<br/>\nProvide fast and consistent performance for business intelligence (BI) workloads.<br/>\nPrevent development activity from affecting production pipelines.<br/>\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.<br/>\nContoso identifies the following data ingestion and processing requirements:<br/>\nAuto-scale ingestion pipelines to handle bursty workloads.<br/>\nHandle schema drift for the maintenance and telemetry data.<br/>\nIngest file-based telemetry data by using minimal operational effort.<br/>\nStore all the ingested data in a format that supports incremental processing.<br/>\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.<br/>\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.<br/>\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.<br/>\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.<br/>\nContoso identifies the following data modeling and optimization requirements:<br/>\nBuild curated tables that standardize business logic.<br/>\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.<br/>\nContoso identifies the following pipeline deployment and operation requirements:<br/>\nOrchestrate multi-step ingestion and transformation workflows.<br/>\nDefine a clear execution order and dependencies.<br/>\nAutomatically retry failed steps and notify operators.<br/>\nSchedule ingestion and transformation workloads consistently.<br/>\nGovernance Requirements<br/>\nContoso identifies the following governance requirements:<br/>\nCentralize the metadata catalog.<br/>\nProvide isolated development areas that follow standard naming conventions.<br/>\nEstablish a consistent structure for organizing raw, cleansed, and curated data.<br/>\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.<br/>\nBusiness Requirements<br/>\nContoso identifies the following business requirements:<br/>\nImprove ingestion reliability and reduce operational effort.<br/>\nStandardize data definitions across development teams.<br/>\nYou need to organize Unity Catalog. The solution must meet the governance requirements.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects",
+    "case_study_id": "dp-750-contoso",
+    "case_study_title": "Contoso"
+  },
+  {
+    "discussion_id": "417045",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 2,
+    "question_id": "417045",
+    "question_text": "DRAG DROP\nYou have an Azure Databricks workspace named Workspace1 that is attached to a Unity Catalog metastore named metastore1.\nYou need to register an Azure Storage account named account1 that has a hierarchical namespace enabled as an external location. The external location must use a managed identity to authenticate to account1 and the solution must follow the principle of least privilege.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "1. Create a Databricks access connector\n2. Assign the Storage Blob Data Contributor role to the access connector\n3. Register the access connector as a storage credential in metastore1",
+    "comments": [
+      {
+        "comment_id": "1789289",
+        "author": "OliverBH",
+        "date_title": "August 16, 2026 08:45 pm",
+        "text": "1. Create a Databricks access connector\n2. Assign the Storage Blob Data Contributor role to the access connector\n3. Register the access connector as a storage credential in metastore1",
+        "upvotes": 7,
+        "badges": [
+          "Most Recent",
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417045-exam-dp-750-topic-2-question-2-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nYou have an Azure Databricks workspace named Workspace1 that is attached to a Unity Catalog metastore named metastore1.<br/>\nYou need to register an Azure Storage account named account1 that has a hierarchical namespace enabled as an external location. The external location must use a managed identity to authenticate to account1 and the solution must follow the principle of least privilege.<br/>\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from the list of actions to the answer area and arrange them in the correct order.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image10.png\" title=\"image10\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417045_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image10.png",
+        "local_path": "assets/exhibits/dp-750/417045_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1789289",
+      "score": 187.5,
+      "pattern": "loose:numbered_list",
+      "upvotes": 7
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417046",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 3,
+    "question_id": "417046",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou need to ensure that data lineage is captured and can be reviewed for tables accessed by Databricks notebooks and jobs. The solution must minimize administrative effort.\nWhich compute configuration should you use to capture the data lineage and what should you use to review the data lineage? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Capture: A Unity Catalog-enabled cluster\nReview: Catalog Explorer",
+    "comments": [
+      {
+        "comment_id": "1802490",
+        "author": "51e3df9",
+        "date_title": "October 08, 2026 12:56 pm",
+        "text": "Capture: Serverless,\nUnity catalog-enabled cluster cannot be correct due to the requirement to \"minimize administrative effort\". Serverless compute is automatically configured by Databricks\nReview: Catalog Explorer",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802200",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:40 pm",
+        "text": "Capture: A Unity Catalog-enabled cluster\nReview: Catalog Explorer\nUnity Catalog automatically captures data lineage for tables accessed through notebooks, jobs, dashboards, and queries when they run on Unity Catalog-enabled compute.\nThe easiest way to review lineage is in Catalog Explorer, which provides built-in lineage visualization.",
+        "upvotes": 5,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1795499",
+        "author": "Frazer1",
+        "date_title": "September 08, 2026 04:39 pm",
+        "text": "Correct Answers\nCapture: A Unity Catalog-enabled cluster\nReview: Catalog Explorer\nExplanation\nCapture: A Unity Catalog-enabled cluster\nUnity Catalog automatically captures lineage for:\nNotebooks\nJobs\nSQL queries\nDelta tables\nViews\nprovided the workload runs on Unity Catalog-enabled compute.\nOther options are incorrect:\n❌ Serverless cluster: May support lineage, but lineage is not tied specifically to serverless.\n❌ Single-user cluster: Access mode, not the lineage requirement.\n❌ Interactive cluster: Cluster type, not the lineage requirement.\nThe key requirement is that the compute is Unity Catalog-enabled.\nReview: Catalog Explorer\nUnity Catalog lineage is reviewed directly in Catalog Explorer:",
+        "upvotes": 6,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417046-exam-dp-750-topic-2-question-3-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.<br/>\nYou need to ensure that data lineage is captured and can be reviewed for tables accessed by Databricks notebooks and jobs. The solution must minimize administrative effort.<br/>\nWhich compute configuration should you use to capture the data lineage and what should you use to review the data lineage? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image12.png\" title=\"image12\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417046_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image12.png",
+        "local_path": "assets/exhibits/dp-750/417046_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1795499",
+      "score": 152.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 6
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417047",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 4,
+    "question_id": "417047",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace.\nYou have an Azure key vault named kv-secure that stores a secret named storageKey. The value of storageKey is managed and updated by the cloud security team at your company.\nYou need to enable a Databricks notebook named Notebook1 to retrieve the value of storageKey securely at runtime. The solution must follow the principle of least privilege and always retrieve the latest value.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "create a kv backed secred scope\ndbutils.secret.get",
+    "comments": [
+      {
+        "comment_id": "1801332",
+        "author": "mtc9",
+        "date_title": "October 01, 2026 06:31 pm",
+        "text": "create a kv backed secred scope\ndbutils.secret.get",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417047-exam-dp-750-topic-2-question-4-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace.<br/>\nYou have an Azure key vault named kv-secure that stores a secret named storageKey. The value of storageKey is managed and updated by the cloud security team at your company.<br/>\nYou need to enable a Databricks notebook named Notebook1 to retrieve the value of storageKey securely at runtime. The solution must follow the principle of least privilege and always retrieve the latest value.<br/>\nWhat should you do? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image14.png\" title=\"image14\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417047_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image14.png",
+        "local_path": "assets/exhibits/dp-750/417047_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects",
+    "_backfill_source": {
+      "comment_id": "1801332",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "417048",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 5,
+    "question_id": "417048",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named Catalog1. Catalog1 contains a schema named Schema1 and a table named Table1.\nYou need to ensure that access to the data in Table1 is controlled by using attribute-based access control (ABAC).\nWhat should you apply to Table1, and how should you control access for users? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Apply to Table1: A governed tag\nTo control user access: Create a Unity Catalog access policy",
+    "comments": [
+      {
+        "comment_id": "1795500",
+        "author": "Frazer1",
+        "date_title": "September 08, 2026 04:43 pm",
+        "text": "Correct Answers\nApply to Table1:  A governed tag\nTo control user access: Create a Unity Catalog access policy\nExplanation\nAttribute-Based Access Control (ABAC) in Unity Catalog works by:\nApplying governed tags to securable objects (tables, columns, schemas, catalogs).\nCreating ABAC policies (access policies) that evaluate those tags and determine what data users can access.",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417048-exam-dp-750-topic-2-question-5-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named Catalog1. Catalog1 contains a schema named Schema1 and a table named Table1.<br/>\nYou need to ensure that access to the data in Table1 is controlled by using attribute-based access control (ABAC).<br/>\nWhat should you apply to Table1, and how should you control access for users? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image16.png\" title=\"image16\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417048_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image16.png",
+        "local_path": "assets/exhibits/dp-750/417048_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1795500",
+      "score": 140.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417049",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 6,
+    "question_id": "417049",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou need to implement a data lifecycle and expiration solution that meets the following requirements:\nTransaction logs and deleted data files that are older than 90 days must be removed from Delta tables to reclaim storage.\nAll the tables must remain available for querying during the cleanup process.\nAdministrative effort must be minimized.\nWhat should you do for each requirement? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "In real Delta Lake, you could argue that logRetentionDuration is needed because the requirement also mentions transaction logs. However, since the second dropdown only offers cleanup mechanisms and the first dropdown allows selecting only one property, Microsoft exams typically expect the property that enables reclaiming storage from deleted files...",
+    "comments": [
+      {
+        "comment_id": "1802201",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:46 pm",
+        "text": "In real Delta Lake, you could argue that logRetentionDuration is needed because the requirement also mentions transaction logs. However, since the second dropdown only offers cleanup mechanisms and the first dropdown allows selecting only one property, Microsoft exams typically expect the property that enables reclaiming storage from deleted files (deletedFileRetentionDuration) together with VACUUM.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1799903",
+        "author": "zxc01",
+        "date_title": "September 23, 2026 02:12 am",
+        "text": "for data lifecycle control, we should set both delta.deletedFileRetentionDuration and delta.logRetentionDuration to 90 because both of them cannot match default value. However, it just can choose one option.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417049-exam-dp-750-topic-2-question-6-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.<br/>\nYou need to implement a data lifecycle and expiration solution that meets the following requirements:<br/>\nTransaction logs and deleted data files that are older than 90 days must be removed from Delta tables to reclaim storage.<br/>\nAll the tables must remain available for querying during the cleanup process.<br/>\nAdministrative effort must be minimized.<br/>\nWhat should you do for each requirement? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image18.png\" title=\"image18\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417049_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image18.png",
+        "local_path": "assets/exhibits/dp-750/417049_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1802201",
+      "score": 114.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 2
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417050",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 7,
+    "question_id": "417050",
+    "question_text": "You have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1. Table1 stores customer data.\nYou need to implement a data retention solution that meets the following requirements:\nDeleted data must be retained for 30 days to support audits.\nDeleted data that is older than 30 days must be removed permanently.\nThe solution must minimize administrative effort\nWhich two properties should you configure? Each correct answer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "delta.timeUntilArchived",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "delta.enableDeletionVectors",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "delta.logRetentionDuration",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "delta.deletedFileRetentionDuration",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "E",
+        "text": "delta.autoOptimize.autoCompact",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C",
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "CD",
+        "vote_count": 4,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "BD",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "CD",
+    "comments": [
+      {
+        "comment_id": "1807007",
+        "author": "Raja419",
+        "date_title": "November 03, 2026 06:32 am",
+        "text": "C. delta.logRetentionDuration\n- Controls how long the Delta transaction log history is retained.\n- Default is 30 days.\n- Supports audit requirements by retaining table history.\nD. delta.deletedFileRetentionDuration\n- Controls how long deleted data files are retained before they can be physically removed.\n- Set it to 30 days.\n- After 30 days, VACUUM can permanently remove the obsolete data files.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: CD"
+        ],
+        "selected_answer": "CD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1803935",
+        "author": "JudgeMaster",
+        "date_title": "October 17, 2026 03:57 pm",
+        "text": "The two properties you should configure are C. delta.logRetentionDuration and D. delta.deletedFileRetentionDuration.\nExplanation\nDelta Lake manages its data retention and historical point-in-time querying (time travel) using two interrelated table properties:\n• delta.deletedFileRetentionDuration: This property determines how long physically deleted data files (from operations like DELETE or MERGE) are kept before they are eligible for permanent removal by a VACUUM operation. Setting this to 30 days satisfies the auditing constraint by ensuring data files are not removed prematurely.\n• delta.logRetentionDuration: This property dictates how long the table's transaction log (commit history) is kept. To query data as it existed up to 30 days ago for auditing purposes, the log must also be preserved for at least 30 days to re-construct historical states.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: CD"
+        ],
+        "selected_answer": "CD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1801505",
+        "author": "mtc9",
+        "date_title": "October 02, 2026 05:05 pm",
+        "text": "enableDeletionVectors changes it from copy on write to merge on read mode, it doesn't affect retention of deleted files. Although I'm honesty not sure if retaining logs is needed, the question clearly required to retain data, not logs.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: CD"
+        ],
+        "selected_answer": "CD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1801887",
+        "author": "zxc01",
+        "date_title": "October 05, 2026 12:31 am",
+        "text": "enableDeletionVectors to true will mark changes to rows as soft-deletes that logically modify existing Parquet data files in the table. marked files will be kept forever until you execute REORG TABLE.  you still can query deleted data by SELECT * FROM my_table VERSION AS OF version number. question said you must confirm order than 30days data has been dropped and minimize admin.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1799906",
+        "author": "zxc01",
+        "date_title": "September 23, 2026 02:23 am",
+        "text": "It should be B and D. deletedFileRetentionDuration default value is 7 days, you should change it to 30 days. logRetentionDuration default setting is 30 days, you don't need change it. enableDeletionVectors default setting to true which means keep deleted data until you REORG table. you should change it to false.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: BD"
+        ],
+        "selected_answer": "BD",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1773964",
+        "author": "Abhi_007",
+        "date_title": "July 10, 2026 06:32 am",
+        "text": "delta.logRetentionDuration controls how long transaction history/logs are retained (default 30 days).\ndelta.deletedFileRetentionDuration controls how long deleted data files are retained before they become eligible for permanent removal by VACUUM (default 7 days). Setting it to 30 days supports the audit retention requirement.",
+        "upvotes": 4,
+        "badges": [
+          "Selected Answer: CD"
+        ],
+        "selected_answer": "CD",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417050-exam-dp-750-topic-2-question-7-discussion/",
+    "question_type": "multiple",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1. Table1 stores customer data.<br>\nYou need to implement a data retention solution that meets the following requirements:<br/>\nDeleted data must be retained for 30 days to support audits.<br/>\nDeleted data that is older than 30 days must be removed permanently.<br/>\nThe solution must minimize administrative effort<br/>\nWhich two properties should you configure? Each correct answer presents part of the solution.<br/>\nNOTE: Each correct selection is worth one point.",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417053",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 10,
+    "question_id": "417053",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named catalog1.\nYou have a group named group1.\nYou plan to create a schema named schema1 in catalog1.\nYou need to ensure that group1 meets the following requirements:\nCan create tables in schema1\nCan modify and query tables\nCannot grant permissions for the schema and its objects\nHow should you complete the SQL statements? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Can create tables → needs CREATE TABLE\nCan query tables → needs USAGE on the schema (and later SELECT on tables)\nCan modify tables → table owners can modify their own tables after creating them\nCannot grant permissions → do not grant MANAGE/OWNERSHIP",
+    "comments": [
+      {
+        "comment_id": "1802202",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:51 pm",
+        "text": "GRANT USAGE, CREATE TABLE\nON SCHEMA catalog1.schema1\nTO ROLE group1;\nCan create tables → needs CREATE TABLE\nCan query tables → needs USAGE on the schema (and later SELECT on tables)\nCan modify tables → table owners can modify their own tables after creating them\nCannot grant permissions → do not grant MANAGE/OWNERSHIP",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1799751",
+        "author": "zxc01",
+        "date_title": "September 21, 2026 11:30 pm",
+        "text": "I cannot understand this answer, question ask create table, modify and query tables. It should grant usage,create table,modify and select. I cannot get any correct option in first list.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417053-exam-dp-750-topic-2-question-10-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a catalog named catalog1.<br/>\nYou have a group named group1.<br/>\nYou plan to create a schema named schema1 in catalog1.<br/>\nYou need to ensure that group1 meets the following requirements:<br/>\nCan create tables in schema1<br/>\nCan modify and query tables<br/>\nCannot grant permissions for the schema and its objects<br/>\nHow should you complete the SQL statements? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image20.png\" title=\"image20\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417053_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image20.png",
+        "local_path": "assets/exhibits/dp-750/417053_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1802202",
+      "score": 138.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 3
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417054",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 11,
+    "question_id": "417054",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou need to create an external volume named Volume1 in an existing schema. Volume1 must expose files from an Azure Storage container. The solution must meet the following requirements:\nEnsure that authentication does NOT require storing credentials in Databricks.\nEnsure that users can access the files, but NOT modify the files.\nFollow the principle of least privilege.\nWhich type of authentication should you configure, and which permission should you grant to the users? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Databricks Access connector: It uses an Azure managed identity, so no secrets or tokens are stored in Databricks. A service principal requires a client secret, and a SAS requires a token, so both fail the “no stored credentials” requirement.\nREAD VOLUME: It lets users read and list the files in the volume without modifying them. WRITE VOLUME would allow changes, which violates the requirement. BROWSE only lets users see the volume’s metadata in the catalog, not read its files, so it doesn’t give them access to the files.",
+    "comments": [
+      {
+        "comment_id": "1804768",
+        "author": "Pranav Neharkar",
+        "date_title": "October 22, 2026 09:07 am",
+        "text": "Databricks Access connector: It uses an Azure managed identity, so no secrets or tokens are stored in Databricks. A service principal requires a client secret, and a SAS requires a token, so both fail the “no stored credentials” requirement.\nREAD VOLUME: It lets users read and list the files in the volume without modifying them. WRITE VOLUME would allow changes, which violates the requirement. BROWSE only lets users see the volume’s metadata in the catalog, not read its files, so it doesn’t give them access to the files.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1804767",
+        "author": "Pranav Neharkar",
+        "date_title": "October 22, 2026 09:07 am",
+        "text": "Databricks Access connector: It uses an Azure managed identity, so no secrets or tokens are stored in Databricks. A service principal requires a client secret, and a SAS requires a token, so both fail the “no stored credentials” requirement.\nREAD VOLUME: It lets users read and list the files in the volume without modifying them. WRITE VOLUME would allow changes, which violates the requirement. BROWSE only lets users see the volume’s metadata in the catalog, not read its files, so it doesn’t give them access to the files.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1799752",
+        "author": "zxc01",
+        "date_title": "September 22, 2026 12:04 am",
+        "text": "The first question ask authentication type which Azure Databricks Access Connector is not authentication. It should be managed identity. However I cannot get it in list. service principal is possible solution.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417054-exam-dp-750-topic-2-question-11-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.<br/>\nYou need to create an external volume named Volume1 in an existing schema. Volume1 must expose files from an Azure Storage container. The solution must meet the following requirements:<br/>\nEnsure that authentication does NOT require storing credentials in Databricks.<br/>\nEnsure that users can access the files, but NOT modify the files.<br/>\nFollow the principle of least privilege.<br/>\nWhich type of authentication should you configure, and which permission should you grant to the users? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image22.png\" title=\"image22\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417054_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image22.png",
+        "local_path": "assets/exhibits/dp-750/417054_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1804768",
+      "score": 124.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 2
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417055",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 12,
+    "question_id": "417055",
+    "question_text": "Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.\nYou have an Azure Databricks workspace named Workspace1 that contains a lakehouse and is enabled for Unity Catalog.\nYou have a connection to a Microsoft SQL Server database named DB1.\nYou need to expose the schemas and tables of DB1 to meet the following requirements:\nThe schemas and tables can be queried in Databricks.\nThe schemas and tables appear alongside other Unity Catalog objects.\nThe data is NOT copied into Databricks-managed storage.\nSolution: You create a Lakeflow Connect pipeline and connect it to DB1.\nDoes this meet the goal?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "No",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 3,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1802205",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:55 pm",
+        "text": "B. No\nThe requirement says:\nTables must be queryable in Databricks\nObjects must appear alongside Unity Catalog objects\nData must NOT be copied into Databricks-managed storage !!!\nA Lakeflow Connect pipeline ingests/replicates data from Microsoft SQL Server into Databricks-managed Delta tables. That means the data is copied into Databricks storage.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802204",
+        "author": "dgerok",
+        "date_title": "October 06, 2026 03:55 pm",
+        "text": "B. No\nThe requirement says:\nTables must be queryable in Databricks\nObjects must appear alongside Unity Catalog objects\nData must NOT be copied into Databricks-managed storage !!!\nA Lakeflow Connect pipeline ingests/replicates data from Microsoft SQL Server into Databricks-managed Delta tables. That means the data is copied into Databricks storage.",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1802070",
+        "author": "Khan_ss",
+        "date_title": "October 05, 2026 07:41 pm",
+        "text": "B.) NO: its talking about foreign catalog",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417055-exam-dp-750-topic-2-question-12-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.<br>\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.<br/>\nYou have an Azure Databricks workspace named Workspace1 that contains a lakehouse and is enabled for Unity Catalog.<br/>\nYou have a connection to a Microsoft SQL Server database named DB1.<br/>\nYou need to expose the schemas and tables of DB1 to meet the following requirements:<br/>\nThe schemas and tables can be queried in Databricks.<br/>\nThe schemas and tables appear alongside other Unity Catalog objects.<br/>\nThe data is NOT copied into Databricks-managed storage.<br/>\nSolution: You create a Lakeflow Connect pipeline and connect it to DB1.<br/>\nDoes this meet the goal?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417061",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 18,
+    "question_id": "417061",
+    "question_text": "You have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou have a CSV file stored in an Azure Data Lake Storage Gen2 container.\nYou plan to ingest the data into an existing table by running the following SQL statement.\nCOPY INTO Customer\nFROM ‘abfss://\n[email protected]\n/data/customer’\nFILEFORMAT = CSV\nYou need to ensure that the statement can access the data in the container.\nWhat should you configure?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "an external table named Customer in the CSV file format",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "a Lakeflow ingestion gateway",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "an external location that uses a storage credential",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "a volume in a catalog",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1806908",
+        "author": "mtc9",
+        "date_title": "November 02, 2026 05:44 pm",
+        "text": "C, all of the other solutions could access stodage in different ways, but the script is already given and it needs access to storage",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417061-exam-dp-750-topic-2-question-18-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that is enabled for Unity Catalog.<br>\nYou have a CSV file stored in an Azure Data Lake Storage Gen2 container.<br/>\nYou plan to ingest the data into an existing table by running the following SQL statement.<br/>\nCOPY INTO Customer<br/>\nFROM ‘abfss://<a class=\"__cf_email__\" data-cfemail=\"42212d2c36232b2c2730730231362d302325272321212d372c366c2624316c212d30276c352b2c262d35316c2c2736\" href=\"/cdn-cgi/l/email-protection\">[email protected]</a>/data/customer’<br/>\nFILEFORMAT = CSV<br/>\nYou need to ensure that the statement can access the data in the container.<br/>\nWhat should you configure?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417063",
+    "exam": "dp-750",
+    "topic": 2,
+    "question_number": 20,
+    "question_id": "417063",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is attached to a Unity Catalog metastore named metastore1.metastore1 contains:\nA catalog named Sales\nA schema named Customers in the Sales catalog\nA table named Customer_details in the Customers schema\nYou need to ensure that a user named User1 can update the data in Customer_details. The solution must meet the following requirements:\nEnsure that User1 cannot create new tables.\nFollow the principle of least privilege.\nWhich permission should you grant to User1 for each object? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "the sales catalog - use catalog\nthe customers schema - use schema\nthe customer_details table - modify",
+    "comments": [
+      {
+        "comment_id": "1809151",
+        "author": "pietjapie",
+        "date_title": "November 11, 2026 08:12 pm",
+        "text": "The last one is select, the requirement is that User1 can update data. SELECT only allows reading, so with SELECT alone, an UPDATE statement fails with a permission error. MODIFY is the Unity Catalog privilege that allows INSERT, UPDATE, and DELETE. Without it, updating is impossible.",
+        "upvotes": 1,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1809295",
+        "author": "pietjapie",
+        "date_title": "November 12, 2026 02:44 pm",
+        "text": "Meant Modify*",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1778286",
+        "author": "SarathChandra",
+        "date_title": "July 22, 2026 10:11 am",
+        "text": "the sales catalog - use catalog\nthe customers schema - use schema\nthe customer_details table - modify",
+        "upvotes": 11,
+        "badges": [
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1771760",
+        "author": "fd21624",
+        "date_title": "June 26, 2026 09:20 am",
+        "text": "the sales catalog - use schema\nthe customers schema - use schema\nthe customer_details table - modify\nMANAGE\tAbility to grant/revoke privileges on the object\tViolates least privilege — User1 would gain control over others' access\nMODIFY\tINSERT, UPDATE, DELETE on the table\tCorrect — update data without any schema/table creation rights\nSELECT\tRead-only query access\tInsufficient — cannot update data",
+        "upvotes": 4,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417063-exam-dp-750-topic-2-question-20-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is attached to a Unity Catalog metastore named metastore1.metastore1 contains:<br/>\nA catalog named Sales<br/>\nA schema named Customers in the Sales catalog<br/>\nA table named Customer_details in the Customers schema<br/>\nYou need to ensure that a user named User1 can update the data in Customer_details. The solution must meet the following requirements:<br/>\nEnsure that User1 cannot create new tables.<br/>\nFollow the principle of least privilege.<br/>\nWhich permission should you grant to User1 for each object? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image28.png\" title=\"image28\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417063_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image28.png",
+        "local_path": "assets/exhibits/dp-750/417063_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1778286",
+      "score": 55.5,
+      "pattern": "highly_voted",
+      "upvotes": 11
+    },
+    "skill_area": 2,
+    "skill_area_label": "Secure and govern Unity Catalog objects"
+  },
+  {
+    "discussion_id": "417064",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 1,
+    "question_id": "417064",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks account that contains a single workspace named Workspace1. Workspace1 is enabled for Unity Catalog.\nYou discover that data access events for Unity Catalog tables fail to appear in the logs.\nYou need to ensure that all the data access events are captured centrally for auditing purposes. The log data must be available for analysis as quickly as possible.\nWhat should you do?\nTo answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "workspace1\nLog Analytics",
+    "comments": [
+      {
+        "comment_id": "1800246",
+        "author": "da42cb8",
+        "date_title": "September 25, 2026 11:55 am",
+        "text": "workspace1\nLog Analytics",
+        "upvotes": 5,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417064-exam-dp-750-topic-3-question-1-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks account that contains a single workspace named Workspace1. Workspace1 is enabled for Unity Catalog.<br/>\nYou discover that data access events for Unity Catalog tables fail to appear in the logs.<br/>\nYou need to ensure that all the data access events are captured centrally for auditing purposes. The log data must be available for analysis as quickly as possible.<br/>\nWhat should you do?<br/>\nTo answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image30.png\" title=\"image30\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417064_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image30.png",
+        "local_path": "assets/exhibits/dp-750/417064_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1800246",
+      "score": 90.0,
+      "pattern": "loose:short_bullet_list",
+      "upvotes": 5
+    },
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data"
+  },
+  {
+    "discussion_id": "417066",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 3,
+    "question_id": "417066",
+    "question_text": "DRAG DROP\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.\nTo start the case study\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.\nOverview\nCompany Information\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.\nExisting Environment\nAzure Environment\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.\nWorkspace1 contains all-purpose clusters for both development and production workloads.\nThe company's Azure environment contains:\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data\nData Environment\nContoso ingests the following operational and business data:\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.\nProblem Statements\nThe company’s existing analytics environment has several issues:\nIngestion\nTelemetry pipelines fall behind during peak loads.\nTelemetry ingestion fails when schema drift occurs.\nStreaming pipelines reprocess events after a pipeline restarts.\nCompute\nProduction and development workloads run on the same all-purpose clusters.\nProduction and development workloads do NOT support autoscaling or workload isolation.\nGovernance\nThe ERP data is duplicated across systems and development teams.\nNaming conventions are inconsistent across development teams, regions, and products.\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.\nPipeline operations\nPipelines lack resiliency, alerting, and centralized scheduling.\nRequirements\nPlanned Changes\nContoso plans to implement the following changes:\nImplement scalable data pipeline orchestration.\nCreate a managed analytics catalog in Unity Catalog.\nImplement a consistent approach to creating curated datasets.\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.\nGrant data engineers access to the ERP tables by using minimal development effort.\nAdopt a compute strategy that isolates production workloads and supports autoscaling.\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.\nTechnical Requirements\nContoso identifies the following environment and compute requirements:\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.\nProvide fast and consistent performance for business intelligence (BI) workloads.\nPrevent development activity from affecting production pipelines.\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.\nContoso identifies the following data ingestion and processing requirements:\nAuto-scale ingestion pipelines to handle bursty workloads.\nHandle schema drift for the maintenance and telemetry data.\nIngest file-based telemetry data by using minimal operational effort.\nStore all the ingested data in a format that supports incremental processing.\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.\nContoso identifies the following data modeling and optimization requirements:\nBuild curated tables that standardize business logic.\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.\nContoso identifies the following pipeline deployment and operation requirements:\nOrchestrate multi-step ingestion and transformation workflows.\nDefine a clear execution order and dependencies.\nAutomatically retry failed steps and notify operators.\nSchedule ingestion and transformation workloads consistently.\nGovernance Requirements\nContoso identifies the following governance requirements:\nCentralize the metadata catalog.\nProvide isolated development areas that follow standard naming conventions.\nEstablish a consistent structure for organizing raw, cleansed, and curated data.\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.\nBusiness Requirements\nContoso identifies the following business requirements:\nImprove ingestion reliability and reduce operational effort.\nStandardize data definitions across development teams.\nWhich ingestion option should you recommend for each data source? To answer, drag the appropriate options to the correct data sources. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Telemetry data → Auto Loader\nOperational maintenance data → Lakeflow Connect managed connector\nMaintenance logs → Auto Loader\nExternal weather data → A Databricks notebook",
+    "comments": [
+      {
+        "comment_id": "1799275",
+        "author": "DimaH",
+        "date_title": "September 18, 2026 06:37 am",
+        "text": "Telemetry data: Auto Loader\nOperational maintenance data: Azure Data Factory\nMaintenance logs: A Databricks notebook\nExternal weather data: Lakeflow Connect managed connector",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1795507",
+        "author": "Frazer1",
+        "date_title": "September 08, 2026 06:26 pm",
+        "text": "Answer\nTelemetry data → Auto Loader\nOperational maintenance data → Lakeflow Connect managed connector\nMaintenance logs → Auto Loader\nExternal weather data → A Databricks notebook",
+        "upvotes": 4,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417066-exam-dp-750-topic-3-question-3-discussion/",
+    "question_type": "drag_drop",
+    "raw_html": "\r\n                  DRAG DROP<br>\nThis is a case study. Case studies are not timed separately from other exam sections. You can use as much exam time as you would like to complete each case study. However, there might be additional case studies or other exam sections. Manage your time to ensure that you can complete all the exam sections in the time provided. Pay attention to the Exam Progress at the top of the screen so you have sufficient time to complete any exam sections that follow this case study.<br/>\nTo answer the case study questions, you will need to reference information that is provided in the case. Case studies and associated questions might contain exhibits or other resources that provide more information about the scenario described in the case. Information provided in an individual question does not apply to the other questions in the case study.<br/>\nA Review Screen will appear at the end of this case study. From the Review Screen, you can review and change your answers before you move to the next exam section. After you leave this case study, you will NOT be able to return to it.<br/>\nTo start the case study<br/>\nTo display the first question in this case study, select the “Next” button. To the left of the question, a menu provides links to information such as business requirements, the existing environment, and problem statements. Please read through all this information before answering any questions. When you are ready to answer a question, select the “Question” button to return to the question.<br/>\nOverview<br/>\nCompany Information<br/>\nContoso, Inc. is a renewable energy provider that operates solar and wind farms across North America.<br/>\nExisting Environment<br/>\nAzure Environment<br/>\nContoso has a single Azure Databricks workspace named Workspace1 in the West US Azure region. Workspace1 is enabled for Unity Catalog.<br/>\nWorkspace1 contains all-purpose clusters for both development and production workloads.<br/>\nThe company's Azure environment contains:<br/>\nIn the West US, Central US, and East US Azure regions, Azure event hubs that stream telemetry data and an Azure Data Lake Storage Gen2 account in each region for each hub<br/>\nA single Azure SQL database in the West US region that hosts enterprise resource planning (ERP) data<br/>\nAn Azure Database for PostgreSQL server in the West US region that stores operational maintenance data<br/>\nData Environment<br/>\nContoso ingests the following operational and business data:<br/>\nTelemetry data: More than 40,000 IoT sensors across 28 sites emit JSON telemetry events every few seconds. Each site sends the events to the nearest event hub, which writes the data into the corresponding Data Lake Storage Gen2 account. These files frequently experience schema drift.<br/>\nMaintenance logs: Maintenance systems generate historical repair logs, daily incremental updates, technician notes, and unstructured attachments that are stored in the Data Lake Storage Gen2 accounts.<br/>\nOperational maintenance data: Structured operational maintenance data is stored on the Azure Database for PostgreSQL server.<br/>\nExternal weather data: Hourly weather forecasts are retrieved from a REST API and written to the Data Lake Storage Gen2 accounts.<br/>\nERP data: Daily CSV extracts of 50 to 100 GB contain equipment metadata, work orders, and purchase order information.<br/>\nProblem Statements<br/>\nThe company’s existing analytics environment has several issues:<br/>\nIngestion<br/>\nTelemetry pipelines fall behind during peak loads.<br/>\nTelemetry ingestion fails when schema drift occurs.<br/>\nStreaming pipelines reprocess events after a pipeline restarts.<br/>\nCompute<br/>\nProduction and development workloads run on the same all-purpose clusters.<br/>\nProduction and development workloads do NOT support autoscaling or workload isolation.<br/>\nGovernance<br/>\nThe ERP data is duplicated across systems and development teams.<br/>\nNaming conventions are inconsistent across development teams, regions, and products.<br/>\nOwnership of the IoT sensors changes over time, and analysts must track the full history of the ownership.<br/>\nOccasionally, equipment manufacturers must correct data-entry mistakes in equipment names. Historical values are NOT required.<br/>\nPipeline operations<br/>\nPipelines lack resiliency, alerting, and centralized scheduling.<br/>\nRequirements<br/>\nPlanned Changes<br/>\nContoso plans to implement the following changes:<br/>\nImplement scalable data pipeline orchestration.<br/>\nCreate a managed analytics catalog in Unity Catalog.<br/>\nImplement a consistent approach to creating curated datasets.<br/>\nEstablish a centralized governance model across ingestion, cleansed, and curated layers.<br/>\nGrant data engineers access to the ERP tables by using minimal development effort.<br/>\nAdopt a compute strategy that isolates production workloads and supports autoscaling.<br/>\nAdopt a slowly changing dimension (SCD) approach to address current data modeling issues.<br/>\nTechnical Requirements<br/>\nContoso identifies the following environment and compute requirements:<br/>\nEnsure that production ingestion workloads run on compute clusters that can scale automatically during telemetry spikes.<br/>\nProvide fast and consistent performance for business intelligence (BI) workloads.<br/>\nPrevent development activity from affecting production pipelines.<br/>\nProduction ingestion workloads must run as scheduled, non-interactive pipelines rather than on shared interactive development clusters.<br/>\nContoso identifies the following data ingestion and processing requirements:<br/>\nAuto-scale ingestion pipelines to handle bursty workloads.<br/>\nHandle schema drift for the maintenance and telemetry data.<br/>\nIngest file-based telemetry data by using minimal operational effort.<br/>\nStore all the ingested data in a format that supports incremental processing.<br/>\nSupport the continuous ingestion of telemetry data from the event hubs by using exactly-once semantics.<br/>\nSupport the ingestion of the structured maintenance data from the Azure Database for PostgreSQL server.<br/>\nBuild a new telemetry pipeline that ingests raw events from the event hubs, cleanses the data, and publishes curated tables to Unity Catalog.<br/>\nEnsure that the Apache Spark Structured Streaming pipelines reading from the event hubs write the data into a managed Delta table named telemetry.raw_events. The pipelines must support schema drift and resume processing after failures without reprocessing the data.<br/>\nContoso identifies the following data modeling and optimization requirements:<br/>\nBuild curated tables that standardize business logic.<br/>\nOverwrite equipment metadata attributes, such as name, manufacturer, model, and commissioning date, when the attributes change. Historical values are NOT required.<br/>\nContoso identifies the following pipeline deployment and operation requirements:<br/>\nOrchestrate multi-step ingestion and transformation workflows.<br/>\nDefine a clear execution order and dependencies.<br/>\nAutomatically retry failed steps and notify operators.<br/>\nSchedule ingestion and transformation workloads consistently.<br/>\nGovernance Requirements<br/>\nContoso identifies the following governance requirements:<br/>\nCentralize the metadata catalog.<br/>\nProvide isolated development areas that follow standard naming conventions.<br/>\nEstablish a consistent structure for organizing raw, cleansed, and curated data.<br/>\nProvide a read-only mechanism to reference the ERP data through a foreign catalog.<br/>\nBusiness Requirements<br/>\nContoso identifies the following business requirements:<br/>\nImprove ingestion reliability and reduce operational effort.<br/>\nStandardize data definitions across development teams.<br/>\nWhich ingestion option should you recommend for each data source? To answer, drag the appropriate options to the correct data sources. Each option may be used once, more than once, or not at all. You may need to drag the split bar between panes or scroll to view content.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image34.png\" title=\"image34\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417066_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image34.png",
+        "local_path": "assets/exhibits/dp-750/417066_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": "drag-drop UI is rendered as a single image (see exhibit)",
+    "_backfill_source": {
+      "comment_id": "1795507",
+      "score": 150.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 4
+    },
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data",
+    "case_study_id": "dp-750-contoso",
+    "case_study_title": "Contoso"
+  },
+  {
+    "discussion_id": "417075",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 12,
+    "question_id": "417075",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a Delta table named db1.sales_orders.\ndb1.sales_orders is updated nightly and has change data feed (CDF) enabled.\nYou need to ingest all the changes from the db1.sales_orders table, including inserts, updates, and deletes, into a downstream pipeline.\nHow should you complete the PsySpark code segment? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": null,
+    "comments": [
+      {
+        "comment_id": "1799891",
+        "author": "zxc01",
+        "date_title": "September 22, 2026 11:27 pm",
+        "text": "it should use skipChangeCommits = false(defult setting). ignoreChanges is old setting and don't use in new versions. And setting ignoreChanges = false will conflict with readChangeFeed = true and trigger errors in stream.",
+        "upvotes": 2,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417075-exam-dp-750-topic-3-question-12-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a Delta table named db1.sales_orders.<br/>\ndb1.sales_orders is updated nightly and has change data feed (CDF) enabled.<br/>\nYou need to ingest all the changes from the db1.sales_orders table, including inserts, updates, and deletes, into a downstream pipeline.<br/>\nHow should you complete the PsySpark code segment? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image41.png\" title=\"image41\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417075_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image41.png",
+        "local_path": "assets/exhibits/dp-750/417075_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data"
+  },
+  {
+    "discussion_id": "417079",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 16,
+    "question_id": "417079",
+    "question_text": "Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a Delta table named Orders.\nYou load the Orders table into an Apache Spark DataFrame named df.\nYou need to create a DataFrame that excludes rows where the order amount is null.\nSolution: You run the following expression.\ndf.dropna(subset=[“order_amount”])\nDoes this meet the goal?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Yes",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "No",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "A"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "A",
+        "vote_count": 1,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "A",
+    "comments": [
+      {
+        "comment_id": "1800071",
+        "author": "zxc01",
+        "date_title": "September 24, 2026 01:21 am",
+        "text": "It will drop rows for both null and NaN. It means null value will be dropped and match the requirement. However, in real production, must take care if we want to keep NaN values.",
+        "upvotes": 4,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: A"
+        ],
+        "selected_answer": "A",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1799892",
+        "author": "zxc01",
+        "date_title": "September 22, 2026 11:40 pm",
+        "text": "It will drop rows which include null or NaN. the question only asks to filter out null values. I am not sure it needs to keep NaN?",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417079-exam-dp-750-topic-3-question-16-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  Note: This section contains one or more sets of questions with the same scenario and problem. Each question presents a unique solution to the problem. You must determine whether the solution meets the stated goals. More than one solution in the set might solve the problem. It is also possible that none of the solutions in the set solve the problem.<br>\nAfter you answer a question in this section, you will NOT be able to return. As a result, these questions do not appear on the Review Screen.<br/>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a Delta table named Orders.<br/>\nYou load the Orders table into an Apache Spark DataFrame named df.<br/>\nYou need to create a DataFrame that excludes rows where the order amount is null.<br/>\nSolution: You run the following expression.<br/>\ndf.dropna(subset=[“order_amount”])<br/>\nDoes this meet the goal?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data"
+  },
+  {
+    "discussion_id": "417083",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 20,
+    "question_id": "417083",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1. Table1 stores customer profile data.\nBusiness users must analyze how customer profile records change over time. They must also be able to query earlier versions of the table.\nYou need to implement a solution that:\nMaintains persistent historical versions of customer profile records for long-term analysis.\nAllows users to query earlier versions of the Delta table.\nMinimizes maintenance effort.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "For \"To record historical changes\": Implement a Type 2 slowly changing dimension (SCD) is a better option. CDF captures row-level changes (insert/update/delete) for downstream streaming consumers. It is not designed for long-term historical analysis — changes are only retained for the table's delta.deletedFileRetentionDuration window.\nFor \"To support temporal analysis\": Use Delta Lake time travel is the correct answer indeed.",
+    "comments": [
+      {
+        "comment_id": "1795245",
+        "author": "Frazer1",
+        "date_title": "September 07, 2026 04:20 pm",
+        "text": "To record historical changes: Implement a Type 2 slowly changing dimension (SCD).\n​To support temporal analysis: Use Delta Lake time travel.",
+        "upvotes": 5,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1771809",
+        "author": "fd21624",
+        "date_title": "June 26, 2026 02:38 pm",
+        "text": "For \"To record historical changes\"\tImplement a Type 2 slowly changing dimension (SCD) is a better option. CDF captures row-level changes (insert/update/delete) for downstream streaming consumers. It is not designed for long-term historical analysis — changes are only retained for the table's delta.deletedFileRetentionDuration window.\nFor \"To support temporal analysis\"\tUse Delta Lake time travel is the correct answer indeed.",
+        "upvotes": 9,
+        "badges": [
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417083-exam-dp-750-topic-3-question-20-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog and contains a managed Delta table named Table1. Table1 stores customer profile data.<br/>\nBusiness users must analyze how customer profile records change over time. They must also be able to query earlier versions of the table.<br/>\nYou need to implement a solution that:<br/>\nMaintains persistent historical versions of customer profile records for long-term analysis.<br/>\nAllows users to query earlier versions of the Delta table.<br/>\nMinimizes maintenance effort.<br/>\nWhat should you do? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image48.png\" title=\"image48\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417083_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image48.png",
+        "local_path": "assets/exhibits/dp-750/417083_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1771809",
+      "score": 197.0,
+      "pattern": "explicit_pattern",
+      "upvotes": 9
+    },
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data"
+  },
+  {
+    "discussion_id": "417084",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 21,
+    "question_id": "417084",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou need to ingest data from the CSV files stored in an external Azure Data Lake Storage Gen2 container into a managed Delta table. The solution must meet the following requirements:\nLoad data incrementally as new files arrive.\nMinimize custom code and operational effort.\nHow should you complete the SQL statement? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "I was thinking about - create table - location - because that could permanently define the files at storage as table content, but the key word was managed table, so target table couldn't be at external location, so copy - from.",
+    "comments": [
+      {
+        "comment_id": "1807274",
+        "author": "mtc9",
+        "date_title": "November 03, 2026 07:34 pm",
+        "text": "I was thinking about - create table - location - because that could permanently define the files at storage as table content, but the key word was managed table, so target table couldn't be at external location, so copy - from.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417084-exam-dp-750-topic-3-question-21-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that is enabled for Unity Catalog.<br/>\nYou need to ingest data from the CSV files stored in an external Azure Data Lake Storage Gen2 container into a managed Delta table. The solution must meet the following requirements:<br/>\nLoad data incrementally as new files arrive.<br/>\nMinimize custom code and operational effort.<br/>\nHow should you complete the SQL statement? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image50.png\" title=\"image50\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417084_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image50.png",
+        "local_path": "assets/exhibits/dp-750/417084_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data",
+    "_backfill_source": {
+      "comment_id": "1807274",
+      "upvotes": 1,
+      "confidence": "community_note",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "428351",
+    "exam": "dp-750",
+    "topic": 3,
+    "question_number": 26,
+    "question_id": "428351",
+    "question_text": "You have an Azure Databricks workspace that is enabled for Unity Catalog.\nYou need to profile a table to meet the following requirements:\n•\tThe count of null values per column must be evaluated repeatedly as new records are added to the table.\n•\tChanges in the count of null values must be observable over the progression of the dataset.\nWhich type of profile should you create?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "snapshot",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "inference",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "time series",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "C"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "C",
+    "comments": [
+      {
+        "comment_id": "1799896",
+        "author": "zxc01",
+        "date_title": "September 23, 2026 12:49 am",
+        "text": "TimeSeries need column with data type TIMESTAMP but question doesn't say it. I am not sure the correct answer is A or C. Microsoft is better to add \"table has TIMESTAMP data type column or table size is larger than 4 TB. However, timeseries is possible better solution if we enable change data feed (CDF) on table.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/428351-exam-dp-750-topic-3-question-26-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that is enabled for Unity Catalog.<br>\n<br/>\nYou need to profile a table to meet the following requirements:<br/>\n<br/>\n•\tThe count of null values per column must be evaluated repeatedly as new records are added to the table.<br/>\n•\tChanges in the count of null values must be observable over the progression of the dataset.<br/>\n<br/>\nWhich type of profile should you create?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 3,
+    "skill_area_label": "Prepare and process data"
+  },
+  {
+    "discussion_id": "417089",
+    "exam": "dp-750",
+    "topic": 4,
+    "question_number": 4,
+    "question_id": "417089",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that contains an all-purpose cluster named Cluster1.\nYou discover that out-of-memory (OOM) errors intermittently cause jobs running on Cluster1 to fail.\nYou need to identify the root cause of the failures by analyzing the runtime execution behavior.\nWhat should you do? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "To identify the root cause of out-of-memory (OOM) errors in Azure Databricks, you should access and analyze the Spark UI and review the cluster's driver and executor logs.",
+    "comments": [
+      {
+        "comment_id": "1795253",
+        "author": "Frazer1",
+        "date_title": "September 07, 2026 06:04 pm",
+        "text": "To identify the root cause of out-of-memory (OOM) errors in Azure Databricks, you should access and analyze the Spark UI and review the cluster's driver and executor logs.",
+        "upvotes": 2,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1776072",
+        "author": "Abhi_007",
+        "date_title": "July 11, 2026 10:47 am",
+        "text": "Execution level to analyze: Tasks\nCopilot said:\nBecause OOM (Out Of Memory) errors occur at the task/executor level, and the Spark UI lets you drill down to the exact task causing the memory pressure.",
+        "upvotes": 3,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1807547",
+        "author": "mtc9",
+        "date_title": "November 04, 2026 08:10 pm",
+        "text": "I would then say executor level, not task",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417089-exam-dp-750-topic-4-question-4-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that contains an all-purpose cluster named Cluster1.<br/>\nYou discover that out-of-memory (OOM) errors intermittently cause jobs running on Cluster1 to fail.<br/>\nYou need to identify the root cause of the failures by analyzing the runtime execution behavior.<br/>\nWhat should you do? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image54.png\" title=\"image54\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417089_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image54.png",
+        "local_path": "assets/exhibits/dp-750/417089_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Deploy and maintain data pipelines and workloads",
+    "_backfill_source": {
+      "comment_id": "1795253",
+      "upvotes": 2,
+      "confidence": "consensus",
+      "pattern": "ai_community_enrichment"
+    }
+  },
+  {
+    "discussion_id": "417093",
+    "exam": "dp-750",
+    "topic": 4,
+    "question_number": 8,
+    "question_id": "417093",
+    "question_text": "HOTSPOT\nYou have an Azure Databricks workspace that contains a job in Lakeflow Jobs named Job1.\nJob1 runs every hour.\nOccasionally, the job run takes longer than one hour to complete. Overlapping runs must be prevented to avoid data corruption.\nYou need to configure the job scheduling behavior.\nWhat should you configure? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+    "choices": [],
+    "correct_answers": [],
+    "voted_answers_tally": [],
+    "most_voted_answer": "Concurrency setting: Limit concurrent runs to one.\nExecution behavior: Queue the new run.\nConcurrency setting: Setting the limit to Limit concurrent runs to one. It prevents multiple instances of Job1 from executing simultaneously, avoiding data race conditions and storage corruption.\nExecution behavior: Selecting Queue the new run. ensures that when a new scheduled run is triggered while the previous instance is still executing, the new run waits in the queue until the active run finishes, rather than being cancelled or skipped.",
+    "comments": [
+      {
+        "comment_id": "1807551",
+        "author": "mtc9",
+        "date_title": "November 04, 2026 08:33 pm",
+        "text": "the requirements didn't specify what to do with concurrent run, only to avoid overlapping, but the fact that extended run over 1h happens only occasionally, would make queue runs possible without growing the queue, assuming that next runs would take LESS than 1h, to reduce back the queue to 0. But without this knowledge and not relying on assumption, cancel paralel run would be safer option, especially that the jobs are frequrnt, so not much loss waiting less than 1h for next run. So I would pick CANCEL for second question.",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1791708",
+        "author": "Frazer1",
+        "date_title": "August 25, 2026 01:04 am",
+        "text": "Concurrency setting: Limit concurrent runs to one.\nExecution behavior: Queue the new run.\n​Concurrency setting: Setting the limit to Limit concurrent runs to one. It prevents multiple instances of Job1 from executing simultaneously, avoiding data race conditions and storage corruption.\n​Execution behavior: Selecting Queue the new run. ensures that when a new scheduled run is triggered while the previous instance is still executing, the new run waits in the queue until the active run finishes, rather than being cancelled or skipped.",
+        "upvotes": 5,
+        "badges": [],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1778316",
+        "author": "SarathChandra",
+        "date_title": "July 22, 2026 01:23 pm",
+        "text": "Execution behavior: Queue the new run\nNew runs are queued and start after the current run completes.",
+        "upvotes": 8,
+        "badges": [
+          "Highly Voted"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417093-exam-dp-750-topic-4-question-8-discussion/",
+    "question_type": "hotspot",
+    "raw_html": "\r\n                  HOTSPOT<br>\nYou have an Azure Databricks workspace that contains a job in Lakeflow Jobs named Job1.<br/>\nJob1 runs every hour.<br/>\nOccasionally, the job run takes longer than one hour to complete. Overlapping runs must be prevented to avoid data corruption.<br/>\nYou need to configure the job scheduling behavior.<br/>\nWhat should you configure? To answer, select the appropriate options in the answer area.<br/>\nNOTE: Each correct selection is worth one point.<br/>\n<img src=\"https://img.examtopics.com/dp-750/image56.png\" title=\"image56\"/><br/>\n</br>",
+    "exhibits": [
+      {
+        "kind": "image",
+        "src": "assets/exhibits/dp-750/417093_0.png",
+        "alt": "",
+        "original_url": "https://img.examtopics.com/dp-750/image56.png",
+        "local_path": "assets/exhibits/dp-750/417093_0.png",
+        "downloaded": true
+      }
+    ],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "_backfill_source": {
+      "comment_id": "1791708",
+      "score": 140.0,
+      "pattern": "loose:label_pair",
+      "upvotes": 5
+    },
+    "skill_area": 4,
+    "skill_area_label": "Deploy and maintain data pipelines and workloads"
+  },
+  {
+    "discussion_id": "417103",
+    "exam": "dp-750",
+    "topic": 4,
+    "question_number": 18,
+    "question_id": "417103",
+    "question_text": "You have an Azure Databricks workspace that contains a job in Lakeflow Jobs named Job1. Job1 contains multiple tasks.\nFailures of non-critical tasks must be logged but must NOT trigger notifications. Notifications must be triggered only when critical tasks have failed, and Job1 has completed.\nYou need to configure the job alerting behavior.\nWhat should trigger a notification?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "task success",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "a job failure",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "a task failure",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "job success",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 2,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1795260",
+        "author": "Frazer1",
+        "date_title": "September 07, 2026 06:59 pm",
+        "text": "Job-level notifications in Azure Databricks allow you to trigger alerts on overall run completion events like success or failure rather than on individual non-critical task errors.\nTriggering on a task failure (Option C) would cause notifications to fire for every individual failing task, including non-critical ones that you only want logged.\nConfiguring the alert on a job failure (Option B) ensures that notifications are suppressed for minor task anomalies and are only sent out when critical tasks fail and cause the final job execution to fail.\nOption B is correct.",
+        "upvotes": 5,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1794124",
+        "author": "senn333",
+        "date_title": "September 02, 2026 01:38 pm",
+        "text": "Notifications must be triggered only when critical tasks have failed, and Job1 has completed",
+        "upvotes": 4,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417103-exam-dp-750-topic-4-question-18-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have an Azure Databricks workspace that contains a job in Lakeflow Jobs named Job1. Job1 contains multiple tasks.<br>\nFailures of non-critical tasks must be logged but must NOT trigger notifications. Notifications must be triggered only when critical tasks have failed, and Job1 has completed.<br/>\nYou need to configure the job alerting behavior.<br/>\nWhat should trigger a notification?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Deploy and maintain data pipelines and workloads"
+  },
+  {
+    "discussion_id": "417105",
+    "exam": "dp-750",
+    "topic": 4,
+    "question_number": 20,
+    "question_id": "417105",
+    "question_text": "You have a Lakeflow Spark Declarative Pipelines (SDP) pipeline in Azure Databricks. The pipeline ingests transaction data into a table named Table1.\nYou need to ensure that in the event of an invalid record, the pipeline continues to run. The solution must meet the following requirements:\nInvalid records must NOT be written to Table1.\nInvalid records must be preserved for review.\nMinimize development effort.\nWhat should you do?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Add a CHECK constraint to Table1.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Run WHERE clauses in downstream queries to filter out invalid records.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Define a pipeline expectation.",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Implement advanced logic to quarantine the invalid records.",
+        "correct": true,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "D"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "D",
+        "vote_count": 1,
+        "is_most_voted": true
+      }
+    ],
+    "most_voted_answer": "D",
+    "comments": [
+      {
+        "comment_id": "1804463",
+        "author": "51e3df9",
+        "date_title": "October 20, 2026 03:36 pm",
+        "text": "Defining pipeline expectations (C), does NOT save invalid records for review.",
+        "upvotes": 3,
+        "badges": [
+          "Most Recent",
+          "Selected Answer: D"
+        ],
+        "selected_answer": "D",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/417105-exam-dp-750-topic-4-question-20-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  You have a Lakeflow Spark Declarative Pipelines (SDP) pipeline in Azure Databricks. The pipeline ingests transaction data into a table named Table1.<br>\nYou need to ensure that in the event of an invalid record, the pipeline continues to run. The solution must meet the following requirements:<br/>\nInvalid records must NOT be written to Table1.<br/>\nInvalid records must be preserved for review.<br/>\nMinimize development effort.<br/>\nWhat should you do?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 4,
+    "skill_area_label": "Deploy and maintain data pipelines and workloads"
+  }
+]

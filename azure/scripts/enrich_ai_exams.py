@@ -60,6 +60,14 @@ DP_800_SKILL_AREAS: dict[int, str] = {
     3: "Implement AI capabilities in database solutions",
 }
 
+# Verified MCQ consensus overrides for legacy 2022-2023 threads lacking voter badges.
+CURATED_MCQ_ANSWERS: dict[str, list[str]] = {
+    # DP-900 Q1.144 ("option C" + 24-upvote "It has to be OLAP")
+    "36231": ["C"],
+    # DP-900 Q1.280 ("SELECT, INSERT, and UPDATE" -> C: Data Manipulation Language (DML))
+    "127008": ["C"],
+}
+
 META_CHATTER_RE = re.compile(
     r"(?:\bfound\s+in\s+exam\b|\bin\s+exam\s+today\b|\bhow\s+many\s+questions\b|"
     r"\bpassed\s+the\s+exam\b|\banyone\s+know\b|\bplease\s+share\b|"
@@ -236,6 +244,73 @@ def classify_dp_800_skill_area(q: dict[str, Any]) -> tuple[int, str]:
     return best_area, DP_800_SKILL_AREAS[best_area]
 
 
+def classify_generic_skill_area(q: dict[str, Any], skill_map: dict[int, str]) -> tuple[int, str]:
+    """Classify a single-topic ('Exam A') or overflow-topic question into one of
+    its official Microsoft Learn ``skill_map`` areas using domain & label tokens.
+    """
+    exam = (q.get("exam") or "").lower()
+    _, preamble, prompt = bsg.split_question_text(q.get("question_text", ""))
+    choices_txt = " ".join(
+        (c.get("text") or "") + " " + re.sub(r"<[^>]+>", " ", c.get("text_html") or "")
+        for c in (q.get("choices") or [])
+    )
+    mv_txt = str(q.get("most_voted_answer") or "")
+    body = f"{prompt or q.get('question_text', '')} {choices_txt} {mv_txt}".lower()
+
+    # Dedicated high-precision classifiers for flat 'Exam A' exams
+    if exam == "ai-901":
+        foundry_impl = bool(
+            re.search(
+                r"\b(?:foundry|agent|studio|playground|deploy|endpoint|sdk|python|api|key|rag|index|"
+                r"content\s+understanding|document\s+intelligence|ai\s+search|speech\s+studio|vision\s+studio|"
+                r"language\s+studio|prompt\s+flow|evaluation|content\s+safety|guardrail)\b",
+                body,
+            )
+        )
+        area = 2 if foundry_impl and 2 in skill_map else 1
+        return area, skill_map[area]
+
+    if exam == "dp-900":
+        scores_dp900 = {
+            2: len(re.findall(r"\b(?:sql\s+database|sql\s+managed\s+instance|sql\s+server\s+on\s+azure|postgresql|mysql|mariadb|relational|foreign\s+key|primary\s+key|normalization|\bview\b|stored\s+procedure|clustered\s+index|t-sql)\b", body)),
+            3: len(re.findall(r"\b(?:cosmos\s+db|blob\s+storage|table\s+storage|azure\s+files|data\s+lake\s+storage|adls|nosql|non-relational|gremlin|cassandra|mongodb|key-value|column-family|document\s+database)\b", body)),
+            4: len(re.findall(r"\b(?:power\s+bi|synapse|fabric|databricks|data\s+factory|hdinsight|stream\s+analytics|data\s+warehouse|\betl\b|\belt\b|paginated\s+report|dashboard|treemap|scatter\s+chart|bar\s+chart|real-time\s+analytics|onelake|lakehouse)\b", body)),
+            1: len(re.findall(r"\b(?:oltp|olap|batch\s+processing|stream\s+processing|transactional|analytical|data\s+engineer|database\s+administrator|data\s+analyst|structured\s+data|semi-structured|unstructured|read-only)\b", body)),
+        }
+        best = max(scores_dp900, key=lambda k: (scores_dp900[k], k == 1))
+        return best, skill_map[best]
+
+    if exam == "sc-500":
+        scores_sc500 = {
+            1: len(re.findall(r"\b(?:entra|conditional\s+access|managed\s+identity|rbac|pim|privileged\s+identity|azure\s+policy|key\s+vault|app\s+registration|service\s+principal|workload\s+identity|oauth)\b", body)),
+            2: len(re.findall(r"\b(?:storage\s+account|blob|sql|cosmos|private\s+endpoint|nsg|network\s+security\s+group|azure\s+firewall|waf|ddos|vnet|virtual\s+network|sas\s+token|cmk|encryption)\b", body)),
+            3: len(re.findall(r"\b(?:aks|kubernetes|container\s+apps|container\s+registry|\bacr\b|app\s+service|virtual\s+machine|\bvm\b|just-in-time|defender\s+for\s+containers|defender\s+for\s+servers|foundry|ai\s+workload|prompt\s+shield)\b", body)),
+            4: len(re.findall(r"\b(?:defender\s+for\s+cloud|sentinel|secure\s+score|log\s+analytics|azure\s+monitor|kql|alert|attack\s+path|cloud\s+security\s+posture|cspm|regulatory\s+compliance)\b", body)),
+        }
+        best = max(scores_sc500, key=lambda k: (scores_sc500[k], k == 4))
+        return best, skill_map[best]
+
+    if exam == "ab-410":
+        scores_ab410 = {
+            1: len(re.findall(r"\b(?:dataverse|security\s+role|environment|alm|solution\s+layer|managed\s+solution|business\s+unit|column-level|connection\s+reference|environment\s+variable)\b", body)),
+            2: len(re.findall(r"\b(?:canvas\s+app|model-driven|power\s+fx|copilot\s+control|custom\s+page|pcf|component\s+framework|copilot\s+studio|agent|generative|prompt\s+builder|ai\s+builder)\b", body)),
+            3: len(re.findall(r"\b(?:power\s+automate|cloud\s+flow|desktop\s+flow|business\s+rule|plug-in|custom\s+connector|webhook|approval|trigger|expression)\b", body)),
+        }
+        best = max(scores_ab410, key=lambda k: (scores_ab410[k], k == 2))
+        return best, skill_map[best]
+
+    best_id = min(skill_map)
+    best_score = -1.0
+    q_words = set(re.findall(r"[a-z0-9]{4,}", body)) - STOPWORDS
+    for s_id, s_lbl in sorted(skill_map.items()):
+        lbl_words = set(re.findall(r"[a-z0-9]{4,}", s_lbl.lower())) - STOPWORDS
+        score = float(len(q_words & lbl_words))
+        if score > best_score:
+            best_score = score
+            best_id = s_id
+    return best_id, skill_map[best_id]
+
+
 def detect_case_study_group(q: dict[str, Any]) -> tuple[str | None, str | None]:
     """Return ``(case_study_id, case_study_title)`` if ``q`` is a case study."""
     _, preamble, _ = bsg.split_question_text(q.get("question_text", ""))
@@ -327,10 +402,11 @@ def _extract_community_note(q: dict[str, Any]) -> tuple[str | None, dict[str, An
 
 def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, int]:
     stats = Counter()
-    dp800_distinct_topics = (
-        {int(q.get("topic") or 0) for q in records} if exam == "dp-800" else set()
-    )
-    dp800_has_multi_domain_topics = bool(dp800_distinct_topics & {2, 3})
+    if exam in ("dp-600", "dp-700"):
+        return dict(stats)
+    skill_map = bsg.SKILL_AREA_LABELS.get(exam, {})
+    distinct_topics = {int(q.get("topic") or 0) for q in records}
+    has_multi_domain_topics = len(distinct_topics & set(skill_map.keys())) >= 2
     for q in records:
         # 1. Unescape HTML entities in existing most_voted_answer
         mv = q.get("most_voted_answer")
@@ -339,6 +415,16 @@ def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, i
             if unescaped != mv:
                 q["most_voted_answer"] = unescaped
                 stats["unescaped_answers"] += 1
+
+        # 1b. Apply curated MCQ consensus overrides when legacy threads lack voter badges
+        qid = str(q.get("question_id") or "")
+        if q.get("choices") and not q.get("correct_answers") and qid in CURATED_MCQ_ANSWERS:
+            ans_letters = CURATED_MCQ_ANSWERS[qid]
+            q["correct_answers"] = list(ans_letters)
+            q["most_voted_answer"] = "".join(ans_letters)
+            for ch in q["choices"]:
+                ch["correct"] = ch.get("letter", "").upper() in ans_letters
+            stats["curated_mcq"] += 1
 
         # 2. Skill area classification
         if exam == "ai-103":
@@ -353,10 +439,16 @@ def enrich_exam_records(exam: str, records: list[dict[str, Any]]) -> dict[str, i
             area_label = AI_500_SKILL_AREAS[area_id]
         elif exam == "dp-800":
             t = int(q.get("topic") or 0)
-            if dp800_has_multi_domain_topics and t in DP_800_SKILL_AREAS:
+            if has_multi_domain_topics and t in DP_800_SKILL_AREAS:
                 area_id, area_label = t, DP_800_SKILL_AREAS[t]
             else:
                 area_id, area_label = classify_dp_800_skill_area(q)
+        elif skill_map:
+            t = int(q.get("topic") or 0)
+            if has_multi_domain_topics and t in skill_map:
+                area_id, area_label = t, skill_map[t]
+            else:
+                area_id, area_label = classify_generic_skill_area(q, skill_map)
         else:
             continue
 
@@ -390,8 +482,8 @@ def main() -> int:
     parser.add_argument(
         "--exams",
         nargs="+",
-        default=["ai-103", "ai-300", "ai-500", "dp-800"],
-        help="Exam slugs to enrich (default: ai-103 ai-300 ai-500 dp-800)",
+        default=[item["slug"] for item in bsg.EXAM_CATALOG if item["slug"] not in ("dp-600", "dp-700")],
+        help="Exam slugs to enrich (defaults to all non-legacy catalog exams)",
     )
     args = parser.parse_args()
 

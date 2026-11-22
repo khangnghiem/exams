@@ -486,7 +486,14 @@ class AIExamEnrichmentTests(unittest.TestCase):
     def test_ai_exams_enriched_skill_areas_entities_and_non_mcq_backfill(self) -> None:
         import enrich_ai_exams  # type: ignore
 
-        for exam in ("ai-103", "ai-300", "ai-500", "dp-800"):
+        enriched_slugs = [
+            item["slug"]
+            for item in builder_mod.EXAM_CATALOG
+            if item["slug"] not in ("dp-600", "dp-700")
+            and (REPO_AZURE / "data" / f"{item['slug']}.json").exists()
+        ]
+        self.assertGreaterEqual(len(enriched_slugs), 20)
+        for exam in enriched_slugs:
             data = json.loads((REPO_AZURE / "data" / f"{exam}.json").read_text(encoding="utf-8"))
             jsonl_lines = [
                 json.loads(line)
@@ -498,6 +505,11 @@ class AIExamEnrichmentTests(unittest.TestCase):
             for q in data:
                 self.assertIn("skill_area", q)
                 self.assertIn("skill_area_label", q)
+                if q.get("choices"):
+                    self.assertTrue(
+                        q.get("correct_answers"),
+                        f"Missing MCQ correct_answers in {exam} Q{q['topic']}.{q['question_number']}",
+                    )
                 mv = str(q.get("most_voted_answer") or "")
                 self.assertNotIn("&quot;", mv, f"Unescaped &quot; in {exam} Q{q['topic']}.{q['question_number']}")
                 self.assertNotIn("&gt;", mv, f"Unescaped &gt; in {exam} Q{q['topic']}.{q['question_number']}")
@@ -776,6 +788,117 @@ class DP800SupportTests(unittest.TestCase):
         self.assertIsNotNone(enrich_ai_exams.META_CHATTER_RE.search("The answer of examtopics is correct"))
 
 
+class UnifiedPortfolioAndStateTests(unittest.TestCase):
+    def test_merge_state_files_and_per_exam_discovery_retirement(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            tdir = Path(tmp)
+            s1 = tdir / "s1.json"
+            s2 = tdir / "s2.json"
+            merged = tdir / "merged.json"
+            s1.write_text(
+                json.dumps(
+                    {
+                        "list_pages_completed": [1, 2],
+                        "urls_collected": {
+                            "ai-103": [{"id": "10", "exam": "ai-103", "topic": 1, "qnum": 1, "path": "/p10/", "title": "T10"}]
+                        },
+                        "urls_processed": ["/p10/"],
+                        "errors": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            s2.write_text(
+                json.dumps(
+                    {
+                        "list_pages_completed": [1],
+                        "urls_collected": {
+                            "dp-800": [{"id": "20", "exam": "dp-800", "topic": 1, "qnum": 1, "path": "/p20/", "title": "T20"}]
+                        },
+                        "urls_processed": ["/p20/"],
+                        "errors": {},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            out_state = crawler_mod.merge_state_files([s1, s2], merged)
+            self.assertEqual(set(out_state["urls_processed"]), {"/p10/", "/p20/"})
+            self.assertEqual(out_state["list_pages_completed_by_exam"]["ai-103"], [1, 2])
+            self.assertEqual(out_state["list_pages_completed_by_exam"]["dp-800"], [1])
+
+            # Adding a new exam ("dp-750") alongside "ai-103" MUST still scan page 1
+            # and per-exam empty streak retires dp-750 at page 2 while dp-900 continues!
+            c = crawler_mod.Crawler(
+                output_dir=tdir,
+                exams={"ai-103", "dp-750", "dp-900"},
+                state_path=merged,
+                stop_after_empty_pages=2,
+            )
+
+            visited_pages: list[int] = []
+
+            async def fake_list_page(page: int):
+                visited_pages.append(page)
+                res = {"ai-103": [], "dp-750": [], "dp-900": []}
+                if page == 2:
+                    res["dp-900"].append(
+                        {"id": "9001", "exam": "dp-900", "topic": 1, "qnum": 1, "path": "/dp900-1/", "title": "DP900"}
+                    )
+                return res, 10
+
+            c._crawl_list_page = fake_list_page  # type: ignore[method-assign]
+            asyncio.run(c.discover_urls())
+            # Page 1 was NOT skipped despite ai-103 having [1, 2], because dp-750 & dp-900 needed page 1!
+            self.assertIn(1, visited_pages)
+            # dp-750 retired after pages 1, 2 (2 empty); dp-900 hit on page 2 and retired after pages 3, 4 (2 empty) -> stopped at page 4
+            self.assertEqual(visited_pages, [1, 2, 3, 4])
+
+    def test_four_tier_hub_section_ordering_and_heading_hierarchy(self) -> None:
+        import re
+
+        all_slugs = [
+            "ai-500", "ab-100", "az-401",
+            "ai-103", "ai-200", "ai-300", "dp-600", "dp-700", "dp-750", "dp-800",
+            "ab-620", "ab-410", "ab-400", "ab-210", "ab-250", "ab-650", "ab-730", "ab-731", "sc-500",
+            "gh-300", "gh-600", "gh-200", "gh-500", "gh-100", "gh-900",
+            "ai-901", "dp-900", "ab-900",
+        ]
+        for slug in all_slugs:
+            self.assertIn(slug, builder_mod.EXAM_TITLES, f"Missing title for {slug}")
+            self.assertIn(slug, builder_mod.TOPIC_LABELS, f"Missing topics for {slug}")
+            self.assertIn(slug, builder_mod.SKILL_AREA_LABELS, f"Missing skills for {slug}")
+            self.assertIn(slug, crawler_mod.DEFAULT_EXAMS, f"Missing default exam {slug}")
+
+        hub_html = builder_mod.build_index_html(
+            [{"exam": s, "count": 0 if s == "az-401" else 25, "topics": 3} for s in all_slugs]
+        )
+        # 4 tier sections in strict vertical order: Expert -> Associate -> GitHub -> Beginner
+        idx_expert = hub_html.index('id="tier-expert"')
+        idx_assoc = hub_html.index('id="tier-associate"')
+        idx_github = hub_html.index('id="tier-github"')
+        idx_beginner = hub_html.index('id="tier-beginner"')
+        self.assertLess(idx_expert, idx_assoc)
+        self.assertLess(idx_assoc, idx_github)
+        self.assertLess(idx_github, idx_beginner)
+
+        # AI-500 in Expert (above Associate), GH-300 in GitHub (below Associate), DP-900 & AI-901 in Beginner (below all others)
+        self.assertLess(hub_html.index('data-exam-card="ai-500"'), idx_assoc)
+        self.assertGreater(hub_html.index('data-exam-card="dp-750"'), idx_assoc)
+        self.assertLess(hub_html.index('data-exam-card="dp-750"'), idx_github)
+        self.assertGreater(hub_html.index('data-exam-card="gh-300"'), idx_github)
+        self.assertLess(hub_html.index('data-exam-card="gh-300"'), idx_beginner)
+        self.assertGreater(hub_html.index('data-exam-card="ai-901"'), idx_beginner)
+        self.assertGreater(hub_html.index('data-exam-card="dp-900"'), idx_beginner)
+
+        # Sequential heading hierarchy: <h1> -> <h2> (tiers) -> <h3> (cards), plus <search> and text-wrap: balance
+        headings = [int(m) for m in re.findall(r"<h([1-6])\b", hub_html)]
+        self.assertEqual(headings[0], 1)
+        for prev_h, next_h in zip(headings, headings[1:]):
+            self.assertLessEqual(next_h - prev_h, 1, f"Skipped heading level {prev_h} -> {next_h}")
+        self.assertIn("<search", hub_html)
+        self.assertIn("text-wrap: balance", hub_html)
+
+
 class BackfillMissingAnswersTests(unittest.TestCase):
     def test_crawler_unescapes_double_encoded_comment_entities(self) -> None:
         html_doc = """
@@ -850,6 +973,12 @@ class BackfillMissingAnswersTests(unittest.TestCase):
         self.assertNotIn(" | ", formatted)
         self.assertNotIn("&quot;", formatted)
         self.assertNotIn("Extra commentary", formatted)
+
+    def test_empty_exam_guide_hides_filter_empty_and_floating_pager(self) -> None:
+        html_out = builder_mod.build_html("az-401", [])
+        self.assertIn("No public ExamTopics discussion threads are published yet for AZ-401.", html_out)
+        self.assertIn("emptyEl.hidden = ids.length === 0 || visibleIds.length > 0;", html_out)
+        self.assertIn("if (navFloating) navFloating.hidden = ids.length === 0;", html_out)
 
 
 if __name__ == "__main__":

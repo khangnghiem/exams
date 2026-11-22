@@ -1,0 +1,102 @@
+[
+  {
+    "discussion_id": "315274",
+    "exam": "gh-100",
+    "topic": 3,
+    "question_number": 4,
+    "question_id": "315274",
+    "question_text": "How does metered billing work in GitHub Enterprise Cloud with Enterprise Managed Users (EMU)?",
+    "choices": [
+      {
+        "letter": "A",
+        "text": "Billing is based on number of total users in the enterprise",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "B",
+        "text": "Billing is based on owners and members of GitHub organizations",
+        "correct": true,
+        "text_html": ""
+      },
+      {
+        "letter": "C",
+        "text": "Billing is based on total users in the enterprise that are not dormant",
+        "correct": false,
+        "text_html": ""
+      },
+      {
+        "letter": "D",
+        "text": "Billing is based on the number of users created in Azure AD",
+        "correct": false,
+        "text_html": ""
+      }
+    ],
+    "correct_answers": [
+      "B"
+    ],
+    "voted_answers_tally": [
+      {
+        "voted_answers": "B",
+        "vote_count": 1,
+        "is_most_voted": true
+      },
+      {
+        "voted_answers": "C",
+        "vote_count": 1,
+        "is_most_voted": false
+      }
+    ],
+    "most_voted_answer": "B",
+    "comments": [
+      {
+        "comment_id": "1783251",
+        "author": "LazLol74",
+        "date_title": "August 05, 2026 10:33 am",
+        "text": "Correct answer is B. If you thick about enterprise Teams you will have the answer.\nI can have 10 member in my enterprise teams to allow copilot access without be charged for ghe cost.",
+        "upvotes": 2,
+        "badges": [
+          "Selected Answer: B"
+        ],
+        "selected_answer": "B",
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1789857",
+        "author": "Snap0r",
+        "date_title": "August 19, 2026 01:41 pm",
+        "text": "Billing is based on owners and members of GitHub organizations. Users who exist in the enterprise but are not affiliated with an organization do not consume a license. Dormant organization members may still consume a license right?",
+        "upvotes": 1,
+        "badges": [
+          "Most Recent"
+        ],
+        "selected_answer": null,
+        "is_reply": false,
+        "parent_id": null
+      },
+      {
+        "comment_id": "1758731",
+        "author": "barxan1",
+        "date_title": "May 21, 2026 07:38 am",
+        "text": "Correct, except inactive users",
+        "upvotes": 1,
+        "badges": [
+          "Selected Answer: C"
+        ],
+        "selected_answer": "C",
+        "is_reply": false,
+        "parent_id": null
+      }
+    ],
+    "url": "https://www.examtopics.com/discussions/microsoft/view/315274-exam-gh-100-topic-3-question-4-discussion/",
+    "question_type": "single",
+    "raw_html": "\r\n                  How does metered billing work in GitHub Enterprise Cloud with Enterprise Managed Users (EMU)?",
+    "exhibits": [],
+    "drag_drop_items": [],
+    "drag_drop_targets": [],
+    "drag_drop_error": null,
+    "skill_area": 2,
+    "skill_area_label": "Administer GitHub Enterprise environment"
+  }
+]
